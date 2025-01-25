@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Building", menuName = "Data/BuildingData", order = 0)]
+[CreateAssetMenu(fileName = "Building", menuName = "Data/BuildingData")]
 public class BuildingData : ScriptableObject
 {
     public int cost;
