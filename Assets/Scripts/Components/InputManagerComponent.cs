@@ -35,7 +35,7 @@ public class InputManagerComponent : MonoBehaviour
 	private void InputAction_AcceptPerformed(InputAction.CallbackContext obj)
 	{
 		// If we're currently building, try to place something.
-		//if (BuildManagerComponent.Instance.IsInBuildState())
+		if (BuildManagerComponent.Instance.IsInBuildState())
 			BuildManagerComponent.Instance.SetPlace();
 	}
 
@@ -46,7 +46,7 @@ public class InputManagerComponent : MonoBehaviour
 		// Convert the mouse position to a position in world space.
 		Vector2 mousePositionWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-		//if (BuildManagerComponent.Instance.IsInBuildState())
+		if (BuildManagerComponent.Instance.IsInBuildState())
 			BuildManagerComponent.Instance.Hover(mousePositionWorldSpace);
 	}
 

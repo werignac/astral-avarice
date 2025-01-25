@@ -10,11 +10,11 @@ public enum BuildStateType
 	NONE = 0,
 	BUILDING = 1,
 	BUILDING_CHAINED = 3,
-	DESTROY = 4 // TODO: Implement
+	DEMOLISH = 4
 }
 
 public interface BuildState { public BuildStateType GetStateType(); }
-public class NoneBuildState : BuildState { public BuildStateType GetStateType() { return BuildStateType.NONE; } }
+public class NoneBuildState : BuildState { public BuildStateType GetStateType() => BuildStateType.NONE; }
 public class BuildingBuildState : BuildState
 {
 	public readonly BuildingSettingEntry toBuild;
@@ -66,6 +66,7 @@ public class BuildingChainedBuildState : BuildingBuildState
 		return new BuildingBuildState(toBuild);
 	}
 }
+class DemolishBuildState : BuildState { public BuildStateType GetStateType() => BuildStateType.DEMOLISH; }
 
 /// <summary>
 /// Singleton component that manages placing buildings.
@@ -89,6 +90,9 @@ public class BuildManagerComponent : MonoBehaviour
 	// Events
 	// Invoked when the build state changes. Passes the old state and the new state.
 	public UnityEvent<BuildState, BuildState> OnStateChanged = new UnityEvent<BuildState, BuildState>();
+	// TODO: Pass information about how the build resolved. e.g. built building, but failed to connect cable
+	// build cable but didn't create a new building, build both a building and cable, didn't ask to build a cable, etc.
+	public UnityEvent OnBuildResolve = new UnityEvent();
 
 	// True when the player asked to place something this update.
 	private bool placeThisUpdate = false;
@@ -112,6 +116,24 @@ public class BuildManagerComponent : MonoBehaviour
 		SetState(new NoneBuildState());
 
 		planets = WerignacUtils.GetComponentsInActiveScene<PlanetComponent>();
+	}
+
+	public void SetDemolishState()
+	{
+		SetState(new DemolishBuildState());
+	}
+
+	public void SetBuildState(BuildingSettingEntry toBuild)
+	{
+		if (state.GetStateType() == BuildStateType.BUILDING_CHAINED)
+		{
+			BuildingChainedBuildState buildingChainedBuildState = state as BuildingChainedBuildState;
+			SetState(new BuildingChainedBuildState(toBuild, buildingChainedBuildState.fromChained));
+		}
+		else
+		{
+			SetState(new BuildingBuildState(toBuild));
+		}
 	}
 
 	private void SetState(BuildState newState)
@@ -187,7 +209,7 @@ public class BuildManagerComponent : MonoBehaviour
 	public void Hover(Vector2 hoverPosition)
 	{
 		// If we aren't in a build state, hide the cursor.
-		bool notInBuildMode = false;//! IsInBuildState();
+		bool notInBuildMode = ! IsInBuildState();
 		// If there are no planets, there's nowhere to build, so hide the cursor.
 		bool noPlanets = planets.Count == 0;
 
@@ -198,10 +220,20 @@ public class BuildManagerComponent : MonoBehaviour
 			return;
 		}
 
+		// TODO: Highlight over hovered buildings in demolish mode.
+		if (state.GetStateType() == BuildStateType.DEMOLISH)
+		{
+			if (cursor.GetIsShowing())
+				cursor.Hide();
+			return;
+		}
+
 		// Check if we're hovering over a building. If so, and we're in chained mode, consider
 		// adding a connection.
 
 		// There is at least one planet.
+
+		// If we're hovering over a building, replace it rather than build a new building.
 
 		// Find the planet that has the point on its surface that is the closest to the mouse.
 		float closestPlanetDistance = -1f;
@@ -257,16 +289,27 @@ public class BuildManagerComponent : MonoBehaviour
 	private void Update()
 	{
 		// Check state.
-		//if (!IsInBuildState())
-		//	return;
+		if (!IsInBuildState())
+		{
+			placeThisUpdate = false;
+			return;
+		}
+		
+		// TODO: Handle demolish state.
 
 		if (cursor.GetIsShowing())
 		{
+			// The player is trying to build something.
+			BuildingBuildState buildingBuildState = state as BuildingBuildState;
+
+			// TODO: Check if we're hovering over a building (saved in the buildingBuildState). If so,
+			// replace that one instead of building a new building.
+
 			// Determine whether the building can be placed.
 			Collider2D[] overlappingColliders = cursor.QueryOverlappingColliders();
 
 			// The only thing that the building should be colliding with is the parent planet.
-			bool roomToPlace = overlappingColliders.Length == 1 && overlappingColliders[0] == cursor.ParentPlanet.PlanetCollider;
+			bool roomToPlace = overlappingColliders.Length == 1 && cursor.ParentPlanet.OwnsCollider(overlappingColliders[0]);
 
 			// TODO: Implement.
 			bool sufficientFunds = true;
@@ -278,7 +321,25 @@ public class BuildManagerComponent : MonoBehaviour
 			// Update the cursor graphic.
 			cursor.SetBuildingPlaceability(canPlace);
 
+			// TODO: Update the reason as to why the building cannot be placed.
+
 			// If input was received to place the building, place it.
+			if (placeThisUpdate)
+			{
+				if (canPlace)
+				{
+					//Building building = new Building { Data = buildingBuildState.toBuild.BuildingDataAsset };
+					// TODO: Add to game manager.
+
+					cursor.PlaceBuildingAtLocation(buildingBuildState.toBuild.Prefab);
+
+					// Check for a chained state. If so, chain to last placed building.
+				}
+				else
+				{
+					// Note in build resolve that the building failed to be placed.
+				}
+			}
 
 			// Check for chained state.
 			// If not in chained state, enter chained state.

@@ -13,15 +13,13 @@ public class PlanetComponent : MonoBehaviour
 	/// </summary>
 	[HideInInspector] public UnityEvent<PlanetComponent> OnPlanetDestroyed = new UnityEvent<PlanetComponent>();
 
-	private Collider2D planetCollider;
+	private CircleCollider2D planetCollider;
+	[SerializeField] private Transform buildingContainerTransform;
 
-	// Getter
-
-	public Collider2D PlanetCollider { get { return planetCollider; } }
 
 	private void Awake()
 	{
-		planetCollider = GetComponent<Collider2D>();
+		planetCollider = GetComponent<CircleCollider2D>();
 	}
 
 	public float DistanceToPosition(Vector2 position)
@@ -31,7 +29,9 @@ public class PlanetComponent : MonoBehaviour
 
 	public Vector2 GetClosestSurfacePointToPosition(Vector2 position)
 	{
-		return planetCollider.ClosestPoint(position);
+		Vector2 radialDirection = (planetCollider.ClosestPoint(position) - (Vector2)transform.position).normalized;
+		Vector2 radialOffset = radialDirection * planetCollider.radius * transform.localScale.x;
+		return  radialOffset + (Vector2) transform.position;
 	}
 
 	/// <summary>
@@ -51,6 +51,16 @@ public class PlanetComponent : MonoBehaviour
 	private void OnDestroy()
 	{
 		OnPlanetDestroyed?.Invoke(this);
+	}
+
+	public bool OwnsCollider(Collider2D checkOwns)
+	{
+		return planetCollider == checkOwns;
+	}
+
+	public GameObject InstantiateBuildingOnPlanet(GameObject buildingPrefab, Vector2 position, Quaternion rotation)
+	{
+		return Instantiate(buildingPrefab, position, rotation, buildingContainerTransform);
 	}
 
 }

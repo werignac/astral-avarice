@@ -1,0 +1,10 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
+    <engine:VisualElement name="Container" style="flex-grow: 1; right: auto; left: auto; position: relative; width: 400px; flex-direction: row;">
+        <engine:VisualElement name="CollapsableContainer" enabled="true" style="flex-grow: 1; background-color: rgba(204, 121, 66, 0.45); flex-direction: column; justify-content: center; display: flex; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+            <engine:Label text="Build Menu" class="header" style="-unity-text-align: upper-center; min-width: auto; width: auto; height: 75px; font-size: 50px; margin-bottom: 20px;" />
+            <engine:VisualElement name="BuildButtonContainer" style="flex-grow: 0; align-content: center; height: 700px; align-self: center;" />
+        </engine:VisualElement>
+        <engine:Button text="&#10;" name="CollapseButton" style="height: 100px; width: 100px; margin-top: 50px; background-color: rgba(204, 121, 66, 0.45); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; margin-right: 0; margin-left: 0; margin-bottom: 0; justify-content: flex-start; align-items: auto; align-content: center; border-top-right-radius: 10px; border-bottom-right-radius: 10px;" />
+    </engine:VisualElement>
+</engine:UXML>

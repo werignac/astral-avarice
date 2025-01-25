@@ -104,5 +104,10 @@ public class BuildingCursorComponent : MonoBehaviour
 		return Physics2D.OverlapBoxAll(center, size, angle);
 	}
 
+	public GameObject PlaceBuildingAtLocation(GameObject buildingPrefab)
+	{
+		return parentPlanet.InstantiateBuildingOnPlanet(buildingPrefab, transform.position, transform.rotation);
+	}
+
 	// TODO: Check cable raycast.
 }

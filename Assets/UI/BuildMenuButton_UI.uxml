@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
+    <engine:Button text="&#10;" name="BuildButton" class="buildButton" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; border-bottom-left-radius: 30px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+        <engine:VisualElement name="Icon" class="buildButtonIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Buildings/pylon.png?fileID=-5652342212589283447&amp;guid=f2b495b328568ec45955ac79825bc3a9&amp;type=3#pylon_0&quot;);" />
+    </engine:Button>
+</engine:UXML>

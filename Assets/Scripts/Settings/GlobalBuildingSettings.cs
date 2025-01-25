@@ -18,7 +18,7 @@ public class GlobalBuildingSettings: ScriptableObject
 
 	// The buildings that can be placed by the player.
 	[SerializeField] private BuildingSettingEntry[] buildings;
-	
+
 	// TODO: Include buildings that can be placed in the level builder?
 
 	// Getters
