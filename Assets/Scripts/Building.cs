@@ -27,6 +27,13 @@ public class Building
         set;
     }
 
+    public Building(BuildingData data)
+    {
+        this.data = data;
+        connectedBuildings = new List<Building>();
+        isPowered = false;
+    }
+
     public Building GetConnectedBuilding(int index)
     {
         if(index < 0 || index >= connectedBuildings.Count)

@@ -13,4 +13,5 @@ public class BuildingData : ScriptableObject
     public int upkeep;
     public ResourceType requiredResource;
     public int resourceAmountRequired;
+    public GameObject buildingPrefab;
 }

@@ -3,12 +3,31 @@ using System.Collections.Generic;
 
 public class GameManager
 {
+    private readonly int paymentInterval = 30;
+
     private List<Building> buildings;
     private int income;
+    private int cash;
+    private float timePassed;
 
     public int Income
     {
         get { return (income); }
+    }
+    public int Cash
+    {
+        get { return (cash); }
+    }
+
+    public void Update(float deltaTime)
+    {
+        float oldTime = timePassed;
+        timePassed += deltaTime;
+        int numPayouts = Mathf.FloorToInt(timePassed / paymentInterval) - Mathf.FloorToInt(oldTime / paymentInterval);
+        for(int i = 0; i < numPayouts; ++i)
+        {
+            cash += income;
+        }
     }
 
     public void AddBuilding(Building building)
