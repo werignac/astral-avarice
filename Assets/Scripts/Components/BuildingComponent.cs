@@ -5,11 +5,18 @@ public class BuildingComponent : MonoBehaviour
 {
 	[SerializeField] private BoxCollider2D boxCollider;
 	[SerializeField] private Transform cableConnectionPoint;
+	[SerializeField] private BuildingData buildingData;
 
 	[SerializeField] private PlanetComponent parentPlanet;
+	private Building gameBuilding;
 
 	// Events
 	[HideInInspector] public UnityEvent<BuildingComponent> OnBuildingDestroyed = new UnityEvent<BuildingComponent>();
+
+	public BuildingData Data
+	{
+		get { return (buildingData); }
+	}
 
 	/// <summary>
 	/// Get how wide (x) and tall (y) the building is.
@@ -61,5 +68,13 @@ public class BuildingComponent : MonoBehaviour
 			transform.SetParent(parentPlanet.BuildingContainer);
 		}
     }
+
+	/// <summary>
+	/// Sets the gameBuilding member to the passed building for future use.
+	/// </summary>
+	public void SetGameBuilding(Building building)
+	{
+		gameBuilding = building;
+	}
 
 }

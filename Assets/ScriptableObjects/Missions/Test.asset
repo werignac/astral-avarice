@@ -16,3 +16,7 @@ MonoBehaviour:
   cashGoal: 1000
   timeLimit: 180
   missionName: Test
+  startingBuildings:
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}

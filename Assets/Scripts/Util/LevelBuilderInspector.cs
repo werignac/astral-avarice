@@ -17,6 +17,10 @@ public class LevelBuilderInspector : Editor
         {
             ((LevelBuilder)target).OrientBuildingChildren();
         }
+        if(GUILayout.Button("Find Buildings"))
+        {
+            ((LevelBuilder)target).FindBuildingComponents();
+        }
     }
 }
 #endif

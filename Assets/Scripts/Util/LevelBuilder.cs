@@ -9,6 +9,7 @@ public class LevelBuilder : MonoBehaviour
     public int startingCash;
     public int goalCash;
     public int levelTime;
+    public BuildingComponent[] buildings;
 
     public void Update()
     {
@@ -28,6 +29,14 @@ public class LevelBuilder : MonoBehaviour
         missionData.startingCash = startingCash;
         missionData.cashGoal = goalCash;
         missionData.timeLimit = levelTime;
+
+        buildings = GameObject.FindObjectsByType<BuildingComponent>(FindObjectsSortMode.None);
+        missionData.startingBuildings = new BuildingData[buildings.Length];
+        for(int i = 0; i < buildings.Length; ++i)
+        {
+            missionData.startingBuildings[i] = buildings[i].Data;
+        }
+
         AssetDatabase.CreateAsset(missionData, "Assets/ScriptableObjects/Missions/" + levelName + ".asset");
         AssetDatabase.SaveAssets();
     }
@@ -43,6 +52,11 @@ public class LevelBuilder : MonoBehaviour
                 --i;
             }
         }    
+    }
+
+    public void FindBuildingComponents()
+    {
+        buildings = GameObject.FindObjectsByType<BuildingComponent>(FindObjectsSortMode.None);
     }
 #endif
 

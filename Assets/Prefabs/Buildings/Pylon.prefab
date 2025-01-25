@@ -245,6 +245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 6798483256068327839}
   cableConnectionPoint: {fileID: 6488967888440025861}
+  buildingData: {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  parentPlanet: {fileID: 0}
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []

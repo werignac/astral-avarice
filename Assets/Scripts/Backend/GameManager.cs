@@ -20,12 +20,36 @@ public class GameManager
         get { return (cash); }
     }
 
+    //Use this if BuildingComponents don't need to have a Building object as a member.
     public void StartMission(MissionData mission)
     {
         cash = 0;
         buildings = new List<Building>();
         timePassed = 0;
         endTime = mission.timeLimit;
+
+        for(int i = 0; i < mission.startingBuildings.Length; ++i)
+        {
+            buildings.Add(new Building(mission.startingBuildings[i]));
+        }
+
+        CalculateIncome();
+    }
+    //Use this if BuildingComponents need a reference to the Building object being used by the manager.
+    public void StartMission(MissionData mission, LevelBuilder level)
+    {
+        cash = 0;
+        buildings = new List<Building>();
+        timePassed = 0;
+        endTime = mission.timeLimit;
+
+        for (int i = 0; i < level.buildings.Length; ++i)
+        {
+            Building building = new Building(level.buildings[i].Data);
+            buildings.Add(building);
+            level.buildings[i].SetGameBuilding(building);
+        }
+
         CalculateIncome();
     }
 
