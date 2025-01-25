@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Buildings
+  - Planets
   - 
   - 
   - 
@@ -41,3 +41,16 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Buildings
+    uniqueID: 532126933
+    locked: 0
+  - name: BuildingCursor
+    uniqueID: 499554709
+    locked: 0
+  - name: Planets
+    uniqueID: 2207370851
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  - 
+  - 
