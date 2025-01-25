@@ -13,6 +13,10 @@ public class LevelBuilderInspector : Editor
         {
             ((LevelBuilder)target).SaveLevel();
         }
+        if(GUILayout.Button("Orient Buildings"))
+        {
+            ((LevelBuilder)target).OrientBuildingChildren();
+        }
     }
 }
 #endif

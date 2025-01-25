@@ -31,6 +31,18 @@ public class LevelBuilder : MonoBehaviour
         AssetDatabase.CreateAsset(missionData, "Assets/ScriptableObjects/Missions/" + levelName + ".asset");
         AssetDatabase.SaveAssets();
     }
+
+    public void OrientBuildingChildren()
+    {
+        for(int i = 0; i < transform.childCount; ++i)
+        {
+            BuildingComponent building = transform.GetChild(i).gameObject.GetComponent<BuildingComponent>();
+            if(building != null)
+            {
+                building.SetPositionAndUpNormal();
+            }
+        }    
+    }
 #endif
 
 }
