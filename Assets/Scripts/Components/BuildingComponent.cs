@@ -58,6 +58,7 @@ public class BuildingComponent : MonoBehaviour
 			Vector2 upNormal = parentPlanet.GetNormalForPosition(position);
 			transform.position = position;
 			transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(upNormal.y, upNormal.x) * Mathf.Rad2Deg - 90);
+			transform.SetParent(parentPlanet.BuildingContainer);
 		}
     }
 

@@ -16,6 +16,11 @@ public class PlanetComponent : MonoBehaviour
 	private CircleCollider2D planetCollider;
 	[SerializeField] private Transform buildingContainerTransform;
 
+	public Transform BuildingContainer
+	{
+		get { return (buildingContainerTransform); }
+	}
+
 
 	private void Awake()
 	{

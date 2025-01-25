@@ -40,6 +40,7 @@ public class LevelBuilder : MonoBehaviour
             if(building != null)
             {
                 building.SetPositionAndUpNormal();
+                --i;
             }
         }    
     }

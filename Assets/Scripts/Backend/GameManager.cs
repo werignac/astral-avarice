@@ -9,6 +9,7 @@ public class GameManager
     private int income;
     private int cash;
     private float timePassed;
+    private int endTime;
 
     public int Income
     {
@@ -17,6 +18,15 @@ public class GameManager
     public int Cash
     {
         get { return (cash); }
+    }
+
+    public void StartMission(MissionData mission)
+    {
+        cash = 0;
+        buildings = new List<Building>();
+        timePassed = 0;
+        endTime = mission.timeLimit;
+        CalculateIncome();
     }
 
     public void Update(float deltaTime)
@@ -28,6 +38,15 @@ public class GameManager
         {
             cash += income;
         }
+        if(timePassed > endTime)
+        {
+            EndGame();
+        }
+    }
+
+    public void EndGame()
+    {
+
     }
 
     public void AddBuilding(Building building)
