@@ -101,7 +101,7 @@ public class BuildingCursorComponent : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Updates which colliders are overlapping with the cursor.
+	/// Returns which colliders are overlapping with the cursor.
 	/// </summary>
 	public Collider2D[] QueryOverlappingColliders()
 	{

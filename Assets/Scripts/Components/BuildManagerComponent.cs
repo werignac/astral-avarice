@@ -114,7 +114,44 @@ class CableBuildState : BuildState {
 		return new CableBuildState(toBuilding);
 	}
 }
-class DemolishBuildState : BuildState { public BuildStateType GetStateType() => BuildStateType.DEMOLISH; }
+class DemolishBuildState : BuildState {
+
+	// Can be null if not hovering over anything.
+	private IDemolishable hoveringDemolishable = null;
+
+	public BuildStateType GetStateType() => BuildStateType.DEMOLISH;
+
+	/// <summary>
+	/// Stops and starts hovering VFX based on the passed
+	/// hovering object.
+	/// </summary>
+	/// <param name="newHoveringDemolishable">Object that the player is hovering over that can be demolished. Null
+	/// if the player isn't hovering over anything.</param>
+	public void SetHoveringDemolishable(IDemolishable newHoveringDemolishable)
+	{
+		// We're hoving over the same object, no need to call methods for changing hover status.
+		if (hoveringDemolishable == newHoveringDemolishable)
+			return;
+
+		if (hoveringDemolishable != null)
+			hoveringDemolishable.HoverDemolishEnd();
+
+		hoveringDemolishable = newHoveringDemolishable;
+
+		if (newHoveringDemolishable != null)
+			newHoveringDemolishable.HoverDemolishStart();
+	}
+
+	/// <summary>
+	/// Call when the state switched from out of a demolish state.
+	/// Stops all hovering VFX.
+	/// </summary>
+	public void StopLingeringHovering()
+	{
+		if (hoveringDemolishable != null)
+			hoveringDemolishable.HoverDemolishEnd();
+	}
+}
 
 public struct BuildResolve
 {
@@ -125,10 +162,13 @@ public struct BuildResolve
 	public bool successfullyPlacedCable;
 	public bool successfullyChoseCableStart;
 	public CableComponent builtCable;
+	public bool triedDemolishBuilding;
+	// Note: This may not be the only thing that is destroyed in a demolition!
+	public IDemolishable demolishTarget;
 
 	public bool TriedAnything()
 	{
-		return triedPlacingBuilding || triedPlacingCable;
+		return triedPlacingBuilding || triedPlacingCable || triedDemolishBuilding;
 	}
 }
 
@@ -155,8 +195,10 @@ public class BuildManagerComponent : MonoBehaviour
 	// Events
 	// Invoked when the build state changes. Passes the old state and the new state.
 	public UnityEvent<BuildState, BuildState> OnStateChanged = new UnityEvent<BuildState, BuildState>();
-	// TODO: Pass information about how the build resolved. e.g. built building, but failed to connect cable
+	// Pass information about how the build resolved. e.g. built building, but failed to connect cable
 	// build cable but didn't create a new building, build both a building and cable, didn't ask to build a cable, etc.
+	// Though information about demolitions are sent, using it is not recommended. Instead listen to destroy
+	// events for buildings and cables.
 	public UnityEvent<BuildResolve> OnBuildResolve = new UnityEvent<BuildResolve>();
 
 	// Location the mouse is hovering this update.
@@ -186,11 +228,18 @@ public class BuildManagerComponent : MonoBehaviour
 		planets = WerignacUtils.GetComponentsInActiveScene<PlanetComponent>();
 	}
 
+	/// <summary>
+	/// Set the BuildManager to allow the player to demolish objects.
+	/// </summary>
 	public void SetDemolishState()
 	{
 		SetState(new DemolishBuildState());
 	}
 
+	/// <summary>
+	/// Set the BuildManager to allow the player to build the specified building.
+	/// </summary>
+	/// <param name="toBuild">The building to build.</param>
 	public void SetBuildState(BuildingSettingEntry toBuild)
 	{
 		switch(state.GetStateType())
@@ -212,6 +261,9 @@ public class BuildManagerComponent : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Set the BuildManager to allow the player to build cables.
+	/// </summary>
 	public void SetCableState()
 	{
 		switch(state.GetStateType())
@@ -226,17 +278,25 @@ public class BuildManagerComponent : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Internally changes the state of the build manager.
+	/// Handles cleanup for the previous state and initialization for the new state.
+	/// </summary>
+	/// <param name="newState"></param>
 	private void SetState(BuildState newState)
 	{
 		BuildState oldState = state;
 
-		// Stop listening for if the chain becomes invalidated.
 		if (oldState != null)
 		{
+			// Stop listening for if the chain becomes invalidated.
 			if (oldState.GetStateType() == BuildStateType.BUILDING_CHAINED)
 				(oldState as BuildingChainedBuildState).OnInvalidate.RemoveListener(BuildingChainedBuildState_OnInvalidate);
 			if (oldState.GetStateType() == BuildStateType.CABLE)
 				(oldState as CableBuildState).OnInvalidateFrom.RemoveListener(CableBuildState_OnInvalidateFrom);
+			// Stop lingering VFX from hovering.
+			if (oldState.GetStateType() == BuildStateType.DEMOLISH)
+				(oldState as DemolishBuildState).StopLingeringHovering();
 		}
 
 		state = newState;
@@ -247,17 +307,15 @@ public class BuildManagerComponent : MonoBehaviour
 		if (newState.GetStateType() == BuildStateType.CABLE)
 			(newState as CableBuildState).OnInvalidateFrom.AddListener(CableBuildState_OnInvalidateFrom);
 
-
 		SetUpCursorForBuildState(newState);
 
 		OnStateChanged?.Invoke(oldState, newState);
 	}
 
-	private void CableBuildState_OnInvalidateFrom(CableBuildState state)
-	{
-		SetState(new CableBuildState());
-	}
-
+	/// <summary>
+	/// Set the building cursor dimensions and graphic.
+	/// Set the cable cursor to be attached to a start building.
+	/// </summary>
 	private void SetUpCursorForBuildState(BuildState newBuildState)
 	{
 		// Set up the cursor for the building.
@@ -308,8 +366,8 @@ public class BuildManagerComponent : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Get whether the player is currently considering
-	/// building something.
+	/// Get whether the player is currently using the BuildManager.
+	/// This can either be for building or demolishing.
 	/// </summary>
 	public bool IsInBuildState()
 	{
@@ -318,11 +376,20 @@ public class BuildManagerComponent : MonoBehaviour
 
 	/// <summary>
 	/// When the buildingChainedBuildState becomes invalidated,
-	/// switch to a normal chained state.
+	/// switch to a normal build state.
 	/// </summary>
 	private void BuildingChainedBuildState_OnInvalidate(BuildingChainedBuildState state)
 	{
 		SetState(state.ToBuildingBuildState());
+	}
+
+	/// <summary>
+	/// When the start building of a cable is destroyed while placing a new cable,
+	/// stay in the cable state, but make the player create a new cable from scratch.
+	/// </summary>
+	private void CableBuildState_OnInvalidateFrom(CableBuildState state)
+	{
+		SetState(new CableBuildState());
 	}
 
 	// Called on every update before this component's update and fed the mouse position.
@@ -332,7 +399,8 @@ public class BuildManagerComponent : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Tells the BuildManagerComponent to try placing whatever it has
+	/// Tells the BuildManagerComponent to try placing whatever it has.
+	/// Also tells the BuildManager to demolish if it's in demolish mode.
 	/// </summary>
 	public void SetPlace()
 	{
@@ -341,11 +409,13 @@ public class BuildManagerComponent : MonoBehaviour
 
 	private void Update()
 	{
-		// Check state.
+		// If we aren't building anything...
 		if (!IsInBuildState())
 		{
+			// Don't process any input.
 			placeThisUpdate = false;
 			
+			// Hide all the cursors if they're not already hidden.
 			if (buildingCursor.GetIsShowing())
 			{
 				buildingCursor.Hide();
@@ -359,9 +429,7 @@ public class BuildManagerComponent : MonoBehaviour
 			return;
 		}
 
-		// TODO: Handle demolish state.
-
-		// Resolve status. Fill this in as attempts to make buildings are
+		// Resolve status. Fill this in as attempts to make or demolish buildings are
 		// completed.
 		BuildResolve resolution = new BuildResolve
 		{
@@ -371,12 +439,15 @@ public class BuildManagerComponent : MonoBehaviour
 			triedPlacingCable = false,
 			successfullyPlacedCable = false,
 			successfullyChoseCableStart = false,
-			builtCable = null
+			builtCable = null,
+			triedDemolishBuilding = false,
+			demolishTarget = null
 		};
 
 		// TODO: Keep track of cumulative costs.
 		// May need to pay for both cable and building.
 
+		// Try to place a building. Either in BUILDING or BUILDING_CHAINED state.
 		if ((state.GetStateType() & BuildStateType.BUILDING) != 0)
 			resolution = UpdateBuildingCursor(resolution);
 		else
@@ -387,6 +458,7 @@ public class BuildManagerComponent : MonoBehaviour
 			}
 		}
 
+		// Try to place a cable. Either in CABLE or BUILDING_CHAINED state.
 		if ((state.GetStateType() & BuildStateType.CABLE) != 0)
 		{
 			resolution = UpdateCableCursor(resolution);
@@ -399,10 +471,17 @@ public class BuildManagerComponent : MonoBehaviour
 			}
 		}
 
+		// Try to demolish a building.
+		if (state.GetStateType() == BuildStateType.DEMOLISH)
+		{
+			resolution = UpdateDemolish(resolution);
+		}
 
 		// Handle state changes after placing and notify of object placement.
 		if (placeThisUpdate)
 		{
+			// If the player clicked, but it was clear the player wasn't trying to do anything
+			// (e.g. clicking on empty space) then, switch to no build state.
 			if (!resolution.TriedAnything())
 				SetState(new NoneBuildState());
 			else
@@ -423,7 +502,8 @@ public class BuildManagerComponent : MonoBehaviour
 					}
 				}
 				
-				// If we made just a cable, and were not | BuildStateType.BUILDING, set the state to chain a new cable.
+				// If we are in cable mode and we tried to make a complete cable (even if the cable
+				// was invalid) set the state to chain a new cable.
 				if (state.GetStateType() == BuildStateType.CABLE && !resolution.successfullyChoseCableStart)
 				{
 					CableBuildState cableBuildState = state as CableBuildState;
@@ -433,20 +513,59 @@ public class BuildManagerComponent : MonoBehaviour
 						SetState(new CableBuildState());
 				}
 
+				// Notify others that the player tried to build or demolish something, and specify what they built.
 				OnBuildResolve?.Invoke(resolution);
 			}
 		}
 
-		// If nothing was placed, but the place signal was sent, exit the build mode.
-
+		// Reset place signal.
 		placeThisUpdate = false;
 	}
 
+	private BuildResolve UpdateDemolish(BuildResolve resolution)
+	{
+		// Only called when we're in the demolish state.
+		DemolishBuildState demolishBuildState = state as DemolishBuildState;
+
+		// See if the mouse is hovering over an IDemolishable.
+		List<Collider2D> allHoveringColliders = new List<Collider2D>(HoverPointOverlap());
+		Collider2D idemolishableCollider = allHoveringColliders.Find((Collider2D collider) =>
+		{
+			return collider.TryGetComponentInParent(out IDemolishable _);
+		});
+
+		// Get the IDemolishable component if there is one.
+		IDemolishable hoveringDemolishable = idemolishableCollider == null ? null : idemolishableCollider.GetComponentInParent<IDemolishable>();
+
+		// Update calls to hovering demolishable for VFX.
+		demolishBuildState.SetHoveringDemolishable(hoveringDemolishable);
+
+		// If the player clicked, demolish the building
+		if (placeThisUpdate && hoveringDemolishable != null)
+		{
+			resolution.triedDemolishBuilding = true;
+
+			hoveringDemolishable.Demolish();
+			
+			resolution.demolishTarget = hoveringDemolishable;
+		}
+
+		return resolution;
+	}
+
+	/// <summary>
+	/// Get all the colliders the player is hovering over currently.
+	/// </summary>
 	private Collider2D[] HoverPointOverlap()
 	{
 		return Physics2D.OverlapPointAll(hoverThisUpdate);
 	}
 
+	/// <summary>
+	/// Update the status of the cursor to refelct whether a building
+	/// can be placed.
+	/// Try placing a building if input to do so was sent.
+	/// </summary>
 	private BuildResolve UpdateBuildingCursor(BuildResolve resolution)
 	{
 		UpdateBuildingCursorLocation();
@@ -504,8 +623,8 @@ public class BuildManagerComponent : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Shows and places the cursor to snap onto a planet.
-	/// If the cursor cannot snap to a planet, or if we're hover over a building, hide the cursor.
+	/// Shows and places the building cursor to snap onto a planet.
+	/// If the cursor is out of all planets' reaches, hide the cursor.
 	/// </summary>
 	private void UpdateBuildingCursorLocation()
 	{
@@ -564,6 +683,10 @@ public class BuildManagerComponent : MonoBehaviour
 #endif
 	}
 
+	/// <summary>
+	/// Gets the building that is currently being hovered over (if there is one)
+	/// </summary>
+	/// <returns></returns>
 	private BuildingComponent GetHoveringBuilding()
 	{
 		// Find a building.
@@ -637,7 +760,12 @@ public class BuildManagerComponent : MonoBehaviour
 				// Connection is not redundant
 				bool cableIsNotRedundant = true;
 				// Cable is only colliding with two buildings
-				bool noOverlapsAlongCable = true;
+				List<Collider2D> cableOverlaps = new List<Collider2D>(cableCursor.QueryOverlappingColliders());
+				int badOverlapIndex = cableOverlaps.FindIndex((Collider2D collider) =>
+				{
+					return !IsValidCableOverlap(collider, cableBuildState.fromBuilding, cableBuildState.toBuilding);
+				});
+				bool noOverlapsAlongCable = badOverlapIndex == -1;
 
 				bool canPlaceCable = cableIsNotTooLong &&
 					canAffordCable &&
@@ -670,6 +798,8 @@ public class BuildManagerComponent : MonoBehaviour
 		}
 		else if (state.GetStateType() == BuildStateType.BUILDING_CHAINED)
 		{
+			BuildingChainedBuildState buildingChainedBuildState = state as BuildingChainedBuildState;
+
 			// If we're showing the building cursor, show the cable there.
 			if (! buildingCursor.GetIsShowing())
 			{
@@ -693,7 +823,12 @@ public class BuildManagerComponent : MonoBehaviour
 			// Connection is not redundant
 			bool cableIsNotRedundant = true;
 			// Cable is only colliding with two buildings
-			bool noOverlapsAlongCable = true;
+			List<Collider2D> cableOverlaps = new List<Collider2D>(cableCursor.QueryOverlappingColliders());
+			int badOverlapIndex = cableOverlaps.FindIndex((Collider2D collider) =>
+			{
+				return !IsValidCableOverlap(collider, buildingChainedBuildState.fromChained, resolution.builtBuilding);
+			});
+			bool noOverlapsAlongCable = badOverlapIndex == -1;
 
 			bool canPlaceCable = cableIsNotTooLong &&
 				canAffordCable &&
@@ -725,5 +860,27 @@ public class BuildManagerComponent : MonoBehaviour
 		return resolution;
 	}
 
+	/// <summary>
+	/// Determines whether a cable can overlap over the given collider.
+	/// Cables can only overlap over buildings that they connect to or other
+	/// Cables that share teh same builing connections.
+	/// </summary>
+	private static bool IsValidCableOverlap(Collider2D overlapping, BuildingComponent startBuilding, BuildingComponent endBuildling)
+	{
+		if (overlapping.TryGetComponentInParent(out BuildingComponent overlapBuilding))
+		{
+			return (overlapBuilding == startBuilding) || (overlapBuilding == endBuildling);
+		}
 
+		if (overlapping.TryGetComponentInParent(out CableComponent overlapCable))
+		{
+			bool startIsConnectingBuilding = (overlapCable.Start == startBuilding) || (overlapCable.Start == endBuildling);
+			bool endIsConnectingBuilding = (overlapCable.End == startBuilding) || (overlapCable.End == endBuildling);
+
+			return startIsConnectingBuilding || endIsConnectingBuilding;
+		}
+
+		// TODO: Detect other cables?
+		return false;
+	}
 }

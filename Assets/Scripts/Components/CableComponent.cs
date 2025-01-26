@@ -1,11 +1,20 @@
 using UnityEngine;
+using UnityEngine.Events;
+using werignac.Utils;
 
-public class CableComponent : MonoBehaviour
+public class CableComponent : MonoBehaviour, IDemolishable
 {
 	private BuildingComponent startBuilding;
 	private BuildingComponent endBuilding;
 
 	private LineRenderer lineRenderer;
+
+	[SerializeField] private BoxCollider2D boxCollider;
+
+	// Events
+	// TODO: Some class should listen to this and remove connections in the backend as needed.
+	[HideInInspector] public UnityEvent<CableComponent> OnCableDestroyed = new UnityEvent<CableComponent>();
+
 
 	// Getters
 	public float Length
@@ -29,8 +38,6 @@ public class CableComponent : MonoBehaviour
 		get => endBuilding;
 	}
 
-
-
 	private void Awake()
 	{
 		lineRenderer = GetComponent<LineRenderer>();
@@ -38,8 +45,35 @@ public class CableComponent : MonoBehaviour
 
 	public void SetAttachedBuildings(BuildingComponent start, BuildingComponent end)
 	{
+		if (start == null)
+			throw new System.NullReferenceException("Tried to set cable start to a null BuildingComponent");
+
+		if (end == null)
+			throw new System.NullReferenceException("Tried to set cable end to a null BuildingComponent");
+
 		startBuilding = start;
 		endBuilding = end;
+
+		// When buildings are destroyed, we should destroy the cable as well.
+		startBuilding.OnBuildingDestroyed.AddListener(Building_OnDestroy);
+		endBuilding.OnBuildingDestroyed.AddListener(Building_OnDestroy);
+	}
+
+	public static void GetBoxFromPoints(
+		Vector2 point1,
+		Vector2 point2,
+		out Vector2 center,
+		out Vector2 size,
+		out float angle
+		)
+	{
+		Vector2 difference = point1 - point2;
+		// Get the middle of the two points.
+		center = (point1 + point2) / 2;
+		// Length of the cable + constant cable width.
+		size = new Vector2(Vector2.Distance(point1, point2), GlobalBuildingSettings.GetOrCreateSettings().CableWidth);
+
+		angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 	}
 
 	private void LateUpdate()
@@ -53,5 +87,62 @@ public class CableComponent : MonoBehaviour
 		// TODO: Handle cable breaks.
 
 		lineRenderer.SetPositions(positions);
+
+		// Move the box collider to match the area the cable is taking up.
+		GetBoxFromPoints(
+			startBuilding.CableConnectionTransform.position,
+			endBuilding.CableConnectionTransform.position,
+			out Vector2 center,
+			out Vector2 size,
+			out float angle
+			);
+
+		boxCollider.transform.position = center;
+		boxCollider.transform.localEulerAngles = Vector3.forward * angle;
+		boxCollider.size = size;
+	}
+
+	// TODO: Use for breaks when objects move.
+	private bool IsValidOverlap(Collider2D overlapping)
+	{
+		if (overlapping.TryGetComponentInParent(out BuildingComponent overllapingBuilding))
+		{
+			return (overllapingBuilding == Start) || (overllapingBuilding == End);
+		}
+
+		if (overlapping.TryGetComponentInParent(out CableComponent overlappingCable))
+		{
+			bool startIsConnectingBuilding = (overlappingCable.Start == Start) || (overlappingCable.Start == Start);
+			bool endIsConnectingBuilding = (overlappingCable.End == Start) || (overlappingCable.End == End);
+
+			return startIsConnectingBuilding || endIsConnectingBuilding;
+		}
+
+		return false;
+	}
+
+	private void Building_OnDestroy(BuildingComponent _)
+	{
+		Destroy(gameObject);
+	}
+
+	private void OnDestroy()
+	{
+		OnCableDestroyed?.Invoke(this);
+	}
+
+	public void Demolish()
+	{
+		Destroy(gameObject);
+	}
+
+	public void HoverDemolishStart()
+	{
+		Debug.Log("Hovering Over Cable");
+	}
+
+	public void HoverDemolishEnd()
+	{
+		Debug.Log("Stopped Hovering Over Cable");
 	}
 }

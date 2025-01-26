@@ -103,6 +103,22 @@ public class CableCursorComponent : MonoBehaviour
 		lineRenderer.SetPositions(positions);
 	}
 
+	/// <summary>
+	/// Returns which colliders are overlapping with the cursor.
+	/// </summary>
+	public Collider2D[] QueryOverlappingColliders()
+	{
+		CableComponent.GetBoxFromPoints(
+			lineEnd.GetEndPosition(),
+			lineStart.CableConnectionTransform.position,
+			out Vector2 center,
+			out Vector2 size,
+			out float angle
+			);
+
+		return Physics2D.OverlapBoxAll(center, size, angle);
+	}
+
 	public GameObject PlaceCableAtLocation()
 	{
 		// Cannot create a cable floating in space.

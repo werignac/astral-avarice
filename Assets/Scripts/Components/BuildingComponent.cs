@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BuildingComponent : MonoBehaviour
+public class BuildingComponent : MonoBehaviour, IDemolishable
 {
 	[SerializeField] private BoxCollider2D boxCollider;
 	[SerializeField] private Transform cableConnectionPoint;
@@ -13,6 +13,7 @@ public class BuildingComponent : MonoBehaviour
 	// Events
 	[HideInInspector] public UnityEvent<BuildingComponent> OnBuildingDestroyed = new UnityEvent<BuildingComponent>();
 
+	// Getters
 	public BuildingData Data
 	{
 		get { return (buildingData); }
@@ -56,11 +57,6 @@ public class BuildingComponent : MonoBehaviour
 		}
 	}
 
-	private void OnDestroy()
-	{
-		OnBuildingDestroyed?.Invoke(this);
-	}
-
     /// <summary>
     /// Sets the location and rotation of the building to be at a particular
     /// point and rotate in a particular direction.
@@ -77,6 +73,18 @@ public class BuildingComponent : MonoBehaviour
 		}
     }
 
+	// TODO: Use for when objects move.
+	private bool IsValidOverlap(Collider2D overlapping)
+	{
+		if (overlapping.TryGetComponent(out PlanetComponent overlappingPlanet))
+		{
+			// May not actually ever detect parent planet due to parent-child relationship depending on overlap detection method.
+			return overlappingPlanet == parentPlanet;
+		}
+
+		return false;
+	}
+
 	/// <summary>
 	/// Sets the gameBuilding member to the passed building for future use.
 	/// </summary>
@@ -85,4 +93,23 @@ public class BuildingComponent : MonoBehaviour
 		gameBuilding = building;
 	}
 
+	private void OnDestroy()
+	{
+		OnBuildingDestroyed?.Invoke(this);
+	}
+
+	public void Demolish()
+	{
+		Destroy(gameObject);
+	}
+
+	public void HoverDemolishStart()
+	{
+		Debug.Log("Hovering over building");
+	}
+
+	public void HoverDemolishEnd()
+	{
+		Debug.Log("Stopped Hovering over building");
+	}
 }
