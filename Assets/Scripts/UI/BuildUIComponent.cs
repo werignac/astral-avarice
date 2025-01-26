@@ -189,6 +189,10 @@ public class BuildUIComponent : MonoBehaviour
 			{
 				// Unselect the demolish button.
 			}
+			else if (oldState.GetStateType() == BuildStateType.CABLE)
+			{
+				// Unselect the cable button.
+			}
 			else
 			{
 				// Unselect the corresponding build button.
@@ -202,6 +206,10 @@ public class BuildUIComponent : MonoBehaviour
 			if (newState.GetStateType() == BuildStateType.DEMOLISH)
 			{
 				// Select the demolish button.
+			}
+			else if (oldState.GetStateType() == BuildStateType.CABLE)
+			{
+				// Select the cable button.
 			}
 			else
 			{

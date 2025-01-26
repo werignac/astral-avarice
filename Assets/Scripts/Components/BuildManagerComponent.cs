@@ -246,7 +246,7 @@ public class BuildManagerComponent : MonoBehaviour
 		{
 			case BuildStateType.CABLE: // Try chaining from the last building with a cable.
 				CableBuildState cableBuildState = state as CableBuildState;
-				if (cableBuildState != null)
+				if (cableBuildState != null && cableBuildState.fromBuilding != null)
 					SetState(new BuildingChainedBuildState(toBuild, cableBuildState.fromBuilding));
 				else
 					SetState(new BuildingBuildState(toBuild));

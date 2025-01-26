@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class InputManagerComponent : MonoBehaviour
@@ -7,6 +8,7 @@ public class InputManagerComponent : MonoBehaviour
     public static InputManagerComponent Instance { get; private set; }
 
 	[SerializeField] private InputActionAsset inputActionAsset;
+	private InputAction acceptInputAction;
 
 	private void Awake()
 	{
@@ -19,24 +21,7 @@ public class InputManagerComponent : MonoBehaviour
 		
 		Instance = this;
 
-		RegisterInputActions(inputActionAsset.FindActionMap("Player"));
-	}
-
-	private void RegisterInputActions(InputActionMap inputActions)
-	{
-		inputActions["Accept"].performed += InputAction_AcceptPerformed;
-	}
-
-	private void DeregisterInputActions(InputActionMap inputActions)
-	{
-		inputActions["Accept"].performed -= InputAction_AcceptPerformed;
-	}
-
-	private void InputAction_AcceptPerformed(InputAction.CallbackContext obj)
-	{
-		// If we're currently building, try to place something.
-		if (BuildManagerComponent.Instance.IsInBuildState())
-			BuildManagerComponent.Instance.SetPlace();
+		acceptInputAction = inputActionAsset.FindActionMap("Player")["Accept"];
 	}
 
 	private void Update()
@@ -48,10 +33,22 @@ public class InputManagerComponent : MonoBehaviour
 
 		if (BuildManagerComponent.Instance.IsInBuildState())
 			BuildManagerComponent.Instance.Hover(mousePositionWorldSpace);
-	}
 
-	private void OnDestroy()
-	{
-		DeregisterInputActions(inputActionAsset.FindActionMap("Player"));
+		
+		if (acceptInputAction.WasPerformedThisFrame())
+		{
+			// If the player was clicking on UI, ignore the input.
+			if (EventSystem.current.IsPointerOverGameObject())
+			{
+				Debug.Log("Ignore Input");
+				return;
+			}
+
+			Debug.Log("Input Not Ignored");
+
+			// If we're currently building, try to place something.
+			if (BuildManagerComponent.Instance.IsInBuildState())
+				BuildManagerComponent.Instance.SetPlace();
+		}
 	}
 }
