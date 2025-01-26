@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3914bd3687151f4e88c9fa48c45c531, type: 3}
   m_Name: City_Data
   m_EditorClassIdentifier: 
-  buildingName: Town
+  buildingName: City
   cost: 0
-  mass: 200
+  mass: 300
   maxPowerLines: 1
   buildingType: 2
   powerProduced: 0
-  powerRequired: 40
-  income: 120
+  powerRequired: 100
+  income: 500
   upkeep: 0
   requiredResource: 4
   resourceAmountRequired: 0

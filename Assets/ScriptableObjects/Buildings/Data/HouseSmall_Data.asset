@@ -23,4 +23,4 @@ MonoBehaviour:
   upkeep: 0
   requiredResource: 4
   resourceAmountRequired: 0
-  buildingPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 3171817353795976828, guid: 6ddaa7aaee3b70a4e8b83b3e4e0974a1, type: 3}
