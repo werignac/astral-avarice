@@ -179,6 +179,8 @@ public class BuildManagerComponent : MonoBehaviour
 {
 	public static BuildManagerComponent Instance { get; private set;}
 
+	[SerializeField] private GameController gameController;
+
 	private List<PlanetComponent> planets = new List<PlanetComponent>();
 
 	// Reference to the cursor used for showing where buildings will go.
@@ -194,12 +196,12 @@ public class BuildManagerComponent : MonoBehaviour
 
 	// Events
 	// Invoked when the build state changes. Passes the old state and the new state.
-	public UnityEvent<BuildState, BuildState> OnStateChanged = new UnityEvent<BuildState, BuildState>();
+	[HideInInspector] public UnityEvent<BuildState, BuildState> OnStateChanged = new UnityEvent<BuildState, BuildState>();
 	// Pass information about how the build resolved. e.g. built building, but failed to connect cable
 	// build cable but didn't create a new building, build both a building and cable, didn't ask to build a cable, etc.
 	// Though information about demolitions are sent, using it is not recommended. Instead listen to destroy
 	// events for buildings and cables.
-	public UnityEvent<BuildResolve> OnBuildResolve = new UnityEvent<BuildResolve>();
+	[HideInInspector] public UnityEvent<BuildResolve> OnBuildResolve = new UnityEvent<BuildResolve>();
 
 	// Location the mouse is hovering this update.
 	private Vector2 hoverThisUpdate;
@@ -213,10 +215,17 @@ public class BuildManagerComponent : MonoBehaviour
 		if (Instance != null)
 		{
 			Destroy(gameObject);
+			return;
 		}
-		else
+		
+		Instance = this;		
+
+		if (gameController != null)
 		{
-			Instance = this;
+			gameController.OnLevelLoad.AddListener(() =>
+			{
+				planets = WerignacUtils.GetComponentsInActiveScene<PlanetComponent>();
+			});
 		}
 	}
 
@@ -225,7 +234,8 @@ public class BuildManagerComponent : MonoBehaviour
 		// Initally, we aren't building anything.
 		SetState(new NoneBuildState());
 
-		planets = WerignacUtils.GetComponentsInActiveScene<PlanetComponent>();
+		if (gameController == null)
+			planets = WerignacUtils.GetComponentsInActiveScene<PlanetComponent>();
 	}
 
 	/// <summary>

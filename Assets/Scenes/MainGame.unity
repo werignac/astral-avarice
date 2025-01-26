@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d835c32ba50ab9048a58634139b4444e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 164819399}
   buildingCursor: {fileID: 746713103}
   cableCursor: {fileID: 680543735}
   minDistanceToPlanetToShowCursor: 4
@@ -203,6 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fec6743796c31a42ad765dc9626b347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnLevelLoad:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &164819400
 Transform:
   m_ObjectHideFlags: 0
@@ -671,7 +675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb0d49d05ff82543aeaf0bbcb5b2a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActionAsset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &1715228861
 GameObject:
   m_ObjectHideFlags: 0

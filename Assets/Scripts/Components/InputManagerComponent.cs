@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -7,8 +8,7 @@ public class InputManagerComponent : MonoBehaviour
 {
     public static InputManagerComponent Instance { get; private set; }
 
-	[SerializeField] private InputActionAsset inputActionAsset;
-	private InputAction acceptInputAction;
+	private InputAction acceptAction;
 
 	private void Awake()
 	{
@@ -20,8 +20,22 @@ public class InputManagerComponent : MonoBehaviour
 		}
 		
 		Instance = this;
+	}
 
-		acceptInputAction = inputActionAsset.FindActionMap("Player")["Accept"];
+	private void Start()
+	{
+		acceptAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Accept"];
+
+		StartCoroutine(RefreshInputComponent());
+	}
+
+	// From https://discussions.unity.com/t/no-ui-input-actions-after-scene-load/814381/2
+	private IEnumerator RefreshInputComponent()
+	{
+		yield return new WaitForEndOfFrame();
+		PlayerInputSingletonComponent.Instance.Input.enabled = false;
+		yield return new WaitForEndOfFrame();
+		PlayerInputSingletonComponent.Instance.Input.enabled = true;
 	}
 
 	private void Update()
@@ -35,7 +49,7 @@ public class InputManagerComponent : MonoBehaviour
 			BuildManagerComponent.Instance.Hover(mousePositionWorldSpace);
 
 		
-		if (acceptInputAction.WasPerformedThisFrame())
+		if (acceptAction.WasPerformedThisFrame())
 		{
 			// If the player was clicking on UI, ignore the input.
 			if (EventSystem.current.IsPointerOverGameObject())
@@ -50,5 +64,6 @@ public class InputManagerComponent : MonoBehaviour
 			if (BuildManagerComponent.Instance.IsInBuildState())
 				BuildManagerComponent.Instance.SetPlace();
 		}
+		
 	}
 }
