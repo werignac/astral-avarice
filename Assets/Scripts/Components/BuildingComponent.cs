@@ -44,7 +44,15 @@ public class BuildingComponent : MonoBehaviour
 	{
 		get
 		{
-			return cableConnectionPoint.position;
+			return cableConnectionPoint.localPosition;
+		}
+	}
+
+	public Transform CableConnectionTransform
+	{
+		get
+		{
+			return cableConnectionPoint;
 		}
 	}
 

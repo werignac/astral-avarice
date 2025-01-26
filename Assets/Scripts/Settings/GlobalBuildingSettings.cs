@@ -19,12 +19,34 @@ public class GlobalBuildingSettings: ScriptableObject
 	// The buildings that can be placed by the player.
 	[SerializeField] private BuildingSettingEntry[] buildings;
 
+	// The prefab to use to place buildings.
+	[SerializeField] private GameObject cablePrefab;
+	// How wide the cabels are.
+	[SerializeField, Min(0.01f)] private float cableWidth;
+	// How long the cables can stretch up to.
+	[SerializeField, Min(1f)] private float maxCableLength;
+
 	// TODO: Include buildings that can be placed in the level builder?
 
 	// Getters
 	public BuildingSettingEntry[] Buildings
 	{
 		get { return buildings; }
+	}
+
+	public GameObject CablePrefab
+	{
+		get { return cablePrefab; }
+	}
+
+	public float CableWidth
+	{
+		get { return cableWidth; }
+	}
+
+	public float MaxCableLength
+	{
+		get { return maxCableLength; }
 	}
 
 

@@ -34,6 +34,8 @@ public class PlanetComponent : MonoBehaviour
 
 	public Vector2 GetClosestSurfacePointToPosition(Vector2 position)
 	{
+		// Force the point to be on the surface of the planets instead of allowing points inside
+		// the volume.
 		Vector2 radialDirection = (planetCollider.ClosestPoint(position) - (Vector2)transform.position).normalized;
 		Vector2 radialOffset = radialDirection * planetCollider.radius * transform.localScale.x;
 		return  radialOffset + (Vector2) transform.position;
@@ -65,7 +67,11 @@ public class PlanetComponent : MonoBehaviour
 
 	public GameObject InstantiateBuildingOnPlanet(GameObject buildingPrefab, Vector2 position, Quaternion rotation)
 	{
-		return Instantiate(buildingPrefab, position, rotation, buildingContainerTransform);
+		GameObject building = Instantiate(buildingPrefab, position, rotation, buildingContainerTransform);
+		// Counteract upscaling from parent transform (odd that I started needed to do this without changing much).
+		// Assumes scaling on planet is uniform (x == y == z).
+		building.transform.localScale = Vector3.one * 1 / transform.localScale.x;
+		return building;
 	}
 
 }

@@ -28,6 +28,9 @@ public class GlobalBuildingSettingsProvider
 			{
 				var settings = GetSerializedSettings();
 				EditorGUILayout.PropertyField(settings.FindProperty("buildings"), new GUIContent("Player Plaeable Buildings"));
+				EditorGUILayout.PropertyField(settings.FindProperty("cablePrefab"), new GUIContent("Cable Prefab"));
+				EditorGUILayout.PropertyField(settings.FindProperty("cableWidth"), new GUIContent("Cable Width"));
+				EditorGUILayout.PropertyField(settings.FindProperty("maxCableLength"), new GUIContent("Cable Length"));
 				settings.ApplyModifiedPropertiesWithoutUndo();
 				settings.Dispose();
 			},

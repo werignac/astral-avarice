@@ -65,11 +65,13 @@ public class BuildUIComponent : MonoBehaviour
 	private UIDocument uiDocument;
 	[SerializeField] private VisualTreeAsset buildingButtonTemplate;
 	[SerializeField] private Sprite demolishIcon;
+	[SerializeField] private Sprite cableIcon;
 
 	private VisualElement collapsableBuildMenu;
 	private Button collapseMenuButton;
 	private VisualElement buildButtonContainer;
 	private VisualElement demolishButtonElement;
+	private VisualElement cableButtonElement;
 
 	private List<BuildButtonBinding> buildButtonBindings = new List<BuildButtonBinding>();
 
@@ -90,6 +92,10 @@ public class BuildUIComponent : MonoBehaviour
 		demolishButtonElement = CreateDemolishButton();
 		buildButtonContainer.Add(demolishButtonElement);
 
+		// Add a cable button
+		cableButtonElement = CreateCableButton();
+		buildButtonContainer.Add(cableButtonElement);
+
 		// Add a button for each placeable building.
 		foreach (BuildingSettingEntry buildingSettingEntry in GlobalBuildingSettings.GetOrCreateSettings().Buildings)
 		{
@@ -106,12 +112,18 @@ public class BuildUIComponent : MonoBehaviour
 
 		collapseMenuButton.RegisterCallback<ClickEvent>(BuildManager_OnClickToggle);
 		demolishButtonElement.Q<Button>("BuildButton").RegisterCallback<ClickEvent>(DemolishButton_OnClick);
+		cableButtonElement.Q<Button>("BuildButton").RegisterCallback<ClickEvent>(CableButton_OnClick);
 
 		// TODO: Unregister listeners on disable / destroy.
 		
 
 		// Listen to events to change the selected building to add.
 		BuildManagerComponent.Instance.OnStateChanged.AddListener(BuildManager_OnStateChanged);
+	}
+
+	private void CableButton_OnClick(ClickEvent evt)
+	{
+		BuildManagerComponent.Instance.SetCableState();
 	}
 
 	private void BuildingButton_OnHoverEnd(BuildingSettingEntry arg0)
@@ -137,6 +149,11 @@ public class BuildUIComponent : MonoBehaviour
 	private VisualElement CreateDemolishButton()
 	{
 		return CreateButton(demolishIcon);
+	}
+
+	private VisualElement CreateCableButton()
+	{
+		return CreateButton(cableIcon);
 	}
 
 	private VisualElement CreateButton(Sprite icon)

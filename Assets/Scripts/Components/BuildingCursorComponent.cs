@@ -27,6 +27,8 @@ public class BuildingCursorComponent : MonoBehaviour
 
 	// Getters
 	public PlanetComponent ParentPlanet { get { return parentPlanet; } }
+	public bool ShowingCanPlaceBuilding { get; private set; }
+	public Vector2 CableConnectionPosition { get => transform.TransformPoint(cableConnectionOffset); }
 
 	/// <summary>
 	/// Shows the entire cursor.
@@ -84,12 +86,18 @@ public class BuildingCursorComponent : MonoBehaviour
 		this.collisionCheckOffset = collisionCheckOffset;
 	}
 
+	public void SetBuildingCableConnectionOffset(Vector2 cableConnectionOffset)
+	{
+		this.cableConnectionOffset = cableConnectionOffset;
+	}
+
 	/// <summary>
 	/// Tells the cursor to show whether the current building can be placed.
 	/// </summary>
 	public void SetBuildingPlaceability(bool canPlace)
 	{
 		ghostSpriteRenderer.color = canPlace ? placeableColor : notPlaceableColor;
+		ShowingCanPlaceBuilding = canPlace;
 	}
 
 	/// <summary>
