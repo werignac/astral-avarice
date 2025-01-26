@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Building", menuName = "Data/BuildingData")]
 public class BuildingData : ScriptableObject
 {
+    public string buildingName;
     public int cost;
     public int mass;
     public int maxPowerLines;

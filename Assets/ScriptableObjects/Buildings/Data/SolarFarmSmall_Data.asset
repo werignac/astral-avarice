@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3914bd3687151f4e88c9fa48c45c531, type: 3}
-  m_Name: Pylon_Data
+  m_Name: SolarFarmSmall_Data
   m_EditorClassIdentifier: 
-  buildingName: Pylon
-  cost: 10
-  mass: 20
-  maxPowerLines: 4
-  buildingType: 0
-  powerProduced: 0
+  buildingName: Small Solar Farm
+  cost: 50
+  mass: 25
+  maxPowerLines: 1
+  buildingType: 1
+  powerProduced: 4
   powerRequired: 0
   income: 0
   upkeep: 1
-  requiredResource: 4
+  requiredResource: 2
   resourceAmountRequired: 0
-  buildingPrefab: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+  buildingPrefab: {fileID: 0}

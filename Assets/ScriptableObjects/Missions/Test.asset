@@ -17,6 +17,8 @@ MonoBehaviour:
   timeLimit: 180
   missionName: Test
   startingBuildings:
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: b7c7e7c92a5e39a43bc913e88c9a8144, type: 2}
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}

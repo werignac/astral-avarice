@@ -11,6 +11,7 @@ public class GameManager
     private float timePassed;
     private int endTime;
     private GameController controller;
+    private MissionData currentMission;
 
     public int Income
     {
@@ -26,10 +27,20 @@ public class GameManager
         this.controller = controller;
     }
 
+    public void SpendMoney(int spentAmount)
+    {
+        cash -= spentAmount;
+        if (controller != null)
+        {
+            controller.UpdateCashAndIncome(cash, income);
+        }
+    }
+
     //Use this if BuildingComponents don't need to have a Building object as a member.
     public void StartMission(MissionData mission)
     {
-        cash = 0;
+        currentMission = mission;
+        cash = mission.startingCash;
         buildings = new List<Building>();
         timePassed = 0;
         endTime = mission.timeLimit;
@@ -44,7 +55,8 @@ public class GameManager
     //Use this if BuildingComponents need a reference to the Building object being used by the manager.
     public void StartMission(MissionData mission, LevelBuilder level)
     {
-        cash = 0;
+        currentMission = mission;
+        cash = mission.startingCash;
         buildings = new List<Building>();
         timePassed = 0;
         endTime = mission.timeLimit;
@@ -67,6 +79,10 @@ public class GameManager
         for(int i = 0; i < numPayouts; ++i)
         {
             cash += income;
+            if (controller != null)
+            {
+                controller.UpdateCashAndIncome(cash, income);
+            }
         }
         if(timePassed > endTime)
         {
@@ -76,6 +92,10 @@ public class GameManager
 
     public void EndGame()
     {
+        if(cash >= currentMission.cashGoal)
+        {
+            Debug.Log("Earned enough money! Victory!");
+        }
         if(controller != null)
         {
             controller.EndGame();
@@ -110,6 +130,16 @@ public class GameManager
         first.AddConnection(second);
         second.AddConnection(first);
         AdjustIncomeForConnected(first);
+    }
+
+    public void RemoveConnection(Building first, Building second)
+    {
+        if(first.RemoveConnection(second))
+        {
+            second.RemoveConnection(first);
+            AdjustIncomeForConnected(first);
+            AdjustIncomeForConnected(second);
+        }
     }
 
     public void AdjustIncomeForConnected(Building startingBuilding)
@@ -162,6 +192,10 @@ public class GameManager
                 }
             }
         }
+        if(controller != null)
+        {
+            controller.UpdateCashAndIncome(cash, income);
+        }
     }
 
     public void CalculateIncome()
@@ -188,6 +222,13 @@ public class GameManager
             if(producer.PowerToGive > 0)
             {
                 AdjustIncomeForConnected(producer);
+            }
+        }
+        if(producers.Count <= 0)
+        {
+            if (controller != null)
+            {
+                controller.UpdateCashAndIncome(cash, income);
             }
         }
     }
