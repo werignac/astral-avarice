@@ -112,6 +112,16 @@ public class GameManager
         AdjustIncomeForConnected(first);
     }
 
+    public void RemoveConnection(Building first, Building second)
+    {
+        if(first.RemoveConnection(second))
+        {
+            second.RemoveConnection(first);
+            AdjustIncomeForConnected(first);
+            AdjustIncomeForConnected(second);
+        }
+    }
+
     public void AdjustIncomeForConnected(Building startingBuilding)
     {
         HashSet<Building> buildingsSeen = new HashSet<Building>();
