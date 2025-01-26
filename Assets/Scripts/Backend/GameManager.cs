@@ -36,7 +36,7 @@ public class GameManager
         }
     }
 
-    //Use this if BuildingComponents don't need to have a Building object as a member.
+    //Use this if buildings don't need to be instantiated at start.
     public void StartMission(MissionData mission)
     {
         currentMission = mission;
@@ -44,12 +44,6 @@ public class GameManager
         buildings = new List<Building>();
         timePassed = 0;
         endTime = mission.timeLimit;
-
-        for(int i = 0; i < mission.startingBuildings.Length; ++i)
-        {
-            buildings.Add(new Building(mission.startingBuildings[i]));
-        }
-
         CalculateIncome();
     }
     //Use this if BuildingComponents need a reference to the Building object being used by the manager.
