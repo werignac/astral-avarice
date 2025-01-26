@@ -15,7 +15,10 @@ MonoBehaviour:
   buildings:
   - visualAsset: {fileID: 11400000, guid: 503fd86d5e627f84f9ad68c9806c78f1, type: 2}
     buildingDataAsset: {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-    prefab: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+    prefab: {fileID: 9094627657985119054, guid: d86a6b086d37c7b489105f043ac2c8d0, type: 3}
+  - visualAsset: {fileID: 11400000, guid: ab9be2d74faab264b842078079244565, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: b7c7e7c92a5e39a43bc913e88c9a8144, type: 2}
+    prefab: {fileID: 3586593869729771162, guid: dc41c079ed6173641b5dbc4b7b8b62a3, type: 3}
   cablePrefab: {fileID: 5726402047846220235, guid: 3921c1003c21fa94098bdb0c577548b6, type: 3}
   cableWidth: 0.1
   maxCableLength: 6
