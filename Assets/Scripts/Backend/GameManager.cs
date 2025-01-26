@@ -253,7 +253,7 @@ public class GameManager
             }
             if(nextIndex < consumerList.Count)
             {
-                float nextPowerToPrice = consumerList[previousIndex].Data.income / consumerList[previousIndex].Data.powerRequired;
+                float nextPowerToPrice = consumerList[nextIndex].Data.income / consumerList[nextIndex].Data.powerRequired;
                 if(nextPowerToPrice > powerToPrice)
                 {
                     greaterThanNext = false;
