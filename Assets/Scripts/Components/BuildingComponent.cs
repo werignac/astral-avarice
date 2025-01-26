@@ -19,6 +19,11 @@ public class BuildingComponent : MonoBehaviour, IDemolishable
 		get { return (buildingData); }
 	}
 
+	public Building BackendBuilding
+	{
+		get => gameBuilding;
+	}
+
 	/// <summary>
 	/// Get how wide (x) and tall (y) the building is.
 	/// </summary>

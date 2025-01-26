@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
+using werignac.Utils;
+using System;
 
 public class GameController : MonoBehaviour
 {
@@ -14,6 +17,12 @@ public class GameController : MonoBehaviour
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
 
+	// Refercnes to in-game objects.
+	public List<PlanetComponent> Planets { get; private set; } = new List<PlanetComponent>();
+	public List<BuildingComponent> Buildings { get; private set; } = new List<BuildingComponent>();
+	public List<CableComponent> Cables { get; private set; } = new List<CableComponent>();
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,14 +32,31 @@ public class GameController : MonoBehaviour
         if (Data.selectedMission != null)
         {
             levelObject = Instantiate<GameObject>(Resources.Load<GameObject>("Levels/" + Data.selectedMission.name));
-            gameManager.StartMission(Data.selectedMission, levelObject.GetComponent<LevelBuilder>());
+            gameManager.StartMission(Data.selectedMission);
+
+			CollectInitialGameObjects();
 
 			OnLevelLoad?.Invoke();
         }
     }
 
-    // Update is called once per frame
-    void Update()
+	private void CollectInitialGameObjects()
+	{
+		Planets = WerignacUtils.GetComponentsInActiveScene<PlanetComponent>();
+		
+		foreach (BuildingComponent buildingComponent in WerignacUtils.GetComponentsInActiveScene<BuildingComponent>())
+		{
+			RegisterBuilding(buildingComponent);
+		}
+
+		foreach(CableComponent cableComponent in WerignacUtils.GetComponentsInActiveScene<CableComponent>())
+		{
+			RegisterCable(cableComponent);
+		}
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         gameManager.Update(Time.deltaTime);
     }
@@ -61,4 +87,49 @@ public class GameController : MonoBehaviour
         Debug.Log("Game has ended");
         SceneManager.LoadScene("MainMenu");
     }
+
+	public void BuildManager_OnBuildResovle(BuildResolve resolution)
+	{
+		if (resolution.successfullyPlacedBuilding)
+		{
+			RegisterBuilding(resolution.builtBuilding);
+		}
+
+		if (resolution.successfullyPlacedCable)
+		{
+			RegisterCable(resolution.builtCable);
+		}
+	}
+
+	private void RegisterBuilding(BuildingComponent buildingComponent)
+	{
+		Buildings.Add(buildingComponent);
+		
+		Building building = new Building(buildingComponent.Data);
+		buildingComponent.SetGameBuilding(building);
+		gameManager.AddBuilding(building);
+
+		buildingComponent.OnBuildingDestroyed.AddListener(Building_OnDestroy);
+	}
+
+	private void Building_OnDestroy(BuildingComponent buildingComponent)
+	{
+		Buildings.Remove(buildingComponent);
+		gameManager.RemoveBuilding(buildingComponent.BackendBuilding);
+	}
+
+	private void RegisterCable(CableComponent cableComponent)
+	{
+		Cables.Add(cableComponent);
+
+		gameManager.AddConnection(cableComponent.Start.BackendBuilding, cableComponent.End.BackendBuilding);
+
+		cableComponent.OnCableDestroyed.AddListener(Cable_OnDestroyed);
+	}
+
+	private void Cable_OnDestroyed(CableComponent cableComponent)
+	{
+		Cables.Remove(cableComponent);
+		gameManager.RemoveConnection(cableComponent.Start.BackendBuilding, cableComponent.End.BackendBuilding);
+	}
 }

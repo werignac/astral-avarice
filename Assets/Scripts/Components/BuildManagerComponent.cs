@@ -181,8 +181,6 @@ public class BuildManagerComponent : MonoBehaviour
 
 	[SerializeField] private GameController gameController;
 
-	private List<PlanetComponent> planets = new List<PlanetComponent>();
-
 	// Reference to the cursor used for showing where buildings will go.
 	// Also checks whether a building can be placed (collides with other buildings).
 	[SerializeField] private BuildingCursorComponent buildingCursor;
@@ -218,15 +216,7 @@ public class BuildManagerComponent : MonoBehaviour
 			return;
 		}
 		
-		Instance = this;		
-
-		if (gameController != null)
-		{
-			gameController.OnLevelLoad.AddListener(() =>
-			{
-				planets = WerignacUtils.GetComponentsInActiveScene<PlanetComponent>();
-			});
-		}
+		Instance = this;
 	}
 
 	private void Start()
@@ -234,8 +224,7 @@ public class BuildManagerComponent : MonoBehaviour
 		// Initally, we aren't building anything.
 		SetState(new NoneBuildState());
 
-		if (gameController == null)
-			planets = WerignacUtils.GetComponentsInActiveScene<PlanetComponent>();
+		OnBuildResolve.AddListener(gameController.BuildManager_OnBuildResovle);
 	}
 
 	/// <summary>
@@ -640,7 +629,7 @@ public class BuildManagerComponent : MonoBehaviour
 	{
 		// TODO: Check if we're hovering over a building. If so, hide the cursor?
 
-		bool noPlanets = planets.Count == 0;
+		bool noPlanets = gameController.Planets.Count == 0;
 		if (noPlanets)
 		{ // If there are no planets, there's nothing to build on.
 			if (! buildingCursor.GetIsShowing())
@@ -654,7 +643,7 @@ public class BuildManagerComponent : MonoBehaviour
 		float closestPlanetDistance = -1f;
 		PlanetComponent closestPlanet = null;
 
-		foreach (PlanetComponent planet in planets)
+		foreach (PlanetComponent planet in gameController.Planets)
 		{
 			float distanceToHover = Vector2.Distance(planet.GetClosestSurfacePointToPosition(hoverThisUpdate), hoverThisUpdate);
 

@@ -126,15 +126,17 @@ public class GameManager
         AdjustIncomeForConnected(first);
     }
 
-    public void RemoveConnection(Building first, Building second)
-    {
-        if(first.RemoveConnection(second))
-        {
-            second.RemoveConnection(first);
-            AdjustIncomeForConnected(first);
-            AdjustIncomeForConnected(second);
-        }
-    }
+	public void RemoveConnection(Building first, Building second)
+	{
+		bool removedOne = first.RemoveConnection(second);
+		removedOne = removedOne || second.RemoveConnection(first);
+		if (removedOne)
+		{
+			AdjustIncomeForConnected(first);
+			AdjustIncomeForConnected(second);
+		}
+
+	}
 
     public void AdjustIncomeForConnected(Building startingBuilding)
     {
@@ -152,17 +154,18 @@ public class GameManager
             {
                 totalPower += building.Data.powerProduced;
                 building.PowerToGive = 0;
-            }
-            for (int i = 0; i < building.NumConnected; ++i)
+			}
+			if (building.Data.buildingType == BuildingType.PowerConsumer)
+			{
+				AddConsumerToSortedList(building, connectedConsumers);
+			}
+			for (int i = 0; i < building.NumConnected; ++i)
             {
                 Building connectedBuilding = building.GetConnectedBuilding(i);
                 if (!buildingsSeen.Contains(connectedBuilding))
                 {
                     buildingsSeen.Add(connectedBuilding);
-                    if (connectedBuilding.Data.buildingType == BuildingType.PowerConsumer)
-                    {
-                        AddConsumerToSortedList(connectedBuilding, connectedConsumers);
-                    }
+					connectedBuildings.Add(connectedBuilding);
                 }
             }
         }
