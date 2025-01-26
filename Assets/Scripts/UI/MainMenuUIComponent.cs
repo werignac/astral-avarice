@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MainMenuUIComponent : MonoBehaviour
@@ -52,5 +53,7 @@ public class MainMenuUIComponent : MonoBehaviour
     public void StartMission(ClickEvent click, MissionData mission)
     {
         Debug.Log("Start mission " + mission.name);
+        Data.selectedMission = mission;
+        SceneManager.LoadScene("MainGame");
     }
 }

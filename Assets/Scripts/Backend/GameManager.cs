@@ -10,6 +10,7 @@ public class GameManager
     private int cash;
     private float timePassed;
     private int endTime;
+    private GameController controller;
 
     public int Income
     {
@@ -18,6 +19,11 @@ public class GameManager
     public int Cash
     {
         get { return (cash); }
+    }
+
+    public GameManager(GameController controller)
+    {
+        this.controller = controller;
     }
 
     //Use this if BuildingComponents don't need to have a Building object as a member.
@@ -70,7 +76,10 @@ public class GameManager
 
     public void EndGame()
     {
-
+        if(controller != null)
+        {
+            controller.EndGame();
+        }
     }
 
     public void AddBuilding(Building building)
