@@ -143,4 +143,22 @@ public class GameController : MonoBehaviour
 		Cables.Remove(cableComponent);
 		gameManager.RemoveConnection(cableComponent.Start.BackendBuilding, cableComponent.End.BackendBuilding);
 	}
+
+	public void UpdatePlanetsSolar()
+    {
+		for(int i = 0; i < Planets.Count; ++i)
+        {
+			PlanetComponent planet = Planets[i];
+			int solarAmount = planet.SolarOutput;
+			for(int p = 0; p < Planets.Count; ++p)
+            {
+				if(p != i)
+                {
+					PlanetComponent other = Planets[p];
+					solarAmount += Mathf.Max(0, Mathf.CeilToInt(other.SolarOutput - Vector2.Distance(planet.transform.position, other.transform.position)));
+                }
+            }
+			planet.SetResourceCount(ResourceType.Solar, solarAmount);
+        }
+    }
 }
