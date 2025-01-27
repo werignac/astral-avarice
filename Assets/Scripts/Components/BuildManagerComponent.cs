@@ -593,14 +593,14 @@ public class BuildManagerComponent : MonoBehaviour
 			bool sufficientFunds = gameController.Cash >= (resolution.totalCost + buildingBuildState.toBuild.BuildingDataAsset.cost) && gameController.HeldScience >= buildingBuildState.toBuild.BuildingDataAsset.scienceCost;
 			
 			bool sufficientResources = true;
-            if(buildingBuildState.toBuild.BuildingDataAsset.requiredResource != ResourceType.Resource_Count)
+            /*if(buildingBuildState.toBuild.BuildingDataAsset.requiredResource != ResourceType.Resource_Count)
             {
 				if(buildingCursor.ParentPlanet.GetResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) <= 0 
 					|| buildingCursor.ParentPlanet.GetResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) < buildingBuildState.toBuild.BuildingDataAsset.resourceAmountRequired)
                 {
 					sufficientResources = false;
                 }
-            }
+            }*/
 
 			bool canPlace = roomToPlace && sufficientFunds && sufficientResources && buildingCursor.ParentPlanet.CanPlaceBuildings;
 

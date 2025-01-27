@@ -79,6 +79,7 @@ public class GameManager
         for (int i = 0; i < level.buildings.Length; ++i)
         {
             Building building = new Building(level.buildings[i].Data);
+            building.SetManager(this);
             buildings.Add(building);
             level.buildings[i].SetGameBuilding(building);
         }
@@ -121,6 +122,7 @@ public class GameManager
 
     public void AddBuilding(Building building)
     {
+        building.SetManager(this);
         buildings.Add(building);
         income -= building.Data.upkeep;
         AdjustIncomeForConnected(building);
@@ -175,7 +177,7 @@ public class GameManager
             connectedBuildings.RemoveAt(0);
             if (building.Data.buildingType == BuildingType.PowerProducer)
             {
-                totalPower += building.Data.powerProduced;
+                totalPower += GetPower(building);
                 building.PowerToGive = 0;
 			}
 			if (building.Data.buildingType == BuildingType.PowerConsumer)
@@ -301,5 +303,80 @@ public class GameManager
             }
         }
         consumerList.Insert(index, consumerBuilding);
+    }
+
+    public bool EnoughPower(Building checkedBuilding)
+    {
+        HashSet<Building> buildingsSeen = new HashSet<Building>();
+        List<Building> connectedBuildings = new List<Building>();
+        List<Building> connectedConsumers = new List<Building>();
+        int totalPower = 0;
+        buildingsSeen.Add(checkedBuilding);
+        connectedBuildings.Add(checkedBuilding);
+        while (connectedBuildings.Count > 0)
+        {
+            Building building = connectedBuildings[0];
+            connectedBuildings.RemoveAt(0);
+            if (building.Data.buildingType == BuildingType.PowerProducer)
+            {
+                totalPower += GetPower(building);
+                building.PowerToGive = 0;
+            }
+            if (building.Data.buildingType == BuildingType.PowerConsumer)
+            {
+                AddConsumerToSortedList(building, connectedConsumers);
+            }
+            for (int i = 0; i < building.NumConnected; ++i)
+            {
+                Building connectedBuilding = building.GetConnectedBuilding(i);
+                if (!buildingsSeen.Contains(connectedBuilding))
+                {
+                    buildingsSeen.Add(connectedBuilding);
+                    connectedBuildings.Add(connectedBuilding);
+                }
+            }
+        }
+        foreach (Building consumer in connectedConsumers)
+        {
+            if(consumer.IsPowered)
+            {
+                totalPower -= consumer.Data.powerRequired;
+            }
+        }
+        return (totalPower >= checkedBuilding.Data.powerRequired);
+    }
+
+    public bool ToggleBuildingPower(Building building)
+    {
+        if(building.IsPowered)
+        {
+            income -= building.Data.income;
+            scienceIncome -= building.Data.scienceIncome;
+            building.IsPowered = false;
+            return (true);
+        }
+        else
+        {
+            if(EnoughPower(building))
+            {
+                income += building.Data.income;
+                scienceIncome += building.Data.scienceIncome;
+                building.IsPowered = true;
+                return (true);
+            }
+            else
+            {
+                return (false);
+            }
+        }
+    }
+
+    public int GetPower(Building building)
+    {
+        if(building.Data.resourceAmountRequired <= 0)
+        {
+            return (building.Data.powerProduced);
+        }
+        return (Mathf.CeilToInt(building.ResourcesProvided / building.Data.resourceAmountRequired * building.Data.powerProduced));
     }
 }

@@ -263,5 +263,31 @@ public class GameController : MonoBehaviour
             }
 			planet.SetResourceCount(ResourceType.Solar, solarAmount);
         }
+		UpdateBuildingResources();
     }
+
+	public void UpdateBuildingResources()
+	{
+		for (int i = 0; i < Planets.Count; ++i)
+		{
+			PlanetComponent planet = Planets[i];
+			int[] totalResources = new int[(int)ResourceType.Resource_Count];
+			for(int r = 0; r < totalResources.Length; ++r)
+            {
+				totalResources[r] = planet.GetResourceCount((ResourceType)r);
+            }				
+			for(int b = 0; b < planet.BuildingContainer.childCount; ++b)
+            {
+				BuildingComponent building = planet.BuildingContainer.GetChild(b).gameObject.GetComponent<BuildingComponent>();
+				if(building != null)
+                {
+					if(building.Data.requiredResource != ResourceType.Resource_Count)
+                    {
+						building.BackendBuilding.ResourcesProvided = Mathf.Min(totalResources[(int)building.Data.requiredResource], building.BackendBuilding.Data.resourceAmountRequired);
+						totalResources[(int)building.Data.requiredResource] = Mathf.Max(0, totalResources[(int)building.Data.requiredResource] - building.BackendBuilding.Data.resourceAmountRequired);
+                    }
+                }
+            }
+		}
+	}
 }
