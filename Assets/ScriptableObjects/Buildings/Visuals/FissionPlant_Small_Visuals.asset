@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FissionPlant_Small_Visuals
   m_EditorClassIdentifier: 
   buildingName: Fission Plant - Small
-  buildingIcon: {fileID: 21300000, guid: 4bdfa3dccf726e641bb879947a9dc4cf, type: 3}
+  buildingIcon: {fileID: 21300000, guid: b6f6b1cda1c684049941bc4ff4b5c208, type: 3}
   buildingDescription: A a nuclear fission plant that generates a small amount of
     energy.
   buildingGhost: {fileID: 21300000, guid: 6f37ccb1780825643b74f8df0b7a17d0, type: 3}

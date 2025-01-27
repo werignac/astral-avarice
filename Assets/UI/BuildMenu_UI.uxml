@@ -7,7 +7,7 @@
     <engine:VisualElement name="Container" enabled="true" picking-mode="Ignore" style="flex-grow: 0; right: auto; left: auto; position: relative; width: auto; flex-direction: row; align-self: flex-start;">
         <engine:VisualElement name="CollapsableContainer" enabled="true" style="flex-grow: 0; background-color: rgba(204, 121, 66, 0.45); flex-direction: column; justify-content: flex-start; display: flex; border-top-right-radius: 10px; border-bottom-right-radius: 10px; width: 300px; visibility: visible;">
             <engine:Label text="Build Menu" class="header" style="-unity-text-align: upper-center; min-width: auto; width: auto; height: 75px; font-size: 50px; margin-bottom: 20px; margin-top: 20px;" />
-            <engine:VisualElement name="BuildButtonContainer" style="flex-grow: 0; align-content: center; height: auto; align-self: center; margin-bottom: 20px;" />
+            <engine:VisualElement name="BuildButtonContainer" style="flex-grow: 1; align-content: center; height: auto; align-self: center; margin-bottom: 20px;" />
         </engine:VisualElement>
         <engine:Button text="&#10;" name="CollapseButton" style="height: 100px; width: 100px; margin-top: 50px; background-color: rgba(204, 121, 66, 0.45); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; margin-right: 0; margin-left: 0; margin-bottom: 0; justify-content: flex-start; align-items: auto; align-content: center; border-top-right-radius: 10px; border-bottom-right-radius: 10px;" />
     </engine:VisualElement>

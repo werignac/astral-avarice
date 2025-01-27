@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SolarFarm_Small_Visuals
   m_EditorClassIdentifier: 
   buildingName: Solar Farm - Small
-  buildingIcon: {fileID: 7923328535804906497, guid: bbd87238aff917f43b12d0b3a039bec6, type: 3}
+  buildingIcon: {fileID: 21300000, guid: 03957febec93b1341bf0bbbd851acde5, type: 3}
   buildingDescription: A single solar panel. It doesn't generate much electricity,
     but it's compact!
   buildingGhost: {fileID: -1328056131022238302, guid: 8419cabf25dfd1042ac6059da76a72f8, type: 3}

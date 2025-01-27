@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SolarFarm_Visuals
   m_EditorClassIdentifier: 
   buildingName: Solar Farm
-  buildingIcon: {fileID: 21300000, guid: f341d0e700ced7b418d2983c5844678f, type: 3}
+  buildingIcon: {fileID: 21300000, guid: 9e8a24168a0fc9f41924241aa4b95656, type: 3}
   buildingDescription: A standard solar farm. Boasts two solar panels in opposite
     directions to absorb sunlight at all times without the need for articulated joints.
     Unless it's nighttime. Or it's cloudy.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pylon_Visuals
   m_EditorClassIdentifier: 
   buildingName: Pylon
-  buildingIcon: {fileID: -5652342212589283447, guid: f2b495b328568ec45955ac79825bc3a9, type: 3}
+  buildingIcon: {fileID: 21300000, guid: 9e9d757b317a7944eb70f29c9927a1e9, type: 3}
   buildingDescription: A tower that serves as an intermediate node for power lines.
   buildingGhost: {fileID: -8497278146305302237, guid: da18ad32dc400c44c8368be816abbba4, type: 3}
   ghostOffset: {x: 0, y: 0.743}

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 821a296538d9f5e4baebd324d9580017
+guid: b6f6b1cda1c684049941bc4ff4b5c208
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7411374909019630376
-    second: cable_icon_0
+      213: -113953993814515201
+    second: generator_icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cable_icon_0
+      name: generator_icon_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 299
-        height: 204
+        y: 95
+        width: 993
+        height: 803
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d454a299c1852990800000000000000
-      internalID: -7411374909019630376
+      spriteID: ff1e2f542772b6ef0800000000000000
+      internalID: -113953993814515201
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cable_icon_0: -7411374909019630376
+      generator_icon_0: -113953993814515201
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
