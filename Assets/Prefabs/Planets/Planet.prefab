@@ -201,7 +201,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 7355667211803719440}
-  mass: 0
+  mass: 10
   resourceCounts: 00000000000000000000000000000000
   solarOutput: 0
-  canPlaceBuildings: 0
+  canPlaceBuildings: 1

@@ -137,6 +137,7 @@ public class GameController : MonoBehaviour
                     body.MovePosition(body.position + planetTranslations[i]);
                 }
 			}
+			UpdatePlanetsSolar();
 		}
 	}
 

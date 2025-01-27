@@ -7,6 +7,7 @@ public class LevelBuilder : MonoBehaviour
     public string levelName;
     public Vector2 levelDimentions;
     public int startingCash;
+    public int startingScience;
     public int goalCash;
     public int levelTime;
     public BuildingComponent[] buildings;
@@ -27,6 +28,7 @@ public class LevelBuilder : MonoBehaviour
         MissionData missionData = (MissionData)MissionData.CreateInstance("MissionData");
         missionData.missionName = levelName;
         missionData.startingCash = startingCash;
+        missionData.startingScience = startingScience;
         missionData.cashGoal = goalCash;
         missionData.timeLimit = levelTime;
 
