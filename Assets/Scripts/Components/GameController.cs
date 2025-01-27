@@ -68,7 +68,79 @@ public class GameController : MonoBehaviour
 	void Update()
     {
         gameManager.Update(Time.deltaTime);
-    }
+		MovePlanets();
+	}
+
+	private void MovePlanets()
+	{
+		if (Planets.Count > 1)
+		{
+			List<Vector2> planetTranslations = new List<Vector2>();
+			for (int i = 0; i < Planets.Count; ++i)
+			{
+				planetTranslations.Add(new Vector2(0, 0));
+			}
+			for (int i = 0; i < Planets.Count; ++i)
+			{
+				PlanetComponent planet = Planets[i];
+				float planetMass = planet.GetTotalMass() / 100f;
+				for (int p = 0; p < Planets.Count; ++p)
+				{
+					if (p != i)
+					{
+						PlanetComponent other = Planets[p];
+						Vector2 distance = planet.transform.position - other.transform.position;
+						if (distance.magnitude < planetMass)
+						{
+							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude * Time.deltaTime;
+						}
+					}
+				}
+			}
+			for (int i = 0; i < Planets.Count; ++i)
+			{
+				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();
+				if (body != null)
+				{
+					RaycastHit2D[] hits = Physics2D.CircleCastAll(body.position, Planets[i].GetComponent<CircleCollider2D>().radius, planetTranslations[i], planetTranslations[i].magnitude / 2);
+					bool destroyedThis = false;
+					foreach (RaycastHit2D hit in hits)
+					{
+						if (!destroyedThis && hit.transform != Planets[i].transform)
+						{
+							PlanetComponent hitPlanet = hit.transform.gameObject.GetComponent<PlanetComponent>();
+							if (hitPlanet != null)
+							{
+								if (Planets[i].GetTotalMass() < hitPlanet.GetTotalMass())
+								{
+									Destroy(Planets[i].gameObject);
+									hitPlanet.DestroyAllBuildings();
+									Planets.RemoveAt(i);
+									--i;
+									destroyedThis = true;
+								}
+								else
+								{
+									int destroyedIndex = Planets.IndexOf(hitPlanet);
+									Destroy(hitPlanet.gameObject);
+									Planets[i].DestroyAllBuildings();
+									Planets.RemoveAt(destroyedIndex);
+									if (destroyedIndex < i)
+									{
+										--i;
+									}
+								}
+							}
+						}
+					}
+					if (!destroyedThis)
+					{
+						body.MovePosition(body.position + planetTranslations[i]);
+					}
+				}
+			}
+		}
+	}
 
     public void UpdateCashAndIncome(int newCash, int newIncome)
     {

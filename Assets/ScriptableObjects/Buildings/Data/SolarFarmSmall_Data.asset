@@ -22,5 +22,5 @@ MonoBehaviour:
   income: 0
   upkeep: 1
   requiredResource: 2
-  resourceAmountRequired: 0
+  resourceAmountRequired: 1
   buildingPrefab: {fileID: 0}
