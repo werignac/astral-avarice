@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef1c9fa327a97de4096930420d6902d8, type: 3}
-  m_Name: FissionPlant_Small_Visuals
+  m_Name: SolarFarm_Small_Visuals
   m_EditorClassIdentifier: 
-  buildingName: Fission Plant - Small
-  buildingIcon: {fileID: 21300000, guid: 4bdfa3dccf726e641bb879947a9dc4cf, type: 3}
-  buildingDescription: A a nuclear fission plant that generates a small amount of
-    energy.
-  buildingGhost: {fileID: 21300000, guid: 6f37ccb1780825643b74f8df0b7a17d0, type: 3}
-  ghostOffset: {x: 0, y: 0.416}
+  buildingName: Solar Farm - Small
+  buildingIcon: {fileID: 7923328535804906497, guid: bbd87238aff917f43b12d0b3a039bec6, type: 3}
+  buildingDescription: A single solar panel. It doesn't generate much electricity,
+    but it's compact!
+  buildingGhost: {fileID: -1328056131022238302, guid: 8419cabf25dfd1042ac6059da76a72f8, type: 3}
+  ghostOffset: {x: 0, y: 0.599}
   ghostScale: 0.1681
