@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: City
   cost: 0
+  scienceCost: 0
   mass: 300
   maxPowerLines: 1
   buildingType: 2
@@ -21,6 +22,7 @@ MonoBehaviour:
   powerRequired: 100
   income: 2200
   upkeep: 0
+  scienceIncome: 2
   requiredResource: 4
   resourceAmountRequired: 0
   buildingPrefab: {fileID: 0}

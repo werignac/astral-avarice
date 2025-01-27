@@ -14,6 +14,9 @@ public class GameController : MonoBehaviour
 
     private Label cashLabel;
     private Label incomeLabel;
+	private Label scienceLabel;
+	private Label scienceIncomeLabel;
+	private int gameSpeed;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
 
@@ -29,14 +32,21 @@ public class GameController : MonoBehaviour
     {
         get { return (gameManager.Cash); }
     }
+	public int HeldScience
+    {
+        get { return (gameManager.ScienceHeld); }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+		gameSpeed = 1;
         gameManager = new GameManager(this);
         cashLabel = buildDocument.rootVisualElement.Q("Cash") as Label;
         incomeLabel = buildDocument.rootVisualElement.Q("Income") as Label;
-        if (Data.selectedMission != null)
+		scienceLabel = buildDocument.rootVisualElement.Q("Science") as Label;
+		scienceIncomeLabel = buildDocument.rootVisualElement.Q("ScienceIncome") as Label;
+		if (Data.selectedMission != null)
         {
             levelObject = Instantiate<GameObject>(Resources.Load<GameObject>("Levels/" + Data.selectedMission.name));
             gameManager.StartMission(Data.selectedMission);
@@ -70,7 +80,15 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        gameManager.Update(Time.deltaTime);
+		if(Input.GetKeyDown(KeyCode.P) && gameSpeed < 5)
+        {
+			++gameSpeed;
+        }
+		if(Input.GetKeyDown(KeyCode.O) && gameSpeed > 1)
+        {
+			--gameSpeed;
+        }
+        gameManager.Update(Time.deltaTime * gameSpeed);
 	}
 
     void FixedUpdate()
@@ -90,7 +108,7 @@ public class GameController : MonoBehaviour
 			for (int i = 0; i < Planets.Count; ++i)
 			{
 				PlanetComponent planet = Planets[i];
-				float planetMass = planet.GetTotalMass() / 100f;
+				float planetMass = planet.GetTotalMass() / 25f;
 				for (int p = 0; p < Planets.Count; ++p)
 				{
 					if (p != i)
@@ -99,7 +117,7 @@ public class GameController : MonoBehaviour
 						Vector2 distance = planet.transform.position - other.transform.position;
 						if (distance.magnitude < planetMass)
 						{
-							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude * Time.fixedDeltaTime;
+							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude / 10 * Time.fixedDeltaTime * gameSpeed;
 						}
 					}
 				}
@@ -135,6 +153,25 @@ public class GameController : MonoBehaviour
         incomeLabel.text += newIncome + ")";
         
     }
+	public void UpdateScienceLabels(int newScience, int newIncome)
+	{
+		scienceLabel.text = "" + newScience;
+		scienceIncomeLabel.text = "(";
+		if (newIncome > 0)
+		{
+			scienceIncomeLabel.text += "+";
+			scienceIncomeLabel.style.color = new StyleColor(new Color(0, 0.9f, 0));
+		}
+		else if (newIncome == 0)
+		{
+			scienceIncomeLabel.style.color = new StyleColor(new Color(1, 1, 1));
+		}
+		else
+		{
+			scienceIncomeLabel.style.color = new StyleColor(new Color(0.9f, 0, 0));
+		}
+		scienceIncomeLabel.text += newIncome + ")";
+	}
 
     public void EndGame()
     {
@@ -148,6 +185,7 @@ public class GameController : MonoBehaviour
 		{
 			RegisterBuilding(resolution.builtBuilding);
 			gameManager.SpendMoney(resolution.builtBuilding.Data.cost);
+			gameManager.SpendScience(resolution.builtBuilding.Data.scienceCost);
 		}
 
 		if (resolution.successfullyPlacedCable)

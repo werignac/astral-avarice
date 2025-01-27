@@ -84,6 +84,5 @@ public class InputManagerComponent : MonoBehaviour
 		cameraMovementComponent.SetHoverInput(Input.mousePosition);
 		cameraMovementComponent.SetPanningInput(panAction.IsPressed());
 		cameraMovementComponent.SetZoomInput(zoomAction.ReadValue<float>());
-		Debug.Log(zoomAction.ReadValue<float>());
 	}
 }

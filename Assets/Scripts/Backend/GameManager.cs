@@ -12,6 +12,8 @@ public class GameManager
     private int endTime;
     private GameController controller;
     private MissionData currentMission;
+    private int scienceHeld;
+    private int scienceIncome;
 
     public int Income
     {
@@ -20,6 +22,10 @@ public class GameManager
     public int Cash
     {
         get { return (cash); }
+    }
+    public int ScienceHeld
+    {
+        get { return (scienceHeld); }
     }
 
     public GameManager(GameController controller)
@@ -35,12 +41,22 @@ public class GameManager
             controller.UpdateCashAndIncome(cash, income);
         }
     }
+    public void SpendScience(int spentAmount)
+    {
+        scienceHeld -= spentAmount;
+        if (controller != null)
+        {
+            controller.UpdateScienceLabels(scienceHeld, scienceIncome);
+        }
+
+    }
 
     //Use this if buildings don't need to be instantiated at start.
     public void StartMission(MissionData mission)
     {
         currentMission = mission;
         cash = mission.startingCash;
+        scienceHeld = mission.startingScience;
         buildings = new List<Building>();
         timePassed = 0;
         endTime = mission.timeLimit;
@@ -51,6 +67,7 @@ public class GameManager
     {
         currentMission = mission;
         cash = mission.startingCash;
+        scienceHeld = mission.startingScience;
         buildings = new List<Building>();
         timePassed = 0;
         endTime = mission.timeLimit;
@@ -73,9 +90,11 @@ public class GameManager
         for(int i = 0; i < numPayouts; ++i)
         {
             cash += income;
+            scienceHeld += scienceIncome;
             if (controller != null)
             {
                 controller.UpdateCashAndIncome(cash, income);
+                controller.UpdateScienceLabels(scienceHeld, scienceIncome);
             }
         }
         if(timePassed > endTime)
@@ -177,6 +196,7 @@ public class GameManager
                 if (!consumer.IsPowered)
                 {
                     income += consumer.Data.income;
+                    scienceIncome += consumer.Data.scienceIncome;
                     consumer.IsPowered = true;
                 }
             }
@@ -185,6 +205,7 @@ public class GameManager
                 if (consumer.IsPowered)
                 {
                     income -= consumer.Data.income;
+                    scienceIncome -= consumer.Data.scienceIncome;
                     consumer.IsPowered = false;
                 }
             }
@@ -192,6 +213,7 @@ public class GameManager
         if(controller != null)
         {
             controller.UpdateCashAndIncome(cash, income);
+            controller.UpdateScienceLabels(scienceHeld, scienceIncome);
         }
     }
 
@@ -199,6 +221,7 @@ public class GameManager
     {
         List<Building> producers = new List<Building>();
         income = 0;
+        scienceIncome = 2;
 
         foreach(Building building in buildings)
         {
@@ -226,13 +249,14 @@ public class GameManager
             if (controller != null)
             {
                 controller.UpdateCashAndIncome(cash, income);
+                controller.UpdateScienceLabels(scienceHeld, scienceIncome);
             }
         }
     }
 
     private void AddConsumerToSortedList(Building consumerBuilding, List<Building> consumerList)
     {
-        float powerToPrice = consumerBuilding.Data.income / consumerBuilding.Data.powerRequired;
+        float powerToPrice = consumerBuilding.Data.TotalIncome / consumerBuilding.Data.powerRequired;
         int max = consumerList.Count;
         int min = 0;
         int index = 0;
@@ -245,7 +269,7 @@ public class GameManager
             int nextIndex = index;
             if(previousIndex >= 0)
             {
-                float prevPowerToPrice = consumerList[previousIndex].Data.income / consumerList[previousIndex].Data.powerRequired;
+                float prevPowerToPrice = consumerList[previousIndex].Data.TotalIncome / consumerList[previousIndex].Data.powerRequired;
                 if(prevPowerToPrice < powerToPrice)
                 {
                     lessThanPrev = false;
@@ -253,7 +277,7 @@ public class GameManager
             }
             if(nextIndex < consumerList.Count)
             {
-                float nextPowerToPrice = consumerList[nextIndex].Data.income / consumerList[nextIndex].Data.powerRequired;
+                float nextPowerToPrice = consumerList[nextIndex].Data.TotalIncome / consumerList[nextIndex].Data.powerRequired;
                 if(nextPowerToPrice > powerToPrice)
                 {
                     greaterThanNext = false;
