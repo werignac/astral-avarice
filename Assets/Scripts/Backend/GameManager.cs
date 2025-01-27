@@ -129,7 +129,7 @@ public class GameManager
 	public void RemoveConnection(Building first, Building second)
 	{
 		bool removedOne = first.RemoveConnection(second);
-		removedOne = removedOne || second.RemoveConnection(first);
+		removedOne = second.RemoveConnection(first) || removedOne;
 		if (removedOne)
 		{
 			AdjustIncomeForConnected(first);
