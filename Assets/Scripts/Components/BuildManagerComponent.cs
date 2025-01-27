@@ -845,12 +845,17 @@ public class BuildManagerComponent : MonoBehaviour
 			// Cable length
 			bool cableIsNotTooLong = cableCursor.Length <= GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength;
 			// Cable Cost
-			bool canAffordCable = true;
+			int cableCost = Mathf.CeilToInt(cableCursor.Length);
+			bool canAffordCable = gameController.Cash >= (resolution.totalCost + cableCost);
 			// Cable connected to building
 			bool connectedToBuilding = (buildingCursor.GetIsShowing() && buildingCursor.ShowingCanPlaceBuilding) || 
 				(resolution.successfullyPlacedBuilding); // Does the building cursor say it could place a building, or a building was just placed?
 			// Building has sufficient connection slots
-			bool buildingHasSlots = true;
+			bool buildingHasSlots = false;
+			if (buildingChainedBuildState.fromChained != null)
+			{
+				buildingHasSlots = (buildingChainedBuildState.fromChained.BackendBuilding.NumConnected < buildingChainedBuildState.fromChained.Data.maxPowerLines);
+			}
 			// Connection is not redundant
 			bool cableIsNotRedundant = true;
 			// Cable is only colliding with two buildings
@@ -868,6 +873,10 @@ public class BuildManagerComponent : MonoBehaviour
 				cableIsNotRedundant &&
 				noOverlapsAlongCable;
 
+			if(canPlaceCable)
+            {
+				resolution.totalCost = resolution.totalCost + cableCost;
+            }
 
 			if (placeThisUpdate && (buildingCursor.GetIsShowing() || resolution.successfullyPlacedBuilding))
 			{
