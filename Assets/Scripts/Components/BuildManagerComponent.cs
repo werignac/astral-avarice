@@ -597,7 +597,7 @@ public class BuildManagerComponent : MonoBehaviour
                 }
             }
 
-			bool canPlace = roomToPlace && sufficientFunds && sufficientResources;
+			bool canPlace = roomToPlace && sufficientFunds && sufficientResources && buildingCursor.ParentPlanet.CanPlaceBuildings;
 
 			if(canPlace)
             {
