@@ -7,8 +7,10 @@ using UnityEngine.InputSystem;
 public class InputManagerComponent : MonoBehaviour
 {
     public static InputManagerComponent Instance { get; private set; }
-
 	private InputAction acceptAction;
+	private InputAction panAction;
+
+	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 
 	private void Awake()
 	{
@@ -25,6 +27,7 @@ public class InputManagerComponent : MonoBehaviour
 	private void Start()
 	{
 		acceptAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Accept"];
+		panAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Pan"];
 
 		StartCoroutine(RefreshInputComponent());
 	}
@@ -48,22 +51,21 @@ public class InputManagerComponent : MonoBehaviour
 		if (BuildManagerComponent.Instance.IsInBuildState())
 			BuildManagerComponent.Instance.Hover(mousePositionWorldSpace);
 
-		
+		cameraMovementComponent.HoverInput(Input.mousePosition);
+
 		if (acceptAction.WasPerformedThisFrame())
 		{
 			// If the player was clicking on UI, ignore the input.
 			if (EventSystem.current.IsPointerOverGameObject())
 			{
-				Debug.Log("Ignore Input");
 				return;
 			}
-
-			Debug.Log("Input Not Ignored");
 
 			// If we're currently building, try to place something.
 			if (BuildManagerComponent.Instance.IsInBuildState())
 				BuildManagerComponent.Instance.SetPlace();
 		}
 		
+		cameraMovementComponent.SetPanningInput(panAction.IsPressed());
 	}
 }
