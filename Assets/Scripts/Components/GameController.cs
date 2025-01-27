@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     private Label incomeLabel;
 	private Label scienceLabel;
 	private Label scienceIncomeLabel;
+	private Label timeLabel;
 	private int gameSpeed;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
@@ -46,6 +47,7 @@ public class GameController : MonoBehaviour
         incomeLabel = buildDocument.rootVisualElement.Q("Income") as Label;
 		scienceLabel = buildDocument.rootVisualElement.Q("Science") as Label;
 		scienceIncomeLabel = buildDocument.rootVisualElement.Q("ScienceIncome") as Label;
+		timeLabel = buildDocument.rootVisualElement.Q("Time") as Label;
 		if (Data.selectedMission != null)
         {
             levelObject = Instantiate<GameObject>(Resources.Load<GameObject>("Levels/" + Data.selectedMission.name));
@@ -89,6 +91,11 @@ public class GameController : MonoBehaviour
 			--gameSpeed;
         }
         gameManager.Update(Time.deltaTime * gameSpeed);
+
+		string timeText = "X" + gameSpeed + "     "; 
+		timeText += Mathf.FloorToInt(gameManager.TimePassed / 60);
+		timeText += ":" + (Mathf.FloorToInt((gameManager.TimePassed % 60)));
+		timeLabel.text = timeText;
 	}
 
     void FixedUpdate()

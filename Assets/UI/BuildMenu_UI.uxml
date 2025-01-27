@@ -1,6 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
     <engine:VisualElement style="flex-grow: 0; flex-direction: row; align-self: flex-start; height: auto;">
+        <engine:Label text="Label" name="Time" class="text" style="height: auto; margin-right: 12px;" />
         <engine:Label text="Label" name="Cash" class="text" style="height: auto; -unity-text-align: upper-right; margin-right: 0;" />
         <engine:Label text="Label" name="Income" class="text" style="height: auto; margin-right: 15px; margin-left: 0;" />
         <engine:Label text="Label" name="Science" class="text" style="height: auto; -unity-text-align: upper-right; color: rgb(11, 242, 251); margin-right: 0;" />

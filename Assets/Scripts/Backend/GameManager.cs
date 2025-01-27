@@ -27,6 +27,10 @@ public class GameManager
     {
         get { return (scienceHeld); }
     }
+    public float TimePassed
+    {
+        get { return (timePassed); }
+    }
 
     public GameManager(GameController controller)
     {

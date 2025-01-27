@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCash: 300
   cashGoal: 400
-  timeLimit: 120
+  timeLimit: 151
   missionName: Test
   startingScience: 0
   startingBuildings:
