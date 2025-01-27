@@ -1,0 +1,46 @@
+using System;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
+[RequireComponent(typeof(Volume))]
+public class BuildManagerVFXComponent : MonoBehaviour
+{
+	[SerializeField] private BuildManagerComponent buildManager;
+	private Volume postProcessingVolume;
+
+	[SerializeField] private Color buildColor;
+	[SerializeField] private Color demolishColor;
+
+	private void Awake()
+	{
+		postProcessingVolume = GetComponent<Volume>();
+		buildManager.OnStateChanged.AddListener(BuildManager_OnStateChanged);
+	}
+
+	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
+	{
+		
+		if (postProcessingVolume.profile.TryGet(out Vignette vignette))
+		{
+			switch (newState.GetStateType())
+			{
+				case BuildStateType.NONE:
+					vignette.active = false;
+					break;
+				case BuildStateType.BUILDING:
+				case BuildStateType.CABLE:
+				case BuildStateType.BUILDING_CHAINED:
+					vignette.active = true;
+					vignette.color.value = buildColor;
+					break;
+				case BuildStateType.DEMOLISH:
+					vignette.active = true;
+					vignette.color.value = demolishColor;
+					break;
+
+			}
+		}
+
+	}
+}
