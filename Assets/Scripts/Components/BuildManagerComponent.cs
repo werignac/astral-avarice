@@ -765,7 +765,12 @@ public class BuildManagerComponent : MonoBehaviour
 				// Cable connected to building
 				bool connectedToBuilding = hoveringBuilding != null;
 				// Building has sufficient connection slots
-				bool buildingHasSlots = true;
+				bool buildingHasSlots = false;
+				if (cableBuildState.fromBuilding != null && cableBuildState.toBuilding != null)
+				{
+					buildingHasSlots = (cableBuildState.fromBuilding.BackendBuilding.NumConnected < cableBuildState.fromBuilding.Data.maxPowerLines)
+					  && (cableBuildState.toBuilding.BackendBuilding.NumConnected < cableBuildState.toBuilding.Data.maxPowerLines);
+				}
 				// Connection is not redundant
 				bool cableIsNotRedundant = true;
 				// Cable is only colliding with two buildings
