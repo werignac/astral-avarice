@@ -585,10 +585,17 @@ public class BuildManagerComponent : MonoBehaviour
 			// The only thing that the building should be colliding with is the parent planet.
 			bool roomToPlace = overlappingColliders.Length == 1 && buildingCursor.ParentPlanet.OwnsCollider(overlappingColliders[0]);
 
-			// TODO: Implement.
 			bool sufficientFunds = gameController.Cash >= (resolution.totalCost + buildingBuildState.toBuild.BuildingDataAsset.cost);
-			// TODO: Implement.
+			
 			bool sufficientResources = true;
+            if(buildingBuildState.toBuild.BuildingDataAsset.requiredResource != ResourceType.Resource_Count)
+            {
+				if(buildingCursor.ParentPlanet.GetResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) <= 0 
+					|| buildingCursor.ParentPlanet.GetResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) < buildingBuildState.toBuild.BuildingDataAsset.resourceAmountRequired)
+                {
+					sufficientResources = false;
+                }
+            }
 
 			bool canPlace = roomToPlace && sufficientFunds && sufficientResources;
 

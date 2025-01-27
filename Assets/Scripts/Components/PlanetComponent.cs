@@ -15,11 +15,43 @@ public class PlanetComponent : MonoBehaviour
 
 	private CircleCollider2D planetCollider;
 	[SerializeField] private Transform buildingContainerTransform;
+	[SerializeField] private int mass;
+	[SerializeField] private int[] resourceCounts = new int[(int)ResourceType.Resource_Count];
+	[SerializeField] private int solarOutput;
+	[SerializeField] private bool canPlaceBuildings;
 
 	public Transform BuildingContainer
 	{
 		get { return (buildingContainerTransform); }
 	}
+	public int Mass
+	{
+		get { return (mass); }
+	}
+	public int SolarOutput
+    {
+		get { return (solarOutput); }
+    }
+	public bool CanPlaceBuildings
+    {
+        get { return (canPlaceBuildings); }
+    }
+
+	public int GetResourceCount(ResourceType resource)
+    {
+		if(resource == ResourceType.Resource_Count)
+        {
+			return (0);
+        }
+		return (resourceCounts[(int)resource]);
+    }
+	public void SetResourceCount(ResourceType resource, int amount)
+    {
+		if(resource != ResourceType.Resource_Count)
+        {
+			resourceCounts[(int)resource] = amount;
+        }
+    }
 
 
 	private void Awake()
