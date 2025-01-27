@@ -8,6 +8,7 @@ public class BuildingComponent : MonoBehaviour, IDemolishable
 	[SerializeField] private BuildingData buildingData;
 
 	[SerializeField] private PlanetComponent parentPlanet;
+	[SerializeField] private bool isPlayerDemolishable = false;
 	private Building gameBuilding;
 
 	// Events
@@ -116,5 +117,15 @@ public class BuildingComponent : MonoBehaviour, IDemolishable
 	public void HoverDemolishEnd()
 	{
 		Debug.Log("Stopped Hovering over building");
+	}
+
+	public void SetDemolishable(bool isDemolishable)
+	{
+		isPlayerDemolishable = isDemolishable;
+	}
+
+	public bool Demolishable()
+	{
+		return isPlayerDemolishable;
 	}
 }

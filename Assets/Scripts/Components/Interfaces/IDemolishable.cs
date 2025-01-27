@@ -6,6 +6,12 @@ using UnityEngine;
 public interface IDemolishable
 {
 	/// <summary>
+	/// Returns whether this building can be destroyed by the player.
+	/// Useful for homes that cannot be destroyed by the player.
+	/// </summary>
+	public bool Demolishable();
+
+	/// <summary>
 	/// The player selected this object for demolition.
 	/// </summary>
 	public void Demolish();

@@ -119,7 +119,7 @@ public class CableCursorComponent : MonoBehaviour
 		return Physics2D.OverlapBoxAll(center, size, angle);
 	}
 
-	public GameObject PlaceCableAtLocation()
+	public GameObject PlaceCableAtLocation(bool isPlayerDemolishable = true)
 	{
 		// Cannot create a cable floating in space.
 		if (lineEnd is LineEndPoint)
@@ -136,7 +136,9 @@ public class CableCursorComponent : MonoBehaviour
 
 		// Set the cable to connect the two buildings of this cursor.
 		BuildingComponent endBuilding = ((LineEndBuilding) lineEnd).building;
-		cableInstance.GetComponent<CableComponent>().SetAttachedBuildings(lineStart, endBuilding);
+		CableComponent cableComponent = cableInstance.GetComponent<CableComponent>();
+		cableComponent.SetAttachedBuildings(lineStart, endBuilding);
+		cableComponent.SetDemolishable(isPlayerDemolishable);
 
 		return cableInstance;
 	}

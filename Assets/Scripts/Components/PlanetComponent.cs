@@ -65,12 +65,18 @@ public class PlanetComponent : MonoBehaviour
 		return planetCollider == checkOwns;
 	}
 
-	public GameObject InstantiateBuildingOnPlanet(GameObject buildingPrefab, Vector2 position, Quaternion rotation)
+	public GameObject InstantiateBuildingOnPlanet(
+		GameObject buildingPrefab,
+		Vector2 position,
+		Quaternion rotation,
+		bool isPlayerDemolishable = true
+		)
 	{
 		GameObject building = Instantiate(buildingPrefab, position, rotation, buildingContainerTransform);
 		// Counteract upscaling from parent transform (odd that I started needed to do this without changing much).
 		// Assumes scaling on planet is uniform (x == y == z).
 		building.transform.localScale = Vector3.one * 1 / transform.localScale.x;
+		building.GetComponent<BuildingComponent>().SetDemolishable(isPlayerDemolishable);
 		return building;
 	}
 

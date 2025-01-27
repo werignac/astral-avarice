@@ -532,7 +532,7 @@ public class BuildManagerComponent : MonoBehaviour
 		List<Collider2D> allHoveringColliders = new List<Collider2D>(HoverPointOverlap());
 		Collider2D idemolishableCollider = allHoveringColliders.Find((Collider2D collider) =>
 		{
-			return collider.TryGetComponentInParent(out IDemolishable _);
+			return collider.TryGetComponentInParent(out IDemolishable demoComponent) && demoComponent.Demolishable();
 		});
 
 		// Get the IDemolishable component if there is one.
@@ -612,7 +612,7 @@ public class BuildManagerComponent : MonoBehaviour
 					//Building building = new Building { Data = buildingBuildState.toBuild.BuildingDataAsset };
 					// TODO: Add to game manager.
 
-					GameObject buildingGameObject = buildingCursor.PlaceBuildingAtLocation(buildingBuildState.toBuild.Prefab);
+					GameObject buildingGameObject = buildingCursor.PlaceBuildingAtLocation(buildingBuildState.toBuild.Prefab, true);
 
 					resolution.builtBuilding = buildingGameObject.GetComponent<BuildingComponent>();
 					resolution.successfullyPlacedBuilding = true;
@@ -796,7 +796,7 @@ public class BuildManagerComponent : MonoBehaviour
 					// Try placing the cable and update the resolution.
 					if (canPlaceCable)
 					{
-						GameObject cable = cableCursor.PlaceCableAtLocation();
+						GameObject cable = cableCursor.PlaceCableAtLocation(true);
 
 						resolution.builtCable = cable.GetComponent<CableComponent>();
 						resolution.successfullyPlacedCable = true;

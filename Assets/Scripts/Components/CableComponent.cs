@@ -10,6 +10,7 @@ public class CableComponent : MonoBehaviour, IDemolishable
 	private LineRenderer lineRenderer;
 
 	[SerializeField] private BoxCollider2D boxCollider;
+	[SerializeField] private bool isPlayerDemolishable = false;
 
 	// Events
 	// TODO: Some class should listen to this and remove connections in the backend as needed.
@@ -144,5 +145,15 @@ public class CableComponent : MonoBehaviour, IDemolishable
 	public void HoverDemolishEnd()
 	{
 		Debug.Log("Stopped Hovering Over Cable");
+	}
+
+	public void SetDemolishable(bool isDemolishable)
+	{
+		isPlayerDemolishable = isDemolishable;
+	}
+
+	public bool Demolishable()
+	{
+		return isPlayerDemolishable;
 	}
 }
