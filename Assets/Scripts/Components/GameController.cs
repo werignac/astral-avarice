@@ -51,7 +51,10 @@ public class GameController : MonoBehaviour
 
 	private void CollectInitialGameObjects()
 	{
-		Planets = WerignacUtils.GetComponentsInActiveScene<PlanetComponent>();
+		foreach(PlanetComponent planet in WerignacUtils.GetComponentsInActiveScene<PlanetComponent>())
+		{
+			RegisterPlanet(planet);
+		}
 		
 		foreach (BuildingComponent buildingComponent in WerignacUtils.GetComponentsInActiveScene<BuildingComponent>())
 		{
@@ -68,10 +71,14 @@ public class GameController : MonoBehaviour
 	void Update()
     {
         gameManager.Update(Time.deltaTime);
-		MovePlanets();
 	}
 
-	private void MovePlanets()
+    void FixedUpdate()
+    {
+        MovePlanets();
+    }
+
+    private void MovePlanets()
 	{
 		if (Planets.Count > 1)
 		{
@@ -92,7 +99,7 @@ public class GameController : MonoBehaviour
 						Vector2 distance = planet.transform.position - other.transform.position;
 						if (distance.magnitude < planetMass)
 						{
-							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude * Time.deltaTime;
+							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude * Time.fixedDeltaTime;
 						}
 					}
 				}
@@ -101,43 +108,9 @@ public class GameController : MonoBehaviour
 			{
 				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();
 				if (body != null)
-				{
-					RaycastHit2D[] hits = Physics2D.CircleCastAll(body.position, Planets[i].GetComponent<CircleCollider2D>().radius, planetTranslations[i], planetTranslations[i].magnitude / 2);
-					bool destroyedThis = false;
-					foreach (RaycastHit2D hit in hits)
-					{
-						if (!destroyedThis && hit.transform != Planets[i].transform)
-						{
-							PlanetComponent hitPlanet = hit.transform.gameObject.GetComponent<PlanetComponent>();
-							if (hitPlanet != null)
-							{
-								if (Planets[i].GetTotalMass() < hitPlanet.GetTotalMass())
-								{
-									Destroy(Planets[i].gameObject);
-									hitPlanet.DestroyAllBuildings();
-									Planets.RemoveAt(i);
-									--i;
-									destroyedThis = true;
-								}
-								else
-								{
-									int destroyedIndex = Planets.IndexOf(hitPlanet);
-									Destroy(hitPlanet.gameObject);
-									Planets[i].DestroyAllBuildings();
-									Planets.RemoveAt(destroyedIndex);
-									if (destroyedIndex < i)
-									{
-										--i;
-									}
-								}
-							}
-						}
-					}
-					if (!destroyedThis)
-					{
-						body.MovePosition(body.position + planetTranslations[i]);
-					}
-				}
+                {
+                    body.MovePosition(body.position + planetTranslations[i]);
+                }
 			}
 		}
 	}
@@ -214,9 +187,21 @@ public class GameController : MonoBehaviour
 	{
 		Cables.Remove(cableComponent);
 		gameManager.RemoveConnection(cableComponent.Start.BackendBuilding, cableComponent.End.BackendBuilding);
+    }
+
+	private void RegisterPlanet(PlanetComponent planetComponent)
+	{
+		Planets.Add(planetComponent);
+
+		planetComponent.OnPlanetDestroyed.AddListener(Planet_OnDestroyed);
 	}
 
-	public void UpdatePlanetsSolar()
+    private void Planet_OnDestroyed(PlanetComponent planetComponent)
+    {
+        Planets.Remove(planetComponent);
+    }
+
+    public void UpdatePlanetsSolar()
     {
 		for(int i = 0; i < Planets.Count; ++i)
         {

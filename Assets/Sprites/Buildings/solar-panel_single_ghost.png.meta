@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      solar-panel_single_ghost_0: -1328056131022238302
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,4 +134,25 @@ public class PlanetComponent : MonoBehaviour
 		return (totalMass);
     }
 
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.otherCollider.gameObject != null)
+		{
+			PlanetComponent hitPlanet = collision.otherCollider.gameObject.GetComponent<PlanetComponent>();
+			if (hitPlanet != null)
+			{
+				if (GetTotalMass() < hitPlanet.GetTotalMass())
+				{
+					Destroy(gameObject);
+					hitPlanet.DestroyAllBuildings();
+				}
+				else
+				{
+					Destroy(hitPlanet.gameObject);
+					DestroyAllBuildings();
+				}
+			}
+		}
+	}
+
 }
