@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
 	public List<BuildingComponent> Buildings { get; private set; } = new List<BuildingComponent>();
 	public List<CableComponent> Cables { get; private set; } = new List<CableComponent>();
 
+	// Getters
+	public Vector2 LevelBounds { get; private set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +35,8 @@ public class GameController : MonoBehaviour
         {
             levelObject = Instantiate<GameObject>(Resources.Load<GameObject>("Levels/" + Data.selectedMission.name));
             gameManager.StartMission(Data.selectedMission);
+
+			LevelBounds = levelObject.GetComponent<LevelBuilder>().levelDimentions;
 
 			CollectInitialGameObjects();
 
