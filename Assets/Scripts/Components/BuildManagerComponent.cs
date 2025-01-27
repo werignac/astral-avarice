@@ -228,6 +228,11 @@ public class BuildManagerComponent : MonoBehaviour
 		OnBuildResolve.AddListener(gameController.BuildManager_OnBuildResovle);
 	}
 
+	public void SetNoneState()
+	{
+		SetState(new NoneBuildState());
+	}
+
 	/// <summary>
 	/// Set the BuildManager to allow the player to demolish objects.
 	/// </summary>

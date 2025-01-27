@@ -29,3 +29,7 @@
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0.29);
 }
+
+.inspectorBackground {
+    background-color: rgba(67, 198, 204, 0.45);
+}

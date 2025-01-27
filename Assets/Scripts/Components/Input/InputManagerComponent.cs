@@ -9,6 +9,7 @@ public class InputManagerComponent : MonoBehaviour
     public static InputManagerComponent Instance { get; private set; }
 	private InputAction acceptAction;
 	private InputAction panAction;
+	private InputAction cancelAction;
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 
@@ -28,6 +29,7 @@ public class InputManagerComponent : MonoBehaviour
 	{
 		acceptAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Accept"];
 		panAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Pan"];
+		cancelAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Cancel"];
 
 		StartCoroutine(RefreshInputComponent());
 	}
@@ -65,7 +67,15 @@ public class InputManagerComponent : MonoBehaviour
 			if (BuildManagerComponent.Instance.IsInBuildState())
 				BuildManagerComponent.Instance.SetPlace();
 		}
-		
+
+		if (cancelAction.WasPerformedThisFrame())
+		{
+			if (BuildManagerComponent.Instance.IsInBuildState())
+				BuildManagerComponent.Instance.SetNoneState();
+		}
+
 		cameraMovementComponent.SetPanningInput(panAction.IsPressed());
+
+		
 	}
 }
