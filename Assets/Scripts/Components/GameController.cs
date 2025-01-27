@@ -25,6 +25,11 @@ public class GameController : MonoBehaviour
 	// Getters
 	public Vector2 LevelBounds { get; private set; }
 
+    public int Cash
+    {
+        get { return (gameManager.Cash); }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -97,11 +102,13 @@ public class GameController : MonoBehaviour
 		if (resolution.successfullyPlacedBuilding)
 		{
 			RegisterBuilding(resolution.builtBuilding);
+			gameManager.SpendMoney(resolution.builtBuilding.Data.cost);
 		}
 
 		if (resolution.successfullyPlacedCable)
 		{
 			RegisterCable(resolution.builtCable);
+			gameManager.SpendMoney(Mathf.CeilToInt(resolution.builtCable.Length));
 		}
 	}
 

@@ -129,7 +129,7 @@ public class GameManager
 	public void RemoveConnection(Building first, Building second)
 	{
 		bool removedOne = first.RemoveConnection(second);
-		removedOne = removedOne || second.RemoveConnection(first);
+		removedOne = second.RemoveConnection(first) || removedOne;
 		if (removedOne)
 		{
 			AdjustIncomeForConnected(first);
@@ -253,7 +253,7 @@ public class GameManager
             }
             if(nextIndex < consumerList.Count)
             {
-                float nextPowerToPrice = consumerList[previousIndex].Data.income / consumerList[previousIndex].Data.powerRequired;
+                float nextPowerToPrice = consumerList[nextIndex].Data.income / consumerList[nextIndex].Data.powerRequired;
                 if(nextPowerToPrice > powerToPrice)
                 {
                     greaterThanNext = false;

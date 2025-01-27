@@ -165,6 +165,7 @@ public struct BuildResolve
 	public bool triedDemolishBuilding;
 	// Note: This may not be the only thing that is destroyed in a demolition!
 	public IDemolishable demolishTarget;
+	public int totalCost;
 
 	public bool TriedAnything()
 	{
@@ -440,7 +441,8 @@ public class BuildManagerComponent : MonoBehaviour
 			successfullyChoseCableStart = false,
 			builtCable = null,
 			triedDemolishBuilding = false,
-			demolishTarget = null
+			demolishTarget = null,
+			totalCost = 0
 		};
 
 		// TODO: Keep track of cumulative costs.
@@ -584,11 +586,16 @@ public class BuildManagerComponent : MonoBehaviour
 			bool roomToPlace = overlappingColliders.Length == 1 && buildingCursor.ParentPlanet.OwnsCollider(overlappingColliders[0]);
 
 			// TODO: Implement.
-			bool sufficientFunds = true;
+			bool sufficientFunds = gameController.Cash >= (resolution.totalCost + buildingBuildState.toBuild.BuildingDataAsset.cost);
 			// TODO: Implement.
 			bool sufficientResources = true;
 
 			bool canPlace = roomToPlace && sufficientFunds && sufficientResources;
+
+			if(canPlace)
+            {
+				resolution.totalCost = resolution.totalCost + buildingBuildState.toBuild.BuildingDataAsset.cost;
+            }
 
 			// Update the cursor graphic.
 			buildingCursor.SetBuildingPlaceability(canPlace);
@@ -750,8 +757,11 @@ public class BuildManagerComponent : MonoBehaviour
 				// Check conditions for cable placement.
 				// Cable length
 				bool cableIsNotTooLong = cableCursor.Length <= GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength;
+
 				// Cable Cost
-				bool canAffordCable = true;
+				int cableCost = Mathf.CeilToInt(cableCursor.Length);
+				bool canAffordCable = gameController.Cash >= (resolution.totalCost + cableCost);
+
 				// Cable connected to building
 				bool connectedToBuilding = hoveringBuilding != null;
 				// Building has sufficient connection slots
@@ -772,6 +782,11 @@ public class BuildManagerComponent : MonoBehaviour
 					buildingHasSlots &&
 					cableIsNotRedundant &&
 					noOverlapsAlongCable;
+
+				if(canPlaceCable)
+                {
+					resolution.totalCost = resolution.totalCost + cableCost;
+                }
 
 				if (placeThisUpdate && hoveringBuilding)
 				{
