@@ -10,6 +10,7 @@ public class InputManagerComponent : MonoBehaviour
 	private InputAction acceptAction;
 	private InputAction panAction;
 	private InputAction cancelAction;
+	private InputAction zoomAction;
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 
@@ -30,6 +31,7 @@ public class InputManagerComponent : MonoBehaviour
 		acceptAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Accept"];
 		panAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Pan"];
 		cancelAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Cancel"];
+		zoomAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Zoom"];
 
 		StartCoroutine(RefreshInputComponent());
 	}
@@ -45,15 +47,17 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void Update()
 	{
-		// If we decide to support a gamepad or touchscreen, get the mouse in some other way.
+		UpdateBuildManager();
+		UpdateCameraMovement();
+	}
 
+	private void UpdateBuildManager()
+	{
 		// Convert the mouse position to a position in world space.
 		Vector2 mousePositionWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 		if (BuildManagerComponent.Instance.IsInBuildState())
 			BuildManagerComponent.Instance.Hover(mousePositionWorldSpace);
-
-		cameraMovementComponent.HoverInput(Input.mousePosition);
 
 		if (acceptAction.WasPerformedThisFrame())
 		{
@@ -73,9 +77,13 @@ public class InputManagerComponent : MonoBehaviour
 			if (BuildManagerComponent.Instance.IsInBuildState())
 				BuildManagerComponent.Instance.SetNoneState();
 		}
+	}
 
+	private void UpdateCameraMovement()
+	{
+		cameraMovementComponent.SetHoverInput(Input.mousePosition);
 		cameraMovementComponent.SetPanningInput(panAction.IsPressed());
-
-		
+		cameraMovementComponent.SetZoomInput(zoomAction.ReadValue<float>());
+		Debug.Log(zoomAction.ReadValue<float>());
 	}
 }

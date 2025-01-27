@@ -864,6 +864,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 164819399}
+  cameraSizeMin: 3
+  cameraSizeMax: 7
+  zoomRate: 0.2
 --- !u!1 &1880704436
 GameObject:
   m_ObjectHideFlags: 0
