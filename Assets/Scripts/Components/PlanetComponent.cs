@@ -112,4 +112,26 @@ public class PlanetComponent : MonoBehaviour
 		return building;
 	}
 
+	public void DestroyAllBuildings()
+    {
+		for(int i = 0; i < buildingContainerTransform.childCount; ++i)
+        {
+			Destroy(buildingContainerTransform.GetChild(i).gameObject);
+        }
+    }
+
+	public int GetTotalMass()
+    {
+		int totalMass = mass;
+		for (int i = 0; i < buildingContainerTransform.childCount; ++i)
+        {
+			BuildingComponent building = buildingContainerTransform.GetChild(i).gameObject.GetComponent<BuildingComponent>();
+			if(building != null)
+            {
+				totalMass += building.Data.mass;
+            }
+        }
+		return (totalMass);
+    }
+
 }

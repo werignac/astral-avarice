@@ -20,7 +20,7 @@ MonoBehaviour:
   powerProduced: 0
   powerRequired: 0
   income: 0
-  upkeep: 10
+  upkeep: 15
   requiredResource: 4
   resourceAmountRequired: 0
   buildingPrefab: {fileID: 0}
