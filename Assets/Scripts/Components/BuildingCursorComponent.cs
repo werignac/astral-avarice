@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class BuildingCursorComponent : MonoBehaviour
 {
+	public enum Placeability { YES, YES_WARNING, NO}
+
 	// The size of the 2D box to check for objects that would collide with the incoming building.
 	private Vector2 collisionCheckSize = new Vector2(0.7f, 1.6f);
 	// The offset from the origin of the building of the 2D box to check for objects that would collide
@@ -19,6 +21,8 @@ public class BuildingCursorComponent : MonoBehaviour
 	[SerializeField] private SpriteRenderer ghostSpriteRenderer;
 	// Color to use when something can be placed.
 	[SerializeField] private Color placeableColor;
+	// Color to use when something can be placed, but it may not be a good idea (missing resources).
+	[SerializeField] private Color placeableWithWarningColor;
 	// Color to use when something cannot be placed.
 	[SerializeField] private Color notPlaceableColor;
 
@@ -94,10 +98,23 @@ public class BuildingCursorComponent : MonoBehaviour
 	/// <summary>
 	/// Tells the cursor to show whether the current building can be placed.
 	/// </summary>
-	public void SetBuildingPlaceability(bool canPlace)
+	public void SetBuildingPlaceability(Placeability canPlace)
 	{
-		ghostSpriteRenderer.color = canPlace ? placeableColor : notPlaceableColor;
-		ShowingCanPlaceBuilding = canPlace;
+		switch (canPlace)
+		{
+			case Placeability.YES:
+				ghostSpriteRenderer.color =  placeableColor;
+				ShowingCanPlaceBuilding = true;
+				break;
+			case Placeability.YES_WARNING:
+				ghostSpriteRenderer.color = placeableWithWarningColor;
+				ShowingCanPlaceBuilding = true; // Technically can place building.
+				break;
+			case Placeability.NO:
+				ghostSpriteRenderer.color = notPlaceableColor;
+				ShowingCanPlaceBuilding = false;
+				break;
+		}
 	}
 
 	/// <summary>

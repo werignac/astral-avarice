@@ -117,3 +117,14 @@
     margin-bottom: 4px;
     margin-left: 4px;
 }
+
+.buildingWarning {
+    align-self: center;
+    font-size: 20px;
+    color: rgb(186, 57, 57);
+    -unity-font-style: bold;
+}
+
+.buildingWarningNonFatal {
+    color: rgb(191, 128, 23);
+}
