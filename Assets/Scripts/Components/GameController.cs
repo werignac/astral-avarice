@@ -11,6 +11,10 @@ public class GameController : MonoBehaviour
     private GameObject levelObject;
     private GameManager gameManager;
     [SerializeField] private UIDocument buildDocument;
+	[SerializeField] private AudioSource sfxAudio;
+	[SerializeField] private AudioClip buildClip;
+	[SerializeField] private AudioClip demolishClip;
+
 
     private Label cashLabel;
     private Label incomeLabel;
@@ -213,6 +217,8 @@ public class GameController : MonoBehaviour
 			RegisterBuilding(resolution.builtBuilding);
 			gameManager.SpendMoney(resolution.builtBuilding.Data.cost);
 			gameManager.SpendScience(resolution.builtBuilding.Data.scienceCost);
+			sfxAudio.clip = buildClip;
+			sfxAudio.Play();
 		}
 
 		if (resolution.successfullyPlacedCable)
@@ -237,6 +243,11 @@ public class GameController : MonoBehaviour
 	{
 		Buildings.Remove(buildingComponent);
 		gameManager.RemoveBuilding(buildingComponent.BackendBuilding);
+		if (sfxAudio != null && sfxAudio.gameObject != null)
+		{
+			sfxAudio.clip = demolishClip;
+			sfxAudio.Play();
+		}
 	}
 
 	private void RegisterCable(CableComponent cableComponent)
@@ -252,6 +263,11 @@ public class GameController : MonoBehaviour
 	{
 		Cables.Remove(cableComponent);
 		gameManager.RemoveConnection(cableComponent.Start.BackendBuilding, cableComponent.End.BackendBuilding);
+        if (sfxAudio != null && sfxAudio.gameObject != null)
+        {
+            sfxAudio.clip = demolishClip;
+            sfxAudio.Play();
+        }
     }
 
 	private void RegisterPlanet(PlanetComponent planetComponent)
