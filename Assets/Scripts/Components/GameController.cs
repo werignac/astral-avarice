@@ -82,11 +82,11 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-		if(Input.GetKeyDown(KeyCode.P) && gameSpeed < 5)
+		if(Input.GetKeyDown(KeyCode.Equals) && gameSpeed < 5)
         {
 			++gameSpeed;
         }
-		if(Input.GetKeyDown(KeyCode.O) && gameSpeed > 1)
+		if(Input.GetKeyDown(KeyCode.Minus) && gameSpeed > 1)
         {
 			--gameSpeed;
         }
