@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] private AudioSource sfxAudio;
 	[SerializeField] private AudioClip buildClip;
 	[SerializeField] private AudioClip demolishClip;
+	[SerializeField] private AudioClip cableConnectClip;
 
 
     private Label cashLabel;
@@ -225,6 +226,11 @@ public class GameController : MonoBehaviour
 		{
 			RegisterCable(resolution.builtCable);
 			gameManager.SpendMoney(Mathf.CeilToInt(resolution.builtCable.Length));
+			if(!sfxAudio.isPlaying)
+			{
+                sfxAudio.clip = cableConnectClip;
+                sfxAudio.Play();
+            }
 		}
 	}
 
