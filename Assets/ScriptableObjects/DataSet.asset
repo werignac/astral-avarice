@@ -32,6 +32,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
   - {fileID: 11400000, guid: b65cba66f3b69fb4fb98d6d331b2763d, type: 2}
   - {fileID: 11400000, guid: e50c826c3af5e714a8d0c67189fbbf3c, type: 2}
+  - {fileID: 11400000, guid: eff2c1b3cff1ba8449f5a9044dc42681, type: 2}
   missionDatas:
   - {fileID: 11400000, guid: ef0088f5390751448bf386c343e949e0, type: 2}
   - {fileID: 11400000, guid: 7a59abd7644fb8d47bd2fe2fe54441ea, type: 2}

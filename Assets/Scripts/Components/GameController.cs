@@ -11,13 +11,18 @@ public class GameController : MonoBehaviour
     private GameObject levelObject;
     private GameManager gameManager;
     [SerializeField] private UIDocument buildDocument;
+	[SerializeField] private AudioSource sfxAudio;
+	[SerializeField] private AudioClip buildClip;
+	[SerializeField] private AudioClip demolishClip;
+	[SerializeField] private AudioClip cableConnectClip;
+
 
     private Label cashLabel;
     private Label incomeLabel;
 	private Label scienceLabel;
 	private Label scienceIncomeLabel;
 	private Label timeLabel;
-	private int gameSpeed;
+	protected int gameSpeed;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
 
@@ -80,7 +85,7 @@ public class GameController : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	protected virtual void Update()
     {
 		if(Input.GetKeyDown(KeyCode.Equals) && gameSpeed < 5)
         {
@@ -206,19 +211,26 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-	public void BuildManager_OnBuildResovle(BuildResolve resolution)
+	public virtual void BuildManager_OnBuildResovle(BuildResolve resolution)
 	{
 		if (resolution.successfullyPlacedBuilding)
 		{
 			RegisterBuilding(resolution.builtBuilding);
 			gameManager.SpendMoney(resolution.builtBuilding.Data.cost);
 			gameManager.SpendScience(resolution.builtBuilding.Data.scienceCost);
+			sfxAudio.clip = buildClip;
+			sfxAudio.Play();
 		}
 
 		if (resolution.successfullyPlacedCable)
 		{
 			RegisterCable(resolution.builtCable);
 			gameManager.SpendMoney(Mathf.CeilToInt(resolution.builtCable.Length));
+			if(!sfxAudio.isPlaying)
+			{
+                sfxAudio.clip = cableConnectClip;
+                sfxAudio.Play();
+            }
 		}
 	}
 
@@ -237,6 +249,11 @@ public class GameController : MonoBehaviour
 	{
 		Buildings.Remove(buildingComponent);
 		gameManager.RemoveBuilding(buildingComponent.BackendBuilding);
+		if (sfxAudio != null && sfxAudio.gameObject != null)
+		{
+			sfxAudio.clip = demolishClip;
+			sfxAudio.Play();
+		}
 	}
 
 	private void RegisterCable(CableComponent cableComponent)
@@ -252,6 +269,11 @@ public class GameController : MonoBehaviour
 	{
 		Cables.Remove(cableComponent);
 		gameManager.RemoveConnection(cableComponent.Start.BackendBuilding, cableComponent.End.BackendBuilding);
+        if (sfxAudio != null && sfxAudio.gameObject != null)
+        {
+            sfxAudio.clip = demolishClip;
+            sfxAudio.Play();
+        }
     }
 
 	private void RegisterPlanet(PlanetComponent planetComponent)

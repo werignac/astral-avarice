@@ -121,7 +121,7 @@ public class BuildUIComponent : MonoBehaviour
 		BuildManagerComponent.Instance.OnStateChanged.AddListener(BuildManager_OnStateChanged);
 	}
 
-	private void CableButton_OnClick(ClickEvent evt)
+	protected virtual void CableButton_OnClick(ClickEvent evt)
 	{
 		BuildManagerComponent.Instance.SetCableState();
 	}
@@ -136,12 +136,12 @@ public class BuildUIComponent : MonoBehaviour
 		// TODO: Show details in inspector. 
 	}
 
-	private void BuildingButton_OnClick(BuildingSettingEntry toBuild)
+    protected virtual void BuildingButton_OnClick(BuildingSettingEntry toBuild)
 	{
 		BuildManagerComponent.Instance.SetBuildState(toBuild);
 	}
 
-	private void DemolishButton_OnClick(ClickEvent evt)
+    protected virtual void DemolishButton_OnClick(ClickEvent evt)
 	{
 		BuildManagerComponent.Instance.SetDemolishState();
 	}
