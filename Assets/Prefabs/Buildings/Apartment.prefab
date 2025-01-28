@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6434880253299826604
+--- !u!1001 &457303225313374967
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -51,43 +51,51 @@ PrefabInstance:
     - target: {fileID: 1447047061651423323, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: buildingData
       value: 
-      objectReference: {fileID: 11400000, guid: 9765d05d5308fa54e9c4724f86827cf1, type: 2}
+      objectReference: {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
     - target: {fileID: 1447047061651423323, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: buildingVisuals
       value: 
-      objectReference: {fileID: 11400000, guid: 9fa6b22d608b51b4d866c69a8ae4bcd4, type: 2}
+      objectReference: {fileID: 11400000, guid: 42f9ec8fd619da142bbb827c5acfb8f3, type: 2}
+    - target: {fileID: 4310001663532971654, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.048
+      objectReference: {fileID: 0}
     - target: {fileID: 4310001663532971654, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.629
+      value: 0.965
       objectReference: {fileID: 0}
     - target: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Name
-      value: SolarFarm
+      value: Apartment
       objectReference: {fileID: 0}
     - target: {fileID: 6488967888440025861, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.442
       objectReference: {fileID: 0}
     - target: {fileID: 6488967888440025861, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.386
+      value: 1.651
       objectReference: {fileID: 0}
     - target: {fileID: 6798483256068327839, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Size.x
-      value: 1.08
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 6798483256068327839, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Size.y
-      value: 1.3832427
+      value: 2.2967143
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798483256068327839, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 6798483256068327839, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Offset.y
-      value: 0.7000434
+      value: 1.156779
       objectReference: {fileID: 0}
     - target: {fileID: 8925029825920761906, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f341d0e700ced7b418d2983c5844678f, type: 3}
+      objectReference: {fileID: 21300000, guid: b1ff00c82ff6a3545847ea9f702f4add, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

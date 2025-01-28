@@ -14,5 +14,5 @@ public class BuildingVisuals : ScriptableObject
 	// Offset of the ghost relative to the building's origin.
 	public Vector2 ghostOffset;
 	// Scale of the ghost.
-	public float ghostScale;
+	public float ghostScale = 0.1681f;
 }
