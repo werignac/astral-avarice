@@ -52,6 +52,10 @@ public class Building
     {
         return (connectedBuildings.Remove(other));
     }
+    public bool HasConnection(Building other)
+    {
+        return (connectedBuildings.Contains(other));
+    }
     public void SetManager(GameManager m)
     {
         manager = m;
