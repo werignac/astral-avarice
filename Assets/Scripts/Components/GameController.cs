@@ -140,10 +140,19 @@ public class GameController : MonoBehaviour
 			}
 			for (int i = 0; i < Planets.Count; ++i)
 			{
+				if(planetTranslations[i].magnitude < 0.0001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
+                {
+					planetTranslations[i] = Planets[i].PlanetVelocity * -1;
+					if(planetTranslations[i].magnitude > 1)
+                    {
+						planetTranslations[i] = planetTranslations[i].normalized * 4;
+                    }
+                }
 				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();
 				if (body != null)
                 {
-                    body.MovePosition(body.position + planetTranslations[i]);
+					Planets[i].PlanetVelocity += planetTranslations[i];
+                    body.MovePosition(body.position + (Planets[i].PlanetVelocity * Time.fixedDeltaTime));
                 }
 			}
 			UpdatePlanetsSolar();
