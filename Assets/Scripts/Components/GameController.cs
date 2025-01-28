@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
 	private Label scienceLabel;
 	private Label scienceIncomeLabel;
 	private Label timeLabel;
-	private int gameSpeed;
+	protected int gameSpeed;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
 
@@ -85,7 +85,7 @@ public class GameController : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	protected virtual void Update()
     {
 		if(Input.GetKeyDown(KeyCode.Equals) && gameSpeed < 5)
         {
@@ -211,7 +211,7 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-	public void BuildManager_OnBuildResovle(BuildResolve resolution)
+	public virtual void BuildManager_OnBuildResovle(BuildResolve resolution)
 	{
 		if (resolution.successfullyPlacedBuilding)
 		{
