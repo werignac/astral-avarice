@@ -575,17 +575,17 @@ public class BuildManagerComponent : MonoBehaviour
 			// The only thing that the building should be colliding with is the parent planet.
 			bool roomToPlace = overlappingColliders.Length == 1 && buildingCursor.ParentPlanet.OwnsCollider(overlappingColliders[0]);
 
-			bool sufficientFunds = gameController.Cash >= (resolution.totalCost + buildingBuildState.toBuild.BuildingDataAsset.cost);
+			bool sufficientFunds = gameController.Cash >= (resolution.totalCost + buildingBuildState.toBuild.BuildingDataAsset.cost) && gameController.HeldScience >= buildingBuildState.toBuild.BuildingDataAsset.scienceCost;
 			
 			bool sufficientResources = true;
-            if(buildingBuildState.toBuild.BuildingDataAsset.requiredResource != ResourceType.Resource_Count)
+            /*if(buildingBuildState.toBuild.BuildingDataAsset.requiredResource != ResourceType.Resource_Count)
             {
 				if(buildingCursor.ParentPlanet.GetResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) <= 0 
 					|| buildingCursor.ParentPlanet.GetResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) < buildingBuildState.toBuild.BuildingDataAsset.resourceAmountRequired)
                 {
 					sufficientResources = false;
                 }
-            }
+            }*/
 
 			bool canPlace = roomToPlace && sufficientFunds && sufficientResources && buildingCursor.ParentPlanet.CanPlaceBuildings;
 
@@ -830,12 +830,17 @@ public class BuildManagerComponent : MonoBehaviour
 			// Cable length
 			bool cableIsNotTooLong = cableCursor.Length <= GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength;
 			// Cable Cost
-			bool canAffordCable = true;
+			int cableCost = Mathf.CeilToInt(cableCursor.Length);
+			bool canAffordCable = gameController.Cash >= (resolution.totalCost + cableCost);
 			// Cable connected to building
 			bool connectedToBuilding = (buildingCursor.GetIsShowing() && buildingCursor.ShowingCanPlaceBuilding) || 
 				(resolution.successfullyPlacedBuilding); // Does the building cursor say it could place a building, or a building was just placed?
 			// Building has sufficient connection slots
-			bool buildingHasSlots = true;
+			bool buildingHasSlots = false;
+			if (buildingChainedBuildState.fromChained != null)
+			{
+				buildingHasSlots = (buildingChainedBuildState.fromChained.BackendBuilding.NumConnected < buildingChainedBuildState.fromChained.Data.maxPowerLines);
+			}
 			// Connection is not redundant
 			bool cableIsNotRedundant = true;
 			// Cable is only colliding with two buildings
@@ -853,6 +858,10 @@ public class BuildManagerComponent : MonoBehaviour
 				cableIsNotRedundant &&
 				noOverlapsAlongCable;
 
+			if(canPlaceCable)
+            {
+				resolution.totalCost = resolution.totalCost + cableCost;
+            }
 
 			if (placeThisUpdate && (buildingCursor.GetIsShowing() || resolution.successfullyPlacedBuilding))
 			{

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Large Coal Plant
   cost: 250
+  scienceCost: 10
   mass: 500
   maxPowerLines: 1
   buildingType: 1
@@ -21,6 +22,7 @@ MonoBehaviour:
   powerRequired: 0
   income: 0
   upkeep: 90
+  scienceIncome: 0
   requiredResource: 0
   resourceAmountRequired: 5
   buildingPrefab: {fileID: 0}

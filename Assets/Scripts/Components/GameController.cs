@@ -14,6 +14,10 @@ public class GameController : MonoBehaviour
 
     private Label cashLabel;
     private Label incomeLabel;
+	private Label scienceLabel;
+	private Label scienceIncomeLabel;
+	private Label timeLabel;
+	private int gameSpeed;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
 
@@ -29,14 +33,22 @@ public class GameController : MonoBehaviour
     {
         get { return (gameManager.Cash); }
     }
+	public int HeldScience
+    {
+        get { return (gameManager.ScienceHeld); }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+		gameSpeed = 1;
         gameManager = new GameManager(this);
         cashLabel = buildDocument.rootVisualElement.Q("Cash") as Label;
         incomeLabel = buildDocument.rootVisualElement.Q("Income") as Label;
-        if (Data.selectedMission != null)
+		scienceLabel = buildDocument.rootVisualElement.Q("Science") as Label;
+		scienceIncomeLabel = buildDocument.rootVisualElement.Q("ScienceIncome") as Label;
+		timeLabel = buildDocument.rootVisualElement.Q("Time") as Label;
+		if (Data.selectedMission != null)
         {
             levelObject = Instantiate<GameObject>(Resources.Load<GameObject>("Levels/" + Data.selectedMission.name));
             gameManager.StartMission(Data.selectedMission);
@@ -70,7 +82,20 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        gameManager.Update(Time.deltaTime);
+		if(Input.GetKeyDown(KeyCode.Equals) && gameSpeed < 5)
+        {
+			++gameSpeed;
+        }
+		if(Input.GetKeyDown(KeyCode.Minus) && gameSpeed > 1)
+        {
+			--gameSpeed;
+        }
+        gameManager.Update(Time.deltaTime * gameSpeed);
+
+		string timeText = "X" + gameSpeed + "     "; 
+		timeText += Mathf.FloorToInt(gameManager.TimePassed / 60);
+		timeText += ":" + (Mathf.FloorToInt((gameManager.TimePassed % 60)));
+		timeLabel.text = timeText;
 	}
 
     void FixedUpdate()
@@ -90,7 +115,7 @@ public class GameController : MonoBehaviour
 			for (int i = 0; i < Planets.Count; ++i)
 			{
 				PlanetComponent planet = Planets[i];
-				float planetMass = planet.GetTotalMass() / 100f;
+				float planetMass = planet.GetTotalMass() / 25f;
 				for (int p = 0; p < Planets.Count; ++p)
 				{
 					if (p != i)
@@ -99,10 +124,19 @@ public class GameController : MonoBehaviour
 						Vector2 distance = planet.transform.position - other.transform.position;
 						if (distance.magnitude < planetMass)
 						{
-							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude * Time.fixedDeltaTime;
+							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude / other.GetTotalMass() * Time.fixedDeltaTime * gameSpeed;
 						}
 					}
 				}
+				for(int c = 0; c < planet.BuildingContainer.childCount; ++c)
+                {
+					BuildingComponent building = planet.BuildingContainer.GetChild(c).gameObject.GetComponent<BuildingComponent>();
+					if(building != null && building.BackendBuilding.IsPowered &&  building.Data.thrust != 0)
+                    {
+						Vector3 movement = building.transform.up.normalized * building.Data.thrust / planetMass * Time.fixedDeltaTime * gameSpeed * -1;
+						planetTranslations[i] += new Vector2(movement.x, movement.y);
+                    }
+                }
 			}
 			for (int i = 0; i < Planets.Count; ++i)
 			{
@@ -112,6 +146,8 @@ public class GameController : MonoBehaviour
                     body.MovePosition(body.position + planetTranslations[i]);
                 }
 			}
+			UpdatePlanetsSolar();
+			CheckCableSnap();
 		}
 	}
 
@@ -135,6 +171,25 @@ public class GameController : MonoBehaviour
         incomeLabel.text += newIncome + ")";
         
     }
+	public void UpdateScienceLabels(int newScience, int newIncome)
+	{
+		scienceLabel.text = "" + newScience;
+		scienceIncomeLabel.text = "(";
+		if (newIncome > 0)
+		{
+			scienceIncomeLabel.text += "+";
+			scienceIncomeLabel.style.color = new StyleColor(new Color(0, 0.9f, 0));
+		}
+		else if (newIncome == 0)
+		{
+			scienceIncomeLabel.style.color = new StyleColor(new Color(1, 1, 1));
+		}
+		else
+		{
+			scienceIncomeLabel.style.color = new StyleColor(new Color(0.9f, 0, 0));
+		}
+		scienceIncomeLabel.text += newIncome + ")";
+	}
 
     public void EndGame()
     {
@@ -148,6 +203,7 @@ public class GameController : MonoBehaviour
 		{
 			RegisterBuilding(resolution.builtBuilding);
 			gameManager.SpendMoney(resolution.builtBuilding.Data.cost);
+			gameManager.SpendScience(resolution.builtBuilding.Data.scienceCost);
 		}
 
 		if (resolution.successfullyPlacedCable)
@@ -216,6 +272,43 @@ public class GameController : MonoBehaviour
                 }
             }
 			planet.SetResourceCount(ResourceType.Solar, solarAmount);
+        }
+		UpdateBuildingResources();
+    }
+
+	public void UpdateBuildingResources()
+	{
+		for (int i = 0; i < Planets.Count; ++i)
+		{
+			PlanetComponent planet = Planets[i];
+			int[] totalResources = new int[(int)ResourceType.Resource_Count];
+			for(int r = 0; r < totalResources.Length; ++r)
+            {
+				totalResources[r] = planet.GetResourceCount((ResourceType)r);
+            }				
+			for(int b = 0; b < planet.BuildingContainer.childCount; ++b)
+            {
+				BuildingComponent building = planet.BuildingContainer.GetChild(b).gameObject.GetComponent<BuildingComponent>();
+				if(building != null)
+                {
+					if(building.Data.requiredResource != ResourceType.Resource_Count)
+                    {
+						building.BackendBuilding.ResourcesProvided = Mathf.Min(totalResources[(int)building.Data.requiredResource], building.BackendBuilding.Data.resourceAmountRequired);
+						totalResources[(int)building.Data.requiredResource] = Mathf.Max(0, totalResources[(int)building.Data.requiredResource] - building.BackendBuilding.Data.resourceAmountRequired);
+                    }
+                }
+            }
+		}
+	}
+
+	public void CheckCableSnap()
+    {
+		for(int i = 0; i < Cables.Count; ++i)
+        {
+			if(Cables[i].Length > GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength)
+            {
+				Destroy(Cables[i].gameObject);
+            }				
         }
     }
 }

@@ -136,21 +136,22 @@ public class PlanetComponent : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.otherCollider.gameObject != null)
+		if (gameObject != null && collision.collider.gameObject != null && gameObject != collision.collider.gameObject)
 		{
-			PlanetComponent hitPlanet = collision.otherCollider.gameObject.GetComponent<PlanetComponent>();
+			PlanetComponent hitPlanet = collision.collider.gameObject.GetComponent<PlanetComponent>();
 			if (hitPlanet != null)
 			{
-				if (GetTotalMass() < hitPlanet.GetTotalMass())
-				{
-					Destroy(gameObject);
-					hitPlanet.DestroyAllBuildings();
-				}
-				else
+				Debug.Log(GetTotalMass() + " " + hitPlanet.GetTotalMass());
+				if (GetTotalMass() > hitPlanet.GetTotalMass())
 				{
 					Destroy(hitPlanet.gameObject);
 					DestroyAllBuildings();
 				}
+				else if(GetTotalMass() == hitPlanet.GetTotalMass())
+                {
+					Destroy(hitPlanet.gameObject);
+					Destroy(gameObject);
+                }
 			}
 		}
 	}

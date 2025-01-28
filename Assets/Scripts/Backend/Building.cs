@@ -7,6 +7,7 @@ public class Building
     private BuildingData data;
     private List<Building> connectedBuildings;
     private bool isPowered;
+    private GameManager manager;
 
     public BuildingData Data
     {
@@ -26,6 +27,7 @@ public class Building
         get;
         set;
     }
+    public int ResourcesProvided { get; set; }
 
     public Building(BuildingData data)
     {
@@ -49,5 +51,14 @@ public class Building
     public bool RemoveConnection(Building other)
     {
         return (connectedBuildings.Remove(other));
+    }
+    public void SetManager(GameManager m)
+    {
+        manager = m;
+    }
+
+    public bool TogglePower()
+    {
+        return (manager.ToggleBuildingPower(this));
     }
 }

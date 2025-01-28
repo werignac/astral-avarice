@@ -7,5 +7,6 @@ public class MissionData : ScriptableObject
     public int cashGoal;
     public int timeLimit;
     public string missionName;
+    public int startingScience;
     public BuildingData[] startingBuildings;
 }

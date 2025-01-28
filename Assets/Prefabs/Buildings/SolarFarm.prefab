@@ -52,6 +52,9 @@ PrefabInstance:
       propertyPath: buildingVisuals
       value: 
       objectReference: {fileID: 11400000, guid: 9fa6b22d608b51b4d866c69a8ae4bcd4, type: 2}
+      propertyPath: buildingData
+      value: 
+      objectReference: {fileID: 11400000, guid: 9765d05d5308fa54e9c4724f86827cf1, type: 2}
     - target: {fileID: 4310001663532971654, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.629
