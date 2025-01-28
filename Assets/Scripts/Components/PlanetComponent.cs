@@ -36,6 +36,7 @@ public class PlanetComponent : MonoBehaviour
     {
         get { return (canPlaceBuildings); }
     }
+	public Vector2 PlanetVelocity { get; set; }
 
 	public int GetResourceCount(ResourceType resource)
     {
