@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] private AudioClip buildClip;
 	[SerializeField] private AudioClip demolishClip;
 	[SerializeField] private AudioClip cableConnectClip;
+	[SerializeField] private DataSet gameDataSet;
 
 
     private Label cashLabel;
@@ -53,6 +54,10 @@ public class GameController : MonoBehaviour
 		scienceLabel = buildDocument.rootVisualElement.Q("Science") as Label;
 		scienceIncomeLabel = buildDocument.rootVisualElement.Q("ScienceIncome") as Label;
 		timeLabel = buildDocument.rootVisualElement.Q("Time") as Label;
+		if(Data.selectedMission == null)
+		{
+			Data.selectedMission = gameDataSet.missionDatas[0];
+		}
 		if (Data.selectedMission != null)
         {
             levelObject = Instantiate<GameObject>(Resources.Load<GameObject>("Levels/" + Data.selectedMission.name));

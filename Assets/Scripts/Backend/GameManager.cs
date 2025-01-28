@@ -102,7 +102,7 @@ public class GameManager
                 controller.UpdateScienceLabels(scienceHeld, scienceIncome);
             }
         }
-        if(timePassed > endTime)
+        if(endTime > 0 && timePassed > endTime)
         {
             EndGame();
         }

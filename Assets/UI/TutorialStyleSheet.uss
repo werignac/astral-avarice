@@ -1,0 +1,13 @@
+.Text {
+    font-size: 30px;
+    background-color: rgba(67, 57, 111, 0.5);
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+}
+
+.Title {
+    font-size: 50px;
+    background-color: rgba(67, 57, 111, 0.5);
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+}

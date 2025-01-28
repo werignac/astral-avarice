@@ -58,7 +58,7 @@ public class TutorialGameController : GameController
         {
             gameSpeed = gameSpeedOverrides[currentTutorialState];
         }
-        if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.click)
+        if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.click && Input.GetMouseButtonDown(0))
         {
             advanceAtEndOfNextUpdate = true;
         }
