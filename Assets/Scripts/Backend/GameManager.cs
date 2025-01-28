@@ -367,6 +367,11 @@ public class GameManager
             income -= building.Data.income;
             scienceIncome -= building.Data.scienceIncome;
             building.IsPowered = false;
+            if (controller != null)
+            {
+                controller.UpdateCashAndIncome(cash, income);
+                controller.UpdateScienceLabels(scienceHeld, scienceIncome);
+            }
             return (true);
         }
         else
@@ -376,6 +381,11 @@ public class GameManager
                 income += building.Data.income;
                 scienceIncome += building.Data.scienceIncome;
                 building.IsPowered = true;
+                if (controller != null)
+                {
+                    controller.UpdateCashAndIncome(cash, income);
+                    controller.UpdateScienceLabels(scienceHeld, scienceIncome);
+                }
                 return (true);
             }
             else
