@@ -27,6 +27,7 @@ public class PtUUISettingsProvider
 			guiHandler = (searchContext) =>
 			{
 				var settings = GetSerializedSettings();
+				EditorGUILayout.PropertyField(settings.FindProperty("defaultInspectorUI"), new GUIContent("Default Inspector"));
 				EditorGUILayout.PropertyField(settings.FindProperty("buildingInspectorUI"), new GUIContent("Building Inspector"));
 				
 				settings.ApplyModifiedPropertiesWithoutUndo();

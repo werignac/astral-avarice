@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d3eed5ca5e1624f991bf7c4c7517aa, type: 3}
   m_Name: GlobalUISettings
   m_EditorClassIdentifier: 
+  defaultInspectorUI: {fileID: 9197481963319205126, guid: 1a10f76526371e9458c592e50d764737, type: 3}
   buildingInspectorUI: {fileID: 9197481963319205126, guid: d27dd6376b913bb4dabe5aafd2e1bb67, type: 3}

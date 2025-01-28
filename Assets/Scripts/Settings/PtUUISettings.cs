@@ -17,14 +17,20 @@ public class PtUUISettings: ScriptableObject
 	public const string uiSettingsResourcesPath = "Settings/GlobalUISettings";
 	public const string uiSettingsPath = "Assets/Resources/Settings/GlobalUISettings.asset";
 
+	[SerializeField] private VisualTreeAsset defaultInspectorUI;
 	// The buildings that can be placed by the player.
 	[SerializeField] private VisualTreeAsset buildingInspectorUI;
 
 	// Getters
+	public VisualTreeAsset DefaultInspectorUI
+	{
+		get => defaultInspectorUI;
+	}
 	public VisualTreeAsset BuildingInspectorUI
 	{
 		get => buildingInspectorUI;
 	}
+
 
 
 	/// <summary>

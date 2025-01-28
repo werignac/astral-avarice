@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectable
+public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableComponent
 {
 	[SerializeField] private BoxCollider2D boxCollider;
 	[SerializeField] private Transform cableConnectionPoint;
@@ -154,7 +154,7 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectable
 
 	public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
 	{
-		inspectorController = new BuildingInspectorController(this);
+		inspectorController = new BuildingInstanceInspectorController(this);
 		return PtUUISettings.GetOrCreateSettings().BuildingInspectorUI;
 	}
 }

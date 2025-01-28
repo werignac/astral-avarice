@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 using werignac.Utils;
 
 public enum BuildStateType
@@ -16,13 +17,19 @@ public enum BuildStateType
 
 public interface BuildState { public BuildStateType GetStateType(); }
 public class NoneBuildState : BuildState { public BuildStateType GetStateType() => BuildStateType.NONE; }
-public class BuildingBuildState : BuildState
+public class BuildingBuildState : BuildState, IInspectable
 {
 	public readonly BuildingSettingEntry toBuild;
 
 	public BuildingBuildState(BuildingSettingEntry toBuild)
 	{
 		this.toBuild = toBuild;
+	}
+
+	public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
+	{
+		inspectorController = new BuildingButtonInspectorController(this.toBuild);
+		return PtUUISettings.GetOrCreateSettings().BuildingInspectorUI;
 	}
 
 	public virtual BuildStateType GetStateType()
