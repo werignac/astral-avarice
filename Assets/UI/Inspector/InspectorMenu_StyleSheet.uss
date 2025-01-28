@@ -1,0 +1,14 @@
+.image {
+}
+
+.subheader2 {
+    color: rgb(239, 239, 239);
+    font-size: 30px;
+    -unity-font-style: normal;
+    margin-bottom: 5px;
+    white-space: normal;
+}
+
+.inspectorText {
+    font-size: 14px;
+}

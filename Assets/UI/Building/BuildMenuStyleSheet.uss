@@ -32,13 +32,37 @@
     background-color: rgba(67, 198, 204, 0.45);
 }
 
+.inspectorContainer {
+    width: 400px;
+}
+
+.textbox {
+    background-color: rgb(69, 160, 162);
+    background-image: none;
+    -unity-slice-left: 27;
+    -unity-slice-top: 27;
+    -unity-slice-right: 27;
+    -unity-slice-bottom: 27;
+    -unity-slice-scale: 0.2px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: rgb(223, 223, 223);
+    font-size: 20px;
+}
+
 .buildButton {
     width: 200px;
     height: 200px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
     background-color: rgba(0, 0, 0, 0);
     background-image: url("project://database/Assets/Sprites/UI/rounded_square.png?fileID=8360224472118488366&guid=f985ffa0bfd8e014799cfdfcd8f635a4&type=3#rounded_square_0");
     -unity-background-image-tint-color: rgb(242, 161, 66);
@@ -60,4 +84,36 @@
     align-items: center;
     flex-grow: 1;
     justify-content: space-around;
+    -unity-slice-left: 27;
+    -unity-slice-top: 27;
+    -unity-slice-right: 27;
+    -unity-slice-bottom: 27;
+    -unity-slice-scale: 1px;
+}
+
+.subheader1 {
+    color: rgb(239, 239, 239);
+    font-size: 40px;
+    -unity-font-style: bold;
+    margin-bottom: 10px;
+}
+
+.inspectorIcon {
+    background-color: rgb(69, 160, 162);
+    -unity-slice-scale: 0.2px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: rgb(223, 223, 223);
+    font-size: 20px;
+    -unity-background-scale-mode: scale-to-fit;
+    margin-top: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
 }

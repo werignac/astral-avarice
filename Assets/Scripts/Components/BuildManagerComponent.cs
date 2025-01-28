@@ -186,6 +186,7 @@ public class BuildManagerComponent : MonoBehaviour
 	// Also checks whether a building can be placed (collides with other buildings).
 	[SerializeField] private BuildingCursorComponent buildingCursor;
 	[SerializeField] private CableCursorComponent cableCursor;
+	[SerializeField] private SelectionCursorComponent selectionCursor;
 	// How close the mouse has to be to a planet's surface for the build
 	// cursor to show up.
 	[SerializeField, Min(0.001f)] private float minDistanceToPlanetToShowCursor;
@@ -202,8 +203,6 @@ public class BuildManagerComponent : MonoBehaviour
 	// events for buildings and cables.
 	[HideInInspector] public UnityEvent<BuildResolve> OnBuildResolve = new UnityEvent<BuildResolve>();
 
-	// Location the mouse is hovering this update.
-	private Vector2 hoverThisUpdate;
 
 	// True when the player asked to place something this update.
 	private bool placeThisUpdate = false;
@@ -397,12 +396,6 @@ public class BuildManagerComponent : MonoBehaviour
 		SetState(new CableBuildState());
 	}
 
-	// Called on every update before this component's update and fed the mouse position.
-	public void Hover(Vector2 hoverPosition)
-	{
-		hoverThisUpdate = hoverPosition;
-	}
-
 	/// <summary>
 	/// Tells the BuildManagerComponent to try placing whatever it has.
 	/// Also tells the BuildManager to demolish if it's in demolish mode.
@@ -534,7 +527,7 @@ public class BuildManagerComponent : MonoBehaviour
 		DemolishBuildState demolishBuildState = state as DemolishBuildState;
 
 		// See if the mouse is hovering over an IDemolishable.
-		List<Collider2D> allHoveringColliders = new List<Collider2D>(HoverPointOverlap());
+		List<Collider2D> allHoveringColliders = new List<Collider2D>(selectionCursor.GetHovering());
 		Collider2D idemolishableCollider = allHoveringColliders.Find((Collider2D collider) =>
 		{
 			return collider.TryGetComponentInParent(out IDemolishable demoComponent) && demoComponent.Demolishable();
@@ -557,14 +550,6 @@ public class BuildManagerComponent : MonoBehaviour
 		}
 
 		return resolution;
-	}
-
-	/// <summary>
-	/// Get all the colliders the player is hovering over currently.
-	/// </summary>
-	private Collider2D[] HoverPointOverlap()
-	{
-		return Physics2D.OverlapPointAll(hoverThisUpdate);
 	}
 
 	/// <summary>
@@ -664,7 +649,7 @@ public class BuildManagerComponent : MonoBehaviour
 
 		foreach (PlanetComponent planet in gameController.Planets)
 		{
-			float distanceToHover = Vector2.Distance(planet.GetClosestSurfacePointToPosition(hoverThisUpdate), hoverThisUpdate);
+			float distanceToHover = Vector2.Distance(planet.GetClosestSurfacePointToPosition(selectionCursor.GetPosition()), selectionCursor.GetPosition());
 
 			// If this is the first planet, assume it's the closest.
 			// Otherwise, store the new closest.
@@ -685,8 +670,8 @@ public class BuildManagerComponent : MonoBehaviour
 		}
 
 		// Show the build cursor.
-		Vector2 buildingPlacePosition = closestPlanet.GetClosestSurfacePointToPosition(hoverThisUpdate);
-		Vector2 buildingPlaceNormal = closestPlanet.GetNormalForPosition(hoverThisUpdate);
+		Vector2 buildingPlacePosition = closestPlanet.GetClosestSurfacePointToPosition(selectionCursor.GetPosition());
+		Vector2 buildingPlaceNormal = closestPlanet.GetNormalForPosition(selectionCursor.GetPosition());
 
 		buildingCursor.SetPositionAndUpNormal(buildingPlacePosition, buildingPlaceNormal, closestPlanet);
 
@@ -708,7 +693,7 @@ public class BuildManagerComponent : MonoBehaviour
 	private BuildingComponent GetHoveringBuilding()
 	{
 		// Find a building.
-		List<Collider2D> colliderList = new List<Collider2D>(HoverPointOverlap());
+		List<Collider2D> colliderList = new List<Collider2D>(selectionCursor.GetHovering());
 		Collider2D buildingCollider = colliderList.Find((Collider2D collider) => { return collider.GetComponentInParent<BuildingComponent>() != null; });
 
 		BuildingComponent buildingComponent = buildingCollider == null ? null : buildingCollider.GetComponentInParent<BuildingComponent>();
@@ -737,7 +722,7 @@ public class BuildManagerComponent : MonoBehaviour
 					// TODO: Check cable connection number restrictions.
 					SetState(new CableBuildState(hoveringBuilding));
 					cableCursor.SetStart(hoveringBuilding);
-					cableCursor.SetEndPoint(hoverThisUpdate);
+					cableCursor.SetEndPoint(selectionCursor.GetPosition());
 
 					resolution.triedPlacingBuilding = true;
 					resolution.successfullyChoseCableStart = true;
@@ -757,7 +742,7 @@ public class BuildManagerComponent : MonoBehaviour
 				// Show where the cable would currently end.
 				if (hoveringBuilding == null)
 				{
-					cableCursor.SetEndPoint(hoverThisUpdate);
+					cableCursor.SetEndPoint(selectionCursor.GetPosition());
 					cableBuildState.SetToBuilding(null);
 				}
 				else
@@ -834,7 +819,7 @@ public class BuildManagerComponent : MonoBehaviour
 			// If we're showing the building cursor, show the cable there.
 			if (! buildingCursor.GetIsShowing())
 			{
-				cableCursor.SetEndPoint(hoverThisUpdate);
+				cableCursor.SetEndPoint(selectionCursor.GetPosition());
 			}
 			else
 			{ // Otherwise, show the cable connecting to the mouse.

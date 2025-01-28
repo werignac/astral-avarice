@@ -13,6 +13,7 @@ public class InputManagerComponent : MonoBehaviour
 	private InputAction zoomAction;
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
+	[SerializeField] private SelectionCursorComponent selectionCursor;
 
 	private void Awake()
 	{
@@ -47,18 +48,22 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void Update()
 	{
+		UpdateSelectionCursor();
 		UpdateBuildManager();
 		UpdateCameraMovement();
 	}
 
-	private void UpdateBuildManager()
+	private void UpdateSelectionCursor()
 	{
 		// Convert the mouse position to a position in world space.
 		Vector2 mousePositionWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-		if (BuildManagerComponent.Instance.IsInBuildState())
-			BuildManagerComponent.Instance.Hover(mousePositionWorldSpace);
+		selectionCursor.SetPosition(mousePositionWorldSpace);
+		selectionCursor.QueryHovering();
+	}
 
+	private void UpdateBuildManager()
+	{
 		if (acceptAction.WasPerformedThisFrame())
 		{
 			// If the player was clicking on UI, ignore the input.
@@ -84,6 +89,5 @@ public class InputManagerComponent : MonoBehaviour
 		cameraMovementComponent.SetHoverInput(Input.mousePosition);
 		cameraMovementComponent.SetPanningInput(panAction.IsPressed());
 		cameraMovementComponent.SetZoomInput(zoomAction.ReadValue<float>());
-		Debug.Log(zoomAction.ReadValue<float>());
 	}
 }

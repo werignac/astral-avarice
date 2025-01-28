@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Inspector/InspectorMenu_StyleSheet.uss?fileID=7433441132597879392&amp;guid=147deab159b995c4e9b916c33977241c&amp;type=3#InspectorMenu_StyleSheet" />
+    <Style src="project://database/Assets/UI/Building/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
+    <engine:VisualElement name="Container" class="inspectorContainer" style="flex-grow: 1; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+        <engine:Label text="Power the Universe" name="Subheading" class="subheader subheader1" style="white-space: normal;" />
+        <engine:Label text="Mission: " name="MissionName" class="subheader2" />
+        <engine:Label text="Welcome to Power the Universe! Your mission is to make &lt;color=#8BE03AFF&gt;$100&lt;/color&gt; in &lt;color=#E0436CFF&gt;SECONDS&lt;/color&gt; seconds for me, the mission dispatcher. You&apos;ll be doing this by supplying our customers with power using our array of power grid infrastructure buildings.&#10;&#10;Click on a building in the build menu to start." name="MissionDescription" class="textbox" style="flex-wrap: nowrap; white-space: normal;" />
+    </engine:VisualElement>
+</engine:UXML>

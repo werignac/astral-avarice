@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
-public class BuildingComponent : MonoBehaviour, IDemolishable
+public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectable
 {
 	[SerializeField] private BoxCollider2D boxCollider;
 	[SerializeField] private Transform cableConnectionPoint;
 	[SerializeField] private BuildingData buildingData;
+	[SerializeField] private BuildingVisuals buildingVisuals;
 
 	[SerializeField] private PlanetComponent parentPlanet;
 	[SerializeField] private bool isPlayerDemolishable = false;
@@ -23,6 +25,11 @@ public class BuildingComponent : MonoBehaviour, IDemolishable
 	public Building BackendBuilding
 	{
 		get => gameBuilding;
+	}
+
+	public BuildingVisuals BuildingVisuals
+	{
+		get => buildingVisuals;
 	}
 
 	/// <summary>
@@ -127,5 +134,27 @@ public class BuildingComponent : MonoBehaviour, IDemolishable
 	public bool Demolishable()
 	{
 		return isPlayerDemolishable;
+	}
+
+	public void OnHoverEnter()
+	{
+	}
+
+	public void OnHoverExit()
+	{
+	}
+
+	public void OnSelectStart()
+	{
+	}
+
+	public void OnSelectEnd()
+	{
+	}
+
+	public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
+	{
+		inspectorController = new BuildingInspectorController(this);
+		return PtUUISettings.GetOrCreateSettings().BuildingInspectorUI;
 	}
 }

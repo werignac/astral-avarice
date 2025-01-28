@@ -52,13 +52,17 @@ PrefabInstance:
       propertyPath: buildingData
       value: 
       objectReference: {fileID: 11400000, guid: 42400773a1995a94289aedfbc563f365, type: 2}
+    - target: {fileID: 1447047061651423323, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: buildingVisuals
+      value: 
+      objectReference: {fileID: 11400000, guid: 151ba75055ab13b489592dcb352f2162, type: 2}
     - target: {fileID: 4310001663532971654, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.599
       objectReference: {fileID: 0}
     - target: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Name
-      value: SolarPanel_Small
+      value: SolarFarm_Small
       objectReference: {fileID: 0}
     - target: {fileID: 6488967888440025861, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.x
