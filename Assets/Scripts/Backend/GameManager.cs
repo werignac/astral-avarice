@@ -141,6 +141,14 @@ public class GameManager
             {
                 AdjustIncomeForConnected(building.GetConnectedBuilding(i));
             }
+            if(building.NumConnected == 0)
+            {
+                if (controller != null)
+                {
+                    controller.UpdateCashAndIncome(cash, income);
+                    controller.UpdateScienceLabels(scienceHeld, scienceIncome);
+                }
+            }
         }
     }
 
