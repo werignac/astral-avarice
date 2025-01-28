@@ -196,24 +196,30 @@ public class GameManager
         }
         foreach (Building consumer in connectedConsumers)
         {
-            if (totalPower > consumer.Data.powerRequired)
+            if (consumer.IsPowered)
             {
-                totalPower -= consumer.Data.powerRequired;
-                if (!consumer.IsPowered)
+                if (totalPower > consumer.Data.powerRequired)
                 {
-                    income += consumer.Data.income;
-                    scienceIncome += consumer.Data.scienceIncome;
-                    consumer.IsPowered = true;
+                    totalPower -= consumer.Data.powerRequired;
                 }
-            }
-            else
-            {
-                if (consumer.IsPowered)
+                else
                 {
                     income -= consumer.Data.income;
                     scienceIncome -= consumer.Data.scienceIncome;
                     consumer.IsPowered = false;
+
                 }
+            }
+        }
+        foreach (Building consumer in connectedConsumers)
+        {
+            if (!consumer.IsPowered && totalPower > consumer.Data.powerRequired)
+            {
+                totalPower -= consumer.Data.powerRequired;
+                income += consumer.Data.income;
+                scienceIncome += consumer.Data.scienceIncome;
+                consumer.IsPowered = true;
+
             }
         }
         if(controller != null)

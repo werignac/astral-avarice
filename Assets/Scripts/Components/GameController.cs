@@ -138,6 +138,7 @@ public class GameController : MonoBehaviour
                 }
 			}
 			UpdatePlanetsSolar();
+			CheckCableSnap();
 		}
 	}
 
@@ -290,4 +291,15 @@ public class GameController : MonoBehaviour
             }
 		}
 	}
+
+	public void CheckCableSnap()
+    {
+		for(int i = 0; i < Cables.Count; ++i)
+        {
+			if(Cables[i].Length > GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength)
+            {
+				Destroy(Cables[i].gameObject);
+            }				
+        }
+    }
 }
