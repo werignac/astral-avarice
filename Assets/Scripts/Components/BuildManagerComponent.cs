@@ -769,7 +769,7 @@ public class BuildManagerComponent : MonoBehaviour
 					  && (cableBuildState.toBuilding.BackendBuilding.NumConnected < cableBuildState.toBuilding.Data.maxPowerLines);
 				}
 				// Connection is not redundant
-				bool cableIsNotRedundant = true;
+				bool cableIsNotRedundant = cableBuildState.fromBuilding.BackendBuilding.HasConnection(cableBuildState.toBuilding.BackendBuilding);
 				// Cable is only colliding with two buildings
 				List<Collider2D> cableOverlaps = new List<Collider2D>(cableCursor.QueryOverlappingColliders());
 				int badOverlapIndex = cableOverlaps.FindIndex((Collider2D collider) =>
