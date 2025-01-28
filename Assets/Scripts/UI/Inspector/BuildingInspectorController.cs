@@ -164,7 +164,7 @@ public class BuildingInspectorController : IInspectorController
 
 	private void PoweredButton_OnClick(ClickEvent evt)
 	{
-		// TODO: Set building power.
+		displayingBuilding.BackendBuilding.TogglePower();
 	}
 
 	public void UpdateUI()

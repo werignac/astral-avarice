@@ -14,6 +14,7 @@ public class InputManagerComponent : MonoBehaviour
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
+	[SerializeField] private InspectorUIComponent inspector;
 
 	private void Awake()
 	{
@@ -50,6 +51,7 @@ public class InputManagerComponent : MonoBehaviour
 	{
 		UpdateSelectionCursor();
 		UpdateBuildManager();
+		UpdateInspector();
 		UpdateCameraMovement();
 	}
 
@@ -64,14 +66,14 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void UpdateBuildManager()
 	{
+		// If the player was clicking on UI, ignore the input.
+		if (EventSystem.current.IsPointerOverGameObject())
+		{
+			return;
+		}
+
 		if (acceptAction.WasPerformedThisFrame())
 		{
-			// If the player was clicking on UI, ignore the input.
-			if (EventSystem.current.IsPointerOverGameObject())
-			{
-				return;
-			}
-
 			// If we're currently building, try to place something.
 			if (BuildManagerComponent.Instance.IsInBuildState())
 				BuildManagerComponent.Instance.SetPlace();
@@ -81,6 +83,29 @@ public class InputManagerComponent : MonoBehaviour
 		{
 			if (BuildManagerComponent.Instance.IsInBuildState())
 				BuildManagerComponent.Instance.SetNoneState();
+		}
+	}
+
+	private void UpdateInspector()
+	{
+		// If the player was clicking on UI, ignore the input.
+		if (EventSystem.current.IsPointerOverGameObject())
+			return;
+
+		// Objects are not selectable whilst in a build mode.
+		if (BuildManagerComponent.Instance.IsInBuildState())
+			return;
+
+		// Select the hovered object.
+		if (acceptAction.WasPerformedThisFrame())
+		{
+			inspector.TrySelect();
+		}
+
+		// Get rid of the selected object (if there is one).
+		if (cancelAction.WasPerformedThisFrame())
+		{
+			inspector.FreeSelect();
 		}
 	}
 
