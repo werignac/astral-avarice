@@ -664,6 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraMovementComponent: {fileID: 1841248165}
   selectionCursor: {fileID: 191995373}
+  inspector: {fileID: 1836921261}
 --- !u!1 &1715228861
 GameObject:
   m_ObjectHideFlags: 0

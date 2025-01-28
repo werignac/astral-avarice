@@ -74,6 +74,7 @@ public class InspectorUIComponent : MonoBehaviour
 
 	private void Update()
 	{
+		// If we have a current soft inspectable (hovering or on default).
 		switch (currentInspectableSource)
 		{
 			case InspectableSource.DEFAULT:
@@ -88,6 +89,32 @@ public class InspectorUIComponent : MonoBehaviour
 		{
 			currentController.UpdateUI();
 		}
+	}
+
+	/// <summary>
+	/// Called by InputController. Tries to select an inpectable under the cursor.
+	/// Shoudl only be called whilst out of build mode.
+	/// </summary>
+	public void TrySelect()
+	{
+		if (currentInspectableSource == InspectableSource.BUILD_MODE)
+			return;
+
+		IInspectable toSelect = GetHoveringInspectable();
+		InspectableSource source = toSelect != null ? InspectableSource.SELECT : InspectableSource.DEFAULT;
+		SetInspecting(toSelect, source);
+	}
+
+	public void FreeSelect()
+	{
+		// If we're not in a select mode, there is nothing to deselect.
+		if (currentInspectableSource != InspectableSource.SELECT)
+			return;
+
+		// Get whatever we may be hovering under, this will be the new selection.
+		IInspectable hovering = GetHoveringInspectable();
+		InspectableSource source = hovering != null ? InspectableSource.HOVER : InspectableSource.DEFAULT;
+		SetInspecting(hovering, source);
 	}
 
 	private IInspectable GetHoveringInspectable()

@@ -763,13 +763,17 @@ public class BuildManagerComponent : MonoBehaviour
 				bool connectedToBuilding = hoveringBuilding != null;
 				// Building has sufficient connection slots
 				bool buildingHasSlots = false;
+
+				// Connection is not redundant (see if).
+				bool cableIsNotRedundant = true;
+
 				if (cableBuildState.fromBuilding != null && cableBuildState.toBuilding != null)
 				{
 					buildingHasSlots = (cableBuildState.fromBuilding.BackendBuilding.NumConnected < cableBuildState.fromBuilding.Data.maxPowerLines)
 					  && (cableBuildState.toBuilding.BackendBuilding.NumConnected < cableBuildState.toBuilding.Data.maxPowerLines);
+					
+					cableIsNotRedundant = !cableBuildState.fromBuilding.BackendBuilding.HasConnection(cableBuildState.toBuilding.BackendBuilding);
 				}
-				// Connection is not redundant
-				bool cableIsNotRedundant = cableBuildState.fromBuilding.BackendBuilding.HasConnection(cableBuildState.toBuilding.BackendBuilding);
 				// Cable is only colliding with two buildings
 				List<Collider2D> cableOverlaps = new List<Collider2D>(cableCursor.QueryOverlappingColliders());
 				int badOverlapIndex = cableOverlaps.FindIndex((Collider2D collider) =>
