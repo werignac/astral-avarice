@@ -213,7 +213,7 @@ public class GameManager
         }
         foreach (Building consumer in connectedConsumers)
         {
-            if (!consumer.IsPowered && totalPower > consumer.Data.powerRequired)
+            if (!consumer.IsPowered && totalPower > consumer.Data.powerRequired && consumer.Data.thrust == 0)
             {
                 totalPower -= consumer.Data.powerRequired;
                 income += consumer.Data.income;

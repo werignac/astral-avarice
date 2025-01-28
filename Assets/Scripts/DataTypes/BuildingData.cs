@@ -16,6 +16,7 @@ public class BuildingData : ScriptableObject
     public int scienceIncome;
     public ResourceType requiredResource;
     public int resourceAmountRequired;
+    public int thrust;
     public GameObject buildingPrefab;
 
     public int TotalIncome

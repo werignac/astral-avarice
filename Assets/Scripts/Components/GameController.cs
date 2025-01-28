@@ -124,10 +124,19 @@ public class GameController : MonoBehaviour
 						Vector2 distance = planet.transform.position - other.transform.position;
 						if (distance.magnitude < planetMass)
 						{
-							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude / 10 * Time.fixedDeltaTime * gameSpeed;
+							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude / other.GetTotalMass() * Time.fixedDeltaTime * gameSpeed;
 						}
 					}
 				}
+				for(int c = 0; c < planet.BuildingContainer.childCount; ++c)
+                {
+					BuildingComponent building = planet.BuildingContainer.GetChild(c).gameObject.GetComponent<BuildingComponent>();
+					if(building != null && building.BackendBuilding.IsPowered &&  building.Data.thrust != 0)
+                    {
+						Vector3 movement = building.transform.up.normalized * building.Data.thrust / planetMass * Time.fixedDeltaTime * gameSpeed * -1;
+						planetTranslations[i] += new Vector2(movement.x, movement.y);
+                    }
+                }
 			}
 			for (int i = 0; i < Planets.Count; ++i)
 			{
