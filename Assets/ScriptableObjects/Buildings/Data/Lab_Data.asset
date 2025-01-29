@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Lab
   cost: 150
   scienceCost: 4
-  mass: 100
+  mass: 40
   maxPowerLines: 1
   buildingType: 2
   powerProduced: 0
@@ -25,4 +25,5 @@ MonoBehaviour:
   scienceIncome: 25
   requiredResource: 4
   resourceAmountRequired: 0
+  thrust: 0
   buildingPrefab: {fileID: 0}

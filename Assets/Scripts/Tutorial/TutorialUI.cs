@@ -21,5 +21,9 @@ public class TutorialUI : MonoBehaviour
         {
             document.visualTreeAsset = tutorialTrees[currentlyShown];
         }
+        else
+        {
+            document.visualTreeAsset = null;
+        }
     }
 }

@@ -234,9 +234,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   tutorialUI: {fileID: 1447282692}
-  stateChangeConditions: 0000000000000000
-  allowedActions: 0000000000000000
-  gameSpeedOverrides: 0000000000000000
+  stateChangeConditions: 00000000000000000000000000000000000000000000000001000000
+  allowedActions: 00000000000000000000000000000000000000000000000003000000
+  gameSpeedOverrides: 00000000000000000000000000000000000000000000000000000000
 --- !u!1 &191995372
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +958,11 @@ MonoBehaviour:
   tutorialTrees:
   - {fileID: 9197481963319205126, guid: 95002d7e50d889e4eabe6c03c1b0f67d, type: 3}
   - {fileID: 9197481963319205126, guid: be178c47da0ed9543b0bf5daa2213592, type: 3}
+  - {fileID: 9197481963319205126, guid: 37856d6f4ac249145bd7dadc062cfa8b, type: 3}
+  - {fileID: 9197481963319205126, guid: d883aa3e920b24442946dad6a295e94b, type: 3}
+  - {fileID: 9197481963319205126, guid: a1ce476c98a91414797e35f3cc183893, type: 3}
+  - {fileID: 9197481963319205126, guid: 38a01d1a8808b37468117c7ff54f5be9, type: 3}
+  - {fileID: 9197481963319205126, guid: fd85d8dd68aee554592883031ca5b7ce, type: 3}
 --- !u!1 &1674041861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb0d49d05ff82543aeaf0bbcb5b2a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraMovementComponent: {fileID: 1841248165}
+  cameraMovementComponent: {fileID: 0}
   selectionCursor: {fileID: 191995373}
   inspector: {fileID: 1836921261}
 --- !u!1 &1715228861
@@ -1115,7 +1120,6 @@ GameObject:
   - component: {fileID: 1841248162}
   - component: {fileID: 1841248161}
   - component: {fileID: 1841248164}
-  - component: {fileID: 1841248165}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1243,24 +1247,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &1841248165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841248160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98fa4e6aea640424fbe92f19192966c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameController: {fileID: 164819401}
-  cameraSizeMin: 3
-  cameraSizeMax: 7
-  zoomRate: 0.2
-  movementSmoothing: 10
-  zoomSmoothing: 10
 --- !u!1 &1880704436
 GameObject:
   m_ObjectHideFlags: 0

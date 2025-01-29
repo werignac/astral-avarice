@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TutorialGameController : GameController
 {
-    enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2 };
+    enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2, planetDestroyed = 3 };
     enum TutorialAllowedAction { none = 0, cable = 1, pylon = 2, fission = 3, lab = 4, coal = 5 };
 
     [SerializeField] private TutorialUI tutorialUI;
@@ -87,6 +87,15 @@ public class TutorialGameController : GameController
             {
                 advanceAtEndOfNextUpdate = true;
             }
+        }
+    }
+
+    protected override void Planet_OnDestroyed(PlanetComponent planetComponent)
+    {
+        base.Planet_OnDestroyed(planetComponent);
+        if (currentTutorialState < stateChangeConditions.Length && stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.planetDestroyed)
+        {
+            advanceAtEndOfNextUpdate = true;
         }
     }
 }

@@ -111,8 +111,11 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void UpdateCameraMovement()
 	{
-		cameraMovementComponent.SetHoverInput(Input.mousePosition);
-		cameraMovementComponent.SetPanningInput(panAction.IsPressed());
-		cameraMovementComponent.SetZoomInput(zoomAction.ReadValue<float>());
+		if (cameraMovementComponent != null)
+		{
+			cameraMovementComponent.SetHoverInput(Input.mousePosition);
+			cameraMovementComponent.SetPanningInput(panAction.IsPressed());
+			cameraMovementComponent.SetZoomInput(zoomAction.ReadValue<float>());
+		}
 	}
 }

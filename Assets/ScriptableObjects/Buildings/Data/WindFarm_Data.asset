@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Wind Farm
   cost: 200
   scienceCost: 8
-  mass: 80
+  mass: 55
   maxPowerLines: 1
   buildingType: 1
   powerProduced: 17
@@ -25,4 +25,5 @@ MonoBehaviour:
   scienceIncome: 0
   requiredResource: 1
   resourceAmountRequired: 1
+  thrust: 0
   buildingPrefab: {fileID: 0}

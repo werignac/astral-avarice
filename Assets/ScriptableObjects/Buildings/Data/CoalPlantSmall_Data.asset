@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Small Coal Plant
   cost: 50
-  mass: 200
+  scienceCost: 0
+  mass: 60
   maxPowerLines: 1
   buildingType: 1
   powerProduced: 8
   powerRequired: 0
   income: 0
   upkeep: 30
+  scienceIncome: 0
   requiredResource: 0
   resourceAmountRequired: 1
+  thrust: 0
   buildingPrefab: {fileID: 0}

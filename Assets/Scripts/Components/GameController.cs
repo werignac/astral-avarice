@@ -153,9 +153,9 @@ public class GameController : MonoBehaviour
 				if(planetTranslations[i].magnitude < 0.0001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
                 {
 					planetTranslations[i] = Planets[i].PlanetVelocity * -1;
-					if(planetTranslations[i].magnitude > 1)
+					if(planetTranslations[i].magnitude > 0.2f)
                     {
-						planetTranslations[i] = planetTranslations[i].normalized * 4;
+						planetTranslations[i] = planetTranslations[i].normalized * 0.2f;
                     }
                 }
 				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();
@@ -288,7 +288,7 @@ public class GameController : MonoBehaviour
 		planetComponent.OnPlanetDestroyed.AddListener(Planet_OnDestroyed);
 	}
 
-    private void Planet_OnDestroyed(PlanetComponent planetComponent)
+    protected virtual void Planet_OnDestroyed(PlanetComponent planetComponent)
     {
         Planets.Remove(planetComponent);
     }

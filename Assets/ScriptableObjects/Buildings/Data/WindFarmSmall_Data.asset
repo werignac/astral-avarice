@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Small Wind Farm
   cost: 80
-  mass: 40
+  scienceCost: 0
+  mass: 30
   maxPowerLines: 1
   buildingType: 1
   powerProduced: 5
   powerRequired: 0
   income: 0
   upkeep: 4
+  scienceIncome: 0
   requiredResource: 1
   resourceAmountRequired: 1
+  thrust: 0
   buildingPrefab: {fileID: 0}

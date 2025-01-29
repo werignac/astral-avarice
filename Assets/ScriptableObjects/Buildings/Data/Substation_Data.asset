@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Substation
   cost: 50
   scienceCost: 5
-  mass: 50
+  mass: 35
   maxPowerLines: 10
   buildingType: 0
   powerProduced: 0
@@ -25,4 +25,5 @@ MonoBehaviour:
   scienceIncome: 0
   requiredResource: 4
   resourceAmountRequired: 0
+  thrust: 0
   buildingPrefab: {fileID: 0}
