@@ -31,6 +31,18 @@ MonoBehaviour:
   - visualAsset: {fileID: 11400000, guid: 014bcb757d6335e4f9eb6e697bb75204, type: 2}
     buildingDataAsset: {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
     prefab: {fileID: 8292327507271384674, guid: a3f2822175eaa674093080ca44b43108, type: 3}
+  - visualAsset: {fileID: 11400000, guid: a617f8961382f994782b7496697114c1, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: 1b7b3b79ce7b0ff4fbc884f90dab62eb, type: 2}
+    prefab: {fileID: 3991568476835125475, guid: 219450caf373f8b44bebb985c3bb3e9e, type: 3}
+  - visualAsset: {fileID: 11400000, guid: a9fb0407a553da74cadd1551bf114a2f, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: e50c826c3af5e714a8d0c67189fbbf3c, type: 2}
+    prefab: {fileID: 4600650690258457304, guid: b52db7f56726ca64a9235a4cd91af013, type: 3}
+  - visualAsset: {fileID: 11400000, guid: ff5a7c52d03ab9a46b89ad7ee48af6ba, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: ff014c70c49632d4696c2581042b888e, type: 2}
+    prefab: {fileID: 6272619557682680644, guid: e57ba06ce0ae435448649c4021c7e1c1, type: 3}
+  - visualAsset: {fileID: 11400000, guid: bc359d87021113846869d9dbee40dd22, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: 818655cc968fa5e45b219efff2bd24ec, type: 2}
+    prefab: {fileID: 6030793390011276195, guid: 8b51f0d95b945d04fa90cded14627cbf, type: 3}
   cablePrefab: {fileID: 5726402047846220235, guid: 3921c1003c21fa94098bdb0c577548b6, type: 3}
   cableWidth: 0.1
   maxCableLength: 6

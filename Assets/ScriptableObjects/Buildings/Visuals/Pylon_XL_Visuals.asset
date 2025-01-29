@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef1c9fa327a97de4096930420d6902d8, type: 3}
-  m_Name: Pylon_Visuals
+  m_Name: Pylon_XL_Visuals
   m_EditorClassIdentifier: 
-  buildingName: Pylon
-  buildingIcon: {fileID: 21300000, guid: e0b69f098e9a0634fb0e0790c96debf4, type: 3}
-  buildingDescription: A tower that serves as an intermediate node for power lines.
-  buildingGhost: {fileID: 21300000, guid: 5c5b512d722819845980db9fd016a3d6, type: 3}
-  ghostOffset: {x: 0, y: 0.765}
+  buildingName: Pylon XL
+  buildingIcon: {fileID: 21300000, guid: 7a0430fcd4266304ebe8a87e57b1c49b, type: 3}
+  buildingDescription: An elognated version of the standard pylon to get to those
+    hard-to-reach places.
+  buildingGhost: {fileID: 21300000, guid: 22c9dbb3e1587064cb58ce24dc30322f, type: 3}
+  ghostOffset: {x: 0, y: 1.64}
   ghostScale: 0.1681

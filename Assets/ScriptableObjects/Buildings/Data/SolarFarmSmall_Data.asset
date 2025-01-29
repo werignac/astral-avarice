@@ -26,4 +26,4 @@ MonoBehaviour:
   requiredResource: 2
   resourceAmountRequired: 1
   thrust: 0
-  buildingPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 5947609996933403527, guid: 0ce8d00b169e5264598f2fa719aac80b, type: 3}
