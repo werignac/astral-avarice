@@ -25,6 +25,12 @@ MonoBehaviour:
   - visualAsset: {fileID: 11400000, guid: 9fa6b22d608b51b4d866c69a8ae4bcd4, type: 2}
     buildingDataAsset: {fileID: 11400000, guid: 9765d05d5308fa54e9c4724f86827cf1, type: 2}
     prefab: {fileID: 586745212669296230, guid: d4821bdd0699a6441b50a857e27cfea3, type: 3}
+  - visualAsset: {fileID: 11400000, guid: d4ad15fddded441438e6e8bfe15fa420, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: a814e90927f5c1045940c9d384223d43, type: 2}
+    prefab: {fileID: 2927032197566332540, guid: cf2873bbf6045bf4d8db0d079d12bdf2, type: 3}
+  - visualAsset: {fileID: 11400000, guid: 014bcb757d6335e4f9eb6e697bb75204, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
+    prefab: {fileID: 8292327507271384674, guid: a3f2822175eaa674093080ca44b43108, type: 3}
   cablePrefab: {fileID: 5726402047846220235, guid: 3921c1003c21fa94098bdb0c577548b6, type: 3}
   cableWidth: 0.1
   maxCableLength: 6

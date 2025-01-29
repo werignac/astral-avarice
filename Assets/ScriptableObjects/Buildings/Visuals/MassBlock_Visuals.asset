@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1c9fa327a97de4096930420d6902d8, type: 3}
+  m_Name: MassBlock_Visuals
+  m_EditorClassIdentifier: 
+  buildingName: Mass Block
+  buildingIcon: {fileID: 21300000, guid: 32710062fdeb21b43bdad8549fbab44d, type: 3}
+  buildingDescription: A super-dense rectangular prism. Just a centimeter smaller
+    and the mass would be within its Schwarzchild radius. Useful for when you want
+    to pull planets together.
+  buildingGhost: {fileID: 21300000, guid: 1af14b0ed34ffd64297ea379f39cbc57, type: 3}
+  ghostOffset: {x: 0, y: 0.447}
+  ghostScale: 0.1681

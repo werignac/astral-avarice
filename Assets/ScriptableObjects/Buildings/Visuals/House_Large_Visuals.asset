@@ -17,5 +17,5 @@ MonoBehaviour:
   buildingDescription: These are your standard client. Powering an AC unit and television
     brings in a few extra bucks.
   buildingGhost: {fileID: 0}
-  ghostOffset: {x: -0.015, y: 0.871}
+  ghostOffset: {x: -0.015, y: 0.716}
   ghostScale: 0.1681

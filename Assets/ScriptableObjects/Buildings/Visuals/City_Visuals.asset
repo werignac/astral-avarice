@@ -17,5 +17,5 @@ MonoBehaviour:
   buildingDescription: Congratulations. Entire cities depend on your energy. With
     a flick of a switch, everyone will be at your beck and call.
   buildingGhost: {fileID: 0}
-  ghostOffset: {x: 0, y: 0.995}
+  ghostOffset: {x: 0, y: 0.85}
   ghostScale: 0.1681

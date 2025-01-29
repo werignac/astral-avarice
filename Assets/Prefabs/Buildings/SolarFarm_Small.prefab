@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 151ba75055ab13b489592dcb352f2162, type: 2}
     - target: {fileID: 4310001663532971654, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.599
+      value: 0.764
       objectReference: {fileID: 0}
     - target: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Name
@@ -70,24 +70,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6488967888440025861, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.332
+      value: 0.353
       objectReference: {fileID: 0}
     - target: {fileID: 6798483256068327839, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Size.x
-      value: 0.56
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: 6798483256068327839, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Size.y
-      value: 1.353822
+      value: 1.7950819
       objectReference: {fileID: 0}
     - target: {fileID: 6798483256068327839, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Offset.y
-      value: 0.685333
+      value: 0.90596294
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925029825920761906, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: m_Size.x
+      value: 4.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925029825920761906, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: m_Size.y
+      value: 12.3
       objectReference: {fileID: 0}
     - target: {fileID: 8925029825920761906, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7923328535804906497, guid: bbd87238aff917f43b12d0b3a039bec6, type: 3}
+      objectReference: {fileID: 21300000, guid: bbd87238aff917f43b12d0b3a039bec6, type: 3}
+    - target: {fileID: 8925029825920761906, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bbd87238aff917f43b12d0b3a039bec6
+guid: 6f0bf480d9bdad546a07e711bde5905b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7923328535804906497
-    second: solar-panel_single_0
+      213: 7918680568365244958
+    second: solar-panel_single_icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: solar-panel_single_0
+      name: solar-panel_single_icon_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 269
         y: 0
-        width: 332
-        height: 879
+        width: 465
+        height: 1003
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10c0e5fd25155fd60800000000000000
-      internalID: 7923328535804906497
+      spriteID: e12e23f950ec4ed60800000000000000
+      internalID: 7918680568365244958
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      solar-panel_single_0: 7923328535804906497
+      solar-panel_single_icon_0: 7918680568365244958
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

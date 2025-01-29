@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1c9fa327a97de4096930420d6902d8, type: 3}
+  m_Name: WindFarm_Small_Visuals
+  m_EditorClassIdentifier: 
+  buildingName: Wind Farm - Small
+  buildingIcon: {fileID: 21300000, guid: ad8028625846cba4581f2bdc81e2e083, type: 3}
+  buildingDescription: A wind-powered turbine that generates energy on windy planets.
+    Outfitted with razor-sharp blades to deal with those pesky flying aliens constantly
+    getting in the way.
+  buildingGhost: {fileID: 21300000, guid: f163663c44b9446419da60c29338f51d, type: 3}
+  ghostOffset: {x: -0.09, y: 1.237}
+  ghostScale: 0.1681

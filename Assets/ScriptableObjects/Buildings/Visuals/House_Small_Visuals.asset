@@ -17,5 +17,5 @@ MonoBehaviour:
   buildingDescription: They aren't your best customers, but even log cabins need
     electricity.
   buildingGhost: {fileID: 0}
-  ghostOffset: {x: 0, y: 0.545}
+  ghostOffset: {x: 0, y: 0.455}
   ghostScale: 0.1681
