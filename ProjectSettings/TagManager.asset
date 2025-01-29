@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Cables
+    uniqueID: 329850367
+    locked: 0
   - name: Buildings
     uniqueID: 532126933
     locked: 0
@@ -49,6 +52,9 @@ TagManager:
     locked: 0
   - name: Planets
     uniqueID: 2207370851
+    locked: 0
+  - name: CableCursor
+    uniqueID: 4069106091
     locked: 0
   m_RenderingLayers:
   - Default
