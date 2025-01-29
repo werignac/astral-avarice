@@ -47,6 +47,7 @@ public class TutorialGameController : GameController
         }
         else
         {
+            BuildManagerComponent.Instance.SetNoneState();
             tutorialUI.ShowNextElement();
         }
     }

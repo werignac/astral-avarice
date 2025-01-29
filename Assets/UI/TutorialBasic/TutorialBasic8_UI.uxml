@@ -1,0 +1,12 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
+    <engine:VisualElement style="flex-grow: 1;">
+        <engine:VisualElement style="flex-direction: row;">
+            <engine:VisualElement style="width: 500px; height: 60px;" />
+            <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
+        </engine:VisualElement>
+        <engine:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
+            <engine:Label text="When you build a building, your money&#10;and advance materials go down&#10;based on the cost of the new building.&#10;In addition, the building&apos;s upkeep&#10;immediately affects your income." name="Label" class="Text" style="align-self: flex-start; margin-top: 30px; margin-left: 50px;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
