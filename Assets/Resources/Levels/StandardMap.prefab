@@ -3879,7 +3879,7 @@ MonoBehaviour:
   buildingContainerTransform: {fileID: 8933292021534331111}
   mass: 200
   resourceCounts: 00000000000000000000000000000000
-  solarOutput: 25
+  solarOutput: 21
   canPlaceBuildings: 0
 --- !u!1 &2255291523535938760
 GameObject:

@@ -602,7 +602,7 @@ public class BuildManagerComponent : MonoBehaviour
             if(buildingBuildState.toBuild.BuildingDataAsset.requiredResource != ResourceType.Resource_Count)
             {
 				if(buildingCursor.ParentPlanet.GetResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) <= 0 
-					|| buildingCursor.ParentPlanet.GetResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) < buildingBuildState.toBuild.BuildingDataAsset.resourceAmountRequired)
+					|| buildingCursor.ParentPlanet.GetAvailableResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) < buildingBuildState.toBuild.BuildingDataAsset.resourceAmountRequired)
                 {
 					sufficientResources = false;
 					warnings.AddBuildingWarning(new BuildWarning("Missing Special Resources.", false));

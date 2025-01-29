@@ -157,4 +157,18 @@ public class PlanetComponent : MonoBehaviour
 		}
 	}
 
+	public int GetAvailableResourceCount(ResourceType resource)
+    {
+		int available = GetResourceCount(resource);
+		for(int i = 0; available > 0 && i < buildingContainerTransform.childCount; ++i)
+        {
+			BuildingComponent building = buildingContainerTransform.GetChild(i).gameObject.GetComponent<BuildingComponent>();
+			if(building != null && building.Data.requiredResource == resource)
+            {
+				available = Mathf.Max(0, available - building.Data.resourceAmountRequired);
+            }
+        }
+		return (available);
+    }
+
 }
