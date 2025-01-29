@@ -214,6 +214,7 @@ MonoBehaviour:
   buildClip: {fileID: 8300000, guid: fa83d39ee7c2d234b881dec2ac999cad, type: 3}
   demolishClip: {fileID: 8300000, guid: 3ccb4b4d24402bf40984a358b74dc350, type: 3}
   cableConnectClip: {fileID: 8300000, guid: 994c419bf1929a843b4d6ab557ae53fa, type: 3}
+  gameDataSet: {fileID: 11400000, guid: cc5cf6fbd626c8547bd726b0fa4b0eb0, type: 2}
   OnLevelLoad:
     m_PersistentCalls:
       m_Calls: []

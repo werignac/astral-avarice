@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
+    <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+        <engine:Label text="Now build cables to connect the&#10;system. Build one cable from&#10;each Fission Plant to the nearby&#10;Pylon. Then connect that Pylon&#10;to the one on the other planet.&#10;Lastely, connect that Pylon to the&#10;nearby house&#10;&#10;While in any building mode, pressing&#10;right click will exit the building mode.&#10;With cable connection mode, the newly&#10;reached building will be the starting&#10;point for the next cable automatically.&#10;This includes illegal cables, allowing&#10;you to quickly change which building&#10;you are trying to place a cable on." name="Label" class="Text" style="align-self: flex-start; margin-top: 400px; margin-left: 300px;" />
+    </engine:VisualElement>
+</engine:UXML>

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TutorialGameController : GameController
 {
-    enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2, planetDestroyed = 3 };
+    enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2, planetDestroyed = 3, cableFour = 4 };
     enum TutorialAllowedAction { none = 0, cable = 1, pylon = 2, fission = 3, lab = 4, coal = 5 };
 
     [SerializeField] private TutorialUI tutorialUI;
@@ -12,6 +12,7 @@ public class TutorialGameController : GameController
 
     private int currentTutorialState = 0;
     private bool advanceAtEndOfNextUpdate = false;
+    private int numCables = 0;
 
     public bool cablesAreAllowed()
     {
@@ -67,6 +68,7 @@ public class TutorialGameController : GameController
         {
             AdvanceToNextState();
             advanceAtEndOfNextUpdate = false;
+            numCables = 0;
         }
     }
 
@@ -87,6 +89,14 @@ public class TutorialGameController : GameController
             if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.cable)
             {
                 advanceAtEndOfNextUpdate = true;
+            }
+            else if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.cableFour)
+            {
+                ++numCables;
+                if(numCables >= 4)
+                {
+                    advanceAtEndOfNextUpdate = true;
+                }
             }
         }
     }
