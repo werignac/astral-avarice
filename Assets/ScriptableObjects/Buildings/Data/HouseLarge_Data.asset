@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Large House
   cost: 0
-  mass: 150
+  scienceCost: 0
+  mass: 30
   maxPowerLines: 1
   buildingType: 2
   powerProduced: 0
   powerRequired: 20
   income: 360
   upkeep: 0
+  scienceIncome: 0
   requiredResource: 4
   resourceAmountRequired: 0
+  thrust: 0
   buildingPrefab: {fileID: 0}

@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Large Wind Farm
   cost: 300
   scienceCost: 22
-  mass: 120
+  mass: 80
   maxPowerLines: 1
   buildingType: 1
   powerProduced: 35
@@ -25,4 +25,5 @@ MonoBehaviour:
   scienceIncome: 0
   requiredResource: 1
   resourceAmountRequired: 1
+  thrust: 0
   buildingPrefab: {fileID: 0}

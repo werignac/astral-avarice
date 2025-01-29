@@ -54,6 +54,13 @@ public class MainMenuUIComponent : MonoBehaviour
     {
         Debug.Log("Start mission " + mission.name);
         Data.selectedMission = mission;
-        SceneManager.LoadScene("MainGame");
+        if(mission.tutorial)
+        {
+            SceneManager.LoadScene("TutorialBasic");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainGame");
+        }
     }
 }

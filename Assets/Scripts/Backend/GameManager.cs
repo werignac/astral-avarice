@@ -102,7 +102,7 @@ public class GameManager
                 controller.UpdateScienceLabels(scienceHeld, scienceIncome);
             }
         }
-        if(timePassed > endTime)
+        if(endTime > 0 && timePassed > endTime)
         {
             EndGame();
         }
@@ -206,7 +206,7 @@ public class GameManager
         {
             if (consumer.IsPowered)
             {
-                if (totalPower > consumer.Data.powerRequired)
+                if (totalPower >= consumer.Data.powerRequired)
                 {
                     totalPower -= consumer.Data.powerRequired;
                 }
@@ -221,7 +221,7 @@ public class GameManager
         }
         foreach (Building consumer in connectedConsumers)
         {
-            if (!consumer.IsPowered && totalPower > consumer.Data.powerRequired && consumer.Data.thrust == 0)
+            if (!consumer.IsPowered && totalPower >= consumer.Data.powerRequired && consumer.Data.thrust == 0)
             {
                 totalPower -= consumer.Data.powerRequired;
                 income += consumer.Data.income;

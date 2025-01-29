@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Large Coal Plant
   cost: 250
   scienceCost: 10
-  mass: 500
+  mass: 100
   maxPowerLines: 1
   buildingType: 1
   powerProduced: 50
@@ -25,4 +25,5 @@ MonoBehaviour:
   scienceIncome: 0
   requiredResource: 0
   resourceAmountRequired: 5
+  thrust: 0
   buildingPrefab: {fileID: 0}

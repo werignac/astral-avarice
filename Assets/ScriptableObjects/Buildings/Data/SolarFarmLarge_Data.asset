@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Large Solar Farm
   cost: 200
   scienceCost: 14
-  mass: 50
+  mass: 40
   maxPowerLines: 1
   buildingType: 1
   powerProduced: 21
@@ -25,4 +25,5 @@ MonoBehaviour:
   scienceIncome: 0
   requiredResource: 2
   resourceAmountRequired: 3
+  thrust: 0
   buildingPrefab: {fileID: 0}

@@ -4,37 +4,26 @@ using UnityEngine.UIElements;
 public class TutorialUI : MonoBehaviour
 {
     [SerializeField] private UIDocument document;
-    [SerializeField] private int numElements;
-    private VisualElement[] tutorialElements;
+    [SerializeField] private VisualTreeAsset[] tutorialTrees;
     private int currentlyShown;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        tutorialElements = new VisualElement[numElements];
-
-        for(int i = 0; i < numElements; ++i)
-        {
-            tutorialElements[i] = document.rootVisualElement.Q("Tutorial" + i);
-            if(i == 0)
-            {
-                tutorialElements[i].visible = true;
-            }
-            else
-            {
-                tutorialElements[i].visible = false;
-            }
-        }
-        currentlyShown = 0;
+        currentlyShown = -1;
+        ShowNextElement();
     }
 
     public void ShowNextElement()
     {
-        tutorialElements[currentlyShown].visible = false;
         ++currentlyShown;
-        if(currentlyShown < numElements)
+        if(currentlyShown < tutorialTrees.Length)
         {
-            tutorialElements[currentlyShown].visible = true;
+            document.visualTreeAsset = tutorialTrees[currentlyShown];
+        }
+        else
+        {
+            document.visualTreeAsset = null;
         }
     }
 }
