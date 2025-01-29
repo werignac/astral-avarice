@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Coal Plant
   cost: 150
-  scienceCost: 3
+  scienceCost: 6
   mass: 85
   maxPowerLines: 1
   buildingType: 1

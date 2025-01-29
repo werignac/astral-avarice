@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Thermal Plant
   cost: 500
-  scienceCost: 50
+  scienceCost: 80
   mass: 120
   maxPowerLines: 1
   buildingType: 1

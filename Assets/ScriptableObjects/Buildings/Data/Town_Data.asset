@@ -19,8 +19,8 @@ MonoBehaviour:
   maxPowerLines: 1
   buildingType: 2
   powerProduced: 0
-  powerRequired: 40
-  income: 700
+  powerRequired: 55
+  income: 850
   upkeep: 0
   scienceIncome: 1
   requiredResource: 4

@@ -110,9 +110,10 @@ public class GameManager
 
     public void EndGame()
     {
-        if(cash >= currentMission.cashGoal)
+        CalculateIncome();
+        if(income >= currentMission.cashGoal)
         {
-            Debug.Log("Earned enough money! Victory!");
+            Debug.Log("Earning enough money! Victory!");
         }
         if(controller != null)
         {

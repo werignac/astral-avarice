@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Wind Farm
   cost: 200
-  scienceCost: 8
+  scienceCost: 11
   mass: 55
   maxPowerLines: 1
   buildingType: 1
