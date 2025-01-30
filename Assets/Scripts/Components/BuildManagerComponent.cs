@@ -981,7 +981,7 @@ public class BuildManagerComponent : MonoBehaviour
 	/// <summary>
 	/// Determines whether a cable can overlap over the given collider.
 	/// Cables can only overlap over buildings that they connect to or other
-	/// Cables that share teh same builing connections.
+	/// Cables that share the same builing connections.
 	/// </summary>
 	private static bool IsValidCableOverlap(Collider2D overlapping, BuildingComponent startBuilding, BuildingComponent endBuildling)
 	{

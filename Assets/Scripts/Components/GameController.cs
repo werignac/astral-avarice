@@ -343,8 +343,53 @@ public class GameController : MonoBehaviour
         {
 			if(Cables[i].Length > GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength)
             {
-				Destroy(Cables[i].gameObject);
-            }				
+                Destroy(Cables[i].gameObject);
+            }
+			else
+			{
+                CableComponent.GetBoxFromPoints(
+                    Cables[i].End.CableConnectionTransform.position,
+                    Cables[i].Start.CableConnectionTransform.position,
+                    out Vector2 center,
+                    out Vector2 size,
+                    out float angle
+                    );
+
+                List<Collider2D> cableOverlaps = new List<Collider2D>(Physics2D.OverlapBoxAll(center, size, angle));
+                int badOverlapIndex = cableOverlaps.FindIndex((Collider2D collider) =>
+                {
+                    return !IsValidCableOverlap(collider, Cables[i].Start, Cables[i].End);
+                });
+                bool noOverlapsAlongCable = badOverlapIndex == -1;
+				if(!noOverlapsAlongCable)
+				{
+					Destroy(Cables[i].gameObject);
+				}
+            }
         }
+    }
+
+    /// <summary>
+    /// Determines whether a cable can overlap over the given collider.
+    /// Cables can only overlap over buildings that they connect to or other
+    /// Cables that share the same builing connections.
+    /// </summary>
+    private bool IsValidCableOverlap(Collider2D overlapping, BuildingComponent startBuilding, BuildingComponent endBuildling)
+    {
+        if (overlapping.TryGetComponentInParent(out BuildingComponent overlapBuilding))
+        {
+            return (overlapBuilding == startBuilding) || (overlapBuilding == endBuildling);
+        }
+
+        if (overlapping.TryGetComponentInParent(out CableComponent overlapCable))
+        {
+            bool startIsConnectingBuilding = (overlapCable.Start == startBuilding) || (overlapCable.Start == endBuildling);
+            bool endIsConnectingBuilding = (overlapCable.End == startBuilding) || (overlapCable.End == endBuildling);
+
+            return startIsConnectingBuilding || endIsConnectingBuilding;
+        }
+
+        // TODO: Detect other cables?
+        return false;
     }
 }
