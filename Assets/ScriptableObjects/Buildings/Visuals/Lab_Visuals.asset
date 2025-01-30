@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1c9fa327a97de4096930420d6902d8, type: 3}
+  m_Name: Lab_Visuals
+  m_EditorClassIdentifier: 
+  buildingName: Lab
+  buildingIcon: {fileID: 21300000, guid: e7a9e6e0d3443254e8549e4615c232c8, type: 3}
+  buildingDescription: So, you need more advanced materials fast? The standard-size
+    lab is the way to go. It learns from analyzing every millimeter of the planet
+    that it's on, and crunches the numbers to figure out how to exploit it.
+  buildingGhost: {fileID: 21300000, guid: d56e6bff98dbc444a8bcbc37f3338932, type: 3}
+  ghostOffset: {x: 0, y: 0.908}
+  ghostScale: 0.1681

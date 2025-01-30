@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SolarFarm_Visuals
   m_EditorClassIdentifier: 
   buildingName: Solar Farm
-  buildingIcon: {fileID: 21300000, guid: 9e8a24168a0fc9f41924241aa4b95656, type: 3}
-  buildingDescription: A standard solar farm. Boasts two solar panels in opposite
-    directions to absorb sunlight at all times without the need for articulated joints.
-    Unless it's nighttime. Or it's cloudy.
-  buildingGhost: {fileID: 21300000, guid: 552d718e98249fe44acde529404d92f1, type: 3}
-  ghostOffset: {x: 0, y: 0.629}
+  buildingIcon: {fileID: 21300000, guid: e62efaca6af301f47bfcb03403ccb33f, type: 3}
+  buildingDescription: It turns out having more solar panels means more electricity.
+    But more solar panels necessitates more area; there are no free lunches in grid
+    management.
+  buildingGhost: {fileID: 21300000, guid: a3a8ab2ee8e58514cbb7e0edaf6745d9, type: 3}
+  ghostOffset: {x: 0, y: 0.528}
   ghostScale: 0.1681

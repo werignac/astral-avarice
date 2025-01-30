@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6434880253299826604
+--- !u!1001 &3484080854531055834
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -51,43 +51,43 @@ PrefabInstance:
     - target: {fileID: 1447047061651423323, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: buildingData
       value: 
-      objectReference: {fileID: 11400000, guid: 9765d05d5308fa54e9c4724f86827cf1, type: 2}
+      objectReference: {fileID: 11400000, guid: 8e50dc0331696704bba3e6b22d3391e1, type: 2}
     - target: {fileID: 1447047061651423323, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: buildingVisuals
       value: 
-      objectReference: {fileID: 11400000, guid: 9fa6b22d608b51b4d866c69a8ae4bcd4, type: 2}
+      objectReference: {fileID: 11400000, guid: 8fd071b2a9dada84fa8a4817e2811f06, type: 2}
     - target: {fileID: 4310001663532971654, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.528
+      value: 1.181
       objectReference: {fileID: 0}
     - target: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Name
-      value: SolarFarm
+      value: WindFarm_Large
       objectReference: {fileID: 0}
     - target: {fileID: 6488967888440025861, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 6488967888440025861, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.597
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 6798483256068327839, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Size.x
-      value: 2.95
+      value: 2.76
       objectReference: {fileID: 0}
     - target: {fileID: 6798483256068327839, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Size.y
-      value: 1.3832427
+      value: 2.7942293
       objectReference: {fileID: 0}
     - target: {fileID: 6798483256068327839, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Offset.y
-      value: 0.7000434
+      value: 1.4055365
       objectReference: {fileID: 0}
     - target: {fileID: 8925029825920761906, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ac5f1bc100361c44cbf67aa310968175, type: 3}
+      objectReference: {fileID: 21300000, guid: 4407c8ee48ef64140b3768888e84b590, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
