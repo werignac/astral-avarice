@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: City
   cost: 0
   scienceCost: 0
-  mass: 100
+  mass: 75
   maxPowerLines: 1
   buildingType: 2
   powerProduced: 0
