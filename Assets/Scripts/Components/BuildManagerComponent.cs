@@ -609,6 +609,9 @@ public class BuildManagerComponent : MonoBehaviour
                 }
             }
 
+			if (!buildingCursor.ParentPlanet.CanPlaceBuildings)
+				warnings.AddBuildingWarning(new BuildWarning("Cannot place buildings on this celestial body.", true));
+
 			bool canPlace = roomToPlace &&
 				sufficientCash &&
 				sufficientScience &&
@@ -802,7 +805,7 @@ public class BuildManagerComponent : MonoBehaviour
 				}
 
 				// Cable connected to building
-				bool connectedToBuilding = hoveringBuilding != null;
+				bool connectedToBuilding = hoveringBuilding != null && hoveringBuilding != cableBuildState.fromBuilding;
 				if (!connectedToBuilding)
 				{
 					warnings.AddCableWarning(new BuildWarning("Cable missing connection.", true));
