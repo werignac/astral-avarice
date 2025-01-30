@@ -16,6 +16,9 @@ MonoBehaviour:
   - visualAsset: {fileID: 11400000, guid: 503fd86d5e627f84f9ad68c9806c78f1, type: 2}
     buildingDataAsset: {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
     prefab: {fileID: 9094627657985119054, guid: d86a6b086d37c7b489105f043ac2c8d0, type: 3}
+  - visualAsset: {fileID: 11400000, guid: ff5a7c52d03ab9a46b89ad7ee48af6ba, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: ff014c70c49632d4696c2581042b888e, type: 2}
+    prefab: {fileID: 6272619557682680644, guid: e57ba06ce0ae435448649c4021c7e1c1, type: 3}
   - visualAsset: {fileID: 11400000, guid: ab9be2d74faab264b842078079244565, type: 2}
     buildingDataAsset: {fileID: 11400000, guid: b7c7e7c92a5e39a43bc913e88c9a8144, type: 2}
     prefab: {fileID: 3586593869729771162, guid: dc41c079ed6173641b5dbc4b7b8b62a3, type: 3}
@@ -25,21 +28,42 @@ MonoBehaviour:
   - visualAsset: {fileID: 11400000, guid: 9fa6b22d608b51b4d866c69a8ae4bcd4, type: 2}
     buildingDataAsset: {fileID: 11400000, guid: 9765d05d5308fa54e9c4724f86827cf1, type: 2}
     prefab: {fileID: 586745212669296230, guid: d4821bdd0699a6441b50a857e27cfea3, type: 3}
-  - visualAsset: {fileID: 11400000, guid: d4ad15fddded441438e6e8bfe15fa420, type: 2}
-    buildingDataAsset: {fileID: 11400000, guid: a814e90927f5c1045940c9d384223d43, type: 2}
-    prefab: {fileID: 2927032197566332540, guid: cf2873bbf6045bf4d8db0d079d12bdf2, type: 3}
+  - visualAsset: {fileID: 11400000, guid: 96fd9db550b157c4a9b4f62bfff2540b, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: df43ba41be2b3fb40825370f4ed7bd47, type: 2}
+    prefab: {fileID: 5512136988296782212, guid: a7aab4195500b304bb3127d16f66e187, type: 3}
   - visualAsset: {fileID: 11400000, guid: 014bcb757d6335e4f9eb6e697bb75204, type: 2}
     buildingDataAsset: {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
     prefab: {fileID: 8292327507271384674, guid: a3f2822175eaa674093080ca44b43108, type: 3}
+  - visualAsset: {fileID: 11400000, guid: 7a264053b4cce844d8773817fe0d14bf, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: 8e50dc0331696704bba3e6b22d3391e1, type: 2}
+    prefab: {fileID: 2596734702360948857, guid: 9b1ea76694aca5444847047941577fb3, type: 3}
+  - visualAsset: {fileID: 11400000, guid: 8fd071b2a9dada84fa8a4817e2811f06, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: b59f2453f839d74438a2358328384afc, type: 2}
+    prefab: {fileID: 7003152144213524752, guid: a11e719decfaf2e46ac5b423751cc8d0, type: 3}
   - visualAsset: {fileID: 11400000, guid: a617f8961382f994782b7496697114c1, type: 2}
     buildingDataAsset: {fileID: 11400000, guid: 1b7b3b79ce7b0ff4fbc884f90dab62eb, type: 2}
     prefab: {fileID: 3991568476835125475, guid: 219450caf373f8b44bebb985c3bb3e9e, type: 3}
+  - visualAsset: {fileID: 11400000, guid: a3e95a46b0a99034b8079e0f39454a65, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: 2604ae1054aaced4b8e3a43c56af5936, type: 2}
+    prefab: {fileID: 647408476132234024, guid: 71c4fa81ec91ade4a81ae94451ac46b2, type: 3}
+  - visualAsset: {fileID: 11400000, guid: 459f904f23f6d69449c98edc606e6a21, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: 534563545c4bf37428b00af659d7bd1c, type: 2}
+    prefab: {fileID: 5230919418000163494, guid: 3145487db3048d94a8b7c21b2c281104, type: 3}
   - visualAsset: {fileID: 11400000, guid: a9fb0407a553da74cadd1551bf114a2f, type: 2}
     buildingDataAsset: {fileID: 11400000, guid: e50c826c3af5e714a8d0c67189fbbf3c, type: 2}
     prefab: {fileID: 4600650690258457304, guid: b52db7f56726ca64a9235a4cd91af013, type: 3}
-  - visualAsset: {fileID: 11400000, guid: ff5a7c52d03ab9a46b89ad7ee48af6ba, type: 2}
-    buildingDataAsset: {fileID: 11400000, guid: ff014c70c49632d4696c2581042b888e, type: 2}
-    prefab: {fileID: 6272619557682680644, guid: e57ba06ce0ae435448649c4021c7e1c1, type: 3}
+  - visualAsset: {fileID: 11400000, guid: feaf28a3b4b688340b2cbdc78043b6db, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: b65cba66f3b69fb4fb98d6d331b2763d, type: 2}
+    prefab: {fileID: 2181565952327538029, guid: 1d87581c34cd0654598d93db3f30ef69, type: 3}
+  - visualAsset: {fileID: 11400000, guid: 34521e1f2ed239646ab41777dc7c879c, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: eff2c1b3cff1ba8449f5a9044dc42681, type: 2}
+    prefab: {fileID: 4639628070945409042, guid: c77237dc354ca8241b0adc7545ad818e, type: 3}
+  - visualAsset: {fileID: 11400000, guid: d4ad15fddded441438e6e8bfe15fa420, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: a814e90927f5c1045940c9d384223d43, type: 2}
+    prefab: {fileID: 2927032197566332540, guid: cf2873bbf6045bf4d8db0d079d12bdf2, type: 3}
+  - visualAsset: {fileID: 11400000, guid: 6e0ed0e234f92f34f8f4da4803c7e0a9, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: fb7774071fd23fb4398502288364815d, type: 2}
+    prefab: {fileID: 4295468777300368878, guid: 6a61634bc253f914bb6dde5d0940a2c6, type: 3}
   - visualAsset: {fileID: 11400000, guid: bc359d87021113846869d9dbee40dd22, type: 2}
     buildingDataAsset: {fileID: 11400000, guid: 818655cc968fa5e45b219efff2bd24ec, type: 2}
     prefab: {fileID: 6030793390011276195, guid: 8b51f0d95b945d04fa90cded14627cbf, type: 3}

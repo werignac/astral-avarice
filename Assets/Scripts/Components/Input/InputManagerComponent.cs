@@ -115,7 +115,9 @@ public class InputManagerComponent : MonoBehaviour
 		{
 			cameraMovementComponent.SetHoverInput(Input.mousePosition);
 			cameraMovementComponent.SetPanningInput(panAction.IsPressed());
-			cameraMovementComponent.SetZoomInput(zoomAction.ReadValue<float>());
+			// User may scroll to read build menu, don't zoom when this is the case.
+			if (! EventSystem.current.IsPointerOverGameObject())
+				cameraMovementComponent.SetZoomInput(zoomAction.ReadValue<float>());
 		}
 	}
 }
