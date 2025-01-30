@@ -113,7 +113,12 @@ public class InspectorUIComponent : MonoBehaviour
 		if ((LOCKED_LAYERS & (int) toRemove.layer) != 0)
 			throw new ArgumentException($"Could not externally remove an inspector layer from layer {toRemove.layer}. This layer is managed by the InspectorUIComponent itself.");
 
-		return activeInspectorLayers.Remove(toRemove);
+		bool didRemove = activeInspectorLayers.Remove(toRemove);
+		if(didRemove)
+        {
+			MarkForUIUpdate();
+        }
+		return didRemove;
 	}
 
 	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)

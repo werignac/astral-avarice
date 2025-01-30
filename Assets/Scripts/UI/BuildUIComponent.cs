@@ -132,12 +132,19 @@ public class BuildUIComponent : MonoBehaviour, IInspectable
 
 	private void BuildingButton_OnHoverEnd(BuildingSettingEntry arg0)
 	{
-		if(hoveredBuildingSettingEntry == arg0)
+		if (hoveredBuildingLayer != null)
 		{
 			inspectorUI.RemoveLayer(hoveredBuildingLayer);
+		}
+		if (hoveredBuildingSettingEntry == arg0)
+		{
 			hoveredBuildingSettingEntry = null;
 			hoveredBuildingLayer = null;
 		}
+		else if(hoveredBuildingSettingEntry != null)
+        {
+			hoveredBuildingLayer = inspectorUI.AddLayer(this, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+        }
 	}
 
 	private void BuildingButton_OnHoverStart(BuildingSettingEntry arg0)
