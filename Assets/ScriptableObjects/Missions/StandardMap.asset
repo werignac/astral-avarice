@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StandardMap
   m_EditorClassIdentifier: 
   startingCash: 400
-  cashGoal: 4000
+  cashGoal: 2000
   timeLimit: 1200
   missionName: StandardMap
   startingScience: 0
