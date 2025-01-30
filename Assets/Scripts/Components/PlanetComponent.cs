@@ -139,20 +139,38 @@ public class PlanetComponent : MonoBehaviour
 	{
 		if (gameObject != null && collision.collider.gameObject != null && gameObject != collision.collider.gameObject)
 		{
-			PlanetComponent hitPlanet = collision.collider.gameObject.GetComponent<PlanetComponent>();
-			if (hitPlanet != null)
+			BuildingComponent building;
+			if ((building = collision.otherCollider.gameObject.GetComponentInParent<BuildingComponent>()) != null)
 			{
-				Debug.Log(GetTotalMass() + " " + hitPlanet.GetTotalMass());
-				if (GetTotalMass() > hitPlanet.GetTotalMass())
-				{
-					Destroy(hitPlanet.gameObject);
-					DestroyAllBuildings();
-				}
-				else if(GetTotalMass() == hitPlanet.GetTotalMass())
+				PlanetComponent hitPlanet = collision.collider.gameObject.GetComponent<PlanetComponent>();
+				if (hitPlanet != null)
+					Destroy(building.gameObject);
+				else
                 {
-					Destroy(hitPlanet.gameObject);
-					Destroy(gameObject);
+					BuildingComponent otherBuilding = collision.collider.gameObject.GetComponentInParent<BuildingComponent>();
+					if(otherBuilding != null)
+                    {
+						Destroy(building.gameObject);
+                    }
                 }
+			}
+			else
+			{
+				PlanetComponent hitPlanet = collision.collider.gameObject.GetComponent<PlanetComponent>();
+				if (hitPlanet != null)
+				{
+					Debug.Log(GetTotalMass() + " " + hitPlanet.GetTotalMass());
+					if (GetTotalMass() > hitPlanet.GetTotalMass())
+					{
+						Destroy(hitPlanet.gameObject);
+						DestroyAllBuildings();
+					}
+					else if (GetTotalMass() == hitPlanet.GetTotalMass())
+					{
+						Destroy(hitPlanet.gameObject);
+						Destroy(gameObject);
+					}
+				}
 			}
 		}
 	}

@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Large House
   cost: 0
   scienceCost: 0
-  mass: 30
+  mass: 25
   maxPowerLines: 1
   buildingType: 2
   powerProduced: 0

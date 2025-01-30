@@ -4,8 +4,8 @@ using werignac.Utils;
 
 public class CableComponent : MonoBehaviour, IDemolishable
 {
-	private BuildingComponent startBuilding;
-	private BuildingComponent endBuilding;
+	[SerializeField] private BuildingComponent startBuilding;
+	[SerializeField] private BuildingComponent endBuilding;
 
 	private LineRenderer lineRenderer;
 
