@@ -100,6 +100,10 @@ public class GameController : MonoBehaviour
         {
 			--gameSpeed;
         }
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			gameManager.CalculateIncome();
+		}
         gameManager.Update(Time.deltaTime * gameSpeed);
 
 		string timeText = "X" + gameSpeed + "     "; 
