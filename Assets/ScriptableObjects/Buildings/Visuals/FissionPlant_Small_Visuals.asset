@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: FissionPlant_Small_Visuals
   m_EditorClassIdentifier: 
   buildingName: Fission Plant - Small
-  buildingIcon: {fileID: 21300000, guid: b6f6b1cda1c684049941bc4ff4b5c208, type: 3}
+  buildingIcon: {fileID: 21300000, guid: c73aee9c0f33103478269e742c25f472, type: 3}
   buildingDescription: A a nuclear fission plant that generates a small amount of
-    energy. Noone knows where the waste goes. Your guess is as good as mine.
-  buildingGhost: {fileID: 21300000, guid: 6f37ccb1780825643b74f8df0b7a17d0, type: 3}
-  ghostOffset: {x: 0, y: 0.416}
+    energy. No one knows where the waste goes. Your guess is as good as mine.
+  buildingGhost: {fileID: 21300000, guid: 76274a8e0c056b841996faaa653a83d7, type: 3}
+  ghostOffset: {x: 0.024, y: 0.254}
   ghostScale: 0.1681
