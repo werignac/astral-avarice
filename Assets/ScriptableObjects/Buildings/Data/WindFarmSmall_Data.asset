@@ -18,7 +18,7 @@ MonoBehaviour:
   mass: 30
   maxPowerLines: 1
   buildingType: 1
-  powerProduced: 5
+  powerProduced: 6
   powerRequired: 0
   income: 0
   upkeep: 4

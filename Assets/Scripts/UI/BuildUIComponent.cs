@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
-public class BuildUIComponent : MonoBehaviour
+public class BuildUIComponent : MonoBehaviour, IInspectable
 {
 	private class BuildButtonBinding
 	{
@@ -66,6 +66,7 @@ public class BuildUIComponent : MonoBehaviour
 	[SerializeField] private VisualTreeAsset buildingButtonTemplate;
 	[SerializeField] private Sprite demolishIcon;
 	[SerializeField] private Sprite cableIcon;
+	[SerializeField] private InspectorUIComponent inspectorUI;
 
 	private VisualElement collapsableBuildMenu;
 	private Button collapseMenuButton;
@@ -74,6 +75,9 @@ public class BuildUIComponent : MonoBehaviour
 	private VisualElement cableButtonElement;
 
 	private List<BuildButtonBinding> buildButtonBindings = new List<BuildButtonBinding>();
+
+	private BuildingSettingEntry hoveredBuildingSettingEntry;
+	private InspectorUIComponent.InspectorLayer hoveredBuildingLayer;
 
 
 	private void Awake()
@@ -128,12 +132,28 @@ public class BuildUIComponent : MonoBehaviour
 
 	private void BuildingButton_OnHoverEnd(BuildingSettingEntry arg0)
 	{
-		// TODO: Hide details in inspector.
+		if (hoveredBuildingLayer != null)
+		{
+			inspectorUI.RemoveLayer(hoveredBuildingLayer);
+		}
+		if (hoveredBuildingSettingEntry == arg0)
+		{
+			hoveredBuildingSettingEntry = null;
+			hoveredBuildingLayer = null;
+		}
+		else if(hoveredBuildingSettingEntry != null)
+        {
+			hoveredBuildingLayer = inspectorUI.AddLayer(this, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+        }
 	}
 
 	private void BuildingButton_OnHoverStart(BuildingSettingEntry arg0)
 	{
-		// TODO: Show details in inspector. 
+		hoveredBuildingSettingEntry = arg0;
+		if (hoveredBuildingLayer == null)
+		{
+			hoveredBuildingLayer = inspectorUI.AddLayer(this, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+		}
 	}
 
     protected virtual void BuildingButton_OnClick(BuildingSettingEntry toBuild)
@@ -216,5 +236,11 @@ public class BuildUIComponent : MonoBehaviour
 				// Select the corresponding build button.
 			}
 		}
+	}
+
+    public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
+	{
+		inspectorController = new BuildingButtonInspectorController(hoveredBuildingSettingEntry);
+		return PtUUISettings.GetOrCreateSettings().BuildingInspectorUI;
 	}
 }

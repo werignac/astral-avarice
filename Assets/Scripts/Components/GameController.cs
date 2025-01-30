@@ -100,6 +100,10 @@ public class GameController : MonoBehaviour
         {
 			--gameSpeed;
         }
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			gameManager.CalculateIncome();
+		}
         gameManager.Update(Time.deltaTime * gameSpeed);
 
 		string timeText = "X" + gameSpeed + "     "; 
@@ -361,9 +365,17 @@ public class GameController : MonoBehaviour
                     return !IsValidCableOverlap(collider, Cables[i].Start, Cables[i].End);
                 });
                 bool noOverlapsAlongCable = badOverlapIndex == -1;
-				if(!noOverlapsAlongCable)
+				if(noOverlapsAlongCable)
+                {
+					Cables[i].CableOverlapTime = 0;
+                }
+				else
 				{
-					Destroy(Cables[i].gameObject);
+					Cables[i].CableOverlapTime += Time.fixedDeltaTime;
+					if (Cables[i].CableOverlapTime > 0.5f)
+					{
+						Destroy(Cables[i].gameObject);
+					}
 				}
             }
         }
