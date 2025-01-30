@@ -12,6 +12,8 @@ public class CableComponent : MonoBehaviour, IDemolishable
 	[SerializeField] private BoxCollider2D boxCollider;
 	[SerializeField] private bool isPlayerDemolishable = false;
 
+	public float CableOverlapTime { get; set; }
+
 	// Events
 	// TODO: Some class should listen to this and remove connections in the backend as needed.
 	[HideInInspector] public UnityEvent<CableComponent> OnCableDestroyed = new UnityEvent<CableComponent>();

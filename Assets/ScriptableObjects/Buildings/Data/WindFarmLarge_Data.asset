@@ -18,10 +18,10 @@ MonoBehaviour:
   mass: 80
   maxPowerLines: 1
   buildingType: 1
-  powerProduced: 35
+  powerProduced: 45
   powerRequired: 0
   income: 0
-  upkeep: 20
+  upkeep: 40
   scienceIncome: 0
   requiredResource: 1
   resourceAmountRequired: 1
