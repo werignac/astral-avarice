@@ -132,7 +132,7 @@ public class PlanetComponent : MonoBehaviour
 				totalMass += building.Data.mass;
             }
         }
-		return (totalMass);
+		return (Mathf.Max(1, totalMass));
     }
 
 	private void OnCollisionEnter2D(Collision2D collision)
