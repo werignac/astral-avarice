@@ -154,12 +154,12 @@ public class GameController : MonoBehaviour
 			}
 			for (int i = 0; i < Planets.Count; ++i)
 			{
-				if(planetTranslations[i].magnitude < 0.0001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
+				if(planetTranslations[i].magnitude < 0.00000001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
                 {
 					planetTranslations[i] = Planets[i].PlanetVelocity * -1;
-					if(planetTranslations[i].magnitude > 0.2f)
+					if(planetTranslations[i].magnitude > Time.fixedDeltaTime)
                     {
-						planetTranslations[i] = planetTranslations[i].normalized * 0.2f;
+						planetTranslations[i] = planetTranslations[i].normalized * Time.fixedDeltaTime;
                     }
                 }
 				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();
