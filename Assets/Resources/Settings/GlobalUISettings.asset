@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultInspectorUI: {fileID: 9197481963319205126, guid: 1a10f76526371e9458c592e50d764737, type: 3}
   buildingInspectorUI: {fileID: 9197481963319205126, guid: d27dd6376b913bb4dabe5aafd2e1bb67, type: 3}
+  planetInspectorUI: {fileID: 9197481963319205126, guid: 73ee09f583eaa364a8b1195afe131eed, type: 3}

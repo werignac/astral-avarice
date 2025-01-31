@@ -6,7 +6,7 @@ using static UnityEngine.Rendering.HableCurve;
 /// <summary>
 /// Component on any sphereical planet.
 /// </summary>
-public class PlanetComponent : MonoBehaviour
+public class PlanetComponent : MonoBehaviour, IInspectableComponent
 {
 	private static readonly int circleSegments = 51;
 
@@ -239,5 +239,25 @@ public class PlanetComponent : MonoBehaviour
 		}
 	}
 
+    public void OnHoverEnter()
+    {
+    }
 
+    public void OnHoverExit()
+    {
+    }
+
+    public void OnSelectStart()
+    {
+    }
+
+    public void OnSelectEnd()
+    {
+    }
+
+    public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
+    {
+        inspectorController = new PlanetInspectorController(this);
+        return PtUUISettings.GetOrCreateSettings().PlanetInspectorUI;
+    }
 }
