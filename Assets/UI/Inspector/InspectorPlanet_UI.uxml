@@ -25,6 +25,30 @@
             <engine:VisualElement name="SpecialResources" style="flex-grow: 1; flex-direction: row;">
                 <engine:Label text="Special Resources: " name="ConnectionsLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
             </engine:VisualElement>
+            <engine:VisualElement name="Coal" style="flex-grow: 1; flex-direction: row; margin-left: 30px;">
+                <engine:Label text="Coal:" name="CoalLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
+                <engine:Label text="1" name="CurrentCoalValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
+                <engine:Label text="/" name="CoalDivider" class="inspectorText" style="font-size: 20px;" />
+                <engine:Label text="2" name="MaxCoalValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
+            </engine:VisualElement>
+            <engine:VisualElement name="Solar" style="flex-grow: 1; flex-direction: row; margin-left: 30px;">
+                <engine:Label text="Solar:" name="SolarLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
+                <engine:Label text="1" name="CurrentSolarValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
+                <engine:Label text="/" name="SolarDivider" class="inspectorText" style="font-size: 20px;" />
+                <engine:Label text="2" name="MaxSolarValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
+            </engine:VisualElement>
+            <engine:VisualElement name="Wind" style="flex-grow: 1; flex-direction: row; margin-left: 30px;">
+                <engine:Label text="Wind:" name="WindLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
+                <engine:Label text="1" name="CurrentWindValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
+                <engine:Label text="/" name="WindDivider" class="inspectorText" style="font-size: 20px;" />
+                <engine:Label text="2" name="MaxWindValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
+            </engine:VisualElement>
+            <engine:VisualElement name="Thermal" style="flex-grow: 1; flex-direction: row; margin-left: 30px;">
+                <engine:Label text="Thermal:" name="ThermalLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
+                <engine:Label text="1" name="CurrentThermalValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
+                <engine:Label text="/" name="ThermalDivider" class="inspectorText" style="font-size: 20px;" />
+                <engine:Label text="2" name="MaxThermalValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
+            </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

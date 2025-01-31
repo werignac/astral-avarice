@@ -48,7 +48,10 @@
                 <engine:Label text="100" name="MassValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
             </engine:VisualElement>
             <engine:VisualElement name="SpecialResources" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Special Resources: " name="ConnectionsLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
+                <engine:Label text="Special Resources: " name="SpecialResourcesLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
+                <engine:Label text="1" name="CurrentResourcesValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
+                <engine:Label text="/" name="ResourcesDivider" class="inspectorText" style="font-size: 20px;" />
+                <engine:Label text="2" name="PotentialResourcesValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="SettingsBackground" class="inspectorIcon" style="flex-grow: 0; -unity-background-scale-mode: scale-to-fit;">

@@ -370,10 +370,6 @@ public class GameController : MonoBehaviour
                 {
 					if(building.Data.requiredResource != ResourceType.Resource_Count)
                     {
-						if(building.Data.resourceAmountRequired > totalResources[(int)building.Data.requiredResource])
-                        {
-							Debug.Log("Needed " + building.Data.resourceAmountRequired + " " + building.Data.requiredResource + ", but only got " + totalResources[(int)building.Data.requiredResource]);
-                        }
 						building.BackendBuilding.ResourcesProvided = Mathf.Min(totalResources[(int)building.Data.requiredResource], building.BackendBuilding.Data.resourceAmountRequired);
 						totalResources[(int)building.Data.requiredResource] = Mathf.Max(0, totalResources[(int)building.Data.requiredResource] - building.BackendBuilding.Data.resourceAmountRequired);
                     }

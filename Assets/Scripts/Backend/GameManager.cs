@@ -218,10 +218,8 @@ public class GameManager
                 }
             }
         }
-        string cString = "";
         foreach (Building consumer in connectedConsumers)
         {
-            cString += consumer.Data.buildingName + ", ";
             if (consumer.IsPowered)
             {
                 if (totalPower >= consumer.Data.powerRequired)
@@ -237,7 +235,6 @@ public class GameManager
                 }
             }
         }
-        Debug.Log(cString);
         foreach (Building consumer in connectedConsumers)
         {
             if (!consumer.IsPowered && totalPower >= consumer.Data.powerRequired && consumer.Data.thrust == 0)
@@ -277,7 +274,6 @@ public class GameManager
                 producers.Add(building);
             }
         }
-        Debug.Log("Total power: " + totalPower);
 
         foreach(Building producer in producers)
         {
