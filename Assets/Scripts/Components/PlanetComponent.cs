@@ -218,7 +218,6 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 
 		float circleRadius = GetTotalMass() / 25f;
 		circleRadius /= transform.localScale.x; //Adjusting for the scale of the planet.
-		Debug.Log(circleRadius);
 		DrawGravityCircle(circleRadius);
 	}
 
