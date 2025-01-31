@@ -2,14 +2,14 @@
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
     <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
         <engine:VisualElement picking-mode="Ignore" style="flex-direction: row; flex-grow: 1;">
-            <engine:VisualElement style="width: 500px; height: 60px;" />
-            <engine:VisualElement name="VisualElement" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.78); width: 700px;">
+            <engine:VisualElement style="width: 400px; height: 60px;" />
+            <engine:VisualElement name="VisualElement" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.78); width: 800px;">
                 <engine:Label text="Try it out yourself. Select the Fission Plant&#10;from the panel on the left here.&#10;&#10;Once you have it selected, simply click&#10;near the planet on the right when the&#10;silouette of the building turns green." name="Label" class="Text" style="align-self: flex-start; margin-top: 350px; margin-left: 50px;" />
             </engine:VisualElement>
             <engine:VisualElement picking-mode="Ignore" style="flex-grow: 0; width: 200px;">
                 <engine:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
                 <engine:VisualElement picking-mode="Ignore" style="flex-grow: 0; height: 200px;" />
-                <engine:VisualElement style="flex-grow: 0; height: 300px; background-color: rgba(0, 0, 0, 0.78);" />
+                <engine:VisualElement name="VisualElement" style="flex-grow: 0; height: 275px; background-color: rgba(0, 0, 0, 0.78);" />
             </engine:VisualElement>
             <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
         </engine:VisualElement>
