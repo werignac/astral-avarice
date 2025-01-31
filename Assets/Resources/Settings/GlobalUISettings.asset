@@ -16,5 +16,5 @@ MonoBehaviour:
   buildingInspectorUI: {fileID: 9197481963319205126, guid: d27dd6376b913bb4dabe5aafd2e1bb67, type: 3}
   planetInspectorUI: {fileID: 9197481963319205126, guid: 73ee09f583eaa364a8b1195afe131eed, type: 3}
   buildingSelectionMaterial: {fileID: 2100000, guid: d3b166f837e449548a28c3ce63f9ab8d, type: 2}
-  selectColor: {r: 0.25438356, g: 1.2695458, b: 2.9960785, a: 0}
-  demolishColor: {r: 2.5813308, g: 0.3490474, b: 0.3490474, a: 0}
+  selectColor: {r: 0.08012538, g: 0.15247507, b: 0.72799706, a: 0}
+  demolishColor: {r: 0.6935538, g: 0.08656645, b: 0.07633446, a: 0}
