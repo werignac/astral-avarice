@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 /// Stores references to all the buildings that can be built by the player.
 /// Set in the project settings.
 /// </summary>
-public class PtUUISettings: ScriptableObject
+public class PtUUISettings : ScriptableObject
 {
 	// Place to save settings.
 	public const string uiSettingsResourcesPath = "Settings/GlobalUISettings";
@@ -20,6 +20,7 @@ public class PtUUISettings: ScriptableObject
 	[SerializeField] private VisualTreeAsset defaultInspectorUI;
 	// The buildings that can be placed by the player.
 	[SerializeField] private VisualTreeAsset buildingInspectorUI;
+	[SerializeField] private VisualTreeAsset planetInspectorUI;
 
 	[Header("Selection")]
 	[SerializeField] private Material buildingSelectionMaterial;
@@ -34,6 +35,10 @@ public class PtUUISettings: ScriptableObject
 	public VisualTreeAsset BuildingInspectorUI
 	{
 		get => buildingInspectorUI;
+	}
+	public VisualTreeAsset PlanetInspectorUI
+	{
+		get => planetInspectorUI;
 	}
 
 	public Material BuildingSelectionMaterial

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   startingCash: 300
-  cashGoal: 400
+  cashGoal: 30
   timeLimit: 151
   missionName: Test
   startingScience: 0
@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   - {fileID: 11400000, guid: b7c7e7c92a5e39a43bc913e88c9a8144, type: 2}
+  tutorial: 0

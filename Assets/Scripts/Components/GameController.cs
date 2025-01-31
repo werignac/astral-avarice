@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
 	[SerializeField] private AudioClip demolishClip;
 	[SerializeField] private AudioClip cableConnectClip;
 	[SerializeField] private DataSet gameDataSet;
+	[SerializeField] private GameObject victoryDocument;
+	[SerializeField] private GameObject defeatDocument;
 
 
     private Label cashLabel;
@@ -24,6 +26,8 @@ public class GameController : MonoBehaviour
 	private Label scienceIncomeLabel;
 	private Label timeLabel;
 	protected int gameSpeed;
+	private float endGameTime = 0;
+	private bool gameEnded = false;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
 
@@ -92,29 +96,43 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update()
     {
-		if(Input.GetKeyDown(KeyCode.Equals) && gameSpeed < 5)
-        {
-			++gameSpeed;
-        }
-		if(Input.GetKeyDown(KeyCode.Minus) && gameSpeed > 1)
-        {
-			--gameSpeed;
-        }
-		if(Input.GetKeyDown(KeyCode.R))
+		if (gameEnded)
 		{
-			gameManager.CalculateIncome();
+			endGameTime += Time.deltaTime;
+			if (endGameTime > 4 || Input.GetKeyDown(KeyCode.Return))
+			{
+				ReturnToMenu();
+			}
 		}
-        gameManager.Update(Time.deltaTime * gameSpeed);
+		else
+		{
+			if (Input.GetKeyDown(KeyCode.Equals) && gameSpeed < 5)
+			{
+				++gameSpeed;
+			}
+			if (Input.GetKeyDown(KeyCode.Minus) && gameSpeed > 1)
+			{
+				--gameSpeed;
+			}
+			if (Input.GetKeyDown(KeyCode.R))
+			{
+				gameManager.CalculateIncome();
+			}
+			gameManager.Update(Time.deltaTime * gameSpeed);
 
-		string timeText = "X" + gameSpeed + "     "; 
-		timeText += Mathf.FloorToInt(gameManager.TimePassed / 60);
-		timeText += ":" + (Mathf.FloorToInt((gameManager.TimePassed % 60)));
-		timeLabel.text = timeText;
+			string timeText = "X" + gameSpeed + "     ";
+			timeText += Mathf.FloorToInt(gameManager.TimePassed / 60);
+			timeText += ":" + (Mathf.FloorToInt((gameManager.TimePassed % 60)));
+			timeLabel.text = timeText;
+		}
 	}
 
     void FixedUpdate()
     {
-        MovePlanets();
+		if (!gameEnded)
+		{
+			MovePlanets();
+		}
     }
 
     private void MovePlanets()
@@ -154,12 +172,12 @@ public class GameController : MonoBehaviour
 			}
 			for (int i = 0; i < Planets.Count; ++i)
 			{
-				if(planetTranslations[i].magnitude < 0.0001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
+				if(planetTranslations[i].magnitude < 0.00000001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
                 {
 					planetTranslations[i] = Planets[i].PlanetVelocity * -1;
-					if(planetTranslations[i].magnitude > 0.2f)
+					if(planetTranslations[i].magnitude > Time.fixedDeltaTime)
                     {
-						planetTranslations[i] = planetTranslations[i].normalized * 0.2f;
+						planetTranslations[i] = planetTranslations[i].normalized * Time.fixedDeltaTime;
                     }
                 }
 				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();
@@ -214,10 +232,29 @@ public class GameController : MonoBehaviour
 		scienceIncomeLabel.text += newIncome + ")";
 	}
 
-    public void EndGame()
+    public void EndGame(bool victory)
     {
         Debug.Log("Game has ended");
-        SceneManager.LoadScene("MainMenu");
+		gameEnded = true;
+		if(victory)
+        {
+			if (victoryDocument != null)
+			{
+				victoryDocument.SetActive(true);
+			}
+        }
+		else
+        {
+			if (defeatDocument != null)
+			{
+				defeatDocument.SetActive(true);
+			}
+        }
+    }
+
+	public void ReturnToMenu()
+    {
+		SceneManager.LoadScene("MainMenu");
     }
 
 	public virtual void BuildManager_OnBuildResovle(BuildResolve resolution)
@@ -333,6 +370,10 @@ public class GameController : MonoBehaviour
                 {
 					if(building.Data.requiredResource != ResourceType.Resource_Count)
                     {
+						if(building.Data.resourceAmountRequired > totalResources[(int)building.Data.requiredResource])
+                        {
+							Debug.Log("Needed " + building.Data.resourceAmountRequired + " " + building.Data.requiredResource + ", but only got " + totalResources[(int)building.Data.requiredResource]);
+                        }
 						building.BackendBuilding.ResourcesProvided = Mathf.Min(totalResources[(int)building.Data.requiredResource], building.BackendBuilding.Data.resourceAmountRequired);
 						totalResources[(int)building.Data.requiredResource] = Mathf.Max(0, totalResources[(int)building.Data.requiredResource] - building.BackendBuilding.Data.resourceAmountRequired);
                     }

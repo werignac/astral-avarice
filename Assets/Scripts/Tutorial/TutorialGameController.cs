@@ -44,7 +44,8 @@ public class TutorialGameController : GameController
         ++currentTutorialState;
         if (currentTutorialState >= stateChangeConditions.Length)
         {
-            EndGame();
+            EndGame(true);
+            ReturnToMenu();
         }
         else
         {
