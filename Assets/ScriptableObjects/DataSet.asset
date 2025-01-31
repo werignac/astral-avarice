@@ -34,6 +34,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e50c826c3af5e714a8d0c67189fbbf3c, type: 2}
   - {fileID: 11400000, guid: eff2c1b3cff1ba8449f5a9044dc42681, type: 2}
   - {fileID: 11400000, guid: ff014c70c49632d4696c2581042b888e, type: 2}
+  - {fileID: 11400000, guid: fb7774071fd23fb4398502288364815d, type: 2}
+  - {fileID: 11400000, guid: 818655cc968fa5e45b219efff2bd24ec, type: 2}
   missionDatas:
   - {fileID: 11400000, guid: 99f704f836c39f24b8f13f67f0424487, type: 2}
   - {fileID: 11400000, guid: ef0088f5390751448bf386c343e949e0, type: 2}

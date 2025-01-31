@@ -14,6 +14,7 @@ public class GameManager
     private MissionData currentMission;
     private int scienceHeld;
     private int scienceIncome;
+    private bool hadEnoughIncomePreviously;
 
     public int Income
     {
@@ -58,6 +59,7 @@ public class GameManager
     //Use this if buildings don't need to be instantiated at start.
     public void StartMission(MissionData mission)
     {
+        hadEnoughIncomePreviously = false;
         currentMission = mission;
         cash = mission.startingCash;
         scienceHeld = mission.startingScience;
@@ -69,6 +71,7 @@ public class GameManager
     //Use this if BuildingComponents need a reference to the Building object being used by the manager.
     public void StartMission(MissionData mission, LevelBuilder level)
     {
+        hadEnoughIncomePreviously = false;
         currentMission = mission;
         cash = mission.startingCash;
         scienceHeld = mission.startingScience;
@@ -101,6 +104,18 @@ public class GameManager
                 controller.UpdateCashAndIncome(cash, income);
                 controller.UpdateScienceLabels(scienceHeld, scienceIncome);
             }
+            if (income >= currentMission.cashGoal)
+            {
+                if (!hadEnoughIncomePreviously)
+                {
+                    hadEnoughIncomePreviously = true;
+                }
+                else
+                {
+                    EndGame();
+                    return;
+                }
+            }
         }
         if(endTime > 0 && timePassed > endTime)
         {
@@ -117,7 +132,7 @@ public class GameManager
         }
         if(controller != null)
         {
-            controller.EndGame();
+            controller.EndGame(income >= currentMission.cashGoal);
         }
     }
 

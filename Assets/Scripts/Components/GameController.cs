@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
 	[SerializeField] private AudioClip demolishClip;
 	[SerializeField] private AudioClip cableConnectClip;
 	[SerializeField] private DataSet gameDataSet;
+	[SerializeField] private GameObject victoryDocument;
+	[SerializeField] private GameObject defeatDocument;
 
 
     private Label cashLabel;
@@ -24,6 +26,8 @@ public class GameController : MonoBehaviour
 	private Label scienceIncomeLabel;
 	private Label timeLabel;
 	protected int gameSpeed;
+	private float endGameTime = 0;
+	private bool gameEnded = false;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
 
@@ -92,29 +96,43 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update()
     {
-		if(Input.GetKeyDown(KeyCode.Equals) && gameSpeed < 5)
-        {
-			++gameSpeed;
-        }
-		if(Input.GetKeyDown(KeyCode.Minus) && gameSpeed > 1)
-        {
-			--gameSpeed;
-        }
-		if(Input.GetKeyDown(KeyCode.R))
+		if (gameEnded)
 		{
-			gameManager.CalculateIncome();
+			endGameTime += Time.deltaTime;
+			if (endGameTime > 4 || Input.GetKeyDown(KeyCode.Return))
+			{
+				ReturnToMenu();
+			}
 		}
-        gameManager.Update(Time.deltaTime * gameSpeed);
+		else
+		{
+			if (Input.GetKeyDown(KeyCode.Equals) && gameSpeed < 5)
+			{
+				++gameSpeed;
+			}
+			if (Input.GetKeyDown(KeyCode.Minus) && gameSpeed > 1)
+			{
+				--gameSpeed;
+			}
+			if (Input.GetKeyDown(KeyCode.R))
+			{
+				gameManager.CalculateIncome();
+			}
+			gameManager.Update(Time.deltaTime * gameSpeed);
 
-		string timeText = "X" + gameSpeed + "     "; 
-		timeText += Mathf.FloorToInt(gameManager.TimePassed / 60);
-		timeText += ":" + (Mathf.FloorToInt((gameManager.TimePassed % 60)));
-		timeLabel.text = timeText;
+			string timeText = "X" + gameSpeed + "     ";
+			timeText += Mathf.FloorToInt(gameManager.TimePassed / 60);
+			timeText += ":" + (Mathf.FloorToInt((gameManager.TimePassed % 60)));
+			timeLabel.text = timeText;
+		}
 	}
 
     void FixedUpdate()
     {
-        MovePlanets();
+		if (!gameEnded)
+		{
+			MovePlanets();
+		}
     }
 
     private void MovePlanets()
@@ -214,10 +232,29 @@ public class GameController : MonoBehaviour
 		scienceIncomeLabel.text += newIncome + ")";
 	}
 
-    public void EndGame()
+    public void EndGame(bool victory)
     {
         Debug.Log("Game has ended");
-        SceneManager.LoadScene("MainMenu");
+		gameEnded = true;
+		if(victory)
+        {
+			if (victoryDocument != null)
+			{
+				victoryDocument.SetActive(true);
+			}
+        }
+		else
+        {
+			if (defeatDocument != null)
+			{
+				defeatDocument.SetActive(true);
+			}
+        }
+    }
+
+	public void ReturnToMenu()
+    {
+		SceneManager.LoadScene("MainMenu");
     }
 
 	public virtual void BuildManager_OnBuildResovle(BuildResolve resolution)
