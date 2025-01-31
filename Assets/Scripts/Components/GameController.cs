@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
 		if (gameEnded)
 		{
 			endGameTime += Time.deltaTime;
-			if (endGameTime > 4 || Input.GetKeyDown(KeyCode.Return))
+			if (endGameTime > 10 || Input.GetKeyDown(KeyCode.Return))
 			{
 				ReturnToMenu();
 			}
@@ -236,6 +236,7 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Game has ended");
 		gameEnded = true;
+		endGameTime = 0;
 		if(victory)
         {
 			if (victoryDocument != null)

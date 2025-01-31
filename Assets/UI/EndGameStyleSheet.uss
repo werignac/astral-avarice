@@ -1,0 +1,7 @@
+.Text {
+    -unity-text-align: middle-center;
+    align-self: center;
+    font-size: 100px;
+    color: rgb(220, 211, 58);
+    flex-grow: 1;
+}
