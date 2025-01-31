@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WindFarmLarge_Data
   m_EditorClassIdentifier: 
   buildingName: Large Wind Farm
-  cost: 300
+  cost: 800
   scienceCost: 45
   mass: 80
   maxPowerLines: 1

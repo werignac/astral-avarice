@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CoalPlant_Data
   m_EditorClassIdentifier: 
   buildingName: Coal Plant
-  cost: 150
+  cost: 200
   scienceCost: 6
   mass: 85
   maxPowerLines: 1
