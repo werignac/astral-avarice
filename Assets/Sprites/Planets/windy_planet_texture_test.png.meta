@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      windy_planet_texture_test_0: 6790853620773076667
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

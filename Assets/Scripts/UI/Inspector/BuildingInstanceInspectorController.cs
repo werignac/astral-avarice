@@ -86,9 +86,26 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 	private bool BuildingIsPowered
 	{
 		get => displayingBuilding.BackendBuilding.IsPowered;
+    }
+
+    private int BuildingScienceIncome
+    {
+        get => displayingBuilding.Data.scienceIncome;
+    }
+    private ResourceType BuildingRequiredResource
+    {
+        get => displayingBuilding.Data.requiredResource;
+    }
+    private int BuildingResourcesAmountRequired
+    {
+        get => displayingBuilding.Data.resourceAmountRequired;
+    }
+	private int BuildingResourcesProvided
+	{
+		get => displayingBuilding.BackendBuilding.ResourcesProvided;
 	}
 
-	private string BuildingDescription
+    private string BuildingDescription
 	{
 		get
 		{
@@ -147,9 +164,19 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 		else
 			electricityProduction.style.display = DisplayStyle.None;
 
-		// TODO: AdvancedMaterials
 
-		if (BuildingConsumesElectricity)
+
+        if (BuildingScienceIncome > 0)
+        {
+            advancedMaterialProductionValue.text = BuildingScienceIncome.ToString();
+        }
+        else
+        {
+            advancedMaterialsProduction.style.display = DisplayStyle.None;
+        }
+
+
+        if (BuildingConsumesElectricity)
 			electricityConsumptionValue.text = BuildingConsumedElectricity.ToString("0.00");
 		else
 			electricityConsumption.style.display = DisplayStyle.None;
@@ -164,7 +191,18 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 
 		massValue.text = BuildingMass.ToString("0.00");
 
-		if (BuildingConsumesElectricity)
+        if (BuildingRequiredResource != ResourceType.Resource_Count)
+        {
+            specialResourcesLabel.text = BuildingRequiredResource.ToString() + " provided:";
+            resourcesCurrentValue.text = BuildingResourcesProvided.ToString();
+			resourcesPotentialValue.text = BuildingResourcesAmountRequired.ToString();
+        }
+        else
+        {
+            specialResources.style.display = DisplayStyle.None;
+        }
+
+        if (BuildingConsumesElectricity)
 			poweredCheckMark.style.display = BuildingIsPowered ? DisplayStyle.Flex : DisplayStyle.None;
 		else
 			settings.style.display = DisplayStyle.None;

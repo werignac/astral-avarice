@@ -42,6 +42,7 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		get { return (canPlaceBuildings); }
 	}
 	public Vector2 PlanetVelocity { get; set; }
+	public bool Destroyed { get; set; } = false;
 
 	public int GetResourceCount(ResourceType resource)
 	{
@@ -173,16 +174,19 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 			else
 			{
 				PlanetComponent hitPlanet = collision.collider.gameObject.GetComponent<PlanetComponent>();
-				if (hitPlanet != null)
+				if (hitPlanet != null && !Destroyed && !hitPlanet.Destroyed)
 				{
 					Debug.Log(GetTotalMass() + " " + hitPlanet.GetTotalMass());
 					if (GetTotalMass() > hitPlanet.GetTotalMass())
 					{
+						hitPlanet.Destroyed = true;
 						Destroy(hitPlanet.gameObject);
 						DestroyAllBuildings();
 					}
 					else if (GetTotalMass() == hitPlanet.GetTotalMass())
 					{
+						hitPlanet.Destroyed = true;
+						Destroyed = true;
 						Destroy(hitPlanet.gameObject);
 						Destroy(gameObject);
 					}
@@ -209,16 +213,19 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	{
 		if (gravityRenderer == null)
 		{
-			gravityRenderer = gameObject.AddComponent<LineRenderer>();
-			gravityRenderer.positionCount = circleSegments;
-			gravityRenderer.useWorldSpace = false;
-			gravityRenderer.widthMultiplier = 0.1f;
-			gravityRenderer.loop = true;
+			gravityRenderer = gameObject.GetComponent<LineRenderer>();
+			if (gravityRenderer == null)
+			{
+				gravityRenderer = gameObject.AddComponent<LineRenderer>();
+				gravityRenderer.positionCount = circleSegments;
+				gravityRenderer.useWorldSpace = false;
+				gravityRenderer.widthMultiplier = 0.1f;
+				gravityRenderer.loop = true;
+			}
 		}
 
 		float circleRadius = GetTotalMass() / 25f;
 		circleRadius /= transform.localScale.x; //Adjusting for the scale of the planet.
-		Debug.Log(circleRadius);
 		DrawGravityCircle(circleRadius);
 	}
 

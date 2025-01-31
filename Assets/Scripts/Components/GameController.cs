@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
 		if (gameEnded)
 		{
 			endGameTime += Time.deltaTime;
-			if (endGameTime > 4 || Input.GetKeyDown(KeyCode.Return))
+			if (endGameTime > 10 || Input.GetKeyDown(KeyCode.Return))
 			{
 				ReturnToMenu();
 			}
@@ -236,6 +236,7 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Game has ended");
 		gameEnded = true;
+		endGameTime = 0;
 		if(victory)
         {
 			if (victoryDocument != null)
@@ -370,10 +371,6 @@ public class GameController : MonoBehaviour
                 {
 					if(building.Data.requiredResource != ResourceType.Resource_Count)
                     {
-						if(building.Data.resourceAmountRequired > totalResources[(int)building.Data.requiredResource])
-                        {
-							Debug.Log("Needed " + building.Data.resourceAmountRequired + " " + building.Data.requiredResource + ", but only got " + totalResources[(int)building.Data.requiredResource]);
-                        }
 						building.BackendBuilding.ResourcesProvided = Mathf.Min(totalResources[(int)building.Data.requiredResource], building.BackendBuilding.Data.resourceAmountRequired);
 						totalResources[(int)building.Data.requiredResource] = Mathf.Max(0, totalResources[(int)building.Data.requiredResource] - building.BackendBuilding.Data.resourceAmountRequired);
                     }
