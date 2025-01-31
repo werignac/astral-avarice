@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7712147310963813492
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BiggieBodyPlanetMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: dec295bfd1754d34a8bc911c4bdb6eeb, type: 3}
+  m_Parent: {fileID: 2100000, guid: 7fb75bb68d9d4d142ada69813a004ddb, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _TerrainTexture_0:
+        m_Texture: {fileID: 2800000, guid: 0e87a0ecd051dde4086d35a5531145bd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainTexture_1:
+        m_Texture: {fileID: 2800000, guid: cea3225cac24dfc42b5064f0ad6ae5cf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _GlobeFactor: 1.1
+    - _TextureScale_0: 0.5
+    - _TextureScale_1: 0.5
+    m_Colors:
+    - _Color_0: {r: 0.06274511, g: 0.1697858, b: 0.2, a: 1}
+    - _Color_1: {r: 0.3538032, g: 0.5597484, b: 0.52706003, a: 1}
+    - _Color_2: {r: 0.5368853, g: 0.61635214, b: 0.61635214, a: 1}
+    - _Color_3: {r: 0.11510615, g: 0.3773585, b: 0.32490802, a: 1}
+    - _RotateVelocity_0: {r: -0.1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

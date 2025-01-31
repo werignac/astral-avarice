@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: 512e7ae57c206e246a656b2609defa68
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5228756898873209017
+    second: geothermal_planet_texture_1_0
+  - first:
+      213: 4415524771052013706
+    second: geothermal_planet_texture_1_1
+  - first:
+      213: -8784515628272130763
+    second: geothermal_planet_texture_1_2
+  - first:
+      213: 3491753543429526327
+    second: geothermal_planet_texture_1_3
+  - first:
+      213: 2704688956285236644
+    second: geothermal_planet_texture_1_4
+  - first:
+      213: -7179110475967656033
+    second: geothermal_planet_texture_1_5
+  - first:
+      213: 6856728556949624355
+    second: geothermal_planet_texture_1_6
+  - first:
+      213: -6247063277048389867
+    second: geothermal_planet_texture_1_7
+  - first:
+      213: -8276862610210586484
+    second: geothermal_planet_texture_1_8
+  - first:
+      213: 5489460735506105989
+    second: geothermal_planet_texture_1_9
+  - first:
+      213: -9014218481045582019
+    second: geothermal_planet_texture_1_10
+  - first:
+      213: 2320331378494438085
+    second: geothermal_planet_texture_1_11
+  - first:
+      213: 3739571620859471707
+    second: geothermal_planet_texture_1_12
+  - first:
+      213: -4808616043730107839
+    second: geothermal_planet_texture_1_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_0
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 694
+        width: 218
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b0f53642b6409840800000000000000
+      internalID: 5228756898873209017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_1
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 929
+        width: 56
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a884e738268174d30800000000000000
+      internalID: 4415524771052013706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_2
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 872
+        width: 172
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 535e8f41491271680800000000000000
+      internalID: -8784515628272130763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 802
+        width: 47
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 733145ff853357030800000000000000
+      internalID: 3491753543429526327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_4
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 598
+        width: 362
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a5bd43964cf88520800000000000000
+      internalID: 2704688956285236644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_5
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 458
+        width: 286
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9f89a40f0dae5c90800000000000000
+      internalID: -7179110475967656033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 581
+        width: 75
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32652464b4ef72f50800000000000000
+      internalID: 6856728556949624355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_7
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 400
+        width: 147
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51f94224c09fd49a0800000000000000
+      internalID: -6247063277048389867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_8
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 400
+        width: 208
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c808fa70f4da22d80800000000000000
+      internalID: -8276862610210586484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_9
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 51
+        width: 487
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 586cb4c547b7e2c40800000000000000
+      internalID: 5489460735506105989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_10
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 0
+        width: 347
+        height: 379
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3f44850d0017e280800000000000000
+      internalID: -9014218481045582019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_11
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 289
+        width: 140
+        height: 181
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ca7a585819733020800000000000000
+      internalID: 2320331378494438085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9
+        width: 14
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57e5797390a5e330800000000000000
+      internalID: 3739571620859471707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal_planet_texture_1_13
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 0
+        width: 59
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14209347f2d544db0800000000000000
+      internalID: -4808616043730107839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      geothermal_planet_texture_1_0: 5228756898873209017
+      geothermal_planet_texture_1_1: 4415524771052013706
+      geothermal_planet_texture_1_10: -9014218481045582019
+      geothermal_planet_texture_1_11: 2320331378494438085
+      geothermal_planet_texture_1_12: 3739571620859471707
+      geothermal_planet_texture_1_13: -4808616043730107839
+      geothermal_planet_texture_1_2: -8784515628272130763
+      geothermal_planet_texture_1_3: 3491753543429526327
+      geothermal_planet_texture_1_4: 2704688956285236644
+      geothermal_planet_texture_1_5: -7179110475967656033
+      geothermal_planet_texture_1_6: 6856728556949624355
+      geothermal_planet_texture_1_7: -6247063277048389867
+      geothermal_planet_texture_1_8: -8276862610210586484
+      geothermal_planet_texture_1_9: 5489460735506105989
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
