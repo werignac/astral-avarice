@@ -113,6 +113,11 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 
 	public void Demolish()
 	{
+		if(parentPlanet != null)
+		{
+			transform.parent = null;
+			parentPlanet.AdjustGravityRing();
+		}
 		Destroy(gameObject);
 	}
 
@@ -156,5 +161,10 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 	{
 		inspectorController = new BuildingInstanceInspectorController(this);
 		return PtUUISettings.GetOrCreateSettings().BuildingInspectorUI;
+	}
+
+	public void SetParentPlanet(PlanetComponent planet)
+	{
+		parentPlanet = planet;
 	}
 }

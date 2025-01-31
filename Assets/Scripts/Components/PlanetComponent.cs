@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
+using static UnityEngine.Rendering.HableCurve;
 
 /// <summary>
 /// Component on any sphereical planet.
 /// </summary>
 public class PlanetComponent : MonoBehaviour
 {
+	private static readonly int circleSegments = 51;
 
 	/// <summary>
 	/// Event used by BuildManagerComponent to know when a planet
@@ -20,6 +23,8 @@ public class PlanetComponent : MonoBehaviour
 	[SerializeField] private int solarOutput;
 	[SerializeField] private bool canPlaceBuildings;
 
+	private LineRenderer gravityRenderer;
+
 	public Transform BuildingContainer
 	{
 		get { return (buildingContainerTransform); }
@@ -29,35 +34,36 @@ public class PlanetComponent : MonoBehaviour
 		get { return (mass); }
 	}
 	public int SolarOutput
-    {
+	{
 		get { return (solarOutput); }
-    }
+	}
 	public bool CanPlaceBuildings
-    {
-        get { return (canPlaceBuildings); }
-    }
+	{
+		get { return (canPlaceBuildings); }
+	}
 	public Vector2 PlanetVelocity { get; set; }
 
 	public int GetResourceCount(ResourceType resource)
-    {
-		if(resource == ResourceType.Resource_Count)
-        {
+	{
+		if (resource == ResourceType.Resource_Count)
+		{
 			return (0);
-        }
+		}
 		return (resourceCounts[(int)resource]);
-    }
+	}
 	public void SetResourceCount(ResourceType resource, int amount)
-    {
-		if(resource != ResourceType.Resource_Count)
-        {
+	{
+		if (resource != ResourceType.Resource_Count)
+		{
 			resourceCounts[(int)resource] = amount;
-        }
-    }
+		}
+	}
 
 
 	private void Awake()
 	{
 		planetCollider = GetComponent<CircleCollider2D>();
+		AdjustGravityRing();
 	}
 
 	public float DistanceToPosition(Vector2 position)
@@ -71,7 +77,7 @@ public class PlanetComponent : MonoBehaviour
 		// the volume.
 		Vector2 radialDirection = (planetCollider.ClosestPoint(position) - (Vector2)transform.position).normalized;
 		Vector2 radialOffset = radialDirection * planetCollider.radius * transform.localScale.x;
-		return  radialOffset + (Vector2) transform.position;
+		return radialOffset + (Vector2)transform.position;
 	}
 
 	/// <summary>
@@ -82,7 +88,7 @@ public class PlanetComponent : MonoBehaviour
 	/// <returns>Normlized vector representing the direction of the surface of the planet.</returns>
 	public Vector2 GetNormalForPosition(Vector2 position)
 	{
-		return (position - (Vector2) transform.position).normalized;
+		return (position - (Vector2)transform.position).normalized;
 	}
 
 	/// <summary>
@@ -110,30 +116,34 @@ public class PlanetComponent : MonoBehaviour
 		// Assumes scaling on planet is uniform (x == y == z).
 		building.transform.localScale = Vector3.one * 1 / transform.localScale.x;
 		building.GetComponent<BuildingComponent>().SetDemolishable(isPlayerDemolishable);
+		building.GetComponent<BuildingComponent>().SetParentPlanet(this);
+		AdjustGravityRing();
 		return building;
 	}
 
 	public void DestroyAllBuildings()
-    {
-		for(int i = 0; i < buildingContainerTransform.childCount; ++i)
-        {
+	{
+		for (int i = 0; i < buildingContainerTransform.childCount; ++i)
+		{
 			Destroy(buildingContainerTransform.GetChild(i).gameObject);
         }
+		buildingContainerTransform.DetachChildren();
+        AdjustGravityRing();
     }
 
 	public int GetTotalMass()
-    {
+	{
 		int totalMass = mass;
 		for (int i = 0; i < buildingContainerTransform.childCount; ++i)
-        {
+		{
 			BuildingComponent building = buildingContainerTransform.GetChild(i).gameObject.GetComponent<BuildingComponent>();
-			if(building != null)
-            {
+			if (building != null)
+			{
 				totalMass += building.Data.mass;
-            }
-        }
+			}
+		}
 		return (Mathf.Max(1, totalMass));
-    }
+	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
@@ -144,15 +154,21 @@ public class PlanetComponent : MonoBehaviour
 			{
 				PlanetComponent hitPlanet = collision.collider.gameObject.GetComponent<PlanetComponent>();
 				if (hitPlanet != null)
+				{
 					Destroy(building.gameObject);
-				else
-                {
-					BuildingComponent otherBuilding = collision.collider.gameObject.GetComponentInParent<BuildingComponent>();
-					if(otherBuilding != null)
-                    {
-						Destroy(building.gameObject);
-                    }
+                    building.transform.parent = null;
+                    AdjustGravityRing();
                 }
+				else
+				{
+					BuildingComponent otherBuilding = collision.collider.gameObject.GetComponentInParent<BuildingComponent>();
+					if (otherBuilding != null)
+					{
+						Destroy(building.gameObject);
+						building.transform.parent = null;
+						AdjustGravityRing();
+					}
+				}
 			}
 			else
 			{
@@ -176,17 +192,52 @@ public class PlanetComponent : MonoBehaviour
 	}
 
 	public int GetAvailableResourceCount(ResourceType resource)
-    {
+	{
 		int available = GetResourceCount(resource);
-		for(int i = 0; available > 0 && i < buildingContainerTransform.childCount; ++i)
-        {
+		for (int i = 0; available > 0 && i < buildingContainerTransform.childCount; ++i)
+		{
 			BuildingComponent building = buildingContainerTransform.GetChild(i).gameObject.GetComponent<BuildingComponent>();
-			if(building != null && building.Data.requiredResource == resource)
-            {
+			if (building != null && building.Data.requiredResource == resource)
+			{
 				available = Mathf.Max(0, available - building.Data.resourceAmountRequired);
-            }
-        }
+			}
+		}
 		return (available);
-    }
+	}
+
+	public void AdjustGravityRing()
+	{
+		if (gravityRenderer == null)
+		{
+			gravityRenderer = gameObject.AddComponent<LineRenderer>();
+			gravityRenderer.positionCount = circleSegments;
+			gravityRenderer.useWorldSpace = false;
+			gravityRenderer.widthMultiplier = 0.1f;
+			gravityRenderer.loop = true;
+		}
+
+		float circleRadius = GetTotalMass() / 25f;
+		circleRadius /= transform.localScale.x; //Adjusting for the scale of the planet.
+		Debug.Log(circleRadius);
+		DrawGravityCircle(circleRadius);
+	}
+
+	private void DrawGravityCircle(float radius)
+	{
+		float x;
+		float y;
+		float angle = 0;
+
+		for (int i = 0; i < (circleSegments); i++)
+		{
+			x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
+			y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+
+			gravityRenderer.SetPosition(i, new Vector3(x, y, 0));
+
+			angle += (360f / (circleSegments - 1));
+		}
+	}
+
 
 }
