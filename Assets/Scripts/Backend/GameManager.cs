@@ -203,8 +203,10 @@ public class GameManager
                 }
             }
         }
+        string cString = "";
         foreach (Building consumer in connectedConsumers)
         {
+            cString += consumer.Data.buildingName + ", ";
             if (consumer.IsPowered)
             {
                 if (totalPower >= consumer.Data.powerRequired)
@@ -220,6 +222,7 @@ public class GameManager
                 }
             }
         }
+        Debug.Log(cString);
         foreach (Building consumer in connectedConsumers)
         {
             if (!consumer.IsPowered && totalPower >= consumer.Data.powerRequired && consumer.Data.thrust == 0)
@@ -244,6 +247,7 @@ public class GameManager
         income = 0;
         scienceIncome = 2;
 
+        int totalPower = 0;
         foreach(Building building in buildings)
         {
             income -= building.Data.upkeep;
@@ -253,10 +257,12 @@ public class GameManager
             }
             else if(building.Data.buildingType == BuildingType.PowerProducer)
             {
-                building.PowerToGive = building.Data.powerProduced;
+                building.PowerToGive = GetPower(building);
+                totalPower += GetPower(building);
                 producers.Add(building);
             }
         }
+        Debug.Log("Total power: " + totalPower);
 
         foreach(Building producer in producers)
         {
@@ -277,7 +283,7 @@ public class GameManager
 
     private void AddConsumerToSortedList(Building consumerBuilding, List<Building> consumerList)
     {
-        float powerToPrice = consumerBuilding.Data.TotalIncome / consumerBuilding.Data.powerRequired;
+        float powerToPrice = ((float)consumerBuilding.Data.TotalIncome) / consumerBuilding.Data.powerRequired;
         int max = consumerList.Count;
         int min = 0;
         int index = 0;
@@ -290,7 +296,7 @@ public class GameManager
             int nextIndex = index;
             if(previousIndex >= 0)
             {
-                float prevPowerToPrice = consumerList[previousIndex].Data.TotalIncome / consumerList[previousIndex].Data.powerRequired;
+                float prevPowerToPrice = ((float)consumerList[previousIndex].Data.TotalIncome) / consumerList[previousIndex].Data.powerRequired;
                 if(prevPowerToPrice < powerToPrice)
                 {
                     lessThanPrev = false;
@@ -298,7 +304,7 @@ public class GameManager
             }
             if(nextIndex < consumerList.Count)
             {
-                float nextPowerToPrice = consumerList[nextIndex].Data.TotalIncome / consumerList[nextIndex].Data.powerRequired;
+                float nextPowerToPrice = ((float)consumerList[nextIndex].Data.TotalIncome) / consumerList[nextIndex].Data.powerRequired;
                 if(nextPowerToPrice > powerToPrice)
                 {
                     greaterThanNext = false;
@@ -306,7 +312,8 @@ public class GameManager
             }
             if(greaterThanNext && lessThanPrev)
             {
-                break;
+                min = index;
+                max = index;
             }
             else if(greaterThanNext)
             {
@@ -317,7 +324,7 @@ public class GameManager
                 min = index + 1;
             }
         }
-        consumerList.Insert(index, consumerBuilding);
+        consumerList.Insert(min, consumerBuilding);
     }
 
     public bool EnoughPower(Building checkedBuilding)
@@ -402,6 +409,6 @@ public class GameManager
         {
             return (building.Data.powerProduced);
         }
-        return (Mathf.CeilToInt(building.ResourcesProvided / building.Data.resourceAmountRequired * building.Data.powerProduced));
+        return (Mathf.CeilToInt(((float)building.ResourcesProvided) / building.Data.resourceAmountRequired * building.Data.powerProduced));
     }
 }
