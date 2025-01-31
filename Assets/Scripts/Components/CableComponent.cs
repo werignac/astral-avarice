@@ -15,9 +15,9 @@ public class CableComponent : MonoBehaviour, IDemolishable
 	public float CableOverlapTime { get; set; }
 
 	// Events
-	// TODO: Some class should listen to this and remove connections in the backend as needed.
 	[HideInInspector] public UnityEvent<CableComponent> OnCableDestroyed = new UnityEvent<CableComponent>();
-
+	[HideInInspector] public UnityEvent OnCableHoverStartForDemolish = new UnityEvent();
+	[HideInInspector] public UnityEvent OnCableHoverEndForDemolish = new UnityEvent();
 
 	// Getters
 	public float Length
@@ -141,12 +141,12 @@ public class CableComponent : MonoBehaviour, IDemolishable
 
 	public void HoverDemolishStart()
 	{
-		Debug.Log("Hovering Over Cable");
+		OnCableHoverStartForDemolish?.Invoke();
 	}
 
 	public void HoverDemolishEnd()
 	{
-		Debug.Log("Stopped Hovering Over Cable");
+		OnCableHoverEndForDemolish?.Invoke();
 	}
 
 	public void SetDemolishable(bool isDemolishable)

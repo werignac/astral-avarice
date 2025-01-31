@@ -48,10 +48,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1447047061651423323, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: buildingData
+      value: 
+      objectReference: {fileID: 11400000, guid: 534563545c4bf37428b00af659d7bd1c, type: 2}
+    - target: {fileID: 1447047061651423323, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: buildingVisuals
+      value: 
+      objectReference: {fileID: 11400000, guid: 459f904f23f6d69449c98edc606e6a21, type: 2}
+    - target: {fileID: 4310001663532971654, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.311
+      objectReference: {fileID: 0}
     - target: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Name
-      value: Building_Base
+      value: CoalPlant_Large
       objectReference: {fileID: 0}
+    - target: {fileID: 6488967888440025861, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488967888440025861, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925029825920761906, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e56bdbec5b1b4941a5c6123914c9bcb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

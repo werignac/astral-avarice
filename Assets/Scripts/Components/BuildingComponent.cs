@@ -15,6 +15,12 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 
 	// Events
 	[HideInInspector] public UnityEvent<BuildingComponent> OnBuildingDestroyed = new UnityEvent<BuildingComponent>();
+	[HideInInspector] public UnityEvent OnBuildingHoverStartForSelection = new UnityEvent();
+	[HideInInspector] public UnityEvent OnBuildingHoverEndForSelection = new UnityEvent();
+	[HideInInspector] public UnityEvent OnBuildingSelected = new UnityEvent();
+	[HideInInspector] public UnityEvent OnBuildingDeselected = new UnityEvent();
+	[HideInInspector] public UnityEvent OnBuildingHoverStartForDemolish = new UnityEvent();
+	[HideInInspector] public UnityEvent OnBuildingHoverEndForDemolish = new UnityEvent();
 
 	// Getters
 	public BuildingData Data
@@ -118,12 +124,12 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 
 	public void HoverDemolishStart()
 	{
-		Debug.Log("Hovering over building");
+		OnBuildingHoverStartForDemolish?.Invoke();
 	}
 
 	public void HoverDemolishEnd()
 	{
-		Debug.Log("Stopped Hovering over building");
+		OnBuildingHoverEndForDemolish?.Invoke();
 	}
 
 	public void SetDemolishable(bool isDemolishable)
@@ -138,18 +144,22 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 
 	public void OnHoverEnter()
 	{
+		OnBuildingHoverStartForSelection?.Invoke();
 	}
 
 	public void OnHoverExit()
 	{
+		OnBuildingHoverEndForSelection?.Invoke();
 	}
 
 	public void OnSelectStart()
 	{
+		OnBuildingSelected?.Invoke();
 	}
 
 	public void OnSelectEnd()
 	{
+		OnBuildingDeselected?.Invoke();
 	}
 
 	public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)

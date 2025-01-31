@@ -21,6 +21,11 @@ public class PtUUISettings: ScriptableObject
 	// The buildings that can be placed by the player.
 	[SerializeField] private VisualTreeAsset buildingInspectorUI;
 
+	[Header("Selection")]
+	[SerializeField] private Material buildingSelectionMaterial;
+	[SerializeField, ColorUsage(true, true)] private Color selectColor;
+	[SerializeField, ColorUsage(true, true)] private Color demolishColor;
+
 	// Getters
 	public VisualTreeAsset DefaultInspectorUI
 	{
@@ -29,6 +34,20 @@ public class PtUUISettings: ScriptableObject
 	public VisualTreeAsset BuildingInspectorUI
 	{
 		get => buildingInspectorUI;
+	}
+
+	public Material BuildingSelectionMaterial
+	{
+		get => buildingSelectionMaterial;
+	}
+	public Color SelectColor
+	{
+		get => selectColor;
+	}
+
+	public Color DemolishColor
+	{
+		get => demolishColor;
 	}
 
 

@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 2223137515787140783}
   - component: {fileID: 3891575461996435345}
   - component: {fileID: 7757306035987977248}
+  - component: {fileID: 3759970562783211120}
   m_Layer: 0
   m_Name: Cable
   m_TagString: Untagged
@@ -231,8 +232,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c705a14273ac7469009315d61d6efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBuilding: {fileID: 0}
+  endBuilding: {fileID: 0}
   boxCollider: {fileID: 7109463446182131643}
   isPlayerDemolishable: 0
   OnCableDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnCableHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCableHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3759970562783211120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5726402047846220235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e4519bf8b816d448994467a922a009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 0}

@@ -12,7 +12,7 @@
     width: auto;
     padding-right: 0;
     padding-left: 0;
-    background-image: url("project://database/Assets/Sprites/Buildings/pylon.png?fileID=-5652342212589283447&guid=f2b495b328568ec45955ac79825bc3a9&type=3#pylon_0");
+    background-image: url("project://database/Assets/Sprites/UI/pylon_icon.png?fileID=2800000&guid=9e9d757b317a7944eb70f29c9927a1e9&type=3#pylon_icon");
     margin-top: 5%;
     margin-right: 5%;
     margin-bottom: 5%;
