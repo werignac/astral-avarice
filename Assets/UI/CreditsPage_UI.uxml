@@ -2,6 +2,10 @@
     <Style src="project://database/Assets/UI/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=4124b1416559d0b44b5377efa564a3eb&amp;type=3#MainMenuStyleSheet" />
     <engine:VisualElement class="menuBackground" style="flex-grow: 1; width: 500px; align-items: flex-start; align-self: flex-start; padding-right: 0; padding-left: 30px;">
         <engine:Label text="Credits" name="Title" class="text" />
+        <engine:Label text="Music and SFX from Unity Asset Store" name="Label" class="text" style="font-size: 40px;" />
+        <engine:Label text="Music: Olan&#10;SFX: Dustyroom" name="Label" class="text" style="font-size: 30px; margin-top: 10px; margin-left: 20px;" />
+        <engine:Label text="Archie Faugno: Programming, Game and Level Design" name="Label" class="text" style="font-size: 30px; margin-top: 10px; margin-left: 2px;" />
+        <engine:Label text="William Erignac: Programming, UI and Art" name="Label" class="text" style="font-size: 30px; margin-top: 10px; margin-left: 2px;" />
         <engine:Button text="Back" name="BackButton" class="missionButton" style="margin-bottom: 50px; margin-top: 30px;" />
     </engine:VisualElement>
 </engine:UXML>
