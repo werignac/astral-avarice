@@ -124,7 +124,9 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 		if(parentPlanet != null)
 		{
 			transform.parent = null;
+#if UNITY_EDITOR
 			parentPlanet.AdjustGravityRing();
+#endif
 		}
 		Destroy(gameObject);
 	}

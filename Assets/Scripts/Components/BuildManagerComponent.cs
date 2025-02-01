@@ -194,6 +194,7 @@ public class BuildManagerComponent : MonoBehaviour
 	[SerializeField] private BuildingCursorComponent buildingCursor;
 	[SerializeField] private CableCursorComponent cableCursor;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
+	[SerializeField] private GravityFieldCursorComponent gravityCursor;
 	// How close the mouse has to be to a planet's surface for the build
 	// cursor to show up.
 	[SerializeField, Min(0.001f)] private float minDistanceToPlanetToShowCursor;
@@ -431,6 +432,11 @@ public class BuildManagerComponent : MonoBehaviour
 			{
 				cableCursor.Hide();
 			}
+
+			if (gravityCursor.GetIsShowing())
+			{
+				gravityCursor.Hide();
+			}
 			
 			return;
 		}
@@ -549,6 +555,20 @@ public class BuildManagerComponent : MonoBehaviour
 
 		// Update calls to hovering demolishable for VFX.
 		demolishBuildState.SetHoveringDemolishable(hoveringDemolishable);
+
+		// If the demolishable is a building, show the difference in planet gravity field.
+		if (hoveringDemolishable != null && hoveringDemolishable is BuildingComponent)
+		{
+			BuildingComponent demolishableBuilding = hoveringDemolishable as BuildingComponent;
+			PlanetComponent planetParent = demolishableBuilding.GetComponentInParent<PlanetComponent>();
+
+			SetAndShowGravityCursor(planetParent, -demolishableBuilding.Data.mass);
+		}
+		else // Otherwise, hide the gravity cursor.
+		{
+			if (gravityCursor.GetIsShowing())
+				gravityCursor.Hide();
+		}
 
 		// If the player clicked, demolish the building
 		if (placeThisUpdate && hoveringDemolishable != null)
@@ -669,11 +689,13 @@ public class BuildManagerComponent : MonoBehaviour
 		bool noPlanets = gameController.Planets.Count == 0;
 		if (noPlanets)
 		{ // If there are no planets, there's nothing to build on.
-			if (! buildingCursor.GetIsShowing())
-			{
+			if (buildingCursor.GetIsShowing())
 				buildingCursor.Hide();
-				return;
-			}
+
+			if (gravityCursor.GetIsShowing())
+				gravityCursor.Hide();
+
+			return;
 		}
 
 		// Find the planet that has the point on its surface that is the closest to the mouse.
@@ -699,6 +721,9 @@ public class BuildManagerComponent : MonoBehaviour
 		{
 			if (buildingCursor.GetIsShowing())
 				buildingCursor.Hide();
+			if (gravityCursor.GetIsShowing())
+				gravityCursor.Hide();
+			
 			return;
 		}
 
@@ -713,10 +738,31 @@ public class BuildManagerComponent : MonoBehaviour
 			buildingCursor.Show();
 		}
 
+		BuildingBuildState buildingbuildState = state as BuildingBuildState;
+		SetAndShowGravityCursor(closestPlanet, buildingbuildState.toBuild.BuildingDataAsset.mass);
+
 #if UNITY_EDITOR
 		Debug.DrawLine(closestPlanet.transform.position, buildingPlacePosition, Color.red);
 		Debug.DrawLine(buildingPlacePosition, buildingPlacePosition + buildingPlaceNormal, Color.blue);
 #endif
+	}
+
+	private void SetAndShowGravityCursor(PlanetComponent onPlanet, int deltaMass)
+	{
+		if (!gravityCursor.GetIsShowing())
+		{
+			gravityCursor.Show();
+		}
+
+		float planetRadius = onPlanet.Radius;
+		int currentMass = onPlanet.GetTotalMass();
+		float currentGravityRadius = PlanetComponent.MassToGravityRadius(currentMass);
+		float nextGravityRadius = PlanetComponent.MassToGravityRadius(currentMass + deltaMass);
+		Vector3 gravityCursorPosition = onPlanet.transform.position;
+		float outerGravityRadius = Mathf.Max(Mathf.Max(currentGravityRadius, nextGravityRadius), planetRadius);
+		float innerGravityRadius = Mathf.Max(Mathf.Min(currentGravityRadius, nextGravityRadius), planetRadius);
+		gravityCursor.SetPosition(gravityCursorPosition);
+		gravityCursor.SetRadii(outerGravityRadius, innerGravityRadius);
 	}
 
 	/// <summary>

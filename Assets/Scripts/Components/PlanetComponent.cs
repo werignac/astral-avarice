@@ -8,13 +8,19 @@ using static UnityEngine.Rendering.HableCurve;
 /// </summary>
 public class PlanetComponent : MonoBehaviour, IInspectableComponent
 {
+#if UNITY_EDITOR
 	private static readonly int circleSegments = 51;
+#endif
+
+	public static float MassToGravityRadius(int mass) => mass / 25f;
 
 	/// <summary>
 	/// Event used by BuildManagerComponent to know when a planet
 	/// should not longer be buildable because it has been destroyed.
 	/// </summary>
 	[HideInInspector] public UnityEvent<PlanetComponent> OnPlanetDestroyed = new UnityEvent<PlanetComponent>();
+	private bool muteOnMassChangedEvent = false;
+	[HideInInspector] public UnityEvent OnMassChanged = new UnityEvent();
 
 	private CircleCollider2D planetCollider;
 	[SerializeField] private Transform buildingContainerTransform;
@@ -23,7 +29,9 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	[SerializeField] private int solarOutput;
 	[SerializeField] private bool canPlaceBuildings;
 
+#if UNITY_EDITOR
 	private LineRenderer gravityRenderer;
+#endif
 
 	public Transform BuildingContainer
 	{
@@ -33,6 +41,15 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	{
 		get { return (mass); }
 	}
+	public float GravityRadius
+	{
+		get { return MassToGravityRadius(GetTotalMass()); }
+	}
+	public float Radius
+	{
+		get { return planetCollider.radius * transform.localScale.x; }
+	}
+
 	public int SolarOutput
 	{
 		get { return (solarOutput); }
@@ -64,7 +81,20 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	private void Awake()
 	{
 		planetCollider = GetComponent<CircleCollider2D>();
+#if UNITY_EDITOR
 		AdjustGravityRing();
+#endif
+	}
+
+	private void Start()
+	{
+		// Register starting buildings w/ callback for updating
+		// planet mass for when they are destroyed.
+		foreach (Transform buildingTransform in buildingContainerTransform)
+		{
+			BuildingComponent building = buildingTransform.GetComponent<BuildingComponent>();
+			building.OnBuildingDestroyed.AddListener((BuildingComponent _) => { InvokeMassChangedEvent(); });
+		}
 	}
 
 	public float DistanceToPosition(Vector2 position)
@@ -116,20 +146,34 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		// Counteract upscaling from parent transform (odd that I started needed to do this without changing much).
 		// Assumes scaling on planet is uniform (x == y == z).
 		building.transform.localScale = Vector3.one * 1 / transform.localScale.x;
-		building.GetComponent<BuildingComponent>().SetDemolishable(isPlayerDemolishable);
-		building.GetComponent<BuildingComponent>().SetParentPlanet(this);
-		AdjustGravityRing();
+		BuildingComponent buildingComponent = building.GetComponent<BuildingComponent>();
+		buildingComponent.SetDemolishable(isPlayerDemolishable);
+		buildingComponent.SetParentPlanet(this);
+
+		buildingComponent.OnBuildingDestroyed.AddListener((BuildingComponent _) => { InvokeMassChangedEvent(); });
+		InvokeMassChangedEvent();
+
 		return building;
 	}
 
 	public void DestroyAllBuildings()
 	{
+		// Stop repeated firing of OnMassChangedEvent.
+		muteOnMassChangedEvent = true;
+
 		for (int i = 0; i < buildingContainerTransform.childCount; ++i)
 		{
 			Destroy(buildingContainerTransform.GetChild(i).gameObject);
         }
 		buildingContainerTransform.DetachChildren();
-        AdjustGravityRing();
+
+		muteOnMassChangedEvent = false;
+		// Fire the OnMassChangedEvent
+#if UNITY_EDITOR
+		AdjustGravityRing();
+#endif
+
+		InvokeMassChangedEvent();
     }
 
 	public int GetTotalMass()
@@ -158,8 +202,11 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 				{
 					Destroy(building.gameObject);
                     building.transform.parent = null;
-                    AdjustGravityRing();
-                }
+#if UNITY_EDITOR
+					AdjustGravityRing();
+#endif
+					// Automatically invoke redraw of gravity field via callbacks.
+				}
 				else
 				{
 					BuildingComponent otherBuilding = collision.collider.gameObject.GetComponentInParent<BuildingComponent>();
@@ -167,7 +214,10 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 					{
 						Destroy(building.gameObject);
 						building.transform.parent = null;
+#if UNITY_EDITOR
 						AdjustGravityRing();
+#endif
+						// Automatically invoke redraw of gravity field via callbacks.
 					}
 				}
 			}
@@ -209,7 +259,9 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		return (available);
 	}
 
+#if UNITY_EDITOR
 	public void AdjustGravityRing()
+
 	{
 		if (gravityRenderer == null)
 		{
@@ -230,20 +282,28 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	}
 
 	private void DrawGravityCircle(float radius)
-	{
+	{ 
+
 		float x;
 		float y;
 		float angle = 0;
 
-		for (int i = 0; i < (circleSegments); i++)
+		for (int i = 0; i<(circleSegments); i++)
 		{
-			x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-			y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+			x = Mathf.Sin(Mathf.Deg2Rad* angle)* radius;
+			y = Mathf.Cos(Mathf.Deg2Rad* angle)* radius;
 
 			gravityRenderer.SetPosition(i, new Vector3(x, y, 0));
 
 			angle += (360f / (circleSegments - 1));
 		}
+	}
+#endif
+
+public void InvokeMassChangedEvent()
+	{
+		if (!muteOnMassChangedEvent)
+			OnMassChanged.Invoke();
 	}
 
     public void OnHoverEnter()
