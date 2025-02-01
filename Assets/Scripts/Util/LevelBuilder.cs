@@ -50,8 +50,10 @@ public class LevelBuilder : MonoBehaviour
             BuildingComponent building = transform.GetChild(i).gameObject.GetComponent<BuildingComponent>();
             if(building != null)
             {
-                building.SetPositionAndUpNormal();
-                --i;
+                if (building.SetPositionAndUpNormal())
+                {
+                    --i;
+                }
             }
         }    
     }

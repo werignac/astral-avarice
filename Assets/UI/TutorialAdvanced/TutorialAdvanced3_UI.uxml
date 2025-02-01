@@ -1,0 +1,11 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
+    <engine:VisualElement style="flex-grow: 1;">
+        <engine:VisualElement style="flex-grow: 1; flex-direction: row-reverse;">
+            <engine:VisualElement style="flex-grow: 0; width: 400px;" />
+            <engine:VisualElement picking-mode="Ignore" class="Cover" style="flex-grow: 1; justify-content: center;">
+                <engine:Label text="When you click on a building or&#10;planet, it will become selected,&#10;and stay in the inspector until&#10;you either select another object,&#10;or right click to deselect it." picking-mode="Ignore" class="Text" style="align-self: flex-end;" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

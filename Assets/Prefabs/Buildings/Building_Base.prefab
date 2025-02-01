@@ -252,6 +252,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7708532822011176026
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,3 +316,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 8925029825920761906}
+  defaultMaterial: {fileID: 2100000, guid: 33e15306229ca1649950538c40cf9857, type: 2}
