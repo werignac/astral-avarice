@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b81aaccb24b7946428016fe20c547663
+guid: 206181b4d674479489ee9070fe646673
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7963390740095718593
-    second: screen_button_back_0
+      213: 6092750959953069111
+    second: screen_button_back_inspector_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: screen_button_back_0
+      name: screen_button_back_inspector_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1c45a0fafa5a38e60800000000000000
-      internalID: 7963390740095718593
+      spriteID: 7344ce0a7bccd8450800000000000000
+      internalID: 6092750959953069111
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 546a466db5e8c4540a2a57f9899b5888
+    spriteID: 0821b97671fb4ae47b5021361657d3b2
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      screen_button_back_0: 7963390740095718593
+      screen_button_back_inspector_0: 6092750959953069111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

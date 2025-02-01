@@ -1,14 +1,14 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Building/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
     <engine:VisualElement name="Container" enabled="true" picking-mode="Ignore" style="flex-grow: 0; right: auto; left: auto; position: relative; width: auto; flex-direction: row-reverse; align-self: flex-end; justify-content: flex-end; align-content: flex-start; align-items: stretch; max-width: 1920px; height: 100%;">
-        <engine:VisualElement name="CollapsableContainer" enabled="true" class="inspectorBackground" style="flex-grow: 1; flex-direction: column; justify-content: flex-start; display: flex; border-top-right-radius: 10px; border-bottom-right-radius: 10px; visibility: visible; min-width: 300px; flex-shrink: 1;">
-            <engine:Label text="Inspector" class="header" style="-unity-text-align: upper-center; min-width: auto; width: auto; height: 75px; font-size: 50px; margin-bottom: 20px; margin-top: 20px;" />
+        <engine:VisualElement name="CollapsableContainer" enabled="true" class="inspectorBackground" style="flex-grow: 1; flex-direction: column; justify-content: flex-start; display: flex; border-top-right-radius: 10px; border-bottom-right-radius: 10px; visibility: visible; min-width: 300px; flex-shrink: 1; width: auto;">
+            <engine:Label text="Inspector" class="header" style="-unity-text-align: upper-center; min-width: auto; width: auto; height: 75px; font-size: 50px; margin-bottom: 0; margin-top: 0; align-self: center; margin-right: 0; margin-left: 0; flex-grow: 0;" />
             <engine:VisualElement name="InspectorContainer" style="align-content: center; align-self: center; margin-bottom: 20px; flex-grow: 1;">
                 <engine:ScrollView name="ScrollView" style="flex-grow: 1;">
                     <engine:VisualElement name="ScrolledContent" style="flex-grow: 1; width: auto; height: auto; min-height: 600px;" />
                 </engine:ScrollView>
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:Button text="&#10;" name="CollapseButton" class="inspectorBackground" style="height: 100px; width: 100px; margin-top: 50px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; margin-right: 0; margin-left: 0; margin-bottom: 0; justify-content: flex-start; align-items: auto; align-content: center; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 10px; border-bottom-left-radius: 10px;" />
+        <engine:Button text="&#10;" name="CollapseButton" style="height: 100px; width: 100px; margin-top: 50px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; margin-right: 0; margin-left: 0; margin-bottom: 0; justify-content: flex-start; align-items: auto; align-content: center; border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 10px; border-bottom-left-radius: 10px;" />
     </engine:VisualElement>
 </engine:UXML>

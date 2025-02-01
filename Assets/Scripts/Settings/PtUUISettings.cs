@@ -27,6 +27,10 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField, ColorUsage(true, true)] private Color selectColor;
 	[SerializeField, ColorUsage(true, true)] private Color demolishColor;
 
+	[Header("Build UI Indicators")]
+	[SerializeField] private Sprite buildUISelectedButtonSprite;
+	[SerializeField] private Sprite buildUIDeselectedButtonSprite;
+
 	// Getters
 	public VisualTreeAsset DefaultInspectorUI
 	{
@@ -54,6 +58,9 @@ public class PtUUISettings : ScriptableObject
 	{
 		get => demolishColor;
 	}
+
+	public Sprite BuildUISelectedButtonSprite { get => buildUISelectedButtonSprite; }
+	public Sprite BuildUIDeselectedButtonSprite { get => buildUIDeselectedButtonSprite; }
 
 
 

@@ -29,9 +29,11 @@ public class PtUUISettingsProvider
 				var settings = GetSerializedSettings();
 				EditorGUILayout.PropertyField(settings.FindProperty("defaultInspectorUI"), new GUIContent("Default Inspector"));
 				EditorGUILayout.PropertyField(settings.FindProperty("buildingInspectorUI"), new GUIContent("Building Inspector"));
-				EditorGUILayout.PropertyField(settings.FindProperty("buildingSelectionMaterial"), new GUIContent("Building Inspector"));
-				EditorGUILayout.PropertyField(settings.FindProperty("selectColor"), new GUIContent("Building Inspector"));
-				EditorGUILayout.PropertyField(settings.FindProperty("demolishColor"), new GUIContent("Building Inspector"));
+				EditorGUILayout.PropertyField(settings.FindProperty("buildingSelectionMaterial"), new GUIContent("Building Selection Material"));
+				EditorGUILayout.PropertyField(settings.FindProperty("selectColor"), new GUIContent("Building Selection Color"));
+				EditorGUILayout.PropertyField(settings.FindProperty("demolishColor"), new GUIContent("Building Demolish Color"));
+				EditorGUILayout.PropertyField(settings.FindProperty("buildUISelectedButtonSprite"), new GUIContent("Build UI Button Select Sprite"));
+				EditorGUILayout.PropertyField(settings.FindProperty("buildUIDeselectedButtonSprite"), new GUIContent("Build UI Button Deselect Sprite"));
 				
 				settings.ApplyModifiedPropertiesWithoutUndo();
 				settings.Dispose();

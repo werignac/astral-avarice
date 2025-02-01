@@ -46,19 +46,19 @@ public class BuildUIComponent : MonoBehaviour
 		/// Checks whether this binding sends the specified
 		/// building setting entry.
 		/// </summary>
-		private bool Sends(BuildingSettingEntry buildingSettingEntry)
+		public bool Sends(BuildingSettingEntry buildingSettingEntry)
 		{
 			return this.buildingSettingEntry == buildingSettingEntry;
 		}
 
 		public void ShowSelectUI()
 		{
-			// TODO
+			boundButtonElement.Q("BuildButton").style.backgroundImage = new StyleBackground(PtUUISettings.GetOrCreateSettings().BuildUISelectedButtonSprite);
 		}
 
 		public void HideSelectUI()
 		{
-			// TODO
+			boundButtonElement.Q("BuildButton").style.backgroundImage = new StyleBackground(PtUUISettings.GetOrCreateSettings().BuildUIDeselectedButtonSprite);
 		}
 
 		public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
@@ -206,14 +206,26 @@ public class BuildUIComponent : MonoBehaviour
 			if (oldState.GetStateType() == BuildStateType.DEMOLISH)
 			{
 				// Unselect the demolish button.
+				demolishButtonElement.Q("BuildButton").style.backgroundImage = new StyleBackground(PtUUISettings.GetOrCreateSettings().BuildUIDeselectedButtonSprite);
 			}
-			else if (oldState.GetStateType() == BuildStateType.CABLE)
+			else 
 			{
 				// Unselect the cable button.
-			}
-			else
-			{
+				if ((oldState.GetStateType() & BuildStateType.CABLE) != 0)
+					cableButtonElement.Q("BuildButton").style.backgroundImage = new StyleBackground(PtUUISettings.GetOrCreateSettings().BuildUIDeselectedButtonSprite);
+
 				// Unselect the corresponding build button.
+				if ((oldState.GetStateType() & BuildStateType.BUILDING) != 0)
+				{
+					BuildingBuildState buildingBuildState = oldState as BuildingBuildState;
+
+					BuildButtonBinding toHideButton = buildButtonBindings.Find(
+						(BuildButtonBinding button) => button.Sends(buildingBuildState.toBuild)
+					);
+
+					if (toHideButton != null)
+						toHideButton.HideSelectUI();
+				}
 			}
 		}
 
@@ -224,14 +236,26 @@ public class BuildUIComponent : MonoBehaviour
 			if (newState.GetStateType() == BuildStateType.DEMOLISH)
 			{
 				// Select the demolish button.
+				demolishButtonElement.Q("BuildButton").style.backgroundImage = new StyleBackground(PtUUISettings.GetOrCreateSettings().BuildUISelectedButtonSprite);
 			}
-			else if (oldState.GetStateType() == BuildStateType.CABLE)
+			else 
 			{
 				// Select the cable button.
-			}
-			else
-			{
+				if ((newState.GetStateType() & BuildStateType.CABLE) != 0)
+					cableButtonElement.Q("BuildButton").style.backgroundImage = new StyleBackground(PtUUISettings.GetOrCreateSettings().BuildUISelectedButtonSprite);
+
 				// Select the corresponding build button.
+				if ((newState.GetStateType() & BuildStateType.BUILDING) != 0)
+				{
+					BuildingBuildState buildingBuildState = newState as BuildingBuildState;
+
+					BuildButtonBinding toShowButton = buildButtonBindings.Find(
+						(BuildButtonBinding button) => button.Sends(buildingBuildState.toBuild)
+					);
+
+					if (toShowButton != null)
+						toShowButton.ShowSelectUI();
+				}
 			}
 		}
 	}

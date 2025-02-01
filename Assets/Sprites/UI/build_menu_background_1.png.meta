@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b81aaccb24b7946428016fe20c547663
+guid: 1aacea6b08ee57346b8b33caa1802ea0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7963390740095718593
-    second: screen_button_back_0
+      213: 5256389858025440078
+    second: build_menu_background_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -53,7 +53,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: screen_button_back_0
+      name: build_menu_background_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 543
-        height: 540
+        width: 625
+        height: 615
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 133, y: 102, z: 102, w: 133}
+      border: {x: 246, y: 284, z: 270, w: 280}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1c45a0fafa5a38e60800000000000000
-      internalID: 7963390740095718593
+      spriteID: e438290f9b272f840800000000000000
+      internalID: 5256389858025440078
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 546a466db5e8c4540a2a57f9899b5888
+    spriteID: e879bca48e665e04780bff39befb47d6
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      screen_button_back_0: 7963390740095718593
+      build_menu_background_1_0: 5256389858025440078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
