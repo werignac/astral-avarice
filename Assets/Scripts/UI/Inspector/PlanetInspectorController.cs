@@ -92,9 +92,11 @@ public class PlanetInspectorController : IInspectorController
 
         baseMassValue.text = displayingPlanet.Mass.ToString();
         totalMassValue.text = displayingPlanet.GetTotalMass().ToString();
-        if (displayingPlanet.SolarOutput > 0)
+
+        int s = Mathf.FloorToInt(displayingPlanet.SolarOutput - (displayingPlanet.transform.localScale.x / 2));
+        if (s > 0)
         {
-            solarOutputValue.text = Mathf.FloorToInt(displayingPlanet.SolarOutput - (displayingPlanet.transform.localScale.x / 2)).ToString();
+            solarOutputValue.text = s.ToString();
         }
         else
         {
