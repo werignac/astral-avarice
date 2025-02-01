@@ -4,17 +4,17 @@ using UnityEngine.UIElements;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
-public class BuildUIComponent : MonoBehaviour, IInspectable
+public class BuildUIComponent : MonoBehaviour
 {
-	private class BuildButtonBinding
+	protected class BuildButtonBinding : IInspectable
 	{
 		private VisualElement boundButtonElement;
 		private BuildingSettingEntry buildingSettingEntry;
 
 		// Events;
-		public UnityEvent<BuildingSettingEntry> OnButtonClick = new UnityEvent<BuildingSettingEntry>();
-		public UnityEvent<BuildingSettingEntry> OnButtonHoverStart = new UnityEvent<BuildingSettingEntry>();
-		public UnityEvent<BuildingSettingEntry> OnButtonHoverEnd = new UnityEvent<BuildingSettingEntry>();
+		public UnityEvent<BuildingSettingEntry, BuildButtonBinding> OnButtonClick = new UnityEvent<BuildingSettingEntry, BuildButtonBinding>();
+		public UnityEvent<BuildingSettingEntry, BuildButtonBinding> OnButtonHoverStart = new UnityEvent<BuildingSettingEntry, BuildButtonBinding>();
+		public UnityEvent<BuildingSettingEntry, BuildButtonBinding> OnButtonHoverEnd = new UnityEvent<BuildingSettingEntry, BuildButtonBinding>();
 
 		public BuildButtonBinding(VisualElement buttonElement, BuildingSettingEntry buildingSettingEntry)
 		{
@@ -29,17 +29,17 @@ public class BuildUIComponent : MonoBehaviour, IInspectable
 
 		private void Button_OnHoverEnd(PointerLeaveEvent evt)
 		{
-			OnButtonHoverEnd?.Invoke(buildingSettingEntry);
+			OnButtonHoverEnd?.Invoke(buildingSettingEntry, this);
 		}
 
 		private void Button_OnHoverStart(PointerEnterEvent evt)
 		{
-			OnButtonHoverStart?.Invoke(buildingSettingEntry);
+			OnButtonHoverStart?.Invoke(buildingSettingEntry, this);
 		}
 
 		private void Button_OnClick(ClickEvent evt)
 		{
-			OnButtonClick?.Invoke(buildingSettingEntry);
+			OnButtonClick?.Invoke(buildingSettingEntry, this);
 		}
 
 		/// <summary>
@@ -60,6 +60,12 @@ public class BuildUIComponent : MonoBehaviour, IInspectable
 		{
 			// TODO
 		}
+
+		public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
+		{
+			inspectorController = new BuildingButtonInspectorController(buildingSettingEntry);
+			return PtUUISettings.GetOrCreateSettings().BuildingInspectorUI;
+		}
 	}
 
 	private UIDocument uiDocument;
@@ -76,8 +82,7 @@ public class BuildUIComponent : MonoBehaviour, IInspectable
 
 	private List<BuildButtonBinding> buildButtonBindings = new List<BuildButtonBinding>();
 
-	private BuildingSettingEntry hoveredBuildingSettingEntry;
-	private InspectorUIComponent.InspectorLayer hoveredBuildingLayer;
+	private Dictionary<BuildingSettingEntry, InspectorUIComponent.InspectorLayer> inspectorLayers = new Dictionary<BuildingSettingEntry, InspectorUIComponent.InspectorLayer>();
 
 
 	private void Awake()
@@ -130,33 +135,26 @@ public class BuildUIComponent : MonoBehaviour, IInspectable
 		BuildManagerComponent.Instance.SetCableState();
 	}
 
-	private void BuildingButton_OnHoverEnd(BuildingSettingEntry arg0)
+	private void BuildingButton_OnHoverEnd(BuildingSettingEntry buildingSettings, BuildButtonBinding _)
 	{
-		if (hoveredBuildingLayer != null)
+		if (inspectorLayers.ContainsKey(buildingSettings))
 		{
-			inspectorUI.RemoveLayer(hoveredBuildingLayer);
-		}
-		if (hoveredBuildingSettingEntry == arg0)
-		{
-			hoveredBuildingSettingEntry = null;
-			hoveredBuildingLayer = null;
-		}
-		else if(hoveredBuildingSettingEntry != null)
-        {
-			hoveredBuildingLayer = inspectorUI.AddLayer(this, InspectorUIComponent.InspectorLayerType.UI_HOVER);
-        }
-	}
-
-	private void BuildingButton_OnHoverStart(BuildingSettingEntry arg0)
-	{
-		hoveredBuildingSettingEntry = arg0;
-		if (hoveredBuildingLayer == null)
-		{
-			hoveredBuildingLayer = inspectorUI.AddLayer(this, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+			InspectorUIComponent.InspectorLayer layer = inspectorLayers[buildingSettings];
+			inspectorUI.RemoveLayer(layer);
+			inspectorLayers.Remove(buildingSettings);
 		}
 	}
 
-    protected virtual void BuildingButton_OnClick(BuildingSettingEntry toBuild)
+	private void BuildingButton_OnHoverStart(BuildingSettingEntry buildingSettings, BuildButtonBinding button)
+	{
+		if (!inspectorLayers.ContainsKey(buildingSettings))
+		{
+			InspectorUIComponent.InspectorLayer newLayer = inspectorUI.AddLayer(button, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+			inspectorLayers.Add(buildingSettings, newLayer);
+		}
+	}
+
+    protected virtual void BuildingButton_OnClick(BuildingSettingEntry toBuild, BuildButtonBinding _)
 	{
 		BuildManagerComponent.Instance.SetBuildState(toBuild);
 	}
@@ -236,11 +234,5 @@ public class BuildUIComponent : MonoBehaviour, IInspectable
 				// Select the corresponding build button.
 			}
 		}
-	}
-
-    public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
-	{
-		inspectorController = new BuildingButtonInspectorController(hoveredBuildingSettingEntry);
-		return PtUUISettings.GetOrCreateSettings().BuildingInspectorUI;
 	}
 }

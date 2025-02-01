@@ -13,11 +13,11 @@ public class TutorialBuildUIComponent : BuildUIComponent
         }
     }
 
-    protected override void BuildingButton_OnClick(BuildingSettingEntry toBuild)
+    protected override void BuildingButton_OnClick(BuildingSettingEntry toBuild, BuildButtonBinding _)
     {
         if (tutorialController.buildingAllowed(toBuild.BuildingDataAsset))
         {
-            base.BuildingButton_OnClick(toBuild);
+            base.BuildingButton_OnClick(toBuild, _);
         }
     }
 
