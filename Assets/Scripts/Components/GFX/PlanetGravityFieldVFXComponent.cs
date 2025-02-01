@@ -62,8 +62,11 @@ public class PlanetGravityFieldVFXComponent : MonoBehaviour
 	{
 		float outerRadiusObjectSpace = outerRadius * initialScale * 2;
 		float innerRadiusUVSpace = innerRadius / outerRadius;
-		
+
+		Transform parent = gravityFieldRenderer.transform.parent;
+		gravityFieldRenderer.transform.parent = null;
 		gravityFieldRenderer.transform.localScale = Vector3.one * outerRadiusObjectSpace;
 		gravityFieldRenderer.material.SetFloat(Shader.PropertyToID("_InnerRadius"), innerRadiusUVSpace);
+		gravityFieldRenderer.transform.parent = parent;
 	}
 }

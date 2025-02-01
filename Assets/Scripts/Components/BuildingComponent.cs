@@ -89,6 +89,9 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 			transform.position = position;
 			transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(upNormal.y, upNormal.x) * Mathf.Rad2Deg - 90);
 			transform.SetParent(parentPlanet.BuildingContainer);
+#if UNITY_EDITOR
+            parentPlanet.AdjustGravityRing();
+#endif
 			return (true);
 		}
 		return (false);
