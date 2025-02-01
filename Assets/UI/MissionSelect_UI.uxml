@@ -1,12 +1,14 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=4124b1416559d0b44b5377efa564a3eb&amp;type=3#MainMenuStyleSheet" />
-    <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(70, 0, 70);">
-        <engine:ScrollView horizontal-scroller-visibility="Hidden" name="MissionScroll" class="scrollView" style="align-self: center;">
+    <engine:VisualElement name="VisualElement" class="menuBackground" style="flex-grow: 1; width: 500px; padding-left: 30px;">
+        <engine:Label text="Mission Select" name="Title" class="text" />
+        <engine:ScrollView horizontal-scroller-visibility="Hidden" name="MissionScroll" class="scrollView" style="align-self: flex-start; width: 569px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-grow: 1;">
             <engine:VisualElement name="MissionsContent" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap;">
                 <engine:Button text="Button" class="missionButton" />
                 <engine:Button text="Button" class="missionButton" />
                 <engine:Button text="Button" class="missionButton" />
             </engine:VisualElement>
         </engine:ScrollView>
+        <engine:Button text="Back" name="BackButton" class="missionButton" style="margin-bottom: 50px; margin-top: 30px;" />
     </engine:VisualElement>
 </engine:UXML>
