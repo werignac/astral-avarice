@@ -49,6 +49,9 @@ public class InspectorUIComponent : MonoBehaviour
 	private VisualElement collapsableInspectorContent;
 	private VisualElement inspectorUIContainer;
 
+	[SerializeField] private Sprite collapseButtonMenuOpened;
+	[SerializeField] private Sprite collapseButtonMenuClosed;
+
 	[SerializeField] private GameController gameController;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
 
@@ -146,9 +149,11 @@ public class InspectorUIComponent : MonoBehaviour
 		{
 			case DisplayStyle.None:
 				collapsableInspectorContent.style.display = DisplayStyle.Flex;
+				collapseButton.style.backgroundImage = new StyleBackground(collapseButtonMenuOpened);
 				break;
 			case DisplayStyle.Flex:
 				collapsableInspectorContent.style.display = DisplayStyle.None;
+				collapseButton.style.backgroundImage = new StyleBackground(collapseButtonMenuClosed);
 				break;
 		}
 	}

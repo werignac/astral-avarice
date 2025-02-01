@@ -70,6 +70,8 @@ public class BuildUIComponent : MonoBehaviour
 
 	private UIDocument uiDocument;
 	[SerializeField] private VisualTreeAsset buildingButtonTemplate;
+	[SerializeField] private Sprite collapseButtonMenuOpenedSprite;
+	[SerializeField] private Sprite collapseButtonMenuClosedSprite;
 	[SerializeField] private Sprite demolishIcon;
 	[SerializeField] private Sprite cableIcon;
 	[SerializeField] private InspectorUIComponent inspectorUI;
@@ -191,9 +193,11 @@ public class BuildUIComponent : MonoBehaviour
 		{
 			case DisplayStyle.None:
 				collapsableBuildMenu.style.display = DisplayStyle.Flex;
+				collapseMenuButton.style.backgroundImage = new StyleBackground(collapseButtonMenuOpenedSprite);
 				break;
 			case DisplayStyle.Flex:
 				collapsableBuildMenu.style.display = DisplayStyle.None;
+				collapseMenuButton.style.backgroundImage = new StyleBackground(collapseButtonMenuClosedSprite);
 				break;
 		}
 	}
