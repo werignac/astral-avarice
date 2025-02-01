@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hex_ui_background_gradient_0: 999543874507846123
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

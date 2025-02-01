@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -7,8 +8,14 @@ public class MainMenuUIComponent : MonoBehaviour
     [SerializeField] private DataSet gameData;
     [SerializeField] private UIDocument mainMenuDocument;
     [SerializeField] private UIDocument missionSelectDocument;
+    [SerializeField] private UIDocument settingsDocument;
+    [SerializeField] private UIDocument creditsDocument;
+    [SerializeField] private AudioMixer audioMixer;
 
     private VisualElement missionsContent;
+    private Slider masterVolumeSlider;
+    private Slider musicVolumeSlider;
+    private Slider sfxVolumeSlider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,14 +28,44 @@ public class MainMenuUIComponent : MonoBehaviour
         Button missionMenuButton = mainMenuDocument.rootVisualElement.Q("MissionSelectButton") as Button;
         missionMenuButton.RegisterCallback<ClickEvent>(OpenMissionPanel);
 
-		// TODO: Show credits.
-		Button creditsButton = mainMenuDocument.rootVisualElement.Q<Button>("CreditsButton");
+        Button settingsButton = mainMenuDocument.rootVisualElement.Q<Button>("SettingsButton");
+        settingsButton.RegisterCallback<ClickEvent>(OpenSettingsMenu);
+
+        Button creditsButton = mainMenuDocument.rootVisualElement.Q<Button>("CreditsButton");
+        creditsButton.RegisterCallback<ClickEvent>(OpenCreditsPage);
 
 		Button missionBackButton = missionSelectDocument.rootVisualElement.Q<Button>("BackButton");
 		missionBackButton.RegisterCallback<ClickEvent>(OpenMainMenu);
 
+        Button settingsBackButton = settingsDocument.rootVisualElement.Q<Button>("BackButton");
+        settingsBackButton.RegisterCallback<ClickEvent>(OpenMainMenu);
+
+        Button creditsBackButton = creditsDocument.rootVisualElement.Q<Button>("BackButton");
+        creditsBackButton.RegisterCallback<ClickEvent>(OpenMainMenu);
+
+        masterVolumeSlider = settingsDocument.rootVisualElement.Q<Slider>("MasterSlider");
+        float masterVolume;
+        audioMixer.GetFloat("Master", out masterVolume);
+        masterVolumeSlider.value = masterVolume;
+        masterVolumeSlider.RegisterValueChangedCallback<float>(MasterVolumeChanged);
+
+        musicVolumeSlider = settingsDocument.rootVisualElement.Q<Slider>("MusicSlider");
+        float musicVolume;
+        audioMixer.GetFloat("BGM", out musicVolume);
+        musicVolumeSlider.value = musicVolume;
+        musicVolumeSlider.RegisterValueChangedCallback<float>(MusicVolumeChanged);
+
+        sfxVolumeSlider = settingsDocument.rootVisualElement.Q<Slider>("SFXSlider");
+        float sfxVolume;
+        audioMixer.GetFloat("SFX", out sfxVolume);
+        sfxVolumeSlider.value = sfxVolume;
+        sfxVolumeSlider.RegisterValueChangedCallback<float>(SFXVolumeChanged);
+
         missionSelectDocument.sortingOrder = 0;
 		missionSelectDocument.rootVisualElement.style.display = DisplayStyle.None;
+
+        settingsDocument.rootVisualElement.style.display = DisplayStyle.None;
+        creditsDocument.rootVisualElement.style.display = DisplayStyle.None;
     }
 
     // Update is called once per frame
@@ -79,5 +116,55 @@ public class MainMenuUIComponent : MonoBehaviour
 	{
 		mainMenuDocument.rootVisualElement.style.display = DisplayStyle.Flex;
 		missionSelectDocument.rootVisualElement.style.display = DisplayStyle.None;
-	}
+        settingsDocument.rootVisualElement.style.display = DisplayStyle.None;
+        creditsDocument.rootVisualElement.style.display = DisplayStyle.None;
+    }
+
+    public void OpenSettingsMenu(ClickEvent click)
+    {
+        settingsDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+        mainMenuDocument.rootVisualElement.style.display = DisplayStyle.None;
+    }
+
+    private void OpenCreditsPage(ClickEvent click)
+    {
+        creditsDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+        mainMenuDocument.rootVisualElement.style.display = DisplayStyle.None;
+    }
+
+    private void MasterVolumeChanged(ChangeEvent<float> newValue)
+    {
+        if (newValue.newValue < -29f)
+        {
+            audioMixer.SetFloat("Master", -80);
+        }
+        else
+        {
+            audioMixer.SetFloat("Master", newValue.newValue);
+        }
+    }
+
+    private void MusicVolumeChanged(ChangeEvent<float> newValue)
+    {
+        if (newValue.newValue < -49f)
+        {
+            audioMixer.SetFloat("BGM", -80);
+        }
+        else
+        {
+            audioMixer.SetFloat("BGM", newValue.newValue);
+        }
+    }
+
+    private void SFXVolumeChanged(ChangeEvent<float> newValue)
+    {
+        if (newValue.newValue < -49f)
+        {
+            audioMixer.SetFloat("SFX", -80);
+        }
+        else
+        {
+            audioMixer.SetFloat("SFX", newValue.newValue);
+        }
+    }
 }
