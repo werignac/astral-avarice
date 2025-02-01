@@ -9,7 +9,7 @@ public class BuildingOutlineComponent : MonoBehaviour
 
 	private void Awake()
 	{
-		defaultMaterial = spriteRenderer.material;
+		defaultMaterial = spriteRenderer.sharedMaterial;
 		buildingComponent = GetComponentInParent<BuildingComponent>();
 	}
 

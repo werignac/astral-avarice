@@ -335,7 +335,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      coal_planet_texture_1_0: -3357687103592766402
+      coal_planet_texture_1_1: 7560025966313607767
+      coal_planet_texture_1_2: -9169485898039942464
+      coal_planet_texture_1_3: -4552573837886308110
+      coal_planet_texture_1_4: -9112424509502317340
+      coal_planet_texture_1_5: -4189758625801134079
+      coal_planet_texture_1_6: -7733753574079821747
+      coal_planet_texture_1_7: 5690938336626616104
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

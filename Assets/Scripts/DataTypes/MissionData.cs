@@ -9,5 +9,5 @@ public class MissionData : ScriptableObject
     public string missionName;
     public int startingScience;
     public BuildingData[] startingBuildings;
-    public bool tutorial;
+    public string tutorialScene;
 }

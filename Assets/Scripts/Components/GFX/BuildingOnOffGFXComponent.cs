@@ -16,15 +16,18 @@ public class BuildingOnOffGFXComponent : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (buildingComponent.BackendBuilding.IsPowered)
+		if (buildingComponent.BackendBuilding != null)
 		{
-			if (renderer.sprite != onSprite)
-				renderer.sprite = onSprite;
-		}
-		else
-		{
-			if (renderer.sprite != offSprite)
-				renderer.sprite = offSprite;
+			if (buildingComponent.BackendBuilding.IsPowered)
+			{
+				if (renderer.sprite != onSprite)
+					renderer.sprite = onSprite;
+			}
+			else
+			{
+				if (renderer.sprite != offSprite)
+					renderer.sprite = offSprite;
+			}
 		}
 		
 	}

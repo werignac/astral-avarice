@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83697e6c3f63ccf4f90e9a03263812af, type: 3}
+  m_Name: Advanced Tutorial
+  m_EditorClassIdentifier: 
+  startingCash: 800
+  cashGoal: 2000
+  timeLimit: 1200
+  missionName: Advanced Tutorial
+  startingScience: 0
+  startingBuildings:
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
+  - {fileID: 11400000, guid: 42400773a1995a94289aedfbc563f365, type: 2}
+  - {fileID: 11400000, guid: 9765d05d5308fa54e9c4724f86827cf1, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: fb7774071fd23fb4398502288364815d, type: 2}
+  - {fileID: 11400000, guid: 534563545c4bf37428b00af659d7bd1c, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: fb7774071fd23fb4398502288364815d, type: 2}
+  - {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
+  - {fileID: 11400000, guid: 818655cc968fa5e45b219efff2bd24ec, type: 2}
+  - {fileID: 11400000, guid: 42400773a1995a94289aedfbc563f365, type: 2}
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
+  - {fileID: 11400000, guid: 2604ae1054aaced4b8e3a43c56af5936, type: 2}
+  tutorialScene: TutorialAdvanced

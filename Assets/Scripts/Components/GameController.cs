@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
 		gameSpeed = 1;
         gameManager = new GameManager(this);
@@ -281,7 +281,7 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	private void RegisterBuilding(BuildingComponent buildingComponent)
+	protected virtual void RegisterBuilding(BuildingComponent buildingComponent)
 	{
 		Buildings.Add(buildingComponent);
 		

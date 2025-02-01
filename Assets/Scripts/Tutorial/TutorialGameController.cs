@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class TutorialGameController : GameController
 {
-    enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2, planetDestroyed = 3, cableFour = 4 };
+    enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2, planetDestroyed = 3, cableFour = 4, selectedHouse = 5, selectedThruster = 6, clickFour = 7 };
     enum TutorialAllowedAction { none = 0, cable = 1, pylon = 2, fission = 3, lab = 4, coal = 5 };
 
     [SerializeField] private TutorialUI tutorialUI;
+    [SerializeField] private MissionData tutorialMission;
     [SerializeField] private TutorialStateChangeCondition[] stateChangeConditions;
     [SerializeField] private TutorialAllowedAction[] allowedActions;
     [SerializeField] private int[] gameSpeedOverrides;
@@ -54,6 +55,14 @@ public class TutorialGameController : GameController
         }
     }
 
+    protected override void Start()
+    {
+        if(tutorialMission != null)
+        {
+            Data.selectedMission = tutorialMission;
+        }
+        base.Start();
+    }
     protected override void Update()
     {
         base.Update();
@@ -64,6 +73,14 @@ public class TutorialGameController : GameController
         if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.click && Input.GetMouseButtonDown(0))
         {
             advanceAtEndOfNextUpdate = true;
+        }
+        if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.clickFour && Input.GetMouseButtonDown(0))
+        {
+            ++numCables;
+            if(numCables >= 4)
+            {
+                advanceAtEndOfNextUpdate = true;
+            }
         }
         if(advanceAtEndOfNextUpdate)
         {
@@ -109,5 +126,27 @@ public class TutorialGameController : GameController
         {
             advanceAtEndOfNextUpdate = true;
         }
+    }
+
+    protected override void RegisterBuilding(BuildingComponent buildingComponent)
+    {
+        base.RegisterBuilding(buildingComponent);
+        buildingComponent.OnBuildingSelected.AddListener(delegate { BuildingSelected(buildingComponent); });
+    }
+
+    public void BuildingSelected(BuildingComponent building)
+    {
+        if (currentTutorialState < stateChangeConditions.Length)
+        {
+            if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.selectedHouse && building.Data.name.Contains("House"))
+            {
+                advanceAtEndOfNextUpdate = true;
+            }
+            else if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.selectedThruster && building.Data.name.Contains("Thruster"))
+            {
+                advanceAtEndOfNextUpdate = true;
+            }
+        }
+        
     }
 }

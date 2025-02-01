@@ -80,7 +80,7 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
     /// Sets the location and rotation of the building to be at a particular
     /// point and rotate in a particular direction.
     /// </summary>
-    public void SetPositionAndUpNormal()
+    public bool SetPositionAndUpNormal()
     {
 		if (parentPlanet != null)
 		{
@@ -89,7 +89,9 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 			transform.position = position;
 			transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(upNormal.y, upNormal.x) * Mathf.Rad2Deg - 90);
 			transform.SetParent(parentPlanet.BuildingContainer);
+			return (true);
 		}
+		return (false);
     }
 
 	// TODO: Use for when objects move.
