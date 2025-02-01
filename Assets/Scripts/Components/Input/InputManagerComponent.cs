@@ -11,10 +11,14 @@ public class InputManagerComponent : MonoBehaviour
 	private InputAction panAction;
 	private InputAction cancelAction;
 	private InputAction zoomAction;
+	private InputAction incrementGameSpeedAction;
+	private InputAction decrementGameSpeedAction;
+	private InputAction redistributeElectricityAction;
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
 	[SerializeField] private InspectorUIComponent inspector;
+	[SerializeField] private GameController gameController;
 
 	private void Awake()
 	{
@@ -34,6 +38,9 @@ public class InputManagerComponent : MonoBehaviour
 		panAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Pan"];
 		cancelAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Cancel"];
 		zoomAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Zoom"];
+		incrementGameSpeedAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["IncrementGameSpeed"];
+		decrementGameSpeedAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["DecrementGameSpeed"];
+		redistributeElectricityAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["RedistributeElectricity"];
 
 		StartCoroutine(RefreshInputComponent());
 	}
@@ -53,6 +60,7 @@ public class InputManagerComponent : MonoBehaviour
 		UpdateBuildManager();
 		UpdateInspector();
 		UpdateCameraMovement();
+		UpdateGameController();
 	}
 
 	private void UpdateSelectionCursor()
@@ -118,6 +126,24 @@ public class InputManagerComponent : MonoBehaviour
 			// User may scroll to read build menu, don't zoom when this is the case.
 			if (! EventSystem.current.IsPointerOverGameObject())
 				cameraMovementComponent.SetZoomInput(zoomAction.ReadValue<float>());
+		}
+	}
+
+	private void UpdateGameController()
+	{
+		if (incrementGameSpeedAction.WasPerformedThisFrame())
+		{
+			gameController.IncrementGameSpeed();
+		}
+
+		if (decrementGameSpeedAction.WasPerformedThisFrame())
+		{
+			gameController.DecrementGameSpeed();
+		}
+
+		if (redistributeElectricityAction.WasPerformedThisFrame())
+		{
+			gameController.RecomputeIncome();
 		}
 	}
 }

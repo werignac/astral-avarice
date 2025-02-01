@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4379f901e7518e44b879e3e5c2683891
+guid: ed7f183e4de356b429d7eb132fc20744
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 321061535402266006
-    second: pause_menu_background_0
+      213: 3538886998948753163
+    second: redistribute_button_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pause_menu_background_0
+      name: redistribute_button_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 625
-        height: 615
+        width: 986
+        height: 986
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 247, y: 285, z: 224, w: 240}
+      border: {x: 200, y: 200, z: 200, w: 200}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 69d81b0f3c3a47400800000000000000
-      internalID: 321061535402266006
+      spriteID: b0fa698c9f6ac1130800000000000000
+      internalID: 3538886998948753163
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b2e79b405ae9cc8468238c6a9b101df0
+    spriteID: dc009af3eb183df45975553c1858cb3f
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pause_menu_background_0: 321061535402266006
+      redistribute_button_0: 3538886998948753163
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4379f901e7518e44b879e3e5c2683891
+guid: a827226d80c73ef4081485795240d08f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 321061535402266006
-    second: pause_menu_background_0
+      213: 2246817047484990474
+    second: lightning_bolt_icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pause_menu_background_0
+      name: lightning_bolt_icon_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 625
-        height: 615
+        width: 107
+        height: 234
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 247, y: 285, z: 224, w: 240}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 69d81b0f3c3a47400800000000000000
-      internalID: 321061535402266006
+      spriteID: a0482a6533c4e2f10800000000000000
+      internalID: 2246817047484990474
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b2e79b405ae9cc8468238c6a9b101df0
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pause_menu_background_0: 321061535402266006
+      lightning_bolt_icon_0: 2246817047484990474
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

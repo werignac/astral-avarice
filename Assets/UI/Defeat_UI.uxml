@@ -1,6 +1,12 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/EndGameStyleSheet.uss?fileID=7433441132597879392&amp;guid=7ea9d4381e7b11e4d8686bacacdc6385&amp;type=3#EndGameStyleSheet" />
     <engine:VisualElement style="flex-grow: 1; background-color: rgba(45, 8, 49, 0.71);">
-        <engine:Label text="You call that a business?&#10;How do you expect to fill&#10;up your giant money vault&#10;with that paultry amount&#10;of revenue?&#10;Try Again!" class="Text" />
+        <engine:VisualElement name="MenuContainer" style="flex-grow: 1; flex-shrink: 1; align-self: center; flex-direction: row;">
+            <engine:VisualElement name="MenuLayout" style="flex-grow: 0; align-self: center; background-image: url(&quot;project://database/Assets/Sprites/UI/build_menu_background_1.png?fileID=5256389858025440078&amp;guid=1aacea6b08ee57346b8b33caa1802ea0&amp;type=3#build_menu_background_1_0&quot;); padding-top: 107px; padding-right: 107px; padding-bottom: 107px; padding-left: 107px;">
+                <engine:Label text="You call that a business?&#10;How do you expect to fill&#10;up your giant money vault&#10;with that paultry amount&#10;of revenue?" class="Text" style="width: auto; height: auto; align-items: center; flex-grow: 0; margin-bottom: 17px; margin-top: 17px; margin-right: 17px; margin-left: 17px;" />
+                <engine:Button text="Try Again" name="MainMenuButton" class="button" style="align-self: center; background-image: url(&quot;project://database/Assets/Sprites/UI/screen_button_back.png?fileID=7963390740095718593&amp;guid=b81aaccb24b7946428016fe20c547663&amp;type=3#screen_button_back_0&quot;);" />
+                <engine:Button text="Main Menu" name="MainMenuButton" class="button" style="align-self: center; background-image: url(&quot;project://database/Assets/Sprites/UI/screen_button_back.png?fileID=7963390740095718593&amp;guid=b81aaccb24b7946428016fe20c547663&amp;type=3#screen_button_back_0&quot;);" />
+            </engine:VisualElement>
+        </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

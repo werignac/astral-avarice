@@ -1,0 +1,49 @@
+.redistributeButton {
+    background-image: url("project://database/Assets/Sprites/UI/redistribute_button.png?fileID=3538886998948753163&guid=ed7f183e4de356b429d7eb132fc20744&type=3#redistribute_button_0");
+    -unity-slice-scale: 0.04px;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgb(196, 196, 196);
+}
+
+.redistributeButton:hover {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.redistributeButton:active {
+    background-image: url("project://database/Assets/Sprites/UI/redistribute_button_pressed.png?fileID=-3471414633516497544&guid=55f738cbbbeaee948a84ec5cb9f4b67d&type=3#redistribute_button_pressed_0");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.statsText {
+    font-size: 16px;
+    -unity-text-align: middle-left;
+}
+
+.incrementButton {
+    -unity-background-image-tint-color: rgb(223, 223, 223);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.statsText {
+    font-size: 16px;
+    -unity-text-align: middle-left;
+    border-left-color: rgba(231, 231, 231, 0);
+    border-right-color: rgba(231, 231, 231, 0);
+    border-top-color: rgba(231, 231, 231, 0);
+    border-bottom-color: rgba(231, 231, 231, 0);
+}
+
+.incrementButton:hover {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.incrementButton:active {
+    -unity-background-image-tint-color: rgb(143, 143, 143);
+}

@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 {
     private GameObject levelObject;
     private GameManager gameManager;
-    [SerializeField] private UIDocument buildDocument;
+    [SerializeField] private UIDocument statsDocument;
 	[SerializeField] private AudioSource sfxAudio;
 	[SerializeField] private AudioClip buildClip;
 	[SerializeField] private AudioClip demolishClip;
@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
 	private Label scienceLabel;
 	private Label scienceIncomeLabel;
 	private Label timeLabel;
+	private Label timeScaleLabel;
 	protected int gameSpeed;
 	private float endGameTime = 0;
 	private bool gameEnded = false;
@@ -53,12 +54,13 @@ public class GameController : MonoBehaviour
     {
 		gameSpeed = 1;
         gameManager = new GameManager(this);
-        cashLabel = buildDocument.rootVisualElement.Q("Cash") as Label;
-        incomeLabel = buildDocument.rootVisualElement.Q("Income") as Label;
-		scienceLabel = buildDocument.rootVisualElement.Q("Science") as Label;
-		scienceIncomeLabel = buildDocument.rootVisualElement.Q("ScienceIncome") as Label;
-		timeLabel = buildDocument.rootVisualElement.Q("Time") as Label;
-		if(Data.selectedMission == null)
+        cashLabel = statsDocument.rootVisualElement.Q("Cash") as Label;
+        incomeLabel = statsDocument.rootVisualElement.Q("Income") as Label;
+		scienceLabel = statsDocument.rootVisualElement.Q("Science") as Label;
+		scienceIncomeLabel = statsDocument.rootVisualElement.Q("ScienceIncome") as Label;
+		timeLabel = statsDocument.rootVisualElement.Q("Time") as Label;
+		timeScaleLabel = statsDocument.rootVisualElement.Q<Label>("TimeScale");
+		if (Data.selectedMission == null)
 		{
 			Data.selectedMission = gameDataSet.missionDatas[0];
 		}
@@ -109,28 +111,44 @@ public class GameController : MonoBehaviour
 		}
 		else
 		{
-			if (Input.GetKeyDown(KeyCode.Equals) && gameSpeed < 5)
-			{
-				++gameSpeed;
-			}
-			if (Input.GetKeyDown(KeyCode.Minus) && gameSpeed > 1)
-			{
-				--gameSpeed;
-			}
-			if (Input.GetKeyDown(KeyCode.R))
-			{
-				gameManager.CalculateIncome();
-			}
 			gameManager.Update(Time.deltaTime * gameSpeed);
 
-			string timeText = "X" + gameSpeed + "     ";
-			timeText += Mathf.FloorToInt(gameManager.TimePassed / 60);
-			timeText += ":" + (Mathf.FloorToInt((gameManager.TimePassed % 60)));
+			string timeText = Mathf.FloorToInt(gameManager.TimePassed / 60).ToString("00");
+			timeText += ":" + Mathf.FloorToInt((gameManager.TimePassed % 60)).ToString("00");
 			timeLabel.text = timeText;
+
+			timeScaleLabel.text = "X" + gameSpeed;
 		}
 	}
 
-    void FixedUpdate()
+	/// <summary>
+	/// Invoked by input manager and status UI prior to update.
+	/// </summary>
+	public void IncrementGameSpeed()
+	{
+		if (!gameEnded && gameSpeed < 5)
+			++gameSpeed;
+	}
+
+	/// <summary>
+	/// Invoked by input manager and status UI prior to update.
+	/// </summary>
+	public void DecrementGameSpeed()
+	{
+		if (!gameEnded && gameSpeed > 1)
+			--gameSpeed;
+	}
+
+	/// <summary>
+	/// Invoked by input manager and status UI prior to update.
+	/// </summary>
+	public void RecomputeIncome()
+	{
+		if (! gameEnded)
+			gameManager.CalculateIncome();
+	}
+
+	void FixedUpdate()
     {
 		if (!gameEnded)
 		{
