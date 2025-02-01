@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83697e6c3f63ccf4f90e9a03263812af, type: 3}
-  m_Name: StandardMap
+  m_Name: Standard Map
   m_EditorClassIdentifier: 
   startingCash: 400
   cashGoal: 2000
   timeLimit: 1200
-  missionName: StandardMap
+  missionName: Standard Map
   startingScience: 0
   startingBuildings:
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
@@ -38,4 +38,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
-  tutorial: 0
+  tutorialScene: 

@@ -687,6 +687,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &260626045767766210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,6 +2188,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1047134668130749530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2226,6 +2262,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1094462183421945572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,6 +2334,24 @@ MonoBehaviour:
   parentPlanet: {fileID: 2242338240406805982}
   isPlayerDemolishable: 0
   OnBuildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1177865329743064723
@@ -3001,6 +3073,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1608428042837022808
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,6 +3428,24 @@ MonoBehaviour:
   parentPlanet: {fileID: 7596373775218084583}
   isPlayerDemolishable: 0
   OnBuildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1729938723678047705
@@ -3761,7 +3869,7 @@ GameObject:
   - component: {fileID: 5803728339412350274}
   - component: {fileID: 3946844939217164171}
   m_Layer: 0
-  m_Name: StandardMap
+  m_Name: Standard Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3838,7 +3946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f41f10e01081c342b6693cda4c37904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: StandardMap
+  levelName: Standard Map
   levelDimentions: {x: 80, y: 70}
   startingCash: 400
   startingScience: 0
@@ -6218,6 +6326,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3316928762035851021
 GameObject:
   m_ObjectHideFlags: 0
@@ -7840,6 +7966,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4361605091707329760
 GameObject:
   m_ObjectHideFlags: 0
@@ -8166,6 +8310,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4769722839064640648
 GameObject:
   m_ObjectHideFlags: 0
@@ -8457,6 +8619,24 @@ MonoBehaviour:
   parentPlanet: {fileID: 2242338240406805982}
   isPlayerDemolishable: 0
   OnBuildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &4917512778595601998
@@ -10172,6 +10352,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5863401461984065602
 GameObject:
   m_ObjectHideFlags: 0
@@ -10226,6 +10424,24 @@ MonoBehaviour:
   parentPlanet: {fileID: 7596373775218084583}
   isPlayerDemolishable: 0
   OnBuildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &5911533830475411241
@@ -11413,6 +11629,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7204463640942267895
 GameObject:
   m_ObjectHideFlags: 0
@@ -11671,6 +11905,24 @@ MonoBehaviour:
   parentPlanet: {fileID: 1853996601737053250}
   isPlayerDemolishable: 0
   OnBuildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &7398767337625919894
@@ -12139,6 +12391,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7580175978958854333
 GameObject:
   m_ObjectHideFlags: 0
@@ -12224,6 +12494,24 @@ MonoBehaviour:
   parentPlanet: {fileID: 6638738616393856924}
   isPlayerDemolishable: 0
   OnBuildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &7651259572398447139
@@ -12776,6 +13064,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8089361349055045513
 GameObject:
   m_ObjectHideFlags: 0
@@ -12917,6 +13223,24 @@ MonoBehaviour:
   parentPlanet: {fileID: 4270534426438855123}
   isPlayerDemolishable: 0
   OnBuildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8172229976952995189
@@ -14194,6 +14518,24 @@ MonoBehaviour:
   OnBuildingDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8907926913206182351
 GameObject:
   m_ObjectHideFlags: 0
@@ -14519,6 +14861,24 @@ MonoBehaviour:
   parentPlanet: {fileID: 7253033502509124060}
   isPlayerDemolishable: 0
   OnBuildingDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingDeselected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverStartForDemolish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBuildingHoverEndForDemolish:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9100196429078668494
