@@ -1,4 +1,5 @@
 using UnityEngine;
+using werignac.Utils;
 
 public class TutorialGameController : GameController
 {
@@ -62,6 +63,18 @@ public class TutorialGameController : GameController
             Data.selectedMission = tutorialMission;
         }
         base.Start();
+    }
+
+    protected override void CollectInitialGameObjects()
+    {
+        base.CollectInitialGameObjects();
+        foreach(BuildingComponent building in Buildings)
+        {
+            if (building.Data.buildingType == BuildingType.PowerConsumer && building.BackendBuilding.IsPowered)
+            {
+                building.BackendBuilding.TogglePower();
+            }
+        }
     }
     protected override void Update()
     {
