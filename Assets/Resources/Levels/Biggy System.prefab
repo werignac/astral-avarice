@@ -6643,7 +6643,7 @@ GameObject:
   - component: {fileID: 2415229249657384638}
   - component: {fileID: 6136476667774385523}
   m_Layer: 0
-  m_Name: BiggySystem
+  m_Name: Biggy System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6691,7 +6691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f41f10e01081c342b6693cda4c37904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: BiggySystem
+  levelName: Biggy System
   levelDimentions: {x: 80, y: 80}
   startingCash: 350
   startingScience: 0

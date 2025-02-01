@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83697e6c3f63ccf4f90e9a03263812af, type: 3}
-  m_Name: BiggySystem
+  m_Name: Biggy System
   m_EditorClassIdentifier: 
   startingCash: 350
   cashGoal: 3500
   timeLimit: 1200
-  missionName: BiggySystem
+  missionName: Biggy System
   startingScience: 0
   startingBuildings:
   - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
