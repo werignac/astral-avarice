@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Asteroid Field
   levelDimentions: {x: 80, y: 70}
-  startingCash: 800
+  startingCash: 600
   startingScience: 0
   goalCash: 2000
   levelTime: 1200
