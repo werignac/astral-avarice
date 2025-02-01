@@ -20,7 +20,15 @@ public class MainMenuUIComponent : MonoBehaviour
         }
         Button missionMenuButton = mainMenuDocument.rootVisualElement.Q("MissionSelectButton") as Button;
         missionMenuButton.RegisterCallback<ClickEvent>(OpenMissionPanel);
+
+		// TODO: Show credits.
+		Button creditsButton = mainMenuDocument.rootVisualElement.Q<Button>("CreditsButton");
+
+		Button missionBackButton = missionSelectDocument.rootVisualElement.Q<Button>("BackButton");
+		missionBackButton.RegisterCallback<ClickEvent>(OpenMainMenu);
+
         missionSelectDocument.sortingOrder = 0;
+		missionSelectDocument.rootVisualElement.style.display = DisplayStyle.None;
     }
 
     // Update is called once per frame
@@ -45,7 +53,10 @@ public class MainMenuUIComponent : MonoBehaviour
 
     public void OpenMissionPanel(ClickEvent click)
     {
-        missionSelectDocument.sortingOrder = 2;
+		missionSelectDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+		mainMenuDocument.rootVisualElement.style.display = DisplayStyle.None;
+		
+		missionSelectDocument.sortingOrder = 2;
 
         PopulateMissions();
     }
@@ -63,4 +74,10 @@ public class MainMenuUIComponent : MonoBehaviour
             SceneManager.LoadScene("MainGame");
         }
     }
+
+	private void OpenMainMenu(ClickEvent click)
+	{
+		mainMenuDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+		missionSelectDocument.rootVisualElement.style.display = DisplayStyle.None;
+	}
 }
