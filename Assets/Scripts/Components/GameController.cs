@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-	private void CollectInitialGameObjects()
+	protected virtual void CollectInitialGameObjects()
 	{
 		foreach(PlanetComponent planet in WerignacUtils.GetComponentsInActiveScene<PlanetComponent>())
 		{
@@ -91,6 +91,9 @@ public class GameController : MonoBehaviour
 		{
 			RegisterCable(cableComponent);
 		}
+
+		UpdatePlanetsSolar();
+		gameManager.CalculateIncome();
 	}
 
 	// Update is called once per frame
@@ -356,6 +359,7 @@ public class GameController : MonoBehaviour
 
 	public void UpdateBuildingResources()
 	{
+		List<Building> buildingsChanged = new List<Building>();
 		for (int i = 0; i < Planets.Count; ++i)
 		{
 			PlanetComponent planet = Planets[i];
@@ -371,11 +375,20 @@ public class GameController : MonoBehaviour
                 {
 					if(building.Data.requiredResource != ResourceType.Resource_Count)
                     {
+						int previousResources = building.BackendBuilding.ResourcesProvided;
 						building.BackendBuilding.ResourcesProvided = Mathf.Min(totalResources[(int)building.Data.requiredResource], building.BackendBuilding.Data.resourceAmountRequired);
 						totalResources[(int)building.Data.requiredResource] = Mathf.Max(0, totalResources[(int)building.Data.requiredResource] - building.BackendBuilding.Data.resourceAmountRequired);
+						if(previousResources != building.BackendBuilding.ResourcesProvided)
+						{
+							buildingsChanged.Add(building.BackendBuilding);
+						}
                     }
                 }
             }
+		}
+		foreach(Building b in buildingsChanged)
+		{
+			gameManager.AdjustIncomeForConnected(b);
 		}
 	}
 
