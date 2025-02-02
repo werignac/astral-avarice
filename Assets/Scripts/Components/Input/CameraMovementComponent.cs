@@ -34,8 +34,14 @@ public class CameraMovementComponent : MonoBehaviour
 	// Getters
 	// How far the camera can move left or right.
 	private float HorizontalBoundMinusCameraWidth { get => Mathf.Max(levelBounds.x / 2 - movingCamera.orthographicSize * movingCamera.aspect, 0); }
+	// How far the camera can move left or right when fully zoomed out.
+	private float HorizontalBoundMinusCameraWidthMax { get => Mathf.Max(levelBounds.x / 2 - cameraSizeMax * movingCamera.aspect, 0); }
+	private float HorizontalBoundMinusCameraWidthMin { get => Mathf.Max(levelBounds.x / 2 - cameraSizeMin * movingCamera.aspect, 0); }
+
 	// How far the camera can move up or down.
 	private float VerticalBoundMinusCameraHeight { get => Mathf.Max(levelBounds.y / 2 - movingCamera.orthographicSize, 0); }
+	private float VerticalBoundMinusCameraHeightMax { get => Mathf.Max(levelBounds.x / 2 - cameraSizeMax , 0); }
+	private float VerticalBoundMinusCameraHeightMin { get => Mathf.Max(levelBounds.x / 2 - cameraSizeMin , 0); }
 	public float LevelBoundsAspect { get => levelBounds.x / levelBounds.y; }
 	// Because of smoothing, these can be above or below 1 or -1.
 	public Vector2 NormalizedPosition {
@@ -44,6 +50,27 @@ public class CameraMovementComponent : MonoBehaviour
 			VerticalBoundMinusCameraHeight == 0 ? 0 : transform.position.y / VerticalBoundMinusCameraHeight
 			);
 	}
+
+	// Normalized position relative to being fully zoomed out.
+	public Vector2 NormalizedPositionMax
+	{
+		get => new Vector2(
+			HorizontalBoundMinusCameraWidth == 0 ? 0 : transform.position.x / HorizontalBoundMinusCameraWidthMax,
+			VerticalBoundMinusCameraHeight == 0 ? 0 : transform.position.y / VerticalBoundMinusCameraHeightMax
+			);
+	}
+
+	// Normalized position relative to being fully zoomed in.
+	public Vector2 NormalizedPositionMin
+	{
+		get => new Vector2(
+			HorizontalBoundMinusCameraWidth == 0 ? 0 : transform.position.x / HorizontalBoundMinusCameraWidthMin,
+			VerticalBoundMinusCameraHeight == 0 ? 0 : transform.position.y / VerticalBoundMinusCameraHeightMin
+			);
+	}
+
+	public float CameraSizeMin { get => cameraSizeMin; }
+	public float CameraSizeMax { get => cameraSizeMax; }
 
 	private void Awake()
 	{

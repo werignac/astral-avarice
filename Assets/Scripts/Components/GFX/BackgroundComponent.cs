@@ -9,6 +9,8 @@ public class BackgroundComponent : MonoBehaviour
 	private Sprite backgroundSprite;
 	[SerializeField] private bool enableCounterCameraMovement = false;
 	[SerializeField] private bool invertMovementDirection = false;
+	// When zooming the camera in, don't move the background.
+	[SerializeField] private bool straightScale = false;
 
 	[SerializeField, Range(0, 0.5f)]private float margin;
 	[SerializeField, Range(0, 0.5f)] private float moveMargin;
@@ -18,7 +20,11 @@ public class BackgroundComponent : MonoBehaviour
 	private float UnscaledHeight { get => backgroundSprite.texture.height / backgroundSprite.pixelsPerUnit; }
 	private float ScaledHeight { get => UnscaledHeight * transform.localScale.y; }
 	private float CameraWidth { get => camera.orthographicSize * camera.aspect * 2; }
+	private float CameraWidthMax { get => cameraMovementComponent.CameraSizeMax * camera.aspect * 2; }
+	private float CameraWidthMin { get => cameraMovementComponent.CameraSizeMin * camera.aspect * 2; }
 	private float CameraHeight { get => camera.orthographicSize * 2; }
+	private float CameraHeightMax { get => cameraMovementComponent.CameraSizeMax * 2; }
+	private float CameraHeightMin { get => cameraMovementComponent.CameraSizeMin * 2; }
 
 	private void Awake()
 	{
@@ -38,8 +44,22 @@ public class BackgroundComponent : MonoBehaviour
 
 	private void FitToCamera(float m)
 	{
-		float widthRatio = CameraWidth / (UnscaledWidth * (1 - 2 * m));
-		float heightRatio = CameraHeight / (UnscaledHeight * (1 - 2 * m));
+		float width;
+		float height;
+
+		if (!enableCounterCameraMovement || cameraMovementComponent == null || !straightScale)
+		{
+			width = CameraWidth;
+			 height = CameraHeight;
+		}
+		else
+		{
+			width = CameraWidthMax;
+			height = CameraHeightMax;
+		}
+
+		float widthRatio = width / (UnscaledWidth * (1 - 2 * m));
+		float heightRatio = height / (UnscaledHeight * (1 - 2 * m));
 
 		transform.localScale = Vector3.one * Mathf.Max(widthRatio, heightRatio);
 	}
@@ -49,7 +69,12 @@ public class BackgroundComponent : MonoBehaviour
 	{
 		FitToCamera(margin + moveMargin);
 
-		Vector2 normalizedCameraPosition = cameraMovementComponent.NormalizedPosition;
+		Vector2 normalizedCameraPosition;
+
+		if (straightScale)
+			normalizedCameraPosition = cameraMovementComponent.NormalizedPositionMax;
+		else
+			normalizedCameraPosition = cameraMovementComponent.NormalizedPosition;
 
 		if (invertMovementDirection)
 			normalizedCameraPosition = -normalizedCameraPosition;
