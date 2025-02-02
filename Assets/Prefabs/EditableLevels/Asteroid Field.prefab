@@ -162,11 +162,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Asteroid Field
-  levelDimentions: {x: 80, y: 70}
+  levelDimentions: {x: 90, y: 70}
   startingCash: 600
   startingScience: 0
-  goalCash: 2000
-  levelTime: 900
+  goalCash: 3000
+  levelTime: 720
   buildings:
   - {fileID: 8977483959379217778}
   - {fileID: 4832749069662442182}

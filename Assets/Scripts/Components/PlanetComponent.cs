@@ -32,6 +32,7 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	[SerializeField] private int[] resourceCounts = new int[(int)ResourceType.Resource_Count];
 	[SerializeField] private int solarOutput;
 	[SerializeField] private bool canPlaceBuildings;
+	[SerializeField] private string planetName = "Planet";
 
 #if UNITY_EDITOR
 	private LineRenderer gravityRenderer;
@@ -61,6 +62,10 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	public bool CanPlaceBuildings
 	{
 		get { return (canPlaceBuildings); }
+	}
+	public string PlanetName
+	{
+		get { return (planetName); }
 	}
 	public Vector2 PlanetVelocity { get; set; }
 	public bool Destroyed { get; set; } = false;

@@ -32,6 +32,10 @@ public class GameManager
     {
         get { return (timePassed); }
     }
+    public string MissionName
+    {
+        get { return (currentMission.name); }
+    }
 
     public GameManager(GameController controller)
     {

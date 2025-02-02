@@ -44,21 +44,21 @@ public class MainMenuUIComponent : MonoBehaviour
         creditsBackButton.RegisterCallback<ClickEvent>(OpenMainMenu);
 
         masterVolumeSlider = settingsDocument.rootVisualElement.Q<Slider>("MasterSlider");
-        float masterVolume;
-        audioMixer.GetFloat("Master", out masterVolume);
+        float masterVolume = PlayerPrefs.GetFloat("MasterVolume", 0);
         masterVolumeSlider.value = masterVolume;
+        audioMixer.SetFloat("Master", masterVolume);
         masterVolumeSlider.RegisterValueChangedCallback<float>(MasterVolumeChanged);
 
         musicVolumeSlider = settingsDocument.rootVisualElement.Q<Slider>("MusicSlider");
-        float musicVolume;
-        audioMixer.GetFloat("BGM", out musicVolume);
+        float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0);
         musicVolumeSlider.value = musicVolume;
+        audioMixer.SetFloat("BGM", musicVolume);
         musicVolumeSlider.RegisterValueChangedCallback<float>(MusicVolumeChanged);
 
         sfxVolumeSlider = settingsDocument.rootVisualElement.Q<Slider>("SFXSlider");
-        float sfxVolume;
-        audioMixer.GetFloat("SFX", out sfxVolume);
+        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0);
         sfxVolumeSlider.value = sfxVolume;
+        audioMixer.SetFloat("SFX", sfxVolume);
         sfxVolumeSlider.RegisterValueChangedCallback<float>(SFXVolumeChanged);
 
         missionSelectDocument.sortingOrder = 0;
@@ -132,39 +132,36 @@ public class MainMenuUIComponent : MonoBehaviour
         mainMenuDocument.rootVisualElement.style.display = DisplayStyle.None;
     }
 
-    private void MasterVolumeChanged(ChangeEvent<float> newValue)
+    private void MasterVolumeChanged(ChangeEvent<float> change)
     {
-        if (newValue.newValue < -29f)
+        float newValue = change.newValue;
+        if (newValue < -29f)
         {
-            audioMixer.SetFloat("Master", -80);
+            newValue = -80f;
         }
-        else
-        {
-            audioMixer.SetFloat("Master", newValue.newValue);
-        }
+        audioMixer.SetFloat("Master", newValue);
+        PlayerPrefs.SetFloat("MasterVolume", newValue);
     }
 
-    private void MusicVolumeChanged(ChangeEvent<float> newValue)
+    private void MusicVolumeChanged(ChangeEvent<float> change)
     {
-        if (newValue.newValue < -49f)
+        float newValue = change.newValue;
+        if (newValue < -49f)
         {
-            audioMixer.SetFloat("BGM", -80);
+            newValue = -80f;
         }
-        else
-        {
-            audioMixer.SetFloat("BGM", newValue.newValue);
-        }
+        audioMixer.SetFloat("BGM", newValue);
+        PlayerPrefs.SetFloat("MusicVolume", newValue);
     }
 
-    private void SFXVolumeChanged(ChangeEvent<float> newValue)
+    private void SFXVolumeChanged(ChangeEvent<float> change)
     {
-        if (newValue.newValue < -49f)
+        float newValue = change.newValue;
+        if (newValue < -49f)
         {
-            audioMixer.SetFloat("SFX", -80);
+            newValue = -80f;
         }
-        else
-        {
-            audioMixer.SetFloat("SFX", newValue.newValue);
-        }
+        audioMixer.SetFloat("SFX", newValue);
+        PlayerPrefs.SetFloat("SFXVolume", newValue);
     }
 }

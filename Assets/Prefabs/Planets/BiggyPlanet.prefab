@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29440e8ddbc32c4eb1cff4635d60865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityFieldRenderer: {fileID: 0}
+  gravityFieldRenderer: {fileID: 8693420546248299226}
   marginIntoPlanet: 0.1
   minimumFieldDrawRadius: 0.3
 --- !u!1 &3113546948726978599
@@ -270,6 +270,7 @@ MonoBehaviour:
   resourceCounts: 280000000f0000000f0000000a000000
   solarOutput: 15
   canPlaceBuildings: 1
+  planetName: Biggy
 --- !u!1 &7960847345057833643
 GameObject:
   m_ObjectHideFlags: 0

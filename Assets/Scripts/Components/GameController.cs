@@ -16,8 +16,8 @@ public class GameController : MonoBehaviour
 	[SerializeField] private AudioClip demolishClip;
 	[SerializeField] private AudioClip cableConnectClip;
 	[SerializeField] private DataSet gameDataSet;
-	[SerializeField] private GameObject victoryDocument;
-	[SerializeField] private GameObject defeatDocument;
+	[SerializeField] private UIDocument victoryDocument;
+	[SerializeField] private UIDocument defeatDocument;
 
 
     private Label cashLabel;
@@ -66,6 +66,24 @@ public class GameController : MonoBehaviour
 		scienceIncomeLabel = statsDocument.rootVisualElement.Q("ScienceIncome") as Label;
 		timeLabel = statsDocument.rootVisualElement.Q("Time") as Label;
 		timeScaleLabel = statsDocument.rootVisualElement.Q<Label>("TimeScale");
+
+		if(defeatDocument != null)
+        {
+			defeatDocument.rootVisualElement.style.display = DisplayStyle.None;
+			Button defeatMainMenuButton = defeatDocument.rootVisualElement.Q<Button>("MainMenuButton");
+			defeatMainMenuButton.RegisterCallback<ClickEvent>(MainMenuClicked);
+			Button defeatTryAgainButton = defeatDocument.rootVisualElement.Q<Button>("TryAgainButton");
+			defeatTryAgainButton.RegisterCallback<ClickEvent>(TryAgainClicked);
+        }
+		if(victoryDocument != null)
+        {
+			victoryDocument.rootVisualElement.style.display = DisplayStyle.None;
+			Button victoryMainMenuButton = victoryDocument.rootVisualElement.Q<Button>("MainMenuButton");
+			victoryMainMenuButton.RegisterCallback<ClickEvent>(MainMenuClicked);
+			Button victoryPlayAgainButton = victoryDocument.rootVisualElement.Q<Button>("PlayAgainButton");
+			victoryPlayAgainButton.RegisterCallback<ClickEvent>(TryAgainClicked);
+        }
+
 		if (Data.selectedMission == null)
 		{
 			Data.selectedMission = gameDataSet.missionDatas[0];
@@ -96,8 +114,10 @@ public class GameController : MonoBehaviour
 		}
 
 		foreach(CableComponent cableComponent in WerignacUtils.GetComponentsInActiveScene<CableComponent>())
-		{
-			RegisterCable(cableComponent);
+        {
+            cableComponent.SetAttachedBuildings(cableComponent.Start, cableComponent.End);
+			cableComponent.SetDemolishable(true);
+            RegisterCable(cableComponent);
 		}
 
 		UpdatePlanetsSolar();
@@ -110,7 +130,7 @@ public class GameController : MonoBehaviour
 		if (gameEnded)
 		{
 			endGameTime += Time.deltaTime;
-			if (endGameTime > 10 || Input.GetKeyDown(KeyCode.Return))
+			if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
 			{
 				ReturnToMenu();
 			}
@@ -220,9 +240,9 @@ public class GameController : MonoBehaviour
 				if(planetTranslations[i].magnitude < 0.00000001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
                 {
 					planetTranslations[i] = Planets[i].PlanetVelocity * -1;
-					if(planetTranslations[i].magnitude > Time.fixedDeltaTime)
+					if(planetTranslations[i].magnitude > (Time.fixedDeltaTime * gameSpeed))
                     {
-						planetTranslations[i] = planetTranslations[i].normalized * Time.fixedDeltaTime;
+						planetTranslations[i] = planetTranslations[i].normalized * (Time.fixedDeltaTime * gameSpeed);
                     }
                 }
 				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();
@@ -284,16 +304,17 @@ public class GameController : MonoBehaviour
 		endGameTime = 0;
 		if(victory)
         {
+			PlayerPrefs.SetInt(gameManager.MissionName, 1);
 			if (victoryDocument != null)
 			{
-				victoryDocument.SetActive(true);
+				victoryDocument.rootVisualElement.style.display = DisplayStyle.Flex;
 			}
         }
 		else
         {
 			if (defeatDocument != null)
 			{
-				defeatDocument.SetActive(true);
+				defeatDocument.rootVisualElement.style.display = DisplayStyle.Flex;
 			}
         }
     }
@@ -496,5 +517,19 @@ public class GameController : MonoBehaviour
 
         // TODO: Detect other cables?
         return false;
+    }
+
+	private void ReloadScene()
+    {
+		SceneManager.LoadScene("MainGame");
+    }
+
+	private void MainMenuClicked(ClickEvent click)
+    {
+		ReturnToMenu();
+    }
+	private void TryAgainClicked(ClickEvent click)
+    {
+		ReloadScene();
     }
 }

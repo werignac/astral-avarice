@@ -79,7 +79,7 @@ public class PlanetInspectorController : IInspectorController
 	public void UpdateUI()
 	{
 
-        subheading.text = "Planet";
+        subheading.text = displayingPlanet.PlanetName;
 
         if (displayingPlanet.CanPlaceBuildings)
         {
