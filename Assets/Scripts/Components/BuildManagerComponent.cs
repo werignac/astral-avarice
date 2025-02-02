@@ -759,8 +759,8 @@ public class BuildManagerComponent : MonoBehaviour
 		float currentGravityRadius = PlanetComponent.MassToGravityRadius(currentMass);
 		float nextGravityRadius = PlanetComponent.MassToGravityRadius(currentMass + deltaMass);
 		Vector3 gravityCursorPosition = onPlanet.transform.position;
-		float outerGravityRadius = Mathf.Max(Mathf.Max(currentGravityRadius, nextGravityRadius), planetRadius);
-		float innerGravityRadius = Mathf.Max(Mathf.Min(currentGravityRadius, nextGravityRadius), planetRadius);
+		float outerGravityRadius = Mathf.Max(currentGravityRadius, nextGravityRadius, planetRadius + 0.3f);
+		float innerGravityRadius = Mathf.Max(Mathf.Min(currentGravityRadius, nextGravityRadius), planetRadius * 0.9f);
 		gravityCursor.SetPosition(gravityCursorPosition);
 		gravityCursor.SetRadii(outerGravityRadius, innerGravityRadius);
 	}

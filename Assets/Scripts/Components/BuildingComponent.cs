@@ -131,6 +131,9 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 			parentPlanet.AdjustGravityRing();
 #endif
 		}
+
+		Instantiate(GlobalBuildingSettings.GetOrCreateSettings().BuildingDestructionVFXPrefab, transform.position, Quaternion.identity);
+
 		Destroy(gameObject);
 	}
 

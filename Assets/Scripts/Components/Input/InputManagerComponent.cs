@@ -25,7 +25,7 @@ public class InputManagerComponent : MonoBehaviour
 		// Singleton enforcement.
 		if (Instance != null)
 		{
-			Destroy(this);
+			Destroy(gameObject);
 			return;
 		}
 		

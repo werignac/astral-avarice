@@ -70,3 +70,6 @@ MonoBehaviour:
   cablePrefab: {fileID: 5726402047846220235, guid: 3921c1003c21fa94098bdb0c577548b6, type: 3}
   cableWidth: 0.1
   maxCableLength: 6
+  cableDestructionVFXPrefab: {fileID: 1687416513170344874, guid: c1a62de94d8d62844b54aa61108cebf8, type: 3}
+  buildingDestructionVFXPrefab: {fileID: 1069227837850405326, guid: 31451b7af585b754d9b4688a6f6b248e, type: 3}
+  planetDestructionVFXPrefab: {fileID: 0}

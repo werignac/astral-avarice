@@ -161,9 +161,9 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		// Stop repeated firing of OnMassChangedEvent.
 		muteOnMassChangedEvent = true;
 
-		for (int i = 0; i < buildingContainerTransform.childCount; ++i)
+		for (int i = buildingContainerTransform.childCount - 1; i >=0 ; --i)
 		{
-			Destroy(buildingContainerTransform.GetChild(i).gameObject);
+			buildingContainerTransform.GetChild(i).GetComponent<BuildingComponent>().Demolish();
         }
 		buildingContainerTransform.DetachChildren();
 
@@ -200,7 +200,7 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 				PlanetComponent hitPlanet = collision.collider.gameObject.GetComponent<PlanetComponent>();
 				if (hitPlanet != null)
 				{
-					Destroy(building.gameObject);
+					building.Demolish();
                     building.transform.parent = null;
 #if UNITY_EDITOR
 					AdjustGravityRing();
@@ -212,7 +212,7 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 					BuildingComponent otherBuilding = collision.collider.gameObject.GetComponentInParent<BuildingComponent>();
 					if (otherBuilding != null)
 					{
-						Destroy(building.gameObject);
+						building.Demolish();
 						building.transform.parent = null;
 #if UNITY_EDITOR
 						AdjustGravityRing();
@@ -230,15 +230,15 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 					if (GetTotalMass() > hitPlanet.GetTotalMass())
 					{
 						hitPlanet.Destroyed = true;
-						Destroy(hitPlanet.gameObject);
+						hitPlanet.Demolish();
 						DestroyAllBuildings();
 					}
 					else if (GetTotalMass() == hitPlanet.GetTotalMass())
 					{
 						hitPlanet.Destroyed = true;
 						Destroyed = true;
-						Destroy(hitPlanet.gameObject);
-						Destroy(gameObject);
+						hitPlanet.Demolish();
+						Demolish();
 					}
 				}
 			}
@@ -327,4 +327,9 @@ public void InvokeMassChangedEvent()
         inspectorController = new PlanetInspectorController(this);
         return PtUUISettings.GetOrCreateSettings().PlanetInspectorUI;
     }
+
+	public void Demolish()
+	{
+		Destroy(gameObject);
+	}
 }

@@ -26,7 +26,11 @@ public class GlobalBuildingSettings: ScriptableObject
 	// How long the cables can stretch up to.
 	[SerializeField, Min(1f)] private float maxCableLength;
 
-	// TODO: Include buildings that can be placed in the level builder?
+	[SerializeField] private GameObject cableDestructionVFXPrefab;
+
+	[SerializeField] private GameObject buildingDestructionVFXPrefab;
+
+	[SerializeField] private GameObject planetDestructionVFXPrefab;
 
 	// Getters
 	public BuildingSettingEntry[] Buildings
@@ -49,6 +53,20 @@ public class GlobalBuildingSettings: ScriptableObject
 		get { return maxCableLength; }
 	}
 
+	public GameObject CableDestructionVFXPrefab
+	{
+		get => cableDestructionVFXPrefab;
+	}
+
+	public GameObject BuildingDestructionVFXPrefab
+	{
+		get => buildingDestructionVFXPrefab;
+	}
+
+	public GameObject PlanetDestructionVFXPrefab
+	{
+		get => planetDestructionVFXPrefab;
+	}
 
 	/// <summary>
 	/// Gets a singleton GlobalBuildingSettings reference. If there is already a

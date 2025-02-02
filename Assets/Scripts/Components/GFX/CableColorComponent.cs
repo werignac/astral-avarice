@@ -4,20 +4,26 @@ public class CableColorComponent : MonoBehaviour
 {
 	private CableComponent cableComponent;
 
-	private LineRenderer lineRenderer;
+	[SerializeField] private LineRenderer lineRenderer;
 	private Gradient defaultGradient;
 
 
 	private void Awake()
 	{
 		cableComponent = GetComponent<CableComponent>();
-		lineRenderer = GetComponent<LineRenderer>();
+
+#if UNITY_EDITOR
+		if (lineRenderer == null)
+			lineRenderer = GetComponentInChildren<LineRenderer>();
+#endif
+
 		defaultGradient = lineRenderer.colorGradient;
 	}
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
+		cableComponent.OnCableDestroyed.AddListener((CableComponent _) => { ClearColor(); });
 		cableComponent.OnCableHoverStartForDemolish.AddListener(SetColorDemolish);
 		cableComponent.OnCableHoverEndForDemolish.AddListener(ClearColor);
     }

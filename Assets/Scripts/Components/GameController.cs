@@ -416,7 +416,7 @@ public class GameController : MonoBehaviour
         {
 			if(Cables[i].Length > GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength)
             {
-                Destroy(Cables[i].gameObject);
+				Cables[i].Demolish();
             }
 			else
 			{
@@ -443,7 +443,7 @@ public class GameController : MonoBehaviour
 					Cables[i].CableOverlapTime += Time.fixedDeltaTime;
 					if (Cables[i].CableOverlapTime > 0.5f)
 					{
-						Destroy(Cables[i].gameObject);
+						Cables[i].Demolish();
 					}
 				}
             }

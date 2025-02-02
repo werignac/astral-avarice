@@ -7,7 +7,7 @@ public class CableComponent : MonoBehaviour, IDemolishable
 	[SerializeField] private BuildingComponent startBuilding;
 	[SerializeField] private BuildingComponent endBuilding;
 
-	private LineRenderer lineRenderer;
+	[SerializeField] private LineRenderer lineRenderer;
 
 	[SerializeField] private BoxCollider2D boxCollider;
 	[SerializeField] private bool isPlayerDemolishable = false;
@@ -41,10 +41,14 @@ public class CableComponent : MonoBehaviour, IDemolishable
 		get => endBuilding;
 	}
 
+#if UNITY_EDITOR
 	private void Awake()
 	{
-		lineRenderer = GetComponent<LineRenderer>();
+		if (lineRenderer == null)
+			lineRenderer = GetComponentInChildren<LineRenderer>();
+
 	}
+#endif
 
 	public void SetAttachedBuildings(BuildingComponent start, BuildingComponent end)
 	{
@@ -126,16 +130,18 @@ public class CableComponent : MonoBehaviour, IDemolishable
 
 	private void Building_OnDestroy(BuildingComponent _)
 	{
-		Destroy(gameObject);
-	}
-
-	private void OnDestroy()
-	{
-		OnCableDestroyed?.Invoke(this);
+		Demolish();
 	}
 
 	public void Demolish()
 	{
+		OnCableDestroyed?.Invoke(this);
+
+		GameObject cableDestructionVFXObject = Instantiate(GlobalBuildingSettings.GetOrCreateSettings().CableDestructionVFXPrefab);
+		CableDestructionVFXComponent cableDestructionVFXComponent = cableDestructionVFXObject.GetComponent<CableDestructionVFXComponent>();
+		cableDestructionVFXComponent.RunVFX(this);
+
+
 		Destroy(gameObject);
 	}
 

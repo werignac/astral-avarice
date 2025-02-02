@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BuildingVFX
+    uniqueID: 2720045281
+    locked: 0
   - name: Cables
     uniqueID: 329850367
     locked: 0
