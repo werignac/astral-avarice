@@ -154,6 +154,10 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void UpdatePauseManager()
 	{
+		if (pauseManager == null)
+		{
+			Debug.LogError("InputManager is missing PauseManager reference.");
+		}
 		if (pauseAction.WasPerformedThisFrame())
 		{
 			if (gameController.GamePaused)

@@ -790,7 +790,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c556563526720f4aaacd791cc3e5d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableCounterCameraMovement: 0
+  invertMovementDirection: 0
+  straightScale: 0
   margin: 0
+  moveMargin: 0
 --- !u!1 &1501900649
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,6 +59,9 @@ TagManager:
   - name: Planets
     uniqueID: 2207370851
     locked: 0
+  - name: PlanetDestructionVFX
+    uniqueID: 157564613
+    locked: 0
   - name: CableCursor
     uniqueID: 4069106091
     locked: 0

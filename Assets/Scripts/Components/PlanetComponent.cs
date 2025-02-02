@@ -331,6 +331,10 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	public void Demolish()
 	{
 		OnPlanetDemolished?.Invoke(this);
+
+		GameObject destructionVFXGameObject = Instantiate(GlobalBuildingSettings.GetOrCreateSettings().PlanetDestructionVFXPrefab, transform.position, Quaternion.identity);
+		destructionVFXGameObject.transform.localScale = Vector3.one * Radius;
+
 		Destroy(gameObject);
 	}
 }

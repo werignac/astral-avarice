@@ -158,10 +158,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 7963214300863726870}
@@ -437,10 +449,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 2137677048583686169}
@@ -735,7 +759,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 1376678981163150354}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -957,7 +981,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1131,7 +1155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1256,10 +1280,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 1853879123035429453}
@@ -1566,10 +1602,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 3839712467414016064}
@@ -1807,7 +1855,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1956,7 +2004,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2265,7 +2313,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 503fd86d5e627f84f9ad68c9806c78f1, type: 2}
   parentPlanet: {fileID: 6638738616393856924}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -2398,10 +2446,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 7260533758872516626}
@@ -2765,7 +2825,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2939,10 +2999,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 8336067217598067779}
@@ -3317,7 +3389,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 1376678981163150354}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -3735,7 +3807,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b14bc6255efa53f4cb6106b106175f23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3801,7 +3873,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 66222c469a053bd4483cb66ec117653c, type: 2}
   parentPlanet: {fileID: 1491611565404236461}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -3875,7 +3947,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 4f0b1a753e8e0974f8abf971a2337f28, type: 2}
   parentPlanet: {fileID: 1376678981163150354}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -4112,7 +4184,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4237,10 +4309,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 2326339140479079473}
@@ -4540,7 +4624,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4714,10 +4798,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 2676948797712084072}
@@ -5188,7 +5284,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5276,10 +5372,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 485736624964966738}
@@ -5522,7 +5630,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.98490566, g: 0.63740116, b: 0.63740116, a: 1}
@@ -5610,10 +5718,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 7728797106812933262}
@@ -5929,7 +6049,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6057,7 +6177,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 66222c469a053bd4483cb66ec117653c, type: 2}
   parentPlanet: {fileID: 1376678981163150354}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -6217,7 +6337,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6448,7 +6568,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 7596373775218084583}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -6699,10 +6819,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 6194362998753685703}
@@ -7127,10 +7259,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 8795086660185925997}
@@ -7573,7 +7717,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d6b9f5fb668fa3a48a038adae98e19d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7752,7 +7896,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7840,10 +7984,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 4116478760348728399}
@@ -8358,7 +8514,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8445,7 +8601,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d6b9f5fb668fa3a48a038adae98e19d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8619,10 +8775,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 3441602200430729807}
@@ -8947,10 +9115,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 7874993356176302676}
@@ -9505,7 +9685,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9630,10 +9810,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 3653541043706177382}
@@ -9871,7 +10063,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10089,10 +10281,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 7408769945455005879}
@@ -10368,10 +10572,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 1901207213145606844}
@@ -10711,10 +10927,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 1809285992272042121}
@@ -10957,7 +11185,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6226415, g: 0.6144179, b: 0.6144179, a: 1}
@@ -11045,10 +11273,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 4385710872041664623}
@@ -11339,7 +11579,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 329850367
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Positions:
   - {x: -6.9518223, y: 11.286634, z: 0}
@@ -11417,9 +11657,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startBuilding: {fileID: 6074124667300746168}
   endBuilding: {fileID: 105244711438804137}
+  lineRenderer: {fileID: 0}
   boxCollider: {fileID: 1420741202152211933}
   isPlayerDemolishable: 0
-  OnCableDestroyed:
+  OnCableDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnCableHoverStartForDemolish:
@@ -11440,6 +11681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e4519bf8b816d448994467a922a009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 0}
 --- !u!1 &2933836554253043112
 GameObject:
   m_ObjectHideFlags: 0
@@ -11743,7 +11985,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11830,7 +12072,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11917,7 +12159,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d6b9f5fb668fa3a48a038adae98e19d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12004,7 +12246,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12091,7 +12333,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12157,7 +12399,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 3050919818795980757}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -12457,7 +12699,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12544,7 +12786,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12767,10 +13009,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 1878229300871748231}
@@ -13226,7 +13480,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 329850367
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Positions:
   - {x: -12.96498, y: 7.242611, z: 0}
@@ -13304,9 +13558,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startBuilding: {fileID: 4150329500881470333}
   endBuilding: {fileID: 105244711438804137}
+  lineRenderer: {fileID: 0}
   boxCollider: {fileID: 2356433139053304948}
   isPlayerDemolishable: 0
-  OnCableDestroyed:
+  OnCableDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnCableHoverStartForDemolish:
@@ -13327,6 +13582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e4519bf8b816d448994467a922a009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 0}
 --- !u!1 &3596633351211886059
 GameObject:
   m_ObjectHideFlags: 0
@@ -13439,10 +13695,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 3273685091103318554}
@@ -13965,7 +14233,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b14bc6255efa53f4cb6106b106175f23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14549,7 +14817,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14636,7 +14904,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14723,7 +14991,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14815,7 +15083,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6226415, g: 0.6144179, b: 0.6144179, a: 1}
@@ -14903,10 +15171,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 8719153147123361794}
@@ -15551,10 +15831,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 4762706161503908395}
@@ -15823,7 +16115,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b14bc6255efa53f4cb6106b106175f23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15910,7 +16202,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15997,7 +16289,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b1ff00c82ff6a3545847ea9f702f4add, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16259,7 +16551,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 8706198523162975770}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -16385,7 +16677,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbd87238aff917f43b12d0b3a039bec6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16503,7 +16795,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16708,7 +17000,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17124,7 +17416,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 1376678981163150354}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -17219,7 +17511,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17484,10 +17776,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 2167761411772456976}
@@ -17704,7 +18008,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 1376678981163150354}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -17930,10 +18234,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 8441788712581090904}
@@ -18150,7 +18466,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 503fd86d5e627f84f9ad68c9806c78f1, type: 2}
   parentPlanet: {fileID: 520812977122832985}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -18283,10 +18599,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 9075043104293826955}
@@ -18503,7 +18831,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 503fd86d5e627f84f9ad68c9806c78f1, type: 2}
   parentPlanet: {fileID: 1203186743112954591}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -18608,7 +18936,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 151ba75055ab13b489592dcb352f2162, type: 2}
   parentPlanet: {fileID: 520812977122832985}
   isPlayerDemolishable: 1
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -18734,7 +19062,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19088,10 +19416,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 1880667218319043790}
@@ -19534,7 +19874,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19714,7 +20054,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20014,7 +20354,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20217,10 +20557,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 8399305601944210921}
@@ -20545,7 +20897,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20719,7 +21071,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -20810,7 +21162,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 329850367
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Positions:
   - {x: -12.96498, y: 7.242611, z: 0}
@@ -20888,9 +21240,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startBuilding: {fileID: 4150329500881470333}
   endBuilding: {fileID: 951250701658532609}
+  lineRenderer: {fileID: 0}
   boxCollider: {fileID: 3018210204951567672}
   isPlayerDemolishable: 0
-  OnCableDestroyed:
+  OnCableDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnCableHoverStartForDemolish:
@@ -20911,6 +21264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e4519bf8b816d448994467a922a009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 0}
 --- !u!1 &5743076440632757650
 GameObject:
   m_ObjectHideFlags: 0
@@ -20964,7 +21318,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 7596373775218084583}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -21177,10 +21531,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 1228968021606205935}
@@ -21506,7 +21872,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 7596373775218084583}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -21639,10 +22005,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 34528159204662913}
@@ -21880,7 +22258,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22348,7 +22726,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22528,7 +22906,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22664,7 +23042,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23106,7 +23484,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23231,10 +23609,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 4352252100585819109}
@@ -23472,7 +23862,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23590,7 +23980,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24360,7 +24750,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 151ba75055ab13b489592dcb352f2162, type: 2}
   parentPlanet: {fileID: 520812977122832985}
   isPlayerDemolishable: 1
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -24434,7 +24824,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 66222c469a053bd4483cb66ec117653c, type: 2}
   parentPlanet: {fileID: 964648780179353009}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -24529,7 +24919,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24678,7 +25068,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24843,7 +25233,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b14bc6255efa53f4cb6106b106175f23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24930,7 +25320,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24996,7 +25386,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 3050919818795980757}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -25171,7 +25561,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25369,7 +25759,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b1ff00c82ff6a3545847ea9f702f4add, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25681,10 +26071,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 2694528536070477884}
@@ -26059,7 +26461,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 66222c469a053bd4483cb66ec117653c, type: 2}
   parentPlanet: {fileID: 6638738616393856924}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -26192,10 +26594,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 8551738019490806414}
@@ -26412,7 +26826,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 6638738616393856924}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -26545,10 +26959,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 1568113986697484243}
@@ -26935,10 +27361,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 5897521472864928900}
@@ -27176,7 +27614,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbd87238aff917f43b12d0b3a039bec6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27312,7 +27750,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27403,7 +27841,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 329850367
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Positions:
   - {x: -17.528168, y: 2.8859267, z: 0}
@@ -27481,9 +27919,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startBuilding: {fileID: 519733044801040863}
   endBuilding: {fileID: 951250701658532609}
+  lineRenderer: {fileID: 0}
   boxCollider: {fileID: 1150239198329013354}
   isPlayerDemolishable: 0
-  OnCableDestroyed:
+  OnCableDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnCableHoverStartForDemolish:
@@ -27504,6 +27943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e4519bf8b816d448994467a922a009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 0}
 --- !u!1 &7885550730315658608
 GameObject:
   m_ObjectHideFlags: 0
@@ -27665,7 +28105,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28036,7 +28476,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 1376678981163150354}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -28131,7 +28571,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28218,7 +28658,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28346,7 +28786,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 66222c469a053bd4483cb66ec117653c, type: 2}
   parentPlanet: {fileID: 8706198523162975770}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -28441,7 +28881,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a932d61f2a31e0044bf736d91c3afb3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28528,7 +28968,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28685,10 +29125,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 1124337195600800407}
@@ -28926,7 +29378,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -29013,7 +29465,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf5ac13f05e36fa42a8d63b93f7964a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -29172,10 +29624,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 5631967723212113174}
@@ -29504,7 +29968,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 329850367
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Positions:
   - {x: -15.060937, y: 1.7968129, z: 0}
@@ -29582,9 +30046,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startBuilding: {fileID: 951250701658532609}
   endBuilding: {fileID: 7141778885711699610}
+  lineRenderer: {fileID: 0}
   boxCollider: {fileID: 597525100039373505}
   isPlayerDemolishable: 0
-  OnCableDestroyed:
+  OnCableDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnCableHoverStartForDemolish:
@@ -29605,6 +30070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e4519bf8b816d448994467a922a009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 0}
 --- !u!1 &8549805069222657706
 GameObject:
   m_ObjectHideFlags: 0
@@ -29717,10 +30183,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 2293969161298919029}
@@ -30163,10 +30641,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 5902521459890069991}
@@ -30470,7 +30960,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 42f9ec8fd619da142bbb827c5acfb8f3, type: 2}
   parentPlanet: {fileID: 8706198523162975770}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -30565,7 +31055,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30652,7 +31142,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b14bc6255efa53f4cb6106b106175f23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30801,7 +31291,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2087596445
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31004,10 +31494,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 1232198486625710855}
@@ -31322,7 +31824,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 42f9ec8fd619da142bbb827c5acfb8f3, type: 2}
   parentPlanet: {fileID: 3180179915191039654}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -31455,10 +31957,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 7951079362722752294}
@@ -31734,10 +32248,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 7107819271015787746}
@@ -32013,10 +32539,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlanetDestroyed:
+  OnPlanetDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnMassChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 3673204885983130180}
