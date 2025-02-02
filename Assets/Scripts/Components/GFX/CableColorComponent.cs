@@ -23,7 +23,7 @@ public class CableColorComponent : MonoBehaviour
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
-		cableComponent.OnCableDestroyed.AddListener((CableComponent _) => { ClearColor(); });
+		cableComponent.OnCableDemolished.AddListener((CableComponent _) => { ClearColor(); });
 		cableComponent.OnCableHoverStartForDemolish.AddListener(SetColorDemolish);
 		cableComponent.OnCableHoverEndForDemolish.AddListener(ClearColor);
     }

@@ -18,7 +18,7 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	/// Event used by BuildManagerComponent to know when a planet
 	/// should not longer be buildable because it has been destroyed.
 	/// </summary>
-	[HideInInspector] public UnityEvent<PlanetComponent> OnPlanetDestroyed = new UnityEvent<PlanetComponent>();
+	[HideInInspector] public UnityEvent<PlanetComponent> OnPlanetDemolished = new UnityEvent<PlanetComponent>();
 	private bool muteOnMassChangedEvent = false;
 	[HideInInspector] public UnityEvent OnMassChanged = new UnityEvent();
 	[HideInInspector] public UnityEvent OnHoverStart = new UnityEvent();
@@ -97,7 +97,7 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		foreach (Transform buildingTransform in buildingContainerTransform)
 		{
 			BuildingComponent building = buildingTransform.GetComponent<BuildingComponent>();
-			building.OnBuildingDestroyed.AddListener((BuildingComponent _) => { InvokeMassChangedEvent(); });
+			building.OnBuildingDemolished.AddListener((BuildingComponent _) => { InvokeMassChangedEvent(); });
 		}
 	}
 
@@ -126,14 +126,6 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		return (position - (Vector2)transform.position).normalized;
 	}
 
-	/// <summary>
-	/// When the planet is destroyed, notify that it has been destroyed.
-	/// </summary>
-	private void OnDestroy()
-	{
-		OnPlanetDestroyed?.Invoke(this);
-	}
-
 	public bool OwnsCollider(Collider2D checkOwns)
 	{
 		return planetCollider == checkOwns;
@@ -154,7 +146,7 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		buildingComponent.SetDemolishable(isPlayerDemolishable);
 		buildingComponent.SetParentPlanet(this);
 
-		buildingComponent.OnBuildingDestroyed.AddListener((BuildingComponent _) => { InvokeMassChangedEvent(); });
+		buildingComponent.OnBuildingDemolished.AddListener((BuildingComponent _) => { InvokeMassChangedEvent(); });
 		InvokeMassChangedEvent();
 
 		return building;
@@ -304,7 +296,7 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	}
 #endif
 
-public void InvokeMassChangedEvent()
+	public void InvokeMassChangedEvent()
 	{
 		if (!muteOnMassChangedEvent)
 			OnMassChanged.Invoke();
@@ -338,6 +330,7 @@ public void InvokeMassChangedEvent()
 
 	public void Demolish()
 	{
+		OnPlanetDemolished?.Invoke(this);
 		Destroy(gameObject);
 	}
 }

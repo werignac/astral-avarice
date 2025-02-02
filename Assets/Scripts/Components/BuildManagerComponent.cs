@@ -54,7 +54,7 @@ public class BuildingChainedBuildState : BuildingBuildState
 
 		// When the chained object is destroyed, invoke the event
 		// to change the build state.
-		fromChained.OnBuildingDestroyed.AddListener(
+		fromChained.OnBuildingDemolished.AddListener(
 			(BuildingComponent _) => { OnInvalidate.Invoke(this); }
 		);
 	}
@@ -89,7 +89,7 @@ class CableBuildState : BuildState {
 	{
 		this.fromBuilding = fromBuilding;
 
-		fromBuilding.OnBuildingDestroyed.AddListener((BuildingComponent _) =>
+		fromBuilding.OnBuildingDemolished.AddListener((BuildingComponent _) =>
 		{
 			OnInvalidateFrom?.Invoke(this);
 		});
@@ -105,12 +105,12 @@ class CableBuildState : BuildState {
 	public void SetToBuilding(BuildingComponent toBuilding)
 	{
 		if (this.toBuilding != null)
-			this.toBuilding.OnBuildingDestroyed.RemoveListener(ToBuilding_OnDestroy);
+			this.toBuilding.OnBuildingDemolished.RemoveListener(ToBuilding_OnDestroy);
 
 		this.toBuilding = toBuilding;
 
 		if (this.toBuilding != null)
-			this.toBuilding.OnBuildingDestroyed.AddListener(ToBuilding_OnDestroy);
+			this.toBuilding.OnBuildingDemolished.AddListener(ToBuilding_OnDestroy);
 	}
 
 	/// <summary>

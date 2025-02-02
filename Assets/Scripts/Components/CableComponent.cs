@@ -15,7 +15,7 @@ public class CableComponent : MonoBehaviour, IDemolishable
 	public float CableOverlapTime { get; set; }
 
 	// Events
-	[HideInInspector] public UnityEvent<CableComponent> OnCableDestroyed = new UnityEvent<CableComponent>();
+	[HideInInspector] public UnityEvent<CableComponent> OnCableDemolished = new UnityEvent<CableComponent>();
 	[HideInInspector] public UnityEvent OnCableHoverStartForDemolish = new UnityEvent();
 	[HideInInspector] public UnityEvent OnCableHoverEndForDemolish = new UnityEvent();
 
@@ -62,8 +62,8 @@ public class CableComponent : MonoBehaviour, IDemolishable
 		endBuilding = end;
 
 		// When buildings are destroyed, we should destroy the cable as well.
-		startBuilding.OnBuildingDestroyed.AddListener(Building_OnDestroy);
-		endBuilding.OnBuildingDestroyed.AddListener(Building_OnDestroy);
+		startBuilding.OnBuildingDemolished.AddListener(Building_OnDestroy);
+		endBuilding.OnBuildingDemolished.AddListener(Building_OnDestroy);
 	}
 
 	public static void GetBoxFromPoints(
@@ -135,7 +135,7 @@ public class CableComponent : MonoBehaviour, IDemolishable
 
 	public void Demolish()
 	{
-		OnCableDestroyed?.Invoke(this);
+		OnCableDemolished?.Invoke(this);
 
 		GameObject cableDestructionVFXObject = Instantiate(GlobalBuildingSettings.GetOrCreateSettings().CableDestructionVFXPrefab);
 		CableDestructionVFXComponent cableDestructionVFXComponent = cableDestructionVFXObject.GetComponent<CableDestructionVFXComponent>();

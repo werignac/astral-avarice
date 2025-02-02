@@ -31,6 +31,20 @@ public class CameraMovementComponent : MonoBehaviour
 	[SerializeField, Min(1)] private float movementSmoothing = 10f;
 	[SerializeField, Min(1)] private float zoomSmoothing = 10f;
 
+	// Getters
+	// How far the camera can move left or right.
+	private float HorizontalBoundMinusCameraWidth { get => Mathf.Max(levelBounds.x / 2 - movingCamera.orthographicSize * movingCamera.aspect, 0); }
+	// How far the camera can move up or down.
+	private float VerticalBoundMinusCameraHeight { get => Mathf.Max(levelBounds.y / 2 - movingCamera.orthographicSize, 0); }
+	public float LevelBoundsAspect { get => levelBounds.x / levelBounds.y; }
+	// Because of smoothing, these can be above or below 1 or -1.
+	public Vector2 NormalizedPosition {
+		get => new Vector2(
+			HorizontalBoundMinusCameraWidth == 0 ? 0 : transform.position.x / HorizontalBoundMinusCameraWidth,
+			VerticalBoundMinusCameraHeight == 0 ? 0 : transform.position.y / VerticalBoundMinusCameraHeight
+			);
+	}
+
 	private void Awake()
 	{
 		movingCamera = GetComponent<Camera>();
@@ -105,20 +119,12 @@ public class CameraMovementComponent : MonoBehaviour
 		Vector2 boundedPosition = goalPosition;
 
 		if (levelBounds.x >= 0)
-		{
-			float horizontalBound = levelBounds.x / 2;
-			float horizontalBoundMinusCameraWidth = horizontalBound - movingCamera.orthographicSize * movingCamera.aspect;
-			horizontalBoundMinusCameraWidth = Mathf.Max(horizontalBoundMinusCameraWidth, 0);
-			boundedPosition.x = Mathf.Clamp(goalPosition.x, -horizontalBoundMinusCameraWidth, horizontalBoundMinusCameraWidth);
-		}
+			boundedPosition.x = Mathf.Clamp(goalPosition.x, -HorizontalBoundMinusCameraWidth, HorizontalBoundMinusCameraWidth);
+		
 
 		if (levelBounds.y >= 0)
-		{
-			float verticalBound = levelBounds.y / 2;
-			float verticalboundMinusCameraHeight = verticalBound - movingCamera.orthographicSize;
-			verticalboundMinusCameraHeight = Mathf.Max(verticalboundMinusCameraHeight, 0);
-			boundedPosition.y = Mathf.Clamp(goalPosition.y, -verticalboundMinusCameraHeight, verticalboundMinusCameraHeight);
-		}
+			boundedPosition.y = Mathf.Clamp(goalPosition.y, -VerticalBoundMinusCameraHeight, VerticalBoundMinusCameraHeight);
+		
 
 		goalPosition = boundedPosition;
 	}

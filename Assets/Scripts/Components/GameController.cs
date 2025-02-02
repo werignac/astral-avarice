@@ -334,7 +334,7 @@ public class GameController : MonoBehaviour
 		buildingComponent.SetGameBuilding(building);
 		gameManager.AddBuilding(building);
 
-		buildingComponent.OnBuildingDestroyed.AddListener(Building_OnDestroy);
+		buildingComponent.OnBuildingDemolished.AddListener(Building_OnDestroy);
 	}
 
 	private void Building_OnDestroy(BuildingComponent buildingComponent)
@@ -354,7 +354,7 @@ public class GameController : MonoBehaviour
 
 		gameManager.AddConnection(cableComponent.Start.BackendBuilding, cableComponent.End.BackendBuilding);
 
-		cableComponent.OnCableDestroyed.AddListener(Cable_OnDestroyed);
+		cableComponent.OnCableDemolished.AddListener(Cable_OnDestroyed);
 	}
 
 	private void Cable_OnDestroyed(CableComponent cableComponent)
@@ -372,7 +372,7 @@ public class GameController : MonoBehaviour
 	{
 		Planets.Add(planetComponent);
 
-		planetComponent.OnPlanetDestroyed.AddListener(Planet_OnDestroyed);
+		planetComponent.OnPlanetDemolished.AddListener(Planet_OnDestroyed);
 	}
 
     protected virtual void Planet_OnDestroyed(PlanetComponent planetComponent)

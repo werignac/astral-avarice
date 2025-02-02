@@ -14,7 +14,7 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 	private Building gameBuilding;
 
 	// Events
-	[HideInInspector] public UnityEvent<BuildingComponent> OnBuildingDestroyed = new UnityEvent<BuildingComponent>();
+	[HideInInspector] public UnityEvent<BuildingComponent> OnBuildingDemolished = new UnityEvent<BuildingComponent>();
 	[HideInInspector] public UnityEvent OnBuildingHoverStartForSelection = new UnityEvent();
 	[HideInInspector] public UnityEvent OnBuildingHoverEndForSelection = new UnityEvent();
 	[HideInInspector] public UnityEvent OnBuildingSelected = new UnityEvent();
@@ -117,13 +117,10 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 		gameBuilding = building;
 	}
 
-	private void OnDestroy()
-	{
-		OnBuildingDestroyed?.Invoke(this);
-	}
-
 	public void Demolish()
 	{
+		OnBuildingDemolished?.Invoke(this);
+
 		if(parentPlanet != null)
 		{
 			transform.parent = null;
@@ -134,6 +131,7 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 
 		Vector3 spawnLocation = transform.TransformPoint(boxCollider.offset);
 		Instantiate(GlobalBuildingSettings.GetOrCreateSettings().BuildingDestructionVFXPrefab, spawnLocation, Quaternion.identity);
+
 
 		Destroy(gameObject);
 	}
