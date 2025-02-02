@@ -67,7 +67,7 @@ public class CameraMovementComponent : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (isPanning)
+		if (isPanning && !gameController.GamePaused)
 		{
 			PanUpdate();
 		}

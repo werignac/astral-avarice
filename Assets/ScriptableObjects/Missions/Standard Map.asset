@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCash: 200
   cashGoal: 3000
-  timeLimit: 1200
+  timeLimit: 900
   missionName: Standard Map
   startingScience: 0
   startingBuildings:

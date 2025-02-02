@@ -50,6 +50,10 @@ public class GameController : MonoBehaviour
     {
         get { return (gameManager.ScienceHeld); }
     }
+	public bool GamePaused
+	{
+		get { return (gamePaused); }
+	}
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
