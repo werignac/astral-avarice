@@ -84,7 +84,7 @@ MonoBehaviour:
   startingCash: 350
   startingScience: 0
   goalCash: 3500
-  levelTime: 960
+  levelTime: 900
   buildings:
   - {fileID: 2321223643927502079}
   - {fileID: 5358308158389330822}

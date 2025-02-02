@@ -119,11 +119,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Standard Map
-  levelDimentions: {x: 80, y: 70}
+  levelDimentions: {x: 90, y: 70}
   startingCash: 200
   startingScience: 0
   goalCash: 3000
-  levelTime: 900
+  levelTime: 600
   buildings:
   - {fileID: 8198485447922686418}
   - {fileID: 4134161094326136442}

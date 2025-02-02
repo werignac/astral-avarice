@@ -76,11 +76,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Drag A Star
-  levelDimentions: {x: 80, y: 40}
-  startingCash: 800
+  levelDimentions: {x: 90, y: 40}
+  startingCash: 700
   startingScience: 0
   goalCash: 2000
-  levelTime: 960
+  levelTime: 900
   buildings:
   - {fileID: 2841252939006474553}
   - {fileID: 4497797728231656683}

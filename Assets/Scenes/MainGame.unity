@@ -217,8 +217,8 @@ MonoBehaviour:
   demolishClip: {fileID: 8300000, guid: 3ccb4b4d24402bf40984a358b74dc350, type: 3}
   cableConnectClip: {fileID: 8300000, guid: 994c419bf1929a843b4d6ab557ae53fa, type: 3}
   gameDataSet: {fileID: 11400000, guid: cc5cf6fbd626c8547bd726b0fa4b0eb0, type: 2}
-  victoryDocument: {fileID: 1339193876}
-  defeatDocument: {fileID: 799118441}
+  victoryDocument: {fileID: 1339193877}
+  defeatDocument: {fileID: 799118442}
   OnLevelLoad:
     m_PersistentCalls:
       m_Calls: []
@@ -774,7 +774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &799118442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,7 +1024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1339193877
 MonoBehaviour:
   m_ObjectHideFlags: 0
