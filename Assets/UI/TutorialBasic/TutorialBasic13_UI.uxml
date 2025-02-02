@@ -5,10 +5,10 @@
             <engine:VisualElement name="VisualElement" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.78); width: 1150px;">
                 <engine:Label text="Oh no, we increased the gravity of&#10;the planet too much, and the nearby&#10;moon crashed into it, destroying&#10;all the buildings on the surface.&#10;With no houses buying our&#10;power, you aren&apos;t making any money!" name="Label" class="Text" style="align-self: flex-start; margin-top: 350px; margin-left: 50px;" />
             </engine:VisualElement>
-            <engine:VisualElement picking-mode="Ignore" style="flex-grow: 0; width: 400px;">
+            <engine:VisualElement picking-mode="Ignore" style="flex-grow: 0; width: 1000px;">
                 <engine:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
                 <engine:VisualElement picking-mode="Ignore" style="flex-grow: 0; height: 350px;" />
-                <engine:VisualElement style="flex-grow: 0; height: 50px; background-color: rgba(0, 0, 0, 0.78);" />
+                <engine:VisualElement style="flex-grow: 0; height: 10px; background-color: rgba(0, 0, 0, 0.78);" />
             </engine:VisualElement>
             <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
         </engine:VisualElement>
