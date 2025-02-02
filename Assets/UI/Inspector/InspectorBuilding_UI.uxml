@@ -9,11 +9,11 @@
         <engine:VisualElement name="StatsBackground" class="inspectorIcon" style="flex-grow: 0;">
             <engine:VisualElement name="Cost" style="flex-grow: 1; flex-direction: row;">
                 <engine:Label text="Cost: " name="CostLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: normal;" />
-                <engine:Label text="$10" name="CostValue" class="inspectorText" style="font-size: 20px; color: rgb(194, 74, 74); -unity-font-style: bold;" />
+                <engine:Label text="$10" name="CostValue" class="inspectorText" style="font-size: 20px; color: rgb(159, 36, 36); -unity-font-style: bold;" />
             </engine:VisualElement>
             <engine:VisualElement name="AdvancedMaterialsCost" style="flex-grow: 1; flex-direction: row;">
                 <engine:Label text="Advanced Materials Cost:" name="AdvancedMaterialsCostLabel" selectable="false" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: normal;" />
-                <engine:Label text="10" name="AdvancedMaterialsCostValue" class="inspectorText" style="font-size: 20px; color: rgb(194, 74, 74); -unity-font-style: bold;" />
+                <engine:Label text="10" name="AdvancedMaterialsCostValue" class="inspectorText" style="font-size: 20px; color: rgb(159, 36, 36); -unity-font-style: bold;" />
             </engine:VisualElement>
             <engine:VisualElement name="Income" style="flex-grow: 1; flex-direction: row;">
                 <engine:Label text="Income: " name="IncomeLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: normal;" />
@@ -31,11 +31,11 @@
             </engine:VisualElement>
             <engine:VisualElement name="ElectricityConsumption" style="flex-grow: 1; flex-direction: row;">
                 <engine:Label text="Electricity Consumption: " name="ElectricityConsumptionLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
-                <engine:Label text="10" name="ElectricityConsumptionValue" class="inspectorText" style="font-size: 20px; color: rgb(194, 74, 74); -unity-font-style: bold;" />
+                <engine:Label text="10" name="ElectricityConsumptionValue" class="inspectorText" style="font-size: 20px; color: rgb(159, 36, 36); -unity-font-style: bold;" />
             </engine:VisualElement>
             <engine:VisualElement name="Upkeep" style="flex-grow: 1; flex-direction: row;">
                 <engine:Label text="Upkeep: " name="UpkeepLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
-                <engine:Label text="$100" name="UpkeepValue" class="inspectorText" style="font-size: 20px; color: rgb(194, 74, 74); -unity-font-style: bold;" />
+                <engine:Label text="$100" name="UpkeepValue" class="inspectorText" style="font-size: 20px; color: rgb(159, 36, 36); -unity-font-style: bold;" />
             </engine:VisualElement>
             <engine:VisualElement name="Connections" style="flex-grow: 1; flex-direction: row;">
                 <engine:Label text="Connections: " name="ConnectionsLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />

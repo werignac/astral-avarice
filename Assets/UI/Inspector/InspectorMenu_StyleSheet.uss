@@ -7,8 +7,10 @@
     -unity-font-style: normal;
     margin-bottom: 5px;
     white-space: normal;
+    -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bd.otf?fileID=12800000&guid=6d0a7669e90965546aceccaf1b5c6a9d&type=3#Athabasca Bd");
 }
 
 .inspectorText {
     font-size: 14px;
+    -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bd.otf?fileID=12800000&guid=6d0a7669e90965546aceccaf1b5c6a9d&type=3#Athabasca Bd");
 }

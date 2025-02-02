@@ -1,18 +1,18 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=4124b1416559d0b44b5377efa564a3eb&amp;type=3#MainMenuStyleSheet" />
     <engine:VisualElement class="menuBackground" style="flex-grow: 1; width: 500px; align-items: flex-start; align-self: flex-start; padding-right: 0; padding-left: 30px;">
-        <engine:Label text="Settings" name="Title" class="text" />
+        <engine:Label text="Settings" name="Title" class="text header" />
         <engine:VisualElement name="MasterVolume" style="flex-grow: 0; flex-direction: row; align-items: center;">
-            <engine:Label text="Master Volume:" class="text" style="margin-top: 4px; font-size: 30px;" />
-            <engine:Slider value="0" high-value="20" name="MasterSlider" low-value="-30" style="height: 30px; width: 250px;" />
+            <engine:Label text="Master Volume:" class="text" style="margin-top: 4px; font-size: 30px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/athabasca/Athabasca%20Bk.otf?fileID=12800000&amp;guid=870d4ff537de81d48b8b8c50770d8e98&amp;type=3#Athabasca Bk&quot;);" />
+            <engine:Slider value="0" high-value="20" name="MasterSlider" low-value="-30" style="height: 30px; width: 224px;" />
         </engine:VisualElement>
-        <engine:VisualElement name="MusicVolume" style="flex-grow: 0; flex-direction: row; align-items: center; margin-left: 20px;">
-            <engine:Label text="Music Volume:" class="text" style="margin-top: 4px; font-size: 30px;" />
-            <engine:Slider value="42" high-value="0" name="MusicSlider" low-value="-50" style="height: 30px; width: 230px; margin-left: 19px;" />
+        <engine:VisualElement name="MusicVolume" style="flex-grow: 0; flex-direction: row; align-items: center; margin-left: 0;">
+            <engine:Label text="Music Volume:" class="text" style="margin-top: 4px; font-size: 30px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/athabasca/Athabasca%20Bk.otf?fileID=12800000&amp;guid=870d4ff537de81d48b8b8c50770d8e98&amp;type=3#Athabasca Bk&quot;);" />
+            <engine:Slider value="42" high-value="0" name="MusicSlider" low-value="-50" style="height: 30px; width: 224px; margin-left: 23px;" />
         </engine:VisualElement>
-        <engine:VisualElement name="SFXVolume" style="flex-grow: 0; flex-direction: row; align-items: center; margin-left: 20px;">
-            <engine:Label text="SFX Volume:" class="text" style="margin-top: 4px; font-size: 30px;" />
-            <engine:Slider value="42" high-value="0" name="SFXSlider" low-value="-50" style="height: 30px; width: 230px; margin-left: 46px;" />
+        <engine:VisualElement name="SFXVolume" style="flex-grow: 0; flex-direction: row; align-items: center; margin-left: 0;">
+            <engine:Label text="SFX Volume:" class="text" style="margin-top: 4px; font-size: 30px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/athabasca/Athabasca%20Bk.otf?fileID=12800000&amp;guid=870d4ff537de81d48b8b8c50770d8e98&amp;type=3#Athabasca Bk&quot;);" />
+            <engine:Slider value="42" high-value="0" name="SFXSlider" low-value="-50" style="height: 30px; width: 227px; margin-left: 46px;" />
         </engine:VisualElement>
         <engine:Button text="Back" name="BackButton" class="missionButton" style="margin-bottom: 50px; margin-top: 30px;" />
     </engine:VisualElement>

@@ -3,6 +3,7 @@
     background-color: rgba(67, 57, 111, 0.5);
     color: rgb(255, 255, 255);
     -unity-text-align: upper-center;
+    -unity-font-definition: url("project://database/Assets/Fonts/nova_square/NovaSquare-BoldOblique.ttf?fileID=12800000&guid=19fa384501aa0aa4e8dbbe37b4b4060e&type=3#NovaSquare-BoldOblique");
 }
 
 .Title {
@@ -10,6 +11,7 @@
     background-color: rgba(67, 57, 111, 0.5);
     color: rgb(255, 255, 255);
     -unity-text-align: upper-center;
+    -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bd.otf?fileID=12800000&guid=6d0a7669e90965546aceccaf1b5c6a9d&type=3#Athabasca Bd");
 }
 
 .Cover {
