@@ -8,9 +8,6 @@ using static UnityEngine.Rendering.HableCurve;
 /// </summary>
 public class PlanetComponent : MonoBehaviour, IInspectableComponent
 {
-#if UNITY_EDITOR
-	private static readonly int circleSegments = 51;
-#endif
 
 	public static float MassToGravityRadius(int mass) => mass / 25f;
 
@@ -34,9 +31,6 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	[SerializeField] private bool canPlaceBuildings;
 	[SerializeField] private string planetName = "Planet";
 
-#if UNITY_EDITOR
-	private LineRenderer gravityRenderer;
-#endif
 
 	public Transform BuildingContainer
 	{
@@ -90,9 +84,6 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	private void Awake()
 	{
 		planetCollider = GetComponent<CircleCollider2D>();
-#if UNITY_EDITOR
-		AdjustGravityRing();
-#endif
 	}
 
 	private void Start()
@@ -170,9 +161,6 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 
 		muteOnMassChangedEvent = false;
 		// Fire the OnMassChangedEvent
-#if UNITY_EDITOR
-		AdjustGravityRing();
-#endif
 
 		InvokeMassChangedEvent();
     }
@@ -203,9 +191,6 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 				{
 					building.Demolish();
                     building.transform.parent = null;
-#if UNITY_EDITOR
-					AdjustGravityRing();
-#endif
 					// Automatically invoke redraw of gravity field via callbacks.
 				}
 				else
@@ -215,9 +200,6 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 					{
 						building.Demolish();
 						building.transform.parent = null;
-#if UNITY_EDITOR
-						AdjustGravityRing();
-#endif
 						// Automatically invoke redraw of gravity field via callbacks.
 					}
 				}
@@ -259,47 +241,6 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		}
 		return (available);
 	}
-
-#if UNITY_EDITOR
-	public void AdjustGravityRing()
-
-	{
-		if (gravityRenderer == null)
-		{
-			gravityRenderer = gameObject.GetComponent<LineRenderer>();
-			if (gravityRenderer == null)
-			{
-				gravityRenderer = gameObject.AddComponent<LineRenderer>();
-				gravityRenderer.positionCount = circleSegments;
-				gravityRenderer.useWorldSpace = false;
-				gravityRenderer.widthMultiplier = 0.1f;
-				gravityRenderer.loop = true;
-			}
-		}
-
-		float circleRadius = GetTotalMass() / 25f;
-		circleRadius /= transform.localScale.x; //Adjusting for the scale of the planet.
-		DrawGravityCircle(circleRadius);
-	}
-
-	private void DrawGravityCircle(float radius)
-	{ 
-
-		float x;
-		float y;
-		float angle = 0;
-
-		for (int i = 0; i<(circleSegments); i++)
-		{
-			x = Mathf.Sin(Mathf.Deg2Rad* angle)* radius;
-			y = Mathf.Cos(Mathf.Deg2Rad* angle)* radius;
-
-			gravityRenderer.SetPosition(i, new Vector3(x, y, 0));
-
-			angle += (360f / (circleSegments - 1));
-		}
-	}
-#endif
 
 	public void InvokeMassChangedEvent()
 	{
