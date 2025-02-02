@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=4124b1416559d0b44b5377efa564a3eb&amp;type=3#MainMenuStyleSheet" />
+    <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+        <engine:VisualElement style="flex-grow: 0; width: 1000px; height: 600px; background-color: rgba(9, 46, 8, 0.78); align-items: center;">
+            <engine:Button text="Resume Game" name="UnpauseButton" class="missionButton" />
+            <engine:Button text="Quit to Menu" name="QuitButton" class="missionButton" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
