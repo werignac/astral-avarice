@@ -29,6 +29,8 @@ public class GameController : MonoBehaviour
 	protected int gameSpeed;
 	private float endGameTime = 0;
 	private bool gameEnded = false;
+	private bool gamePaused = false;
+	private int prePauseGameSpeed = 1;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
 
@@ -138,6 +140,24 @@ public class GameController : MonoBehaviour
 		if (!gameEnded && gameSpeed > 1)
 			--gameSpeed;
 	}
+
+	public void PauseGame()
+	{
+		if(!gameEnded && !gamePaused)
+		{
+			gamePaused = true;
+			prePauseGameSpeed = gameSpeed;
+			gameSpeed = 0;
+		}
+	}
+	public void UnpauseGame()
+	{
+        if (!gameEnded && gamePaused)
+        {
+			gamePaused = false;
+			gameSpeed = prePauseGameSpeed;
+        }
+    }
 
 	/// <summary>
 	/// Invoked by input manager and status UI prior to update.
