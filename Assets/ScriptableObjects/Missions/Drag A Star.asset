@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCash: 900
   cashGoal: 2000
-  timeLimit: 1200
+  timeLimit: 960
   missionName: Drag A Star
   startingScience: 0
   startingBuildings:
