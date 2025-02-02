@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 077e6320f1bd34b4abede6e80103ee81
+guid: 63f00e5a3731d604489ca06c20dff6c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4064476689478365237
-    second: time_scale_ui_0
+      213: -4761378060302496180
+    second: pause_button_ui_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,9 +46,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: time_scale_ui_0
+      name: pause_button_ui_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2771
-        height: 479
+        width: 515
+        height: 327
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 1248, y: 0, z: 673, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bcf49c54cf31897c0800000000000000
-      internalID: -4064476689478365237
+      spriteID: c4ec45a81ef2cedb0800000000000000
+      internalID: -4761378060302496180
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4f49d2785393ddf4fbaa9a3b1e76cc8b
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      time_scale_ui_0: -4064476689478365237
+      pause_button_ui_0: -4761378060302496180
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

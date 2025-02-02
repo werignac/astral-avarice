@@ -19,20 +19,17 @@ public class PauseManager : MonoBehaviour
         pauseUI.rootVisualElement.style.display = DisplayStyle.None;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UnpauseClicked(ClickEvent click)
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            PauseGame();
-        }
+		UnpauseGame();
     }
 
-    private void UnpauseClicked(ClickEvent click)
-    {
-        gameController.UnpauseGame();
-        pauseUI.rootVisualElement.style.display = DisplayStyle.None;
-    }
+	public void UnpauseGame()
+	{
+		gameController.UnpauseGame();
+		pauseUI.rootVisualElement.style.display = DisplayStyle.None;
+	}
+
     private void QuitClicked(ClickEvent click)
     {
         gameController.ReturnToMenu();

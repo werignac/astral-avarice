@@ -132,7 +132,8 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 #endif
 		}
 
-		Instantiate(GlobalBuildingSettings.GetOrCreateSettings().BuildingDestructionVFXPrefab, transform.position, Quaternion.identity);
+		Vector3 spawnLocation = transform.TransformPoint(boxCollider.offset);
+		Instantiate(GlobalBuildingSettings.GetOrCreateSettings().BuildingDestructionVFXPrefab, spawnLocation, Quaternion.identity);
 
 		Destroy(gameObject);
 	}

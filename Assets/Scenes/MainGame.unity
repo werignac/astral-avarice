@@ -1202,6 +1202,7 @@ MonoBehaviour:
   selectionCursor: {fileID: 191995373}
   inspector: {fileID: 1836921261}
   gameController: {fileID: 164819399}
+  pauseManager: {fileID: 1946576280}
 --- !u!1 &1715228861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,6 +1797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StatsUI
       objectReference: {fileID: 0}
+    - target: {fileID: 9096473012251885719, guid: 742e6640825d9b042a11b5a1c2b77468, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 1946576280}
     - target: {fileID: 9096473012251885719, guid: 742e6640825d9b042a11b5a1c2b77468, type: 3}
       propertyPath: gameController
       value: 

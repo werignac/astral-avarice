@@ -14,11 +14,13 @@ public class InputManagerComponent : MonoBehaviour
 	private InputAction incrementGameSpeedAction;
 	private InputAction decrementGameSpeedAction;
 	private InputAction redistributeElectricityAction;
+	private InputAction pauseAction;
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
 	[SerializeField] private InspectorUIComponent inspector;
 	[SerializeField] private GameController gameController;
+	[SerializeField] private PauseManager pauseManager;
 
 	private void Awake()
 	{
@@ -41,6 +43,8 @@ public class InputManagerComponent : MonoBehaviour
 		incrementGameSpeedAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["IncrementGameSpeed"];
 		decrementGameSpeedAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["DecrementGameSpeed"];
 		redistributeElectricityAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["RedistributeElectricity"];
+		pauseAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Pause"];
+		
 
 		StartCoroutine(RefreshInputComponent());
 	}
@@ -61,6 +65,7 @@ public class InputManagerComponent : MonoBehaviour
 		UpdateInspector();
 		UpdateCameraMovement();
 		UpdateGameController();
+		UpdatePauseManager();
 	}
 
 	private void UpdateSelectionCursor()
@@ -144,6 +149,22 @@ public class InputManagerComponent : MonoBehaviour
 		if (redistributeElectricityAction.WasPerformedThisFrame())
 		{
 			gameController.RecomputeIncome();
+		}
+	}
+
+	private void UpdatePauseManager()
+	{
+		if (pauseAction.WasPerformedThisFrame())
+		{
+			if (gameController.GamePaused)
+			{
+				pauseManager.UnpauseGame();
+			}
+			else
+			{
+				pauseManager.PauseGame();
+			}
+			
 		}
 	}
 }

@@ -10,8 +10,10 @@ public class StatsUIComponent : MonoBehaviour
 	private Button incrementGameSpeedButton;
 	private Button decrementGameSpeedButton;
 	private Button redistributeElectricityButton;
+	private Button pauseButtion;
 
 	[SerializeField] private GameController gameController;
+	[SerializeField] private PauseManager pauseManager;
 
 	private void Awake()
 	{
@@ -24,11 +26,18 @@ public class StatsUIComponent : MonoBehaviour
 		incrementGameSpeedButton = statsDocument.rootVisualElement.Q<Button>("IncreaseButton");
 		decrementGameSpeedButton = statsDocument.rootVisualElement.Q<Button>("DecreaseButton");
 		redistributeElectricityButton = statsDocument.rootVisualElement.Q<Button>("RedistributeButton");
+		pauseButtion = statsDocument.rootVisualElement.Q<Button>("PauseButton");
 
 		incrementGameSpeedButton.RegisterCallback<ClickEvent>(IncrementTimeButton_OnClick);
 		decrementGameSpeedButton.RegisterCallback<ClickEvent>(DecrementTimeButton_OnClick);
 		redistributeElectricityButton.RegisterCallback<ClickEvent>(RedistributeElectricityButton_OnClick);
+		pauseButtion.RegisterCallback<ClickEvent>(PauseButton_OnClick);
     }
+
+	private void PauseButton_OnClick(ClickEvent evt)
+	{
+		pauseManager.PauseGame();
+	}
 
 	private void RedistributeElectricityButton_OnClick(ClickEvent evt)
 	{
