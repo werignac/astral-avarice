@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OrangeCoalPlanetMaterial
+  m_Name: GeothermalPlanet
   m_Shader: {fileID: -6465566751694194690, guid: dec295bfd1754d34a8bc911c4bdb6eeb, type: 3}
-  m_Parent: {fileID: 2100000, guid: 440620cf1c328e5418643b9ce5736771, type: 2}
+  m_Parent: {fileID: 2100000, guid: 7fb75bb68d9d4d142ada69813a004ddb, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -22,16 +22,29 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainTexture_0:
+        m_Texture: {fileID: 2800000, guid: 08443a05a40c1e04e9c84e4a915b867f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainTexture_1:
+        m_Texture: {fileID: 2800000, guid: 512e7ae57c206e246a656b2609defa68, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color_0: {r: 0.66666657, g: 0.30334136, b: 0.2620544, a: 1}
-    - _Color_1: {r: 0.28616348, g: 0.07843398, b: 0.035095487, a: 1}
-    - _Color_2: {r: 0.050314426, g: 0.020498779, b: 0.018511904, a: 1}
+    - _Color_2: {r: 0.57861614, g: 0.19728546, b: 0.11463143, a: 1}
+    - _Color_3: {r: 1.7878451, g: 1.8443025, b: 0.2841846, a: 1}
+    - _RotateVelocity_0: {r: -0.025, g: -0.00625, b: 0, a: 0}
+    - _RotateVelocity_1: {r: -0.025, g: -0.00625, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &3887734088593264865
+--- !u!114 &1827413290497954748
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

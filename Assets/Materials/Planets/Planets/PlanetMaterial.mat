@@ -76,6 +76,7 @@ Material:
     - _OutlineWidth: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Seed: 0
     - _SurfaceTextureScale: 1
     - _TextureScale_0: 1.3
     - _TextureScale_1: 1.3
@@ -88,7 +89,7 @@ Material:
     - _Color_3: {r: 0.7500098, g: 0.8125566, b: 0.8427672, a: 1}
     - _OutlineColor: {r: 0.32389918, g: 1, b: 0.38654488, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RotateVelocity_0: {r: -0.1, g: -0.025, b: 0, a: 0}
+    - _RotateVelocity_0: {r: -0.025, g: -0.00625, b: 0, a: 0}
     - _RotateVelocity_1: {r: -0.2, g: 0, b: 0, a: 0}
     - _RotationVelocity: {r: 0.1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

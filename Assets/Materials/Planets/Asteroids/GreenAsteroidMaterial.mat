@@ -22,7 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: GreenAsteroidMaterial
   m_Shader: {fileID: -6465566751694194690, guid: dec295bfd1754d34a8bc911c4bdb6eeb, type: 3}
-  m_Parent: {fileID: 2100000, guid: 7c6a169d172c8e944a4f7f612f395694, type: 2}
+  m_Parent: {fileID: 2100000, guid: ca44360895909254a833dc37b707a38a, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []

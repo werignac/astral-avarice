@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OrangeCoalPlanetMaterial
+  m_Name: WindyPlanetRedMateriall
   m_Shader: {fileID: -6465566751694194690, guid: dec295bfd1754d34a8bc911c4bdb6eeb, type: 3}
-  m_Parent: {fileID: 2100000, guid: 440620cf1c328e5418643b9ce5736771, type: 2}
+  m_Parent: {fileID: 2100000, guid: 0161c1f25ac78d341a7f4aa4fe6dce5e, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -22,16 +22,21 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _TerrainTexture_0:
+        m_Texture: {fileID: 2800000, guid: 5c94ee069b5fb634388b076006a3a291, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color_0: {r: 0.66666657, g: 0.30334136, b: 0.2620544, a: 1}
-    - _Color_1: {r: 0.28616348, g: 0.07843398, b: 0.035095487, a: 1}
-    - _Color_2: {r: 0.050314426, g: 0.020498779, b: 0.018511904, a: 1}
+    - _Color_0: {r: 0.52201253, g: 0.08371891, b: 0.093548976, a: 1}
+    - _Color_1: {r: 0.509434, g: 0.18034638, b: 0.0656817, a: 1}
+    - _Color_2: {r: 0.18867922, g: 0.08761035, b: 0.06111305, a: 1}
+    - _Color_3: {r: 0.91823894, g: 0.6189008, b: 0.37826818, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &3887734088593264865
+--- !u!114 &2932757251984533705
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

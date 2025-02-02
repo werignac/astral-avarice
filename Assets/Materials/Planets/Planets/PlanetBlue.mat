@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6763961974361072408
+--- !u!114 &-2330378802668741970
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,9 +20,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GreenCoalPlanetMaterial Variant
+  m_Name: PlanetBlue
   m_Shader: {fileID: -6465566751694194690, guid: dec295bfd1754d34a8bc911c4bdb6eeb, type: 3}
-  m_Parent: {fileID: 2100000, guid: 440620cf1c328e5418643b9ce5736771, type: 2}
+  m_Parent: {fileID: 2100000, guid: 7fb75bb68d9d4d142ada69813a004ddb, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -40,11 +40,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: 5c94ee069b5fb634388b076006a3a291, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TerrainTexture_1:
+        m_Texture: {fileID: 2800000, guid: cea3225cac24dfc42b5064f0ad6ae5cf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color_0: {r: 0.077132955, g: 0.32704395, b: 0.20771009, a: 1}
-    - _Color_1: {r: 0.082873926, g: 0.15723258, b: 0.049938634, a: 1}
-    - _Color_2: {r: 0.0074759596, g: 0.03773582, b: 0.010365776, a: 1}
+    - _Color_0: {r: 0.1318381, g: 0.21302706, b: 0.41509432, a: 1}
+    - _Color_1: {r: 0.06603769, g: 0.08752013, b: 0.3962264, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

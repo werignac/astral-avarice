@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OrangeCoalPlanetMaterial
+  m_Name: AsteriodMaterialWhite
   m_Shader: {fileID: -6465566751694194690, guid: dec295bfd1754d34a8bc911c4bdb6eeb, type: 3}
-  m_Parent: {fileID: 2100000, guid: 440620cf1c328e5418643b9ce5736771, type: 2}
+  m_Parent: {fileID: 2100000, guid: 7c6a169d172c8e944a4f7f612f395694, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -26,12 +26,12 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color_0: {r: 0.66666657, g: 0.30334136, b: 0.2620544, a: 1}
-    - _Color_1: {r: 0.28616348, g: 0.07843398, b: 0.035095487, a: 1}
-    - _Color_2: {r: 0.050314426, g: 0.020498779, b: 0.018511904, a: 1}
+    - _Color_0: {r: 0.68114394, g: 0.6865273, b: 0.754717, a: 1}
+    - _Color_1: {r: 0.37106913, g: 0.37106913, b: 0.37106913, a: 1}
+    - _Color_2: {r: 0.06440973, g: 0.06330836, b: 0.06918234, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &3887734088593264865
+--- !u!114 &7495035420398223585
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
