@@ -174,7 +174,7 @@ public class GameController : MonoBehaviour
 
 	void FixedUpdate()
     {
-		if (!gameEnded)
+		if (!gameEnded && !gamePaused)
 		{
 			MovePlanets();
 		}
