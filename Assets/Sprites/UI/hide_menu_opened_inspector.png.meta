@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hide_menu_opened_inspector_0: -1368689051005213235
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
