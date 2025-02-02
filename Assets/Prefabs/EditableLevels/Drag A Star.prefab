@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Drag A Star
   levelDimentions: {x: 80, y: 40}
-  startingCash: 900
+  startingCash: 800
   startingScience: 0
   goalCash: 2000
   levelTime: 960

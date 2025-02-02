@@ -339,6 +339,7 @@ MonoBehaviour:
   resourceCounts: 00000000000000000000000000000000
   solarOutput: 0
   canPlaceBuildings: 1
+  planetName: Asteroid
 --- !u!1 &9031790073864853257
 GameObject:
   m_ObjectHideFlags: 0

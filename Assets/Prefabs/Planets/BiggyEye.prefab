@@ -221,6 +221,7 @@ MonoBehaviour:
   resourceCounts: 00000000000000000000000000000000
   solarOutput: 0
   canPlaceBuildings: 1
+  planetName: Biggy
 --- !u!1 &6201759960667709792
 GameObject:
   m_ObjectHideFlags: 0

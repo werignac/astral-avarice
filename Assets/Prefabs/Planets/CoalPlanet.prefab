@@ -165,6 +165,7 @@ MonoBehaviour:
   resourceCounts: 08000000000000000000000000000000
   solarOutput: 0
   canPlaceBuildings: 1
+  planetName: Planet
 --- !u!1 &3600928323074289996
 GameObject:
   m_ObjectHideFlags: 0

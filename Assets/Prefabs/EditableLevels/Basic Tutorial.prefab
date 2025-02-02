@@ -422,7 +422,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: c05b970156cbe5b4b9129df49aaa360b, type: 2}
   parentPlanet: {fileID: 4625549207846707004}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -496,7 +496,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 66222c469a053bd4483cb66ec117653c, type: 2}
   parentPlanet: {fileID: 8386360253576874843}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -601,7 +601,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 66222c469a053bd4483cb66ec117653c, type: 2}
   parentPlanet: {fileID: 8386360253576874843}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -961,7 +961,7 @@ MonoBehaviour:
   levelDimentions: {x: 20, y: 15}
   startingCash: 1000
   startingScience: 0
-  goalCash: 250
+  goalCash: 100
   levelTime: 600
   buildings:
   - {fileID: 3928496481649051756}
