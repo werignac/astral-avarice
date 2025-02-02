@@ -83,11 +83,11 @@ public class TutorialGameController : GameController
         {
             gameSpeed = gameSpeedOverrides[currentTutorialState];
         }
-        if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.click && Input.GetMouseButtonDown(0))
+        if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.click && !GamePaused && Input.GetMouseButtonDown(0))
         {
             advanceAtEndOfNextUpdate = true;
         }
-        if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.clickFour && Input.GetMouseButtonDown(0))
+        if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.clickFour && !GamePaused && Input.GetMouseButtonDown(0))
         {
             ++numCables;
             if(numCables >= 4)

@@ -32,4 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9765d05d5308fa54e9c4724f86827cf1, type: 2}
   - {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
   - {fileID: 11400000, guid: fb7774071fd23fb4398502288364815d, type: 2}
-  tutorialScene: 
+  tutorialScene: TutorialAdvanced

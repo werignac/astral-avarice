@@ -286,6 +286,7 @@ public class GameController : MonoBehaviour
 		endGameTime = 0;
 		if(victory)
         {
+			PlayerPrefs.SetInt(gameManager.MissionName, 1);
 			if (victoryDocument != null)
 			{
 				victoryDocument.SetActive(true);
