@@ -73,6 +73,7 @@ Material:
     - PixelSnap: 0
     - _EnableExternalAlpha: 0
     - _GlobeFactor: 1.1
+    - _OutlineWidth: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SurfaceTextureScale: 1
@@ -85,6 +86,7 @@ Material:
     - _Color_1: {r: 0.112356186, g: 0.26100624, b: 0.05335029, a: 1}
     - _Color_2: {r: 0.26906565, g: 0.28426147, b: 0.2861635, a: 1}
     - _Color_3: {r: 0.7500098, g: 0.8125566, b: 0.8427672, a: 1}
+    - _OutlineColor: {r: 0.32389918, g: 1, b: 0.38654488, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _RotateVelocity_0: {r: -0.1, g: -0.025, b: 0, a: 0}
     - _RotateVelocity_1: {r: -0.2, g: 0, b: 0, a: 0}

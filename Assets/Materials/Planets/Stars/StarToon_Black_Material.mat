@@ -56,6 +56,7 @@ Material:
     - _EdgeMargin: 0.05
     - _EnableExternalAlpha: 0
     - _GlobeFactor: 1.5
+    - _OutlineWidth: 0
     - _Seed: 101
     - _StarTextureScale: 10
     - _StepDark: 0.3
@@ -68,6 +69,7 @@ Material:
     - _ColorLight: {r: 4.472336, g: 4.472336, b: 4.472336, a: 1}
     - _ColorMidtone1: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 0}
     - _ColorMidtone2: {r: 0.32704395, g: 0.32704395, b: 0.32704395, a: 0}
+    - _OutlineColor: {r: 0.23399597, g: 0.64779866, b: 0.14870837, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

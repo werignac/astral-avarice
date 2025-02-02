@@ -320,6 +320,9 @@ public class InspectorUIComponent : MonoBehaviour
 				break;
 			case InspectorLayerType.SELECT:
 				(topmostLayer.inspectable as IInspectableComponent).OnSelectStart();
+				// If the player selected something and the inspector was closed, open it.
+				if (collapsableInspectorContent.style.display == DisplayStyle.None)
+					CollapseButton_OnClick(null);
 				break;
 		}
 

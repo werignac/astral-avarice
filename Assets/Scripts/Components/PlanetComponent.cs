@@ -21,6 +21,10 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	[HideInInspector] public UnityEvent<PlanetComponent> OnPlanetDestroyed = new UnityEvent<PlanetComponent>();
 	private bool muteOnMassChangedEvent = false;
 	[HideInInspector] public UnityEvent OnMassChanged = new UnityEvent();
+	[HideInInspector] public UnityEvent OnHoverStart = new UnityEvent();
+	[HideInInspector] public UnityEvent OnSelectedStart = new UnityEvent();
+	[HideInInspector] public UnityEvent OnHoverEnd = new UnityEvent();
+	[HideInInspector] public UnityEvent OnSelectedEnd = new UnityEvent();
 
 	private CircleCollider2D planetCollider;
 	[SerializeField] private Transform buildingContainerTransform;
@@ -308,18 +312,22 @@ public void InvokeMassChangedEvent()
 
     public void OnHoverEnter()
     {
+		OnHoverStart?.Invoke();
     }
 
     public void OnHoverExit()
     {
+		OnHoverEnd?.Invoke();
     }
 
     public void OnSelectStart()
     {
+		OnSelectedStart?.Invoke();
     }
 
     public void OnSelectEnd()
     {
+		OnSelectedEnd?.Invoke();
     }
 
     public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
