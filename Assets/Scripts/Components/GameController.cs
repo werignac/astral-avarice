@@ -96,8 +96,10 @@ public class GameController : MonoBehaviour
 		}
 
 		foreach(CableComponent cableComponent in WerignacUtils.GetComponentsInActiveScene<CableComponent>())
-		{
-			RegisterCable(cableComponent);
+        {
+            cableComponent.SetAttachedBuildings(cableComponent.Start, cableComponent.End);
+			cableComponent.SetDemolishable(true);
+            RegisterCable(cableComponent);
 		}
 
 		UpdatePlanetsSolar();
@@ -220,9 +222,9 @@ public class GameController : MonoBehaviour
 				if(planetTranslations[i].magnitude < 0.00000001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
                 {
 					planetTranslations[i] = Planets[i].PlanetVelocity * -1;
-					if(planetTranslations[i].magnitude > Time.fixedDeltaTime)
+					if(planetTranslations[i].magnitude > (Time.fixedDeltaTime * gameSpeed))
                     {
-						planetTranslations[i] = planetTranslations[i].normalized * Time.fixedDeltaTime;
+						planetTranslations[i] = planetTranslations[i].normalized * (Time.fixedDeltaTime * gameSpeed);
                     }
                 }
 				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();

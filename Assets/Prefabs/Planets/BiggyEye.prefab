@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29440e8ddbc32c4eb1cff4635d60865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityFieldRenderer: {fileID: 0}
+  gravityFieldRenderer: {fileID: 8197465331956898667}
   marginIntoPlanet: 0.1
   minimumFieldDrawRadius: 0.3
 --- !u!1 &8521814289734251587
