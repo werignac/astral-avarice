@@ -413,6 +413,7 @@ MonoBehaviour:
   missionSelectDocument: {fileID: 454164189}
   settingsDocument: {fileID: 790142433}
   creditsDocument: {fileID: 1028712846}
+  missionButtonPrefab: {fileID: 9197481963319205126, guid: 089c9e43ee88121449dca560d3f23bb0, type: 3}
   audioMixer: {fileID: 24100000, guid: 651c72aa38f366b4185571ed3ef58479, type: 2}
 --- !u!1 &790142432
 GameObject:

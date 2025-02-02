@@ -10,6 +10,7 @@ public class MainMenuUIComponent : MonoBehaviour
     [SerializeField] private UIDocument missionSelectDocument;
     [SerializeField] private UIDocument settingsDocument;
     [SerializeField] private UIDocument creditsDocument;
+    [SerializeField] private VisualTreeAsset missionButtonPrefab;
     [SerializeField] private AudioMixer audioMixer;
 
     private VisualElement missionsContent;
@@ -79,11 +80,7 @@ public class MainMenuUIComponent : MonoBehaviour
         missionsContent.Clear();
         for(int i = 0; i < gameData.missionDatas.Length; ++i)
         {
-            MissionData mission = gameData.missionDatas[i];
-            Button button = new Button();
-            button.text = mission.name;
-            button.AddToClassList("missionButton");
-            button.RegisterCallback<ClickEvent, MissionData>(StartMission, mission);
+            VisualElement button = CreateMissionButton(gameData.missionDatas[i]);
             missionsContent.Add(button);
         }
     }
@@ -163,5 +160,24 @@ public class MainMenuUIComponent : MonoBehaviour
         }
         audioMixer.SetFloat("SFX", newValue);
         PlayerPrefs.SetFloat("SFXVolume", newValue);
+    }
+
+    private VisualElement CreateMissionButton(MissionData mission)
+    {
+        string missionName = mission.name;
+        VisualElement missionButtonElement = missionButtonPrefab.Instantiate();
+        Button missionButton = missionButtonElement.Q<Button>("MissionButton");
+        VisualElement check = missionButtonElement.Q("Check");
+        missionButton.text = missionName;
+        missionButton.RegisterCallback<ClickEvent, MissionData>(StartMission, mission);
+        if (PlayerPrefs.GetInt(missionName, 0) == 0)
+        {
+            check.style.display = DisplayStyle.None;
+        }
+        else
+        {
+            check.style.display = DisplayStyle.Flex;
+        }
+        return (missionButtonElement);
     }
 }
