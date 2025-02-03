@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Advanced Tutorial
-  levelDimentions: {x: 40, y: 30}
+  levelDimentions: {x: 45, y: 30}
   startingCash: 800
   startingScience: 0
   goalCash: 2000
