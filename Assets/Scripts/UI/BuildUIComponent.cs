@@ -68,6 +68,9 @@ public class BuildUIComponent : MonoBehaviour
 		}
 	}
 
+	private static InspectableDemolish demolishInspector = new InspectableDemolish();
+	private static InspectableCable cableInspector = new InspectableCable();
+
 	private UIDocument uiDocument;
 	[SerializeField] private VisualTreeAsset buildingButtonTemplate;
 	[SerializeField] private Sprite collapseButtonMenuOpenedSprite;
@@ -84,7 +87,7 @@ public class BuildUIComponent : MonoBehaviour
 
 	private List<BuildButtonBinding> buildButtonBindings = new List<BuildButtonBinding>();
 
-	private Dictionary<BuildingSettingEntry, InspectorUIComponent.InspectorLayer> inspectorLayers = new Dictionary<BuildingSettingEntry, InspectorUIComponent.InspectorLayer>();
+	private Dictionary<System.Object, InspectorUIComponent.InspectorLayer> inspectorLayers = new Dictionary<System.Object, InspectorUIComponent.InspectorLayer>();
 
 
 	private void Awake()
@@ -122,14 +125,60 @@ public class BuildUIComponent : MonoBehaviour
 		}
 
 		collapseMenuButton.RegisterCallback<ClickEvent>(BuildManager_OnClickToggle);
-		demolishButtonElement.Q<Button>("BuildButton").RegisterCallback<ClickEvent>(DemolishButton_OnClick);
-		cableButtonElement.Q<Button>("BuildButton").RegisterCallback<ClickEvent>(CableButton_OnClick);
+		
+		Button demolishButton = demolishButtonElement.Q<Button>("BuildButton");
+		demolishButton.RegisterCallback<ClickEvent>(DemolishButton_OnClick);
+		demolishButton.RegisterCallback<PointerEnterEvent>(DemolishButton_OnHoverStart);
+		demolishButton.RegisterCallback<PointerLeaveEvent>(DemolishButton_OnHoverEnd);
+
+		Button cableButton = cableButtonElement.Q<Button>("BuildButton");
+		cableButton.RegisterCallback<ClickEvent>(CableButton_OnClick);
+		cableButton.RegisterCallback<PointerEnterEvent>(CableButton_OnHoverStart);
+		cableButton.RegisterCallback<PointerLeaveEvent>(CableButton_OnHoverEnd);
 
 		// TODO: Unregister listeners on disable / destroy.
 		
 
 		// Listen to events to change the selected building to add.
 		BuildManagerComponent.Instance.OnStateChanged.AddListener(BuildManager_OnStateChanged);
+	}
+
+	private void DemolishButton_OnHoverEnd(PointerLeaveEvent evt)
+	{
+		if (inspectorLayers.ContainsKey(demolishInspector))
+		{
+			var layer = inspectorLayers[demolishInspector];
+			inspectorUI.RemoveLayer(layer);
+			inspectorLayers.Remove(demolishInspector);
+		}
+	}
+
+	private void CableButton_OnHoverEnd(PointerLeaveEvent evt)
+	{
+		if (inspectorLayers.ContainsKey(cableInspector))
+		{
+			var layer = inspectorLayers[cableInspector];
+			inspectorUI.RemoveLayer(layer);
+			inspectorLayers.Remove(cableInspector);
+		}
+	}
+
+	private void CableButton_OnHoverStart(PointerEnterEvent evt)
+	{
+		if (!inspectorLayers.ContainsKey(cableInspector))
+		{
+			InspectorUIComponent.InspectorLayer layer = inspectorUI.AddLayer(cableInspector, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+			inspectorLayers.Add(cableInspector, layer);
+		}
+	}
+
+	private void DemolishButton_OnHoverStart(PointerEnterEvent evt)
+	{
+		if (! inspectorLayers.ContainsKey(demolishInspector))
+		{
+			InspectorUIComponent.InspectorLayer layer = inspectorUI.AddLayer(demolishInspector, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+			inspectorLayers.Add(demolishInspector, layer);
+		}
 	}
 
 	protected virtual void CableButton_OnClick(ClickEvent evt)

@@ -136,6 +136,12 @@ public class InspectorUIComponent : MonoBehaviour
 				BuildingBuildState buildingBuildState = newState as BuildingBuildState;
 				activeInspectorLayers.Add(new InspectorLayer(buildingBuildState, InspectorLayerType.BUILD_MODE));
 				break;
+			case BuildStateType.CABLE:
+				activeInspectorLayers.Add(new InspectorLayer(new InspectableCable(), InspectorLayerType.BUILD_MODE));
+				break;
+			case BuildStateType.DEMOLISH:
+				activeInspectorLayers.Add(new InspectorLayer(new InspectableDemolish(), InspectorLayerType.BUILD_MODE));
+				break;
 		}
 
 		MarkForUIUpdate();
@@ -304,7 +310,8 @@ public class InspectorUIComponent : MonoBehaviour
 			// Create new inspector UI and controller.
 			var inspectorAsset = topmostLayer.inspectable.GetInspectorElement(out IInspectorController newInspectorController);
 			var inspectorInstance = inspectorAsset.Instantiate();
-			newInspectorController.ConnectInspectorUI(inspectorInstance);
+			if (newInspectorController != null)
+				newInspectorController.ConnectInspectorUI(inspectorInstance);
 
 			// Put the new inspector in the inspector contianer.
 			inspectorUIContainer.Add(inspectorInstance);

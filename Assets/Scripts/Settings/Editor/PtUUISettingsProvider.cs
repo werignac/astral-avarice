@@ -29,6 +29,9 @@ public class PtUUISettingsProvider
 				var settings = GetSerializedSettings();
 				EditorGUILayout.PropertyField(settings.FindProperty("defaultInspectorUI"), new GUIContent("Default Inspector"));
 				EditorGUILayout.PropertyField(settings.FindProperty("buildingInspectorUI"), new GUIContent("Building Inspector"));
+				EditorGUILayout.PropertyField(settings.FindProperty("planetInspectorUI"), new GUIContent("Planet Inspector"));
+				EditorGUILayout.PropertyField(settings.FindProperty("demolishInspectorUI"), new GUIContent("Demolish Inspector"));
+				EditorGUILayout.PropertyField(settings.FindProperty("cableInspectorUI"), new GUIContent("Cable Inspector"));
 				EditorGUILayout.PropertyField(settings.FindProperty("buildingSelectionMaterial"), new GUIContent("Building Selection Material"));
 				EditorGUILayout.PropertyField(settings.FindProperty("selectColor"), new GUIContent("Building Selection Color"));
 				EditorGUILayout.PropertyField(settings.FindProperty("demolishColor"), new GUIContent("Building Demolish Color"));

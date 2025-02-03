@@ -21,6 +21,9 @@ public class PtUUISettings : ScriptableObject
 	// The buildings that can be placed by the player.
 	[SerializeField] private VisualTreeAsset buildingInspectorUI;
 	[SerializeField] private VisualTreeAsset planetInspectorUI;
+	[SerializeField] private VisualTreeAsset demolishInspectorUI;
+	[SerializeField] private VisualTreeAsset cableInspectorUI;
+
 
 	[Header("Selection")]
 	[SerializeField] private Material buildingSelectionMaterial;
@@ -43,6 +46,16 @@ public class PtUUISettings : ScriptableObject
 	public VisualTreeAsset PlanetInspectorUI
 	{
 		get => planetInspectorUI;
+	}
+
+	public VisualTreeAsset DemolishInspectorUI
+	{
+		get => demolishInspectorUI;
+	}
+
+	public VisualTreeAsset CableInspectorUI
+	{
+		get => cableInspectorUI;
 	}
 
 	public Material BuildingSelectionMaterial
