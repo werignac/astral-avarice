@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3914bd3687151f4e88c9fa48c45c531, type: 3}
   m_Name: Pylon_XL_Data
   m_EditorClassIdentifier: 
-  buildingName: Pylon
+  buildingName: Pylon XL
   cost: 200
   scienceCost: 0
   mass: 45
