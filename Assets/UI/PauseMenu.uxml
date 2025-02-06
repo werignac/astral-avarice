@@ -1,10 +1,11 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=4124b1416559d0b44b5377efa564a3eb&amp;type=3#MainMenuStyleSheet" />
     <engine:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.55);">
-        <engine:VisualElement style="flex-grow: 0; width: 1000px; height: 600px; background-color: rgba(9, 46, 8, 0); align-items: center; justify-content: center; background-image: url(&quot;project://database/Assets/Sprites/UI/build_menu_background_1.png?fileID=5256389858025440078&amp;guid=1aacea6b08ee57346b8b33caa1802ea0&amp;type=3#build_menu_background_1_0&quot;); -unity-slice-scale: 1px;">
+        <engine:VisualElement style="flex-grow: 0; width: auto; height: auto; background-color: rgba(9, 46, 8, 0); align-items: center; justify-content: center; background-image: url(&quot;project://database/Assets/Sprites/UI/build_menu_background_1.png?fileID=5256389858025440078&amp;guid=1aacea6b08ee57346b8b33caa1802ea0&amp;type=3#build_menu_background_1_0&quot;); -unity-slice-scale: 1px; padding-top: 117px; padding-bottom: 128px; padding-right: 260px; padding-left: 260px;">
             <engine:Label text="Game Paused" class="text" style="align-self: center; margin-top: 17px; margin-bottom: 55px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/nova_square/NovaSquare-Bold.ttf?fileID=12800000&amp;guid=597dc7aca417012418e8bf020fe58581&amp;type=3#NovaSquare-Bold&quot;);" />
-            <engine:Button text="Resume Game" name="UnpauseButton" class="missionButton" style="margin-bottom: 1px;" />
-            <engine:Button text="Quit to Menu" name="QuitButton" class="missionButton" />
+            <engine:Button text="Resume" name="UnpauseButton" class="missionButton" style="margin-bottom: 1px;" />
+            <engine:Button text="Restart Mission" name="RestartButton" class="missionButton" style="margin-bottom: 1px;" />
+            <engine:Button text="Quit to Main Menu" name="QuitButton" class="missionButton" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

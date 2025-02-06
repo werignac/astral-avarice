@@ -519,7 +519,7 @@ public class GameController : MonoBehaviour
         return false;
     }
 
-	private void ReloadScene()
+	public void ReloadScene()
     {
 		SceneManager.LoadScene("MainGame");
     }
