@@ -41,14 +41,14 @@ public class CableComponent : MonoBehaviour, IDemolishable
 		get => endBuilding;
 	}
 
-#if UNITY_EDITOR
 	private void Awake()
 	{
+#if UNITY_EDITOR
 		if (lineRenderer == null)
 			lineRenderer = GetComponentInChildren<LineRenderer>();
 
-	}
 #endif
+	}
 
 	public void SetAttachedBuildings(BuildingComponent start, BuildingComponent end)
 	{

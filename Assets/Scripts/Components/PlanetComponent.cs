@@ -213,8 +213,8 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 					if (GetTotalMass() > hitPlanet.GetTotalMass())
 					{
 						hitPlanet.Destroyed = true;
-						hitPlanet.Demolish();
 						DestroyAllBuildings();
+						hitPlanet.Demolish();
 					}
 					else if (GetTotalMass() == hitPlanet.GetTotalMass())
 					{
@@ -278,8 +278,10 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	{
 		OnPlanetDemolished?.Invoke(this);
 
+		DestroyAllBuildings();
+
 		GameObject destructionVFXGameObject = Instantiate(GlobalBuildingSettings.GetOrCreateSettings().PlanetDestructionVFXPrefab, transform.position, Quaternion.identity);
-		destructionVFXGameObject.transform.localScale = Vector3.one * Radius;
+		destructionVFXGameObject.transform.localScale = Vector3.one * Radius * 2;
 
 		Destroy(gameObject);
 	}
