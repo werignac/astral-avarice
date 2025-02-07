@@ -158,10 +158,10 @@ public class CameraMovementComponent : MonoBehaviour
 
 	private void ApplySmoothing()
 	{
-		Vector2 position2D = Vector2.Lerp(transform.position, goalPosition, movementSmoothing * Time.deltaTime);
+		Vector2 position2D = Vector2.Lerp(transform.position, goalPosition, movementSmoothing * Time.unscaledDeltaTime);
 		Vector3 position3D = new Vector3(position2D.x, position2D.y, transform.position.z);
 
 		transform.position = position3D;
-		movingCamera.orthographicSize = Mathf.Lerp(movingCamera.orthographicSize, goalCameraSize, zoomSmoothing * Time.deltaTime);
+		movingCamera.orthographicSize = Mathf.Lerp(movingCamera.orthographicSize, goalCameraSize, zoomSmoothing * Time.unscaledDeltaTime);
 	}
 }

@@ -26,8 +26,7 @@ public class GameController : MonoBehaviour
 	private Label scienceIncomeLabel;
 	private Label timeLabel;
 	private Label timeScaleLabel;
-	protected int gameSpeed;
-	private float endGameTime = 0;
+	private int gameSpeed;
 	private bool gameEnded = false;
 	private bool gamePaused = false;
 	private int prePauseGameSpeed = 1;
@@ -55,10 +54,21 @@ public class GameController : MonoBehaviour
 		get { return (gamePaused); }
 	}
 
+	// Set the gameSpeed property along with Time.timeScale.
+	public int GameSpeed {
+		get => gameSpeed;
+
+		protected set
+		{
+			gameSpeed = value;
+			Time.timeScale = value;
+		}
+	}
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-		gameSpeed = 1;
+		GameSpeed = 1;
         gameManager = new GameManager(this);
         cashLabel = statsDocument.rootVisualElement.Q("Cash") as Label;
         incomeLabel = statsDocument.rootVisualElement.Q("Income") as Label;
@@ -129,7 +139,6 @@ public class GameController : MonoBehaviour
     {
 		if (gameEnded)
 		{
-			endGameTime += Time.deltaTime;
 			if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
 			{
 				ReturnToMenu();
@@ -137,13 +146,14 @@ public class GameController : MonoBehaviour
 		}
 		else
 		{
-			gameManager.Update(Time.deltaTime * gameSpeed);
+			// Replaced gameSpeed with Time.timeScale, so no longer need to multiply by gameSpeed.
+			gameManager.Update(Time.deltaTime);
 
 			string timeText = Mathf.FloorToInt(gameManager.TimePassed / 60).ToString("00");
 			timeText += ":" + Mathf.FloorToInt((gameManager.TimePassed % 60)).ToString("00");
 			timeLabel.text = timeText;
 
-			timeScaleLabel.text = "X" + gameSpeed;
+			timeScaleLabel.text = "X" + GameSpeed;
 		}
 	}
 
@@ -152,8 +162,8 @@ public class GameController : MonoBehaviour
 	/// </summary>
 	public void IncrementGameSpeed()
 	{
-		if (!gameEnded && gameSpeed < 5)
-			++gameSpeed;
+		if (!gameEnded && GameSpeed < 5)
+			++GameSpeed;
 	}
 
 	/// <summary>
@@ -161,8 +171,8 @@ public class GameController : MonoBehaviour
 	/// </summary>
 	public void DecrementGameSpeed()
 	{
-		if (!gameEnded && gameSpeed > 1)
-			--gameSpeed;
+		if (!gameEnded && GameSpeed > 1)
+			--GameSpeed;
 	}
 
 	public void PauseGame()
@@ -170,8 +180,8 @@ public class GameController : MonoBehaviour
 		if(!gameEnded && !gamePaused)
 		{
 			gamePaused = true;
-			prePauseGameSpeed = gameSpeed;
-			gameSpeed = 0;
+			prePauseGameSpeed = GameSpeed;
+			GameSpeed = 0;
 		}
 	}
 	public void UnpauseGame()
@@ -179,7 +189,7 @@ public class GameController : MonoBehaviour
         if (!gameEnded && gamePaused)
         {
 			gamePaused = false;
-			gameSpeed = prePauseGameSpeed;
+			GameSpeed = prePauseGameSpeed;
         }
     }
 
@@ -221,7 +231,7 @@ public class GameController : MonoBehaviour
 						Vector2 distance = planet.transform.position - other.transform.position;
 						if (distance.magnitude < planetMass)
 						{
-							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude / other.GetTotalMass() * Time.fixedDeltaTime * gameSpeed;
+							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude / other.GetTotalMass() * Time.fixedDeltaTime;
 						}
 					}
 				}
@@ -230,7 +240,7 @@ public class GameController : MonoBehaviour
 					BuildingComponent building = planet.BuildingContainer.GetChild(c).gameObject.GetComponent<BuildingComponent>();
 					if(building != null && building.BackendBuilding.IsPowered &&  building.Data.thrust != 0)
                     {
-						Vector3 movement = building.transform.up.normalized * building.Data.thrust / planetMass * Time.fixedDeltaTime * gameSpeed * -1;
+						Vector3 movement = building.transform.up.normalized * building.Data.thrust / planetMass * Time.fixedDeltaTime * -1;
 						planetTranslations[i] += new Vector2(movement.x, movement.y);
                     }
                 }
@@ -240,9 +250,9 @@ public class GameController : MonoBehaviour
 				if(planetTranslations[i].magnitude < 0.00000001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
                 {
 					planetTranslations[i] = Planets[i].PlanetVelocity * -1;
-					if(planetTranslations[i].magnitude > (Time.fixedDeltaTime * gameSpeed))
+					if(planetTranslations[i].magnitude > (Time.fixedDeltaTime))
                     {
-						planetTranslations[i] = planetTranslations[i].normalized * (Time.fixedDeltaTime * gameSpeed);
+						planetTranslations[i] = planetTranslations[i].normalized * (Time.fixedDeltaTime);
                     }
                 }
 				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();
@@ -301,7 +311,6 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("Game has ended");
 		gameEnded = true;
-		endGameTime = 0;
 		if(victory)
         {
 			PlayerPrefs.SetInt(gameManager.MissionName, 1);
