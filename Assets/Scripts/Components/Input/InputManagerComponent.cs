@@ -15,12 +15,18 @@ public class InputManagerComponent : MonoBehaviour
 	private InputAction decrementGameSpeedAction;
 	private InputAction redistributeElectricityAction;
 	private InputAction pauseAction;
+	private InputAction toggleMinimapAction;
+	private InputAction directionalPanAction;
+	private InputAction increaseDirectionalPanSpeed;
+	private InputAction decreaseDirectionalPanSpeed;
+	
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
 	[SerializeField] private InspectorUIComponent inspector;
 	[SerializeField] private GameController gameController;
 	[SerializeField] private PauseManager pauseManager;
+	[SerializeField] private MinimapComponent minimap;
 
 	private void Awake()
 	{
@@ -44,7 +50,10 @@ public class InputManagerComponent : MonoBehaviour
 		decrementGameSpeedAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["DecrementGameSpeed"];
 		redistributeElectricityAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["RedistributeElectricity"];
 		pauseAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["Pause"];
-		
+		toggleMinimapAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["ToggleMinimap"];
+		directionalPanAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["DirectionalPan"];
+		increaseDirectionalPanSpeed = PlayerInputSingletonComponent.Instance.Input.currentActionMap["IncreaseDirectionalPanSpeed"];
+		decreaseDirectionalPanSpeed = PlayerInputSingletonComponent.Instance.Input.currentActionMap["DecreaseDirectionalPanSpeed"];
 
 		StartCoroutine(RefreshInputComponent());
 	}
@@ -66,10 +75,15 @@ public class InputManagerComponent : MonoBehaviour
 		UpdateCameraMovement();
 		UpdateGameController();
 		UpdatePauseManager();
+		UpdateMinimap();
 	}
 
 	private void UpdateSelectionCursor()
 	{
+		// Don't look for objects under the cursor whilst paused.
+		if (gameController.GamePaused)
+			return;
+
 		// Convert the mouse position to a position in world space.
 		Vector2 mousePositionWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -79,6 +93,10 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void UpdateBuildManager()
 	{
+		// Don't take input whilst the game is paused.
+		if (gameController.GamePaused)
+			return;
+
 		// If the player was clicking on UI, ignore the input.
 		if (EventSystem.current.IsPointerOverGameObject())
 		{
@@ -101,6 +119,10 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void UpdateInspector()
 	{
+		// Don't take input whilst the game is paused.
+		if (gameController.GamePaused)
+			return;
+
 		// If the player was clicking on UI, ignore the input.
 		if (EventSystem.current.IsPointerOverGameObject())
 			return;
@@ -124,18 +146,40 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void UpdateCameraMovement()
 	{
-		if (cameraMovementComponent != null)
-		{
-			cameraMovementComponent.SetHoverInput(Input.mousePosition);
-			cameraMovementComponent.SetPanningInput(panAction.IsPressed());
-			// User may scroll to read build menu, don't zoom when this is the case.
-			if (! EventSystem.current.IsPointerOverGameObject())
-				cameraMovementComponent.SetZoomInput(zoomAction.ReadValue<float>());
-		}
+		// Don't take input whilst the game is paused.
+		if (gameController.GamePaused)
+			return;
+
+		if (cameraMovementComponent == null)
+			return;
+		
+		
+
+		cameraMovementComponent.SetHoverInput(Input.mousePosition);
+		cameraMovementComponent.SetPanningInput(panAction.IsPressed());
+
+
+		CameraMovementComponent.PanSpeedModifier panSpeedModifier = CameraMovementComponent.PanSpeedModifier.NONE;
+
+		if (increaseDirectionalPanSpeed.IsPressed() && !decreaseDirectionalPanSpeed.IsPressed())
+			panSpeedModifier = CameraMovementComponent.PanSpeedModifier.MULTIPLY;
+		if (decreaseDirectionalPanSpeed.IsPressed() && !increaseDirectionalPanSpeed.IsPressed())
+			panSpeedModifier = CameraMovementComponent.PanSpeedModifier.DIVIDE;
+
+		Vector2 directionalPan = Vector2.ClampMagnitude(directionalPanAction.ReadValue<Vector2>(), 1);
+		cameraMovementComponent.SetDirectionalPanInput(directionalPan, panSpeedModifier);
+		
+		// User may scroll to read build menu, don't zoom when this is the case.
+		if (! EventSystem.current.IsPointerOverGameObject())
+			cameraMovementComponent.SetZoomInput(zoomAction.ReadValue<float>());
 	}
 
 	private void UpdateGameController()
 	{
+		// Don't take input whilst the game is paused.
+		if (gameController.GamePaused)
+			return;
+
 		if (incrementGameSpeedAction.WasPerformedThisFrame())
 		{
 			gameController.IncrementGameSpeed();
@@ -154,6 +198,9 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void UpdatePauseManager()
 	{
+		// Don't block handling this input whilst paused.
+		// If the user presses esc whilst in the pause menu, we should unpause.
+
 		if (pauseManager == null)
 		{
 			Debug.LogError("InputManager is missing PauseManager reference.");
@@ -169,6 +216,21 @@ public class InputManagerComponent : MonoBehaviour
 				pauseManager.PauseGame();
 			}
 			
+		}
+	}
+
+	private void UpdateMinimap()
+	{
+		// Don't take input whilst the game is paused.
+		if (gameController.GamePaused)
+			return;
+
+		if (minimap == null)
+			return;
+
+		if (toggleMinimapAction.WasPerformedThisFrame())
+		{
+			minimap.Toggle();
 		}
 	}
 }

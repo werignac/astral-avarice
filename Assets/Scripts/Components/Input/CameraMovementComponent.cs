@@ -7,6 +7,11 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class CameraMovementComponent : MonoBehaviour
 {
+	public enum PanSpeedModifier
+	{
+		NONE, MULTIPLY, DIVIDE
+	};
+
 	[SerializeField] private GameController gameController;
 
 	private Vector2 lastMousePosition;
@@ -71,6 +76,20 @@ public class CameraMovementComponent : MonoBehaviour
 
 	public float CameraSizeMin { get => cameraSizeMin; }
 	public float CameraSizeMax { get => cameraSizeMax; }
+
+	/// <summary>
+	/// How fast the camera moves when using arrow keys or wasd or a joystick controller.
+	/// </summary>
+	[SerializeField, Range(0.001f, 20)] private float directionalPanSpeed = 10f;
+	/// <summary>
+	/// Multiplier for when left shift is held.
+	/// </summary>
+	[SerializeField, Range(1f, 10f)] private float directionalPanSpeedShiftCoefficient = 2f;
+	/// <summary>
+	/// Multiplier for when left control is held.
+	/// </summary>
+	[SerializeField, Range(0.001f, 1f)] private float directionPanSpeedControlCoefficient = 0.5f;
+
 
 	private void Awake()
 	{
@@ -154,6 +173,23 @@ public class CameraMovementComponent : MonoBehaviour
 		
 
 		goalPosition = boundedPosition;
+	}
+
+	public void SetDirectionalPanInput(Vector2 panDirection, PanSpeedModifier modifier)
+	{
+		float multiplier = 1;
+
+		switch (modifier)
+		{
+			case PanSpeedModifier.MULTIPLY:
+				multiplier = directionalPanSpeedShiftCoefficient;
+				break;
+			case PanSpeedModifier.DIVIDE:
+				multiplier = directionPanSpeedControlCoefficient;
+				break;
+		}
+
+		goalPosition += panDirection * directionalPanSpeed * multiplier * Time.unscaledDeltaTime;
 	}
 
 	private void ApplySmoothing()
