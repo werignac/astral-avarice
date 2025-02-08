@@ -26,7 +26,10 @@ public class GameController : MonoBehaviour
 	private Label scienceIncomeLabel;
 	private Label timeLabel;
 	private Label timeScaleLabel;
-	private int gameSpeed;
+	/// <summary>
+	/// Warning: Changing this variable directly instead of GameSpeed will not update Time.timeScale.
+	/// </summary>
+	protected int gameSpeed;
 	private bool gameEnded = false;
 	private bool gamePaused = false;
 	private int prePauseGameSpeed = 1;
@@ -147,7 +150,7 @@ public class GameController : MonoBehaviour
 		else
 		{
 			// Replaced gameSpeed with Time.timeScale, so no longer need to multiply by gameSpeed.
-			gameManager.Update(Time.deltaTime);
+			gameManager.Update(GameSpeed * Time.unscaledDeltaTime);
 
 			string timeText = Mathf.FloorToInt(gameManager.TimePassed / 60).ToString("00");
 			timeText += ":" + Mathf.FloorToInt((gameManager.TimePassed % 60)).ToString("00");
@@ -231,7 +234,8 @@ public class GameController : MonoBehaviour
 						Vector2 distance = planet.transform.position - other.transform.position;
 						if (distance.magnitude < planetMass)
 						{
-							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude / other.GetTotalMass() * Time.fixedDeltaTime;
+							// Using GameSpeed * unscaledDeltaTime due to tutorial turning off game speed silently.
+							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude / other.GetTotalMass() * GameSpeed * Time.fixedUnscaledDeltaTime;
 						}
 					}
 				}
@@ -240,7 +244,8 @@ public class GameController : MonoBehaviour
 					BuildingComponent building = planet.BuildingContainer.GetChild(c).gameObject.GetComponent<BuildingComponent>();
 					if(building != null && building.BackendBuilding.IsPowered &&  building.Data.thrust != 0)
                     {
-						Vector3 movement = building.transform.up.normalized * building.Data.thrust / planetMass * Time.fixedDeltaTime * -1;
+						// Using GameSpeed * unscaledDeltaTime due to tutorial turning off game speed silently.
+						Vector3 movement = building.transform.up.normalized * building.Data.thrust / planetMass * GameSpeed * Time.fixedUnscaledDeltaTime * -1;
 						planetTranslations[i] += new Vector2(movement.x, movement.y);
                     }
                 }
@@ -252,14 +257,14 @@ public class GameController : MonoBehaviour
 					planetTranslations[i] = Planets[i].PlanetVelocity * -1;
 					if(planetTranslations[i].magnitude > (Time.fixedDeltaTime))
                     {
-						planetTranslations[i] = planetTranslations[i].normalized * (Time.fixedDeltaTime);
+						planetTranslations[i] = planetTranslations[i].normalized * (GameSpeed * Time.fixedUnscaledDeltaTime);
                     }
                 }
 				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();
 				if (body != null)
                 {
 					Planets[i].PlanetVelocity += planetTranslations[i];
-                    body.MovePosition(body.position + (Planets[i].PlanetVelocity * Time.fixedDeltaTime));
+                    body.MovePosition(body.position + (Planets[i].PlanetVelocity * GameSpeed * Time.fixedUnscaledDeltaTime));
                 }
 			}
 			UpdatePlanetsSolar();

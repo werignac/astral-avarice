@@ -111,7 +111,7 @@ public class BuildUIComponent : MonoBehaviour
 		buildButtonContainer.Add(cableButtonElement);
 
 		// Add a button for each placeable building.
-		foreach (BuildingSettingEntry buildingSettingEntry in GlobalBuildingSettings.GetOrCreateSettings().Buildings)
+		foreach (BuildingSettingEntry buildingSettingEntry in BuildManagerComponent.Instance.PlaceableBuildings)
 		{
 			VisualElement buildButtonElement = CreateButton(buildingSettingEntry.VisualAsset.buildingIcon);
 			buildButtonContainer.Add(buildButtonElement);

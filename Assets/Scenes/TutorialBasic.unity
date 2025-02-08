@@ -163,6 +163,14 @@ MonoBehaviour:
   OnBuildWarningUpdate:
     m_PersistentCalls:
       m_Calls: []
+  overrideBuildingsList: 1
+  buildingsList:
+  - visualAsset: {fileID: 11400000, guid: 503fd86d5e627f84f9ad68c9806c78f1, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+    prefab: {fileID: 9094627657985119054, guid: d86a6b086d37c7b489105f043ac2c8d0, type: 3}
+  - visualAsset: {fileID: 11400000, guid: ab9be2d74faab264b842078079244565, type: 2}
+    buildingDataAsset: {fileID: 11400000, guid: b7c7e7c92a5e39a43bc913e88c9a8144, type: 2}
+    prefab: {fileID: 3586593869729771162, guid: dc41c079ed6173641b5dbc4b7b8b62a3, type: 3}
 --- !u!4 &159337140
 Transform:
   m_ObjectHideFlags: 0
@@ -1332,6 +1340,7 @@ MonoBehaviour:
   inspector: {fileID: 1836921261}
   gameController: {fileID: 164819401}
   pauseManager: {fileID: 361155975}
+  minimap: {fileID: 0}
 --- !u!1 &1715228861
 GameObject:
   m_ObjectHideFlags: 0

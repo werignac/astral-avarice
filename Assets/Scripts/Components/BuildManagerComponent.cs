@@ -216,6 +216,22 @@ public class BuildManagerComponent : MonoBehaviour
 	// True when the player asked to place something this update.
 	private bool placeThisUpdate = false;
 
+	[Tooltip("Whether to override the buildings list in GlobalBuildingSettings.")]
+	[SerializeField] private bool overrideBuildingsList = false;
+	[Tooltip("The list of buildings that overrides the normal list in GlobalBuildingSettings.")]
+	[SerializeField] private BuildingSettingEntry[] buildingsList = new BuildingSettingEntry[0];
+
+	public BuildingSettingEntry[] PlaceableBuildings
+	{
+		get
+		{
+			if (overrideBuildingsList)
+				return buildingsList;
+			else
+				return GlobalBuildingSettings.GetOrCreateSettings().Buildings;
+		}
+	}
+
 	private void Awake()
 	{
 		// Singleton enforecement.
@@ -255,6 +271,9 @@ public class BuildManagerComponent : MonoBehaviour
 	/// <param name="toBuild">The building to build.</param>
 	public void SetBuildState(BuildingSettingEntry toBuild)
 	{
+		if (new List<BuildingSettingEntry>(PlaceableBuildings).IndexOf(toBuild) < 0)
+			throw new ArgumentException(toBuild.VisualAsset.buildingName + " cannot be built with the current building list.");
+
 		switch(state.GetStateType())
 		{
 			case BuildStateType.CABLE: // Try chaining from the last building with a cable.

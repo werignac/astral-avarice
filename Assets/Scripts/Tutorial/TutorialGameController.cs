@@ -81,7 +81,7 @@ public class TutorialGameController : GameController
         base.Update();
         if (gameSpeedOverrides[currentTutorialState] >= 0)
         {
-            GameSpeed = gameSpeedOverrides[currentTutorialState];
+            gameSpeed = gameSpeedOverrides[currentTutorialState];
         }
         if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.click && !GamePaused && Input.GetMouseButtonDown(0))
         {
