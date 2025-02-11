@@ -76,6 +76,7 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _EnableExternalAlpha: 0
+    - _Flatness: 1.2
     - _GlobeFactor: 0.1
     - _OutlineWidth: 0
     - _QueueControl: 0

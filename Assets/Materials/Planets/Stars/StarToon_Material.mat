@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StarToon_Purple
+  m_Name: StarToon_Material
   m_Shader: {fileID: -6465566751694194690, guid: 9251191ad2bca594f8a7f9cef7ee12ff, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -55,25 +55,27 @@ Material:
     m_Floats:
     - _EdgeMargin: 0.05
     - _EnableExternalAlpha: 0
+    - _Flatness: 1
     - _GlobeFactor: 1.5
     - _OutlineWidth: 0
-    - _Seed: 789
+    - _Seed: 101
     - _StarTextureScale: 2
     - _StepDark: 0.3
     - _StepMidtone1: 0.5
     - _StepMidtone2: 0.8
+    - _TimeScale: 2
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorDark: {r: 0.1944064, g: 0.04313725, b: 0.25882354, a: 0}
-    - _ColorLight: {r: 3.9686275, g: 3.2627451, b: 3.7611682, a: 1}
-    - _ColorMidtone1: {r: 0.42316723, g: 0.16898061, b: 0.6037736, a: 0}
-    - _ColorMidtone2: {r: 1.4765748, g: 0.39502504, b: 1.7207952, a: 0}
-    - _OutlineColor: {r: 0.23399597, g: 0.64779866, b: 0.14870837, a: 0}
+    - _ColorDark: {r: 0.23137255, g: 0.05490196, b: 0.08235294, a: 0}
+    - _ColorLight: {r: 3.9748425, g: 3.8043005, b: 3.2623703, a: 1}
+    - _ColorMidtone1: {r: 0.7058824, g: 0.2901961, b: 0.13333334, a: 0}
+    - _ColorMidtone2: {r: 1.9119494, g: 1.3290806, b: 0.35473263, a: 0}
+    - _OutlineColor: {r: 0.233996, g: 0.6477987, b: 0.1487084, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &449156402895128338
+--- !u!114 &8571109024180226325
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
