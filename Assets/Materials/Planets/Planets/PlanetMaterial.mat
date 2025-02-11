@@ -44,6 +44,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_f5dbf24c1f8f482c9cb3d4384afc2aa2_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 52574366b7486f0448965131f5361368, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SurfaceTexture:
         m_Texture: {fileID: 2800000, guid: 1a1eb07169233de43acb1bfd70828135, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -72,14 +76,14 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _EnableExternalAlpha: 0
-    - _GlobeFactor: 1.1
+    - _GlobeFactor: 0.1
     - _OutlineWidth: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Seed: 0
     - _SurfaceTextureScale: 1
-    - _TextureScale_0: 1.3
-    - _TextureScale_1: 1.3
+    - _TextureScale_0: 0.5
+    - _TextureScale_1: 0.5
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
