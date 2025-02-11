@@ -58,7 +58,7 @@ Material:
     - _GlobeFactor: 1.5
     - _OutlineWidth: 0
     - _Seed: 123
-    - _StarTextureScale: 10
+    - _StarTextureScale: 2
     - _StepDark: 0.4
     - _StepMidtone1: 0.5
     - _StepMidtone2: 0.8
