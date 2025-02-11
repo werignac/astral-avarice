@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f0ade853fa992da459116c4d0bbcc076
+guid: d65db04c238f2c54eb85bc141b5b1fb4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6206252231013784034
-    second: coal_planet_texture_0_normal_0
+      213: -1681060613656705261
+    second: asteroid_texture_0_normal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: coal_planet_texture_0_normal_0
+      name: asteroid_texture_0_normal_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e16a2ff5a76fed9a0800000000000000
-      internalID: -6206252231013784034
+      spriteID: 317871d474caba8e0800000000000000
+      internalID: -1681060613656705261
       vertices: []
       indices: 
       edges: []

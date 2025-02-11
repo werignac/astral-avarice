@@ -40,6 +40,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 78365aba7c9fc3f4f9ea26f545406100, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TerrainTexture_0_Normal:
+        m_Texture: {fileID: 2800000, guid: d65db04c238f2c54eb85bc141b5b1fb4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
     m_Colors:

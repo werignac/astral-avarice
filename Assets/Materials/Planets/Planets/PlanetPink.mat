@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 5c94ee069b5fb634388b076006a3a291, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TerrainTexture_0_Normal:
+        m_Texture: {fileID: 2800000, guid: f0ade853fa992da459116c4d0bbcc076, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TerrainTexture_1:
         m_Texture: {fileID: 2800000, guid: cea3225cac24dfc42b5064f0ad6ae5cf, type: 3}
         m_Scale: {x: 1, y: 1}
