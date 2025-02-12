@@ -426,13 +426,26 @@ public class GameController : MonoBehaviour
 				if(p != i)
                 {
 					PlanetComponent other = Planets[p];
-					solarAmount += Mathf.Max(0, Mathf.CeilToInt(other.SolarOutput - Vector2.Distance(planet.transform.position, other.transform.position)));
+					solarAmount += ComputeSolarEnergyForPlanet(planet.transform.position, other.transform.position, other.SolarOutput);
                 }
             }
 			planet.SetResourceCount(ResourceType.Solar, solarAmount);
         }
 		UpdateBuildingResources();
     }
+
+	/// <summary>
+	/// Computes the amount of solar energy a planet gains from being near a particular star (a normal planet can also
+	/// be used: the output is always 0).
+	/// </summary>
+	/// <param name="planetPosition">The position in world space of the planet.</param>
+	/// <param name="starPosition">The position in world space of the potential star (a planet that has 0 solar output may still be used).</param>
+	/// <param name="starSolarOutput">The solar output of the potential star.</param>
+	/// <returns></returns>
+	public static int ComputeSolarEnergyForPlanet(Vector3 planetPosition, Vector3 starPosition, float starSolarOutput)
+	{
+		return Mathf.Max(0, Mathf.CeilToInt(starSolarOutput - Vector2.Distance(starPosition, planetPosition)));
+	}
 
 	public void UpdateBuildingResources()
 	{

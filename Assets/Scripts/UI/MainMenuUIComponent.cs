@@ -67,7 +67,18 @@ public class MainMenuUIComponent : MonoBehaviour
 
         settingsDocument.rootVisualElement.style.display = DisplayStyle.None;
         creditsDocument.rootVisualElement.style.display = DisplayStyle.None;
-    }
+
+		ResetTimeScale();
+	}
+
+	/// <summary>
+	/// When we exit a game, the time scale might be wrong due to exiting whilst paused.
+	/// This corrects that problem to make sure VFX look correct in the main menu.
+	/// </summary>
+	private void ResetTimeScale()
+	{
+		Time.timeScale = 1f;
+	}
 
     // Update is called once per frame
     void Update()
