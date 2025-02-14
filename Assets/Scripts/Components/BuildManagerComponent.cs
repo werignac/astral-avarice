@@ -12,7 +12,8 @@ public enum BuildStateType
 	BUILDING = 1,
 	CABLE = 2,
 	BUILDING_CHAINED = 3,
-	DEMOLISH = 4
+	DEMOLISH = 4,
+	MOVE = 8
 }
 
 public interface BuildState { public BuildStateType GetStateType(); }
@@ -159,6 +160,35 @@ class DemolishBuildState : BuildState {
 			hoveringDemolishable.HoverDemolishEnd();
 	}
 }
+public class BuildingMoveBuildState : BuildState
+{
+	public readonly BuildingComponent movingBuilding;
+
+	/// <summary>
+	/// Invoked when the chained building is destroyed
+	/// while in this state.
+	/// </summary>
+	public UnityEvent<BuildingMoveBuildState> OnInvalidate = new UnityEvent<BuildingMoveBuildState>();
+
+	public BuildingMoveBuildState(BuildingComponent movingBuilding)
+	{
+		this.movingBuilding = movingBuilding;
+
+		// When the chained object is destroyed, invoke the event
+		// to change the build state.
+		if (movingBuilding != null)
+		{
+			movingBuilding.OnBuildingDemolished.AddListener(
+				(BuildingComponent _) => { OnInvalidate.Invoke(this); }
+			);
+		}
+	}
+
+	public BuildStateType GetStateType()
+	{
+		return BuildStateType.MOVE;
+	}
+}
 
 public struct BuildResolve
 {
@@ -173,10 +203,12 @@ public struct BuildResolve
 	// Note: This may not be the only thing that is destroyed in a demolition!
 	public IDemolishable demolishTarget;
 	public int totalCost;
+	public bool triedMovingBuilding;
+	public bool successfullyMovedBuilding;
 
 	public bool TriedAnything()
 	{
-		return triedPlacingBuilding || triedPlacingCable || triedDemolishBuilding;
+		return triedPlacingBuilding || triedPlacingCable || triedDemolishBuilding || triedMovingBuilding;
 	}
 }
 
@@ -264,6 +296,11 @@ public class BuildManagerComponent : MonoBehaviour
 	{
 		SetState(new DemolishBuildState());
 	}
+
+	public void SetMoveState(BuildingComponent movingBuilding)
+    {
+		SetState(new BuildingMoveBuildState(movingBuilding));
+    }
 
 	/// <summary>
 	/// Set the BuildManager to allow the player to build the specified building.
@@ -395,6 +432,36 @@ public class BuildManagerComponent : MonoBehaviour
 					break;
 			}
 		}
+
+		if(newBuildState.GetStateType() == BuildStateType.MOVE)
+		{
+			BuildingMoveBuildState buildingMoveState = newBuildState as BuildingMoveBuildState;
+			Sprite ghostSprite = null;
+			Vector2 ghostOffset = new Vector2();
+			float ghostScale = 1;
+			if (buildingMoveState.movingBuilding != null)
+			{
+
+				BuildingVisuals visualAsset = buildingMoveState.movingBuilding.BuildingVisuals;
+				ghostSprite = visualAsset.buildingGhost;
+				ghostOffset = visualAsset.ghostOffset;
+				ghostScale = visualAsset.ghostScale;
+
+				BuildingComponent buildingComponent = buildingMoveState.movingBuilding;
+
+				Vector2 colliderSize = buildingComponent.ColliderSize;
+				Vector2 colliderOffset = buildingComponent.ColliderOffset;
+
+				buildingCursor.SetBuildingCollision(colliderSize, colliderOffset);
+
+				Vector2 cableConnectionOffset = buildingComponent.CableConnectionOffset;
+
+				buildingCursor.SetBuildingCableConnectionOffset(cableConnectionOffset);
+			}
+
+
+			buildingCursor.SetGhost(ghostSprite, ghostOffset, ghostScale);
+		}
 	}
 
 	/// <summary>
@@ -473,7 +540,9 @@ public class BuildManagerComponent : MonoBehaviour
 			builtCable = null,
 			triedDemolishBuilding = false,
 			demolishTarget = null,
-			totalCost = 0
+			totalCost = 0,
+			triedMovingBuilding = false,
+			successfullyMovedBuilding = false
 		};
 
 		// Keep track of warnings.
@@ -508,6 +577,11 @@ public class BuildManagerComponent : MonoBehaviour
 		{
 			resolution = UpdateDemolish(resolution);
 		}
+
+		if(state.GetStateType() == BuildStateType.MOVE)
+        {
+			resolution = UpdateBuildingMoveCursor(resolution, ref warnings);
+        }
 
 		// Handle state changes after placing and notify of object placement.
 		if (placeThisUpdate)
@@ -1041,6 +1115,138 @@ public class BuildManagerComponent : MonoBehaviour
 		}
 
 		return resolution;
+	}
+
+
+	/// <summary>
+	/// Update the status of the cursor to refelct whether a building
+	/// can be moved.
+	/// Try moving the building if input to do so was sent.
+	/// </summary>
+	private BuildResolve UpdateBuildingMoveCursor(BuildResolve resolution, ref BuildWarningContainer warnings)
+	{
+		UpdateBuildingMoveCursorLocation();
+
+		if (buildingCursor.GetIsShowing())
+		{
+			// The player is trying to build something.
+			BuildingMoveBuildState buildingMoveState = state as BuildingMoveBuildState;
+
+			if (buildingMoveState.movingBuilding == null)
+			{
+				BuildingComponent hoveringBuilding = GetHoveringBuilding();
+				if (placeThisUpdate && hoveringBuilding != null)
+				{
+					// The user clicked on a building. This is now the building to move.
+
+					SetState(new BuildingMoveBuildState(hoveringBuilding));
+					resolution.triedPlacingBuilding = true;
+					return resolution;
+				}
+				else
+				{
+					// The user is hover over space, or is hovering over a building w/o clicking.
+					buildingCursor.Hide();
+					return resolution;
+				}
+			}
+			else
+			{
+				// TODO: Check if we're hovering over a building (saved in the buildingBuildState). If so,
+				// replace that one instead of building a new building.
+
+				// Determine whether the building can be placed.
+				Collider2D[] overlappingColliders = buildingCursor.QueryOverlappingColliders();
+
+				// The only thing that the building should be colliding with is the parent planet.
+				bool roomToPlace = overlappingColliders.Length <= 2;
+				for (int i = 0; i < overlappingColliders.Length && roomToPlace; ++i)
+				{
+					Collider2D col = overlappingColliders[i];
+					if (!buildingCursor.ParentPlanet.OwnsCollider(col))
+					{
+						if (!(buildingMoveState.movingBuilding.OwnsCollider(col)))
+						{
+							roomToPlace = false;
+						}
+					}
+				}
+				if (!roomToPlace)
+					warnings.AddBuildingWarning(new BuildWarning("Building overlaps with other structures.", true));
+
+				bool canPlace = roomToPlace;
+
+				// Update the cursor graphic.
+				if (!canPlace)
+					buildingCursor.SetBuildingPlaceability(BuildingCursorComponent.Placeability.NO);
+				else
+					buildingCursor.SetBuildingPlaceability(BuildingCursorComponent.Placeability.YES);
+
+				// TODO: Update the reason as to why the building cannot be placed.
+
+				// If input was received to place the building, place it.
+				if (placeThisUpdate)
+				{
+					resolution.triedMovingBuilding = true;
+
+					if (canPlace)
+					{
+						//Building building = new Building { Data = buildingBuildState.toBuild.BuildingDataAsset };
+						// TODO: Add to game manager.
+
+						buildingCursor.MoveBuildingToLocation(buildingMoveState.movingBuilding);
+						resolution.successfullyMovedBuilding = true;
+					}
+					else
+					{
+						// Note in build resolve that the building failed to be placed.
+						resolution.successfullyMovedBuilding = false;
+					}
+				}
+			}
+		}
+
+		return resolution;
+	}
+
+	/// <summary>
+	/// Shows and places the building cursor to snap onto the current planet.
+	/// </summary>
+	private void UpdateBuildingMoveCursorLocation()
+	{
+		// TODO: Check if we're hovering over a building. If so, hide the cursor?
+
+		bool noPlanets = gameController.Planets.Count == 0;
+		if (noPlanets)
+		{ // If there are no planets, there's nothing to build on.
+			if (buildingCursor.GetIsShowing())
+				buildingCursor.Hide();
+
+			if (gravityCursor.GetIsShowing())
+				gravityCursor.Hide();
+
+			return;
+		}
+
+		if(buildingCursor.ParentPlanet == null)
+        {
+			if(buildingCursor.GetIsShowing())
+            {
+				buildingCursor.Hide();
+            }
+			return;
+        }
+
+		// Show the build cursor.
+		Vector2 buildingPlacePosition = buildingCursor.ParentPlanet.GetClosestSurfacePointToPosition(selectionCursor.GetPosition());
+		Vector2 buildingPlaceNormal = buildingCursor.ParentPlanet.GetNormalForPosition(selectionCursor.GetPosition());
+
+		buildingCursor.SetPositionAndUpNormal(buildingPlacePosition, buildingPlaceNormal, buildingCursor.ParentPlanet);
+
+		if (!buildingCursor.GetIsShowing())
+		{
+			buildingCursor.Show();
+		}
 	}
 
 	/// <summary>

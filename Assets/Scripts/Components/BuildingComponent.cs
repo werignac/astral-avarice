@@ -180,4 +180,9 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 	{
 		parentPlanet = planet;
 	}
+
+	public bool OwnsCollider(Collider2D collider)
+    {
+		return (collider == boxCollider);
+    }
 }

@@ -84,6 +84,7 @@ public class BuildUIComponent : MonoBehaviour
 	private VisualElement buildButtonContainer;
 	private VisualElement demolishButtonElement;
 	private VisualElement cableButtonElement;
+	private VisualElement moveButtonElement;
 
 	private List<BuildButtonBinding> buildButtonBindings = new List<BuildButtonBinding>();
 
@@ -109,6 +110,10 @@ public class BuildUIComponent : MonoBehaviour
 		// Add a cable button
 		cableButtonElement = CreateCableButton();
 		buildButtonContainer.Add(cableButtonElement);
+
+		// Add a move button
+		moveButtonElement = CreateMoveButton();
+		buildButtonContainer.Add(moveButtonElement);
 
 		// Add a button for each placeable building.
 		foreach (BuildingSettingEntry buildingSettingEntry in BuildManagerComponent.Instance.PlaceableBuildings)
@@ -136,8 +141,13 @@ public class BuildUIComponent : MonoBehaviour
 		cableButton.RegisterCallback<PointerEnterEvent>(CableButton_OnHoverStart);
 		cableButton.RegisterCallback<PointerLeaveEvent>(CableButton_OnHoverEnd);
 
+		Button moveButton = moveButtonElement.Q<Button>("BuildButton");
+		moveButton.RegisterCallback<ClickEvent>(MoveButton_OnClick);
+		moveButton.RegisterCallback<PointerEnterEvent>(MoveButton_OnHoverStart);
+		moveButton.RegisterCallback<PointerLeaveEvent>(MoveButton_OnHoverEnd);
+
 		// TODO: Unregister listeners on disable / destroy.
-		
+
 
 		// Listen to events to change the selected building to add.
 		BuildManagerComponent.Instance.OnStateChanged.AddListener(BuildManager_OnStateChanged);
@@ -181,6 +191,14 @@ public class BuildUIComponent : MonoBehaviour
 		}
 	}
 
+	private void MoveButton_OnHoverEnd(PointerLeaveEvent evt)
+	{
+	}
+
+	private void MoveButton_OnHoverStart(PointerEnterEvent evt)
+	{
+	}
+
 	protected virtual void CableButton_OnClick(ClickEvent evt)
 	{
 		BuildManagerComponent.Instance.SetCableState();
@@ -215,12 +233,22 @@ public class BuildUIComponent : MonoBehaviour
 		BuildManagerComponent.Instance.SetDemolishState();
 	}
 
+	protected virtual void MoveButton_OnClick(ClickEvent evt)
+    {
+		BuildManagerComponent.Instance.SetMoveState(null);
+    }
+
 	private VisualElement CreateDemolishButton()
 	{
 		return CreateButton(demolishIcon);
 	}
 
 	private VisualElement CreateCableButton()
+	{
+		return CreateButton(cableIcon);
+	}
+
+	private VisualElement CreateMoveButton()
 	{
 		return CreateButton(cableIcon);
 	}

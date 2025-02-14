@@ -135,4 +135,10 @@ public class BuildingCursorComponent : MonoBehaviour
 	}
 
 	// TODO: Check cable raycast.
+
+
+	public void MoveBuildingToLocation(BuildingComponent buildingToMove)
+    {
+		buildingToMove.transform.SetPositionAndRotation(transform.position, transform.rotation);
+    }
 }
