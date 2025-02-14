@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OutlineMaterial
+  m_Name: InspectorSelectOutlineMaterial
   m_Shader: {fileID: -6465566751694194690, guid: ec0d81e44a1569942a3fc73d881872b6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -43,6 +43,6 @@ Material:
     m_Floats:
     - _OutlineThickness: 1
     m_Colors:
-    - _OutlineColor: {r: 1, g: 1, b: 1, a: 0}
+    - _OutlineColor: {r: 0.16025075, g: 0.30495015, b: 1.4559941, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

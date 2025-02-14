@@ -32,9 +32,8 @@ public class PtUUISettingsProvider
 				EditorGUILayout.PropertyField(settings.FindProperty("planetInspectorUI"), new GUIContent("Planet Inspector"));
 				EditorGUILayout.PropertyField(settings.FindProperty("demolishInspectorUI"), new GUIContent("Demolish Inspector"));
 				EditorGUILayout.PropertyField(settings.FindProperty("cableInspectorUI"), new GUIContent("Cable Inspector"));
-				EditorGUILayout.PropertyField(settings.FindProperty("buildingSelectionMaterial"), new GUIContent("Building Selection Material"));
-				EditorGUILayout.PropertyField(settings.FindProperty("selectColor"), new GUIContent("Building Selection Color"));
-				EditorGUILayout.PropertyField(settings.FindProperty("demolishColor"), new GUIContent("Building Demolish Color"));
+				EditorGUILayout.PropertyField(settings.FindProperty("selectOutlineMaterial"), new GUIContent("Selection Outline Material"));
+				EditorGUILayout.PropertyField(settings.FindProperty("demolishOutlineMaterial"), new GUIContent("Demolish Outline Material"));
 				EditorGUILayout.PropertyField(settings.FindProperty("buildUISelectedButtonSprite"), new GUIContent("Build UI Button Select Sprite"));
 				EditorGUILayout.PropertyField(settings.FindProperty("buildUIDeselectedButtonSprite"), new GUIContent("Build UI Button Deselect Sprite"));
 				

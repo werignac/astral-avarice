@@ -20,19 +20,20 @@ public class OutlineCameraComponent : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (mainCamera.pixelWidth == outlineRenderTexture.width && mainCamera.pixelHeight == outlineRenderTexture.height)
-			return;
+		if (mainCamera.pixelWidth != outlineRenderTexture.width || mainCamera.pixelHeight != outlineRenderTexture.height)
+		{
+			outlineRenderTexture.Release();
 
-		outlineRenderTexture.Release();
+			outlineRenderTexture.width = mainCamera.pixelWidth;
+			outlineRenderTexture.height = mainCamera.pixelHeight;
 
-		outlineRenderTexture.width = mainCamera.pixelWidth;
-		outlineRenderTexture.height = mainCamera.pixelHeight;
+			outlineRenderTexture.Create();
 
-		outlineRenderTexture.Create();
+			outlineRenderTexture.ApplyDynamicScale();
 
-		outlineRenderTexture.ApplyDynamicScale();
-
-		outlineCamera.aspect = ((float) outlineRenderTexture.width / outlineRenderTexture.height);
+			outlineCamera.aspect = ((float)outlineRenderTexture.width / outlineRenderTexture.height);
+		}
+		
 		outlineCamera.orthographicSize = mainCamera.orthographicSize;
 	}
 }

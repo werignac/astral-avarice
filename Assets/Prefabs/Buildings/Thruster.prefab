@@ -9726,6 +9726,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.424
       objectReference: {fileID: 0}
+    - target: {fileID: 5819657162374458015, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: toToggleList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5819657162374458015, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: 'toToggleList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8538525261255428393}
+    - target: {fileID: 5819657162374458015, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: 'toToggleList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 4659985680182995560}
     - target: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Name
       value: Thruster

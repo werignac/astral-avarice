@@ -30,8 +30,8 @@ public class CableColorComponent : MonoBehaviour
 
 	public void SetColorDemolish()
 	{
-		Color color = PtUUISettings.GetOrCreateSettings().DemolishColor;
-		SetColor(color);
+		//Color color = PtUUISettings.GetOrCreateSettings().DemolishColor;
+		//SetColor(color);
 	}
 
 	private void SetColor(Color color)

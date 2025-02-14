@@ -25,10 +25,9 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField] private VisualTreeAsset cableInspectorUI;
 
 
-	[Header("Selection")]
-	[SerializeField] private Material buildingSelectionMaterial;
-	[SerializeField, ColorUsage(true, true)] private Color selectColor;
-	[SerializeField, ColorUsage(true, true)] private Color demolishColor;
+	[Header("Selection and Outlines")]
+	[SerializeField] private Material selectOutlineMaterial;
+	[SerializeField] private Material demolishOutlineMaterial;
 
 	[Header("Build UI Indicators")]
 	[SerializeField] private Sprite buildUISelectedButtonSprite;
@@ -58,18 +57,14 @@ public class PtUUISettings : ScriptableObject
 		get => cableInspectorUI;
 	}
 
-	public Material BuildingSelectionMaterial
+	public Material SelectOutlineMaterial
 	{
-		get => buildingSelectionMaterial;
-	}
-	public Color SelectColor
-	{
-		get => selectColor;
+		get => selectOutlineMaterial;
 	}
 
-	public Color DemolishColor
+	public Material DemolishOutlineMaterial
 	{
-		get => demolishColor;
+		get => demolishOutlineMaterial;
 	}
 
 	public Sprite BuildUISelectedButtonSprite { get => buildUISelectedButtonSprite; }

@@ -152,7 +152,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 532126933
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f2b495b328568ec45955ac79825bc3a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -249,7 +249,7 @@ MonoBehaviour:
   buildingVisuals: {fileID: 11400000, guid: 503fd86d5e627f84f9ad68c9806c78f1, type: 2}
   parentPlanet: {fileID: 0}
   isPlayerDemolishable: 0
-  OnBuildingDestroyed:
+  OnBuildingDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnBuildingHoverStartForSelection:
@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2511273548441317609}
-  - component: {fileID: 8625853770243975708}
+  - component: {fileID: 5819657162374458015}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -303,7 +303,7 @@ Transform:
   - {fileID: 4310001663532971654}
   m_Father: {fileID: 741308132116201336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8625853770243975708
+--- !u!114 &5819657162374458015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,8 +312,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7708532822011176026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d305fd8383d3a024f9284119089243e6, type: 3}
+  m_Script: {fileID: 11500000, guid: e9a5b14a17de4ad4eb8121e23751683f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 8925029825920761906}
-  defaultMaterial: {fileID: 2100000, guid: 33e15306229ca1649950538c40cf9857, type: 2}
+  toToggleList:
+  - {fileID: 1676065408396454557}

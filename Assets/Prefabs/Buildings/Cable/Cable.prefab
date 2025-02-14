@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2223137515787140783}
   - component: {fileID: 7757306035987977248}
-  - component: {fileID: 3759970562783211120}
+  - component: {fileID: 5373616024869232049}
   m_Layer: 0
   m_Name: Cable
   m_TagString: Untagged
@@ -130,7 +130,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 1081493832526688351}
   boxCollider: {fileID: 7109463446182131643}
   isPlayerDemolishable: 0
-  OnCableDestroyed:
+  OnCableDemolished:
     m_PersistentCalls:
       m_Calls: []
   OnCableHoverStartForDemolish:
@@ -139,7 +139,7 @@ MonoBehaviour:
   OnCableHoverEndForDemolish:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3759970562783211120
+--- !u!114 &5373616024869232049
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,10 +148,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5726402047846220235}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8e4519bf8b816d448994467a922a009, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b94083b95cf0cc4d9e3d47ea75eb0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 1081493832526688351}
+  toToggleList:
+  - {fileID: 9005126059149680288}
 --- !u!1 &9005126059149680288
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +228,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 329850367
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}

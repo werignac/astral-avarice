@@ -17,8 +17,7 @@ MonoBehaviour:
   planetInspectorUI: {fileID: 9197481963319205126, guid: 73ee09f583eaa364a8b1195afe131eed, type: 3}
   demolishInspectorUI: {fileID: 9197481963319205126, guid: 04b998026f7e64e4492f14ff76ee2f95, type: 3}
   cableInspectorUI: {fileID: 9197481963319205126, guid: ef2a82dcde0f6ab4ebabbdbfd20e3fd9, type: 3}
-  buildingSelectionMaterial: {fileID: 2100000, guid: d3b166f837e449548a28c3ce63f9ab8d, type: 2}
-  selectColor: {r: 0.16025075, g: 0.30495015, b: 1.4559941, a: 0}
-  demolishColor: {r: 1.3871076, g: 0.1731329, b: 0.15266892, a: 0}
+  selectOutlineMaterial: {fileID: 2100000, guid: 68048318c209ab74f975e88f59ea7aa8, type: 2}
+  demolishOutlineMaterial: {fileID: 2100000, guid: 49e492fa6eb534248905a589f5d35bec, type: 2}
   buildUISelectedButtonSprite: {fileID: -1356575089028299937, guid: fa6887f881a0aba4ab52e157fd6fd8ce, type: 3}
   buildUIDeselectedButtonSprite: {fileID: 7963390740095718593, guid: b81aaccb24b7946428016fe20c547663, type: 3}

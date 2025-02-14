@@ -350,6 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423416113878175174}
   - component: {fileID: 5999662629318697299}
+  - component: {fileID: 3344302092910157050}
   m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
@@ -390,6 +391,20 @@ MonoBehaviour:
   gravityFieldRenderer: {fileID: 8197465331956898667}
   marginIntoPlanet: 0.1
   minimumFieldDrawRadius: 0.3
+--- !u!114 &3344302092910157050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6357678969050641616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917f144d48601674fab978cf1d455a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toToggleList:
+  - {fileID: 8521814289734251587}
 --- !u!1 &8521814289734251587
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,8 +432,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0257, y: 0.0257, z: 0.0257}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 423416113878175174}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -466,7 +481,7 @@ SpriteRenderer:
   m_SortingLayerID: -2087596445
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c41f978d88cac7949a078bf84d9b1c54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
