@@ -1160,7 +1160,7 @@ public class BuildManagerComponent : MonoBehaviour
 				Collider2D[] overlappingColliders = buildingCursor.QueryOverlappingColliders();
 
 				// The only thing that the building should be colliding with is the parent planet.
-				bool roomToPlace = overlappingColliders.Length <= 2;
+				bool roomToPlace = true;
 				for (int i = 0; i < overlappingColliders.Length && roomToPlace; ++i)
 				{
 					Collider2D col = overlappingColliders[i];
@@ -1168,7 +1168,11 @@ public class BuildManagerComponent : MonoBehaviour
 					{
 						if (!(buildingMoveState.movingBuilding.OwnsCollider(col)))
 						{
-							roomToPlace = false;
+							CableComponent colliderCable = col.GetComponentInParent<CableComponent>();
+							if (colliderCable == null || (colliderCable.Start != buildingMoveState.movingBuilding && colliderCable.End != buildingMoveState.movingBuilding))
+							{
+								roomToPlace = false;
+							}
 						}
 					}
 				}
