@@ -5,7 +5,7 @@ public class GameManager
 {
     private readonly int paymentInterval = 30;
 
-    private List<Building> buildings;
+    private List<Building> buildings = new List<Building>();
     private int income;
     private int cash;
     private float timePassed;
@@ -15,6 +15,8 @@ public class GameManager
     private int scienceHeld;
     private int scienceIncome;
     private bool hadEnoughIncomePreviously;
+    private int nextGroupId;
+    private SortedSet<int> freeGroupIds = new SortedSet<int>();
 
     public int Income
     {
@@ -70,6 +72,7 @@ public class GameManager
         buildings = new List<Building>();
         timePassed = 0;
         endTime = mission.timeLimit;
+        ReassignAllGroups();
         CalculateIncome();
     }
     //Use this if BuildingComponents need a reference to the Building object being used by the manager.
@@ -92,6 +95,7 @@ public class GameManager
         }
 
         CalculateIncome();
+        ReassignAllGroups();
     }
 
     public void Update(float deltaTime)
@@ -146,6 +150,7 @@ public class GameManager
         buildings.Add(building);
         income -= building.Data.upkeep;
         AdjustIncomeForConnected(building);
+        AssignGroupIds(building, GetFreeGroupId());
     }
 
     public void RemoveBuilding(Building building)
@@ -160,6 +165,7 @@ public class GameManager
             for(int i = 0; i < building.NumConnected; ++i)
             {
                 AdjustIncomeForConnected(building.GetConnectedBuilding(i));
+                AssignGroupIds(building.GetConnectedBuilding(i), GetFreeGroupId());
             }
             if(building.NumConnected == 0)
             {
@@ -177,6 +183,8 @@ public class GameManager
         first.AddConnection(second);
         second.AddConnection(first);
         AdjustIncomeForConnected(first);
+        int groupId = Mathf.Min(first.BuildingGroup, second.BuildingGroup);
+        AssignGroupIds(first, groupId);
     }
 
 	public void RemoveConnection(Building first, Building second)
@@ -187,6 +195,8 @@ public class GameManager
 		{
 			AdjustIncomeForConnected(first);
 			AdjustIncomeForConnected(second);
+            AssignGroupIds(second, GetFreeGroupId());
+            AssignGroupIds(first, GetFreeGroupId());
 		}
 
 	}
@@ -425,5 +435,125 @@ public class GameManager
             return (building.Data.powerProduced);
         }
         return (Mathf.CeilToInt(((float)building.ResourcesProvided) / building.Data.resourceAmountRequired * building.Data.powerProduced));
+    }
+
+    public int GetGroupPowerProduced(Building groupBuilding)
+    {
+        HashSet<Building> buildingsSeen = new HashSet<Building>();
+        List<Building> connectedBuildings = new List<Building>();
+        int totalPower = 0;
+        buildingsSeen.Add(groupBuilding);
+        connectedBuildings.Add(groupBuilding);
+        while (connectedBuildings.Count > 0)
+        {
+            Building building = connectedBuildings[0];
+            connectedBuildings.RemoveAt(0);
+            if (building.Data.buildingType == BuildingType.PowerProducer)
+            {
+                totalPower += GetPower(building);
+            }
+            for (int i = 0; i < building.NumConnected; ++i)
+            {
+                Building connectedBuilding = building.GetConnectedBuilding(i);
+                if (!buildingsSeen.Contains(connectedBuilding))
+                {
+                    buildingsSeen.Add(connectedBuilding);
+                    connectedBuildings.Add(connectedBuilding);
+                }
+            }
+        }
+        return (totalPower);
+    }
+    public int GetGroupPowerConsumed(Building groupBuilding)
+    {
+        HashSet<Building> buildingsSeen = new HashSet<Building>();
+        List<Building> connectedBuildings = new List<Building>();
+        int totalPower = 0;
+        buildingsSeen.Add(groupBuilding);
+        connectedBuildings.Add(groupBuilding);
+        while (connectedBuildings.Count > 0)
+        {
+            Building building = connectedBuildings[0];
+            connectedBuildings.RemoveAt(0);
+            if (building.Data.buildingType == BuildingType.PowerConsumer)
+            {
+                totalPower += building.Data.powerRequired;
+            }
+            for (int i = 0; i < building.NumConnected; ++i)
+            {
+                Building connectedBuilding = building.GetConnectedBuilding(i);
+                if (!buildingsSeen.Contains(connectedBuilding))
+                {
+                    buildingsSeen.Add(connectedBuilding);
+                    connectedBuildings.Add(connectedBuilding);
+                }
+            }
+        }
+        return (totalPower);
+    }
+
+    public void AssignGroupIds(Building groupBuilding, int groupId)
+    {
+        HashSet<Building> buildingsSeen = new HashSet<Building>();
+        List<Building> connectedBuildings = new List<Building>();
+        buildingsSeen.Add(groupBuilding);
+        connectedBuildings.Add(groupBuilding);
+        while (connectedBuildings.Count > 0)
+        {
+            Building building = connectedBuildings[0];
+            connectedBuildings.RemoveAt(0);
+
+            int oldId = building.BuildingGroup;
+            if(oldId != groupId)
+            {
+                building.BuildingGroup = groupId;
+                if(oldId >= 0 && !freeGroupIds.Contains(oldId))
+                {
+                    freeGroupIds.Add(oldId);
+                }
+            }
+
+            for (int i = 0; i < building.NumConnected; ++i)
+            {
+                Building connectedBuilding = building.GetConnectedBuilding(i);
+                if (!buildingsSeen.Contains(connectedBuilding))
+                {
+                    buildingsSeen.Add(connectedBuilding);
+                    connectedBuildings.Add(connectedBuilding);
+                }
+            }
+        }
+    }
+
+    public void ReassignAllGroups()
+    {
+        freeGroupIds.Clear();
+        nextGroupId = 0;
+        for(int i = 0; i < buildings.Count; ++i)
+        {
+            buildings[i].BuildingGroup = -1;
+        }
+        for(int i = 0; i < buildings.Count; ++i)
+        {
+            if (buildings[i].BuildingGroup < 0)
+            {
+                AssignGroupIds(buildings[i], GetFreeGroupId());
+            }
+        }
+    }
+
+    private int GetFreeGroupId()
+    {
+        int id = nextGroupId;
+        if(freeGroupIds.Count > 0)
+        {
+            id = freeGroupIds.Min;
+            freeGroupIds.Remove(id);
+        }
+        else
+        {
+            ++nextGroupId;
+        }
+        return (id);
     }
 }
