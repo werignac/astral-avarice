@@ -28,6 +28,7 @@ public class Building
         set;
     }
     public int ResourcesProvided { get; set; }
+    public int BuildingGroup { get; set; }
 
     public Building(BuildingData data)
     {
