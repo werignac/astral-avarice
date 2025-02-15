@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using werignac.Utils;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(UIDocument))]
 public class InspectorUIComponent : MonoBehaviour
@@ -69,6 +70,12 @@ public class InspectorUIComponent : MonoBehaviour
 
 	// Whether to reassess the inspector layers on LateUpdate.
 	bool markedForUIUpdate = false;
+
+	[HideInInspector] public UnityEvent<IInspectableComponent> OnHoverEnter = new UnityEvent<IInspectableComponent>();
+	[HideInInspector] public UnityEvent<IInspectableComponent> OnHoverExit = new UnityEvent<IInspectableComponent>();
+	[HideInInspector] public UnityEvent<IInspectableComponent> OnSelectStart = new UnityEvent<IInspectableComponent>();
+	[HideInInspector] public UnityEvent<IInspectableComponent> OnSelectEnd = new UnityEvent<IInspectableComponent>();
+
 
 	private void Awake()
 	{
@@ -284,13 +291,16 @@ public class InspectorUIComponent : MonoBehaviour
 		if (currentInspectorLayer != null)
 		{
 			// If the old layer was hover or select, we need to clear hover and select.
+			
 			switch (currentInspectorLayer.layer)
 			{
 				case InspectorLayerType.HOVER:
 					(currentInspectorLayer.inspectable as IInspectableComponent).OnHoverExit();
+					OnHoverExit?.Invoke(currentInspectorLayer.inspectable as IInspectableComponent);
 					break;
 				case InspectorLayerType.SELECT:
 					(currentInspectorLayer.inspectable as IInspectableComponent).OnSelectEnd();
+					OnSelectEnd?.Invoke(currentInspectorLayer.inspectable as IInspectableComponent);
 					break;
 			}
 		}
@@ -324,9 +334,11 @@ public class InspectorUIComponent : MonoBehaviour
 		{
 			case InspectorLayerType.HOVER:
 				(topmostLayer.inspectable as IInspectableComponent).OnHoverEnter();
+				OnHoverEnter?.Invoke(topmostLayer.inspectable as IInspectableComponent);
 				break;
 			case InspectorLayerType.SELECT:
 				(topmostLayer.inspectable as IInspectableComponent).OnSelectStart();
+				OnSelectStart?.Invoke(topmostLayer.inspectable as IInspectableComponent);
 				// If the player selected something and the inspector was closed, open it.
 				if (collapsableInspectorContent.style.display == DisplayStyle.None)
 					CollapseButton_OnClick(null);

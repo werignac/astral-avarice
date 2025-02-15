@@ -22,3 +22,11 @@ MonoBehaviour:
   demolishOutlineMaterial: {fileID: 2100000, guid: 49e492fa6eb534248905a589f5d35bec, type: 2}
   buildUISelectedButtonSprite: {fileID: -1356575089028299937, guid: fa6887f881a0aba4ab52e157fd6fd8ce, type: 3}
   buildUIDeselectedButtonSprite: {fileID: 7963390740095718593, guid: b81aaccb24b7946428016fe20c547663, type: 3}
+  solarUIData:
+    icon: {fileID: 21300000, guid: 59dc7f171da286647893689683593431, type: 3}
+  coalUIData:
+    icon: {fileID: 21300000, guid: ede5ae43c12632a4cbfaec6f6f7da48e, type: 3}
+  windUIData:
+    icon: {fileID: 21300000, guid: aea055c6c0538a944bb57c9f9446115b, type: 3}
+  geothermalUIData:
+    icon: {fileID: 21300000, guid: 2059f4dc3e8862a428b514ce6f22e1d2, type: 3}

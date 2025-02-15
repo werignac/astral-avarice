@@ -65,5 +65,8 @@ TagManager:
   - name: CableCursor
     uniqueID: 4069106091
     locked: 0
+  - name: World Space UI
+    uniqueID: 3759993787
+    locked: 0
   m_RenderingLayers:
   - Default

@@ -14,3 +14,27 @@
     font-size: 14px;
     -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bd.otf?fileID=12800000&guid=6d0a7669e90965546aceccaf1b5c6a9d&type=3#Athabasca Bd");
 }
+
+.specialResourceIcon {
+    flex-grow: 0;
+    width: 32px;
+    height: 32px;
+    background-image: url("project://database/Assets/Sprites/UI/solar_icon.png?fileID=21300000&guid=59dc7f171da286647893689683593431&type=3#solar_icon");
+}
+
+.specialResourceItem {
+    background-image: url("project://database/Assets/Sprites/UI/resource-container.png?fileID=5025835355505005053&guid=ea16eebccc1fba94dbf72dbb8bc0ce61&type=3#resource-container_0");
+    -unity-slice-scale: 0.9px;
+    flex-grow: 0;
+    flex-direction: row;
+    padding-left: 8.35px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 15px;
+    width: 100px;
+}
+
+.inspectorText {
+    font-size: 14px;
+    -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bd.otf?fileID=12800000&guid=6d0a7669e90965546aceccaf1b5c6a9d&type=3#Athabasca Bd");
+}

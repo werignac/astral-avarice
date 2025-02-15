@@ -34,6 +34,21 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField] private Sprite buildUISelectedButtonSprite;
 	[SerializeField] private Sprite buildUIDeselectedButtonSprite;
 
+
+	[System.Serializable]
+	public class SpecialEnergyUIData
+	{
+		[SerializeField] private Sprite icon;
+
+		public Sprite Icon { get => icon; }
+	}
+
+	[Header("Special Resources")]
+	[SerializeField] private SpecialEnergyUIData solarUIData;
+	[SerializeField] private SpecialEnergyUIData coalUIData;
+	[SerializeField] private SpecialEnergyUIData windUIData;
+	[SerializeField] private SpecialEnergyUIData geothermalUIData;
+
 	// Getters
 	public VisualTreeAsset DefaultInspectorUI
 	{
@@ -76,6 +91,38 @@ public class PtUUISettings : ScriptableObject
 	public Sprite BuildUISelectedButtonSprite { get => buildUISelectedButtonSprite; }
 	public Sprite BuildUIDeselectedButtonSprite { get => buildUIDeselectedButtonSprite; }
 
+	public SpecialEnergyUIData SolarUIData { get => solarUIData; }
+	public SpecialEnergyUIData CoalUIData { get => coalUIData; }
+	public SpecialEnergyUIData WindUIData { get => windUIData; }
+	public SpecialEnergyUIData GeothermalUIData { get => geothermalUIData; }
+
+	public SpecialEnergyUIData GetSpecialResourceUIData(ResourceType resourceType)
+	{
+		SpecialEnergyUIData uiData = null;
+
+		switch(resourceType)
+		{
+			case ResourceType.Solar:
+				uiData = SolarUIData;
+				break;
+			case ResourceType.Coal:
+				uiData = CoalUIData;
+				break;
+			case ResourceType.Wind:
+				uiData = WindUIData;
+				break;
+			case ResourceType.Thermal:
+				uiData = GeothermalUIData;
+				break;
+			default:
+				throw new System.ArgumentException($"Resource type {resourceType} has no UI Data.");
+		}
+
+		if (uiData == null)
+			Debug.LogWarning($"Special resource UI of type {resourceType} is null.");
+
+		return uiData;
+	}
 
 
 	/// <summary>

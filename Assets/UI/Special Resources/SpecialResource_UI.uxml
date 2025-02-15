@@ -1,0 +1,11 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Inspector/InspectorMenu_StyleSheet.uss?fileID=7433441132597879392&amp;guid=147deab159b995c4e9b916c33977241c&amp;type=3#InspectorMenu_StyleSheet" />
+    <engine:VisualElement name="SpecialResourceItem" picking-mode="Ignore" class="specialResourceItem">
+        <engine:VisualElement name="ResourceIcon" picking-mode="Ignore" class="specialResourceIcon" />
+        <engine:VisualElement name="Quantity" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row; align-self: center; margin-left: 5px; justify-content: space-evenly;">
+            <engine:Label text="1" name="QuantityValue" picking-mode="Ignore" class="inspectorText" style="color: rgb(229, 229, 229); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 20px;" />
+            <engine:Label text="/" name="QuantityDivider" picking-mode="Ignore" class="inspectorText" style="color: rgb(229, 229, 229); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 20px;" />
+            <engine:Label text="2" name="QuantityTotal" picking-mode="Ignore" class="inspectorText" style="color: rgb(229, 229, 229); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 20px;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
