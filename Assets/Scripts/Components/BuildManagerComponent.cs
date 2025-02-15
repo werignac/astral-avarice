@@ -313,6 +313,13 @@ public class BuildManagerComponent : MonoBehaviour
 
 		switch(state.GetStateType())
 		{
+			case BuildStateType.MOVE:
+				BuildingMoveBuildState buildingMoveBuildState = state as BuildingMoveBuildState;
+				if (buildingMoveBuildState.movingBuilding != null)
+					SetState(new BuildingChainedBuildState(toBuild, buildingMoveBuildState.movingBuilding));
+				else
+					SetState(new BuildingBuildState(toBuild));
+				break;
 			case BuildStateType.CABLE: // Try chaining from the last building with a cable.
 				CableBuildState cableBuildState = state as CableBuildState;
 				if (cableBuildState != null && cableBuildState.fromBuilding != null)
@@ -337,6 +344,13 @@ public class BuildManagerComponent : MonoBehaviour
 	{
 		switch(state.GetStateType())
 		{
+			case BuildStateType.MOVE:
+				BuildingMoveBuildState buildingMoveBuildState = state as BuildingMoveBuildState;
+				if (buildingMoveBuildState.movingBuilding != null)
+					SetState(new CableBuildState(buildingMoveBuildState.movingBuilding));
+				else
+					SetState(new CableBuildState());
+				break;
 			case BuildStateType.BUILDING_CHAINED:
 				BuildingChainedBuildState buildingChainedBuildState = state as BuildingChainedBuildState;
 				SetState(new CableBuildState(buildingChainedBuildState.fromChained));
