@@ -23,6 +23,7 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField] private VisualTreeAsset planetInspectorUI;
 	[SerializeField] private VisualTreeAsset demolishInspectorUI;
 	[SerializeField] private VisualTreeAsset cableInspectorUI;
+	[SerializeField] private VisualTreeAsset moveInspectorUI;
 
 
 	[Header("Selection and Outlines")]
@@ -56,6 +57,11 @@ public class PtUUISettings : ScriptableObject
 	{
 		get => cableInspectorUI;
 	}
+
+	public VisualTreeAsset MoveInspectorUI
+    {
+		get => moveInspectorUI;
+    }
 
 	public Material SelectOutlineMaterial
 	{

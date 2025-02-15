@@ -76,6 +76,14 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 		}
 	}
 
+	public PlanetComponent ParentPlanet
+    {
+        get
+        {
+			return (parentPlanet);
+        }
+    }
+
     /// <summary>
     /// Sets the location and rotation of the building to be at a particular
     /// point and rotate in a particular direction.
