@@ -71,7 +71,7 @@
     border-bottom-left-radius: 0;
     background-color: rgba(233, 233, 233, 0);
     background-image: url("project://database/Assets/Sprites/UI/screen_button_back.png?fileID=7963390740095718593&guid=b81aaccb24b7946428016fe20c547663&type=3#screen_button_back_0");
-    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(85, 85, 85);
     -unity-background-scale-mode: scale-to-fit;
     flex-shrink: 1;
     margin-top: 2.5px;
@@ -109,7 +109,7 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     background-image: url("project://database/Assets/Sprites/UI/screen_button_back.png?fileID=7963390740095718593&guid=b81aaccb24b7946428016fe20c547663&type=3#screen_button_back_0");
-    -unity-background-image-tint-color: rgb(233, 233, 233);
+    -unity-background-image-tint-color: rgb(204, 204, 204);
     -unity-background-scale-mode: scale-to-fit;
     flex-shrink: 1;
     margin-top: 2.5px;
@@ -168,13 +168,17 @@
 }
 
 .buildButton:hover {
-    -unity-background-image-tint-color: rgb(111, 111, 111);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 .buildButton:active {
-    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(157, 157, 157);
 }
 
 .buildButtonIcon:hover {
     -unity-background-image-tint-color: rgb(0, 0, 0);
+}
+
+.buildButton:disabled {
+    -unity-background-image-tint-color: rgb(90, 90, 90);
 }

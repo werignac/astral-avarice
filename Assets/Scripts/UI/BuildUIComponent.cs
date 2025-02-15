@@ -78,6 +78,7 @@ public class BuildUIComponent : MonoBehaviour
 	[SerializeField] private Sprite collapseButtonMenuClosedSprite;
 	[SerializeField] private Sprite demolishIcon;
 	[SerializeField] private Sprite cableIcon;
+	[SerializeField] private Sprite moveIcon;
 	[SerializeField] private InspectorUIComponent inspectorUI;
 
 	private VisualElement collapsableBuildMenu;
@@ -262,7 +263,7 @@ public class BuildUIComponent : MonoBehaviour
 
 	private VisualElement CreateMoveButton()
 	{
-		return CreateButton(cableIcon);
+		return CreateButton(moveIcon);
 	}
 
 	private VisualElement CreateButton(Sprite icon)
