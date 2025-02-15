@@ -58,6 +58,11 @@ public class BuildingCursorComponent : MonoBehaviour
 		return gameObject.activeSelf;
 	}
 
+	public void SetParentPlanet(PlanetComponent parentPlanet)
+    {
+		this.parentPlanet = parentPlanet;
+    }
+
 	/// <summary>
 	/// Sets the location and rotation of the cursor to be at a particular
 	/// point and rotate in a particular direction.

@@ -457,6 +457,13 @@ public class BuildManagerComponent : MonoBehaviour
 				Vector2 cableConnectionOffset = buildingComponent.CableConnectionOffset;
 
 				buildingCursor.SetBuildingCableConnectionOffset(cableConnectionOffset);
+
+				buildingCursor.SetParentPlanet(buildingMoveState.movingBuilding.ParentPlanet);
+
+				if(!buildingCursor.GetIsShowing())
+                {
+					buildingCursor.Show();
+                }
 			}
 
 
@@ -1135,18 +1142,12 @@ public class BuildManagerComponent : MonoBehaviour
 			if (buildingMoveState.movingBuilding == null)
 			{
 				BuildingComponent hoveringBuilding = GetHoveringBuilding();
-				if (placeThisUpdate && hoveringBuilding != null)
+				if (placeThisUpdate && hoveringBuilding != null && hoveringBuilding.Demolishable())
 				{
 					// The user clicked on a building. This is now the building to move.
 
 					SetState(new BuildingMoveBuildState(hoveringBuilding));
 					resolution.triedPlacingBuilding = true;
-					return resolution;
-				}
-				else
-				{
-					// The user is hover over space, or is hovering over a building w/o clicking.
-					buildingCursor.Hide();
 					return resolution;
 				}
 			}

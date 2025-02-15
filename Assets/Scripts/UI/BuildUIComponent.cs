@@ -70,6 +70,7 @@ public class BuildUIComponent : MonoBehaviour
 
 	private static InspectableDemolish demolishInspector = new InspectableDemolish();
 	private static InspectableCable cableInspector = new InspectableCable();
+	private static InspectableMove moveInspector = new InspectableMove();
 
 	private UIDocument uiDocument;
 	[SerializeField] private VisualTreeAsset buildingButtonTemplate;
@@ -194,10 +195,21 @@ public class BuildUIComponent : MonoBehaviour
 
 	private void MoveButton_OnHoverEnd(PointerLeaveEvent evt)
 	{
+		if (inspectorLayers.ContainsKey(moveInspector))
+		{
+			var layer = inspectorLayers[moveInspector];
+			inspectorUI.RemoveLayer(layer);
+			inspectorLayers.Remove(moveInspector);
+		}
 	}
 
 	private void MoveButton_OnHoverStart(PointerEnterEvent evt)
 	{
+		if (!inspectorLayers.ContainsKey(moveInspector))
+		{
+			InspectorUIComponent.InspectorLayer layer = inspectorUI.AddLayer(moveInspector, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+			inspectorLayers.Add(moveInspector, layer);
+		}
 	}
 
 	protected virtual void CableButton_OnClick(ClickEvent evt)
