@@ -28,11 +28,7 @@ public abstract class BuildingInspectorController : IInspectorController
 	protected Label connectionsTotalValue;
 	protected VisualElement mass;
 	protected Label massValue;
-	protected VisualElement specialResources;
-	protected Label specialResourcesLabel;
-	protected Label resourcesCurrentValue;
-	protected VisualElement resourcesDivider;
-	protected Label resourcesPotentialValue;
+	protected SpecialResourcesContainerUIBinding resourcesBinding;
 	protected VisualElement settings;
 	protected Button poweredButton;
 	protected VisualElement poweredCheckMark;
@@ -64,11 +60,7 @@ public abstract class BuildingInspectorController : IInspectorController
 		connectionsTotalValue = inspectorUI.Q<Label>("TotalConnectionsValue");
 		mass = inspectorUI.Q("Mass");
 		massValue = inspectorUI.Q<Label>("MassValue");
-		specialResources = inspectorUI.Q("SpecialResources");
-		specialResourcesLabel = inspectorUI.Q<Label>("SpecialResourcesLabel");
-		resourcesCurrentValue = inspectorUI.Q<Label>("CurrentResourcesValue");
-		resourcesDivider = inspectorUI.Q("ResourcesDivider");
-		resourcesPotentialValue = inspectorUI.Q<Label>("PotentialResourcesValue");
+		resourcesBinding = new SpecialResourcesContainerUIBinding(inspectorUI.Q("SpecialResourcesContainer"));
 		settings = inspectorUI.Q("SettingsBackground");
 		poweredButton = inspectorUI.Q<Button>("PoweredButton");
 		poweredCheckMark = inspectorUI.Q("PoweredCheckMark");

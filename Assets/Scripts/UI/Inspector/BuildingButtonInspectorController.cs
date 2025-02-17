@@ -84,14 +84,6 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 	{
 		get => buildSettings.BuildingDataAsset.scienceIncome;
 	}
-	private ResourceType BuildingRequiredResource
-	{
-		get => buildSettings.BuildingDataAsset.requiredResource;
-	}
-	private int BuildingResourcesAmountRequired
-	{
-		get => buildSettings.BuildingDataAsset.resourceAmountRequired;
-	}
 
 	public BuildingButtonInspectorController(BuildingSettingEntry toDisplay)
 	{
@@ -158,17 +150,7 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 
 		massValue.text = BuildingMass.ToString("0.00");
 
-		if(BuildingRequiredResource != ResourceType.Resource_Count)
-		{
-			specialResourcesLabel.text = BuildingRequiredResource.ToString() + " required:";
-			resourcesCurrentValue.text = BuildingResourcesAmountRequired.ToString();
-			resourcesDivider.style.display = DisplayStyle.None;
-			resourcesPotentialValue.style.display = DisplayStyle.None;
-		}
-		else
-		{
-			specialResources.style.display = DisplayStyle.None;
-		}
+		resourcesBinding.ShowBuildingTypeResources(buildSettings.BuildingDataAsset);
 
 		settings.style.display = DisplayStyle.None;
 

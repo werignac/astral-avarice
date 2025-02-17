@@ -421,6 +421,7 @@ public class GameController : MonoBehaviour
         {
 			PlanetComponent planet = Planets[i];
 			int solarAmount = planet.SolarOutput;
+
 			for(int p = 0; p < Planets.Count; ++p)
             {
 				if(p != i)

@@ -73,4 +73,85 @@ public class SpecialResourcesContainerUIBinding
 			specialResourcesBindings[potentialTypeToHide].Hide();
 		}
 	}
+
+
+	/// <summary>
+	/// Shows the resources for a planet.
+	/// Does not take into account whether the planet is a star or not.
+	/// </summary>
+	/// <param name="planet">The planet to show resources for.</param>
+	public void ShowPlanetResources(PlanetComponent planet)
+	{
+		foreach (var pair in ShowResources(GetPlanetAvailableResourceTypes(planet)))
+		{
+			int resourceQuantity = planet.GetAvailableResourceCount(pair.Item1);
+			int resourceTotal = planet.GetResourceCount(pair.Item1);
+
+			pair.Item2.SetDividerType(ResourceDividerType.WITH_DIVIDER);
+			pair.Item2.SetColorType((resourceQuantity > 0) ? ResourceColorType.STANDARD : ResourceColorType.LACKING);
+			pair.Item2.SetQuantity(resourceQuantity);
+			pair.Item2.SetTotal(resourceTotal);
+		}
+	}
+
+	/// <summary>
+	/// Gets which resources a planet has as an array.
+	/// </summary>
+	private static ResourceType[] GetPlanetAvailableResourceTypes(PlanetComponent planet)
+	{
+		List<ResourceType> resourceTypes = new List<ResourceType>();
+
+		for (int i = 0; i < (int)ResourceType.Resource_Count; ++i)
+		{
+			if (planet.GetResourceCount((ResourceType)i) > 0)
+				resourceTypes.Add((ResourceType)i);
+		}
+
+		return resourceTypes.ToArray();
+	}
+
+	/// <summary>
+	/// Show the resources a building type uses.
+	/// No divider since these are not instances.
+	/// </summary>
+	public void ShowBuildingTypeResources(BuildingData buildingData)
+	{
+		foreach (var pair in ShowResources(GetBuildingConsumedResourceTypes(buildingData)))
+		{
+			int resourceQuantity = buildingData.resourceAmountRequired;
+
+			pair.Item2.SetDividerType(ResourceDividerType.WITHOUT_DIVIDER);
+			pair.Item2.SetColorType(ResourceColorType.STANDARD);
+			pair.Item2.SetQuantity(resourceQuantity);
+		}
+	}
+
+	/// <summary>
+	/// Show the resources a building instance uses.
+	/// With divider since these are instances that may be missing resources.
+	/// </summary>
+	public void ShowBuildingInstanceResources(BuildingComponent building)
+	{
+		foreach (var pair in ShowResources(GetBuildingConsumedResourceTypes(building.Data)))
+		{
+			int resourceQuantity = building.BackendBuilding.ResourcesProvided;
+			int resourceTotal = building.Data.resourceAmountRequired;
+
+			pair.Item2.SetDividerType(ResourceDividerType.WITH_DIVIDER);
+			pair.Item2.SetColorType((resourceQuantity == resourceTotal) ? ResourceColorType.STANDARD : ResourceColorType.LACKING);
+			pair.Item2.SetQuantity(resourceQuantity);
+			pair.Item2.SetTotal(resourceTotal);
+		}
+	}
+
+	/// <summary>
+	/// Get which resource (if any) a building consumes in an array.
+	/// </summary>
+	private static ResourceType[] GetBuildingConsumedResourceTypes(BuildingData buildingData)
+	{
+		if (buildingData.requiredResource == ResourceType.Resource_Count)
+			return new ResourceType[0];
+		else
+			return new ResourceType[] { buildingData.requiredResource };
+	}
 }

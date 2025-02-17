@@ -142,26 +142,6 @@ public class PlanetHoverResourcesComponent : WorldToScreenUIComponent
 
 	private void UpdateResourcesContainer()
 	{
-		foreach (var pair in resourcesBinding.ShowResources(GetAvailableResourceTypes()))
-		{
-			int resourceQuantity = currentPlanet.GetAvailableResourceCount(pair.Item1);
-			int resourceTotal = currentPlanet.GetResourceCount(pair.Item1);
-
-			pair.Item2.SetQuantity(resourceQuantity);
-			pair.Item2.SetTotal(resourceTotal);
-		}
-	}
-
-	private ResourceType[] GetAvailableResourceTypes()
-	{
-		List<ResourceType> resourceTypes = new List<ResourceType>();
-
-		for (int i = 0; i < (int)ResourceType.Resource_Count; ++i)
-		{
-			if (currentPlanet.GetResourceCount((ResourceType)i) > 0)
-				resourceTypes.Add((ResourceType)i);
-		}
-
-		return resourceTypes.ToArray();
+		resourcesBinding.ShowPlanetResources(currentPlanet);
 	}
 }

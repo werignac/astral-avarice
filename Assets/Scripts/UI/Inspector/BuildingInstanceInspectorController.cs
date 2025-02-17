@@ -92,18 +92,6 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
     {
         get => displayingBuilding.Data.scienceIncome;
     }
-    private ResourceType BuildingRequiredResource
-    {
-        get => displayingBuilding.Data.requiredResource;
-    }
-    private int BuildingResourcesAmountRequired
-    {
-        get => displayingBuilding.Data.resourceAmountRequired;
-    }
-	private int BuildingResourcesProvided
-	{
-		get => displayingBuilding.BackendBuilding.ResourcesProvided;
-	}
 
     private string BuildingDescription
 	{
@@ -191,16 +179,7 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 
 		massValue.text = BuildingMass.ToString("0.00");
 
-        if (BuildingRequiredResource != ResourceType.Resource_Count)
-        {
-            specialResourcesLabel.text = BuildingRequiredResource.ToString() + " provided:";
-            resourcesCurrentValue.text = BuildingResourcesProvided.ToString();
-			resourcesPotentialValue.text = BuildingResourcesAmountRequired.ToString();
-        }
-        else
-        {
-            specialResources.style.display = DisplayStyle.None;
-        }
+		resourcesBinding.ShowBuildingInstanceResources(displayingBuilding);
 
         if (BuildingConsumesElectricity)
 			poweredCheckMark.style.display = BuildingIsPowered ? DisplayStyle.Flex : DisplayStyle.None;

@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+// Whether to show blue for a standard resource UI or red for lacking resources.
+public enum ResourceColorType { STANDARD, LACKING};
+// Whether to show the resource UI with a divider "/" and total or without a divider "/" and total.
+public enum ResourceDividerType { WITH_DIVIDER, WITHOUT_DIVIDER};
+
 /// <summary>
 /// Interface that defines the quantity and total setters for a SpecialResourceUIBinding.
 /// Useful in the SpecialResourcesContainerUIBinding which controls the icon of
@@ -10,13 +15,19 @@ public interface IRestrictedSpecialResourceUIBinding
 {
 	void SetQuantity(int quantity);
 	void SetTotal(int total);
+	void SetColorType(ResourceColorType colorType);
+	void SetDividerType(ResourceDividerType dividerType);
 }
 
 public class SpecialResourceUIBinding : IRestrictedSpecialResourceUIBinding
 {
+	private const string STANDARD_SPECIAL_RESOURCE_CLASS = "specialResourceItem";
+	private const string LACKING_SPECIAL_RESOURCE_CLASS = "lackingSpecialResourceItem";
+
 	private VisualElement resourceElement;
 	private VisualElement resourceIcon;
 	private Label quantityValue;
+	private Label quantityDivider;
 	private Label quantityTotal;
 
 	public SpecialResourceUIBinding(VisualElement resourceElement)
@@ -25,6 +36,7 @@ public class SpecialResourceUIBinding : IRestrictedSpecialResourceUIBinding
 
 		resourceIcon = resourceElement.Q("ResourceIcon");
 		quantityValue = resourceElement.Q<Label>("QuantityValue");
+		quantityDivider = resourceElement.Q<Label>("QuantityDivider");
 		quantityTotal = resourceElement.Q<Label>("QuantityTotal");
 	}
 
@@ -79,11 +91,66 @@ public class SpecialResourceUIBinding : IRestrictedSpecialResourceUIBinding
 		quantityTotal.text = total.ToString();
 	}
 
+	/// <summary>
+	/// Sets whether the background for the resource ui is blue or red.
+	/// Useful for when a building doesn't have enough resources to power itself,
+	/// or when a planet is out of resources.
+	/// </summary>
+	/// <param name="colorType"></param>
+	public void SetColorType(ResourceColorType colorType)
+	{
+		switch (colorType)
+		{
+			case ResourceColorType.STANDARD:
+				if (!resourceElement.ClassListContains(STANDARD_SPECIAL_RESOURCE_CLASS))
+					resourceElement.AddToClassList(STANDARD_SPECIAL_RESOURCE_CLASS);
+				if (resourceElement.ClassListContains(LACKING_SPECIAL_RESOURCE_CLASS))
+					resourceElement.RemoveFromClassList(LACKING_SPECIAL_RESOURCE_CLASS);
+				break;
+			case ResourceColorType.LACKING:
+				if (!resourceElement.ClassListContains(LACKING_SPECIAL_RESOURCE_CLASS))
+					resourceElement.AddToClassList(LACKING_SPECIAL_RESOURCE_CLASS);
+				if (resourceElement.ClassListContains(STANDARD_SPECIAL_RESOURCE_CLASS))
+					resourceElement.RemoveFromClassList(STANDARD_SPECIAL_RESOURCE_CLASS);
+				break;
+		}
+	}
 
-	public void SetAll(ResourceType resourceType, int quanitity, int total)
+	/// <summary>
+	/// Sets whether the resource ui has a divider "/" and a total.
+	/// May be hidden for the build mode buttons which don't have an instance consuming resources.
+	/// </summary>
+	/// <param name="dividerType"></param>
+	public void SetDividerType(ResourceDividerType dividerType)
+	{
+		DisplayStyle displayStyle = DisplayStyle.Flex;
+		
+		switch (dividerType)
+		{
+			case ResourceDividerType.WITH_DIVIDER:
+				displayStyle = DisplayStyle.Flex;
+				break;
+			case ResourceDividerType.WITHOUT_DIVIDER:
+				displayStyle = DisplayStyle.None;
+				break;
+		}
+
+		quantityDivider.style.display = displayStyle;
+		quantityTotal.style.display = displayStyle;
+	}
+
+	public void SetAll(
+		ResourceType resourceType,
+		int quanitity,
+		int total,
+		ResourceDividerType dividerType = ResourceDividerType.WITH_DIVIDER,
+		ResourceColorType colorType = ResourceColorType.STANDARD
+		)
 	{
 		SetResourceIcon(resourceType);
 		SetQuantity(quanitity);
 		SetTotal(total);
+		SetDividerType(dividerType);
+		SetColorType(colorType);
 	}
 }

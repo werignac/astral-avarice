@@ -31,10 +31,22 @@
     padding-top: 8px;
     padding-bottom: 8px;
     padding-right: 15px;
-    width: 100px;
+    align-self: flex-start;
 }
 
 .inspectorText {
     font-size: 14px;
     -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bd.otf?fileID=12800000&guid=6d0a7669e90965546aceccaf1b5c6a9d&type=3#Athabasca Bd");
+}
+
+.lackingSpecialResourceItem {
+    background-image: url("project://database/Assets/Sprites/UI/resource-container_insufficient.png?fileID=5620666609472165296&guid=db0a8b36f50ebdd4d8a5d0cc28d9d260&type=3#resource-container_insufficient_0");
+    -unity-slice-scale: 0.9px;
+    flex-grow: 0;
+    flex-direction: row;
+    padding-left: 8.35px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 15px;
+    align-self: flex-start;
 }
