@@ -52,6 +52,11 @@ public class WorldToScreenUIComponent : MonoBehaviour
 		if (!uiDocument.isActiveAndEnabled)
 			return;
 
+		UpdateUIPosition();
+	}
+
+	protected void UpdateUIPosition()
+	{
 		Camera mainCamera = Camera.main;
 
 		if (mainCamera == null)
@@ -87,8 +92,17 @@ public class WorldToScreenUIComponent : MonoBehaviour
 
 	private Vector2 ApplyUITransformations(Vector2 uiDocumentPoint)
 	{
-		Vector2 uiDimensions = new Vector2(ui.resolvedStyle.width, ui.resolvedStyle.height);
+		Vector2 uiDimensions = GetUIDimensions();
 		uiDocumentPoint += offset - pivot * uiDimensions;
 		return uiDocumentPoint;
 	}
+
+	private Vector2 GetUIDimensions()
+	{
+		if (ui.style.display == DisplayStyle.Flex)
+			return new Vector2(ui.resolvedStyle.width, ui.resolvedStyle.height);
+		else
+			return new Vector2(ui.style.width.value.value, ui.style.height.value.value);
+	}
+
 }

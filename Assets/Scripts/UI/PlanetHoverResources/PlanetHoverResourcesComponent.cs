@@ -1,41 +1,41 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
 
 // IMPORTANT BUG: USING SETACTIVE(false) ON THE GAMEOBJECT WILL MAKE IT SO THAT YOU CANNOT UPDATE UI DOCUMENT ELEMENTS!!!
 // DON'T EVER DO THIS FOR ANY UIDOCUMENT. USE style.display = DisplayStyles.None!!!
-public class PlanetHoverResourcesComponent : MonoBehaviour
+public class PlanetHoverResourcesComponent : WorldToScreenUIComponent
 {
-	[SerializeField] private Camera mainCamera;
 	[SerializeField] private InspectorUIComponent inspector;
-	private RawImage screenSpaceRenderer;
-	private SpecialResourcesContainerUIBinding specialResourcesContainer;
+	private SpecialResourcesContainerUIBinding resourcesBinding;
 
 	private PlanetComponent currentPlanet = null;
 
 	private bool IsShowingPlanetResources { get => currentPlanet != null; }
 
-	private float baseCameraSize;
+	// Used for managing visual bug with moving UI documents on the same frame that they're shown.
+	private bool hidThisFrame = false;
+	
 
 	private void Awake()
 	{
-		screenSpaceRenderer = GetComponent<RawImage>();
-		UIDocument specialResourcesUIDocument = GetComponent<UIDocument>();
-		specialResourcesContainer = new SpecialResourcesContainerUIBinding(specialResourcesUIDocument.rootVisualElement);
+		uiDocument = GetComponent<UIDocument>();
+		UIDocument specialResourcesUIDocument = uiDocument;
+		resourcesBinding = new SpecialResourcesContainerUIBinding(specialResourcesUIDocument.rootVisualElement);
 
 		// When selections and hovers are made / done, update the resources container and show / hide.
 		inspector.OnHoverEnter.AddListener(Inspector_OnHoverEnter);
 		inspector.OnSelectStart.AddListener(Inspector_OnSelectStart);
 		inspector.OnHoverExit.AddListener(Inspector_OnHoverExit);
 		inspector.OnSelectEnd.AddListener(Inspector_OnSelectEnd);
-
-		baseCameraSize = mainCamera.orthographicSize;
 	}
 
-	private void Start()
+	protected override void Start()
 	{
+		base.Start();
 		Hide();
 	}
 
@@ -77,8 +77,22 @@ public class PlanetHoverResourcesComponent : MonoBehaviour
 	{
 		currentPlanet = toBind;
 		currentPlanet.OnPlanetDemolished.AddListener(BoundPlanet_OnDemolish);
-		Show();
 		UpdateAll();
+
+		// Because of a problem with ui documents moving on the same frame that they're shown,
+		// if we weren't hidden just this frame, then we want to delay the showing of the resource
+		// ui so that it's in place before rendering.
+		if (hidThisFrame)
+			Show();
+		else
+			StartCoroutine(DelayedShow());
+	}
+
+	private IEnumerator DelayedShow()
+	{
+		yield return new WaitForEndOfFrame();
+		if (IsShowingPlanetResources)
+			Show();
 	}
 
 	private void BoundPlanet_OnDemolish(PlanetComponent arg0)
@@ -96,27 +110,29 @@ public class PlanetHoverResourcesComponent : MonoBehaviour
 
 	private void Show()
 	{
-		screenSpaceRenderer.enabled = true;
+		ui.style.display = DisplayStyle.Flex;
 	}
 
 	private void Hide()
 	{
-		screenSpaceRenderer.enabled = false;
+		ui.style.display = DisplayStyle.None;
+		hidThisFrame = IsShowingPlanetResources;
 	}
 
-	private void LateUpdate()
+	private void Update()
 	{
-		if (!IsShowingPlanetResources)
-			return;
+		if (IsShowingPlanetResources)		
+			UpdateAll();
 
-		UpdateAll();
+		if (hidThisFrame)
+			hidThisFrame = false;
 	}
 
 	private void UpdateAll()
 	{
 		UpdatePosition();
 		UpdateResourcesContainer();
-		UpdateRendererSize();
+		UpdateUIPosition();
 	}
 
 	private void UpdatePosition()
@@ -126,7 +142,7 @@ public class PlanetHoverResourcesComponent : MonoBehaviour
 
 	private void UpdateResourcesContainer()
 	{
-		foreach (var pair in specialResourcesContainer.ShowResources(GetAvailableResourceTypes()))
+		foreach (var pair in resourcesBinding.ShowResources(GetAvailableResourceTypes()))
 		{
 			int resourceQuantity = currentPlanet.GetAvailableResourceCount(pair.Item1);
 			int resourceTotal = currentPlanet.GetResourceCount(pair.Item1);
@@ -147,10 +163,5 @@ public class PlanetHoverResourcesComponent : MonoBehaviour
 		}
 
 		return resourceTypes.ToArray();
-	}
-
-	private void UpdateRendererSize()
-	{
-		screenSpaceRenderer.transform.localScale = Vector3.one * mainCamera.orthographicSize / baseCameraSize;
 	}
 }
