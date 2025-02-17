@@ -78,6 +78,7 @@ public class MainMenuUIComponent : MonoBehaviour
 	private void ResetTimeScale()
 	{
 		Time.timeScale = 1f;
+		Time.fixedDeltaTime = Time.fixedUnscaledDeltaTime;
 	}
 
     // Update is called once per frame

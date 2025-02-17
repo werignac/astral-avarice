@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	// Deltatime considering gameSpeed, since in rare cases, this is different from timeScale.
+	// Deltatime considering gameSpeed, since in rare cases, this is different from Time.fixedDeltaTime.
 	private float GameSpeedFixedDeltaTime
 	{
 		get
@@ -266,7 +266,7 @@ public class GameController : MonoBehaviour
 				if(planetTranslations[i].magnitude < 0.00000001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
                 {
 					planetTranslations[i] = Planets[i].PlanetVelocity * -1;
-					if(planetTranslations[i].magnitude > (Time.fixedDeltaTime))
+					if(planetTranslations[i].magnitude > GameSpeedFixedDeltaTime)
                     {
 						planetTranslations[i] = planetTranslations[i].normalized * GameSpeedFixedDeltaTime;
                     }
@@ -524,6 +524,7 @@ public class GameController : MonoBehaviour
                 }
 				else
 				{
+					// Make GameSpeedFixedDeltaTime?
 					Cables[i].CableOverlapTime += Time.fixedDeltaTime;
 					if (Cables[i].CableOverlapTime > 0.5f)
 					{
