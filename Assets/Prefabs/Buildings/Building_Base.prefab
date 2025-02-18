@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4310001663532971654}
   - component: {fileID: 8925029825920761906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 33e15306229ca1649950538c40cf9857, type: 2}
+  - {fileID: 2100000, guid: d3b166f837e449548a28c3ce63f9ab8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -280,6 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2511273548441317609}
   - component: {fileID: 5819657162374458015}
+  - component: {fileID: 8941912774516140303}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -315,5 +316,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a5b14a17de4ad4eb8121e23751683f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toToggleList:
-  - {fileID: 1676065408396454557}
+  toToggleRenderers:
+  - {fileID: 8925029825920761906}
+--- !u!114 &8941912774516140303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708532822011176026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93699cd690b5bab4a9e5275572b92265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 8925029825920761906}

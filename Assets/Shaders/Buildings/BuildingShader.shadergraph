@@ -5,6 +5,15 @@
     "m_Properties": [
         {
             "m_Id": "b0f1eb0e0e1243bc9c8fc5e767eb92eb"
+        },
+        {
+            "m_Id": "707aa2ee513a4c5586e38a685986ee1c"
+        },
+        {
+            "m_Id": "d84d90e5e02d42aaa2a937e89988593d"
+        },
+        {
+            "m_Id": "7425e21139c54dd582496899ba6ff233"
         }
     ],
     "m_Keywords": [],
@@ -317,6 +326,15 @@
     "m_ChildObjectList": [
         {
             "m_Id": "b0f1eb0e0e1243bc9c8fc5e767eb92eb"
+        },
+        {
+            "m_Id": "707aa2ee513a4c5586e38a685986ee1c"
+        },
+        {
+            "m_Id": "d84d90e5e02d42aaa2a937e89988593d"
+        },
+        {
+            "m_Id": "7425e21139c54dd582496899ba6ff233"
         }
     ]
 }
@@ -454,6 +472,59 @@
     "m_Property": {
         "m_Id": "b0f1eb0e0e1243bc9c8fc5e767eb92eb"
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "707aa2ee513a4c5586e38a685986ee1c",
+    "m_Guid": {
+        "m_GuidSerialized": "f4437d1a-192f-4f9a-b9cc-0ce559435317"
+    },
+    "m_Name": "GridGroupTexture",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "GridGroupTexture",
+    "m_DefaultReferenceName": "_GridGroupTexture",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"5c5b512d722819845980db9fd016a3d6\",\"type\":3}}",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.BooleanShaderProperty",
+    "m_ObjectId": "7425e21139c54dd582496899ba6ff233",
+    "m_Guid": {
+        "m_GuidSerialized": "8cae77e2-9715-46bf-910e-e81c29754edd"
+    },
+    "m_Name": "IsGridElement",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "IsGridElement",
+    "m_DefaultReferenceName": "_IsGridElement",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": true
 }
 
 {
@@ -607,6 +678,36 @@
         "w": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "d84d90e5e02d42aaa2a937e89988593d",
+    "m_Guid": {
+        "m_GuidSerialized": "d2397fb9-fea8-4cca-a443-a73c4edef0c4"
+    },
+    "m_Name": "GridGroupColor",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "GridGroupColor",
+    "m_DefaultReferenceName": "_GridGroupColor",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "r": 0.6855344772338867,
+        "g": 0.049582622945308688,
+        "b": 0.6249678730964661,
+        "a": 1.0
+    },
+    "isMainColor": false,
+    "m_ColorMode": 1
 }
 
 {

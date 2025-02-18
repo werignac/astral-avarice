@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CableMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 926655613dd2da4418ecc90631369404, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 622fcab33a300664faec6cbf804c2a14, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -120,6 +120,8 @@ Material:
     - _GlobeFactor: 1.1
     - _Glossiness: 0.5
     - _InnerRadius: 0.4
+    - _IsGridCable: 1
+    - _IsGridElement: 1
     - _LightingEnabled: 0
     - _Metallic: 0
     - _Mode: 2
@@ -138,13 +140,14 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.22352941, g: 0.22352941, b: 0.22352941, a: 1}
     - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _Color_0: {r: 0.127843, g: 0.1628318, b: 0.4025156, a: 1}
     - _Color_1: {r: 0.2247124, g: 0.5220125, b: 0.1067006, a: 1}
     - _Color_2: {r: 0.5381313, g: 0.568523, b: 0.572327, a: 1}
     - _Color_3: {r: 0.7500098, g: 0.8125566, b: 0.8427672, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GridGroupColor: {r: 1.2578614, g: 0, b: 1.1269891, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _RotateVelocity_0: {r: -0.1, g: -0.025, b: 0, a: 0}
     - _RotateVelocity_1: {r: -0.2, g: 0, b: 0, a: 0}

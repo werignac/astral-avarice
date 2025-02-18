@@ -19,7 +19,8 @@ public class InputManagerComponent : MonoBehaviour
 	private InputAction directionalPanAction;
 	private InputAction increaseDirectionalPanSpeed;
 	private InputAction decreaseDirectionalPanSpeed;
-	
+	private InputAction toggleGridGroupViewAction;
+
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
@@ -27,6 +28,7 @@ public class InputManagerComponent : MonoBehaviour
 	[SerializeField] private GameController gameController;
 	[SerializeField] private PauseManager pauseManager;
 	[SerializeField] private MinimapComponent minimap;
+	[SerializeField] private GridGroupViewComponent gridGroupView;
 
 	private void Awake()
 	{
@@ -54,6 +56,7 @@ public class InputManagerComponent : MonoBehaviour
 		directionalPanAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["DirectionalPan"];
 		increaseDirectionalPanSpeed = PlayerInputSingletonComponent.Instance.Input.currentActionMap["IncreaseDirectionalPanSpeed"];
 		decreaseDirectionalPanSpeed = PlayerInputSingletonComponent.Instance.Input.currentActionMap["DecreaseDirectionalPanSpeed"];
+		toggleGridGroupViewAction = PlayerInputSingletonComponent.Instance.Input.currentActionMap["ToggleGridGroupView"];
 
 		StartCoroutine(RefreshInputComponent());
 	}
@@ -76,6 +79,7 @@ public class InputManagerComponent : MonoBehaviour
 		UpdateGameController();
 		UpdatePauseManager();
 		UpdateMinimap();
+		UpdateGridGroupView();
 	}
 
 	private void UpdateSelectionCursor()
@@ -231,6 +235,20 @@ public class InputManagerComponent : MonoBehaviour
 		if (toggleMinimapAction.WasPerformedThisFrame())
 		{
 			minimap.Toggle();
+		}
+	}
+
+	private void UpdateGridGroupView()
+	{
+		if (gameController.GamePaused)
+			return;
+
+		if (gridGroupView == null)
+			return;
+
+		if (toggleGridGroupViewAction.WasPerformedThisFrame())
+		{
+			gridGroupView.Toggle();
 		}
 	}
 }

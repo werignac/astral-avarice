@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BuildingOutlined_Material
+  m_Name: Building_Material
   m_Shader: {fileID: -6465566751694194690, guid: 02b1093e5432a714c8d33c2068a10e29, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -40,8 +40,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GridGroupTexture:
+        m_Texture: {fileID: 2800000, guid: 5c5b512d722819845980db9fd016a3d6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d6b9f5fb668fa3a48a038adae98e19d9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -71,11 +75,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _IsGridElement: 1
     - _IsOutlineOn: 1
     - _OutlineThickness: 1
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _GridGroupColor: {r: 0.6020289, g: 0, b: 0.542141, a: 1}
     - _OutlineColor: {r: 0.16025075, g: 0.30495015, b: 1.4559941, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

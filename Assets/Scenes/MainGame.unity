@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 551799971}
   - component: {fileID: 551799974}
   m_Layer: 0
-  m_Name: WorldSpaceUICamera
+  m_Name: GridViewCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 1
+  m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: 3
   m_VolumeLayerMask:
@@ -782,8 +782,8 @@ Camera:
   m_GameObject: {fileID: 551799969}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -812,9 +812,9 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 1920
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 8173593ec458e43489cdfd8e1cd2fb1f, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -833,9 +833,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 551799969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4f4e9a0139b10d4a82de2ed8ee62297, type: 3}
+  m_Script: {fileID: 11500000, guid: 36144699178c55646a11c0070fc07817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderTexture: {fileID: 8400000, guid: 8173593ec458e43489cdfd8e1cd2fb1f, type: 2}
 --- !u!1 &680543732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1387,52 @@ LineRenderer:
   m_UseWorldSpace: 0
   m_Loop: 1
   m_ApplyActiveColorSpace: 1
+--- !u!1 &1305180941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1305180943}
+  - component: {fileID: 1305180942}
+  m_Layer: 0
+  m_Name: GridGroupView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1305180942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305180941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21344e910dbf52343be9d1d2b634108f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridGroupViewPostProcessingMaterial: {fileID: 2100000, guid: 2c892c51b7f964e4695c7e90c8926e32, type: 2}
+  clearOnAwake: 1
+--- !u!4 &1305180943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305180941}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1315348071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,7 +1624,7 @@ GameObject:
   - component: {fileID: 1370071069}
   - component: {fileID: 1370071071}
   - component: {fileID: 1370071070}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GravityFieldCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1859,6 +1906,7 @@ MonoBehaviour:
   gameController: {fileID: 164819399}
   pauseManager: {fileID: 1946576280}
   minimap: {fileID: 545049671}
+  gridGroupView: {fileID: 1305180942}
 --- !u!1 &1715228861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,7 +2238,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 21271
+    m_Bits: 22423
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2239,9 +2287,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras:
-  - {fileID: 551799973}
-  m_RendererIndex: -1
+  m_Cameras: []
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 16384
@@ -2836,3 +2883,4 @@ SceneRoots:
   - {fileID: 258805325}
   - {fileID: 3094532878922178007}
   - {fileID: 3067448321931718288}
+  - {fileID: 1305180943}

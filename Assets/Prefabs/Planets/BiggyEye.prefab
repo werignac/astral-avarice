@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8710270367957120057}
   - component: {fileID: 8197465331956898667}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GravityField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,8 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917f144d48601674fab978cf1d455a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toToggleList:
-  - {fileID: 8521814289734251587}
+  toToggleRenderers:
+  - {fileID: 2205659586064546569}
 --- !u!1 &8521814289734251587
 GameObject:
   m_ObjectHideFlags: 0

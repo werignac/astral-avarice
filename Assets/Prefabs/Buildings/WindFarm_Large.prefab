@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 1447047061651423323, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: buildingData
       value: 
-      objectReference: {fileID: 11400000, guid: 8e50dc0331696704bba3e6b22d3391e1, type: 2}
+      objectReference: {fileID: 11400000, guid: b59f2453f839d74438a2358328384afc, type: 2}
     - target: {fileID: 1447047061651423323, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: buildingVisuals
       value: 
@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 4407c8ee48ef64140b3768888e84b590, type: 3}
+    - target: {fileID: 8925029825920761906, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 93830006fdc8aba4a86f6a7d41f91970, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

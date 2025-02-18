@@ -41,6 +41,7 @@ public class PtUUISettingsProvider
 				EditorGUILayout.PropertyField(settings.FindProperty("coalUIData"), new GUIContent("Coal UI"));
 				EditorGUILayout.PropertyField(settings.FindProperty("windUIData"), new GUIContent("Wind UI"));
 				EditorGUILayout.PropertyField(settings.FindProperty("geothermalUIData"), new GUIContent("Geothermal UI"));
+				EditorGUILayout.PropertyField(settings.FindProperty("gridGroupColors"), new GUIContent("Grid Group Colors"));
 				
 				settings.ApplyModifiedPropertiesWithoutUndo();
 				settings.Dispose();

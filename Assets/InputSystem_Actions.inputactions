@@ -130,6 +130,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleGridGroupView",
+                    "type": "Button",
+                    "id": "35aaa45d-43fb-470f-9d07-1163348da598",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -614,6 +623,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DecreaseDirectionalPanSpeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c57c85fa-fc4a-4040-aa3c-3e1e7218ffe9",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "ToggleGridGroupView",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

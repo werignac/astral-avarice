@@ -84,6 +84,14 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
         }
     }
 
+	/// <summary>
+	/// Which independent power grid does this building belong to?
+	/// </summary>
+	public int GridGroup
+	{
+		get => BackendBuilding.BuildingGroup;
+	}
+
     /// <summary>
     /// Sets the location and rotation of the building to be at a particular
     /// point and rotate in a particular direction.

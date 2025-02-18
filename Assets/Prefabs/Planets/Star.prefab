@@ -245,6 +245,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5688567417209053985, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7631823425099314181, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

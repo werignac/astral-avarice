@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 267300972}
   - component: {fileID: 267300971}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,8 +213,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.22352941, g: 0.22352941, b: 0.22352941, a: 1}
-      key1: {r: 0.22352941, g: 0.22352941, b: 0.22352941, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 1}
       key4: {r: 0, g: 0, b: 0, a: 1}
@@ -277,7 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 305002710}
   - component: {fileID: 305002711}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pylon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 76ac3a7829d105c4caf58388e4e89e14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -340,8 +340,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 532126933
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cc5e9f61c6b743246840a5e303a42afb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -364,7 +364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 352676862}
   - component: {fileID: 352676863}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Planet2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,8 +427,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 329850367
-  m_SortingLayer: 2
+  m_SortingLayerID: -2087596445
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bbab7a9634e721e47b6fe3a84dddb06c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Intensity: 6.6
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000bbf31ce0
+  m_ApplyToSortingLayers: d59cb71f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -535,7 +535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418345188}
   - component: {fileID: 418345187}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Starlight_Back_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ MonoBehaviour:
   m_Intensity: 6.36
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: ff1da913bbf31ce0
+  m_ApplyToSortingLayers: 63ce9183
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -972,6 +972,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &844882713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 844882715}
+  - component: {fileID: 844882714}
+  m_Layer: 0
+  m_Name: GridGroupView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &844882714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844882713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21344e910dbf52343be9d1d2b634108f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridGroupViewPostProcessingMaterial: {fileID: 2100000, guid: 2c892c51b7f964e4695c7e90c8926e32, type: 2}
+--- !u!4 &844882715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844882713}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &847564263
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,7 +1027,7 @@ GameObject:
   m_Component:
   - component: {fileID: 847564265}
   - component: {fileID: 847564264}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1069,7 +1114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 991904917}
   - component: {fileID: 991904918}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Planet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1234,7 +1279,7 @@ MonoBehaviour:
   m_Intensity: 3.8
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: ff1da913bbf31ce0
+  m_ApplyToSortingLayers: 63ce9183
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1975,3 +2020,4 @@ SceneRoots:
   - {fileID: 1541653176}
   - {fileID: 267300972}
   - {fileID: 1637553675}
+  - {fileID: 844882715}

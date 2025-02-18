@@ -49,6 +49,9 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField] private SpecialEnergyUIData windUIData;
 	[SerializeField] private SpecialEnergyUIData geothermalUIData;
 
+	[Header("Grid Flow View")]
+	[SerializeField, ColorUsage(false, true)] private Color[] gridGroupColors;
+
 	// Getters
 	public VisualTreeAsset DefaultInspectorUI
 	{
@@ -95,6 +98,8 @@ public class PtUUISettings : ScriptableObject
 	public SpecialEnergyUIData CoalUIData { get => coalUIData; }
 	public SpecialEnergyUIData WindUIData { get => windUIData; }
 	public SpecialEnergyUIData GeothermalUIData { get => geothermalUIData; }
+
+	public Color[] GridGroupColors { get => gridGroupColors; }
 
 	public SpecialEnergyUIData GetSpecialResourceUIData(ResourceType resourceType)
 	{

@@ -41,6 +41,14 @@ public class CableComponent : MonoBehaviour, IDemolishable
 		get => endBuilding;
 	}
 
+	/// <summary>
+	/// Which independent power grid this cable belongs to.
+	/// </summary>
+	public int GridGroup
+	{
+		get => (Start) ? Start.GridGroup : (End) ? End.GridGroup : -1;
+	}
+
 	private void Awake()
 	{
 #if UNITY_EDITOR

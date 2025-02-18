@@ -1,48 +1,31 @@
 using UnityEngine;
 
 /// <summary>
-/// Component that makes a list of GFX elements reside on or off the outline layer
-/// so that the outline PostProcess draws around these elements.
+/// Component that makes a list of GFX elements toggle their IsOutlined property.
 /// </summary>
 public class ToggleOutlineComponent : MonoBehaviour
 {
-	private const string OUTLINE_LAYER_NAME = "Outline"; 
+	private const string IS_OUTLINED_PROPERTY = "_IsOutlined"; 
 
 	[Tooltip("GameObjects that should have their layer toggled on / off the Outline layer. When toggled off, the layer is set to the default on Start.")]
-	[SerializeField] private GameObject[] toToggleList;
-	private int[] defaultLayerList;
+	[SerializeField] private Renderer[] toToggleRenderers;
 
 	private bool isOn = false;
 
 	public bool IsOn { get => isOn; }
 
-	private void Start()
-	{
-		defaultLayerList = new int[toToggleList.Length];
-
-		for (int i = 0; i < toToggleList.Length; i++)
-		{
-			GameObject toToggle = toToggleList[i];
-			defaultLayerList[i] = toToggle.layer;
-		}
-	}
-
 	public void TurnOnOutline()
 	{
-		foreach (GameObject toToggle in toToggleList)
-			toToggle.layer = LayerMask.NameToLayer(OUTLINE_LAYER_NAME);
+		foreach (Renderer toToggle in toToggleRenderers)
+			toToggle.material.SetFloat(Shader.PropertyToID(IS_OUTLINED_PROPERTY), 1);
 
 		isOn = true;
 	}
 
 	public void TurnOffOutline()
 	{
-		for (int i = 0; i < toToggleList.Length; i++)
-		{
-			GameObject toToggle = toToggleList[i];
-			int defaultLayer = defaultLayerList[i];
-			toToggle.layer = defaultLayer;
-		}
+		foreach (Renderer toToggle in toToggleRenderers)
+			toToggle.material.SetFloat(Shader.PropertyToID(IS_OUTLINED_PROPERTY), 0);
 
 		isOn = false;
 	}

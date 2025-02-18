@@ -9733,11 +9733,23 @@ PrefabInstance:
     - target: {fileID: 5819657162374458015, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: 'toToggleList.Array.data[1]'
       value: 
-      objectReference: {fileID: 8538525261255428393}
+      objectReference: {fileID: 786962258387039503}
     - target: {fileID: 5819657162374458015, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: 'toToggleList.Array.data[2]'
       value: 
-      objectReference: {fileID: 4659985680182995560}
+      objectReference: {fileID: 5543426497398269325}
+    - target: {fileID: 5819657162374458015, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: toToggleRenderers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5819657162374458015, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: 'toToggleRenderers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 786962258387039503}
+    - target: {fileID: 5819657162374458015, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: 'toToggleRenderers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5543426497398269325}
     - target: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       propertyPath: m_Name
       value: Thruster
@@ -9766,6 +9778,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 087c34533641f214db6d227fa2f05279, type: 3}
+    - target: {fileID: 8925029825920761906, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f76708fce85a7c6478f32f6e2e659e5a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
