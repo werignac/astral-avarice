@@ -253,6 +253,8 @@ public class BuildManagerComponent : MonoBehaviour
 	[Tooltip("The list of buildings that overrides the normal list in GlobalBuildingSettings.")]
 	[SerializeField] private BuildingSettingEntry[] buildingsList = new BuildingSettingEntry[0];
 
+	private List<CableCursorComponent> moveCableCursors = new List<CableCursorComponent>();
+
 	public BuildingSettingEntry[] PlaceableBuildings
 	{
 		get
@@ -544,6 +546,8 @@ public class BuildManagerComponent : MonoBehaviour
 			{
 				gravityCursor.Hide();
 			}
+
+			UpdateMoveCableCursors();
 			
 			return;
 		}
@@ -1167,6 +1171,9 @@ public class BuildManagerComponent : MonoBehaviour
 			}
 			else
 			{
+				UpdateMoveCableCursors();
+
+
 				// TODO: Check if we're hovering over a building (saved in the buildingBuildState). If so,
 				// replace that one instead of building a new building.
 
@@ -1267,6 +1274,74 @@ public class BuildManagerComponent : MonoBehaviour
 			buildingCursor.Show();
 		}
 	}
+
+	private void UpdateMoveCableCursors()
+    {
+        // The player is trying to build something.
+        BuildingMoveBuildState buildingMoveState = state as BuildingMoveBuildState;
+
+		if (buildingMoveState == null || buildingMoveState.movingBuilding == null)
+		{
+			foreach(CableCursorComponent cCursor in moveCableCursors)
+			{
+				if(cCursor.GetIsShowing())
+				{
+					cCursor.Hide();
+				}
+			}
+		}
+		else
+		{
+			List<CableComponent> connectedCables = gameController.GetConnectedCables(buildingMoveState.movingBuilding);
+			//Ensure there are enough cable cursors for the number of cables to show.
+			while(moveCableCursors.Count < connectedCables.Count)
+			{
+				GameObject newCableCursorObject = Instantiate<GameObject>(cableCursor.gameObject);
+				moveCableCursors.Add(newCableCursorObject.GetComponent<CableCursorComponent>());
+			}
+
+			//Only show the required number of cursors.
+			for(int i = 0; i < moveCableCursors.Count; ++i)
+			{
+				if(i < connectedCables.Count)
+				{
+					if (!moveCableCursors[i].GetIsShowing())
+					{
+						moveCableCursors[i].Show();
+					}
+				}
+				else if (moveCableCursors[i].GetIsShowing())
+				{
+					moveCableCursors[i].Hide();
+				}	
+			}
+
+			for(int i = 0; i < connectedCables.Count; ++i)
+			{
+				CableComponent cable = connectedCables[i];
+				CableCursorComponent cableCursor = moveCableCursors[i];
+				BuildingComponent start = cable.Start;
+				if(start == buildingMoveState.movingBuilding)
+				{
+					start = cable.End;
+				}
+				cableCursor.SetStart(start);
+				cableCursor.SetEndPoint(buildingCursor.CableConnectionPosition);
+
+                float remainingCableLength = GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength - cableCursor.Length;
+                bool cableIsNotTooLong = remainingCableLength >= 0;
+
+                List<Collider2D> cableOverlaps = new List<Collider2D>(cableCursor.QueryOverlappingColliders());
+                int badOverlapIndex = cableOverlaps.FindIndex((Collider2D collider) =>
+                {
+                    return !IsValidCableOverlap(collider, start, buildingMoveState.movingBuilding);
+                });
+                bool noOverlapsAlongCable = badOverlapIndex == -1;
+				cableCursor.SetCablePlaceability(cableIsNotTooLong && noOverlapsAlongCable);
+            }
+		}
+
+    }
 
 	/// <summary>
 	/// Determines whether a cable can overlap over the given collider.

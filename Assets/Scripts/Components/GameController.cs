@@ -572,4 +572,17 @@ public class GameController : MonoBehaviour
     {
 		ReloadScene();
     }
+
+	public List<CableComponent> GetConnectedCables(BuildingComponent building)
+	{
+		List<CableComponent> connectedCables = new List<CableComponent>();
+		foreach(CableComponent cable in Cables)
+		{
+			if(cable.Start == building || cable.End == building)
+			{
+				connectedCables.Add(cable);
+			}
+		}
+		return (connectedCables);
+	}
 }
