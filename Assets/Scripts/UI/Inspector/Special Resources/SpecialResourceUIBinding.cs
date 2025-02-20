@@ -24,20 +24,22 @@ public class SpecialResourceUIBinding : IRestrictedSpecialResourceUIBinding
 	private const string STANDARD_SPECIAL_RESOURCE_CLASS = "specialResourceItem";
 	private const string LACKING_SPECIAL_RESOURCE_CLASS = "lackingSpecialResourceItem";
 
+	private VisualElement root;
 	private VisualElement resourceElement;
 	private VisualElement resourceIcon;
 	private Label quantityValue;
 	private Label quantityDivider;
 	private Label quantityTotal;
 
-	public SpecialResourceUIBinding(VisualElement resourceElement)
+	public SpecialResourceUIBinding(VisualElement root)
 	{
-		this.resourceElement = resourceElement.Q("SpecialResourceItem");
+		this.root = root;
+		resourceElement = root.Q("SpecialResourceItem");
 
-		resourceIcon = resourceElement.Q("ResourceIcon");
-		quantityValue = resourceElement.Q<Label>("QuantityValue");
-		quantityDivider = resourceElement.Q<Label>("QuantityDivider");
-		quantityTotal = resourceElement.Q<Label>("QuantityTotal");
+		resourceIcon = root.Q("ResourceIcon");
+		quantityValue = root.Q<Label>("QuantityValue");
+		quantityDivider = root.Q<Label>("QuantityDivider");
+		quantityTotal = root.Q<Label>("QuantityTotal");
 	}
 
 	/// <summary>
@@ -45,7 +47,7 @@ public class SpecialResourceUIBinding : IRestrictedSpecialResourceUIBinding
 	/// </summary>
 	public void Show()
 	{
-		resourceElement.style.display = DisplayStyle.Flex;
+		root.style.display = DisplayStyle.Flex;
 	}
 
 	/// <summary>
@@ -53,7 +55,7 @@ public class SpecialResourceUIBinding : IRestrictedSpecialResourceUIBinding
 	/// </summary>
 	public void Hide()
 	{
-		resourceElement.style.display = DisplayStyle.None;
+		root.style.display = DisplayStyle.None;
 	}
 
 	/// <summary>

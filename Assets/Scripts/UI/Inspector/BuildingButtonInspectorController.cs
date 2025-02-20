@@ -15,7 +15,7 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 		get => buildSettings.VisualAsset.buildingIcon;
 	}
 
-	private float BuildingCost
+	private int BuildingCost
 	{
 		get => buildSettings.BuildingDataAsset.cost;
 	}
@@ -30,7 +30,7 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 		get => buildSettings.BuildingDataAsset.income > 0;
 	}
 
-	private float BuildingIncome
+	private int BuildingIncome
 	{
 		get => buildSettings.BuildingDataAsset.income;
 	}
@@ -40,7 +40,7 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 		get => buildSettings.BuildingDataAsset.powerProduced > 0;
 	}
 
-	private float BuildingProducedPower
+	private int BuildingProducedPower
 	{
 		get => buildSettings.BuildingDataAsset.powerProduced;
 	}
@@ -50,7 +50,7 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 		get => buildSettings.BuildingDataAsset.powerRequired > 0;
 	}
 
-	private float BuildingConsumedElectricity
+	private int BuildingConsumedElectricity
 	{
 		get => buildSettings.BuildingDataAsset.powerRequired;
 	}
@@ -60,7 +60,7 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 		get => buildSettings.BuildingDataAsset.upkeep > 0;
 	}
 
-	private float BuildingUpkeep
+	private int BuildingUpkeep
 	{
 		get => buildSettings.BuildingDataAsset.upkeep;
 	}
@@ -70,7 +70,7 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 		get => buildSettings.BuildingDataAsset.maxPowerLines;
 	}
 
-	private float BuildingMass
+	private int BuildingMass
 	{
 		get => buildSettings.BuildingDataAsset.mass;
 	}
@@ -97,64 +97,73 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 
 	public override void UpdateUI()
 	{
-		subheading.text = BuildingName;
-		icon.style.backgroundImage = new StyleBackground(BuildingIcon);
+		Title.text = BuildingName;
+		Icon.style.backgroundImage = new StyleBackground(BuildingIcon);
 
-		costValue.text = "$" + BuildingCost.ToString("0.00");
+		Cost?.SetValue("$" + BuildingCost.ToString());
 
 		if (BuildingScienceCost > 0)
 		{
-			advancedMaterialsCostValue.text = BuildingScienceCost.ToString();
+			AdvancedMaterialsCost?.SetValue(BuildingScienceCost.ToString());
 		}
 		else
 		{
-			advancedMaterialsCost.style.display = DisplayStyle.None;
+			AdvancedMaterialsCost?.Hide();
 		}
 
 		if (BuildingHasIncome)
 		{
-			incomeCurrentValue.style.display = DisplayStyle.None;
-			incomeDivider.style.display = DisplayStyle.None;
-			incomePotentialValue.text = "$" + BuildingIncome.ToString("0.00");
+			Income?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+			Income?.SetValue("$" + BuildingIncome.ToString());
 		}
 		else
-			income.style.display = DisplayStyle.None;
+			Income.Hide();
 
 		if (BuildingProducesPower)
-			electricityProductionValue.text = BuildingProducedPower.ToString("0.00");
-		else
-			electricityProduction.style.display = DisplayStyle.None;
-
-		if(BuildingScienceIncome > 0)
 		{
-			advancedMaterialProductionValue.text = BuildingScienceIncome.ToString();
+			ElectricityProduction?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+			ElectricityProduction?.SetValue(BuildingProducedPower.ToString());
+		}
+		else
+			ElectricityProduction?.Hide();
+
+		if (BuildingScienceIncome > 0)
+		{
+			AdvancedMaterialsProduction?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+			AdvancedMaterialsProduction?.SetValue(BuildingScienceIncome.ToString());
 		}
 		else
 		{
-			advancedMaterialsProduction.style.display = DisplayStyle.None;
+			AdvancedMaterialsProduction?.Hide();
 		}
 
 		if (BuildingConsumesElectricity)
-			electricityConsumptionValue.text = BuildingConsumedElectricity.ToString("0.00");
+		{
+			ElectricityConsumption?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+			ElectricityConsumption?.SetValue(BuildingConsumedElectricity.ToString());
+		}
 		else
-			electricityConsumption.style.display = DisplayStyle.None;
+			ElectricityConsumption?.Hide();
 
 		if (BuildingHasUpkeep)
-			upkeepValue.text = BuildingUpkeep.ToString("0.00");
+		{
+			Upkeep?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+			Upkeep?.SetValue(BuildingUpkeep.ToString());
+		}
 		else
-			upkeep.style.display = DisplayStyle.None;
+			Upkeep?.Hide();
 
-		connectionsConsumedValue.style.display = DisplayStyle.None;
-		connectionsDivider.style.display = DisplayStyle.None;
-		connectionsTotalValue.text = BuildingConnectionsTotal.ToString();
+		Connections?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+		Connections?.SetValue(BuildingConnectionsTotal.ToString());
 
-		massValue.text = BuildingMass.ToString("0.00");
+		Mass?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+		Mass?.SetValue(BuildingMass.ToString());
 
-		resourcesBinding.ShowBuildingTypeResources(buildSettings.BuildingDataAsset);
+		ResourcesBinding.ShowBuildingTypeResources(buildSettings.BuildingDataAsset);
 
-		settings.style.display = DisplayStyle.None;
+		Settings.style.display = DisplayStyle.None;
 
-		description.text = BuildingDescription;
+		Description.text = BuildingDescription;
 	}
 
 	public override void DisconnectInspectorUI()

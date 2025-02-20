@@ -33,7 +33,7 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 		get => displayingBuilding.Data.income > 0;
 	}
 
-	private float BuildingIncome
+	private int BuildingIncome
 	{
 		get => displayingBuilding.Data.income;
 	}
@@ -43,7 +43,7 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 		get => displayingBuilding.Data.powerProduced > 0;
 	}
 
-	private float BuildingProducedPower
+	private int BuildingProducedPower
 	{
 		get => displayingBuilding.Data.powerProduced;
 	}
@@ -53,7 +53,7 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 		get => displayingBuilding.Data.powerRequired > 0;
 	}
 
-	private float BuildingConsumedElectricity
+	private int BuildingConsumedElectricity
 	{
 		get => displayingBuilding.Data.powerRequired;
 	}
@@ -63,7 +63,7 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 		get => displayingBuilding.Data.upkeep > 0;
 	}
 
-	private float BuildingUpkeep
+	private int BuildingUpkeep
 	{
 		get => displayingBuilding.Data.upkeep;
 	}
@@ -78,7 +78,7 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 		get => displayingBuilding.Data.maxPowerLines;
 	}
 
-	private float BuildingMass
+	private int BuildingMass
 	{
 		get => displayingBuilding.Data.mass;
 	}
@@ -118,12 +118,12 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 
 	private void RegisterListeners()
 	{
-		poweredButton.RegisterCallback<ClickEvent>(PoweredButton_OnClick);
+		PoweredButton.RegisterCallback<ClickEvent>(PoweredButton_OnClick);
 	}
 
 	private void UnregisterListeners()
 	{
-		poweredButton.UnregisterCallback<ClickEvent>(PoweredButton_OnClick);
+		PoweredButton.UnregisterCallback<ClickEvent>(PoweredButton_OnClick);
 	}
 
 	private void PoweredButton_OnClick(ClickEvent evt)
@@ -133,65 +133,76 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 
 	public override void UpdateUI()
 	{
-		subheading.text = BuildingName;
-		icon.style.backgroundImage = new StyleBackground(BuildingIcon);
+		Title.text = BuildingName;
+		Icon.style.backgroundImage = new StyleBackground(BuildingIcon);
 
-		cost.style.display = DisplayStyle.None;
-		advancedMaterialsCost.style.display = DisplayStyle.None;
+		Cost?.Hide();
+		AdvancedMaterialsCost?.Hide();
 
 		if (BuildingHasIncome)
 		{
-			incomeCurrentValue.text = "$" + (BuildingIncome * (BuildingIsPowered ? 1 : 0)).ToString("0.00");
-			incomePotentialValue.text = BuildingIncome.ToString("0.00");
+			// Assumed income has a divider.
+			// TODO: Change to be accurate based on missing special resources.
+			Income.SetValue("$" + (BuildingIncome * (BuildingIsPowered ? 1 : 0)).ToString());
+			Income.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITH_DIVIDER);
+			Income.SetTotal(BuildingIncome.ToString());
 		}
 		else
-			income.style.display = DisplayStyle.None;
+			Income?.Hide();
 
 		if (BuildingProducesPower)
-			electricityProductionValue.text = BuildingProducedPower.ToString("0.00");
+		{
+			ElectricityProduction?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+			ElectricityProduction?.SetValue(BuildingProducedPower.ToString());
+		}
 		else
-			electricityProduction.style.display = DisplayStyle.None;
-
+			ElectricityProduction?.Hide();
 
 
         if (BuildingScienceIncome > 0)
         {
-            advancedMaterialProductionValue.text = BuildingScienceIncome.ToString();
+			AdvancedMaterialsProduction?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+            AdvancedMaterialsProduction?.SetValue(BuildingScienceIncome.ToString());
         }
         else
-        {
-            advancedMaterialsProduction.style.display = DisplayStyle.None;
-        }
+            AdvancedMaterialsProduction?.Hide();
 
 
-        if (BuildingConsumesElectricity)
-			electricityConsumptionValue.text = BuildingConsumedElectricity.ToString("0.00");
+		if (BuildingConsumesElectricity)
+		{
+			ElectricityConsumption?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+			ElectricityConsumption?.SetValue(BuildingConsumedElectricity.ToString());
+		}
 		else
-			electricityConsumption.style.display = DisplayStyle.None;
+			ElectricityConsumption?.Hide();
 
 		if (BuildingHasUpkeep)
-			upkeepValue.text = BuildingUpkeep.ToString("0.00");
+		{
+			Upkeep?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+			Upkeep?.SetValue(BuildingUpkeep.ToString());
+		}
 		else
-			upkeep.style.display = DisplayStyle.None;
+			Upkeep?.Hide();
 
-		connectionsConsumedValue.text = BuildingConnectionsConsumed.ToString();
-		connectionsTotalValue.text = BuildingConnectionsTotal.ToString();
+		Connections?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITH_DIVIDER);
+		Connections?.SetValue(BuildingConnectionsConsumed.ToString());
+		Connections?.SetTotal(BuildingConnectionsTotal.ToString());
 
-		massValue.text = BuildingMass.ToString("0.00");
+		Mass?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
+		Mass?.SetValue(BuildingMass.ToString());
 
-		resourcesBinding.ShowBuildingInstanceResources(displayingBuilding);
+		ResourcesBinding.ShowBuildingInstanceResources(displayingBuilding);
 
         if (BuildingConsumesElectricity)
-			poweredCheckMark.style.display = BuildingIsPowered ? DisplayStyle.Flex : DisplayStyle.None;
+			PoweredCheckMark.style.display = BuildingIsPowered ? DisplayStyle.Flex : DisplayStyle.None;
 		else
-			settings.style.display = DisplayStyle.None;
+			Settings.style.display = DisplayStyle.None;
 
-		description.text = BuildingDescription;
+		Description.text = BuildingDescription;
 	}
 
 	public override void DisconnectInspectorUI()
 	{
 		UnregisterListeners();
 	}
-
 }
