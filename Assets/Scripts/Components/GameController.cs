@@ -370,6 +370,15 @@ public class GameController : MonoBehaviour
                 sfxAudio.Play();
             }
 		}
+
+		if (resolution.triedDemolishBuilding && resolution.demolishTarget != null)
+		{
+			BuildingComponent demolishedBuilding = resolution.demolishTarget as BuildingComponent;
+			if (demolishedBuilding != null)
+			{
+				gameManager.SpendMoney(demolishedBuilding.Data.cost / -2);
+			}
+		}
 	}
 
 	protected virtual void RegisterBuilding(BuildingComponent buildingComponent)
