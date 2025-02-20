@@ -19,6 +19,8 @@ public class BuildingCursorComponent : MonoBehaviour
 
 	// Reference to the renderer to manipulate for the ghost sprite.
 	[SerializeField] private SpriteRenderer ghostSpriteRenderer;
+	// The sprite that shows where cables connect to on the building being built.
+	[SerializeField] private ConnectionPointCursorComponent connectionPoint;
 	// Color to use when something can be placed.
 	[SerializeField] private Color placeableColor;
 	// Color to use when something can be placed, but it may not be a good idea (missing resources).
@@ -98,6 +100,8 @@ public class BuildingCursorComponent : MonoBehaviour
 	public void SetBuildingCableConnectionOffset(Vector2 cableConnectionOffset)
 	{
 		this.cableConnectionOffset = cableConnectionOffset;
+
+		connectionPoint.SetPosition(CableConnectionPosition);
 	}
 
 	/// <summary>
@@ -109,14 +113,17 @@ public class BuildingCursorComponent : MonoBehaviour
 		{
 			case Placeability.YES:
 				ghostSpriteRenderer.color =  placeableColor;
+				connectionPoint.SetColor(placeableColor);
 				ShowingCanPlaceBuilding = true;
 				break;
 			case Placeability.YES_WARNING:
 				ghostSpriteRenderer.color = placeableWithWarningColor;
+				connectionPoint.SetColor(placeableWithWarningColor);
 				ShowingCanPlaceBuilding = true; // Technically can place building.
 				break;
 			case Placeability.NO:
 				ghostSpriteRenderer.color = notPlaceableColor;
+				connectionPoint.SetColor(notPlaceableColor);
 				ShowingCanPlaceBuilding = false;
 				break;
 		}
@@ -138,9 +145,6 @@ public class BuildingCursorComponent : MonoBehaviour
 	{
 		return parentPlanet.InstantiateBuildingOnPlanet(buildingPrefab, transform.position, transform.rotation, isPlayerDemolishable);
 	}
-
-	// TODO: Check cable raycast.
-
 
 	public void MoveBuildingToLocation(BuildingComponent buildingToMove)
     {
