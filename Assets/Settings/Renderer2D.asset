@@ -45,9 +45,9 @@ MonoBehaviour:
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e, type: 3}
     probeVolumeBlendStatesCS: {fileID: 0}
   m_RendererFeatures:
-  - {fileID: 2960255631767821082}
   - {fileID: -205085897112698454}
-  m_RendererFeatureMap: 1adbde1fd0f01429aac12792766327fd
+  - {fileID: 2960255631767821082}
+  m_RendererFeatureMap: aac12792766327fd1adbde1fd0f01429
   m_UseNativeRenderPass: 0
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
