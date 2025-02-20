@@ -38,6 +38,10 @@ public class GameManager
     {
         get { return (currentMission.name); }
     }
+    public int TargetIncome
+    {
+        get { return (currentMission.cashGoal); }
+    }
 
     public GameManager(GameController controller)
     {

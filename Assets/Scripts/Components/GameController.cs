@@ -56,6 +56,14 @@ public class GameController : MonoBehaviour
 	{
 		get { return (gamePaused); }
 	}
+	public int Income
+    {
+        get { return (gameManager.Income); }
+    }
+	public int TargetIncome
+    {
+        get { return (gameManager.TargetIncome); }
+    }		
 
 	// Set the gameSpeed property along with Time.timeScale.
 	public int GameSpeed {
