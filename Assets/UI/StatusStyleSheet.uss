@@ -47,3 +47,7 @@
 .incrementButton:active {
     -unity-background-image-tint-color: rgb(143, 143, 143);
 }
+
+#Container > VisualElement > #IncomeProgress > #unity-progress-bar > .unity-progress-bar__background > .unity-progress-bar__progress {
+    background-color: rgb(62, 240, 41);
+}

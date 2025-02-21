@@ -11,6 +11,7 @@ public class StatsUIComponent : MonoBehaviour
 	private Button decrementGameSpeedButton;
 	private Button redistributeElectricityButton;
 	private Button pauseButtion;
+	private ProgressBar incomeProgress;
 
 	[SerializeField] private GameController gameController;
 	[SerializeField] private PauseManager pauseManager;
@@ -27,6 +28,7 @@ public class StatsUIComponent : MonoBehaviour
 		decrementGameSpeedButton = statsDocument.rootVisualElement.Q<Button>("DecreaseButton");
 		redistributeElectricityButton = statsDocument.rootVisualElement.Q<Button>("RedistributeButton");
 		pauseButtion = statsDocument.rootVisualElement.Q<Button>("PauseButton");
+		incomeProgress = statsDocument.rootVisualElement.Q<ProgressBar>("IncomeProgress");
 
 		incrementGameSpeedButton.RegisterCallback<ClickEvent>(IncrementTimeButton_OnClick);
 		decrementGameSpeedButton.RegisterCallback<ClickEvent>(DecrementTimeButton_OnClick);
@@ -34,7 +36,13 @@ public class StatsUIComponent : MonoBehaviour
 		pauseButtion.RegisterCallback<ClickEvent>(PauseButton_OnClick);
     }
 
-	private void PauseButton_OnClick(ClickEvent evt)
+    private void Update()
+    {
+		incomeProgress.title = "Income: " + gameController.Income + "/" + gameController.TargetIncome;
+		incomeProgress.value = (gameController.Income * 100) / gameController.TargetIncome;
+    }
+
+    private void PauseButton_OnClick(ClickEvent evt)
 	{
 		pauseManager.PauseGame();
 	}

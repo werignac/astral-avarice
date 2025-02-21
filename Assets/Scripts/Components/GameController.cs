@@ -56,6 +56,14 @@ public class GameController : MonoBehaviour
 	{
 		get { return (gamePaused); }
 	}
+	public int Income
+    {
+        get { return (gameManager.Income); }
+    }
+	public int TargetIncome
+    {
+        get { return (gameManager.TargetIncome); }
+    }		
 
 	// Set the gameSpeed property along with Time.timeScale.
 	public int GameSpeed {
@@ -369,6 +377,15 @@ public class GameController : MonoBehaviour
                 sfxAudio.clip = cableConnectClip;
                 sfxAudio.Play();
             }
+		}
+
+		if (resolution.triedDemolishBuilding && resolution.demolishTarget != null)
+		{
+			BuildingComponent demolishedBuilding = resolution.demolishTarget as BuildingComponent;
+			if (demolishedBuilding != null)
+			{
+				gameManager.SpendMoney(demolishedBuilding.Data.cost / -2);
+			}
 		}
 	}
 
