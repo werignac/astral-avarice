@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCash: 350
   cashGoal: 8000
-  timeLimit: 1200
+  goalTimes: 7404000064050000fa05000008070000
   missionName: Large System
   startingScience: 0
   startingBuildings:

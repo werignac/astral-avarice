@@ -337,7 +337,22 @@ public class GameController : MonoBehaviour
 		gameEnded = true;
 		if(victory)
         {
-			PlayerPrefs.SetInt(gameManager.MissionName, 1);
+			int rank = 5;
+			for(int i = 0; i < Data.selectedMission.goalTimes.Length; ++i)
+			{
+				if(victoryTime > Data.selectedMission.goalTimes[i])
+				{
+					--rank;
+				}
+				else
+				{
+					break;
+				}
+			}
+			if (PlayerPrefs.GetInt(gameManager.MissionName, -1) < rank)
+			{
+				PlayerPrefs.SetInt(gameManager.MissionName, rank);
+			}
 			if (victoryDocument != null)
 			{
 				victoryDocument.rootVisualElement.style.display = DisplayStyle.Flex;
@@ -345,7 +360,11 @@ public class GameController : MonoBehaviour
         }
 		else
         {
-			if (defeatDocument != null)
+            if (PlayerPrefs.GetInt(gameManager.MissionName, -1) < 0)
+            {
+                PlayerPrefs.SetInt(gameManager.MissionName, 0);
+            }
+            if (defeatDocument != null)
 			{
 				defeatDocument.rootVisualElement.style.display = DisplayStyle.Flex;
 			}

@@ -10,7 +10,7 @@ public class GameManager
     private int income;
     private int cash;
     private float timePassed;
-    private int endTime;
+    private int[] goalTimes;
     private GameController controller;
     private MissionData currentMission;
     private int scienceHeld;
@@ -86,7 +86,7 @@ public class GameManager
         scienceHeld = mission.startingScience;
         buildings = new List<Building>();
         timePassed = 0;
-        endTime = mission.timeLimit;
+        goalTimes = mission.goalTimes;
         ReassignAllGroups();
         CalculateIncome();
     }
@@ -99,7 +99,7 @@ public class GameManager
         scienceHeld = mission.startingScience;
         buildings = new List<Building>();
         timePassed = 0;
-        endTime = mission.timeLimit;
+        goalTimes = mission.goalTimes;
 
         for (int i = 0; i < level.buildings.Length; ++i)
         {

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCash: 350
   cashGoal: 3500
-  timeLimit: 900
+  goalTimes: d0020000c003000092040000dc050000
   missionName: Biggy System
   startingScience: 0
   startingBuildings:

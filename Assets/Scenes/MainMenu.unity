@@ -837,6 +837,13 @@ MonoBehaviour:
   creditsDocument: {fileID: 1028712846}
   missionButtonPrefab: {fileID: 9197481963319205126, guid: 089c9e43ee88121449dca560d3f23bb0, type: 3}
   audioMixer: {fileID: 24100000, guid: 651c72aa38f366b4185571ed3ef58479, type: 2}
+  missionRankSprites:
+  - {fileID: -167808834929140042, guid: dbfb9eea2f90df945a81babb7c6b5f0b, type: 3}
+  - {fileID: -8834545821952743936, guid: 80cca22063360194a8da4bdc2091204f, type: 3}
+  - {fileID: 6931921758071906898, guid: a67573e9deb73b448ad58c2fae63a1b1, type: 3}
+  - {fileID: -5943403573417048326, guid: 1446aaa8309675e4194744b7f932724e, type: 3}
+  - {fileID: 3182304583510767899, guid: b979eabd799852649a6788c9c90168d1, type: 3}
+  - {fileID: 6824925376817469756, guid: 2b91b36df40249646a49952429cb07cd, type: 3}
 --- !u!1 &702176660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,6 +1009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridGroupViewPostProcessingMaterial: {fileID: 2100000, guid: 2c892c51b7f964e4695c7e90c8926e32, type: 2}
+  clearOnAwake: 1
 --- !u!4 &844882715
 Transform:
   m_ObjectHideFlags: 0

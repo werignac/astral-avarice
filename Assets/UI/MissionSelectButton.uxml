@@ -2,6 +2,6 @@
     <Style src="project://database/Assets/UI/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=4124b1416559d0b44b5377efa564a3eb&amp;type=3#MainMenuStyleSheet" />
     <engine:VisualElement style="flex-grow: 0; width: 500px; height: 90px;">
         <engine:Button text="Button" name="MissionButton" class="missionButton" />
-        <engine:VisualElement name="Check" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-6090568113533005507&amp;guid=6d3142833d2bc694c8742c2782822332&amp;type=3#check&quot;); width: 100px; height: 100px; -unity-background-image-tint-color: rgb(103, 255, 146); margin-top: -140px; margin-left: 450px;" />
+        <engine:VisualElement name="Check" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-6090568113533005507&amp;guid=6d3142833d2bc694c8742c2782822332&amp;type=3#check&quot;); width: 60px; height: 60px; margin-top: -120px; margin-left: 450px;" />
     </engine:VisualElement>
 </engine:UXML>

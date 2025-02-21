@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCash: 600
   cashGoal: 3000
-  timeLimit: 720
+  goalTimes: 58020000ee02000056040000dc050000
   missionName: Asteroid Field
   startingScience: 0
   startingBuildings:
