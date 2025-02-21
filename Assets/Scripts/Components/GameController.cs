@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
 	private bool gameEnded = false;
 	private bool gamePaused = false;
 	private int prePauseGameSpeed = 1;
+	private float goalFixedDeltaTime;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
 
@@ -74,7 +75,7 @@ public class GameController : MonoBehaviour
 			gameSpeed = value;
 			Time.timeScale = value;
 			// Adjust Time.fixedDeltaTime to perform the same number of FixedDeltaTime updates per frame.
-			Time.fixedDeltaTime = Time.fixedUnscaledDeltaTime * Time.timeScale;
+			Time.fixedDeltaTime = goalFixedDeltaTime * Time.timeScale;
 		}
 	}
 
@@ -83,12 +84,17 @@ public class GameController : MonoBehaviour
 	{
 		get
 		{
-			return Time.fixedUnscaledDeltaTime * GameSpeed;
+			return Time.fixedDeltaTime;
 		}
 	}
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected virtual void Start()
+	private void Awake()
+	{
+		goalFixedDeltaTime = Time.fixedDeltaTime;
+	}
+
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	protected virtual void Start()
     {
 		GameSpeed = 1;
         gameManager = new GameManager(this);
@@ -236,7 +242,7 @@ public class GameController : MonoBehaviour
 	// a single update.
     private void MovePlanets()
 	{
-		if (Planets.Count > 1)
+		if (Planets.Count > 1 && GameSpeed > 0)
 		{
 			List<Vector2> planetTranslations = new List<Vector2>();
 			for (int i = 0; i < Planets.Count; ++i)
