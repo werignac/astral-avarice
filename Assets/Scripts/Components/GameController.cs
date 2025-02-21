@@ -331,7 +331,7 @@ public class GameController : MonoBehaviour
 		scienceIncomeLabel.text += newIncome + ")";
 	}
 
-    public void EndGame(bool victory)
+    public void EndGame(bool victory, float victoryTime)
     {
         Debug.Log("Game has ended");
 		gameEnded = true;
