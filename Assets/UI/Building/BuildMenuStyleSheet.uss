@@ -182,3 +182,54 @@
 .buildButton:disabled {
     -unity-background-image-tint-color: rgb(90, 90, 90);
 }
+
+.affordableContainer {
+    background-color: rgb(58, 112, 62);
+}
+
+.affordableContainer Label {
+    color: rgb(2, 220, 67);
+}
+
+.unaffordableContainer {
+    background-color: rgb(90, 35, 22);
+}
+
+.unaffordableContainer Label {
+    color: rgb(180, 53, 62);
+}
+
+.buildingButton {
+}
+
+.buildingButton Label#BuildingName {
+    display: none;
+}
+
+.buildingButton Label#CashCostLabel {
+    display: none;
+}
+
+.buildingButton Label#ScienceCostLabel {
+    display: none;
+}
+
+.buildingButton #StatsContainer {
+    display: none;
+}
+
+.buildingButton:hover Label#BuildingName {
+    display: flex;
+}
+
+.buildingButton:hover Label#CashCostLabel {
+    display: flex;
+}
+
+.buildingButton:hover Label#ScienceCostLabel {
+    display: flex;
+}
+
+.buildingButton:hover #StatsContainer {
+    display: flex;
+}

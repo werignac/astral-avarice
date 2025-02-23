@@ -33,7 +33,11 @@ public class BuildingValueUIBinding
 	/// <param name="container">Either a container of just the value or a larger container that includes a container for a specific value.</param>
 	/// <param name="valueContainerPassed">Specifies whether "container" is a container for just a value, or a broader container for which we must find a value container.</param>
 	/// <param name="valueName">The name of the value (without "Container", "Amount", etc.). Used to find children of the value container. Optional when valueContainerPassed is false.</param>
-	public BuildingValueUIBinding(VisualElement container, bool valueContainerPassed = true, string valueName = null)
+	public BuildingValueUIBinding(
+		VisualElement container,
+		bool valueContainerPassed = true,
+		string valueName = null
+		)
 	{
 		
 		if (valueContainerPassed)

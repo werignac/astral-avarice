@@ -51,22 +51,102 @@ public class BuildingUIBinding
 
 	public void Bind(VisualElement rootContainer)
 	{
-		Title = rootContainer.Q<Label>(GetTitleName());
-		Icon = rootContainer.Q(GetIconName());
-		Cost = FindValueContainer(rootContainer, GetCostName());
-		AdvancedMaterialsCost = FindValueContainer(rootContainer, GetAdvancedMaterialsCostName());
-		Income = FindValueContainer(rootContainer, GetIncomeName());
-		ElectricityProduction = FindValueContainer(rootContainer, GetElectricityProductionName());
-		AdvancedMaterialsProduction = FindValueContainer(rootContainer, GetAdvancedMaterialsProductionName());
-		ElectricityConsumption = FindValueContainer(rootContainer, GetElectricityConsumptionName());
-		Upkeep = FindValueContainer(rootContainer, GetUpkeepName());
-		Connections = FindValueContainer(rootContainer, GetConnectionsName());
-		Mass = FindValueContainer(rootContainer, GetMassName());
-		ResourcesBinding = new SpecialResourcesContainerUIBinding(rootContainer.Q(GetSpecialResourcesContainerName()));
-		Settings = rootContainer.Q(GetSettingsName());
-		PoweredButton = rootContainer.Q<Button>(GetPoweredButtonName());
-		PoweredCheckMark = rootContainer.Q(GetPoweredCheckMarkName());
-		Description = rootContainer.Q<Label>(GetDescriptionName());
+		Title = FindTitle(rootContainer);
+		Icon = FindIcon(rootContainer);
+		Cost = FindCost(rootContainer);
+		AdvancedMaterialsCost = FindAdvancedMaterialsCost(rootContainer);
+		Income = FindIncome(rootContainer);
+		ElectricityProduction = FindElectricityProduction(rootContainer);
+		AdvancedMaterialsProduction = FindAdvancedMAterialsProduction(rootContainer);
+		ElectricityConsumption = FindElectricityConsumption(rootContainer);
+		Upkeep = FindUpkeep(rootContainer);
+		Connections = FindConnections(rootContainer);
+		Mass = FindMass(rootContainer);
+		ResourcesBinding = FindSpecialResources(rootContainer);
+		Settings = FindSettings(rootContainer);
+		PoweredButton = FindPoweredButton(rootContainer);
+		PoweredCheckMark = FindPoweredCheckMark(rootContainer);
+		Description = FindDescription(rootContainer);
+	}
+
+	protected virtual Label FindTitle(VisualElement rootContainer)
+	{
+		return rootContainer.Q<Label>(GetTitleName());
+	}
+
+	protected virtual VisualElement FindIcon(VisualElement rootContainer)
+	{
+		return rootContainer.Q(GetIconName());
+	}
+
+	protected virtual BuildingValueUIBinding FindCost(VisualElement rootContainer)
+	{
+		return FindValueContainer(rootContainer, GetCostName());
+	}
+
+	protected virtual BuildingValueUIBinding FindAdvancedMaterialsCost(VisualElement rootContainer)
+	{
+		return FindValueContainer(rootContainer, GetAdvancedMaterialsCostName());
+	}
+
+	protected virtual BuildingValueUIBinding FindIncome(VisualElement rootContainer)
+	{
+		return FindValueContainer(rootContainer, GetIncomeName());
+	}
+
+	protected virtual BuildingValueUIBinding FindElectricityProduction(VisualElement rootContainer)
+	{
+		return FindValueContainer(rootContainer, GetElectricityProductionName());
+	}
+
+	protected virtual BuildingValueUIBinding FindAdvancedMAterialsProduction(VisualElement rootContainer)
+	{
+		return FindValueContainer(rootContainer, GetAdvancedMaterialsProductionName());
+	}
+
+	protected virtual BuildingValueUIBinding FindElectricityConsumption(VisualElement rootContainer)
+	{
+		return FindValueContainer(rootContainer, GetElectricityConsumptionName());
+	}
+
+	protected virtual BuildingValueUIBinding FindUpkeep(VisualElement rootContainer)
+	{
+		return FindValueContainer(rootContainer, GetUpkeepName());
+	}
+
+	protected virtual BuildingValueUIBinding FindConnections(VisualElement rootContainer)
+	{
+		return FindValueContainer(rootContainer, GetConnectionsName());
+	}
+
+	protected virtual BuildingValueUIBinding FindMass(VisualElement rootContainer)
+	{
+		return FindValueContainer(rootContainer, GetMassName());
+	}
+
+	protected virtual SpecialResourcesContainerUIBinding FindSpecialResources(VisualElement rootContainer)
+	{
+		return new SpecialResourcesContainerUIBinding(rootContainer.Q(GetSpecialResourcesContainerName()));
+	}
+
+	protected virtual VisualElement FindSettings(VisualElement rootContainer)
+	{
+		return rootContainer.Q(GetSettingsName());
+	}
+
+	protected virtual Button FindPoweredButton(VisualElement rootContainer)
+	{
+		return rootContainer.Q<Button>(GetPoweredButtonName());
+	}
+
+	protected virtual VisualElement FindPoweredCheckMark(VisualElement rootContainer)
+	{
+		return rootContainer.Q(GetPoweredCheckMarkName());
+	}
+
+	protected virtual Label FindDescription(VisualElement rootContainer)
+	{
+		return rootContainer.Q<Label>(GetDescriptionName());
 	}
 
 	protected static BuildingValueUIBinding FindValueContainer(VisualElement rootContainer, string valueName)

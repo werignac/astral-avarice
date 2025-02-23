@@ -20,7 +20,7 @@
                 <engine:Label text="Cost: " name="CostLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: normal;" />
                 <engine:Label text="$10" name="CostAmount" class="inspectorText" style="font-size: 20px; color: rgb(159, 36, 36); -unity-font-style: bold;" />
             </engine:VisualElement>
-            <engine:VisualElement name="AdvancedMaterialsCostContianer" style="flex-grow: 1; flex-direction: row;">
+            <engine:VisualElement name="AdvancedMaterialsCostContainer" style="flex-grow: 1; flex-direction: row;">
                 <engine:Label text="Advanced Materials Cost:" name="AdvancedMaterialsCostLabel" selectable="false" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: normal;" />
                 <engine:Label text="10" name="AdvancedMaterialsCostAmount" class="inspectorText" style="font-size: 20px; color: rgb(159, 36, 36); -unity-font-style: bold;" />
             </engine:VisualElement>

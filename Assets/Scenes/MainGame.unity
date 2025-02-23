@@ -1195,13 +1195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d9cedb42e363b4a87f6e6a08567e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingButtonTemplate: {fileID: 9197481963319205126, guid: 065fbb90ca9c104448bebea7fd717b55, type: 3}
-  collapseButtonMenuOpenedSprite: {fileID: 2139537539342574253, guid: f4bb9148f1f877f40988d145861689b3, type: 3}
-  collapseButtonMenuClosedSprite: {fileID: 8859772711337689660, guid: 6dc2c3fef3231b140bb6cf8bfd307896, type: 3}
-  demolishIcon: {fileID: 21300000, guid: 99c0da86e6f917f4c8535c5993ffe0a5, type: 3}
-  cableIcon: {fileID: 21300000, guid: 821a296538d9f5e4baebd324d9580017, type: 3}
-  moveIcon: {fileID: 21300000, guid: a3fb1b7c2d6dcfa42813032fda14f48b, type: 3}
-  inspectorUI: {fileID: 1836921261}
+  buildingButtonTemplate: {fileID: 9197481963319205126, guid: 21aa30057e650164aa1585e1d48edd0e, type: 3}
+  inspector: {fileID: 1836921261}
+  gameController: {fileID: 164819399}
 --- !u!1 &1084549500
 GameObject:
   m_ObjectHideFlags: 0

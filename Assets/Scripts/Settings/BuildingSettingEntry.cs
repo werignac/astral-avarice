@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// Class that contains
 /// </summary>
 [Serializable]
-public class BuildingSettingEntry
+public class BuildingSettingEntry: IInspectable
 {
 	// The asset containing visual information about the building.
 	[SerializeField] private BuildingVisuals visualAsset;
@@ -31,5 +32,12 @@ public class BuildingSettingEntry
 	{
 		get { return prefab;  }
 		private set { prefab = value; }
+	}
+
+	public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
+	{
+		// NOTE: Circular reference!
+		inspectorController = new BuildingButtonInspectorController(this);
+		return PtUUISettings.GetOrCreateSettings().BuildingInspectorUI;
 	}
 }

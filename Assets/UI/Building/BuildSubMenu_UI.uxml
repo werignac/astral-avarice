@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Building/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
+    <engine:VisualElement name="SubMenuContainer" enabled="true" picking-mode="Ignore" style="flex-grow: 1; right: auto; left: auto; position: relative; width: 300px; flex-direction: column; align-self: flex-start; background-image: url(&quot;project://database/Assets/Sprites/UI/hex_ui_background_gradient_red.png?fileID=-8705320060223659630&amp;guid=f02254d2ee1f0c7469acb3a7277ca2d8&amp;type=3#hex_ui_background_gradient_red_0&quot;); background-size: 400px 400px; background-repeat: no-repeat repeat;">
+        <engine:ScrollView style="width: 500px;">
+            <engine:VisualElement name="ButtonsContainer" style="flex-grow: 1;" />
+        </engine:ScrollView>
+    </engine:VisualElement>
+</engine:UXML>
