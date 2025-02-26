@@ -51,7 +51,11 @@ public class GameManager
     }
     public bool Losing
     {
-        get { return (cash < 0 || (cash == 0 && income <= 0)); }
+        get { return (cash <= 0 && income <= 0); }
+    }
+    public float WinningStartTime
+    {
+        get { return (winningStartTime); }
     }
 
     public GameManager(GameController controller)

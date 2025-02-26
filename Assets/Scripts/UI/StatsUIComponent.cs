@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,9 +13,12 @@ public class StatsUIComponent : MonoBehaviour
 	private Button redistributeElectricityButton;
 	private Button pauseButtion;
 	private ProgressBar incomeProgress;
+	private VisualElement rankImage;
+	private Label rankTime;
 
 	[SerializeField] private GameController gameController;
 	[SerializeField] private PauseManager pauseManager;
+	[SerializeField] private Sprite[] missionRankSprites;
 
 	private void Awake()
 	{
@@ -29,6 +33,8 @@ public class StatsUIComponent : MonoBehaviour
 		redistributeElectricityButton = statsDocument.rootVisualElement.Q<Button>("RedistributeButton");
 		pauseButtion = statsDocument.rootVisualElement.Q<Button>("PauseButton");
 		incomeProgress = statsDocument.rootVisualElement.Q<ProgressBar>("IncomeProgress");
+		rankImage = statsDocument.rootVisualElement.Q("RankImage");
+		rankTime = statsDocument.rootVisualElement.Q<Label>("RankTime");
 
 		incrementGameSpeedButton.RegisterCallback<ClickEvent>(IncrementTimeButton_OnClick);
 		decrementGameSpeedButton.RegisterCallback<ClickEvent>(DecrementTimeButton_OnClick);
@@ -40,6 +46,47 @@ public class StatsUIComponent : MonoBehaviour
     {
 		incomeProgress.title = "Income: " + gameController.Income + "/" + gameController.TargetIncome;
 		incomeProgress.value = (gameController.Income * 100) / gameController.TargetIncome;
+
+		int rank = gameController.GetRank();
+		string timeText = "(";
+        if (rank == 0)
+        {
+			timeText = "WARNING!";
+			rankTime.style.color = Color.red;
+        }
+		else if(rank == 1)
+        {
+			if (gameController.Winning)
+			{
+				rankTime.style.color = Color.green;
+			}
+			else
+			{
+				rankTime.style.color = Color.white;
+			}
+            timeText += "--:--";
+		}
+		else
+        {
+            if (gameController.Winning)
+            {
+                rankTime.style.color = Color.green;
+            }
+            else
+            {
+                rankTime.style.color = Color.white;
+            }
+            int time = Data.selectedMission.goalTimes[5 - rank];
+            timeText += Mathf.FloorToInt(time / 60).ToString("00");
+            timeText += ":" + Mathf.FloorToInt((time % 60)).ToString("00");
+			timeText += ")";
+        }
+        rankTime.text = timeText;
+
+
+        rankImage.style.display = DisplayStyle.Flex;
+        rankImage.style.backgroundImage = new StyleBackground(missionRankSprites[rank]);
+        rankImage.style.backgroundSize = BackgroundPropertyHelper.ConvertScaleModeToBackgroundSize(ScaleMode.ScaleToFit);
     }
 
     private void PauseButton_OnClick(ClickEvent evt)

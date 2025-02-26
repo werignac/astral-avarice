@@ -61,9 +61,17 @@ public class GameController : MonoBehaviour
         get { return (gameManager.Income); }
     }
 	public int TargetIncome
-    {
-        get { return (gameManager.TargetIncome); }
-    }		
+	{
+		get { return (gameManager.TargetIncome); }
+	}
+	public bool Winning
+	{
+		get { return (gameManager.Winning); }
+	}
+	public bool Losing
+	{
+		get { return (gameManager.Losing); }
+	}
 
 	// Set the gameSpeed property along with Time.timeScale.
 	public int GameSpeed {
@@ -337,18 +345,7 @@ public class GameController : MonoBehaviour
 		gameEnded = true;
 		if(victory)
         {
-			int rank = 5;
-			for(int i = 0; i < Data.selectedMission.goalTimes.Length; ++i)
-			{
-				if(victoryTime > Data.selectedMission.goalTimes[i])
-				{
-					--rank;
-				}
-				else
-				{
-					break;
-				}
-			}
+			int rank = GetRank(victoryTime);
 			if (PlayerPrefs.GetInt(gameManager.MissionName, -1) < rank)
 			{
 				PlayerPrefs.SetInt(gameManager.MissionName, rank);
@@ -620,5 +617,37 @@ public class GameController : MonoBehaviour
 			}
 		}
 		return (connectedCables);
+	}
+
+	public int GetRank(float time)
+    {
+        int rank = 5;
+        for (int i = 0; i < Data.selectedMission.goalTimes.Length; ++i)
+        {
+            if (time > Data.selectedMission.goalTimes[i])
+            {
+                --rank;
+            }
+            else
+            {
+                break;
+            }
+        }
+		return (rank);
+    }
+	public int GetRank()
+	{
+		if(Losing)
+		{
+			return (0);
+		}
+		else if(Winning)
+		{
+			return (GetRank(gameManager.WinningStartTime));
+		}
+		else
+		{
+			return (GetRank(gameManager.TimePassed));
+		}
 	}
 }

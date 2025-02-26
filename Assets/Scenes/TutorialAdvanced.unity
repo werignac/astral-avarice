@@ -1168,6 +1168,10 @@ PrefabInstance:
       value: StatsUI
       objectReference: {fileID: 0}
     - target: {fileID: 9096473012251885719, guid: 742e6640825d9b042a11b5a1c2b77468, type: 3}
+      propertyPath: pauseManager
+      value: 
+      objectReference: {fileID: 552177426}
+    - target: {fileID: 9096473012251885719, guid: 742e6640825d9b042a11b5a1c2b77468, type: 3}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 164819401}
