@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using System.Collections.Generic;
 using werignac.Utils;
 using System;
+using UnityEngine.InputSystem;
 
 public class GameController : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class GameController : MonoBehaviour
 	[SerializeField] private DataSet gameDataSet;
 	[SerializeField] private UIDocument victoryDocument;
 	[SerializeField] private UIDocument defeatDocument;
+	[SerializeField] private UIDocument gridPowerDocument;
+	[SerializeField] private GridGroupViewComponent gridGroupView;
+	[SerializeField] private Camera mainCamera;
 
 
     private Label cashLabel;
@@ -26,6 +30,7 @@ public class GameController : MonoBehaviour
 	private Label scienceIncomeLabel;
 	private Label timeLabel;
 	private Label timeScaleLabel;
+	private Label gridPowerLabel;
 	/// <summary>
 	/// Warning: Changing this variable directly instead of GameSpeed will not update Time.timeScale.
 	/// </summary>
@@ -98,7 +103,7 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-		GameSpeed = 1;
+		GameSpeed = 0;
         gameManager = new GameManager(this);
         cashLabel = statsDocument.rootVisualElement.Q("Cash") as Label;
         incomeLabel = statsDocument.rootVisualElement.Q("Income") as Label;
@@ -106,6 +111,7 @@ public class GameController : MonoBehaviour
 		scienceIncomeLabel = statsDocument.rootVisualElement.Q("ScienceIncome") as Label;
 		timeLabel = statsDocument.rootVisualElement.Q("Time") as Label;
 		timeScaleLabel = statsDocument.rootVisualElement.Q<Label>("TimeScale");
+		gridPowerLabel = gridPowerDocument.rootVisualElement.Q<Label>("GridPowerLabel");
 
 		if(defeatDocument != null)
         {
@@ -184,6 +190,27 @@ public class GameController : MonoBehaviour
 			timeLabel.text = timeText;
 
 			timeScaleLabel.text = "X" + GameSpeed;
+
+			if(gridGroupView.IsShowing)
+			{
+				BuildingComponent hoveredBuilding = BuildManagerComponent.Instance.GetHoveringBuilding();
+				if(hoveredBuilding == null)
+                {
+                    gridPowerLabel.style.display = DisplayStyle.None;
+                }
+				else
+                {
+                    gridPowerLabel.style.display = DisplayStyle.Flex;
+					gridPowerLabel.text = gameManager.GetGroupPowerProduced(hoveredBuilding.BackendBuilding) + "/" + gameManager.GetGroupPowerConsumed(hoveredBuilding.BackendBuilding);
+					Vector2 mousePos = GetMousePosition();
+                    gridPowerLabel.style.left = mousePos.x + 15;
+					gridPowerLabel.style.top = 1080 - mousePos.y;
+                }
+			}
+			else
+            {
+                gridPowerLabel.style.display = DisplayStyle.None;
+            }
 		}
 	}
 
@@ -375,6 +402,10 @@ public class GameController : MonoBehaviour
 
 	public virtual void BuildManager_OnBuildResovle(BuildResolve resolution)
 	{
+		if(GameSpeed == 0 && resolution.TriedAnything())
+		{
+			GameSpeed = 1;
+		}
 		if (resolution.successfullyPlacedBuilding)
 		{
 			RegisterBuilding(resolution.builtBuilding);
@@ -650,4 +681,11 @@ public class GameController : MonoBehaviour
 			return (GetRank(gameManager.TimePassed));
 		}
 	}
+
+	public Vector2 GetMousePosition()
+	{
+		Vector2 position = Mouse.current.position.ReadValue();
+		Vector2 adjustedPosition = new Vector2(position.x * 1080 / Screen.height, position.y * 1080 / Screen.height);
+		return (adjustedPosition);
+    }
 }

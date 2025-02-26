@@ -6,6 +6,11 @@ public class GridGroupViewComponent : MonoBehaviour
 	[SerializeField] private Material gridGroupViewPostProcessingMaterial;
 	[SerializeField] private bool clearOnAwake = true;
 
+	public bool IsShowing
+	{
+		get { return (GetIntensity() != 0); }
+	}
+
 	private void Awake()
 	{
 		if (clearOnAwake)

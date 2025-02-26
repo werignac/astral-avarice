@@ -887,7 +887,7 @@ public class BuildManagerComponent : MonoBehaviour
 	/// Gets the building that is currently being hovered over (if there is one)
 	/// </summary>
 	/// <returns></returns>
-	private BuildingComponent GetHoveringBuilding()
+	public BuildingComponent GetHoveringBuilding()
 	{
 		// Find a building.
 		List<Collider2D> colliderList = new List<Collider2D>(selectionCursor.GetHovering());
