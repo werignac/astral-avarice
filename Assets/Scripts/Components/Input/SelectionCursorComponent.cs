@@ -100,4 +100,20 @@ public class SelectionCursorComponent : MonoBehaviour
 	{
 		return currentlyHovering.ToArray();
 	}
+
+	/// <summary>
+	/// Finds a collider that fullfills the passed predicate.
+	/// </summary>
+	/// <returns>A collider that matches the predicate's conditions. Null otherwise.</returns>
+	public Collider2D FindFirstByPredicate(System.Predicate<Collider2D> predicate)
+	{
+		return currentlyHovering.Find(predicate);
+	}
+
+	public Collider2D FindFirstBuildingCollider()
+	{
+		return FindFirstByPredicate((Collider2D collider) => { return collider.GetComponentInParent<BuildingComponent>() != null; });
+	}
+
+
 }
