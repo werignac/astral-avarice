@@ -33,7 +33,7 @@ public class ConnectionPointCursorComponent: MonoBehaviour
 	/// </summary>
 	private IEnumerator Animation()
 	{
-		// If the object has been destroyed, stop animating.
+		// Keep animating until destruction.
 		while (this != null)
 		{
 			UpdateAnimationStep();
@@ -84,6 +84,26 @@ public class ConnectionPointCursorComponent: MonoBehaviour
 			return;
 
 		StopCoroutine(animationCoroutine);
+	}
+
+	private void OnEnable()
+	{
+		if (animationCoroutine != null)
+			StopCoroutine(animationCoroutine);
+		animationCoroutine = StartCoroutine(Animation());
+	}
+
+	public void Show()
+	{
+		if (connectionPointRenderer == null)
+			return;
+
+		connectionPointRenderer.enabled = true;
+	}
+
+	public void Hide()
+	{
+		connectionPointRenderer.enabled = false;
 	}
 
 }

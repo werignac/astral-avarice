@@ -86,6 +86,13 @@ public class BuildingCursorComponent : MonoBehaviour
 		ghostSpriteRenderer.sprite = ghostSprite;
 		ghostSpriteRenderer.transform.localPosition = ghostOffset;
 		ghostSpriteRenderer.transform.localScale = Vector3.one * ghostScale;
+
+		// If we're not displaying a building, don't display the connection point.
+		// Otherwise, show the connection point.
+		if (ghostSprite == null)
+			connectionPoint.Hide();
+		else
+			connectionPoint.Show();
 	}
 
 	/// <summary>
