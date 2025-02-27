@@ -117,7 +117,7 @@ public class InputManagerComponent : MonoBehaviour
 		if (cancelAction.WasPerformedThisFrame())
 		{
 			if (BuildManagerComponent.Instance.IsInBuildState())
-				BuildManagerComponent.Instance.SetNoneState();
+				BuildManagerComponent.Instance.CancelBuildState();
 		}
 	}
 

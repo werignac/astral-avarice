@@ -631,6 +631,18 @@ public class BuildManagerComponent : MonoBehaviour
 						// Get the "To" building of the cable. Use that in the BuildingChainedBuildState.
 						SetState(new BuildingChainedBuildState(buildingBuildState.toBuild, resolution.builtCable.End));
 					}
+					else
+					{
+						// The player did not place anything.
+						BuildingComponent clickedBuilding = selectionCursor.FindFirstBuildingCollider().GetComponentInParent<BuildingComponent>();
+						if (clickedBuilding != null)
+						{
+							// The player was in a building build mode, and clicked on an existing building.
+							// Set the building to be the new building to chain from.
+							SetState(new BuildingChainedBuildState(buildingBuildState.toBuild, clickedBuilding));
+						}
+
+					}
 				}
 				
 				// If we are in cable mode and we tried to make a complete cable (even if the cable
@@ -662,8 +674,7 @@ public class BuildManagerComponent : MonoBehaviour
 		DemolishBuildState demolishBuildState = state as DemolishBuildState;
 
 		// See if the mouse is hovering over an IDemolishable.
-		List<Collider2D> allHoveringColliders = new List<Collider2D>(selectionCursor.GetHovering());
-		Collider2D idemolishableCollider = allHoveringColliders.Find((Collider2D collider) =>
+		Collider2D idemolishableCollider = selectionCursor.FindFirstByPredicate((Collider2D collider) =>
 		{
 			return collider.TryGetComponentInParent(out IDemolishable demoComponent) && demoComponent.Demolishable();
 		});
@@ -777,9 +788,6 @@ public class BuildManagerComponent : MonoBehaviour
 
 				if (canPlace)
 				{
-					//Building building = new Building { Data = buildingBuildState.toBuild.BuildingDataAsset };
-					// TODO: Add to game manager.
-
 					GameObject buildingGameObject = buildingCursor.PlaceBuildingAtLocation(buildingBuildState.toBuild.Prefab, true);
 
 					resolution.builtBuilding = buildingGameObject.GetComponent<BuildingComponent>();
@@ -890,8 +898,7 @@ public class BuildManagerComponent : MonoBehaviour
 	private BuildingComponent GetHoveringBuilding()
 	{
 		// Find a building.
-		List<Collider2D> colliderList = new List<Collider2D>(selectionCursor.GetHovering());
-		Collider2D buildingCollider = colliderList.Find((Collider2D collider) => { return collider.GetComponentInParent<BuildingComponent>() != null; });
+		Collider2D buildingCollider = selectionCursor.FindFirstBuildingCollider();
 
 		BuildingComponent buildingComponent = buildingCollider == null ? null : buildingCollider.GetComponentInParent<BuildingComponent>();
 		return buildingComponent;
@@ -1365,5 +1372,13 @@ public class BuildManagerComponent : MonoBehaviour
 
 		// TODO: Detect other cables?
 		return false;
+	}
+
+	internal void CancelBuildState()
+	{
+		if (state.GetStateType() == BuildStateType.BUILDING_CHAINED)
+			SetCableState();
+		else
+			SetNoneState();
 	}
 }
