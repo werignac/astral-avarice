@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Small Coal Plant
   cost: 50
   scienceCost: 0
-  mass: 60
+  mass: 40
   maxPowerLines: 1
   buildingType: 1
   powerProduced: 8
