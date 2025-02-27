@@ -608,4 +608,11 @@ public class GameController : MonoBehaviour
 		}
 		return (connectedCables);
 	}
+
+	// When destroyed, reset time to its normal state.
+	private void OnDestroy()
+	{
+		Time.timeScale = 1;
+		Time.fixedDeltaTime = goalFixedDeltaTime;
+	}
 }
