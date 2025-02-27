@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System;
 using UnityEngine.UIElements;
+using AstralAvarice.VisualData;
 
 /// <summary>
 /// Stores references to all the buildings that can be built by the player.
@@ -34,7 +35,6 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField] private Sprite buildUISelectedButtonSprite;
 	[SerializeField] private Sprite buildUIDeselectedButtonSprite;
 
-
 	[System.Serializable]
 	public class SpecialEnergyUIData
 	{
@@ -49,8 +49,13 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField] private SpecialEnergyUIData windUIData;
 	[SerializeField] private SpecialEnergyUIData geothermalUIData;
 
-	[Header("Grid Flow View")]
+	[Header("Grid Group View")]
 	[SerializeField, ColorUsage(false, true)] private Color[] gridGroupColors;
+
+	[Header("Build Mode Visuals")]
+	[SerializeField] private BuildModeVisuals cableModeVisuals;
+	[SerializeField] private BuildModeVisuals moveModeVisuals;
+	[SerializeField] private BuildModeVisuals demolishModeVisuals;
 
 	// Getters
 	public VisualTreeAsset DefaultInspectorUI
@@ -100,6 +105,10 @@ public class PtUUISettings : ScriptableObject
 	public SpecialEnergyUIData GeothermalUIData { get => geothermalUIData; }
 
 	public Color[] GridGroupColors { get => gridGroupColors; }
+
+	public BuildModeVisuals CableModeVisuals { get => cableModeVisuals; }
+	public BuildModeVisuals MoveModeVisuals { get => moveModeVisuals; }
+	public BuildModeVisuals DemolishModeVisuals { get => demolishModeVisuals; }
 
 	public SpecialEnergyUIData GetSpecialResourceUIData(ResourceType resourceType)
 	{

@@ -1,4 +1,5 @@
 using UnityEngine;
+using AstralAvarice.VisualData;
 
 [CreateAssetMenu(fileName = "BuildingVisuals", menuName = "Visual Info/Building")]
 public class BuildingVisuals : ScriptableObject
@@ -15,4 +16,6 @@ public class BuildingVisuals : ScriptableObject
 	public Vector2 ghostOffset;
 	// Scale of the ghost.
 	public float ghostScale = 0.1681f;
+	// Which categories this building belongs to.
+	public BuildCategory[] categories;
 }

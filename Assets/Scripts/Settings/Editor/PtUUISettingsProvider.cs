@@ -42,6 +42,9 @@ public class PtUUISettingsProvider
 				EditorGUILayout.PropertyField(settings.FindProperty("windUIData"), new GUIContent("Wind UI"));
 				EditorGUILayout.PropertyField(settings.FindProperty("geothermalUIData"), new GUIContent("Geothermal UI"));
 				EditorGUILayout.PropertyField(settings.FindProperty("gridGroupColors"), new GUIContent("Grid Group Colors"));
+				EditorGUILayout.PropertyField(settings.FindProperty("cableModeVisuals"), new GUIContent("Cable Mode"));
+				EditorGUILayout.PropertyField(settings.FindProperty("moveModeVisuals"), new GUIContent("Move Mode"));
+				EditorGUILayout.PropertyField(settings.FindProperty("demolishModeVisuals"), new GUIContent("Demolish Mode"));
 				
 				settings.ApplyModifiedPropertiesWithoutUndo();
 				settings.Dispose();

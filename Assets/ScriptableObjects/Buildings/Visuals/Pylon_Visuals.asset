@@ -18,3 +18,5 @@ MonoBehaviour:
   buildingGhost: {fileID: 21300000, guid: 5c5b512d722819845980db9fd016a3d6, type: 3}
   ghostOffset: {x: 0, y: 0.765}
   ghostScale: 0.1681
+  categories:
+  - {fileID: 11400000, guid: bb15e2a42f036ff498d1c99653c7c9ce, type: 2}

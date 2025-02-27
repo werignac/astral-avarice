@@ -9,9 +9,12 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 	protected class BuildSubMenuButtonBinding : BuildingButtonBinding<int>
 	{
 
+		private VisualElement rootElement;
+
 		public BuildSubMenuButtonBinding(VisualElement buttonElement, int identifier)
 			: base(buttonElement, identifier)
 		{
+			rootElement = buttonElement;
 		}
 
 		protected override string GetTitleName() => "BuildingName";
@@ -26,6 +29,16 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 		public void HideSelectUI()
 		{
 			button.style.backgroundImage = new StyleBackground(PtUUISettings.GetOrCreateSettings().BuildUIDeselectedButtonSprite);
+		}
+
+		public void Show()
+		{
+			rootElement.style.display = DisplayStyle.Flex;
+		}
+
+		public void Hide()
+		{
+			rootElement.style.display = DisplayStyle.None;
 		}
 	}
 
@@ -49,6 +62,7 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 	[SerializeField] private GameController gameController;
 	private GameControllerCurrencyWrapper wrappedGameController;
 
+	private VisualElement rootElement;
 	private VisualElement buildButtonContainer;
 
 	private BuildingSettingEntry[] displayingBuildingsList;
@@ -60,48 +74,74 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 	{
 		uiDocument = GetComponent<UIDocument>();
 		wrappedGameController = new GameControllerCurrencyWrapper(gameController);
-
-		gameController.OnLevelLoad?.AddListener(GameController_OnLevelLoad);
 	}
 
-	private void GameController_OnLevelLoad()
+	private void Start()
 	{
-		InitializeButtonInstances();
-	}
-
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	private void InitializeButtonInstances()
-    {
-		displayingBuildingsList = BuildManagerComponent.Instance.PlaceableBuildings;
-
-		buildButtonContainer = uiDocument.rootVisualElement.Q("ButtonsContainer");
-
-		// Add a button for each placeable building.
-		for (int i = 0; i < displayingBuildingsList.Length; i++)
-		{
-			BuildingSettingEntry buildingSettingEntry = displayingBuildingsList[i];
-			VisualElement buildButtonElement = CreateButton();
-			buildButtonContainer.Add(buildButtonElement);
-
-			BuildSubMenuButtonBinding binding = new BuildSubMenuButtonBinding(buildButtonElement, i);
-			binding.Display(buildingSettingEntry, wrappedGameController);
-			binding.OnClick.AddListener(BuildingButton_OnClick);
-			binding.OnHoverStart.AddListener(BuildingButton_OnHoverStart);
-			binding.OnHoverEnd.AddListener(BuildingButton_OnHoverEnd);
-
-			buildButtonBindings.Add(binding);
-		}
-
-		// TODO: Unregister listeners on disable / destroy.
-
-		// TODO: Refresh inspector layers when we change the displaying buildings.
-
+		FetchVisualElements();
 		// Listen to events to change the selected building to add.
 		BuildManagerComponent.Instance.OnStateChanged.AddListener(BuildManager_OnStateChanged);
 	}
 
+	private void FetchVisualElements()
+	{
+		rootElement = uiDocument.rootVisualElement.Q("SubMenuContainer");
+		buildButtonContainer = rootElement.Q("ButtonsContainer");
+		buildButtonContainer.Clear();
+	}
+
+	internal void Display(IEnumerable<BuildingSettingEntry> submenuBuildings)
+	{
+		displayingBuildingsList = new List<BuildingSettingEntry>(submenuBuildings).ToArray();
+
+		// TODO: Handle show select when the user switches to a menu where they have a building selected.
+		// and when leaving a menu where there was a building selected.
+
+		// Re-use buttons that already exist for the first buildings to display.
+		for (int i = 0; i < displayingBuildingsList.Length && i < buildButtonBindings.Count; i++)
+		{
+			BuildSubMenuButtonBinding binding = buildButtonBindings[i];
+			BuildingSettingEntry building = displayingBuildingsList[i];
+			binding.Display(building, wrappedGameController);
+			binding.Show();
+		}
+
+		// Hide buttons if there are more than what is needed.
+		for (int i = displayingBuildingsList.Length; i < buildButtonBindings.Count; i++)
+		{
+			BuildSubMenuButtonBinding binding = buildButtonBindings[i];
+			binding.Hide();
+		}
+
+		// Add buttons if we are missing them.
+		for (int i = buildButtonBindings.Count; i < displayingBuildingsList.Length; i++)
+		{
+			BuildingSettingEntry buildingSettingEntry = displayingBuildingsList[i];
+			AddBuildingButton(buildingSettingEntry, i);
+		}
+
+		// TODO: Refresh inspector layers when we change the displaying buildings.
+
+	}
+
+	private void AddBuildingButton(BuildingSettingEntry toAdd, int id)
+	{
+		VisualElement buildButtonElement = CreateButton();
+		buildButtonContainer.Add(buildButtonElement);
+
+		BuildSubMenuButtonBinding binding = new BuildSubMenuButtonBinding(buildButtonElement, id);
+		binding.Display(toAdd, wrappedGameController);
+		binding.OnClick.AddListener(BuildingButton_OnClick);
+		binding.OnHoverStart.AddListener(BuildingButton_OnHoverStart);
+		binding.OnHoverEnd.AddListener(BuildingButton_OnHoverEnd);
+
+		buildButtonBindings.Add(binding);
+	}
+
 	private BuildSubMenuButtonBinding ButtonIdToBinding(int buttonId)
 	{
+		if (buttonId < 0)
+			return null;
 		return buildButtonBindings[buttonId];
 	}
 
@@ -191,5 +231,21 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 		{
 			binding.UpdateUI();
 		}
+	}
+
+	/// <summary>
+	/// Called when the player clicks on a building category.
+	/// </summary>
+	public void Show()
+	{
+		rootElement.style.display = DisplayStyle.Flex;
+	}
+
+	/// <summary>
+	/// Called when the player moves off of a building category.
+	/// </summary>
+	public void Hide()
+	{
+		rootElement.style.display = DisplayStyle.None;
 	}
 }
