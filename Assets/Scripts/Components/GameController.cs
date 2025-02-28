@@ -209,7 +209,7 @@ public class GameController : MonoBehaviour
                     gridPowerLabel.style.display = DisplayStyle.Flex;
 					gridPowerLabel.text = gameManager.GetGroupPowerProduced(hoveredBuilding.BackendBuilding) + "/" + gameManager.GetGroupPowerConsumed(hoveredBuilding.BackendBuilding);
 					Vector2 mousePos = GetMousePosition();
-                    gridPowerLabel.style.left = mousePos.x + 15;
+                    gridPowerLabel.style.left = mousePos.x + (20 * Screen.height / 1080);
 					gridPowerLabel.style.top = 1080 - mousePos.y;
                 }
 			}
@@ -383,6 +383,10 @@ public class GameController : MonoBehaviour
 			{
 				PlayerPrefs.SetInt(gameManager.MissionName, rank);
 			}
+			if(PlayerPrefs.GetFloat(gameManager.MissionName + "Time", -1) > victoryTime)
+            {
+				PlayerPrefs.SetFloat(gameManager.MissionName + "Time", victoryTime);
+            }
 			if (victoryDocument != null)
 			{
 				victoryDocument.rootVisualElement.style.display = DisplayStyle.Flex;
@@ -666,19 +670,7 @@ public class GameController : MonoBehaviour
 
 	public int GetRank(float time)
     {
-        int rank = 5;
-        for (int i = 0; i < Data.selectedMission.goalTimes.Length; ++i)
-        {
-            if (time > Data.selectedMission.goalTimes[i])
-            {
-                --rank;
-            }
-            else
-            {
-                break;
-            }
-        }
-		return (rank);
+		return (Data.selectedMission.GetRank(time));
     }
 	public int GetRank()
 	{

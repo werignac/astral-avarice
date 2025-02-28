@@ -10,4 +10,25 @@ public class MissionData : ScriptableObject
     public int startingScience;
     public BuildingData[] startingBuildings;
     public string tutorialScene;
+
+    public int GetRank(float time)
+    {
+        if(time < 0)
+        {
+            return (0);
+        }
+        int rank = 5;
+        for (int i = 0; i < goalTimes.Length; ++i)
+        {
+            if (time > goalTimes[i])
+            {
+                --rank;
+            }
+            else
+            {
+                break;
+            }
+        }
+        return (rank);
+    }
 }
