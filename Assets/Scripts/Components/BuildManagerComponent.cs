@@ -1105,6 +1105,16 @@ public class BuildManagerComponent : MonoBehaviour
 			{
 				warnings.AddCableWarning(new BuildWarning("Connected building does not have enough slots for cable.", true));
 			}
+			bool newBuildingHasSlots = true;
+			if (buildingChainedBuildState.toBuild.BuildingDataAsset.maxPowerLines <= 0)
+			{
+				newBuildingHasSlots = false;
+
+			}
+			if(!newBuildingHasSlots)
+            {
+				warnings.AddCableWarning(new BuildWarning("New building has no slots for cables.", true));
+            }
 
 			// Cable is only colliding with two buildings
 			List<Collider2D> cableOverlaps = new List<Collider2D>(cableCursor.QueryOverlappingColliders());
@@ -1122,7 +1132,8 @@ public class BuildManagerComponent : MonoBehaviour
 				canAffordCable &&
 				connectedToBuilding &&
 				buildingHasSlots &&
-				noOverlapsAlongCable;
+				noOverlapsAlongCable &&
+				newBuildingHasSlots;
 
 			if(canPlaceCable)
             {
