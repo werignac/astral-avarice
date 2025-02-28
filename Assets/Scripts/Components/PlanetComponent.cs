@@ -106,6 +106,10 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	{
 		// Force the point to be on the surface of the planets instead of allowing points inside
 		// the volume.
+		if(planetCollider == null)
+        {
+            planetCollider = GetComponent<CircleCollider2D>();
+        }
 		Vector2 radialDirection = (planetCollider.ClosestPoint(position) - (Vector2)transform.position).normalized;
 		Vector2 radialOffset = radialDirection * planetCollider.radius * transform.localScale.x;
 		return radialOffset + (Vector2)transform.position;
