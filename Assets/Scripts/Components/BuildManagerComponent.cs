@@ -373,6 +373,7 @@ public class BuildManagerComponent : MonoBehaviour
 	private void SetState(BuildState newState)
 	{
 		BuildState oldState = state;
+		gravityCursor.Hide();
 
 		if (oldState != null)
 		{
@@ -387,6 +388,14 @@ public class BuildManagerComponent : MonoBehaviour
 		}
 
 		state = newState;
+
+		if(oldState != null)
+        {
+			if(oldState.GetStateType() == BuildStateType.MOVE)
+            {
+				UpdateMoveCableCursors();
+            }
+        }
 
 		// Listen for if the chain becomes invalidated.
 		if (newState.GetStateType() == BuildStateType.BUILDING_CHAINED)
@@ -1171,6 +1180,7 @@ public class BuildManagerComponent : MonoBehaviour
 	private BuildResolve UpdateBuildingMoveCursor(BuildResolve resolution, ref BuildWarningContainer warnings)
 	{
 		UpdateBuildingMoveCursorLocation();
+		UpdateMoveCableCursors();
 
 		if (buildingCursor.GetIsShowing())
 		{
@@ -1191,7 +1201,6 @@ public class BuildManagerComponent : MonoBehaviour
 			}
 			else
 			{
-				UpdateMoveCableCursors();
 
 
 				// TODO: Check if we're hovering over a building (saved in the buildingBuildState). If so,
