@@ -1,8 +1,18 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="BuildMenuBuildingEntry_UI" src="project://database/Assets/UI/Building/BuildMenuBuildingEntry_UI.uxml?fileID=9197481963319205126&amp;guid=21aa30057e650164aa1585e1d48edd0e&amp;type=3#BuildMenuBuildingEntry_UI" />
     <Style src="project://database/Assets/UI/Building/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
-    <engine:VisualElement name="SubMenu" enabled="true" picking-mode="Ignore" style="flex-grow: 1; right: auto; left: auto; position: relative; width: 300px; flex-direction: column; align-self: flex-start; background-image: url(&quot;project://database/Assets/Sprites/UI/hex_ui_background_gradient_red.png?fileID=-8705320060223659630&amp;guid=f02254d2ee1f0c7469acb3a7277ca2d8&amp;type=3#hex_ui_background_gradient_red_0&quot;); background-size: 400px 400px; background-repeat: no-repeat repeat;">
-        <engine:ScrollView vertical-scroller-visibility="Hidden" style="width: 500px;">
-            <engine:VisualElement name="ButtonsContainer" style="flex-grow: 1;" />
-        </engine:ScrollView>
+    <engine:VisualElement name="SubMenuContainer" enabled="true" picking-mode="Ignore" style="flex-grow: 1; right: auto; left: auto; position: relative; width: 200px; flex-direction: column;">
+        <engine:Button text="X" name="CloseButton" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-color: rgb(195, 85, 67); color: rgb(125, 25, 25); height: 40px;" />
+        <engine:VisualElement name="ScrollTop" style="flex-grow: 0; height: 20px; flex-shrink: 0; background-color: rgb(148, 156, 148);" />
+        <engine:VisualElement name="ScrollContainer" enabled="true" picking-mode="Ignore" style="right: auto; left: auto; position: relative; width: auto; flex-direction: column; align-self: stretch; background-image: url(&quot;project://database/Assets/Sprites/UI/hex_ui_background_gradient_red.png?fileID=-8705320060223659630&amp;guid=f02254d2ee1f0c7469acb3a7277ca2d8&amp;type=3#hex_ui_background_gradient_red_0&quot;); background-size: 200px 200px; background-repeat: no-repeat repeat; flex-grow: 1;">
+            <engine:ScrollView picking-mode="Ignore" style="width: 500px;">
+                <engine:VisualElement name="ButtonsContainer" picking-mode="Ignore" style="flex-grow: 1; align-self: flex-start;">
+                    <engine:Instance template="BuildMenuBuildingEntry_UI" />
+                    <engine:Instance template="BuildMenuBuildingEntry_UI" />
+                    <engine:Instance template="BuildMenuBuildingEntry_UI" />
+                </engine:VisualElement>
+            </engine:ScrollView>
+        </engine:VisualElement>
+        <engine:VisualElement name="ScrollBottom" style="flex-grow: 0; height: 20px; flex-shrink: 0; background-color: rgb(148, 156, 148);" />
     </engine:VisualElement>
 </engine:UXML>

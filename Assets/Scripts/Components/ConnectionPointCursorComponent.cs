@@ -103,6 +103,9 @@ public class ConnectionPointCursorComponent: MonoBehaviour
 
 	public void Hide()
 	{
+		if (connectionPointRenderer == null)
+			return;
+
 		connectionPointRenderer.enabled = false;
 	}
 

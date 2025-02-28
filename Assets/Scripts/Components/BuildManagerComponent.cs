@@ -255,6 +255,8 @@ public class BuildManagerComponent : MonoBehaviour
 
 	private List<CableCursorComponent> moveCableCursors = new List<CableCursorComponent>();
 
+	public BuildState State { get => state; }
+
 	public BuildingSettingEntry[] PlaceableBuildings
 	{
 		get

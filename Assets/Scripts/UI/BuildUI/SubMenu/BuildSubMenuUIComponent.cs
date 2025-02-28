@@ -64,11 +64,15 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 
 	private VisualElement rootElement;
 	private VisualElement buildButtonContainer;
+	private Button closeButtonElement;
 
 	private BuildingSettingEntry[] displayingBuildingsList;
 	private List<BuildSubMenuButtonBinding> buildButtonBindings = new List<BuildSubMenuButtonBinding>();
 
 	private Dictionary<int, InspectorUIComponent.InspectorLayer> inspectorLayers = new Dictionary<int, InspectorUIComponent.InspectorLayer>();
+
+	[HideInInspector] public UnityEvent OnShow = new UnityEvent();
+	[HideInInspector] public UnityEvent OnHide = new UnityEvent();
 
 	private void Awake()
 	{
@@ -88,14 +92,22 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 		rootElement = uiDocument.rootVisualElement.Q("SubMenuContainer");
 		buildButtonContainer = rootElement.Q("ButtonsContainer");
 		buildButtonContainer.Clear();
+		closeButtonElement = rootElement.Q<Button>("CloseButton");
+		closeButtonElement.RegisterCallback<ClickEvent>(CloseButton_OnClick);
+
+		// Prevent elements in the unity scroller from interfering with building placement.
+		rootElement.Q("unity-content-and-vertical-scroll-container").pickingMode = PickingMode.Ignore;
+		rootElement.Q("unity-content-container").pickingMode = PickingMode.Ignore;
+	}
+
+	private void CloseButton_OnClick(ClickEvent evt)
+	{
+		Hide();
 	}
 
 	internal void Display(IEnumerable<BuildingSettingEntry> submenuBuildings)
 	{
 		displayingBuildingsList = new List<BuildingSettingEntry>(submenuBuildings).ToArray();
-
-		// TODO: Handle show select when the user switches to a menu where they have a building selected.
-		// and when leaving a menu where there was a building selected.
 
 		// Re-use buttons that already exist for the first buildings to display.
 		for (int i = 0; i < displayingBuildingsList.Length && i < buildButtonBindings.Count; i++)
@@ -119,6 +131,14 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 			BuildingSettingEntry buildingSettingEntry = displayingBuildingsList[i];
 			AddBuildingButton(buildingSettingEntry, i);
 		}
+
+		// Set all buttons to be not selected.
+		foreach (BuildSubMenuButtonBinding binding in buildButtonBindings)
+			binding.HideSelectUI();
+
+		// If we are in a building build mode, select the button that is mapped to the building being built
+		// if there is one.
+		GetBindingForBuildState(BuildManagerComponent.Instance.State)?.ShowSelectUI();
 
 		// TODO: Refresh inspector layers when we change the displaying buildings.
 
@@ -183,49 +203,45 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 
 	private VisualElement CreateButton()
 	{
-		VisualElement button = buildingButtonTemplate.Instantiate();
+		VisualElement button = buildingButtonTemplate.Instantiate(); 
 		return button;
 	}
 
 	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
 	{
-		// If the old state was a build or demolish state, unselect the corresponding button.
-		if (oldState != null && oldState.GetStateType() != BuildStateType.NONE)
-		{
-			if ((oldState.GetStateType() & BuildStateType.BUILDING) != 0)
-			{
-				BuildingBuildState buildingBuildState = oldState as BuildingBuildState;
+		// If the old state was a build state, unselect the corresponding button.
+		GetBindingForBuildState(oldState)?.HideSelectUI();
 
-				int buttonId = SettingEntryToButtonId(buildingBuildState.toBuild);
-				BuildSubMenuButtonBinding toHideButton = ButtonIdToBinding(buttonId);
-
-				if (toHideButton != null)
-					toHideButton.HideSelectUI();
-			}
-		}
-
-
-		// If the new state is a build or demolish state, select the corresponding button.
-		if (newState != null && newState.GetStateType() != BuildStateType.NONE)
-		{
-			// Select the corresponding build button.
-			if ((newState.GetStateType() & BuildStateType.BUILDING) != 0)
-			{
-				BuildingBuildState buildingBuildState = newState as BuildingBuildState;
-
-				int buttonId = SettingEntryToButtonId(buildingBuildState.toBuild);
-				BuildSubMenuButtonBinding toShowButton = ButtonIdToBinding(buttonId);
-
-				if (toShowButton != null)
-					toShowButton.ShowSelectUI();
-			}
-		}
+		// If the new state is a build state, select the corresponding building button button.
+		GetBindingForBuildState(newState)?.ShowSelectUI();
 	}
 
-	/// <summary>
-	/// Keep updating the bindings' affordability.
-	/// </summary>
-	private void Update()
+	private BuildSubMenuButtonBinding GetBindingForBuildState(BuildState state)
+	{
+		// State must not be null and must not be none.
+		if (state != null && state.GetStateType() != BuildStateType.NONE)
+		{
+			// State must be a building build state.
+			if ((state.GetStateType() & BuildStateType.BUILDING) != 0)
+			{
+				// There may be a button of this building being displayed.
+				BuildingBuildState buildingBuildState = state as BuildingBuildState;
+
+				int buttonId = SettingEntryToButtonId(buildingBuildState.toBuild);
+				return ButtonIdToBinding(buttonId);
+			}
+		}
+
+		// The state does not involve placing a building.
+		return null;
+	}
+
+
+
+		/// <summary>
+		/// Keep updating the bindings' affordability.
+		/// </summary>
+		private void Update()
 	{
 		foreach(var binding in buildButtonBindings)
 		{
@@ -239,6 +255,7 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 	public void Show()
 	{
 		rootElement.style.display = DisplayStyle.Flex;
+		OnShow?.Invoke();
 	}
 
 	/// <summary>
@@ -247,5 +264,6 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 	public void Hide()
 	{
 		rootElement.style.display = DisplayStyle.None;
+		OnHide?.Invoke();
 	}
 }

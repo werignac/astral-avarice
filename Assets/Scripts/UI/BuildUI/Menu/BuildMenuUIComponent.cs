@@ -48,6 +48,7 @@ public class BuildMenuUIComponent : MonoBehaviour
 		submenu.Hide();
 		FetchVisualElements();
 		InitializeMenuElements();
+		RegisterExternalEvents();
 	}
 
 	private void FetchVisualElements()
@@ -80,8 +81,6 @@ public class BuildMenuUIComponent : MonoBehaviour
 		buttonBinding.OnClick.AddListener(MenuElement_OnClick);
 		buttonBinding.OnHoverStart.AddListener(MenuElement_OnHoverStart);
 		buttonBinding.OnHoverEnd.AddListener(MenuElement_OnHoverEnd);
-
-
 	}
 
 	private void MenuElement_OnClick(int id)
@@ -106,7 +105,7 @@ public class BuildMenuUIComponent : MonoBehaviour
 		{
 			// The element is a building category.
 			BuildCategory clickedCategory = clickedElement as BuildCategory;
-			OnCategoryClicked(clickedCategory);
+			OnCategoryClicked(clickedCategory, id);
 		}
 	}
 
@@ -118,19 +117,28 @@ public class BuildMenuUIComponent : MonoBehaviour
 	private void OnMoveClicked()
 	{
 		BuildManagerComponent.Instance.SetMoveState(null);
+		submenu.Hide();
 	}
 
 	private void OnDemolishClicked()
 	{
 		BuildManagerComponent.Instance.SetDemolishState();
+		submenu.Hide();
 	}
 
-	private void OnCategoryClicked(BuildCategory clickedCategory)
+	private void OnCategoryClicked(BuildCategory clickedCategory, int id)
 	{
 		var submenuBuildings = GatherBuildingsOfCategory(clickedCategory);
 
 		submenu.Display(submenuBuildings);
 		submenu.Show();
+
+		// Set all the building bindings to not be selected.
+		foreach (BuildUIMenuElementBinding<int> binding in FindBindingsForBuildCategories())
+			binding.HideSelectUI();
+
+		// Set the binding that was clicked to be selected.
+		buttonBindings[id].ShowSelectUI();
 	}
 
 	private void MenuElement_OnHoverStart(int id)
@@ -141,6 +149,87 @@ public class BuildMenuUIComponent : MonoBehaviour
 	private void MenuElement_OnHoverEnd(int id)
 	{
 		// TODO: Update inspector.
+	}
+
+	/// <summary>
+	/// Registers this component to events invoked by other classes.
+	/// </summary>
+	private void RegisterExternalEvents()
+	{
+		BuildManagerComponent.Instance.OnStateChanged.AddListener(BuildManager_OnStateChanged);
+		submenu.OnHide.AddListener(Submenu_OnHide);
+	}
+
+	private void Submenu_OnHide()
+	{
+		// Set all the building bindings to not be selected.
+		foreach (BuildUIMenuElementBinding<int> binding in FindBindingsForBuildCategories())
+			binding.HideSelectUI();
+	}
+
+	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
+	{
+		foreach (BuildUIMenuElementBinding<int> binding in FindBindingsForBuildState(oldState))
+			binding.HideSelectUI();
+
+		foreach (BuildUIMenuElementBinding<int> binding in FindBindingsForBuildState(newState))
+			binding.ShowSelectUI();
+	}
+
+	/// <summary>
+	/// Find all the bingins that belong to build categories.
+	/// </summary>
+	private IEnumerable<BuildUIMenuElementBinding<int>> FindBindingsForBuildCategories()
+	{
+		for (int i = 0; i < displayingMenuElements.Length; i++)
+		{
+			IBuildUIMenuElement element = displayingMenuElements[i];
+
+			if (element is BuildCategory)
+				yield return buttonBindings[i];
+		}
+	}
+
+	/// <summary>
+	/// Find all the bindings that belong to a particular build state.
+	/// </summary>
+	/// <param name="state">The state that the buildings belong to.</param>
+	private IEnumerable<BuildUIMenuElementBinding<int>> FindBindingsForBuildState(BuildState state)
+	{
+		if (state == null)
+			yield break;
+
+		PtUUISettings uiSettings = PtUUISettings.GetOrCreateSettings();
+
+		// Find the state type of the passed state.
+		bool isCableState = (state.GetStateType() & BuildStateType.CABLE) > 0;
+		bool isDemolishState = state.GetStateType() == BuildStateType.DEMOLISH;
+		bool isMoveState = state.GetStateType() == BuildStateType.MOVE;
+
+		// Go through all the display elements and bindings.
+		for (int i = 0; i < displayingMenuElements.Length; i++)
+		{
+			IBuildUIMenuElement element = displayingMenuElements[i];
+
+			// If the element is for building categories, it is not for a build state. Ignore it.
+			if (!(element is BuildModeVisuals))
+				continue;
+
+			BuildModeVisuals visuals = element as BuildModeVisuals;
+			BuildUIMenuElementBinding<int> binding = buttonBindings[i];
+			
+			// Get the properties of the binding's build mode.
+			bool isCableBinding = uiSettings.CableModeVisuals == visuals;
+			bool isMoveBinding = uiSettings.MoveModeVisuals == visuals;
+			bool isDemolishBinding = uiSettings.DemolishModeVisuals == visuals;
+
+			// Compare properties.
+			bool matchingState = (isCableState && isCableBinding) || (isMoveState && isMoveBinding) || (isDemolishState && isDemolishBinding);
+
+			// Return if the properties match.
+			if (matchingState)
+				yield return binding;
+		}
 	}
 
 	/// <summary>
