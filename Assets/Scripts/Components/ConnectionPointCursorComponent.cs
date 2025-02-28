@@ -25,7 +25,6 @@ public class ConnectionPointCursorComponent: MonoBehaviour
 	private void Awake()
 	{
 		connectionPointRenderer = GetComponent<Renderer>();
-		animationCoroutine = StartCoroutine(Animation());
 	}
 
 	/// <summary>
@@ -44,8 +43,10 @@ public class ConnectionPointCursorComponent: MonoBehaviour
 
 	private void UpdateAnimationStep()
 	{
+		Debug.Log("Coroutine update");
+
 		// Value between 0 and 1 of progress in animation.
-		float animationTimePosition = (Time.time % period) / period;
+		float animationTimePosition = (Time.unscaledTime % period) / period;
 
 		Vector2 size = Vector2.one * sizeCurve.Evaluate(animationTimePosition) * sizeMultiplier;
 		
@@ -88,6 +89,8 @@ public class ConnectionPointCursorComponent: MonoBehaviour
 
 	private void OnEnable()
 	{
+		Debug.Log("Starting Coroutine");
+
 		if (animationCoroutine != null)
 			StopCoroutine(animationCoroutine);
 		animationCoroutine = StartCoroutine(Animation());
