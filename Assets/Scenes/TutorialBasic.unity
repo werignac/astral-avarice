@@ -895,6 +895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 876278618}
   - component: {fileID: 876278617}
+  - component: {fileID: 876278620}
   - component: {fileID: 876278619}
   m_Layer: 5
   m_Name: BuildUI
@@ -917,7 +918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 0c64b5e781f3a4f4faf09a06b87482e2, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: e35c812f123f62b409718271763e8233, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: 752d1f9dde5562845beff3c6ae641ec6, type: 3}
   m_SortingOrder: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -949,14 +950,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28dcd7b1f120b34aba3e0016d2d6eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingButtonTemplate: {fileID: 9197481963319205126, guid: 065fbb90ca9c104448bebea7fd717b55, type: 3}
-  collapseButtonMenuOpenedSprite: {fileID: 2139537539342574253, guid: f4bb9148f1f877f40988d145861689b3, type: 3}
-  collapseButtonMenuClosedSprite: {fileID: 8859772711337689660, guid: 6dc2c3fef3231b140bb6cf8bfd307896, type: 3}
-  demolishIcon: {fileID: 21300000, guid: 99c0da86e6f917f4c8535c5993ffe0a5, type: 3}
-  cableIcon: {fileID: 21300000, guid: 821a296538d9f5e4baebd324d9580017, type: 3}
-  moveIcon: {fileID: 0}
-  inspectorUI: {fileID: 1836921261}
+  gameController: {fileID: 164819401}
+  inspector: {fileID: 1836921261}
+  menuButtonTemplate: {fileID: 9197481963319205126, guid: d12e28759a2d1da43b25d19bd5e8e783, type: 3}
   tutorialController: {fileID: 164819401}
+--- !u!114 &876278620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876278616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20840d3a45b5fd043b57ac3fd73a8b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingButtonTemplate: {fileID: 9197481963319205126, guid: 21aa30057e650164aa1585e1d48edd0e, type: 3}
+  inspector: {fileID: 1836921261}
+  gameController: {fileID: 164819401}
+  OnShow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHide:
+    m_PersistentCalls:
+      m_Calls: []
+  tutorialGameController: {fileID: 164819401}
 --- !u!1001 &883198256
 PrefabInstance:
   m_ObjectHideFlags: 0

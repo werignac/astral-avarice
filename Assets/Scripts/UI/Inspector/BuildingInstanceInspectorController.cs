@@ -206,3 +206,4 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 		UnregisterListeners();
 	}
 }
+

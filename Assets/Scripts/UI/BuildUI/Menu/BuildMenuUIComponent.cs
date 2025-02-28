@@ -16,6 +16,7 @@ public class BuildMenuUIComponent : MonoBehaviour
 
 	private BuildSubMenuUIComponent submenu;
 	[SerializeField] private GameController gameController;
+	[SerializeField] private InspectorUIComponent inspector;
 
 	[SerializeField] private VisualTreeAsset menuButtonTemplate;
 
@@ -24,7 +25,9 @@ public class BuildMenuUIComponent : MonoBehaviour
 	private List<BuildUIMenuElementBinding<int>> buttonBindings = new List<BuildUIMenuElementBinding<int>>();
 
 	private IBuildUIMenuElement[] displayingMenuElements;
-	
+
+	private Dictionary<int, InspectorUIComponent.InspectorLayer> activeLayers = new Dictionary<int, InspectorUIComponent.InspectorLayer>();
+
 	private void Awake()
 	{
 		uiDocument = GetComponent<UIDocument>();
@@ -45,6 +48,7 @@ public class BuildMenuUIComponent : MonoBehaviour
 	/// </summary>
 	private void Initialize()
 	{
+		submenu.Initialize();
 		submenu.Hide();
 		FetchVisualElements();
 		InitializeMenuElements();
@@ -109,18 +113,18 @@ public class BuildMenuUIComponent : MonoBehaviour
 		}
 	}
 
-	private void OnCableClicked()
+	protected virtual void OnCableClicked()
 	{
 		BuildManagerComponent.Instance.SetCableState();
 	}
 
-	private void OnMoveClicked()
+	protected virtual void OnMoveClicked()
 	{
 		BuildManagerComponent.Instance.SetMoveState(null);
 		submenu.Hide();
 	}
 
-	private void OnDemolishClicked()
+	protected virtual void OnDemolishClicked()
 	{
 		BuildManagerComponent.Instance.SetDemolishState();
 		submenu.Hide();
@@ -143,12 +147,26 @@ public class BuildMenuUIComponent : MonoBehaviour
 
 	private void MenuElement_OnHoverStart(int id)
 	{
-		// TODO: Update inspector.
+		IBuildUIMenuElement element = displayingMenuElements[id];
+		if (!(element is IInspectable))
+			return;
+
+		var layer = inspector.AddLayer(element as IInspectable, InspectorUIComponent.InspectorLayerType.UI_HOVER);
+
+		activeLayers[id] = layer;
 	}
 
 	private void MenuElement_OnHoverEnd(int id)
 	{
-		// TODO: Update inspector.
+		IBuildUIMenuElement element = displayingMenuElements[id];
+		if (!(element is IInspectable))
+			return;
+
+		if (!activeLayers.ContainsKey(id))
+			return;
+
+		inspector.RemoveLayer(activeLayers[id]);
+		activeLayers.Remove(id);
 	}
 
 	/// <summary>

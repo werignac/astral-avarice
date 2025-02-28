@@ -1199,6 +1199,12 @@ MonoBehaviour:
   buildingButtonTemplate: {fileID: 9197481963319205126, guid: 21aa30057e650164aa1585e1d48edd0e, type: 3}
   inspector: {fileID: 1836921261}
   gameController: {fileID: 164819399}
+  OnShow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHide:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &876278620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,6 +1218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 164819399}
+  inspector: {fileID: 1836921261}
   menuButtonTemplate: {fileID: 9197481963319205126, guid: d12e28759a2d1da43b25d19bd5e8e783, type: 3}
 --- !u!1 &1084549500
 GameObject:

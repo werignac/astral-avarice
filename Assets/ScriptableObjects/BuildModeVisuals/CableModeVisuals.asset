@@ -19,3 +19,4 @@ MonoBehaviour:
 
     Cable connect buildings
     together, permitting the transfer of power.'
+  modeInspectorAsset: {fileID: 9197481963319205126, guid: ef2a82dcde0f6ab4ebabbdbfd20e3fd9, type: 3}

@@ -13,19 +13,19 @@ public class SpecialResourcesContainerUIBinding
 		this.specialResourcesContainer = specialResourcesContainer;
 
 		specialResourcesBindings = new Dictionary<ResourceType, SpecialResourceUIBinding>
-		{
-			{ResourceType.Solar, new SpecialResourceUIBinding(specialResourcesContainer.Q("SolarResource")) },
-			{ResourceType.Coal, new SpecialResourceUIBinding(specialResourcesContainer.Q("CoalResource")) },
-			{ResourceType.Wind, new SpecialResourceUIBinding(specialResourcesContainer.Q("WindResource")) },
-			{ResourceType.Thermal, new SpecialResourceUIBinding(specialResourcesContainer.Q("GeothermalResource")) },
-		};
+	{
+		{ResourceType.Solar, new SpecialResourceUIBinding(specialResourcesContainer.Q("SolarResource")) },
+		{ResourceType.Coal, new SpecialResourceUIBinding(specialResourcesContainer.Q("CoalResource")) },
+		{ResourceType.Wind, new SpecialResourceUIBinding(specialResourcesContainer.Q("WindResource")) },
+		{ResourceType.Thermal, new SpecialResourceUIBinding(specialResourcesContainer.Q("GeothermalResource")) },
+	};
 
 		InitializeIcons();
 	}
 
 	private void InitializeIcons()
 	{
-		foreach(ResourceType resourceType in specialResourcesBindings.Keys)
+		foreach (ResourceType resourceType in specialResourcesBindings.Keys)
 		{
 			var binding = specialResourcesBindings[resourceType];
 			binding.SetResourceIcon(resourceType);
@@ -50,9 +50,9 @@ public class SpecialResourcesContainerUIBinding
 	public IEnumerable<System.Tuple<ResourceType, IRestrictedSpecialResourceUIBinding>> ShowResources(ResourceType[] resourcesToShow)
 	{
 		// Show all the types that should be shown.
-		foreach(ResourceType typeToShow in resourcesToShow)
+		foreach (ResourceType typeToShow in resourcesToShow)
 		{
-			if (! specialResourcesBindings.ContainsKey(typeToShow))
+			if (!specialResourcesBindings.ContainsKey(typeToShow))
 			{
 				Debug.LogWarning($"Tried to show special resource {typeToShow} in container, but this type does not exist in the container. Skipping.");
 				continue;
@@ -65,7 +65,7 @@ public class SpecialResourcesContainerUIBinding
 		}
 
 		// Hide all the types that should be hidden.
-		foreach(ResourceType potentialTypeToHide in specialResourcesBindings.Keys)
+		foreach (ResourceType potentialTypeToHide in specialResourcesBindings.Keys)
 		{
 			if (System.Array.IndexOf(resourcesToShow, potentialTypeToHide) >= 0)
 				continue;

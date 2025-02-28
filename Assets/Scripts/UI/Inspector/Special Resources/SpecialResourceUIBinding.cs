@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 // Whether to show blue for a standard resource UI or red for lacking resources.
-public enum ResourceColorType { STANDARD, LACKING};
+public enum ResourceColorType { STANDARD, LACKING };
 // Whether to show the resource UI with a divider "/" and total or without a divider "/" and total.
-public enum ResourceDividerType { WITH_DIVIDER, WITHOUT_DIVIDER};
+public enum ResourceDividerType { WITH_DIVIDER, WITHOUT_DIVIDER };
 
 /// <summary>
 /// Interface that defines the quantity and total setters for a SpecialResourceUIBinding.
@@ -126,7 +126,7 @@ public class SpecialResourceUIBinding : IRestrictedSpecialResourceUIBinding
 	public void SetDividerType(ResourceDividerType dividerType)
 	{
 		DisplayStyle displayStyle = DisplayStyle.Flex;
-		
+
 		switch (dividerType)
 		{
 			case ResourceDividerType.WITH_DIVIDER:

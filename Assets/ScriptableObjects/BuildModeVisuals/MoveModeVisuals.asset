@@ -17,3 +17,4 @@ MonoBehaviour:
   modePriority: 12
   modeDescription: Enables player-placed buildings to be moved to another side of
     the same planet.
+  modeInspectorAsset: {fileID: 9197481963319205126, guid: a890de7d3b9cadc4fb4ddcb2f5e21369, type: 3}

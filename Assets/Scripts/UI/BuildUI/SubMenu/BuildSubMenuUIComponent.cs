@@ -74,13 +74,15 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 	[HideInInspector] public UnityEvent OnShow = new UnityEvent();
 	[HideInInspector] public UnityEvent OnHide = new UnityEvent();
 
+	protected BuildingSettingEntry[] DisplayingBuildingsList { get => displayingBuildingsList; }
+
 	private void Awake()
 	{
 		uiDocument = GetComponent<UIDocument>();
 		wrappedGameController = new GameControllerCurrencyWrapper(gameController);
 	}
 
-	private void Start()
+	public void Initialize()
 	{
 		FetchVisualElements();
 		// Listen to events to change the selected building to add.
@@ -100,7 +102,7 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 		rootElement.Q("unity-content-container").pickingMode = PickingMode.Ignore;
 	}
 
-	private void CloseButton_OnClick(ClickEvent evt)
+	protected virtual void CloseButton_OnClick(ClickEvent evt)
 	{
 		Hide();
 	}
