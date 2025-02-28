@@ -16,7 +16,7 @@ public class DefaultInspector : IInspectable
 
 			Label missionDescription = inspectorUI.Q<Label>("MissionDescription");
 			missionDescription.text = Regex.Replace(missionDescription.text, @"\$\d*", "$" + Data.selectedMission.cashGoal.ToString("0.00"));
-			missionDescription.text = Regex.Replace(missionDescription.text, @"SECONDS", (Data.selectedMission.timeLimit / 60) + ":" +(Data.selectedMission.timeLimit % 60).ToString("00"));
+			missionDescription.text = Regex.Replace(missionDescription.text, @"SECONDS", (Data.selectedMission.goalTimes[0] / 60) + ":" + (Data.selectedMission.goalTimes[0] % 60).ToString("00"));
 		}
 
 		public void DisconnectInspectorUI() { }

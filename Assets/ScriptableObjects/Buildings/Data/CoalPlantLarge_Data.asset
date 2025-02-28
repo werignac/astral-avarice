@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Large Coal Plant
   cost: 800
   scienceCost: 35
-  mass: 100
+  mass: 80
   maxPowerLines: 1
   buildingType: 1
   powerProduced: 70

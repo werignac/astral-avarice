@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Geothermal Plant
   cost: 1500
   scienceCost: 80
-  mass: 120
+  mass: 100
   maxPowerLines: 1
   buildingType: 1
   powerProduced: 100

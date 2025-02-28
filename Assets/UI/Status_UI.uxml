@@ -31,6 +31,12 @@
                     <engine:Label text="01:00" name="Time" style="flex-grow: 1; -unity-text-align: middle-center; color: rgb(225, 225, 225); font-size: 22px; margin-bottom: 8px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Digital%20Dream/DIGITALDREAMFATNARROW.ttf?fileID=12800000&amp;guid=e445ca243fad7b04aa59469aa2f854bb&amp;type=3#DIGITALDREAMFATNARROW&quot;);" />
                 </engine:VisualElement>
             </engine:VisualElement>
+            <engine:VisualElement name="RankContainer" style="flex-grow: 0;">
+                <engine:VisualElement name="RankImageContainer" style="flex-grow: 0; width: 140px; height: 128px; background-image: url(&quot;project://database/Assets/Sprites/UI/time_container_ui.png?fileID=-7593335785318976817&amp;guid=a4e9cb88c7534ac4b9bf776a8f868abf&amp;type=3#time_container_ui_0&quot;); -unity-slice-scale: 0.2px; align-items: center;">
+                    <engine:VisualElement name="RankImage" style="flex-grow: 1; margin-top: 18px; width: 80px; align-items: auto;" />
+                    <engine:Label text="01:00" name="RankTime" style="flex-grow: 0; -unity-text-align: middle-center; color: rgb(225, 225, 225); font-size: 16px; margin-bottom: 14px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Digital%20Dream/DIGITALDREAMFATNARROW.ttf?fileID=12800000&amp;guid=e445ca243fad7b04aa59469aa2f854bb&amp;type=3#DIGITALDREAMFATNARROW&quot;); margin-top: 0; height: 30px;" />
+                </engine:VisualElement>
+            </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement style="flex-grow: 0; width: 600px; align-self: center;">
             <engine:ProgressBar value="20" title="Income: 0/1000" name="IncomeProgress" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Digital%20Dream/DIGITALDREAM.ttf?fileID=12800000&amp;guid=34a4703863bccdc4bac3bb14621fef20&amp;type=3#DIGITALDREAM&quot;); font-size: 20px;" />

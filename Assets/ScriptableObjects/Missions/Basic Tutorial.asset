@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCash: 1000
   cashGoal: 100
-  timeLimit: 600
+  goalTimes: 78000000
   missionName: Basic Tutorial
   startingScience: 0
   startingBuildings:

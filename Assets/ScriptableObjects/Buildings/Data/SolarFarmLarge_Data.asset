@@ -21,7 +21,7 @@ MonoBehaviour:
   powerProduced: 50
   powerRequired: 0
   income: 0
-  upkeep: 50
+  upkeep: 35
   scienceIncome: 0
   requiredResource: 2
   resourceAmountRequired: 3

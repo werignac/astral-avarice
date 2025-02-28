@@ -4,12 +4,13 @@ using System.Collections.Generic;
 public class GameManager
 {
     private readonly int paymentInterval = 30;
+    private readonly int timeTillGameEnd = 10;
 
     private List<Building> buildings = new List<Building>();
     private int income;
     private int cash;
     private float timePassed;
-    private int endTime;
+    private int[] goalTimes;
     private GameController controller;
     private MissionData currentMission;
     private int scienceHeld;
@@ -17,6 +18,8 @@ public class GameManager
     private bool hadEnoughIncomePreviously;
     private int nextGroupId;
     private SortedSet<int> freeGroupIds = new SortedSet<int>();
+    private float winningStartTime;
+    private float losingStartTime;
 
     public int Income
     {
@@ -41,6 +44,18 @@ public class GameManager
     public int TargetIncome
     {
         get { return (currentMission.cashGoal); }
+    }
+    public bool Winning
+    {
+        get { return (income > TargetIncome); }
+    }
+    public bool Losing
+    {
+        get { return (cash <= 0 && income <= 0); }
+    }
+    public float WinningStartTime
+    {
+        get { return (winningStartTime); }
     }
 
     public GameManager(GameController controller)
@@ -75,7 +90,7 @@ public class GameManager
         scienceHeld = mission.startingScience;
         buildings = new List<Building>();
         timePassed = 0;
-        endTime = mission.timeLimit;
+        goalTimes = mission.goalTimes;
         ReassignAllGroups();
         CalculateIncome();
     }
@@ -88,7 +103,7 @@ public class GameManager
         scienceHeld = mission.startingScience;
         buildings = new List<Building>();
         timePassed = 0;
-        endTime = mission.timeLimit;
+        goalTimes = mission.goalTimes;
 
         for (int i = 0; i < level.buildings.Length; ++i)
         {
@@ -129,9 +144,36 @@ public class GameManager
                 }
             }
         }
-        if(endTime > 0 && timePassed > endTime)
+        if(Winning)
         {
-            EndGame();
+            losingStartTime = -1;
+            if(winningStartTime <= 0)
+            {
+                winningStartTime = timePassed;
+            }
+            if (timePassed > winningStartTime + timeTillGameEnd)
+            {
+                EndGame();
+            }
+        }
+        else
+        {
+            winningStartTime = -1;
+            if (Losing)
+            {
+                if(losingStartTime <= 0)
+                {
+                    losingStartTime = timePassed;
+                }
+                if(timePassed > losingStartTime + timeTillGameEnd)
+                {
+                    EndGame();
+                }
+            }
+            else
+            {
+                losingStartTime = -1;
+            }
         }
     }
 
@@ -144,7 +186,7 @@ public class GameManager
         }
         if(controller != null)
         {
-            controller.EndGame(income >= currentMission.cashGoal);
+            controller.EndGame(Winning, winningStartTime);
         }
     }
 

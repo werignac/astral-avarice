@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using System.Collections.Generic;
 using werignac.Utils;
 using System;
+using UnityEngine.InputSystem;
 
 public class GameController : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class GameController : MonoBehaviour
 	[SerializeField] private DataSet gameDataSet;
 	[SerializeField] private UIDocument victoryDocument;
 	[SerializeField] private UIDocument defeatDocument;
+	[SerializeField] private UIDocument gridPowerDocument;
+	[SerializeField] private GridGroupViewComponent gridGroupView;
+	[SerializeField] private Camera mainCamera;
 
 
     private Label cashLabel;
@@ -26,6 +30,7 @@ public class GameController : MonoBehaviour
 	private Label scienceIncomeLabel;
 	private Label timeLabel;
 	private Label timeScaleLabel;
+	private Label gridPowerLabel;
 	/// <summary>
 	/// Warning: Changing this variable directly instead of GameSpeed will not update Time.timeScale.
 	/// </summary>
@@ -62,9 +67,17 @@ public class GameController : MonoBehaviour
         get { return (gameManager.Income); }
     }
 	public int TargetIncome
-    {
-        get { return (gameManager.TargetIncome); }
-    }		
+	{
+		get { return (gameManager.TargetIncome); }
+	}
+	public bool Winning
+	{
+		get { return (gameManager.Winning); }
+	}
+	public bool Losing
+	{
+		get { return (gameManager.Losing); }
+	}
 
 	// Set the gameSpeed property along with Time.timeScale.
 	public int GameSpeed {
@@ -96,7 +109,7 @@ public class GameController : MonoBehaviour
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	protected virtual void Start()
     {
-		GameSpeed = 1;
+		GameSpeed = 0;
         gameManager = new GameManager(this);
         cashLabel = statsDocument.rootVisualElement.Q("Cash") as Label;
         incomeLabel = statsDocument.rootVisualElement.Q("Income") as Label;
@@ -104,6 +117,7 @@ public class GameController : MonoBehaviour
 		scienceIncomeLabel = statsDocument.rootVisualElement.Q("ScienceIncome") as Label;
 		timeLabel = statsDocument.rootVisualElement.Q("Time") as Label;
 		timeScaleLabel = statsDocument.rootVisualElement.Q<Label>("TimeScale");
+		gridPowerLabel = gridPowerDocument.rootVisualElement.Q<Label>("GridPowerLabel");
 
 		if(defeatDocument != null)
         {
@@ -182,6 +196,27 @@ public class GameController : MonoBehaviour
 			timeLabel.text = timeText;
 
 			timeScaleLabel.text = "X" + GameSpeed;
+
+			if(gridGroupView.IsShowing)
+			{
+				BuildingComponent hoveredBuilding = BuildManagerComponent.Instance.GetHoveringBuilding();
+				if(hoveredBuilding == null)
+                {
+                    gridPowerLabel.style.display = DisplayStyle.None;
+                }
+				else
+                {
+                    gridPowerLabel.style.display = DisplayStyle.Flex;
+					gridPowerLabel.text = gameManager.GetGroupPowerProduced(hoveredBuilding.BackendBuilding) + "/" + gameManager.GetGroupPowerConsumed(hoveredBuilding.BackendBuilding);
+					Vector2 mousePos = GetMousePosition();
+                    gridPowerLabel.style.left = mousePos.x + 15;
+					gridPowerLabel.style.top = 1080 - mousePos.y;
+                }
+			}
+			else
+            {
+                gridPowerLabel.style.display = DisplayStyle.None;
+            }
 		}
 	}
 
@@ -337,13 +372,17 @@ public class GameController : MonoBehaviour
 		scienceIncomeLabel.text += newIncome + ")";
 	}
 
-    public void EndGame(bool victory)
+    public void EndGame(bool victory, float victoryTime)
     {
         Debug.Log("Game has ended");
 		gameEnded = true;
 		if(victory)
         {
-			PlayerPrefs.SetInt(gameManager.MissionName, 1);
+			int rank = GetRank(victoryTime);
+			if (PlayerPrefs.GetInt(gameManager.MissionName, -1) < rank)
+			{
+				PlayerPrefs.SetInt(gameManager.MissionName, rank);
+			}
 			if (victoryDocument != null)
 			{
 				victoryDocument.rootVisualElement.style.display = DisplayStyle.Flex;
@@ -351,7 +390,11 @@ public class GameController : MonoBehaviour
         }
 		else
         {
-			if (defeatDocument != null)
+            if (PlayerPrefs.GetInt(gameManager.MissionName, -1) < 0)
+            {
+                PlayerPrefs.SetInt(gameManager.MissionName, 0);
+            }
+            if (defeatDocument != null)
 			{
 				defeatDocument.rootVisualElement.style.display = DisplayStyle.Flex;
 			}
@@ -365,6 +408,10 @@ public class GameController : MonoBehaviour
 
 	public virtual void BuildManager_OnBuildResovle(BuildResolve resolution)
 	{
+		if(GameSpeed == 0 && resolution.TriedAnything())
+		{
+			GameSpeed = 1;
+		}
 		if (resolution.successfullyPlacedBuilding)
 		{
 			RegisterBuilding(resolution.builtBuilding);
@@ -609,10 +656,50 @@ public class GameController : MonoBehaviour
 		return (connectedCables);
 	}
 
+	
 	// When destroyed, reset time to its normal state.
 	private void OnDestroy()
 	{
 		Time.timeScale = 1;
 		Time.fixedDeltaTime = goalFixedDeltaTime;
 	}
+
+	public int GetRank(float time)
+    {
+        int rank = 5;
+        for (int i = 0; i < Data.selectedMission.goalTimes.Length; ++i)
+        {
+            if (time > Data.selectedMission.goalTimes[i])
+            {
+                --rank;
+            }
+            else
+            {
+                break;
+            }
+        }
+		return (rank);
+    }
+	public int GetRank()
+	{
+		if(Losing)
+		{
+			return (0);
+		}
+		else if(Winning)
+		{
+			return (GetRank(gameManager.WinningStartTime));
+		}
+		else
+		{
+			return (GetRank(gameManager.TimePassed));
+		}
+	}
+
+	public Vector2 GetMousePosition()
+	{
+		Vector2 position = Mouse.current.position.ReadValue();
+		Vector2 adjustedPosition = new Vector2(position.x * 1080 / Screen.height, position.y * 1080 / Screen.height);
+		return (adjustedPosition);
+    }
 }

@@ -12,6 +12,7 @@ public class MainMenuUIComponent : MonoBehaviour
     [SerializeField] private UIDocument creditsDocument;
     [SerializeField] private VisualTreeAsset missionButtonPrefab;
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private Sprite[] missionRankSprites;
 
     private VisualElement missionsContent;
     private Slider masterVolumeSlider;
@@ -182,13 +183,16 @@ public class MainMenuUIComponent : MonoBehaviour
         VisualElement check = missionButtonElement.Q("Check");
         missionButton.text = missionName;
         missionButton.RegisterCallback<ClickEvent, MissionData>(StartMission, mission);
-        if (PlayerPrefs.GetInt(missionName, 0) == 0)
+        int missionCompletionStatus = PlayerPrefs.GetInt(missionName, -1);
+        if (missionCompletionStatus < 0)
         {
             check.style.display = DisplayStyle.None;
         }
         else
         {
             check.style.display = DisplayStyle.Flex;
+            check.style.backgroundImage = new StyleBackground(missionRankSprites[missionCompletionStatus]);
+            check.style.backgroundSize = BackgroundPropertyHelper.ConvertScaleModeToBackgroundSize(ScaleMode.ScaleToFit);
         }
         return (missionButtonElement);
     }

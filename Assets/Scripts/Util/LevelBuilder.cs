@@ -9,7 +9,7 @@ public class LevelBuilder : MonoBehaviour
     public int startingCash;
     public int startingScience;
     public int goalCash;
-    public int levelTime;
+    public int[] goalTimes;
     public BuildingComponent[] buildings;
 
     public void Update()
@@ -30,7 +30,7 @@ public class LevelBuilder : MonoBehaviour
         missionData.startingCash = startingCash;
         missionData.startingScience = startingScience;
         missionData.cashGoal = goalCash;
-        missionData.timeLimit = levelTime;
+        missionData.goalTimes = goalTimes;
 
         buildings = GameObject.FindObjectsByType<BuildingComponent>(FindObjectsSortMode.None);
         missionData.startingBuildings = new BuildingData[buildings.Length];
