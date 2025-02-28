@@ -192,6 +192,7 @@ public class GameManager
 
     public void AddBuilding(Building building)
     {
+        building.BuildingGroup = -1;
         building.SetManager(this);
         buildings.Add(building);
         income -= building.Data.upkeep;
