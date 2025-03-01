@@ -14,6 +14,7 @@ namespace AstralAvarice.VisualData
 	/// <typeparam name="T">This class houses an identifier. The identifier is passed in event calls. Use this to figure out which element bindings is invoking its event.</typeparam>
     public class BuildUIMenuElementBinding<T>
     {
+		private const string UNSELECTED_CLASS = "buildingCategory";
 		private const string SELECTED_CLASS = "selectedBuildingCategory";
 
 		private VisualElement rootElement;
@@ -92,12 +93,14 @@ namespace AstralAvarice.VisualData
 
 		public void ShowSelectUI()
 		{
+			buttonElement.RemoveFromClassList(UNSELECTED_CLASS);
 			buttonElement.AddToClassList(SELECTED_CLASS);
 		}
 
 		public void HideSelectUI()
 		{
 			buttonElement.RemoveFromClassList(SELECTED_CLASS);
+			buttonElement.AddToClassList(UNSELECTED_CLASS);
 		}
 
 	}

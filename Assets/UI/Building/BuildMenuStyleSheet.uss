@@ -242,6 +242,82 @@
     background-image: url("project://database/Assets/Sprites/UI/build_menu_background_1.png?fileID=5256389858025440078&guid=1aacea6b08ee57346b8b33caa1802ea0&type=3#build_menu_background_1_0");
 }
 
-.selectedBuildingCategory {
-    background-image: url("project://database/Assets/Sprites/UI/pause_menu_background.png?fileID=321061535402266006&guid=4379f901e7518e44b879e3e5c2683891&type=3#pause_menu_background_0");
+.buildingCategory #ButtonBackground_2 {
+    scale: 0.9 0.9;
+}
+
+.buildingCategoryBackground {
+    -unity-background-image-tint-color: rgb(165, 42, 42);
+    transition-duration: 0.1s;
+}
+
+.buildingCategory:hover .buildingCategoryBackground {
+    transition-timing-function: ease;
+    transition-duration: 0.1s;
+}
+
+.buildingCategory:hover #ButtonBackground_1 {
+    rotate: -45deg;
+}
+
+.buildingCategory:hover #ButtonBackground_2 {
+    rotate: 45deg;
+}
+
+.selectedBuildingCategory .buildingCategoryBackground {
+    -unity-background-image-tint-color: rgb(40, 141, 51);
+    transition-duration: 0s;
+}
+
+.buildingCategory:active .buildingCategoryBackground {
+    transition-duration: 0s;
+    -unity-background-image-tint-color: rgb(82, 19, 16);
+}
+
+.buildingCategory:active #ButtonBackground_1 {
+    rotate: -45deg;
+}
+
+.buildingCategory:active #ButtonBackground_2 {
+    rotate: 45deg;
+    scale: 1 1;
+}
+
+.selectedBuildingCategory #ButtonBackground_1 {
+    rotate: -45deg;
+}
+
+.selectedBuildingCategory #ButtonBackground_2 {
+    rotate: 45deg;
+    scale: 1 1;
+}
+
+.selectedBuildingCategory:hover .buildingCategoryBackground {
+    rotate: -45deg;
+    -unity-background-image-tint-color: rgb(32, 80, 45);
+}
+
+.buildingCategoryContainer {
+    scale: 0.8 0.8;
+    transform-origin: left bottom;
+    margin-top: -40px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 245px;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.buildingCategoryContainer:hover {
+    scale: 1 1;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
 }

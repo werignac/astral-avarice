@@ -21,7 +21,8 @@ public class BuildMenuUIComponent : MonoBehaviour
 	[SerializeField] private VisualTreeAsset menuButtonTemplate;
 
 	private VisualElement menuContainer;
-	private VisualElement buttonsContainer;
+	private VisualElement categoryButtonsContainer;
+	private VisualElement buildModeButtonsContainer;
 	private List<BuildUIMenuElementBinding<int>> buttonBindings = new List<BuildUIMenuElementBinding<int>>();
 
 	private IBuildUIMenuElement[] displayingMenuElements;
@@ -58,8 +59,10 @@ public class BuildMenuUIComponent : MonoBehaviour
 	private void FetchVisualElements()
 	{
 		menuContainer = uiDocument.rootVisualElement.Q("MenuContainer");
-		buttonsContainer = menuContainer.Q("ButtonsContainer");
-		buttonsContainer.Clear();
+		categoryButtonsContainer = menuContainer.Q("BuildingCategoriesContainer");
+		categoryButtonsContainer.Clear();
+		buildModeButtonsContainer = menuContainer.Q("BuildModeContainer");
+		buildModeButtonsContainer.Clear();
 	}
 
 	private void InitializeMenuElements()
@@ -74,7 +77,12 @@ public class BuildMenuUIComponent : MonoBehaviour
 	{
 		// Create a new instance of a button to display the element.
 		TemplateContainer buttonInstance = menuButtonTemplate.Instantiate();
-		buttonsContainer.Add(buttonInstance);
+
+		// Add the button to the appropriate container.
+		if (toAdd is BuildCategory)
+			categoryButtonsContainer.Add(buttonInstance);
+		else
+			buildModeButtonsContainer.Add(buttonInstance);
 
 		// Bind the button to the element.
 		int newBindingId = buttonBindings.Count;
