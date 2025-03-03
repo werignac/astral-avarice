@@ -149,6 +149,9 @@ public class InspectorUIComponent : MonoBehaviour
 			case BuildStateType.DEMOLISH:
 				activeInspectorLayers.Add(new InspectorLayer(new InspectableDemolish(), InspectorLayerType.BUILD_MODE));
 				break;
+			case BuildStateType.MOVE:
+				activeInspectorLayers.Add(new InspectorLayer(new InspectableMove(), InspectorLayerType.BUILD_MODE));
+				break;
 		}
 
 		MarkForUIUpdate();
