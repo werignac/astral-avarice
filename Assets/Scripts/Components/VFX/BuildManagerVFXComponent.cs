@@ -11,6 +11,7 @@ public class BuildManagerVFXComponent : MonoBehaviour
 
 	[SerializeField] private Color buildColor;
 	[SerializeField] private Color demolishColor;
+	[SerializeField] private Color moveColor;
 
 	private void Awake()
 	{
@@ -38,7 +39,10 @@ public class BuildManagerVFXComponent : MonoBehaviour
 					vignette.active = true;
 					vignette.color.value = demolishColor;
 					break;
-
+				case BuildStateType.MOVE:
+					vignette.active = true;
+					vignette.color.value = moveColor;
+					break;
 			}
 		}
 

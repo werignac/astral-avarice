@@ -2540,6 +2540,7 @@ MonoBehaviour:
   buildManager: {fileID: 159337139}
   buildColor: {r: 0.8117647, g: 0.38039216, b: 0.11372549, a: 1}
   demolishColor: {r: 0.8117647, g: 0.13725491, b: 0.11372549, a: 1}
+  moveColor: {r: 0.113029435, g: 0.5082584, b: 0.7987421, a: 1}
 --- !u!1001 &2882133585228324370
 PrefabInstance:
   m_ObjectHideFlags: 0
