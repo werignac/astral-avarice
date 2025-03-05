@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 80cca22063360194a8da4bdc2091204f
+guid: b979eabd799852649a6788c9c90168d1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8834545821952743936
-    second: RankD_0
+      213: 3182304583510767899
+    second: RankA_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,16 +96,42 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RankD_0
+      name: RankA_0
       rect:
         serializedVersion: 2
-        x: 329
+        x: 291
         y: 181
-        width: 400
+        width: 435
         height: 662
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0066892e163656580800000000000000
-      internalID: -8834545821952743936
+      spriteID: b19b14b7821d92c20800000000000000
+      internalID: 3182304583510767899
       vertices: []
       indices: 
       edges: []
@@ -135,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      RankD_0: -8834545821952743936
+      RankA_0: 3182304583510767899
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

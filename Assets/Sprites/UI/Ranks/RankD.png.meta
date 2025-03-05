@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2b91b36df40249646a49952429cb07cd
+guid: 80cca22063360194a8da4bdc2091204f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6824925376817469756
-    second: RankS_0
+      213: -8834545821952743936
+    second: RankD_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RankS_0
+      name: RankD_0
       rect:
         serializedVersion: 2
-        x: 315
-        y: 167
-        width: 394
-        height: 690
+        x: 329
+        y: 181
+        width: 400
+        height: 662
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c3911cf587107be50800000000000000
-      internalID: 6824925376817469756
+      spriteID: 0066892e163656580800000000000000
+      internalID: -8834545821952743936
       vertices: []
       indices: 
       edges: []
@@ -135,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      RankS_0: 6824925376817469756
+      RankD_0: -8834545821952743936
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
