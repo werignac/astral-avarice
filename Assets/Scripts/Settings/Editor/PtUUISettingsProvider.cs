@@ -45,6 +45,7 @@ public class PtUUISettingsProvider
 				EditorGUILayout.PropertyField(settings.FindProperty("cableModeVisuals"), new GUIContent("Cable Mode"));
 				EditorGUILayout.PropertyField(settings.FindProperty("moveModeVisuals"), new GUIContent("Move Mode"));
 				EditorGUILayout.PropertyField(settings.FindProperty("demolishModeVisuals"), new GUIContent("Demolish Mode"));
+				EditorGUILayout.PropertyField(settings.FindProperty("highlightClass"), new GUIContent("Highlight Class Name"));
 				
 				settings.ApplyModifiedPropertiesWithoutUndo();
 				settings.Dispose();

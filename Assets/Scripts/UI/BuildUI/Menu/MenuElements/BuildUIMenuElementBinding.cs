@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Events;
 using System;
+using AstralAvarice.Tutorial;
 
 namespace AstralAvarice.VisualData
 {
@@ -12,8 +13,8 @@ namespace AstralAvarice.VisualData
 	/// These are not expected to need to update in realtime.
 	/// </summary>
 	/// <typeparam name="T">This class houses an identifier. The identifier is passed in event calls. Use this to figure out which element bindings is invoking its event.</typeparam>
-    public class BuildUIMenuElementBinding<T>
-    {
+    public class BuildUIMenuElementBinding<T> : IHighlightable
+	{
 		private const string UNSELECTED_CLASS = "buildingCategory";
 		private const string SELECTED_CLASS = "selectedBuildingCategory";
 
@@ -101,6 +102,22 @@ namespace AstralAvarice.VisualData
 		{
 			buttonElement.RemoveFromClassList(SELECTED_CLASS);
 			buttonElement.AddToClassList(UNSELECTED_CLASS);
+		}
+
+		/// <summary>
+		/// Show a halo around the button, used to guide player's attention in the tutorial.
+		/// </summary>
+		public void ShowHighlight()
+		{
+			rootElement.AddToClassList(IHighlightable.HIGHLIGHT_CLASS);
+		}
+
+		/// <summary>
+		/// Hide a halo around the button.
+		/// </summary>
+		public void HideHighlight()
+		{
+			rootElement.RemoveFromClassList(IHighlightable.HIGHLIGHT_CLASS);
 		}
 
 	}

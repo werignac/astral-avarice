@@ -57,6 +57,10 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField] private BuildModeVisuals moveModeVisuals;
 	[SerializeField] private BuildModeVisuals demolishModeVisuals;
 
+	[Header("Tutorial")]
+	[SerializeField, Tooltip("Name of the class that is used to highlight certain UI elements with a halo. Used in the tutorial.")]
+	private string highlightClass;
+
 	// Getters
 	public VisualTreeAsset DefaultInspectorUI
 	{
@@ -109,6 +113,8 @@ public class PtUUISettings : ScriptableObject
 	public BuildModeVisuals CableModeVisuals { get => cableModeVisuals; }
 	public BuildModeVisuals MoveModeVisuals { get => moveModeVisuals; }
 	public BuildModeVisuals DemolishModeVisuals { get => demolishModeVisuals; }
+
+	public string HighlightClass { get => highlightClass; }
 
 	public SpecialEnergyUIData GetSpecialResourceUIData(ResourceType resourceType)
 	{

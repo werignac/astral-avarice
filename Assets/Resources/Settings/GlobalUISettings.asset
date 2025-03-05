@@ -39,3 +39,4 @@ MonoBehaviour:
   cableModeVisuals: {fileID: 11400000, guid: b4cbc429fa5dbd34d8fe3592e2eecf50, type: 2}
   moveModeVisuals: {fileID: 11400000, guid: 502de33ced04cdb4c84fa16a9e6286e2, type: 2}
   demolishModeVisuals: {fileID: 11400000, guid: 831c564756695bf47938ddab484ebca6, type: 2}
+  highlightClass: highlight

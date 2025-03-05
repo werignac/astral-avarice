@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using AstralAvarice.Tutorial;
 
 public class BuildSubMenuUIComponent : MonoBehaviour
 {
-	protected class BuildSubMenuButtonBinding : BuildingButtonBinding<int>
+	protected class BuildSubMenuButtonBinding : BuildingButtonBinding<int>, IHighlightable
 	{
 
 		private VisualElement rootElement;
@@ -39,6 +40,22 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 		public void Hide()
 		{
 			rootElement.style.display = DisplayStyle.None;
+		}
+
+		/// <summary>
+		/// Show a halo around the button, used to guide player's attention in the tutorial.
+		/// </summary>
+		public void ShowHighlight()
+		{
+			rootElement.AddToClassList(IHighlightable.HIGHLIGHT_CLASS);
+		}
+
+		/// <summary>
+		/// Hide a halo around the button.
+		/// </summary>
+		public void HideHighlight()
+		{
+			rootElement.RemoveFromClassList(IHighlightable.HIGHLIGHT_CLASS);
 		}
 	}
 
