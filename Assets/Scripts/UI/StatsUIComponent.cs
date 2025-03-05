@@ -64,7 +64,7 @@ public class StatsUIComponent : MonoBehaviour
 			{
 				rankTime.style.color = Color.white;
 			}
-            timeText += "--:--";
+            timeText += "--:--)";
 		}
 		else
         {
