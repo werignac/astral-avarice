@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Lab
   cost: 1000
-  scienceCost: 10
+  scienceCost: 30
   mass: 40
   maxPowerLines: 1
   buildingType: 2
