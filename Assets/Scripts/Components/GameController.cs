@@ -428,7 +428,7 @@ public class GameController : MonoBehaviour
 		if (resolution.successfullyPlacedCable)
 		{
 			RegisterCable(resolution.builtCable);
-			gameManager.SpendMoney(Mathf.CeilToInt(resolution.builtCable.Length));
+			gameManager.SpendMoney(Mathf.CeilToInt(resolution.builtCable.Length * Data.cableCostMultiplier));
 			if(!sfxAudio.isPlaying)
 			{
                 sfxAudio.clip = cableConnectClip;
