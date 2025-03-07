@@ -34,4 +34,15 @@ public class MinimapCameraComponent: MonoBehaviour
 
 		minimapCamera.orthographicSize = minHeight;
 	}
+
+	/// <summary>
+	/// Takes a normalized Vector2 in the space of the minimap and converts it
+	/// into a position in world space.
+	/// </summary>
+	/// <param name="minimapPosition">Normalized Vector where 0, 0 is the bottom left of the camera.</param>
+	/// <returns>A Vector2 in world space from projecting the minimap position through the camera.</returns>
+	public Vector2 MinimapSpaceToWorldSpace(Vector2 minimapPosition)
+	{
+		return minimapCamera.ViewportToWorldPoint(minimapPosition);
+	}
 }

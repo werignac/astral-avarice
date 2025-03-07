@@ -134,7 +134,7 @@ public class CameraMovementComponent : MonoBehaviour
 
 		ZoomUpdate();
 
-		ApplyLevelBounds();
+		ApplyLevelBoundsToGoalPosition();
 
 		ApplySmoothing();
 
@@ -160,19 +160,27 @@ public class CameraMovementComponent : MonoBehaviour
 		goalCameraSize = nextZoom;
 	}
 
-	private void ApplyLevelBounds()
+	private void ApplyLevelBoundsToGoalPosition()
 	{
-		Vector2 boundedPosition = goalPosition;
+		goalPosition = ApplyLevelBounds(goalPosition);
+	}
 
+	/// <summary>
+	/// Forces a position to remain within the level's bounds, including considering the
+	/// width and height of the camera.
+	/// </summary>
+	/// <param name="position">The position to bound.</param>
+	/// <returns>The bounded position.</returns>
+	private Vector2 ApplyLevelBounds(Vector2 position)
+	{
 		if (levelBounds.x >= 0)
-			boundedPosition.x = Mathf.Clamp(goalPosition.x, -HorizontalBoundMinusCameraWidth, HorizontalBoundMinusCameraWidth);
-		
+			position.x = Mathf.Clamp(position.x, -HorizontalBoundMinusCameraWidth, HorizontalBoundMinusCameraWidth);
+
 
 		if (levelBounds.y >= 0)
-			boundedPosition.y = Mathf.Clamp(goalPosition.y, -VerticalBoundMinusCameraHeight, VerticalBoundMinusCameraHeight);
-		
+			position.y = Mathf.Clamp(position.y, -VerticalBoundMinusCameraHeight, VerticalBoundMinusCameraHeight);
 
-		goalPosition = boundedPosition;
+		return position;
 	}
 
 	public void SetDirectionalPanInput(Vector2 panDirection, PanSpeedModifier modifier)
@@ -199,5 +207,30 @@ public class CameraMovementComponent : MonoBehaviour
 
 		transform.position = position3D;
 		movingCamera.orthographicSize = Mathf.Lerp(movingCamera.orthographicSize, goalCameraSize, zoomSmoothing * Time.unscaledDeltaTime);
+	}
+
+
+	/// <summary>
+	/// Moves the camera to the given position.
+	/// </summary>
+	/// <param name="position">The position in world space to move the camera to.</param>
+	/// <param name="useSmoothing">If true, the camera glides to the selected position. If false, the camera teleports immediately.</param>
+	/// <param name="restrictToLevelBounds">If true, prior to moving the camera, restrict "position" to be in the level's bounds (including accounting for the width and height of the camera). If false, don't restrict "position" (though the camera may move in bounds afterwards).</param>
+	public void MoveTo(Vector2 position, bool useSmoothing = true, bool restrictToLevelBounds = true)
+	{
+		// Restrict the position if required.
+		if (restrictToLevelBounds)
+			position = ApplyLevelBounds(position);
+
+		// Set the goal position of the camera to the position we want to move to.
+		goalPosition = position;
+
+		// Teleport immediately if requested.
+		if (!useSmoothing)
+			transform.position = new Vector3(
+				position.x,
+				position.y,
+				transform.position.z
+			);
 	}
 }
