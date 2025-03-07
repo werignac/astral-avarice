@@ -43,8 +43,6 @@ public class ConnectionPointCursorComponent: MonoBehaviour
 
 	private void UpdateAnimationStep()
 	{
-		Debug.Log("Coroutine update");
-
 		// Value between 0 and 1 of progress in animation.
 		float animationTimePosition = (Time.unscaledTime % period) / period;
 
