@@ -87,8 +87,6 @@ public class ConnectionPointCursorComponent: MonoBehaviour
 
 	private void OnEnable()
 	{
-		Debug.Log("Starting Coroutine");
-
 		if (animationCoroutine != null)
 			StopCoroutine(animationCoroutine);
 		animationCoroutine = StartCoroutine(Animation());

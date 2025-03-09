@@ -16,11 +16,55 @@ public enum BuildStateType
 	MOVE = 8
 }
 
-public interface BuildState { public BuildStateType GetStateType(); }
-public class NoneBuildState : BuildState { public BuildStateType GetStateType() => BuildStateType.NONE; }
+public interface BuildState {
+	public BuildStateType GetStateType();
+
+	/// <summary>
+	/// Called before this build state is destroyed / when we're switching out of this build state.
+	/// </summary>
+	public void CleanUp();
+}
+public class NoneBuildState : BuildState {
+	public BuildStateType GetStateType() => BuildStateType.NONE;
+	public void CleanUp() { }
+}
 public class BuildingBuildState : BuildState, IInspectable
 {
 	public readonly BuildingSettingEntry toBuild;
+
+	/// <summary>
+	/// The planet that we anticipate will be built on (i.e. the planet the player is hovering near).
+	/// </summary>
+	private PlanetComponent prospectivePlanet = null;
+
+	/// <summary>
+	/// Event triggered when the prospective planet being built on changes.
+	/// </summary>
+	public UnityEvent<PlanetComponent> OnProspectivePlanetChanged = new UnityEvent<PlanetComponent>();
+	
+	/// <summary>
+	/// Used to notify other scripts that the prospective planet is changing.
+	/// Should not be accessed outside of this script.
+	/// </summary>
+	public PlanetComponent ProspectivePlanet {
+		set
+		{
+			bool isDifferent = prospectivePlanet != value;
+
+			if (!isDifferent)
+				return;
+
+			if (prospectivePlanet != null)
+				prospectivePlanet.StopProspectingMassChange();
+
+			prospectivePlanet = value;
+
+			OnProspectivePlanetChanged?.Invoke(value);
+			if (prospectivePlanet != null)
+				prospectivePlanet.StartProspectingMassChange();
+		}
+	}
+
 
 	public BuildingBuildState(BuildingSettingEntry toBuild)
 	{
@@ -36,6 +80,13 @@ public class BuildingBuildState : BuildState, IInspectable
 	public virtual BuildStateType GetStateType()
 	{
 		return BuildStateType.BUILDING;
+	}
+
+	public void CleanUp()
+	{
+		if (prospectivePlanet != null)
+			OnProspectivePlanetChanged?.Invoke(null);
+			prospectivePlanet.StopProspectingMassChange();
 	}
 }
 public class BuildingChainedBuildState : BuildingBuildState
@@ -121,11 +172,47 @@ class CableBuildState : BuildState {
 	{
 		return new CableBuildState(toBuilding);
 	}
+
+	public void CleanUp() { }
 }
 class DemolishBuildState : BuildState {
 
 	// Can be null if not hovering over anything.
 	private IDemolishable hoveringDemolishable = null;
+
+	/// <summary>
+	/// Planets whose mass will change if demolition is executed.
+	/// </summary>
+	private PlanetComponent affectedPlanet = null;
+
+	/// <summary>
+	/// Event invoked when the affected planet(s) change.
+	/// i.e. the player moved their cursor off a building or onto a new building on a different planet.
+	/// </summary>
+	public UnityEvent<PlanetComponent> OnAffectedPlanetChanged = new UnityEvent<PlanetComponent>();
+
+	/// <summary>
+	/// Called in BuildManagerComponent only.
+	/// </summary>
+	public PlanetComponent AffectedPlanet {
+		set
+		{
+			bool isDifferent = affectedPlanet != value;
+
+			if (!isDifferent)
+				return;
+
+			if (affectedPlanet != null)
+				affectedPlanet.StopProspectingMassChange();
+
+			affectedPlanet = value;
+
+			OnAffectedPlanetChanged?.Invoke(value);
+			if (affectedPlanet != null)
+				affectedPlanet.StartProspectingMassChange();
+		}
+	}
+
 
 	public BuildStateType GetStateType() => BuildStateType.DEMOLISH;
 
@@ -159,7 +246,17 @@ class DemolishBuildState : BuildState {
 		if (hoveringDemolishable != null)
 			hoveringDemolishable.HoverDemolishEnd();
 	}
+
+	public void CleanUp() 
+	{
+		if (affectedPlanet != null)
+		{
+			OnAffectedPlanetChanged?.Invoke(null);
+			affectedPlanet.StopProspectingMassChange();
+		}
+	}
 }
+
 public class BuildingMoveBuildState : BuildState
 {
 	public readonly BuildingComponent movingBuilding;
@@ -188,6 +285,8 @@ public class BuildingMoveBuildState : BuildState
 	{
 		return BuildStateType.MOVE;
 	}
+
+	public void CleanUp() { }
 }
 
 public struct BuildResolve
@@ -385,6 +484,8 @@ public class BuildManagerComponent : MonoBehaviour
 			// Stop lingering VFX from hovering.
 			if (oldState.GetStateType() == BuildStateType.DEMOLISH)
 				(oldState as DemolishBuildState).StopLingeringHovering();
+
+			oldState.CleanUp();
 		}
 
 		state = newState;
@@ -703,11 +804,18 @@ public class BuildManagerComponent : MonoBehaviour
 			PlanetComponent planetParent = demolishableBuilding.GetComponentInParent<PlanetComponent>();
 
 			SetAndShowGravityCursor(planetParent, -demolishableBuilding.Data.mass);
+
+			// Since the player is hovering over a building, the planet of this building
+			// would change mass if the player demolished the building.
+			demolishBuildState.AffectedPlanet = planetParent;
 		}
 		else // Otherwise, hide the gravity cursor.
 		{
 			if (gravityCursor.GetIsShowing())
 				gravityCursor.Hide();
+
+			// Since the player isn't hover over a building, no mass of planets will change.
+			demolishBuildState.AffectedPlanet = null;
 		}
 
 		// If the player clicked, demolish the building
@@ -832,6 +940,9 @@ public class BuildManagerComponent : MonoBehaviour
 			if (gravityCursor.GetIsShowing())
 				gravityCursor.Hide();
 
+			// If there are no planets, set the prospective planet to be null.
+			// We don't anticipate to change any planets.
+			(state as BuildingBuildState).ProspectivePlanet = null;
 			return;
 		}
 
@@ -849,7 +960,6 @@ public class BuildManagerComponent : MonoBehaviour
 			{
 				closestPlanetDistance = distanceToHover;
 				closestPlanet = planet;
-				continue;
 			}
 		}
 
@@ -860,7 +970,10 @@ public class BuildManagerComponent : MonoBehaviour
 				buildingCursor.Hide();
 			if (gravityCursor.GetIsShowing())
 				gravityCursor.Hide();
-			
+
+			// If there are no nearby planets, set the prospective planet to be null.
+			// We don't anticipate to change any planets.
+			(state as BuildingBuildState).ProspectivePlanet = null;
 			return;
 		}
 
@@ -877,6 +990,10 @@ public class BuildManagerComponent : MonoBehaviour
 
 		BuildingBuildState buildingbuildState = state as BuildingBuildState;
 		SetAndShowGravityCursor(closestPlanet, buildingbuildState.toBuild.BuildingDataAsset.mass);
+
+		// We anticipate that a building will be placed on a planet.
+		// Notify others that we anticipate the mass of this planet to change.
+		(state as BuildingBuildState).ProspectivePlanet = closestPlanet;
 
 #if UNITY_EDITOR
 		Debug.DrawLine(closestPlanet.transform.position, buildingPlacePosition, Color.red);

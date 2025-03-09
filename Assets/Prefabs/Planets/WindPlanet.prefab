@@ -448,6 +448,7 @@ MonoBehaviour:
   gravityFieldRenderer: {fileID: 5318945103559126450}
   marginIntoPlanet: 0.2
   minimumFieldDrawRadius: 0.3
+  gravityToggleState: {fileID: 11400000, guid: 4dc47c023ecb5f04f87adfa236686f51, type: 2}
 --- !u!114 &5269705598938031120
 MonoBehaviour:
   m_ObjectHideFlags: 0

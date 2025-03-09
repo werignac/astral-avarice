@@ -22,6 +22,9 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	[HideInInspector] public UnityEvent OnSelectedStart = new UnityEvent();
 	[HideInInspector] public UnityEvent OnHoverEnd = new UnityEvent();
 	[HideInInspector] public UnityEvent OnSelectedEnd = new UnityEvent();
+	// Called when the player is hovering near or on buildings in the planet in the build or demolish modes.
+	[HideInInspector] public UnityEvent OnStartProspectingMassChange = new UnityEvent();
+	[HideInInspector] public UnityEvent OnStopProspectingMassChange = new UnityEvent();
 
 	private CircleCollider2D planetCollider;
 	[SerializeField] private Transform buildingContainerTransform;
@@ -79,7 +82,6 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 			resourceCounts[(int)resource] = amount;
 		}
 	}
-
 
 	private void Awake()
 	{
@@ -288,5 +290,17 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		destructionVFXGameObject.transform.localScale = Vector3.one * Radius * 2;
 
 		Destroy(gameObject);
+	}
+
+
+	// Called by the build manager depending on the build mode.
+	public void StartProspectingMassChange()
+	{
+		OnStartProspectingMassChange?.Invoke();
+	}
+
+	public void StopProspectingMassChange()
+	{
+		OnStopProspectingMassChange?.Invoke();
 	}
 }
