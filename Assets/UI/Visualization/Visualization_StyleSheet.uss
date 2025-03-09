@@ -1,0 +1,7 @@
+.visualizationMenuState_On #ToggleCheckmark {
+    visibility: visible;
+}
+
+.visualizationMenuState_Off #ToggleCheckmark {
+    visibility: hidden;
+}

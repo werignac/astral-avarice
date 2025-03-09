@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System;
 using UnityEngine.UIElements;
 using AstralAvarice.VisualData;
+using AstralAvarice.Visualization;
 
 /// <summary>
 /// Stores references to all the buildings that can be built by the player.
@@ -60,6 +61,10 @@ public class PtUUISettings : ScriptableObject
 	[Header("Tutorial")]
 	[SerializeField, Tooltip("Name of the class that is used to highlight certain UI elements with a halo. Used in the tutorial.")]
 	private string highlightClass;
+
+	[Header("Visualization")]
+	[SerializeField, Tooltip("Reference to the UI settings for visualization options (e.g. gravity fields & solar fields).")]
+	private VisualizationUISettings_SO visualizationSettings;
 
 	// Getters
 	public VisualTreeAsset DefaultInspectorUI
@@ -115,6 +120,8 @@ public class PtUUISettings : ScriptableObject
 	public BuildModeVisuals DemolishModeVisuals { get => demolishModeVisuals; }
 
 	public string HighlightClass { get => highlightClass; }
+
+	public VisualizationUISettings_SO VisualizationSettings { get => visualizationSettings; }
 
 	public SpecialEnergyUIData GetSpecialResourceUIData(ResourceType resourceType)
 	{

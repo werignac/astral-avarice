@@ -1,0 +1,13 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="VisualizationMenuEntry_UI" src="project://database/Assets/UI/Visualization/VisualizationMenuState_UI.uxml?fileID=9197481963319205126&amp;guid=e7f16222351a96b4f98aef1488c8dccc&amp;type=3#VisualizationMenuState_UI" />
+    <engine:Template name="VisualizationMenuMode_UI" src="project://database/Assets/UI/Visualization/VisualizationMenuMode_UI.uxml?fileID=9197481963319205126&amp;guid=bb7c13d6b9d943645a6aacaa5755eb53&amp;type=3#VisualizationMenuMode_UI" />
+    <Style src="project://database/Assets/UI/Visualization/Visualization_StyleSheet.uss?fileID=7433441132597879392&amp;guid=52230a9870c01b941bf43af2328ca853&amp;type=3#Visualization_StyleSheet" />
+    <engine:VisualElement name="VisualizationMenuContainer" style="flex-grow: 0; align-self: flex-start; background-color: rgb(117, 117, 117);">
+        <engine:Instance template="VisualizationMenuEntry_UI">
+            <AttributeOverrides element-name="EntryLabel" text="Here is my extra text." />
+        </engine:Instance>
+        <engine:Instance template="VisualizationMenuEntry_UI" />
+        <engine:Instance template="VisualizationMenuEntry_UI" />
+        <engine:Instance template="VisualizationMenuMode_UI" />
+    </engine:VisualElement>
+</engine:UXML>

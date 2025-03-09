@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="VisualizationMenu_UI" src="project://database/Assets/UI/Visualization/VisualizationMenu_UI.uxml?fileID=9197481963319205126&amp;guid=b121fb300224742408d55b8b78bf5540&amp;type=3#VisualizationMenu_UI" />
+    <Style src="project://database/Assets/UI/Visualization/Visualization_StyleSheet.uss?fileID=7433441132597879392&amp;guid=52230a9870c01b941bf43af2328ca853&amp;type=3#Visualization_StyleSheet" />
+    <engine:Button name="VisualizationMenuButton" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; width: 50px; height: 50px;">
+        <engine:VisualElement name="Icon" style="flex-grow: 1;" />
+    </engine:Button>
+    <engine:Instance template="VisualizationMenu_UI" name="VisualizationMenu" style="align-self: flex-start;" />
+</engine:UXML>

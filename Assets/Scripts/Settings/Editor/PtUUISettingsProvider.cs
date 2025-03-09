@@ -46,6 +46,7 @@ public class PtUUISettingsProvider
 				EditorGUILayout.PropertyField(settings.FindProperty("moveModeVisuals"), new GUIContent("Move Mode"));
 				EditorGUILayout.PropertyField(settings.FindProperty("demolishModeVisuals"), new GUIContent("Demolish Mode"));
 				EditorGUILayout.PropertyField(settings.FindProperty("highlightClass"), new GUIContent("Highlight Class Name"));
+				EditorGUILayout.PropertyField(settings.FindProperty("visualizationSettings"), new GUIContent("Visualization Settings"));
 				
 				settings.ApplyModifiedPropertiesWithoutUndo();
 				settings.Dispose();

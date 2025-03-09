@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Visualization/Visualization_StyleSheet.uss?fileID=7433441132597879392&amp;guid=52230a9870c01b941bf43af2328ca853&amp;type=3#Visualization_StyleSheet" />
+    <engine:VisualElement name="VisualizationMenuStateContainer" style="flex-grow: 0; flex-direction: row; align-self: flex-start;">
+        <engine:Button text="&#10;" name="ToggleButton" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px;">
+            <engine:VisualElement name="ToggleCheckmark" style="flex-grow: 1; width: 25px; height: 25px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-6090568113533005507&amp;guid=6d3142833d2bc694c8742c2782822332&amp;type=3#check&quot;);" />
+        </engine:Button>
+        <engine:Label text="Label" name="StateLabel" style="color: rgb(234, 234, 234);" />
+    </engine:VisualElement>
+</engine:UXML>

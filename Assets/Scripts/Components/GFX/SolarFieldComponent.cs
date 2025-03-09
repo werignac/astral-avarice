@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using AstralAvarice.Visualization;
 
 public class SolarFieldComponent : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class SolarFieldComponent : MonoBehaviour
 	// Sprite renderer that shows where planets increase / decrease in solar energy.
 	[SerializeField] private Renderer solarFieldRenderer;
 
+	// State of whether solar fields should be visualized or not.
+	[SerializeField] private VisualizationToggleState_SO solarFieldVisualizationState;
+
 
 	private void Awake()
 	{
@@ -25,6 +29,11 @@ public class SolarFieldComponent : MonoBehaviour
 	private void Start()
 	{
 		SetLightRadii();
+
+		// Show or hide the field based on the current state.
+		SetShowField(solarFieldVisualizationState.Value);
+		// Listen to when the state of whether firlds should be shown or hidden changes in the future.
+		solarFieldVisualizationState.AddStateChangeListener(SetShowField);
 	}
 
 	private void SetLightRadii(bool setMaterialProperties = true)
@@ -57,4 +66,17 @@ public class SolarFieldComponent : MonoBehaviour
 	}
 #endif
 
+	private void SetShowField(bool showField)
+	{
+		solarFieldRenderer.enabled = showField;
+	}
+
+	/// <summary>
+	/// Cleanup listeners to solar field visualization state (SOs exist beyond the scope
+	/// / lifetime of this component).
+	/// </summary>
+	private void OnDestroy()
+	{
+		solarFieldVisualizationState.RemoveStateChangeListener(SetShowField);
+	}
 }

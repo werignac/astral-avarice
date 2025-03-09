@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 221650135e7997244816f355f9e795d8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - starLight: {instanceID: 0}
+  - solarFieldRenderer: {instanceID: 0}
+  - solarFieldVisualizationState: {fileID: 11400000, guid: dac8a70b16efe154b80c249fd11acb9a, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: ec379b058b708b643b1b2fe82912f525
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - visualizationMenuStateElement: {fileID: 9197481963319205126, guid: e7f16222351a96b4f98aef1488c8dccc, type: 3}
+  - visualizationMenuModeElement: {fileID: 9197481963319205126, guid: bb7c13d6b9d943645a6aacaa5755eb53, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
