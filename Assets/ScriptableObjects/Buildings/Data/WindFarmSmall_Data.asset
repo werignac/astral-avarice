@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WindFarmSmall_Data
   m_EditorClassIdentifier: 
   buildingName: Small Wind Farm
-  cost: 60
+  cost: 325
   scienceCost: 0
   mass: 25
   maxPowerLines: 1

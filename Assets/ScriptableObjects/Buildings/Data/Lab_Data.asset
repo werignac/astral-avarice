@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Lab_Data
   m_EditorClassIdentifier: 
   buildingName: Lab
-  cost: 150
-  scienceCost: 10
+  cost: 1000
+  scienceCost: 30
   mass: 40
   maxPowerLines: 1
   buildingType: 2
