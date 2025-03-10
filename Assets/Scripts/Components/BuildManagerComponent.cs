@@ -85,8 +85,10 @@ public class BuildingBuildState : BuildState, IInspectable
 	public void CleanUp()
 	{
 		if (prospectivePlanet != null)
+		{
 			OnProspectivePlanetChanged?.Invoke(null);
 			prospectivePlanet.StopProspectingMassChange();
+		}
 	}
 }
 public class BuildingChainedBuildState : BuildingBuildState
