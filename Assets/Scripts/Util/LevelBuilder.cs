@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using werignac.Utils;
 
 [ExecuteInEditMode]
 public class LevelBuilder : MonoBehaviour
@@ -60,6 +61,12 @@ public class LevelBuilder : MonoBehaviour
                 {
                     --i;
                 }
+
+				if (!building.TryGetComponentInParent(out PlanetComponent _))
+				{
+					Debug.LogError("Failed to parent building to planet. Is the root prefab unpacked?");
+					i++;
+				}
             }
         }    
     }

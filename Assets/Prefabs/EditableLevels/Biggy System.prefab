@@ -166,10 +166,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Biggy System
   levelDimentions: {x: 80, y: 80}
-  startingCash: 350
+  startingCash: 3000
   startingScience: 0
   goalCash: 3500
-  levelTime: 900
+  goalTimes: d0020000c003000092040000dc050000
+  hasPrereq: 1
+  prereqMission: Asteroid Field
+  prereqRank: 3
   buildings:
   - {fileID: 2321223643927502079}
   - {fileID: 5358308158389330822}

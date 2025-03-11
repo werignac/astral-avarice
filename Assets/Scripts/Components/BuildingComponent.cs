@@ -89,7 +89,7 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 	/// </summary>
 	public int GridGroup
 	{
-		get => BackendBuilding.BuildingGroup;
+		get => BackendBuilding != null ? BackendBuilding.BuildingGroup : -1;
 	}
 
     /// <summary>

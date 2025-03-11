@@ -10,6 +10,12 @@ public static class GridGroupGFX
 
 	public static Color GridGroupToColor(int gridGroup)
 	{
+		if (gridGroup < 0)
+		{
+			Debug.LogWarning($"Asked to pick color for negative grid group {gridGroup}. Using default color.");
+			gridGroup = 0;		
+		}
+
 		int gridGroupColorIndex = gridGroup % GridGroupColors.Length;
 		
 		return GridGroupColors[gridGroupColorIndex];

@@ -77,10 +77,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Drag A Star
   levelDimentions: {x: 90, y: 40}
-  startingCash: 800
+  startingCash: 5000
   startingScience: 0
   goalCash: 2000
-  levelTime: 900
+  goalTimes: b20200008403000092040000fa050000
+  hasPrereq: 1
+  prereqMission: Exploitable System
+  prereqRank: 1
   buildings:
   - {fileID: 2841252939006474553}
   - {fileID: 4497797728231656683}
@@ -2179,6 +2182,18 @@ PrefabInstance:
     - target: {fileID: 2853406750074344415, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
       propertyPath: m_Name
       value: Star
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626436763021281457, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12.666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626436763021281457, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 12.666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626436763021281457, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 12.666667
       objectReference: {fileID: 0}
     - target: {fileID: 7118839217438747676, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
       propertyPath: mass

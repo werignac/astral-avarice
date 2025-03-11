@@ -64,11 +64,6 @@ public class GravityFieldComponent : MonoBehaviour
 
 	private void LateUpdate()
 	{
-#if UNITY_EDITOR
-		if (SceneManager.GetActiveScene().name == "LevelBuilder")
-			return;
-#endif
-
 		if (markedForGravityCircleUpdate)
 			DrawGravityField();
 		

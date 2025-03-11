@@ -18,7 +18,10 @@ MonoBehaviour:
   missionName: Basic Tutorial
   startingScience: 0
   startingBuildings:
-  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
   tutorialScene: TutorialBasic
+  hasPrereq: 0
+  prereqMission: 
+  prereqRank: 0

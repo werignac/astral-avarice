@@ -163,10 +163,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Asteroid Field
   levelDimentions: {x: 90, y: 70}
-  startingCash: 600
+  startingCash: 2500
   startingScience: 0
   goalCash: 3000
-  levelTime: 720
+  goalTimes: 58020000ee02000056040000dc050000
+  hasPrereq: 1
+  prereqMission: First Steps
+  prereqRank: 1
   buildings:
   - {fileID: 8977483959379217778}
   - {fileID: 4832749069662442182}
@@ -3994,6 +3997,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Star
       objectReference: {fileID: 0}
+    - target: {fileID: 4626436763021281457, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626436763021281457, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626436763021281457, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7118839217438747676, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
       propertyPath: mass
       value: 200
@@ -4013,6 +4028,14 @@ PrefabInstance:
     - target: {fileID: 8976730461174129876, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
       propertyPath: m_Color.r
       value: 0.9490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976730461174129876, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 20.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976730461174129876, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

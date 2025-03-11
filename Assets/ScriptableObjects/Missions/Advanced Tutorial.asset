@@ -18,18 +18,21 @@ MonoBehaviour:
   missionName: Advanced Tutorial
   startingScience: 0
   startingBuildings:
-  - {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
-  - {fileID: 11400000, guid: 42400773a1995a94289aedfbc563f365, type: 2}
-  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
-  - {fileID: 11400000, guid: 534563545c4bf37428b00af659d7bd1c, type: 2}
-  - {fileID: 11400000, guid: 9765d05d5308fa54e9c4724f86827cf1, type: 2}
   - {fileID: 11400000, guid: fb7774071fd23fb4398502288364815d, type: 2}
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
-  - {fileID: 11400000, guid: 2604ae1054aaced4b8e3a43c56af5936, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 42400773a1995a94289aedfbc563f365, type: 2}
   - {fileID: 11400000, guid: 818655cc968fa5e45b219efff2bd24ec, type: 2}
   - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
   - {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
-  - {fileID: 11400000, guid: 42400773a1995a94289aedfbc563f365, type: 2}
+  - {fileID: 11400000, guid: 534563545c4bf37428b00af659d7bd1c, type: 2}
+  - {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
+  - {fileID: 11400000, guid: 9765d05d5308fa54e9c4724f86827cf1, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  tutorialScene: 
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
+  - {fileID: 11400000, guid: 42400773a1995a94289aedfbc563f365, type: 2}
+  - {fileID: 11400000, guid: 2604ae1054aaced4b8e3a43c56af5936, type: 2}
+  tutorialScene: TutorialAdvanced
+  hasPrereq: 0
+  prereqMission: 
+  prereqRank: 0

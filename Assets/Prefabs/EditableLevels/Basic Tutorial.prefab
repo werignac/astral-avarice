@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 567026075162816348}
-  - {fileID: 2196685041039314325}
+  - {fileID: 8616968904261810577}
   - {fileID: 1232874159493048549}
   - {fileID: 1106129826714222311}
   - {fileID: 8636668783446347502}
@@ -53,10 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Basic Tutorial
   levelDimentions: {x: 20, y: 15}
-  startingCash: 1000
+  startingCash: 3000
   startingScience: 0
   goalCash: 100
-  levelTime: 600
+  goalTimes: 78000000
+  hasPrereq: 0
+  prereqMission: 
+  prereqRank: 0
   buildings:
   - {fileID: 6709683544681871781}
   - {fileID: 1226269121267007940}
@@ -223,12 +226,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
---- !u!4 &2196685041039314325 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7631823425099314181, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
-  m_PrefabInstance: {fileID: 2196685041039314324}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4625549207846707004 stripped
+--- !u!114 &3493285713156295153 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3316502763267998821, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
   m_PrefabInstance: {fileID: 2196685041039314324}
@@ -239,6 +237,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8f2a4bb665a39428ed88888e733757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8616968904261810577 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7631823425099314181, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+  m_PrefabInstance: {fileID: 2196685041039314324}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2449566304444059181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,7 +514,7 @@ PrefabInstance:
     - target: {fileID: 7053968690054669247, guid: 57b3cd73c0dfaa541a62943652e711c5, type: 3}
       propertyPath: parentPlanet
       value: 
-      objectReference: {fileID: 4625549207846707004}
+      objectReference: {fileID: 3493285713156295153}
     - target: {fileID: 9203648263432625308, guid: 57b3cd73c0dfaa541a62943652e711c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.549275
@@ -612,7 +615,7 @@ PrefabInstance:
     - target: {fileID: 7053968690054669247, guid: 57b3cd73c0dfaa541a62943652e711c5, type: 3}
       propertyPath: parentPlanet
       value: 
-      objectReference: {fileID: 4625549207846707004}
+      objectReference: {fileID: 3493285713156295153}
     - target: {fileID: 9203648263432625308, guid: 57b3cd73c0dfaa541a62943652e711c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.4007363

@@ -49,7 +49,7 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	}
 	public float Radius
 	{
-		get { return planetCollider.radius * transform.localScale.x; }
+		get { return (planetCollider != null ?  planetCollider : GetComponent<CircleCollider2D>()).radius * transform.localScale.x; }
 	}
 
 	public int SolarOutput
