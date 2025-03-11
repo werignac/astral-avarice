@@ -10,6 +10,9 @@ public class MissionData : ScriptableObject
     public int startingScience;
     public BuildingData[] startingBuildings;
     public string tutorialScene;
+    public bool hasPrereq;
+    public string prereqMission;
+    public int prereqRank;
 
     public int GetRank(float time)
     {

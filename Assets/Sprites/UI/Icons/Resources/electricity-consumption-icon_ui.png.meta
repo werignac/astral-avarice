@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      electricity-consumption-icon_ui_0: 6981855768562669556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

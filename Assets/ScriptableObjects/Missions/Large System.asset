@@ -42,3 +42,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c6fa1f432ef08294db476ac34e35b6a3, type: 2}
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   tutorialScene: 
+  hasPrereq: 1
+  prereqMission: Asteroid Field
+  prereqRank: 2

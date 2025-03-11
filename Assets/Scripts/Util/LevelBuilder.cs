@@ -10,6 +10,9 @@ public class LevelBuilder : MonoBehaviour
     public int startingScience;
     public int goalCash;
     public int[] goalTimes;
+    public bool hasPrereq;
+    public string prereqMission;
+    public int prereqRank;
     public BuildingComponent[] buildings;
 
     public void Update()
@@ -31,6 +34,9 @@ public class LevelBuilder : MonoBehaviour
         missionData.startingScience = startingScience;
         missionData.cashGoal = goalCash;
         missionData.goalTimes = goalTimes;
+        missionData.hasPrereq = hasPrereq;
+        missionData.prereqMission = prereqMission;
+        missionData.prereqRank = prereqRank;
 
         buildings = GameObject.FindObjectsByType<BuildingComponent>(FindObjectsSortMode.None);
         missionData.startingBuildings = new BuildingData[buildings.Length];

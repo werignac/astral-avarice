@@ -383,7 +383,8 @@ public class GameController : MonoBehaviour
 			{
 				PlayerPrefs.SetInt(gameManager.MissionName, rank);
 			}
-			if(PlayerPrefs.GetFloat(gameManager.MissionName + "Time", -1) > victoryTime)
+			float previousTime = PlayerPrefs.GetFloat(gameManager.MissionName + "Time", -1);
+            if (previousTime <= 0 || previousTime > victoryTime)
             {
 				PlayerPrefs.SetFloat(gameManager.MissionName + "Time", victoryTime);
             }

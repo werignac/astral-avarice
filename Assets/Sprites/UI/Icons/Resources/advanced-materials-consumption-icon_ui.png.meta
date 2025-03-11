@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      advanced-materials-consumption-icon_ui_0: 8556264215259068941
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

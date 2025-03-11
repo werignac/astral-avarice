@@ -2402,7 +2402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 164819399}
   cameraSizeMin: 3
-  cameraSizeMax: 10
+  cameraSizeMax: 20
   zoomRate: 0.2
   movementSmoothing: 10
   zoomSmoothing: 10

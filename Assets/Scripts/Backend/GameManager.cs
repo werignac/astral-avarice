@@ -39,7 +39,7 @@ public class GameManager
     }
     public string MissionName
     {
-        get { return (currentMission.name); }
+        get { return (currentMission.missionName); }
     }
     public int TargetIncome
     {

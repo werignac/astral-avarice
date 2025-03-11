@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      electricity-income-icon_ui_0: 4132018763403604912
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
