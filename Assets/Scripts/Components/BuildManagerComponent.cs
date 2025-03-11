@@ -85,8 +85,10 @@ public class BuildingBuildState : BuildState, IInspectable
 	public void CleanUp()
 	{
 		if (prospectivePlanet != null)
+		{
 			OnProspectivePlanetChanged?.Invoke(null);
 			prospectivePlanet.StopProspectingMassChange();
+		}
 	}
 }
 public class BuildingChainedBuildState : BuildingBuildState
@@ -746,14 +748,17 @@ public class BuildManagerComponent : MonoBehaviour
 					else
 					{
 						// The player did not place anything.
-						BuildingComponent clickedBuilding = selectionCursor.FindFirstBuildingCollider().GetComponentInParent<BuildingComponent>();
-						if (clickedBuilding != null)
+						Collider2D buildingCollider = selectionCursor.FindFirstBuildingCollider();
+						if (buildingCollider != null)
 						{
-							// The player was in a building build mode, and clicked on an existing building.
-							// Set the building to be the new building to chain from.
-							SetState(new BuildingChainedBuildState(buildingBuildState.toBuild, clickedBuilding));
+							BuildingComponent clickedBuilding = buildingCollider.GetComponentInParent<BuildingComponent>();
+							if (clickedBuilding != null)
+							{
+								// The player was in a building build mode, and clicked on an existing building.
+								// Set the building to be the new building to chain from.
+								SetState(new BuildingChainedBuildState(buildingBuildState.toBuild, clickedBuilding));
+							}
 						}
-
 					}
 				}
 				
