@@ -14,8 +14,21 @@ public class TutorialBuildMenuUIComponent : BuildMenuUIComponent
 		}
 	}
 
-	// Prevent all demolishing in tutorials.
+	// Only enter demolish if allowed in the current state of the tutorial.
 	protected override void OnDemolishClicked()
 	{
+		if(tutorialController.demolishAllowed())
+        {
+			base.OnDemolishClicked();
+        }
 	}
+
+	// Only enter move state if allowed in the current state of the tutorial.
+	protected override void OnMoveClicked()
+    {
+		if (tutorialController.moveAllowed())
+		{
+			base.OnMoveClicked();
+		}
+    }
 }

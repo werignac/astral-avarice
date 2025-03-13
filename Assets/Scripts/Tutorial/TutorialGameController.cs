@@ -3,8 +3,8 @@ using werignac.Utils;
 
 public class TutorialGameController : GameController
 {
-    enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2, planetDestroyed = 3, cableFour = 4, selectedHouse = 5, selectedThruster = 6, clickFour = 7, count };
-    enum TutorialAllowedAction { none = 0, cable = 1, pylon = 2, fission = 3, lab = 4, coal = 5, count };
+    enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2, planetDestroyed = 3, cableFour = 4, selectedHouse = 5, selectedThruster = 6, clickFour = 7, demolish = 8, move = 9, count };
+    enum TutorialAllowedAction { none = 0, cable = 1, pylon = 2, fission = 3, lab = 4, coal = 5, demolish = 6, move = 7, count };
 
     [SerializeField] private TutorialUI tutorialUI;
     [SerializeField] private MissionData tutorialMission;
@@ -19,6 +19,14 @@ public class TutorialGameController : GameController
     public bool cablesAreAllowed()
     {
         return (allowedActions[currentTutorialState] == TutorialAllowedAction.cable || allowedActions[currentTutorialState] == TutorialAllowedAction.count);
+    }
+    public bool demolishAllowed()
+    {
+        return (allowedActions[currentTutorialState] == TutorialAllowedAction.demolish || allowedActions[currentTutorialState] == TutorialAllowedAction.count);
+    }
+    public bool moveAllowed()
+    {
+        return (allowedActions[currentTutorialState] == TutorialAllowedAction.move || allowedActions[currentTutorialState] == TutorialAllowedAction.count);
     }
     public bool buildingAllowed(BuildingData building)
     {
