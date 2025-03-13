@@ -93,15 +93,7 @@ public class CableComponent : MonoBehaviour, IDemolishable
 
 	private void LateUpdate()
 	{
-		Vector3[] positions = new Vector3[]
-		{
-			startBuilding.CableConnectionTransform.position,
-			endBuilding.CableConnectionTransform.position
-		};
-
-		// TODO: Handle cable breaks.
-
-		lineRenderer.SetPositions(positions);
+		UpdateLineRenderer();
 
 		// Move the box collider to match the area the cable is taking up.
 		GetBoxFromPoints(
@@ -115,6 +107,19 @@ public class CableComponent : MonoBehaviour, IDemolishable
 		boxCollider.transform.position = center;
 		boxCollider.transform.localEulerAngles = Vector3.forward * angle;
 		boxCollider.size = size;
+	}
+
+	public void UpdateLineRenderer()
+	{
+		Vector3[] positions = new Vector3[]
+		{
+			startBuilding.CableConnectionTransform.position,
+			endBuilding.CableConnectionTransform.position
+		};
+
+		// TODO: Handle cable breaks.
+
+		lineRenderer.SetPositions(positions);
 	}
 
 	// TODO: Use for breaks when objects move.

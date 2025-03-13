@@ -15,6 +15,7 @@ public class LevelBuilder : MonoBehaviour
     public string prereqMission;
     public int prereqRank;
     public BuildingComponent[] buildings;
+    public CableComponent cablePrefab;
 
     public void Update()
     {
@@ -71,9 +72,66 @@ public class LevelBuilder : MonoBehaviour
         }    
     }
 
+    public void AssignBuildingsParentPlanets()
+    {
+        PlanetComponent[] planets = GameObject.FindObjectsByType<PlanetComponent>(FindObjectsSortMode.None);
+
+        if (planets.Length > 0)
+        {
+            foreach (BuildingComponent building in buildings)
+            {
+                if (building.ParentPlanet == null)
+                {
+                    float closestPlanetDistance = -1;
+                    PlanetComponent closestPlanet = null;
+                    foreach (PlanetComponent planet in planets)
+                    {
+                        float distanceToHover = Vector2.Distance(planet.GetClosestSurfacePointToPosition(building.transform.position), building.transform.position);
+
+                        // If this is the first planet, assume it's the closest.
+                        // Otherwise, store the new closest.
+                        if (closestPlanetDistance < 0 || distanceToHover < closestPlanetDistance)
+                        {
+                            closestPlanetDistance = distanceToHover;
+                            closestPlanet = planet;
+                        }
+                    }
+
+                    building.SetParentPlanet(closestPlanet);
+                }
+            }
+        }
+    }
+
     public void FindBuildingComponents()
     {
         buildings = GameObject.FindObjectsByType<BuildingComponent>(FindObjectsSortMode.None);
+    }
+
+    public void CreateAllInRangeCables()
+    {
+        for(int i = 0; i < buildings.Length; ++i)
+        {
+            for (int j = i + 1; j < buildings.Length; ++j)
+            {
+                if((buildings[i].CableConnectionTransform.position - buildings[j].CableConnectionTransform.position).magnitude < GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength)
+                {
+                    GameObject cableObject = PrefabUtility.InstantiatePrefab(cablePrefab.gameObject) as GameObject;
+                    CableComponent cable = cableObject.GetComponent<CableComponent>();
+                    cable.SetAttachedBuildings(buildings[i], buildings[j]);
+                    cable.UpdateLineRenderer();
+                }
+            }
+        }
+    }
+
+    public void UpdateCableLines()
+    {
+        CableComponent[] cables = GameObject.FindObjectsByType<CableComponent>(FindObjectsSortMode.None);
+        foreach(CableComponent cable in cables)
+        {
+            cable.UpdateLineRenderer();
+        }
     }
 #endif
 

@@ -17,9 +17,21 @@ public class LevelBuilderInspector : Editor
         {
             ((LevelBuilder)target).OrientBuildingChildren();
         }
-        if(GUILayout.Button("Find Buildings"))
+        if (GUILayout.Button("Assign Building Planets"))
+        {
+            ((LevelBuilder)target).AssignBuildingsParentPlanets();
+        }
+        if (GUILayout.Button("Find Buildings"))
         {
             ((LevelBuilder)target).FindBuildingComponents();
+        }
+        if(GUILayout.Button("Create All Cables"))
+        {
+            ((LevelBuilder)target).CreateAllInRangeCables();
+        }
+        if (GUILayout.Button("UpdateCableLines"))
+        {
+            ((LevelBuilder)target).UpdateCableLines();
         }
     }
 }
