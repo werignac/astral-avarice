@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] private UIDocument defeatDocument;
 	[SerializeField] private UIDocument gridPowerDocument;
 	[SerializeField] private GridGroupViewComponent gridGroupView;
-	[SerializeField] private Camera mainCamera;
+	[SerializeField] protected Camera mainCamera;
 
 
     private Label cashLabel;

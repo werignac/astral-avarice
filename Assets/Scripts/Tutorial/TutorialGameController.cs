@@ -11,6 +11,10 @@ public class TutorialGameController : GameController
     [SerializeField] private TutorialStateChangeCondition[] stateChangeConditions;
     [SerializeField] private TutorialAllowedAction[] allowedActions;
     [SerializeField] private int[] gameSpeedOverrides;
+    [SerializeField] private Vector3[] cameraFocuses;
+    [SerializeField] private GameObject[] displayObjects;
+    [SerializeField] private bool[] setBuildToNone;
+    [SerializeField] private Vector3[] buildLocations; // The first two numbers (x, y) are the center of a circle with radius z where the build is allowed.
 
     private int currentTutorialState = 0;
     private bool advanceAtEndOfNextUpdate = false;
@@ -63,7 +67,22 @@ public class TutorialGameController : GameController
         }
         else
         {
-            BuildManagerComponent.Instance.SetNoneState();
+            if (setBuildToNone[currentTutorialState])
+            {
+                BuildManagerComponent.Instance.SetNoneState();
+            }
+            if(displayObjects[currentTutorialState - 1] != null)
+            {
+                displayObjects[currentTutorialState - 1].SetActive(false);
+            }
+            if(displayObjects[currentTutorialState] != null)
+            {
+                displayObjects[currentTutorialState].SetActive(true);
+            }
+            if(cameraFocuses[currentTutorialState].z > 0f)
+            {
+                FocusCamera(cameraFocuses[currentTutorialState]);
+            }
             tutorialUI.ShowNextElement();
         }
     }
@@ -117,6 +136,55 @@ public class TutorialGameController : GameController
 
     public override void BuildManager_OnBuildResovle(BuildResolve resolution)
     {
+        bool placedIncorrectly = false;
+        if(resolution.successfullyPlacedBuilding)
+        {
+            if(buildLocations[currentTutorialState].z > 0)
+            {
+                float distance = (resolution.builtBuilding.transform.position - new Vector3(buildLocations[currentTutorialState].x, buildLocations[currentTutorialState].y)).magnitude;
+                if(distance > buildLocations[currentTutorialState].z)
+                {
+                    resolution.successfullyPlacedBuilding = false;
+                    resolution.totalCost -= resolution.builtBuilding.Data.cost;
+                    Destroy(resolution.builtBuilding.gameObject);
+                    resolution.builtBuilding = null;
+                    placedIncorrectly = true;
+                }
+            }
+        }
+        if (resolution.successfullyPlacedCable)
+        {
+            if (buildLocations[currentTutorialState].z > 0)
+            {
+                float distance = (resolution.builtCable.Start.transform.position - new Vector3(buildLocations[currentTutorialState].x, buildLocations[currentTutorialState].y)).magnitude;
+                if (distance > buildLocations[currentTutorialState].z)
+                {
+                    resolution.successfullyPlacedCable = false;
+                    resolution.totalCost -= Mathf.CeilToInt(resolution.builtCable.Length * Data.cableCostMultiplier);
+                    Destroy(resolution.builtBuilding.gameObject);
+                    resolution.builtBuilding = null;
+                    placedIncorrectly = true;
+                }
+                else
+                {
+                    distance = (resolution.builtCable.End.transform.position - new Vector3(buildLocations[currentTutorialState].x, buildLocations[currentTutorialState].y)).magnitude;
+                    if (distance > buildLocations[currentTutorialState].z)
+                    {
+                        resolution.successfullyPlacedCable = false;
+                        resolution.totalCost -= Mathf.CeilToInt(resolution.builtCable.Length * Data.cableCostMultiplier);
+                        Destroy(resolution.builtCable.gameObject);
+                        resolution.builtCable = null;
+                        placedIncorrectly = true;
+                    }
+                }
+            }
+        }
+
+        if(placedIncorrectly && cameraFocuses[currentTutorialState].z > 0)
+        {
+            FocusCamera(cameraFocuses[currentTutorialState]);
+        }
+
         base.BuildManager_OnBuildResovle(resolution);
 
         if (resolution.successfullyPlacedBuilding)
@@ -173,5 +241,10 @@ public class TutorialGameController : GameController
             }
         }
         
+    }
+
+    public void FocusCamera(Vector2 focusPosition)
+    {
+        mainCamera.GetComponent<CameraMovementComponent>().MoveTo(focusPosition);
     }
 }
