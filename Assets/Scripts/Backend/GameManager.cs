@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class GameManager
 {
@@ -11,7 +12,6 @@ public class GameManager
     private int cash;
     private float timePassed;
     private int[] goalTimes;
-    private GameController controller;
     private MissionData currentMission;
     private int scienceHeld;
     private int scienceIncome;
@@ -20,6 +20,24 @@ public class GameManager
     private SortedSet<int> freeGroupIds = new SortedSet<int>();
     private float winningStartTime;
     private float losingStartTime;
+
+	/// <summary>
+	/// Invoked when the game ends. Passes whether the game ended in a victory
+	/// and when the player won.
+	/// </summary>
+	public UnityEvent<bool, float> OnGameEnd = new UnityEvent<bool, float>();
+	/// <summary>
+	/// Invoked when the cash or cash income changes. Passes the current cash
+	/// and cash income values.
+	/// </summary>
+	public UnityEvent<int, int> OnUpdatedCashAndCashIncome = new UnityEvent<int, int>();
+	/// <summary>
+	/// Invoked when the science or science income changes. Passes the current
+	/// science and science income.
+	/// 
+	/// (Note: Science == Advanced Materials)
+	/// </summary>
+	public UnityEvent<int, int> OnUpdatedScienceAndScienceIncome = new UnityEvent<int, int>();
 
     public int Income
     {
@@ -58,27 +76,15 @@ public class GameManager
         get { return (winningStartTime); }
     }
 
-    public GameManager(GameController controller)
-    {
-        this.controller = controller;
-    }
-
     public void SpendMoney(int spentAmount)
     {
         cash -= spentAmount;
-        if (controller != null)
-        {
-            controller.UpdateCashAndIncome(cash, income);
-        }
+        OnUpdatedCashAndCashIncome.Invoke(cash, income);
     }
     public void SpendScience(int spentAmount)
     {
         scienceHeld -= spentAmount;
-        if (controller != null)
-        {
-            controller.UpdateScienceLabels(scienceHeld, scienceIncome);
-        }
-
+        OnUpdatedScienceAndScienceIncome.Invoke(scienceHeld, scienceIncome);
     }
 
     //Use this if buildings don't need to be instantiated at start.
@@ -126,11 +132,9 @@ public class GameManager
         {
             cash += income;
             scienceHeld += scienceIncome;
-            if (controller != null)
-            {
-                controller.UpdateCashAndIncome(cash, income);
-                controller.UpdateScienceLabels(scienceHeld, scienceIncome);
-            }
+            OnUpdatedCashAndCashIncome.Invoke(cash, income);
+			OnUpdatedScienceAndScienceIncome.Invoke(scienceHeld, scienceIncome);
+
             if (income >= currentMission.cashGoal)
             {
                 if (!hadEnoughIncomePreviously)
@@ -184,10 +188,7 @@ public class GameManager
         {
             Debug.Log("Earning enough money! Victory!");
         }
-        if(controller != null)
-        {
-            controller.EndGame(Winning, winningStartTime);
-        }
+        OnGameEnd.Invoke(Winning, winningStartTime);
     }
 
     public void AddBuilding(Building building)
@@ -216,11 +217,8 @@ public class GameManager
             }
             if(building.NumConnected == 0)
             {
-                if (controller != null)
-                {
-                    controller.UpdateCashAndIncome(cash, income);
-                    controller.UpdateScienceLabels(scienceHeld, scienceIncome);
-                }
+                OnUpdatedCashAndCashIncome.Invoke(cash, income);
+				OnUpdatedScienceAndScienceIncome.Invoke(scienceHeld, scienceIncome);
             }
         }
     }
@@ -307,11 +305,9 @@ public class GameManager
 
             }
         }
-        if(controller != null)
-        {
-            controller.UpdateCashAndIncome(cash, income);
-            controller.UpdateScienceLabels(scienceHeld, scienceIncome);
-        }
+
+        OnUpdatedCashAndCashIncome.Invoke(cash, income);
+        OnUpdatedScienceAndScienceIncome.Invoke(scienceHeld, scienceIncome);
     }
 
     public void CalculateIncome()
@@ -345,11 +341,8 @@ public class GameManager
         }
         if(producers.Count <= 0)
         {
-            if (controller != null)
-            {
-                controller.UpdateCashAndIncome(cash, income);
-                controller.UpdateScienceLabels(scienceHeld, scienceIncome);
-            }
+            OnUpdatedCashAndCashIncome.Invoke(cash, income);
+            OnUpdatedScienceAndScienceIncome.Invoke(scienceHeld, scienceIncome);    
         }
     }
 
@@ -447,11 +440,10 @@ public class GameManager
             income -= building.Data.income;
             scienceIncome -= building.Data.scienceIncome;
             building.IsPowered = false;
-            if (controller != null)
-            {
-                controller.UpdateCashAndIncome(cash, income);
-                controller.UpdateScienceLabels(scienceHeld, scienceIncome);
-            }
+            
+			OnUpdatedCashAndCashIncome.Invoke(cash, income);
+            OnUpdatedScienceAndScienceIncome.Invoke(scienceHeld, scienceIncome);
+           
             return (true);
         }
         else
@@ -461,11 +453,10 @@ public class GameManager
                 income += building.Data.income;
                 scienceIncome += building.Data.scienceIncome;
                 building.IsPowered = true;
-                if (controller != null)
-                {
-                    controller.UpdateCashAndIncome(cash, income);
-                    controller.UpdateScienceLabels(scienceHeld, scienceIncome);
-                }
+                
+				OnUpdatedCashAndCashIncome.Invoke(cash, income);
+				OnUpdatedScienceAndScienceIncome.Invoke(scienceHeld, scienceIncome);
+                
                 return (true);
             }
             else

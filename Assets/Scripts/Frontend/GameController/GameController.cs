@@ -110,7 +110,12 @@ public class GameController : MonoBehaviour
 	protected virtual void Start()
     {
 		GameSpeed = 0;
-        gameManager = new GameManager(this);
+        gameManager = new GameManager();
+
+		gameManager.OnGameEnd.AddListener(EndGame);
+		gameManager.OnUpdatedCashAndCashIncome.AddListener(UpdateCashAndIncome);
+		gameManager.OnUpdatedScienceAndScienceIncome.AddListener(UpdateScienceLabels);
+
         cashLabel = statsDocument.rootVisualElement.Q("Cash") as Label;
         incomeLabel = statsDocument.rootVisualElement.Q("Income") as Label;
 		scienceLabel = statsDocument.rootVisualElement.Q("Science") as Label;
