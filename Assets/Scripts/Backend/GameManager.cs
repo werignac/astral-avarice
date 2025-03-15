@@ -100,28 +100,6 @@ public class GameManager
         ReassignAllGroups();
         CalculateIncome();
     }
-    //Use this if BuildingComponents need a reference to the Building object being used by the manager.
-    public void StartMission(MissionData mission, LevelBuilder level)
-    {
-        hadEnoughIncomePreviously = false;
-        currentMission = mission;
-        cash = mission.startingCash;
-        scienceHeld = mission.startingScience;
-        buildings = new List<Building>();
-        timePassed = 0;
-        goalTimes = mission.goalTimes;
-
-        for (int i = 0; i < level.buildings.Length; ++i)
-        {
-            Building building = new Building(level.buildings[i].Data);
-            building.SetManager(this);
-            buildings.Add(building);
-            level.buildings[i].SetGameBuilding(building);
-        }
-
-        CalculateIncome();
-        ReassignAllGroups();
-    }
 
     public void Update(float deltaTime)
     {
