@@ -24,7 +24,7 @@ public class InputManagerComponent : MonoBehaviour
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
-	[SerializeField] private InspectorUIComponent inspector;
+	[SerializeField] private SelectionComponent selection;
 	[SerializeField] private GameController gameController;
 	[SerializeField] private PauseManager pauseManager;
 	[SerializeField] private MinimapComponent minimap;
@@ -72,9 +72,12 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void Update()
 	{
+		bool startInBuildState = BuildManagerComponent.Instance.IsInBuildState();
+
 		UpdateSelectionCursor();
 		UpdateBuildManager();
-		UpdateInspector();
+		if (! startInBuildState)
+			UpdateSelection();
 		UpdateCameraMovement();
 		UpdateGameController();
 		UpdatePauseManager();
@@ -89,7 +92,7 @@ public class InputManagerComponent : MonoBehaviour
 			return;
 
 		// Convert the mouse position to a position in world space.
-		Vector2 mousePositionWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector2 mousePositionWorldSpace = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
 		selectionCursor.SetPosition(mousePositionWorldSpace);
 		selectionCursor.QueryHovering();
@@ -121,7 +124,7 @@ public class InputManagerComponent : MonoBehaviour
 		}
 	}
 
-	private void UpdateInspector()
+	private void UpdateSelection()
 	{
 		// Don't take input whilst the game is paused.
 		if (gameController.GamePaused)
@@ -138,13 +141,13 @@ public class InputManagerComponent : MonoBehaviour
 		// Select the hovered object.
 		if (acceptAction.WasPerformedThisFrame())
 		{
-			inspector.TrySelect();
+			selection.CursorSelectThisUpdate();
 		}
 
 		// Get rid of the selected object (if there is one).
 		if (cancelAction.WasPerformedThisFrame())
 		{
-			inspector.FreeSelect();
+			selection.ClearSelection();
 		}
 	}
 
@@ -159,7 +162,7 @@ public class InputManagerComponent : MonoBehaviour
 		
 		
 
-		cameraMovementComponent.SetHoverInput(Input.mousePosition);
+		cameraMovementComponent.SetHoverInput(Mouse.current.position.ReadValue());
 		cameraMovementComponent.SetPanningInput(panAction.IsPressed());
 
 

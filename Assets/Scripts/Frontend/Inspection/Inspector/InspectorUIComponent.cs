@@ -6,44 +6,11 @@ using System.Collections.Generic;
 using werignac.Utils;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using AstralAvarice.Utils.Layers;
 
 [RequireComponent(typeof(UIDocument))]
 public class InspectorUIComponent : MonoBehaviour
 {
-	// In ascending order of precedence:
-	// DEFAULT: Nothing is being hovered over. No build mode is set.
-	// HOVER: The player is hovering over an inspectable object. No build mode is set.
-	// SELECT: The player clicked on an inspectable object. No build mode is set.
-	// BUILD_MODE: The player is in a particular build mode.
-	// UI_HOVER: The player is hovering over some UI.
-	public enum InspectorLayerType { DEFAULT = 1, HOVER = 2, SELECT = 4, BUILD_MODE = 8, UI_HOVER = 16 }
-
-	// Layers that cannot be used by outside scripts.
-	private const int LOCKED_LAYERS = (int) (InspectorLayerType.DEFAULT | InspectorLayerType.HOVER | InspectorLayerType.SELECT | InspectorLayerType.BUILD_MODE);
-
-	public class InspectorLayer : IComparable<InspectorLayer>
-	{
-		public readonly IInspectable inspectable;
-		public readonly InspectorLayerType layer;
-
-		public InspectorLayer(IInspectable inspectable, InspectorLayerType layer)
-		{
-			this.inspectable = inspectable;
-			this.layer = layer;
-		}
-
-		public int CompareTo(InspectorLayer other)
-		{
-			if (layer == other.layer)
-				return 0;
-
-			if (layer > other.layer)
-				return 1;
-
-			return -1;
-		}
-	}
-
 	private UIDocument uiDocument;
 	
 	private Button collapseButton;
@@ -53,36 +20,26 @@ public class InspectorUIComponent : MonoBehaviour
 	[SerializeField] private Sprite collapseButtonMenuOpened;
 	[SerializeField] private Sprite collapseButtonMenuClosed;
 
-	[SerializeField] private GameController gameController;
-	[SerializeField] private SelectionCursorComponent selectionCursor;
-
-	private SortedSet<InspectorLayer> activeInspectorLayers = new SortedSet<InspectorLayer>();
-
-	// Only one inpectable component can be in the activeInspectorLayers set at a time.
-	// Inspectable components are gameobjects that have an associated inspector UI.
-	// Inspectable components show their UI when they are hovered over or selected.
-	private InspectorLayer currentInspectableComponentLayer = null;
-	private IInspectableComponent CurrentInspectableComponent { get => currentInspectableComponentLayer == null ? null : currentInspectableComponentLayer.inspectable as IInspectableComponent; }
-	private bool isCurrentInspectableComponentSelected = false;
-
+	private LayerContainer<InspectorLayer> inspectorLayers = new LayerContainer<InspectorLayer>();
 	private InspectorLayer currentInspectorLayer;
 	private IInspectorController currentController;
 
 	// Whether to reassess the inspector layers on LateUpdate.
 	bool markedForUIUpdate = false;
 
-	[HideInInspector] public UnityEvent<IInspectableComponent> OnHoverEnter = new UnityEvent<IInspectableComponent>();
-	[HideInInspector] public UnityEvent<IInspectableComponent> OnHoverExit = new UnityEvent<IInspectableComponent>();
-	[HideInInspector] public UnityEvent<IInspectableComponent> OnSelectStart = new UnityEvent<IInspectableComponent>();
-	[HideInInspector] public UnityEvent<IInspectableComponent> OnSelectEnd = new UnityEvent<IInspectableComponent>();
-
-
 	private void Awake()
 	{
 		uiDocument = GetComponent<UIDocument>();
 
 		// If there nothing else to inspect, by default show the default inspector.
-		activeInspectorLayers.Add(new InspectorLayer(new DefaultInspector(), InspectorLayerType.DEFAULT));
+		inspectorLayers.Add(new InspectorLayer(new DefaultInspector(), InspectorLayerType.DEFAULT));
+		MarkForUIUpdate();
+
+		inspectorLayers.OnTopLayerChanged.AddListener(InspectorLayer_OnTopLayerChanged);
+	}
+
+	private void InspectorLayer_OnTopLayerChanged(InspectorLayer oldTop, InspectorLayer newTop)
+	{
 		MarkForUIUpdate();
 	}
 
@@ -98,8 +55,6 @@ public class InspectorUIComponent : MonoBehaviour
 		inspectorUIContainer = uiDocument.rootVisualElement.Q("ScrolledContent");
 
 		collapseButton.RegisterCallback<ClickEvent>(CollapseButton_OnClick);
-
-		BuildManagerComponent.Instance.OnStateChanged.AddListener(BuildManager_OnStateChanged);
 	}
 
 	public InspectorLayer AddLayer(IInspectable inspectable, InspectorLayerType layer)
@@ -109,58 +64,18 @@ public class InspectorUIComponent : MonoBehaviour
 
 	public InspectorLayer AddLayer(IInspectable inspectable, int layer)
 	{
-		if ((LOCKED_LAYERS & layer) != 0)
-			throw new ArgumentException($"Could not externally create an inspector layer from layer {layer}. This layer is managed by the InspectorUIComponent itself.");
-
 		InspectorLayer newLayerObj = new InspectorLayer(inspectable, (InspectorLayerType) layer);
-		activeInspectorLayers.Add(newLayerObj);
-		MarkForUIUpdate();
+		inspectorLayers.Add(newLayerObj);
 		return newLayerObj;
 	}
 
 	public bool RemoveLayer(InspectorLayer toRemove)
 	{
-		if ((LOCKED_LAYERS & (int) toRemove.layer) != 0)
-			throw new ArgumentException($"Could not externally remove an inspector layer from layer {toRemove.layer}. This layer is managed by the InspectorUIComponent itself.");
-
-		bool didRemove = activeInspectorLayers.Remove(toRemove);
-		if(didRemove)
-        {
-			MarkForUIUpdate();
-        }
-		return didRemove;
-	}
-
-	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
-	{
-		// Remove any layers based on the Build Mode.
-		activeInspectorLayers.RemoveWhere((InspectorLayer layer) => { return layer.layer == InspectorLayerType.BUILD_MODE; });
-
-		switch(newState.GetStateType())
-		{
-			case BuildStateType.BUILDING:
-			case BuildStateType.BUILDING_CHAINED:
-				BuildingBuildState buildingBuildState = newState as BuildingBuildState;
-				activeInspectorLayers.Add(new InspectorLayer(buildingBuildState, InspectorLayerType.BUILD_MODE));
-				break;
-			case BuildStateType.CABLE:
-				activeInspectorLayers.Add(new InspectorLayer(new InspectableCable(), InspectorLayerType.BUILD_MODE));
-				break;
-			case BuildStateType.DEMOLISH:
-				activeInspectorLayers.Add(new InspectorLayer(new InspectableDemolish(), InspectorLayerType.BUILD_MODE));
-				break;
-			case BuildStateType.MOVE:
-				activeInspectorLayers.Add(new InspectorLayer(new InspectableMove(), InspectorLayerType.BUILD_MODE));
-				break;
-		}
-
-		MarkForUIUpdate();
+		return inspectorLayers.Remove(toRemove);
 	}
 
 	private void CollapseButton_OnClick(ClickEvent evt)
 	{
-		// TODO: Change collapse button graphic.
-
 		switch (collapsableInspectorContent.style.display.value)
 		{
 			case DisplayStyle.None:
@@ -173,87 +88,6 @@ public class InspectorUIComponent : MonoBehaviour
 				break;
 		}
 	}
-
-	private void Update()
-	{
-		// Check if the selected / hovered layer has been destroyed.
-		ValidateInspectorComponentIntegrity();
-
-		// If we are in a build state, don't look for objects to hover or select.
-		bool isInBuildState = BuildManagerComponent.Instance.IsInBuildState();
-		// If nothing is selected, look for gameobjects to hover over.
-		if (!isInBuildState && !isCurrentInspectableComponentSelected)
-		{
-			IInspectableComponent hovering = GetHoveringInspectable();
-
-			// Remove the old item we were hovering over.
-			if (currentInspectableComponentLayer != null)
-				activeInspectorLayers.Remove(currentInspectableComponentLayer);
-
-			// Add the new item we are hovering over.
-			if (hovering != null)
-			{
-				InspectorLayer newLayer = new InspectorLayer(hovering, InspectorLayerType.HOVER);
-				activeInspectorLayers.Add(newLayer);
-				currentInspectableComponentLayer = newLayer;
-			}
-
-			// Must call after updating inspector layers.
-			MarkForUIUpdate();
-		}
-	}
-
-	/// <summary>
-	/// Called by InputController. Tries to select an inpectable under the cursor.
-	/// Should only be called whilst out of build mode and not hover over UI.
-	/// </summary>
-	public void TrySelect()
-	{
-		if (EventSystem.current.IsPointerOverGameObject())
-			return;
-
-		if (BuildManagerComponent.Instance.IsInBuildState())
-			return;
-
-		IInspectableComponent toSelect = GetHoveringInspectable();
-		if (toSelect == null)
-			return;
-
-		// Remove old select or hover layer.
-		if (currentInspectableComponentLayer != null)
-		{
-			activeInspectorLayers.Remove(currentInspectableComponentLayer);
-		}
-
-		InspectorLayer selectLayer = new InspectorLayer(toSelect, InspectorLayerType.SELECT);
-		isCurrentInspectableComponentSelected = true;
-		activeInspectorLayers.Add(selectLayer);
-		currentInspectableComponentLayer = selectLayer;
-		MarkForUIUpdate();
-	}
-
-	public void FreeSelect()
-	{
-		// If we're not in selecting anything, there is nothing to deselect.
-		if (!isCurrentInspectableComponentSelected)
-			return;
-
-		activeInspectorLayers.Remove(currentInspectableComponentLayer);
-		currentInspectableComponentLayer = null;
-		isCurrentInspectableComponentSelected = false;
-
-		MarkForUIUpdate();
-	}
-
-	private IInspectableComponent GetHoveringInspectable()
-	{
-		List<Collider2D> allHoveringColliders = new List<Collider2D>(selectionCursor.GetHovering());
-		Collider2D foundInspectableCollider = allHoveringColliders.Find((Collider2D collider) => { return collider.TryGetComponentInParent<IInspectableComponent>(out IInspectableComponent _); });
-
-		IInspectableComponent foundInspectable = foundInspectableCollider == null ? null : foundInspectableCollider.GetComponentInParent<IInspectableComponent>();
-		return foundInspectable;
-	}
-
 	private void LateUpdate()
 	{
 		if (markedForUIUpdate)
@@ -264,49 +98,16 @@ public class InspectorUIComponent : MonoBehaviour
 			currentController.UpdateUI();
 	}
 
-	/// <summary>
-	/// Catches when selected / hovered GameObjects are destroyed.
-	/// </summary>
-	private void ValidateInspectorComponentIntegrity()
-	{
-		// Need the "as Component" otherwise the wrong == is used.
-		if (currentInspectableComponentLayer != null && currentInspectableComponentLayer.inspectable as Component == null)
-		{
-			activeInspectorLayers.Remove(currentInspectableComponentLayer);
-			currentInspectableComponentLayer = null;
-			isCurrentInspectableComponentSelected = false;
-
-			MarkForUIUpdate();
-		}
-	}
-
 	private void UpdateTopmostInspectorLayer()
 	{
 		// Assume topmostLayer is never null.
-		InspectorLayer topmostLayer = activeInspectorLayers.Max;
+		InspectorLayer topmostLayer = inspectorLayers.Max;
 
 		// If the topmost inspectable has not changed, don't change the UI.
 		if (currentInspectorLayer != null &&
 			topmostLayer.inspectable == currentInspectorLayer.inspectable &&
-			topmostLayer.layer == currentInspectorLayer.layer)
+			topmostLayer.LayerType == currentInspectorLayer.LayerType)
 			return;
-
-		if (currentInspectorLayer != null)
-		{
-			// If the old layer was hover or select, we need to clear hover and select.
-			
-			switch (currentInspectorLayer.layer)
-			{
-				case InspectorLayerType.HOVER:
-					(currentInspectorLayer.inspectable as IInspectableComponent).OnHoverExit();
-					OnHoverExit?.Invoke(currentInspectorLayer.inspectable as IInspectableComponent);
-					break;
-				case InspectorLayerType.SELECT:
-					(currentInspectorLayer.inspectable as IInspectableComponent).OnSelectEnd();
-					OnSelectEnd?.Invoke(currentInspectorLayer.inspectable as IInspectableComponent);
-					break;
-			}
-		}
 
 		// Only instantiate new ui if there was a change in the object that
 		// is shown in the inspector. Going from hovering to selecting the same object
@@ -330,22 +131,6 @@ public class InspectorUIComponent : MonoBehaviour
 			inspectorUIContainer.Add(inspectorInstance);
 		
 			currentController = newInspectorController;
-		}
-
-		// If the new layer is hover or select, we need to show that we're now hovering or selecting.
-		switch(topmostLayer.layer)
-		{
-			case InspectorLayerType.HOVER:
-				(topmostLayer.inspectable as IInspectableComponent).OnHoverEnter();
-				OnHoverEnter?.Invoke(topmostLayer.inspectable as IInspectableComponent);
-				break;
-			case InspectorLayerType.SELECT:
-				(topmostLayer.inspectable as IInspectableComponent).OnSelectStart();
-				OnSelectStart?.Invoke(topmostLayer.inspectable as IInspectableComponent);
-				// If the player selected something and the inspector was closed, open it.
-				if (collapsableInspectorContent.style.display == DisplayStyle.None)
-					CollapseButton_OnClick(null);
-				break;
 		}
 
 		currentInspectorLayer = topmostLayer;

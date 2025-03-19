@@ -150,6 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridGroupViewPostProcessingMaterial: {fileID: 2100000, guid: 2c892c51b7f964e4695c7e90c8926e32, type: 2}
   clearOnAwake: 1
+  cursor: {fileID: 191995373}
+  tooltip: {fileID: 921826571}
+  tooltipLayerFactory: {fileID: 11400000, guid: 459080127ade2884088fafb4ed365589, type: 2}
+  gameController: {fileID: 164819401}
 --- !u!4 &158018944
 Transform:
   m_ObjectHideFlags: 0
@@ -175,6 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 159337140}
   - component: {fileID: 159337139}
+  - component: {fileID: 159337141}
   m_Layer: 0
   m_Name: BuildManager
   m_TagString: Untagged
@@ -230,6 +235,20 @@ Transform:
   - {fileID: 2138801514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &159337141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159337138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f13ea23f96fc8d4cb3897b11c18b58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildManager: {fileID: 159337139}
+  inspector: {fileID: 1836921261}
 --- !u!1 &164819398
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,8 +301,6 @@ MonoBehaviour:
   gameDataSet: {fileID: 11400000, guid: cc5cf6fbd626c8547bd726b0fa4b0eb0, type: 2}
   victoryDocument: {fileID: 0}
   defeatDocument: {fileID: 0}
-  gridPowerDocument: {fileID: 921826568}
-  gridGroupView: {fileID: 158018943}
   mainCamera: {fileID: 1841248162}
   OnLevelLoad:
     m_PersistentCalls:
@@ -293,6 +310,10 @@ MonoBehaviour:
   stateChangeConditions: 000000000000000000000000000000000000000000000000000000000500000007000000000000000600000000000000030000000000000000000000
   allowedActions: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   gameSpeedOverrides: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000
+  cameraFocuses: []
+  displayObjects: []
+  setBuildToNone: 
+  buildLocations: []
 --- !u!1 &189499661
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 191995374}
   - component: {fileID: 191995373}
+  - component: {fileID: 191995375}
   m_Layer: 0
   m_Name: SelectionCursor
   m_TagString: Untagged
@@ -387,6 +409,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &191995375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191995372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec34cc36c3a5d64e872d51f08671009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursor: {fileID: 191995373}
+  inspector: {fileID: 1836921261}
+  OnHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &212550224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,8 +1241,10 @@ GameObject:
   m_Component:
   - component: {fileID: 921826569}
   - component: {fileID: 921826568}
+  - component: {fileID: 921826571}
+  - component: {fileID: 921826570}
   m_Layer: 5
-  m_Name: GridPowerUI
+  m_Name: Tooltip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1214,7 +1264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 0c64b5e781f3a4f4faf09a06b87482e2, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: a18f69743d11ab04f927423ef57ea806, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: 63c58f43ca0826b4c99ad51f6abcd01d, type: 3}
   m_SortingOrder: 100
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -1234,6 +1284,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &921826570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921826567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a214c9e6b85e4074096b6221379f5df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 921826571}
+  panelDocument: {fileID: 921826568}
+  layerFactory: {fileID: 11400000, guid: bf06d49b17ae52c43b13b5416d8a5367, type: 2}
+--- !u!114 &921826571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921826567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb8ea87e2266a64b8c2616315a32d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 921826568}
+  margin: {x: 10, y: 10}
 --- !u!1001 &1081261890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1669,7 +1748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraMovementComponent: {fileID: 1841248165}
   selectionCursor: {fileID: 191995373}
-  inspector: {fileID: 1836921261}
+  selection: {fileID: 0}
   gameController: {fileID: 164819401}
   pauseManager: {fileID: 552177426}
   minimap: {fileID: 0}
@@ -1802,20 +1881,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseButtonMenuOpened: {fileID: -1368689051005213235, guid: e094b38c1cb1966408973485dc4d04ab, type: 3}
   collapseButtonMenuClosed: {fileID: 3785482913512300008, guid: d4283c40e4fba7c4f83a041ae837150c, type: 3}
-  gameController: {fileID: 164819401}
-  selectionCursor: {fileID: 191995373}
-  OnHoverEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHoverExit:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSelectStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSelectEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1841248160
 GameObject:
   m_ObjectHideFlags: 0

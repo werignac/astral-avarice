@@ -623,6 +623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 454164190}
   - component: {fileID: 454164189}
+  - component: {fileID: 454164191}
   m_Layer: 0
   m_Name: MissionSelecter
   m_TagString: Untagged
@@ -664,6 +665,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &454164191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454164188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92488b10360b1e4419e8e337cdeee9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: cc5cf6fbd626c8547bd726b0fa4b0eb0, type: 2}
+  missionSelectDocument: {fileID: 454164189}
+  missionButtonPrefab: {fileID: 9197481963319205126, guid: 089c9e43ee88121449dca560d3f23bb0, type: 3}
+  tooltip: {fileID: 1472481593}
+  tooltipLayerFactory: {fileID: 11400000, guid: bf06d49b17ae52c43b13b5416d8a5367, type: 2}
+  OnPlayerClosed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &500337891
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,10 +853,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: cc5cf6fbd626c8547bd726b0fa4b0eb0, type: 2}
   mainMenuDocument: {fileID: 638269462}
-  missionSelectDocument: {fileID: 454164189}
+  missionUI: {fileID: 454164191}
   settingsDocument: {fileID: 790142433}
   creditsDocument: {fileID: 1028712846}
-  mouseHoverDocument: {fileID: 1472481590}
   missionButtonPrefab: {fileID: 9197481963319205126, guid: 089c9e43ee88121449dca560d3f23bb0, type: 3}
   audioMixer: {fileID: 24100000, guid: 651c72aa38f366b4185571ed3ef58479, type: 2}
   missionRankSprites:
@@ -845,6 +865,7 @@ MonoBehaviour:
   - {fileID: -5943403573417048326, guid: 1446aaa8309675e4194744b7f932724e, type: 3}
   - {fileID: 3182304583510767899, guid: b979eabd799852649a6788c9c90168d1, type: 3}
   - {fileID: 6824925376817469756, guid: 2b91b36df40249646a49952429cb07cd, type: 3}
+  tooltip: {fileID: 1472481593}
 --- !u!1 &702176660
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,52 +993,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790142432}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &844882713
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 844882715}
-  - component: {fileID: 844882714}
-  m_Layer: 0
-  m_Name: GridGroupView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &844882714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844882713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21344e910dbf52343be9d1d2b634108f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridGroupViewPostProcessingMaterial: {fileID: 2100000, guid: 2c892c51b7f964e4695c7e90c8926e32, type: 2}
-  clearOnAwake: 1
---- !u!4 &844882715
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844882713}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1464,8 +1439,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1472481591}
   - component: {fileID: 1472481590}
+  - component: {fileID: 1472481593}
+  - component: {fileID: 1472481592}
   m_Layer: 5
-  m_Name: MouseTooltip
+  m_Name: Tooltip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1485,7 +1462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 0c64b5e781f3a4f4faf09a06b87482e2, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: a18f69743d11ab04f927423ef57ea806, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: 63c58f43ca0826b4c99ad51f6abcd01d, type: 3}
   m_SortingOrder: 10
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -1505,6 +1482,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1472481592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472481589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a214c9e6b85e4074096b6221379f5df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 1472481593}
+  panelDocument: {fileID: 1472481590}
+  layerFactory: {fileID: 11400000, guid: bf06d49b17ae52c43b13b5416d8a5367, type: 2}
+--- !u!114 &1472481593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472481589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb8ea87e2266a64b8c2616315a32d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 1472481590}
+  margin: {x: 10, y: 10}
 --- !u!1 &1501900649
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,5 +2086,4 @@ SceneRoots:
   - {fileID: 1541653176}
   - {fileID: 267300972}
   - {fileID: 1637553675}
-  - {fileID: 844882715}
   - {fileID: 1472481591}
