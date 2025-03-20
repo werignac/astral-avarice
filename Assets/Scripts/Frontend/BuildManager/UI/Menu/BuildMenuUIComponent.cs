@@ -312,4 +312,19 @@ public class BuildMenuUIComponent : MonoBehaviour
 			(BuildingSettingEntry building) => System.Array.IndexOf(building.VisualAsset.categories, category) >= 0
 		);
 	}
+
+	public void SetButtonHighlight(int menuIndex, bool highlight)
+    {
+		if(menuIndex >= 0 && menuIndex < buttonBindings.Count)
+        {
+			if (highlight)
+			{
+				buttonBindings[menuIndex].ShowHighlight();
+			}
+            else
+            {
+				buttonBindings[menuIndex].HideHighlight();
+            }
+        }
+    }
 }
