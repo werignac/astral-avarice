@@ -85,6 +85,10 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 		get => buildSettings.BuildingDataAsset.scienceIncome;
 	}
 
+	// Overrides
+	protected override string GetSpecialResourcesContainerName() => "ConsumedResources";
+	protected override string GetAdvancedMaterialsProductionName() => "ScienceProduction";
+
 	public BuildingButtonInspectorController(BuildingSettingEntry toDisplay)
 	{
 		buildSettings = toDisplay;

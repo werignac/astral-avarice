@@ -264,6 +264,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 	private void SetConnections(BuildingDisplayData displayData)
 	{
 		Connections.Show();
+		Connections.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
 		Connections.SetValue(displayData.BuildingConnectionsTotal.ToString());
 	}
 
@@ -283,6 +284,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 	{
 		if (has)
 		{
+			valueBinding.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
 			valueBinding.Show();
 			valueBinding.SetValue(value);
 		}

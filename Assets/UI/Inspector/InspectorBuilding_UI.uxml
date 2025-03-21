@@ -1,68 +1,22 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:Template name="SpecialResource_UI" src="project://database/Assets/UI/Special%20Resources/SpecialResource_UI.uxml?fileID=9197481963319205126&amp;guid=f0c8c85606c84174199a7853e75177c6&amp;type=3#SpecialResource_UI" />
+    <engine:Template name="BuildingStatsContainer_UI" src="project://database/Assets/UI/Building/BuildingStatsContainer_UI.uxml?fileID=9197481963319205126&amp;guid=d5524eaf71181d74284e1ff02bcd715d&amp;type=3#BuildingStatsContainer_UI" />
     <Style src="project://database/Assets/UI/Inspector/InspectorMenu_StyleSheet.uss?fileID=7433441132597879392&amp;guid=147deab159b995c4e9b916c33977241c&amp;type=3#InspectorMenu_StyleSheet" />
     <Style src="project://database/Assets/UI/Building/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
-    <engine:VisualElement name="Container" class="inspectorContainer" style="flex-grow: 1; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
-        <engine:Label text="Building Name" name="Title" class="subheader subheader1" style="white-space: normal;" />
-        <engine:VisualElement name="IconBackground" class="inspectorIcon" style="flex-grow: 1; align-self: stretch;">
-            <engine:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/pylon_icon.png?fileID=21300000&amp;guid=9e9d757b317a7944eb70f29c9927a1e9&amp;type=3#pylon_icon&quot;); -unity-background-scale-mode: scale-to-fit; flex-shrink: 0; height: auto; min-height: 200px;" />
+    <engine:VisualElement name="Container" class="inspectorContainer" style="flex-grow: 1; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; width: auto;">
+        <engine:Label text="Building Name" name="Title" tooltip="The name of the selected building." class="subheader subheader1 inspectorBacked" style="white-space: normal; text-shadow: 0 0 0 rgb(0, 0, 0);" />
+        <engine:VisualElement name="IconBackground" tooltip="The selected building." class="inspectorIcon" style="flex-grow: 0; align-self: stretch; background-color: rgba(33, 118, 162, 0.59); border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; background-image: none; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-right: 10px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px;">
+            <engine:VisualElement name="IconFrame" style="flex-grow: 1; position: absolute; top: -7px; right: -7px; bottom: -7px; left: -7px; background-image: none; -unity-slice-scale: 0.4px;" />
+            <engine:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Deprecated/pylon_icon.png?fileID=21300000&amp;guid=9e9d757b317a7944eb70f29c9927a1e9&amp;type=3#pylon_icon&quot;); -unity-background-scale-mode: scale-to-fit; flex-shrink: 0; height: auto; min-height: 150px;" />
         </engine:VisualElement>
         <engine:VisualElement name="SettingsBackground" class="inspectorIcon" style="flex-grow: 0;">
-            <engine:VisualElement name="Powered" style="flex-grow: 1; flex-direction: row; align-self: center;">
+            <engine:VisualElement name="Powered" tooltip="Whether the selected building is currently functioning. A builing can only be toggled on if it has enough electricity." style="flex-grow: 1; flex-direction: row; align-self: center;">
                 <engine:Label text="Powered: " name="PoweredLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
                 <engine:Button name="PoweredButton" style="width: 40px; height: 40px; align-self: center; -unity-background-scale-mode: scale-to-fit; border-top-left-radius: 100%; border-top-right-radius: 100%; border-bottom-right-radius: 100%; border-bottom-left-radius: 100%; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px;">
                     <engine:VisualElement name="PoweredCheckMark" style="flex-grow: 1; justify-content: center; align-self: stretch; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=7433338533053954386&amp;guid=6d3142833d2bc694c8742c2782822332&amp;type=3#check@2x&quot;);" />
                 </engine:Button>
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:VisualElement name="StatsBackground" class="inspectorIcon" style="flex-grow: 0;">
-            <engine:VisualElement name="CostContainer" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Cost: " name="CostLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: normal;" />
-                <engine:Label text="$10" name="CostAmount" class="inspectorText" style="font-size: 20px; color: rgb(159, 36, 36); -unity-font-style: bold;" />
-            </engine:VisualElement>
-            <engine:VisualElement name="AdvancedMaterialsCostContainer" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Advanced Materials Cost:" name="AdvancedMaterialsCostLabel" selectable="false" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: normal;" />
-                <engine:Label text="10" name="AdvancedMaterialsCostAmount" class="inspectorText" style="font-size: 20px; color: rgb(159, 36, 36); -unity-font-style: bold;" />
-            </engine:VisualElement>
-            <engine:VisualElement name="IncomeContainer" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Income: " name="IncomeLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: normal;" />
-                <engine:Label text="1" name="IncomeAmount" class="inspectorText" style="font-size: 20px; color: rgb(72, 220, 67); -unity-font-style: bold;" />
-                <engine:Label text="/" name="IncomeDivider" class="inspectorText" style="font-size: 20px; color: rgb(72, 220, 67);" />
-                <engine:Label text="2" name="IncomeTotal" class="inspectorText" style="font-size: 20px; color: rgb(72, 220, 67); -unity-font-style: bold;" />
-            </engine:VisualElement>
-            <engine:VisualElement name="ElectricityProductionContainer" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Electricity Production: " name="ElectricityProductionLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: normal;" />
-                <engine:Label text="10" name="ElectricityProductionAmount" class="inspectorText" style="font-size: 20px; color: rgb(72, 220, 67); -unity-font-style: bold;" />
-            </engine:VisualElement>
-            <engine:VisualElement name="AdvancedMaterialsProductionContainer" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Advanced Materials Production:" name="AdvancedMaterialsProductionLabel" selectable="false" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: normal;" />
-                <engine:Label text="10" name="AdvancedMaterialsProductionAmount" class="inspectorText" style="font-size: 20px; color: rgb(72, 220, 67); -unity-font-style: bold;" />
-            </engine:VisualElement>
-            <engine:VisualElement name="ElectricityConsumptionContainer" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Electricity Consumption: " name="ElectricityConsumptionLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
-                <engine:Label text="10" name="ElectricityConsumptionAmount" class="inspectorText" style="font-size: 20px; color: rgb(159, 36, 36); -unity-font-style: bold;" />
-            </engine:VisualElement>
-            <engine:VisualElement name="UpkeepContainer" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Upkeep: " name="UpkeepLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
-                <engine:Label text="$100" name="UpkeepAmount" class="inspectorText" style="font-size: 20px; color: rgb(159, 36, 36); -unity-font-style: bold;" />
-            </engine:VisualElement>
-            <engine:VisualElement name="ConnectionsContainer" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Connections: " name="ConnectionsLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
-                <engine:Label text="1" name="ConnectionsAmount" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
-                <engine:Label text="/" name="ConnectionsDivider" class="inspectorText" style="font-size: 20px;" />
-                <engine:Label text="2" name="ConnectionsTotal" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
-            </engine:VisualElement>
-            <engine:VisualElement name="MassContainer" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Mass: " name="MassLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
-                <engine:Label text="100" name="MassAmount" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
-            </engine:VisualElement>
-            <engine:VisualElement name="SpecialResourcesContainer" style="flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-self: stretch; width: auto; height: auto;">
-                <engine:Instance template="SpecialResource_UI" name="SolarResource" style="margin-top: 5px; margin-right: 10px; margin-bottom: 5px; margin-left: 0;" />
-                <engine:Instance template="SpecialResource_UI" name="CoalResource" style="margin-top: 5px; margin-right: 10px; margin-bottom: 5px; margin-left: 0;" />
-                <engine:Instance template="SpecialResource_UI" name="WindResource" style="margin-top: 5px; margin-right: 10px; margin-bottom: 5px; margin-left: 0;" />
-                <engine:Instance template="SpecialResource_UI" name="GeothermalResource" style="margin-top: 5px; margin-right: 10px; margin-bottom: 5px; margin-left: 0;" />
-            </engine:VisualElement>
-        </engine:VisualElement>
-        <engine:Label text="Here is a description of what the building does." name="Description" class="textbox" style="flex-wrap: nowrap; white-space: normal; margin-bottom: 4px; margin-left: 4px;" />
+        <engine:Instance template="BuildingStatsContainer_UI" name="Stats" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;" />
+        <engine:Label text="Here is a description of what the building does." name="Description" tooltip="A description of the selected building." class="textbox" style="flex-wrap: nowrap; white-space: normal; margin-bottom: 10px; margin-left: 10px; margin-top: 10px; margin-right: 10px;" />
     </engine:VisualElement>
 </engine:UXML>

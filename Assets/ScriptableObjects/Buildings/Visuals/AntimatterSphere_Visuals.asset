@@ -15,10 +15,8 @@ MonoBehaviour:
   buildingName: Antimatter Sphere
   buildingIcon: {fileID: 21300000, guid: 8c97169366a82cc418cdf1b654b387f8, type: 3}
   buildingDescription: Tired of unknowingly pulling planets into each other because
-    your buildings are too massive? These spheres can help with that! The antimatter
-    that they contain reduces the net mass of planets, canceling out their gravitational
-    pull. Just don't shake the sphere too much, we wouldn't want the matter exterior
-    making contact with the antimatter interior, now would we.
+    your buildings are too massive? The antimatter contained in these spheres reduces
+    the net mass of planets, canceling out gravitational pulls.
   buildingGhost: {fileID: 21300000, guid: dc8c379a496f47b4c857c614793b54bc, type: 3}
   ghostOffset: {x: 0, y: 0.607}
   ghostScale: 0.1681

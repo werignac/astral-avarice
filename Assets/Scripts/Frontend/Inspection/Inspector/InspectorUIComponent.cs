@@ -13,12 +13,7 @@ public class InspectorUIComponent : MonoBehaviour
 {
 	private UIDocument uiDocument;
 	
-	private Button collapseButton;
-	private VisualElement collapsableInspectorContent;
 	private VisualElement inspectorUIContainer;
-
-	[SerializeField] private Sprite collapseButtonMenuOpened;
-	[SerializeField] private Sprite collapseButtonMenuClosed;
 
 	private LayerContainer<InspectorLayer> inspectorLayers = new LayerContainer<InspectorLayer>();
 	private InspectorLayer currentInspectorLayer;
@@ -50,11 +45,7 @@ public class InspectorUIComponent : MonoBehaviour
 
 	private void Start()
 	{
-		collapseButton = uiDocument.rootVisualElement.Q<Button>("CollapseButton");
-		collapsableInspectorContent = uiDocument.rootVisualElement.Q("CollapsableContainer");
 		inspectorUIContainer = uiDocument.rootVisualElement.Q("ScrolledContent");
-
-		collapseButton.RegisterCallback<ClickEvent>(CollapseButton_OnClick);
 	}
 
 	public InspectorLayer AddLayer(IInspectable inspectable, InspectorLayerType layer)
@@ -72,21 +63,6 @@ public class InspectorUIComponent : MonoBehaviour
 	public bool RemoveLayer(InspectorLayer toRemove)
 	{
 		return inspectorLayers.Remove(toRemove);
-	}
-
-	private void CollapseButton_OnClick(ClickEvent evt)
-	{
-		switch (collapsableInspectorContent.style.display.value)
-		{
-			case DisplayStyle.None:
-				collapsableInspectorContent.style.display = DisplayStyle.Flex;
-				collapseButton.style.backgroundImage = new StyleBackground(collapseButtonMenuOpened);
-				break;
-			case DisplayStyle.Flex:
-				collapsableInspectorContent.style.display = DisplayStyle.None;
-				collapseButton.style.backgroundImage = new StyleBackground(collapseButtonMenuClosed);
-				break;
-		}
 	}
 	private void LateUpdate()
 	{

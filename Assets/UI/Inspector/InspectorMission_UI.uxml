@@ -1,9 +1,11 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Inspector/InspectorMenu_StyleSheet.uss?fileID=7433441132597879392&amp;guid=147deab159b995c4e9b916c33977241c&amp;type=3#InspectorMenu_StyleSheet" />
     <Style src="project://database/Assets/UI/Building/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
-    <engine:VisualElement name="Container" class="inspectorContainer" style="flex-grow: 1; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
-        <engine:Label text="Astral Avarice" name="Subheading" class="subheader subheader1" style="white-space: normal;" />
-        <engine:Label text="Mission: " name="MissionName" class="subheader2" />
-        <engine:Label text="Welcome to Astral Avarice! Your mission is to have an income of &lt;b&gt;&lt;color=#8BE03AFF&gt;$100&lt;/color&gt;&lt;/b&gt; before the time &lt;b&gt;&lt;color=#9f2424ff&gt;SECONDS&lt;/color&gt;&lt;/b&gt;. You&apos;ll be doing this by constructing an interstellar power grid with an array of buildings.&#10;&#10;Click on a building in the build menu to start." name="MissionDescription" class="textbox" style="flex-wrap: nowrap; white-space: normal; background-image: url(&quot;project://database/Assets/Sprites/UI/screen_button_back_inspector.png?fileID=6092750959953069111&amp;guid=206181b4d674479489ee9070fe646673&amp;type=3#screen_button_back_inspector_0&quot;); background-color: rgba(69, 160, 162, 0); -unity-background-scale-mode: stretch-to-fill; background-size: 100px 100px;" />
+    <engine:VisualElement name="Container" class="inspectorContainer" style="flex-grow: 1; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; width: auto;">
+        <engine:VisualElement name="Heading" class="inspectorBacked" style="flex-grow: 0;">
+            <engine:Label text="Astral Avarice" name="Subheading" class="subheader subheader1" style="white-space: normal; margin-bottom: 0;" />
+            <engine:Label text="Mission: " name="MissionName" class="subheader2" style="margin-top: 0;" />
+        </engine:VisualElement>
+        <engine:Label text="Reach an income of &lt;b&gt;&lt;color=#8BE03AFF&gt;$100&lt;/color&gt;&lt;/b&gt; by &lt;b&gt;&lt;color=#9f2424ff&gt;SECONDS&lt;/color&gt;&lt;/b&gt;. " name="MissionDescription" class="textbox" style="flex-wrap: nowrap; white-space: normal; -unity-background-scale-mode: stretch-to-fill; background-size: 100px 100px;" />
     </engine:VisualElement>
 </engine:UXML>

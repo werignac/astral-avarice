@@ -1,0 +1,10 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="InspectorMenu_UI" src="project://database/Assets/UI/Inspector/InspectorMenu_UI.uxml?fileID=9197481963319205126&amp;guid=ef6bbe610334858488866c10d8dfe7e4&amp;type=3#InspectorMenu_UI" />
+    <engine:Template name="Minimap_UI" src="project://database/Assets/UI/Minimap/Minimap_UI.uxml?fileID=9197481963319205126&amp;guid=2430f89ae9eb83346827df40ee423c18&amp;type=3#Minimap_UI" />
+    <Style src="project://database/Assets/UI/Inspector/InspectorMenu_StyleSheet.uss?fileID=7433441132597879392&amp;guid=147deab159b995c4e9b916c33977241c&amp;type=3#InspectorMenu_StyleSheet" />
+    <Style src="project://database/Assets/UI/Building/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
+    <engine:VisualElement name="InspectorTemplateContainer" picking-mode="Ignore" style="flex-grow: 1; align-self: flex-end; flex-direction: column-reverse; width: auto; padding-top: 15px;">
+        <engine:Instance template="InspectorMenu_UI" name="InspectorTemplate" style="display: flex; align-self: stretch; width: 300px; flex-shrink: 0;" />
+    </engine:VisualElement>
+    <engine:Instance template="Minimap_UI" name="MinimapTemplate" style="align-self: flex-end; margin-top: -34px; flex-shrink: 0;" />
+</engine:UXML>

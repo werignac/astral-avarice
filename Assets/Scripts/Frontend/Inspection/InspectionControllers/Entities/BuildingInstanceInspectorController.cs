@@ -104,6 +104,11 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 		}
 	}
 
+	// Overrides
+	protected override string GetSpecialResourcesContainerName() => "ConsumedResources";
+	protected override string GetAdvancedMaterialsProductionName() => "ScienceProduction";
+
+
 	public BuildingInstanceInspectorController(BuildingComponent toDisplay)
 	{
 		displayingBuilding = toDisplay;

@@ -1,9 +1,17 @@
 .image {
 }
 
-.subheader2 {
+.subheader1 {
     color: rgb(239, 239, 239);
     font-size: 30px;
+    -unity-font-style: bold;
+    margin-bottom: 10px;
+    -unity-font-definition: url("project://database/Assets/Fonts/nova_square/NovaSquareSlim-Book.ttf?fileID=12800000&guid=e701aedbbc86ce941bcf879127aa77eb&type=3#NovaSquareSlim-Book");
+}
+
+.subheader2 {
+    color: rgb(239, 239, 239);
+    font-size: 20px;
     -unity-font-style: normal;
     margin-bottom: 5px;
     white-space: normal;
@@ -19,11 +27,11 @@
     flex-grow: 0;
     width: 32px;
     height: 32px;
-    background-image: url("project://database/Assets/Sprites/UI/solar_icon.png?fileID=21300000&guid=59dc7f171da286647893689683593431&type=3#solar_icon");
+    background-image: url("project://database/Assets/Sprites/UI/Icons/Resources/solar_icon.png?fileID=21300000&guid=59dc7f171da286647893689683593431&type=3#solar_icon");
 }
 
 .specialResourceItem {
-    background-image: url("project://database/Assets/Sprites/UI/resource-container.png?fileID=5025835355505005053&guid=ea16eebccc1fba94dbf72dbb8bc0ce61&type=3#resource-container_0");
+    background-image: url("project://database/Assets/Sprites/UI/Backgrounds/resource-container.png?fileID=5025835355505005053&guid=ea16eebccc1fba94dbf72dbb8bc0ce61&type=3#resource-container_0");
     -unity-slice-scale: 0.9px;
     flex-grow: 0;
     flex-direction: row;
@@ -40,7 +48,7 @@
 }
 
 .lackingSpecialResourceItem {
-    background-image: url("project://database/Assets/Sprites/UI/resource-container_insufficient.png?fileID=5620666609472165296&guid=db0a8b36f50ebdd4d8a5d0cc28d9d260&type=3#resource-container_insufficient_0");
+    background-image: url("project://database/Assets/Sprites/UI/Backgrounds/resource-container_insufficient.png?fileID=5620666609472165296&guid=db0a8b36f50ebdd4d8a5d0cc28d9d260&type=3#resource-container_insufficient_0");
     -unity-slice-scale: 0.9px;
     flex-grow: 0;
     flex-direction: row;
@@ -49,4 +57,63 @@
     padding-bottom: 8px;
     padding-right: 15px;
     align-self: flex-start;
+}
+
+.textbox {
+    background-color: rgba(33, 118, 162, 0.59);
+    background-image: none;
+    -unity-slice-scale: 0.2px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    color: rgb(223, 223, 223);
+    font-size: 20px;
+    -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Cd%20Bk.otf?fileID=12800000&guid=fb09dd1c8a4f399409e93cd4f1c711db&type=3#Athabasca Cd Bk");
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.inspectorIcon {
+    background-color: rgba(33, 118, 162, 0.59);
+    -unity-slice-scale: 0.2px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    color: rgb(223, 223, 223);
+    font-size: 20px;
+    -unity-background-scale-mode: stretch-to-fill;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    background-image: none;
+    background-size: 100px 100%;
+}
+
+#Stats #StatsContainer {
+    background-color: rgba(33, 118, 162, 0.59);
+}
+
+.inspectorBacked {
+    background-color: rgba(33, 118, 162, 0.59);
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
 }
