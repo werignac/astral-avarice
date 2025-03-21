@@ -9,7 +9,6 @@ public class TutorialGameController : GameController
     [SerializeField] private TutorialUI tutorialUI;
     [SerializeField] private MissionData tutorialMission;
     [SerializeField] private BuildMenuUIComponent buildMenu;
-    [SerializeField] private BuildSubMenuUIComponent buildSubMenu;
     [SerializeField] private TutorialStateChangeCondition[] stateChangeConditions;
     [SerializeField] private TutorialAllowedAction[] allowedActions;
     [SerializeField] private int[] gameSpeedOverrides;
@@ -87,22 +86,7 @@ public class TutorialGameController : GameController
             {
                 FocusCamera(cameraFocuses[currentTutorialState]);
             }
-            if(buildMenuHighlights[currentTutorialState - 1] >= 0)
-            {
-                buildMenu.SetButtonHighlight(buildMenuHighlights[currentTutorialState - 1], false);
-            }
-            if (buildMenuHighlights[currentTutorialState] >= 0)
-            {
-                buildMenu.SetButtonHighlight(buildMenuHighlights[currentTutorialState], true);
-            }
-            if (buildSubMenuHighlights[currentTutorialState - 1] >= 0)
-            {
-                buildSubMenu.SetButtonHighlight(buildSubMenuHighlights[currentTutorialState - 1], false);
-            }
-            if (buildSubMenuHighlights[currentTutorialState] >= 0)
-            {
-                buildSubMenu.SetButtonHighlight(buildSubMenuHighlights[currentTutorialState], true);
-            }
+            buildMenu.UpdateHighlightIndecies(buildMenuHighlights[currentTutorialState], buildSubMenuHighlights[currentTutorialState]);
             tutorialUI.ShowNextElement();
         }
     }
@@ -200,9 +184,13 @@ public class TutorialGameController : GameController
             }
         }
 
-        if(placedIncorrectly && cameraFocuses[currentTutorialState].z > 0)
+        if(placedIncorrectly)
         {
-            FocusCamera(cameraFocuses[currentTutorialState]);
+            BuildManagerComponent.Instance.SetNoneState();
+            if (cameraFocuses[currentTutorialState].z > 0)
+            {
+                FocusCamera(cameraFocuses[currentTutorialState]);
+            }
         }
 
         base.BuildManager_OnBuildResovle(resolution);

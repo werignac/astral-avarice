@@ -7,7 +7,7 @@
             <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
         </engine:VisualElement>
         <engine:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
-            <engine:Label text="The second value below is the current mission time.&#10;Every 30 seconds you collect the current&#10;income shown in parenthesis next to the&#10;following two numbers. It&apos;s important to&#10;keep these values positive when income comes in." name="Label" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <engine:Label text="For both cash and advanced materials, the left number is the&#10;current amount you have in reserves, while the number in &#10;parentheses is your current income." name="Label" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
