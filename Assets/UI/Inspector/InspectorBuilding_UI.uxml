@@ -17,6 +17,6 @@
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:Instance template="BuildingStatsContainer_UI" name="Stats" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;" />
-        <engine:Label text="Here is a description of what the building does." name="Description" tooltip="A description of the selected building." class="textbox" style="flex-wrap: nowrap; white-space: normal; margin-bottom: 10px; margin-left: 10px; margin-top: 10px; margin-right: 10px;" />
+        <engine:Label text="Here is a description of what the building does. I&apos;m extending this description so we can test when the inspector is stratched to its limit. In theory a scroll bar should appear instead of the inspector going off screen, but we&apos;ll see what the actual results are." name="Description" tooltip="A description of the selected building." class="textbox" style="flex-wrap: nowrap; white-space: normal; margin-bottom: 10px; margin-left: 10px; margin-top: 10px; margin-right: 10px;" />
     </engine:VisualElement>
 </engine:UXML>
