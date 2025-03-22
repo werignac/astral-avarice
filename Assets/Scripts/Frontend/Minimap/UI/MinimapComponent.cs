@@ -15,6 +15,12 @@ public class MinimapComponent : MonoBehaviour
 
 	private VisualElement minimapElement;
 
+	/// <summary>
+	/// Whether to continue moving the camera whilst the player is dragging accross
+	/// the uielement.
+	/// </summary>
+	private bool continuousCameraMovement = false;
+
 	private void Awake()
 	{
 		uiDocument = GetComponent<UIDocument>();
@@ -23,18 +29,45 @@ public class MinimapComponent : MonoBehaviour
 
 	private void Start()
 	{
-		minimapElement.RegisterCallback<ClickEvent>(Minimap_OnClick);
+		minimapElement.RegisterCallback<MouseMoveEvent>(Minimap_OnMouseMove);
+		minimapElement.RegisterCallback<MouseDownEvent>(Minimap_OnMouseDown);
 	}
 
-	private void Minimap_OnClick(ClickEvent evt)
+	/// <summary>
+	/// Called by the input system.
+	/// Necessary as en external call because we want to stop tacking the mouse
+	/// on any mouseup event (not just on MouseUp events on the minimapElement).
+	/// </summary>
+	public void StopTrackingMouseDrag()
+	{
+		continuousCameraMovement = false;
+	}
+
+	private void Minimap_OnMouseMove(MouseMoveEvent evt)
+	{
+		if (!continuousCameraMovement)
+			return;
+
+		Vector2 normalizedPosition = NormalizeLocalMousePosition(evt.localMousePosition);
+		MoveMainCameraToMinimapPosition(normalizedPosition);
+	}
+
+	private void Minimap_OnMouseDown(MouseDownEvent evt)
+	{
+		Vector2 normalizedPosition = NormalizeLocalMousePosition(evt.localMousePosition);
+		MoveMainCameraToMinimapPosition(normalizedPosition);
+
+		continuousCameraMovement = true;
+	}
+
+	private Vector2 NormalizeLocalMousePosition(Vector2 localMousePosition)
 	{
 		Vector2 normalizedPosition = new Vector2(
-			evt.localPosition.x / minimapElement.resolvedStyle.width,
-			evt.localPosition.y / minimapElement.resolvedStyle.height
+			localMousePosition.x / minimapElement.resolvedStyle.width,
+			localMousePosition.y / minimapElement.resolvedStyle.height
 		);
 
-
-		MoveMainCameraToMinimapPosition(normalizedPosition);
+		return normalizedPosition;
 	}
 
 	/// <summary>

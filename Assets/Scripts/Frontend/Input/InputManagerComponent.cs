@@ -228,11 +228,21 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void UpdateMinimap()
 	{
-		// Don't take input whilst the game is paused.
-		if (gameController.GamePaused)
+		if (minimap == null)
 			return;
 
-		if (minimap == null)
+		// Uses the fact that acceptAction == LMB click. This
+		// may need to be replaced with a direct look a LMB depending on
+		// future control implementations.
+
+		// Occurs even when the game is paused, as it only stops an action.
+		if (acceptAction.WasReleasedThisFrame())
+		{
+			minimap.StopTrackingMouseDrag();
+		}
+
+		// Don't take input whilst the game is paused.
+		if (gameController.GamePaused)
 			return;
 
 		if (toggleMinimapAction.WasPerformedThisFrame())
