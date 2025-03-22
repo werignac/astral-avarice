@@ -1557,7 +1557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridGroupViewPostProcessingMaterial: {fileID: 2100000, guid: 2c892c51b7f964e4695c7e90c8926e32, type: 2}
-  clearOnAwake: 1
+  gridGroupState: {fileID: 11400000, guid: 89711056e296d9142bdddedd56708085, type: 2}
   cursor: {fileID: 191995373}
   tooltip: {fileID: 159256420}
   tooltipLayerFactory: {fileID: 11400000, guid: 459080127ade2884088fafb4ed365589, type: 2}
@@ -2050,7 +2050,7 @@ MonoBehaviour:
   gameController: {fileID: 164819399}
   pauseManager: {fileID: 1946576280}
   minimap: {fileID: 412601598}
-  gridGroupView: {fileID: 1305180942}
+  gridGroupState: {fileID: 11400000, guid: 89711056e296d9142bdddedd56708085, type: 2}
 --- !u!1 &1792678105
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,14 +11,14 @@ namespace AstralAvarice.Visualization
 	public class VisualizationStateUIBinding
 	{
 		private const string TOGGLE_BUTTON_ELEMENT_NAME = "ToggleButton";
-		private const string LABEL_ELEMENT_NAME = "StateLabel";
+		private const string ICON_ELEMENT_NAME = "StateIcon";
 
 		private const string ON_STATE_CLASS = "visualizationMenuState_On";
 		private const string OFF_STATE_CLASS = "visualizationMenuState_Off";
 
 		private VisualElement rootElement = null;
 		private Button toggleButtonElement;
-		private Label labelElement;
+		private VisualElement iconElement;
 
 		private VisualizationToggleState_SO displayingState = null;
 
@@ -54,7 +54,7 @@ namespace AstralAvarice.Visualization
 
 			rootElement = elementToBindTo;
 			toggleButtonElement = elementToBindTo.Q<Button>(TOGGLE_BUTTON_ELEMENT_NAME);
-			labelElement = elementToBindTo.Q<Label>(LABEL_ELEMENT_NAME);
+			iconElement = elementToBindTo.Q(ICON_ELEMENT_NAME);
 
 			RegisterEvents();
 
@@ -86,8 +86,8 @@ namespace AstralAvarice.Visualization
 
 		private void UpdateDisplay()
 		{
-			// TODO: Change to proper display name.
-			labelElement.text = displayingState.name;
+			iconElement.style.backgroundImage = new StyleBackground(displayingState.Icon);
+			iconElement.tooltip = FormatTooltipString(displayingState);
 
 			if (displayingState.Value)
 			{
@@ -108,6 +108,11 @@ namespace AstralAvarice.Visualization
 		private void DisplayingState_OnChange(bool arg0)
 		{
 			UpdateDisplay();
+		}
+
+		private static string FormatTooltipString(VisualizationToggleState_SO state)
+		{
+			return $"{state.DisplayName} visualization is " + (state.Value ? "on" : "off") + ".";
 		}
 	}
 }

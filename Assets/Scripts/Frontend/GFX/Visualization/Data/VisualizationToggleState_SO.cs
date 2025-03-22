@@ -29,6 +29,9 @@ namespace AstralAvarice.Visualization
 	public class VisualizationToggleState_SO : ScriptableObject
 	{
 		[SerializeField, InspectorName("Toggle Value")] private bool value;
+		[SerializeField] private Sprite icon;
+		[SerializeField] private string displayName;
+		// TODO: Include string for getting / setting playerprefs?
 
 		// Invoked when the state changes.
 		[HideInInspector] private UnityEvent<bool> OnChanged = new UnityEvent<bool>();
@@ -39,6 +42,16 @@ namespace AstralAvarice.Visualization
 		/// Get the state at the current point in time.
 		/// </summary>
 		public bool Value { get => value; }
+
+		/// <summary>
+		/// Gets the icon used to represent this toggleable visualization.
+		/// </summary>
+		public Sprite Icon => icon;
+
+		/// <summary>
+		/// Gets the name used to represent this toggleable visualization.
+		/// </summary>
+		public string DisplayName => displayName;
 
 		/// <summary>
 		/// Set the state of the toggle explicitly.

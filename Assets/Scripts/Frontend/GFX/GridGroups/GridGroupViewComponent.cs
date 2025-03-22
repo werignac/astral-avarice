@@ -1,11 +1,13 @@
 using UnityEngine;
 using AstralAvarice.UI.Tooltips;
+using AstralAvarice.Visualization;
+using System;
 
 public class GridGroupViewComponent : MonoBehaviour
 {
 	private const string INTENSITY_PARAMETER = "_Intensity";
 	[SerializeField] private Material gridGroupViewPostProcessingMaterial;
-	[SerializeField] private bool clearOnAwake = true;
+	[SerializeField] private VisualizationToggleState_SO gridGroupState;
 
 	[Header("Tooltips")]
 	[SerializeField] private SelectionCursorComponent cursor;
@@ -16,31 +18,28 @@ public class GridGroupViewComponent : MonoBehaviour
 
 	[SerializeField] private GameController gameController;
 
-	public bool IsShowing
-	{
-		get { return (GetIntensity() != 0); }
-	}
+	public bool IsShowing => gridGroupState.Value;
 
 	private void Awake()
 	{
-		if (clearOnAwake)
-			Hide();
+		gridGroupState.AddStateChangeListener(GridGroupState_OnChange);
+		GridGroupState_OnChange(gridGroupState.Value);
 	}
 
-	public void Toggle()
+	private void GridGroupState_OnChange(bool newState)
 	{
-		if (GetIntensity() == 0)
+		if (newState)
 			Show();
 		else
 			Hide();
 	}
 
-	public void Show()
+	private void Show()
 	{
 		SetIntensity(1);
 	}
 
-	public void Hide()
+	private void Hide()
 	{
 		SetIntensity(0);
 
@@ -117,8 +116,11 @@ public class GridGroupViewComponent : MonoBehaviour
 		return gridGroupElementCollider.GetComponentInParent<IGridGroupElement>();
 	}
 
+	/// <summary>
+	/// When returning to the main menu, remove the grid group effect.
+	/// </summary>
 	private void OnDestroy()
 	{
-		SetIntensity(0);	
+		SetIntensity(0);
 	}
 }

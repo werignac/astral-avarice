@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using AstralAvarice.Visualization;
 
 public class InputManagerComponent : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class InputManagerComponent : MonoBehaviour
 	[SerializeField] private GameController gameController;
 	[SerializeField] private PauseManager pauseManager;
 	[SerializeField] private MinimapComponent minimap;
-	[SerializeField] private GridGroupViewComponent gridGroupView;
+	[SerializeField] private VisualizationToggleState_SO gridGroupState;
 
 	private void Awake()
 	{
@@ -256,12 +257,12 @@ public class InputManagerComponent : MonoBehaviour
 		if (gameController.GamePaused)
 			return;
 
-		if (gridGroupView == null)
+		if (gridGroupState == null)
 			return;
 
 		if (toggleGridGroupViewAction.WasPerformedThisFrame())
 		{
-			gridGroupView.Toggle();
+			gridGroupState.Toggle();
 		}
 	}
 }

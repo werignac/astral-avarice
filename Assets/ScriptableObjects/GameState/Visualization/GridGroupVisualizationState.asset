@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be937a4433ad70b4bb7cb429f30b7005, type: 3}
-  m_Name: SolarFieldVisualizationState
+  m_Name: GridGroupVisualizationState
   m_EditorClassIdentifier: 
-  value: 1
-  icon: {fileID: 21300000, guid: c1621ec31dfcf5940b06c46fc1040a81, type: 3}
-  displayName: Solar Field
+  value: 0
+  icon: {fileID: 21300000, guid: f66ed5c1c18d7ac488c9467707fc375d, type: 3}
+  displayName: Grid Group

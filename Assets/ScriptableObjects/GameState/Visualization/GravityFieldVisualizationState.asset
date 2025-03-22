@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GravityFieldVisualizationState
   m_EditorClassIdentifier: 
   value: 1
+  icon: {fileID: 21300000, guid: d0fc55f3f01f18a41ae4f0cd76819815, type: 3}
+  displayName: Gravity Field

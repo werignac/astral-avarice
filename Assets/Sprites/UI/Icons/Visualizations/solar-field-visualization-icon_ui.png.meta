@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: c1621ec31dfcf5940b06c46fc1040a81
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6888572492165810064
+    second: solar-field-visualization-icon_ui_0
+  - first:
+      213: 563484016357530036
+    second: solar-field-visualization-icon_ui_1
+  - first:
+      213: -8524498149047384701
+    second: solar-field-visualization-icon_ui_2
+  - first:
+      213: -6101704629314550864
+    second: solar-field-visualization-icon_ui_3
+  - first:
+      213: -5704668032056575063
+    second: solar-field-visualization-icon_ui_4
+  - first:
+      213: -5910610980402290391
+    second: solar-field-visualization-icon_ui_5
+  - first:
+      213: 8049349563862868513
+    second: solar-field-visualization-icon_ui_6
+  - first:
+      213: 1975135547576833619
+    second: solar-field-visualization-icon_ui_7
+  - first:
+      213: -716427643733933171
+    second: solar-field-visualization-icon_ui_8
+  - first:
+      213: 4845451084629033826
+    second: solar-field-visualization-icon_ui_9
+  - first:
+      213: -3920566181685606861
+    second: solar-field-visualization-icon_ui_10
+  - first:
+      213: 3490533292993045401
+    second: solar-field-visualization-icon_ui_11
+  - first:
+      213: 4802111862701532050
+    second: solar-field-visualization-icon_ui_12
+  - first:
+      213: 4550931562731704870
+    second: solar-field-visualization-icon_ui_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 512
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 384
+        width: 34
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09702153f20299f50800000000000000
+      internalID: 6888572492165810064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 354
+        width: 54
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b9d9973ab5e1d700800000000000000
+      internalID: 563484016357530036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 80
+        width: 65
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3854e812916e2b980800000000000000
+      internalID: -8524498149047384701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_3
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 307
+        width: 115
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b38955c7f3625ba0800000000000000
+      internalID: -6101704629314550864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_4
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 6
+        width: 82
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9abbdb346a2f4d0b0800000000000000
+      internalID: -5704668032056575063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139
+        width: 119
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 921299b01aa49fda0800000000000000
+      internalID: -5910610980402290391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_6
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 304
+        width: 71
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 122edf2f7c805bf60800000000000000
+      internalID: 8049349563862868513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_7
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 135
+        width: 50
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3565098d057196b10800000000000000
+      internalID: 1975135547576833619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_8
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 239
+        width: 76
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8308f39adcbe06f0800000000000000
+      internalID: -716427643733933171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_9
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 218
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26348d3d6108e3340800000000000000
+      internalID: 4845451084629033826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_10
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 156
+        width: 70
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 336483e64d95799c0800000000000000
+      internalID: -3920566181685606861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_11
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 83
+        width: 91
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 993668d498dd07030800000000000000
+      internalID: 3490533292993045401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_12
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 51
+        width: 32
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 293a304eb4784a240800000000000000
+      internalID: 4802111862701532050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field-visualization-icon_ui_13
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 88
+        width: 54
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6229cb9f428282f30800000000000000
+      internalID: 4550931562731704870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      solar-field-visualization-icon_ui_0: 6888572492165810064
+      solar-field-visualization-icon_ui_1: 563484016357530036
+      solar-field-visualization-icon_ui_10: -3920566181685606861
+      solar-field-visualization-icon_ui_11: 3490533292993045401
+      solar-field-visualization-icon_ui_12: 4802111862701532050
+      solar-field-visualization-icon_ui_13: 4550931562731704870
+      solar-field-visualization-icon_ui_2: -8524498149047384701
+      solar-field-visualization-icon_ui_3: -6101704629314550864
+      solar-field-visualization-icon_ui_4: -5704668032056575063
+      solar-field-visualization-icon_ui_5: -5910610980402290391
+      solar-field-visualization-icon_ui_6: 8049349563862868513
+      solar-field-visualization-icon_ui_7: 1975135547576833619
+      solar-field-visualization-icon_ui_8: -716427643733933171
+      solar-field-visualization-icon_ui_9: 4845451084629033826
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
