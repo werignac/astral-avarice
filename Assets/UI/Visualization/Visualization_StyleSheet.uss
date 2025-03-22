@@ -5,3 +5,15 @@
 .visualizationMenuState_Off #ToggleCheckmark {
     visibility: hidden;
 }
+
+.visualizationMenuButton #Icon {
+    -unity-background-image-tint-color: rgb(123, 200, 252);
+}
+
+.visualizationMenuButton:hover #Icon {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.visualizationMenuButton:active #Icon {
+    -unity-background-image-tint-color: rgb(91, 124, 236);
+}

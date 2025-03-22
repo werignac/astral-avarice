@@ -1,7 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="VisualizationMenuEntry_UI" src="project://database/Assets/UI/Visualization/VisualizationMenuState_UI.uxml?fileID=9197481963319205126&amp;guid=e7f16222351a96b4f98aef1488c8dccc&amp;type=3#VisualizationMenuState_UI" />
     <Style src="project://database/Assets/UI/Visualization/Visualization_StyleSheet.uss?fileID=7433441132597879392&amp;guid=52230a9870c01b941bf43af2328ca853&amp;type=3#Visualization_StyleSheet" />
-    <engine:VisualElement name="VisualizationMenuContainer" style="flex-grow: 0; align-self: flex-start; background-color: rgb(117, 117, 117); padding-top: 6px; padding-bottom: 6px; padding-right: 4px; padding-left: 4px;">
+    <engine:VisualElement name="VisualizationMenuContainer" style="flex-grow: 0; align-self: flex-start; padding-top: 10px; padding-bottom: 10px; padding-right: 10px; padding-left: 10px; background-image: url(&quot;project://database/Assets/Sprites/UI/Backgrounds/visualizations-container_ui.png?fileID=-7593335785318976817&amp;guid=9eca4e4d85815f54cbc8f03c84974b37&amp;type=3#visualizations-background_ui&quot;); -unity-slice-scale: 0.1px;">
         <engine:Instance template="VisualizationMenuEntry_UI">
             <AttributeOverrides element-name="EntryLabel" text="Here is my extra text." />
         </engine:Instance>

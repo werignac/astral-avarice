@@ -271,3 +271,15 @@
 #BuildingStatsContainer_UI #StatsContainer {
     background-color: rgb(90, 35, 22);
 }
+
+.subMenuCloseButton {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/build-menu-close-button_ui.png?fileID=21300000&guid=66e8d6a6f6799ea4593e3bca138f5191&type=3#build-menu-close-button_ui");
+}
+
+.subMenuCloseButton:hover {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/build-menu-close-button-hover_ui.png?fileID=21300000&guid=cc9c08cd80399334a9008ec199fdb028&type=3#build-menu-close-button-hover_ui");
+}
+
+.subMenuCloseButton:active {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/build-menu-close-button-active_ui.png?fileID=21300000&guid=7505874863916054ea9d34fc7872ed01&type=3#build-menu-close-button-active_ui");
+}
