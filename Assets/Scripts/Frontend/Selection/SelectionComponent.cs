@@ -3,6 +3,7 @@ using werignac.Utils;
 using UnityEngine.EventSystems;
 using System;
 using UnityEngine.Events;
+using AstralAvarice.Frontend;
 
 public class SelectionComponent : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class SelectionComponent : MonoBehaviour
 
 	[SerializeField] private SelectionCursorComponent cursor;
 	[SerializeField] InspectorUIComponent inspector;
+	[SerializeField] private SelectionUIBlockingOverride uiBlockingOverride;
 
 	private IInspectableComponent currentHover = null;
 	private IInspectableComponent currentSelection = null;
@@ -103,8 +105,11 @@ public class SelectionComponent : MonoBehaviour
 	/// <param name="changes">Struct storing changes made to selections. Modified by this function.</param>
 	private void UpdateHover(ref SelectionChanges changes)
 	{
-		// If the cursor is over UI, no gameobjects are being hovered over.
-		if (EventSystem.current.IsPointerOverGameObject())
+		// If the cursor is over UI, no gameobjects are being hovered over;
+		// unless we want to specifically override that behaviour.
+		if (EventSystem.current.IsPointerOverGameObject()
+			&& uiBlockingOverride != null
+			&& ! uiBlockingOverride.GetIgnoreUI())
 		{
 			if (currentHover == null)
 				return;

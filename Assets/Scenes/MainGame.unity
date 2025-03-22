@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 191995374}
   - component: {fileID: 191995373}
   - component: {fileID: 191995375}
+  - component: {fileID: 191995376}
   m_Layer: 0
   m_Name: SelectionCursor
   m_TagString: Untagged
@@ -447,6 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 191995373}
   inspector: {fileID: 412601597}
+  uiBlockingOverride: {fileID: 191995376}
   OnHoverEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -459,6 +461,19 @@ MonoBehaviour:
   OnSelectEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &191995376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191995372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549b4ef77f4734d4a9661646a8509f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 412601599}
 --- !u!1 &212550224
 GameObject:
   m_ObjectHideFlags: 0
