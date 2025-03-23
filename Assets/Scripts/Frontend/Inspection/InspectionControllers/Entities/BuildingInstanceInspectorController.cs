@@ -123,12 +123,12 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 
 	private void RegisterListeners()
 	{
-		PoweredButton.RegisterCallback<ClickEvent>(PoweredButton_OnClick);
+		PoweredToggleButton.RegisterCallback<ClickEvent>(PoweredButton_OnClick);
 	}
 
 	private void UnregisterListeners()
 	{
-		PoweredButton.UnregisterCallback<ClickEvent>(PoweredButton_OnClick);
+		PoweredToggleButton.UnregisterCallback<ClickEvent>(PoweredButton_OnClick);
 	}
 
 	private void PoweredButton_OnClick(ClickEvent evt)
@@ -198,8 +198,8 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 
 		ResourcesBinding.ShowBuildingInstanceResources(displayingBuilding);
 
-        if (BuildingConsumesElectricity)
-			PoweredCheckMark.style.display = BuildingIsPowered ? DisplayStyle.Flex : DisplayStyle.None;
+		if (BuildingConsumesElectricity)
+			SetPoweredToggle(BuildingIsPowered);
 		else
 			Settings.style.display = DisplayStyle.None;
 

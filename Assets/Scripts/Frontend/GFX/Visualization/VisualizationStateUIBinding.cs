@@ -13,8 +13,8 @@ namespace AstralAvarice.Visualization
 		private const string TOGGLE_BUTTON_ELEMENT_NAME = "ToggleButton";
 		private const string ICON_ELEMENT_NAME = "StateIcon";
 
-		private const string ON_STATE_CLASS = "visualizationMenuState_On";
-		private const string OFF_STATE_CLASS = "visualizationMenuState_Off";
+		private const string ON_STATE_CLASS = "toggleOn";
+		private const string OFF_STATE_CLASS = "toggleOff";
 
 		private VisualElement rootElement = null;
 		private Button toggleButtonElement;
@@ -91,13 +91,13 @@ namespace AstralAvarice.Visualization
 
 			if (displayingState.Value)
 			{
-				rootElement.AddToClassList(ON_STATE_CLASS);
-				rootElement.RemoveFromClassList(OFF_STATE_CLASS);
+				toggleButtonElement.AddToClassList(ON_STATE_CLASS);
+				toggleButtonElement.RemoveFromClassList(OFF_STATE_CLASS);
 			}
 			else
 			{
-				rootElement.RemoveFromClassList(ON_STATE_CLASS);
-				rootElement.AddToClassList(OFF_STATE_CLASS);
+				toggleButtonElement.RemoveFromClassList(ON_STATE_CLASS);
+				toggleButtonElement.AddToClassList(OFF_STATE_CLASS);
 			}
 		}
 		private void ToggleButton_OnClick(ClickEvent evt)

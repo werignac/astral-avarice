@@ -7,6 +7,9 @@ using UnityEngine.UIElements;
 /// </summary>
 public class BuildingUIBinding
 {
+	private const string TOGGLE_ON_CLASS = "toggleOn";
+	private const string TOGGLE_OFF_CLASS = "toggleOff";
+
 	protected Label Title { get; set; } = null;
 	protected VisualElement Icon { get; set; } = null;
 	protected BuildingValueUIBinding Cost { get; set; } = null;
@@ -20,8 +23,7 @@ public class BuildingUIBinding
 	protected BuildingValueUIBinding Mass { get; set; } = null;
 	protected SpecialResourcesContainerUIBinding ResourcesBinding { get; set; } = null;
 	protected VisualElement Settings { get; set; } = null;
-	protected Button PoweredButton { get; set; } = null;
-	protected VisualElement PoweredCheckMark { get; set; } = null;
+	protected Button PoweredToggleButton { get; set; } = null;
 	protected Label Description { get; set; } = null;
 
 	// These names can be overriden for UI that uses different names.
@@ -38,8 +40,8 @@ public class BuildingUIBinding
 	protected virtual string GetMassName() => "Mass";
 	protected virtual string GetSpecialResourcesContainerName() => "SpecialResourcesContainer";
 	protected virtual string GetSettingsName() => "SettingsBackground";
-	protected virtual string GetPoweredButtonName() => "PoweredButton";
-	protected virtual string GetPoweredCheckMarkName() => "PoweredCheckMark";
+	protected virtual string GetPoweredToggleContainerName() => "PoweredToggleContainer";
+	protected virtual string GetPoweredToggleButtonName() => "ToggleButton";
 	protected virtual string GetDescriptionName() => "Description";
 
 	public BuildingUIBinding() { }
@@ -64,8 +66,7 @@ public class BuildingUIBinding
 		Mass = FindMass(rootContainer);
 		ResourcesBinding = FindSpecialResources(rootContainer);
 		Settings = FindSettings(rootContainer);
-		PoweredButton = FindPoweredButton(rootContainer);
-		PoweredCheckMark = FindPoweredCheckMark(rootContainer);
+		PoweredToggleButton = FindPoweredToggleButton(rootContainer);
 		Description = FindDescription(rootContainer);
 	}
 
@@ -134,14 +135,13 @@ public class BuildingUIBinding
 		return rootContainer.Q(GetSettingsName());
 	}
 
-	protected virtual Button FindPoweredButton(VisualElement rootContainer)
+	protected virtual Button FindPoweredToggleButton(VisualElement rootContainer)
 	{
-		return rootContainer.Q<Button>(GetPoweredButtonName());
-	}
+		VisualElement toggleContainer = rootContainer.Q(GetPoweredToggleContainerName());
+		if (toggleContainer == null)
+			return null;
 
-	protected virtual VisualElement FindPoweredCheckMark(VisualElement rootContainer)
-	{
-		return rootContainer.Q(GetPoweredCheckMarkName());
+		return toggleContainer.Q<Button>(GetPoweredToggleButtonName());
 	}
 
 	protected virtual Label FindDescription(VisualElement rootContainer)
@@ -157,5 +157,19 @@ public class BuildingUIBinding
 			return null;
 
 		return new BuildingValueUIBinding(container, valueName: valueName);
+	}
+
+	protected void SetPoweredToggle(bool toggledOn)
+	{
+		if (toggledOn)
+		{
+			PoweredToggleButton.AddToClassList(TOGGLE_ON_CLASS);
+			PoweredToggleButton.RemoveFromClassList(TOGGLE_OFF_CLASS);
+		}
+		else
+		{
+			PoweredToggleButton.RemoveFromClassList(TOGGLE_ON_CLASS);
+			PoweredToggleButton.AddToClassList(TOGGLE_OFF_CLASS);
+		}
 	}
 }

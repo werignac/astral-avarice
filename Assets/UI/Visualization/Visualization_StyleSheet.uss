@@ -1,11 +1,3 @@
-.visualizationMenuState_On #ToggleCheckmark {
-    visibility: visible;
-}
-
-.visualizationMenuState_Off #ToggleCheckmark {
-    visibility: hidden;
-}
-
 .visualizationMenuButton #Icon {
     -unity-background-image-tint-color: rgb(123, 200, 252);
 }

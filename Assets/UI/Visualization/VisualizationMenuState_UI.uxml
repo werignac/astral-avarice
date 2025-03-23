@@ -1,9 +1,8 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="Core-Toggle_UI" src="project://database/Assets/UI/Core/Toggle/Core-Toggle_UI.uxml?fileID=9197481963319205126&amp;guid=e520ce24f8370574a8f6152b3b2a7d51&amp;type=3#Core-Toggle_UI" />
     <Style src="project://database/Assets/UI/Visualization/Visualization_StyleSheet.uss?fileID=7433441132597879392&amp;guid=52230a9870c01b941bf43af2328ca853&amp;type=3#Visualization_StyleSheet" />
     <engine:VisualElement name="VisualizationMenuStateContainer" style="flex-grow: 0; flex-direction: row; align-self: flex-start; margin-right: 4px; margin-left: 4px; margin-top: 2px; margin-bottom: 2px;">
-        <engine:Button text="&#10;" name="ToggleButton" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 0; align-self: center;">
-            <engine:VisualElement name="ToggleCheckmark" style="flex-grow: 1; width: 25px; height: 25px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-6090568113533005507&amp;guid=6d3142833d2bc694c8742c2782822332&amp;type=3#check&quot;);" />
-        </engine:Button>
+        <engine:Instance template="Core-Toggle_UI" name="ToggleButtonContianer" style="width: 30px; height: 30px; align-self: center; margin-right: 5px;" />
         <engine:VisualElement name="StateIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Icons/Visualizations/gravity-field-visualization-icon_ui.png?fileID=21300000&amp;guid=d0fc55f3f01f18a41ae4f0cd76819815&amp;type=3#gravity-field-visualization-icon_ui&quot;); height: 35px; width: 35px; align-self: center;" />
     </engine:VisualElement>
 </engine:UXML>

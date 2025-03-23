@@ -1,0 +1,77 @@
+.toggleButton {
+    background-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+    overflow: visible;
+}
+
+.toggleState {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-on_ui.png?fileID=2800000&guid=0e01f9658eaec0147b18034df54d05e9&type=3#core-toggle-on_ui");
+}
+
+.toggleFrame {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-frame_ui.png?fileID=2800000&guid=bdef649a5b924ab40be53e6c9ec433c5&type=3#core-toggle-frame_ui");
+    transition-property: scale, rotate;
+    transition-duration: 0.1s, 0.1s;
+}
+
+.toggleOn VisualElement {
+    -unity-background-image-tint-color: rgb(40, 183, 58);
+}
+
+.toggleOff VisualElement {
+    -unity-background-image-tint-color: rgb(167, 37, 39);
+}
+
+.toggleButton:hover .toggleFrame {
+    scale: 1.2 1.2;
+}
+
+.toggleOn .toggleFrame {
+    rotate: 0;
+}
+
+.toggleOn .toggleState {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-on_ui.png?fileID=2800000&guid=0e01f9658eaec0147b18034df54d05e9&type=3#core-toggle-on_ui");
+}
+
+.toggleOff .toggleState {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-off_ui.png?fileID=2800000&guid=0e0501356ef151242aec52e13c7e380e&type=3#core-toggle-off_ui");
+}
+
+.toggleOff .toggleFrame {
+    rotate: 45deg;
+}
+
+.toggleOn:hover VisualElement {
+    -unity-background-image-tint-color: rgb(53, 225, 107);
+}
+
+.toggleOff:hover VisualElement {
+    -unity-background-image-tint-color: rgb(208, 49, 82);
+}
+
+.toggleOn:active VisualElement {
+    -unity-background-image-tint-color: rgb(15, 75, 19);
+}
+
+.toggleOff:active VisualElement {
+    -unity-background-image-tint-color: rgb(107, 23, 23);
+}
