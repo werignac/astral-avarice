@@ -2,23 +2,27 @@ using System;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
+using AstralAvarice.Frontend;
 
 [RequireComponent(typeof(UIDocument))]
 public class StatsUIComponent : MonoBehaviour
 {
+	private const string INCOME_PIE_CHART_CONTAINER_ELEMENT_NAME = "IncomePieChartContainer";
+
 	private UIDocument statsDocument;
 
 	private Button incrementGameSpeedButton;
 	private Button decrementGameSpeedButton;
 	private Button redistributeElectricityButton;
 	private Button pauseButtion;
-	private ProgressBar incomeProgress;
 	private VisualElement rankImage;
 	private Label rankTime;
 
 	[SerializeField] private GameController gameController;
 	[SerializeField] private PauseManager pauseManager;
 	[SerializeField] private Sprite[] missionRankSprites;
+
+	private IncomePieChartController pieChartController = new IncomePieChartController();
 
 	private void Awake()
 	{
@@ -32,7 +36,6 @@ public class StatsUIComponent : MonoBehaviour
 		decrementGameSpeedButton = statsDocument.rootVisualElement.Q<Button>("DecreaseButton");
 		redistributeElectricityButton = statsDocument.rootVisualElement.Q<Button>("RedistributeButton");
 		pauseButtion = statsDocument.rootVisualElement.Q<Button>("PauseButton");
-		incomeProgress = statsDocument.rootVisualElement.Q<ProgressBar>("IncomeProgress");
 		rankImage = statsDocument.rootVisualElement.Q("RankImage");
 		rankTime = statsDocument.rootVisualElement.Q<Label>("RankTime");
 
@@ -40,12 +43,13 @@ public class StatsUIComponent : MonoBehaviour
 		decrementGameSpeedButton.RegisterCallback<ClickEvent>(DecrementTimeButton_OnClick);
 		redistributeElectricityButton.RegisterCallback<ClickEvent>(RedistributeElectricityButton_OnClick);
 		pauseButtion.RegisterCallback<ClickEvent>(PauseButton_OnClick);
-    }
+
+		pieChartController.Bind(statsDocument.rootVisualElement.Q(INCOME_PIE_CHART_CONTAINER_ELEMENT_NAME));
+	}
 
     private void Update()
     {
-		incomeProgress.title = "Income: " + gameController.Income + "/" + gameController.TargetIncome;
-		incomeProgress.value = (gameController.Income * 100) / gameController.TargetIncome;
+		pieChartController.SetIncomeAndGoal(gameController.Income, gameController.TargetIncome);
 
 		int rank = gameController.GetRank();
 		string timeText = "(";
