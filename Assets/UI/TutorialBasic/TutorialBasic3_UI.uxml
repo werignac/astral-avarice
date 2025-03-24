@@ -7,7 +7,7 @@
             <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
         </engine:VisualElement>
         <engine:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
-            <engine:Label text="The top displays the current situation.&#10;The value on the right is the current game play speed.&#10;In regular missions, you can change this with the +/- keys." class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" />
+            <engine:Label text="The top displays the current situation.&#10;In the bottom left, you have your current cash and&#10;advanced materials. &#10;(Cash on the left, advanced materialson the right)" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

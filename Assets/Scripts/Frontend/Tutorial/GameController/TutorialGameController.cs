@@ -8,6 +8,7 @@ public class TutorialGameController : GameController
 
     [SerializeField] private TutorialUI tutorialUI;
     [SerializeField] private MissionData tutorialMission;
+    [SerializeField] private BuildMenuUIComponent buildMenu;
     [SerializeField] private TutorialStateChangeCondition[] stateChangeConditions;
     [SerializeField] private TutorialAllowedAction[] allowedActions;
     [SerializeField] private int[] gameSpeedOverrides;
@@ -15,6 +16,8 @@ public class TutorialGameController : GameController
     [SerializeField] private GameObject[] displayObjects;
     [SerializeField] private bool[] setBuildToNone;
     [SerializeField] private Vector3[] buildLocations; // The first two numbers (x, y) are the center of a circle with radius z where the build is allowed.
+    [SerializeField] private int[] buildMenuHighlights = new int[] { -1 };
+    [SerializeField] private int[] buildSubMenuHighlights = new int[] { -1 };
 
     private int currentTutorialState = 0;
     private bool advanceAtEndOfNextUpdate = false;
@@ -83,6 +86,7 @@ public class TutorialGameController : GameController
             {
                 FocusCamera(cameraFocuses[currentTutorialState]);
             }
+            buildMenu.UpdateHighlightIndecies(buildMenuHighlights[currentTutorialState], buildSubMenuHighlights[currentTutorialState]);
             tutorialUI.ShowNextElement();
         }
     }
@@ -180,9 +184,13 @@ public class TutorialGameController : GameController
             }
         }
 
-        if(placedIncorrectly && cameraFocuses[currentTutorialState].z > 0)
+        if(placedIncorrectly)
         {
-            FocusCamera(cameraFocuses[currentTutorialState]);
+            BuildManagerComponent.Instance.SetNoneState();
+            if (cameraFocuses[currentTutorialState].z > 0)
+            {
+                FocusCamera(cameraFocuses[currentTutorialState]);
+            }
         }
 
         base.BuildManager_OnBuildResovle(resolution);

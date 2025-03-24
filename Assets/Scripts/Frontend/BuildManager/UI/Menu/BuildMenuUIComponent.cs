@@ -29,6 +29,10 @@ public class BuildMenuUIComponent : MonoBehaviour
 
 	private Dictionary<int, InspectorLayer> activeLayers = new Dictionary<int, InspectorLayer>();
 
+	private int categoryHighlightIndex;
+	private int subMenuHighlightIndex;
+	private int shownSubMenuIndex;
+
 	private void Awake()
 	{
 		uiDocument = GetComponent<UIDocument>();
@@ -151,6 +155,16 @@ public class BuildMenuUIComponent : MonoBehaviour
 
 		// Set the binding that was clicked to be selected.
 		buttonBindings[id].ShowSelectUI();
+
+		if(id == categoryHighlightIndex)
+        {
+			submenu.SetButtonHighlight(subMenuHighlightIndex, true);
+        }
+		else
+        {
+			submenu.SetButtonHighlight(subMenuHighlightIndex, false);
+        }
+		shownSubMenuIndex = id;
 	}
 
 	private void MenuElement_OnHoverStart(int id)
@@ -312,4 +326,33 @@ public class BuildMenuUIComponent : MonoBehaviour
 			(BuildingSettingEntry building) => System.Array.IndexOf(building.VisualAsset.categories, category) >= 0
 		);
 	}
+
+	public void UpdateHighlightIndecies(int categoryIndex, int subMenuIndex)
+	{
+		SetButtonHighlight(categoryHighlightIndex, false);
+		submenu.SetButtonHighlight(subMenuHighlightIndex, false);
+
+		categoryHighlightIndex = categoryIndex;
+		subMenuHighlightIndex = subMenuIndex;
+		SetButtonHighlight(categoryIndex, true);
+		if (shownSubMenuIndex == categoryIndex)
+		{
+			submenu.SetButtonHighlight(subMenuIndex, true);
+		}
+    }
+
+	public void SetButtonHighlight(int menuIndex, bool highlight)
+    {
+		if(menuIndex >= 0 && menuIndex < buttonBindings.Count)
+        {
+			if (highlight)
+			{
+				buttonBindings[menuIndex].ShowHighlight();
+			}
+            else
+            {
+				buttonBindings[menuIndex].HideHighlight();
+            }
+        }
+    }
 }

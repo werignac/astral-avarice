@@ -7,7 +7,7 @@
             <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
         </engine:VisualElement>
         <engine:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
-            <engine:Label text="The two sets of numbers in the bottom left are your &#10;cash and your advanced materials. As previously&#10;stated the number in parenthesis is your income&#10;or upkeep for the given value. The other number&#10;is the current money/material in your possession." name="Label" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" />
+            <engine:Label text="The section just to the right contains both the game speed,&#10;as well as tracking how mucn in game time has passed.&#10;You collect income every 30 seconds, so make sure to have&#10;good income in time for the payout." name="Label" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

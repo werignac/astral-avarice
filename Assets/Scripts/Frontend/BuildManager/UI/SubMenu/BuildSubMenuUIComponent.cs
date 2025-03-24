@@ -285,4 +285,19 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 		rootElement.style.display = DisplayStyle.None;
 		OnHide?.Invoke();
 	}
+
+	public void SetButtonHighlight(int menuIndex, bool highlight)
+	{
+		if (menuIndex >= 0 && menuIndex < buildButtonBindings.Count)
+		{
+			if (highlight)
+			{
+				buildButtonBindings[menuIndex].ShowHighlight();
+			}
+			else
+			{
+				buildButtonBindings[menuIndex].HideHighlight();
+			}
+		}
+	}
 }
