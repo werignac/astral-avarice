@@ -5,8 +5,13 @@ namespace AstralAvarice.Frontend
 {
     public class IncomePieChartController
     {
-		private float goal;
-		private float income;
+		private Color incomeColor = Color.green;
+		private Color goalColor = Color.red;
+		private Color goalTextColor = Color.white;
+		private Color negativeIncomeColor = Color.red;
+
+		private int goal;
+		private int income;
 
 		private const string PIE_CHART_ELEMENT_NAME = "PieChart";
 		private const string INCOME_LABEL_ELEMENT_NAME = "PieChartIncome";
@@ -29,11 +34,14 @@ namespace AstralAvarice.Frontend
 			Update();
 		}
 
-		public void SetIncomeAndGoal(float income, float goal)
+		public void SetIncomeAndGoal(int income, int goal)
 		{
 			Debug.Assert(goal > 0, $"Set pie chart drawer to draw an income goal of {goal}. The income goal must always be positive and > 0.");
 
 			if (this.income == income && this.goal == goal)
+				return;
+
+			if (pieChartElement == null)
 				return;
 
 			this.income = income;
@@ -42,13 +50,48 @@ namespace AstralAvarice.Frontend
 			Update();
 		}
 
+		public void SetColors(
+			Color incomeColor,
+			Color goalColor,
+			Color goalTextColor,
+			Color negativeIncomeColor
+		)
+		{
+			this.incomeColor = incomeColor;
+			this.goalColor = goalColor;
+			this.goalTextColor = goalTextColor;
+			this.negativeIncomeColor = negativeIncomeColor;
+
+			if (pieChartElement == null)
+				return;
+
+			Update();
+		}
+
 		private void Update()
 		{
-			pieChartIncomeLabel.text = income.ToString();
-			pieChartGoalLabel.text = goal.ToString();
+			pieChartIncomeLabel.text = FormatIncomeOrGoal(income);
+			pieChartIncomeLabel.style.color = GetIncomeColor();
+			pieChartGoalLabel.text = FormatIncomeOrGoal(goal);
+			pieChartGoalLabel.style.color = GetGoalColor();
 
 			// Invoke calling DrawPieChart via generateVisualContent.
 			pieChartElement.MarkDirtyRepaint();
+		}
+
+		private static string FormatIncomeOrGoal(int incomeOrGoal)
+		{
+			return (incomeOrGoal >= 0 ? "+" : "-") + $"${Mathf.Abs(incomeOrGoal)}";
+		}
+
+		private Color GetIncomeColor()
+		{
+			return (income >= 0) ? incomeColor : negativeIncomeColor;
+		}
+
+		private Color GetGoalColor()
+		{
+			return (income < goal) ? goalTextColor : incomeColor;
 		}
 
 		private void DrawPieChart(MeshGenerationContext ctx)
@@ -64,8 +107,8 @@ namespace AstralAvarice.Frontend
 				goal,
 				center,
 				radius,
-				Color.green,
-				Color.red
+				incomeColor,
+				goalColor
 			);
 		}
     }

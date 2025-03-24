@@ -20,7 +20,11 @@ public class StatsUIComponent : MonoBehaviour
 
 	[SerializeField] private GameController gameController;
 	[SerializeField] private PauseManager pauseManager;
-	[SerializeField] private Sprite[] missionRankSprites;
+	[Header("Income Pie Chart")]
+	[SerializeField] private Color incomePieChartColor = Color.green;
+	[SerializeField] private Color goalPieChartColor = Color.red;
+	[SerializeField] private Color goalTextPieChartColor = Color.white;
+	[SerializeField] private Color negativeIncomeColor = Color.red;
 
 	private IncomePieChartController pieChartController = new IncomePieChartController();
 
@@ -44,22 +48,38 @@ public class StatsUIComponent : MonoBehaviour
 		redistributeElectricityButton.RegisterCallback<ClickEvent>(RedistributeElectricityButton_OnClick);
 		pauseButtion.RegisterCallback<ClickEvent>(PauseButton_OnClick);
 
+		pieChartController.SetColors(
+			incomePieChartColor,
+			goalPieChartColor,
+			goalTextPieChartColor,
+			negativeIncomeColor
+		);
 		pieChartController.Bind(statsDocument.rootVisualElement.Q(INCOME_PIE_CHART_CONTAINER_ELEMENT_NAME));
 	}
 
     private void Update()
     {
 		pieChartController.SetIncomeAndGoal(gameController.Income, gameController.TargetIncome);
+		UpdateRank();
+    }
 
+	private void UpdateRank()
+	{
 		int rank = gameController.GetRank();
+		UpdateRankText(rank);
+		UpdateRankIcon(rank);
+	}
+
+	private void UpdateRankText(int rank)
+	{
 		string timeText = "(";
-        if (rank == 0)
-        {
+		if (rank == 0)
+		{
 			timeText = "WARNING!";
 			rankTime.style.color = Color.red;
-        }
-		else if(rank == 1)
-        {
+		}
+		else if (rank == 1)
+		{
 			if (gameController.Winning)
 			{
 				rankTime.style.color = Color.green;
@@ -68,30 +88,35 @@ public class StatsUIComponent : MonoBehaviour
 			{
 				rankTime.style.color = Color.white;
 			}
-            timeText += "--:--)";
+			timeText += "--:--)";
 		}
 		else
-        {
-            if (gameController.Winning)
-            {
-                rankTime.style.color = Color.green;
-            }
-            else
-            {
-                rankTime.style.color = Color.white;
-            }
-            int time = Data.selectedMission.goalTimes[5 - rank];
-            timeText += Mathf.FloorToInt(time / 60).ToString("00");
-            timeText += ":" + Mathf.FloorToInt((time % 60)).ToString("00");
+		{
+			if (gameController.Winning)
+			{
+				rankTime.style.color = Color.green;
+			}
+			else
+			{
+				rankTime.style.color = Color.white;
+			}
+			int time = Data.selectedMission.goalTimes[5 - rank];
+			timeText += Mathf.FloorToInt(time / 60).ToString("00");
+			timeText += ":" + Mathf.FloorToInt((time % 60)).ToString("00");
 			timeText += ")";
-        }
-        rankTime.text = timeText;
+		}
+		rankTime.text = timeText;
+	}
 
+	private void UpdateRankIcon(int rank)
+	{
+		PtUUISettings uiSettings = PtUUISettings.GetOrCreateSettings();
+		var rankSettings = uiSettings.RankSettings;
 
-        rankImage.style.display = DisplayStyle.Flex;
-        rankImage.style.backgroundImage = new StyleBackground(missionRankSprites[rank]);
-        rankImage.style.backgroundSize = BackgroundPropertyHelper.ConvertScaleModeToBackgroundSize(ScaleMode.ScaleToFit);
-    }
+		rankImage.style.display = DisplayStyle.Flex;
+		rankImage.style.backgroundImage = new StyleBackground(rankSettings[rank].icon);
+		rankImage.style.backgroundSize = BackgroundPropertyHelper.ConvertScaleModeToBackgroundSize(ScaleMode.ScaleToFit);
+	}
 
     private void PauseButton_OnClick(ClickEvent evt)
 	{
