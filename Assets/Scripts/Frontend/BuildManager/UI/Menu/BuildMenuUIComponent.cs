@@ -29,9 +29,9 @@ public class BuildMenuUIComponent : MonoBehaviour
 
 	private Dictionary<int, InspectorLayer> activeLayers = new Dictionary<int, InspectorLayer>();
 
-	private int categoryHighlightIndex;
-	private int subMenuHighlightIndex;
-	private int shownSubMenuIndex;
+	private int categoryHighlightIndex = -1;
+	private int subMenuHighlightIndex = -1;
+	private int shownSubMenuIndex = -1;
 
 	private void Awake()
 	{
