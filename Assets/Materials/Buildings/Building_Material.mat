@@ -75,6 +75,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _GridGroupColorIntensity: 0.5
     - _IsGridElement: 1
     - _IsOutlineOn: 1
     - _OutlineThickness: 1

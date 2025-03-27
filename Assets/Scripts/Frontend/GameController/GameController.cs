@@ -32,12 +32,18 @@ public class GameController : MonoBehaviour
 	/// Warning: Changing this variable directly instead of GameSpeed will not update Time.timeScale.
 	/// </summary>
 	protected int gameSpeed;
+	/// <summary>
+	/// False at the start of the game. Set to true when the player makes their first change
+	/// to the game state (i.e. changing the game speed, placing a building, etc.).
+	/// </summary>
+	private bool gameStarted = false;
 	private bool gameEnded = false;
 	private bool gamePaused = false;
 	private int prePauseGameSpeed = 1;
 	private float goalFixedDeltaTime;
 
 	[HideInInspector] public UnityEvent OnLevelLoad = new UnityEvent();
+	[HideInInspector] public UnityEvent OnGameStart = new UnityEvent();
 
 	// Refercnes to in-game objects.
 	public List<PlanetComponent> Planets { get; private set; } = new List<PlanetComponent>();
@@ -86,6 +92,14 @@ public class GameController : MonoBehaviour
 			Time.timeScale = value;
 			// Adjust Time.fixedDeltaTime to perform the same number of FixedDeltaTime updates per frame.
 			Time.fixedDeltaTime = goalFixedDeltaTime * Time.timeScale;
+
+			// Game Speed is usually changed due to player action.
+			// If the game speed turns positive and we haven't started the game yet, the game has now started.
+			if (!gameStarted && value > 0)
+			{
+				gameStarted = true;
+				OnGameStart?.Invoke();
+			}
 		}
 	}
 

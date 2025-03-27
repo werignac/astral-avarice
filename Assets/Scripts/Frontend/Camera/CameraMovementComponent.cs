@@ -21,7 +21,7 @@ public class CameraMovementComponent : MonoBehaviour
 
 	private Camera movingCamera;
 
-	private Vector2 levelBounds = Vector2.one * 1;
+	private Vector2 levelBounds = Vector2.one;
 
 	[Header("Zoom")]
 	[SerializeField, Min(0.01f)] private float cameraSizeMin = 3;
@@ -48,8 +48,22 @@ public class CameraMovementComponent : MonoBehaviour
 	private float VerticalBoundMinusCameraHeightMax { get => Mathf.Max(levelBounds.x / 2 - cameraSizeMax , 0); }
 	private float VerticalBoundMinusCameraHeightMin { get => Mathf.Max(levelBounds.x / 2 - cameraSizeMin , 0); }
 	public float LevelBoundsAspect { get => levelBounds.x / levelBounds.y; }
+	// Accessed by BackgroundComponent.
+	public Vector2 LevelBounds => levelBounds;
 	// Because of smoothing, these can be above or below 1 or -1.
-	public Vector2 NormalizedPosition {
+	/// <summary>
+	/// Position of the camera relative to the bounds of the level.
+	/// Each axis is between -1 and 1.
+	/// </summary>
+	public Vector2 NormalizedPositionWithinLevelBounds {
+		get => new Vector2(
+			transform.position.x / (levelBounds.x / 2),
+			transform.position.y / (levelBounds.y / 2)
+			);
+	}
+
+	public Vector2 NormalizedPositionWithinMoveableArea
+	{
 		get => new Vector2(
 			HorizontalBoundMinusCameraWidth == 0 ? 0 : transform.position.x / HorizontalBoundMinusCameraWidth,
 			VerticalBoundMinusCameraHeight == 0 ? 0 : transform.position.y / VerticalBoundMinusCameraHeight
