@@ -119,6 +119,7 @@ Material:
     - _FlipbookMode: 0
     - _GlobeFactor: 1.1
     - _Glossiness: 0.5
+    - _GridGroupColorIntensity: 0.2
     - _InnerRadius: 0.4
     - _IsGridCable: 1
     - _IsGridElement: 1
