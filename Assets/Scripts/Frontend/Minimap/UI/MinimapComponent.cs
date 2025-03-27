@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 // the UI where it cannot be shown and hidden.
 public class MinimapComponent : MonoBehaviour
 {
+	private const string MINIMAP_CONTAINER_ELEMENT_NAME = "MinimapTemplate";
 	private const string MINIMAP_ELEMENT_NAME = "Minimap";
 
 	[SerializeField] private MinimapCameraComponent minimapCamera;
@@ -13,6 +14,7 @@ public class MinimapComponent : MonoBehaviour
 
 	private UIDocument uiDocument;
 
+	private VisualElement minimapContainerElement;
 	private VisualElement minimapElement;
 
 	/// <summary>
@@ -24,6 +26,7 @@ public class MinimapComponent : MonoBehaviour
 	private void Awake()
 	{
 		uiDocument = GetComponent<UIDocument>();
+		minimapContainerElement = uiDocument.rootVisualElement.Q(MINIMAP_CONTAINER_ELEMENT_NAME);
 		minimapElement = uiDocument.rootVisualElement.Q(MINIMAP_ELEMENT_NAME);
 	}
 
@@ -86,17 +89,17 @@ public class MinimapComponent : MonoBehaviour
 
 	public bool GetIsShowing()
 	{
-		return uiDocument.rootVisualElement.style.display == DisplayStyle.Flex;
+		return minimapContainerElement.resolvedStyle.display == DisplayStyle.Flex;
 	}
 
     public void Show()
 	{
-		uiDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+		minimapContainerElement.style.display = DisplayStyle.Flex;
 	}
 
 	public void Hide()
 	{
-		uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+		minimapContainerElement.style.display = DisplayStyle.None;
 	}
 
 	public void Toggle()
