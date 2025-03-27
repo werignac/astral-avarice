@@ -65,7 +65,7 @@ public class GameManager
     }
     public bool Winning
     {
-        get { return (income > TargetIncome); }
+        get { return (income >= TargetIncome); }
     }
     public bool Losing
     {

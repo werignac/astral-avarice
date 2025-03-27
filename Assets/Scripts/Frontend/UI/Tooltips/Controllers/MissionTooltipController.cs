@@ -56,6 +56,10 @@ namespace AstralAvarice.UI.Tooltips
 				timeText += ":" + (bestTime % 60).ToString("00.0");
 				return ("Best time: " + timeText);
 			}
+			else if(bestTime == 0)
+            {
+				return ("Complete");
+            }
 			else
 			{
 				return ("Not completed");
