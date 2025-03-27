@@ -29,7 +29,9 @@ namespace AstralAvarice.Frontend
 
 		private void OnDisable()
 		{
-			uiDocument.rootVisualElement.style.display = DisplayStyle.None;
+			// Check for null due OnDisable being called when destroyed.
+			if (uiDocument)
+				uiDocument.rootVisualElement.style.display = DisplayStyle.None;
 		}
 	}
 }
