@@ -256,6 +256,9 @@ MonoBehaviour:
   OnLevelLoad:
     m_PersistentCalls:
       m_Calls: []
+  OnGameStart:
+    m_PersistentCalls:
+      m_Calls: []
   tutorialUI: {fileID: 1447282692}
   tutorialMission: {fileID: 11400000, guid: 99f704f836c39f24b8f13f67f0424487, type: 2}
   buildMenu: {fileID: 876278619}
@@ -965,7 +968,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 38501bf6f33b336448b2d1aa253d6b0d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.54509807}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1436,6 +1439,67 @@ MonoBehaviour:
   - {fileID: 9197481963319205126, guid: 4f6b65c2fc61de7499eae99bf4ba1b14, type: 3}
   - {fileID: 9197481963319205126, guid: a12952e2b2c01ee428ccb7afc0c9014a, type: 3}
   - {fileID: 9197481963319205126, guid: 962b5b9982e39b84ca689e84fa8e956e, type: 3}
+--- !u!1001 &1513893933
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5566876925892653008, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 164819401}
+    - target: {fileID: 5994002122336709066, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_Name
+      value: LevelBoundsMinimap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187667039996704252, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187667039996704252, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187667039996704252, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187667039996704252, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187667039996704252, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187667039996704252, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187667039996704252, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187667039996704252, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187667039996704252, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187667039996704252, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba5a4ce7931e8dc4f98518349bff3874, type: 3}
 --- !u!1 &1633224276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1577,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 38501bf6f33b336448b2d1aa253d6b0d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.54509807}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1632,7 +1696,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5c5b512d722819845980db9fd016a3d6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.54509807}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1957,3 +2021,4 @@ SceneRoots:
   - {fileID: 679577486}
   - {fileID: 626775754}
   - {fileID: 1851837724}
+  - {fileID: 1513893933}

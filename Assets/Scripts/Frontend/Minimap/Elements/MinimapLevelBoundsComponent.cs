@@ -7,13 +7,10 @@ using UnityEngine;
 /// </summary>
 public class MinimapLevelBoundsComponent : MinimapWireframeBox
 {
-	private GameController gameController;
+	[SerializeField] private GameController gameController;
 
-	protected override void Awake()
+	private void Start()
 	{
-		base.Awake();
-
-		gameController = GetComponentInParent<GameController>();
 		gameController.OnLevelLoad.AddListener(GameController_OnLevelLoad);
 	}
 

@@ -16,8 +16,15 @@ public class BuildWarningUIComponent : MonoBehaviour
 	private void Awake()
 	{
 		uiDocument = GetComponent<UIDocument>();
+	}
 
+	private void Start()
+	{
 		BuildManagerComponent.Instance.OnStateChanged.AddListener(BuildManager_OnStateChanged);
+
+		buildingWarningContainer = uiDocument.rootVisualElement.Q("BuildingWarningContainer");
+		cableWarningContainer = uiDocument.rootVisualElement.Q("CableWarningContainer");
+		divider = uiDocument.rootVisualElement.Q("WarningDivider");
 	}
 
 	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
@@ -75,12 +82,5 @@ public class BuildWarningUIComponent : MonoBehaviour
 		uiElement.Q<Label>("Message").text = warning.GetMessage();
 
 		return uiElement;
-	}
-
-	private void Start()
-	{
-		buildingWarningContainer = uiDocument.rootVisualElement.Q("BuildingWarningContainer");
-		cableWarningContainer = uiDocument.rootVisualElement.Q("CableWarningContainer");
-		divider = uiDocument.rootVisualElement.Q("WarningDivider");
 	}
 }
