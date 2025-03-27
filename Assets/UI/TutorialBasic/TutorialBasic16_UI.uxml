@@ -1,17 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
-    <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
-        <engine:VisualElement picking-mode="Ignore" style="flex-direction: row; flex-grow: 1;">
-            <engine:VisualElement name="VisualElement" style="width: 500px; height: 60px;" />
-            <engine:VisualElement name="VisualElement" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0.78); width: 750px;">
-                <engine:Label text="Now we need to rebuild our power&#10;systems. Place two Fission&#10;plants on this planet." name="Label" class="Text" style="align-self: flex-start; margin-top: 350px; margin-left: 50px;" />
-            </engine:VisualElement>
-            <engine:VisualElement picking-mode="Ignore" style="flex-grow: 0; width: 200px;">
-                <engine:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
-                <engine:VisualElement picking-mode="Ignore" style="flex-grow: 0; height: 200px;" />
-                <engine:VisualElement style="flex-grow: 0; height: 250px; background-color: rgba(0, 0, 0, 0.78);" />
-            </engine:VisualElement>
-            <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
-        </engine:VisualElement>
+    <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; justify-content: center;">
+        <engine:Label text="Adding new buildings will increase the mass,&#10;and therefore the gravity of the planet.&#10;You can view the current gravity range, and&#10;the estimated gravity range increase while&#10;you have the building tool active." name="Label" class="Text" style="align-self: center;" />
     </engine:VisualElement>
 </engine:UXML>

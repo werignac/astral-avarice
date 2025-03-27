@@ -100,17 +100,6 @@ public class TutorialGameController : GameController
         base.Start();
     }
 
-    protected override void CollectInitialGameObjects()
-    {
-        base.CollectInitialGameObjects();
-        foreach(BuildingComponent building in Buildings)
-        {
-            if (building.Data.buildingType == BuildingType.PowerConsumer && building.BackendBuilding.IsPowered)
-            {
-                building.BackendBuilding.TogglePower();
-            }
-        }
-    }
     protected override void Update()
     {
         base.Update();
