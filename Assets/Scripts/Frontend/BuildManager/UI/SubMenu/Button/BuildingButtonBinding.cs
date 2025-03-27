@@ -183,17 +183,20 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 	private void SetName(BuildingDisplayData displayData)
 	{
 		Title.text = displayData.BuildingName;
+		Title.tooltip = displayData.BuildingName;
 	}
 
 	private void SetIcon(BuildingDisplayData displayData)
 	{
 		Icon.style.backgroundImage = new StyleBackground(displayData.BuildingIcon);
+		Icon.tooltip = displayData.BuildingName;
 	}
 
 	private void SetCost(BuildingDisplayData displayData)
 	{
 		Cost.Show();
 		Cost.SetValue(displayData.BuildingCost.ToString());
+		Cost.SetTooltip($"The {displayData.BuildingName} takes ${displayData.BuildingCost} to build.");
 	}
 
 	private void SetAdvancedMaterialsCost(BuildingDisplayData displayData)
@@ -203,6 +206,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingScienceCost,
 			AdvancedMaterialsCost
 		);
+		AdvancedMaterialsCost.SetTooltip($"The {displayData.BuildingName} takes {displayData.BuildingScienceCost} Advanced Materials to build.");
 	}
 
 	private void SetUpkeep(BuildingDisplayData displayData)
@@ -212,6 +216,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingUpkeep,
 			Upkeep
 		);
+		Upkeep.SetTooltip($"The {displayData.BuildingName} consumes ${displayData.BuildingUpkeep} per 30 seconds.");
 	}
 
 	private void SetConsumedElectricity(BuildingDisplayData displayData)
@@ -221,6 +226,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingConsumedElectricity,
 			ElectricityConsumption
 		);
+		ElectricityConsumption.SetTooltip($"The {displayData.BuildingName} consumes ${displayData.BuildingConsumedElectricity} per 30 seconds.");
 	}
 
 	private void SetSpecialResources(BuildingDisplayData displayData)
@@ -235,6 +241,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingIncome,
 			Income
 		);
+		Income.SetTooltip($"The {displayData.BuildingName} produces ${displayData.BuildingIncome} per 30 seconds when powered.");
 	}
 
 	private void SetElectricityProduction(BuildingDisplayData displayData)
@@ -244,6 +251,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingProducedPower,
 			ElectricityProduction
 		);
+		ElectricityProduction.SetTooltip($"The {displayData.BuildingName} produces {displayData.BuildingProducedPower} power.");
 	}
 
 	private void SetAdvancedMaterialsProduction(BuildingDisplayData displayData)
@@ -253,12 +261,14 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingScienceIncome,
 			AdvancedMaterialsProduction
 		);
+		AdvancedMaterialsProduction.SetTooltip($"The {displayData.BuildingName} produces {displayData.BuildingScienceIncome} Advanced Materials per 30 seconds.");
 	}
 
 	private void SetMass(BuildingDisplayData displayData)
 	{
 		Mass.Show();
 		Mass.SetValue(displayData.BuildingMass.ToString());
+		Mass.SetTooltip($"The {displayData.BuildingName} has a mass of {displayData.BuildingMass}.");
 	}
 
 	private void SetConnections(BuildingDisplayData displayData)
@@ -266,6 +276,10 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 		Connections.Show();
 		Connections.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
 		Connections.SetValue(displayData.BuildingConnectionsTotal.ToString());
+		if (displayData.BuildingConnectionsTotal > 0)
+			Connections.SetTooltip($"The {displayData.BuildingName} can connect to up to {displayData.BuildingConnectionsTotal} other buildings.");
+		else
+			Connections.SetTooltip($"The {displayData.BuildingName} does not need to connect to any other buildings.");
 	}
 
 

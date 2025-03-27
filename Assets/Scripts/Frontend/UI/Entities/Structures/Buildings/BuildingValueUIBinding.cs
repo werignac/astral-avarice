@@ -119,4 +119,9 @@ public class BuildingValueUIBinding
 	{
 		Container.style.display = DisplayStyle.None;
 	}
+
+	public void SetTooltip(string tooltipText)
+	{
+		Container.tooltip = tooltipText;
+	}
 }
