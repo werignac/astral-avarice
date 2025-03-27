@@ -30,7 +30,7 @@ namespace AstralAvarice.Frontend
 		private void OnDisable()
 		{
 			// Check for null due OnDisable being called when destroyed.
-			if (uiDocument)
+			if (uiDocument && uiDocument.rootVisualElement != null)
 				uiDocument.rootVisualElement.style.display = DisplayStyle.None;
 		}
 	}
