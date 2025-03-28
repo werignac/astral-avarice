@@ -66,4 +66,13 @@ public class Building
     {
         return (manager.ToggleBuildingPower(this));
     }
+
+    public int GetPower()
+    {
+        if (Data.resourceAmountRequired <= 0)
+        {
+            return (Data.powerProduced);
+        }
+        return (Mathf.CeilToInt(((float)ResourcesProvided) / Data.resourceAmountRequired * Data.powerProduced));
+    }
 }

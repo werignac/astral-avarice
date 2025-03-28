@@ -22,7 +22,7 @@ public struct GridGroupData
 		if (GroupId == -1)
 			GroupId = building.BuildingGroup;
 
-		TotalPowerProduced += building.Data.powerProduced;
+		TotalPowerProduced += building.GetPower();
 		TotalPowerConsumed += building.Data.powerRequired;
 	}
 }
