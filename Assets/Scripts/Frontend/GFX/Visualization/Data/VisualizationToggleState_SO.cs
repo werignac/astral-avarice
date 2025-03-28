@@ -31,7 +31,10 @@ namespace AstralAvarice.Visualization
 		[SerializeField, InspectorName("Toggle Value")] private bool value;
 		[SerializeField] private Sprite icon;
 		[SerializeField] private string displayName;
-		// TODO: Include string for getting / setting playerprefs?
+		[Header("PlayerPrefs")]
+		[SerializeField, Tooltip("Default value for new players (fresh installs).")]
+		private bool newPlayerValue;
+		[SerializeField] private string playerPrefName;
 
 		// Invoked when the state changes.
 		[HideInInspector] private UnityEvent<bool> OnChanged = new UnityEvent<bool>();
@@ -67,6 +70,8 @@ namespace AstralAvarice.Visualization
 
 			value = newValue;
 
+			SaveStateToPlayerPrefs();
+
 			OnChanged?.Invoke(value);
 		}
 
@@ -94,6 +99,25 @@ namespace AstralAvarice.Visualization
 		public void RemoveStateChangeListener(UnityAction<bool> listener)
 		{
 			OnChanged.RemoveListener(listener);
+		}
+
+
+		/// <summary>
+		/// Gets the value of the visualization state or read newPlayerValue when the playerprefs
+		/// haven't been set yet.
+		/// </summary>
+		public void FetchStateFromPlayerPrefs()
+		{
+			bool playerPrefsState = PlayerPrefs.GetInt(playerPrefName, newPlayerValue ? 1 : 0) > 0;
+			SetToggleValue(playerPrefsState);
+		}
+
+		/// <summary>
+		/// Saves the current state of visualization to playerprefs.
+		/// </summary>
+		public void SaveStateToPlayerPrefs()
+		{
+			PlayerPrefs.SetInt(playerPrefName, value ? 1 : 0);
 		}
 
 	}

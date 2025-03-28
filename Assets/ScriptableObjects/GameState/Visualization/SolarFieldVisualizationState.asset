@@ -15,3 +15,5 @@ MonoBehaviour:
   value: 1
   icon: {fileID: 21300000, guid: c1621ec31dfcf5940b06c46fc1040a81, type: 3}
   displayName: Solar Field
+  newPlayerValue: 0
+  playerPrefName: SolarField_Visualization

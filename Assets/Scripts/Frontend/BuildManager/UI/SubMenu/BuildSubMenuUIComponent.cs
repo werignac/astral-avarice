@@ -222,7 +222,7 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 
 	private VisualElement CreateButton()
 	{
-		VisualElement button = buildingButtonTemplate.Instantiate(); 
+		VisualElement button = buildingButtonTemplate.Instantiate();
 		return button;
 	}
 
@@ -257,12 +257,12 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 
 
 
-		/// <summary>
-		/// Keep updating the bindings' affordability.
-		/// </summary>
-		private void Update()
+	/// <summary>
+	/// Keep updating the bindings' affordability.
+	/// </summary>
+	private void Update()
 	{
-		foreach(var binding in buildButtonBindings)
+		foreach (var binding in buildButtonBindings)
 		{
 			binding.UpdateUI();
 		}

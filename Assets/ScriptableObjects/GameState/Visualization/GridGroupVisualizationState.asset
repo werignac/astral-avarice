@@ -15,3 +15,5 @@ MonoBehaviour:
   value: 0
   icon: {fileID: 21300000, guid: f66ed5c1c18d7ac488c9467707fc375d, type: 3}
   displayName: Grid Group
+  newPlayerValue: 0
+  playerPrefName: GridGroup_Visualization
