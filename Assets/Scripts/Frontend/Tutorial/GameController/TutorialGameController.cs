@@ -190,6 +190,7 @@ public class TutorialGameController : GameController
             {
                 advanceAtEndOfNextUpdate = true;
             }
+            UpdateBuildingResources();
         }
 
         if (resolution.successfullyPlacedCable)

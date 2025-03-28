@@ -238,7 +238,7 @@ public class GameManager
             connectedBuildings.RemoveAt(0);
             if (building.Data.buildingType == BuildingType.PowerProducer)
             {
-                totalPower += GetPower(building);
+                totalPower += building.GetPower();
                 building.PowerToGive = 0;
 			}
 			if (building.Data.buildingType == BuildingType.PowerConsumer)
@@ -304,8 +304,8 @@ public class GameManager
             }
             else if(building.Data.buildingType == BuildingType.PowerProducer)
             {
-                building.PowerToGive = GetPower(building);
-                totalPower += GetPower(building);
+                building.PowerToGive = building.GetPower();
+                totalPower += building.GetPower();
                 producers.Add(building);
             }
         }
@@ -384,7 +384,7 @@ public class GameManager
             connectedBuildings.RemoveAt(0);
             if (building.Data.buildingType == BuildingType.PowerProducer)
             {
-                totalPower += GetPower(building);
+                totalPower += building.GetPower();
                 building.PowerToGive = 0;
             }
             if (building.Data.buildingType == BuildingType.PowerConsumer)
@@ -444,14 +444,7 @@ public class GameManager
         }
     }
 
-    public int GetPower(Building building)
-    {
-        if(building.Data.resourceAmountRequired <= 0)
-        {
-            return (building.Data.powerProduced);
-        }
-        return (Mathf.CeilToInt(((float)building.ResourcesProvided) / building.Data.resourceAmountRequired * building.Data.powerProduced));
-    }
+
 
 	/// <summary>
 	/// Gets the grid group data for the buildings with
