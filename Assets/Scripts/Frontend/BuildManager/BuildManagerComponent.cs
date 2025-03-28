@@ -418,7 +418,7 @@ public class BuildManagerComponent : MonoBehaviour
 
 		switch(state.GetStateType())
 		{
-			case BuildStateType.MOVE:
+			case BuildStateType.MOVE: // Try chaining from move.
 				BuildingMoveBuildState buildingMoveBuildState = state as BuildingMoveBuildState;
 				if (buildingMoveBuildState.movingBuilding != null)
 					SetState(new BuildingChainedBuildState(toBuild, buildingMoveBuildState.movingBuilding));
@@ -432,9 +432,13 @@ public class BuildManagerComponent : MonoBehaviour
 				else
 					SetState(new BuildingBuildState(toBuild));
 				break;
-			case BuildStateType.BUILDING_CHAINED: // Continue chaining.
+			case BuildStateType.BUILDING_CHAINED: // Continue chaining if the buildings to build are different.
+				// If the buildings to build are the same, exit chain mode.
 				BuildingChainedBuildState buildingChainedBuildState = state as BuildingChainedBuildState;
-				SetState(new BuildingChainedBuildState(toBuild, buildingChainedBuildState.fromChained));
+				if (buildingChainedBuildState.toBuild != toBuild)
+					SetState(new BuildingChainedBuildState(toBuild, buildingChainedBuildState.fromChained));
+				else
+					SetState(new BuildingBuildState(toBuild));
 				break;
 			default:
 				SetState(new BuildingBuildState(toBuild));
