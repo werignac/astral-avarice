@@ -1,0 +1,7 @@
+.warningHidden {
+    translate: 0 -100%;
+    transition-property: translate;
+    transition-delay: 0s;
+    transition-timing-function: ease-out;
+    transition-duration: 0.5s;
+}
