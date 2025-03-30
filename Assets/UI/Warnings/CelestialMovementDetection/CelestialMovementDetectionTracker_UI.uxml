@@ -1,3 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:VisualElement name="TrackerElement" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-frame_ui.png?fileID=2800000&amp;guid=bdef649a5b924ab40be53e6c9ec433c5&amp;type=3#core-toggle-frame_ui&quot;); height: 100px; align-self: stretch;" />
+    <engine:VisualElement name="TrackerContainer" style="flex-grow: 1;">
+        <engine:VisualElement name="OnScreenTrackerElement" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-frame_ui.png?fileID=2800000&amp;guid=bdef649a5b924ab40be53e6c9ec433c5&amp;type=3#core-toggle-frame_ui&quot;); height: 100px; align-self: stretch;" />
+        <engine:VisualElement name="OffScreenTrackerElement" style="flex-grow: 1; position: absolute; bottom: 50%; align-self: center; width: 200px; height: 200px; transform-origin: bottom; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1304905567622442630&amp;guid=6d3142833d2bc694c8742c2782822332&amp;type=3#arrow-down@2x&quot;); background-size: contain;" />
+    </engine:VisualElement>
 </engine:UXML>
