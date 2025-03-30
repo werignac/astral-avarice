@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19101, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: PlanetHoverResources
+  m_Name: WorldToScreenUISettings
   m_EditorClassIdentifier: 
   themeUss: {fileID: -4733365628477956816, guid: 6d3142833d2bc694c8742c2782822332, type: 3}
   m_DisableNoThemeWarning: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   m_TargetDisplay: 0
   m_BindingLogLevel: 0
   m_ClearDepthStencil: 1
-  m_ClearColor: 1
+  m_ClearColor: 0
   m_ColorClearValue: {r: 0, g: 0, b: 0, a: 0}
   m_VertexBudget: 0
   m_DynamicAtlasSettings:
