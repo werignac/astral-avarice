@@ -121,7 +121,7 @@ namespace AstralAvarice.Frontend
 		/// <returns>(width, height)</returns>
 		private static Vector2 GetUIDimensions(IWorldToScreenUIElement element)
 		{
-			if (element.UIElement.style.display == DisplayStyle.Flex)
+			if (element.UIElement.resolvedStyle.display == DisplayStyle.Flex)
 				return new Vector2(element.UIElement.resolvedStyle.width, element.UIElement.resolvedStyle.height);
 			else
 				return new Vector2(element.UIElement.style.width.value.value, element.UIElement.style.height.value.value);

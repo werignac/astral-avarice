@@ -1948,6 +1948,7 @@ GameObject:
   - component: {fileID: 1457095759}
   - component: {fileID: 1457095758}
   - component: {fileID: 1457095760}
+  - component: {fileID: 1457095761}
   m_Layer: 0
   m_Name: CelestialMovementDetection
   m_TagString: Untagged
@@ -2007,8 +2008,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9219e71ed1f45594b86e5509c2edf600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiDocument: {fileID: 757325035}
+  warningUIDocument: {fileID: 757325035}
   detectionComponent: {fileID: 1457095758}
+--- !u!114 &1457095761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457095757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b5ae94ecfe51c4c82bdaa8e7884b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionComponent: {fileID: 1457095758}
+  worldToScreen: {fileID: 507781147}
+  trackerUITemplate: {fileID: 9197481963319205126, guid: 1c929339ead16ff49b52af3e7565b210, type: 3}
 --- !u!1 &1528655010
 GameObject:
   m_ObjectHideFlags: 0

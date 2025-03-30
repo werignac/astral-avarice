@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 namespace AstralAvarice.Frontend
 {
-    public class CelestialMovementDetectionUIComponent : MonoBehaviour
+    public class CelestialMovementDetectionWarningUIComponent : MonoBehaviour
     {
 		private const string CELESTIAL_MOVEMENT_DETECTION_WARNING_CONTAINER_ELEMENT_NAME = "CelestialMovementDetectionWarning";
 
@@ -12,7 +13,7 @@ namespace AstralAvarice.Frontend
 
 		private const string HIDE_WARNING_CLASS_NAME = "warningHidden";
 		
-		[SerializeField] private UIDocument uiDocument;
+		[SerializeField] private UIDocument warningUIDocument;
 
 		private VisualElement celestialMovementDetectionWarningElement;
 
@@ -21,7 +22,7 @@ namespace AstralAvarice.Frontend
 
 		private void Awake()
 		{
-			VisualElement warningContainer = uiDocument.rootVisualElement.Q(CELESTIAL_MOVEMENT_DETECTION_WARNING_CONTAINER_ELEMENT_NAME);
+			VisualElement warningContainer = warningUIDocument.rootVisualElement.Q(CELESTIAL_MOVEMENT_DETECTION_WARNING_CONTAINER_ELEMENT_NAME);
 			celestialMovementDetectionWarningElement = warningContainer.Q(CELESTIAL_MOVEMENT_DETECTION_WARNING_ELEMENT_NAME);
 
 			detectionComponent.OnFirstPlanetStartMoving.AddListener(Detection_OnFirstPlanetStartMoving);

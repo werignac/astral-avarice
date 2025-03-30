@@ -5,6 +5,10 @@ using UnityEngine.Events;
 
 namespace AstralAvarice.Frontend
 {
+	/// <summary>
+	/// Fires events based on when and how many planets are moving.
+	/// When a planet is destroyed, it is considered as stopping.
+	/// </summary>
     public class CelestialMovementDetectionComponent : MonoBehaviour
     {
 		[SerializeField] private GameController gameController;

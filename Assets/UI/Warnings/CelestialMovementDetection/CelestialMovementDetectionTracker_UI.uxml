@@ -1,0 +1,3 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="TrackerElement" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-frame_ui.png?fileID=2800000&amp;guid=bdef649a5b924ab40be53e6c9ec433c5&amp;type=3#core-toggle-frame_ui&quot;); width: 100px; height: 100px; flex-shrink: 0; align-self: flex-start;" />
+</engine:UXML>
