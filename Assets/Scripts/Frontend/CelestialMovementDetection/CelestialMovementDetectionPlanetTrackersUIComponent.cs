@@ -5,26 +5,9 @@ using System;
 
 namespace AstralAvarice.Frontend
 {
-	/// <summary>
-	/// A UI element that stays on top of a planet as it moves.
-	/// </summary>
-	public class CelestialMovementDetectionPlanetTrackerUI : IWorldToScreenUIElement
-	{
-		private PlanetComponent trackedPlanet;
-
-		public Vector3 WorldPosition => trackedPlanet.transform.position;
-		public Vector2 Pivot { get => new Vector2(0.5f, 0.5f); }
-		public Vector2 Offset { get; set; }
-		public VisualElement UIElement { get; set; }
-
-		public CelestialMovementDetectionPlanetTrackerUI(PlanetComponent trackedPlanet)
-		{
-			this.trackedPlanet = trackedPlanet;
-		}
-	}
 
 	/// <summary>
-	/// Creates and destroyed planet tracker UI elements as planets start and stop moving.
+	/// Creates and destroys planet tracker UI elements as planets start and stop moving.
 	/// </summary>
 	public class CelestialMovementDetectionPlanetTrackersUIComponent: MonoBehaviour
     {
@@ -72,7 +55,7 @@ namespace AstralAvarice.Frontend
 
 		private CelestialMovementDetectionPlanetTrackerUI MakeTracker(PlanetComponent planet)
 		{
-			CelestialMovementDetectionPlanetTrackerUI tracker = new CelestialMovementDetectionPlanetTrackerUI(planet);
+			CelestialMovementDetectionPlanetTrackerUI tracker = new CelestialMovementDetectionPlanetTrackerUI(planet, 20);
 			return tracker;
 		}
 	}

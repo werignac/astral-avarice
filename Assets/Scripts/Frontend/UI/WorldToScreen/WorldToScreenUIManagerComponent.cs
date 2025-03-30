@@ -67,7 +67,24 @@ namespace AstralAvarice.Frontend
 
 			foreach (IWorldToScreenUIElement element in elements)
 			{
+				UpdateComponents(element);
+			}
+
+			foreach (IWorldToScreenUIElement element in elements)
+			{
 				PlaceUIElement(element, mainCamera);
+			}
+		}
+
+		/// <summary>
+		/// Runs the Update() function on all the components for an element.
+		/// </summary>
+		/// <param name="element">The element with the components that must be updated.</param>
+		private void UpdateComponents(IWorldToScreenUIElement element)
+		{
+			foreach (WorldToScreenComponent component in element.Components)
+			{
+				component.Update();
 			}
 		}
 

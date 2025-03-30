@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using AstralAvarice.Frontend;
+using System.Collections.Generic;
 
 public class PlanetHoverResourcesUIElement : IWorldToScreenUIElement
 {
@@ -29,6 +30,8 @@ public class PlanetHoverResourcesUIElement : IWorldToScreenUIElement
 				resourcesBinding = null;
 		}
 	}
+
+	public ICollection<WorldToScreenComponent> Components { get; } = new List<WorldToScreenComponent>();
 
 	private static void SetAllToIgnoreMouse(VisualElement uiElement)
 	{
