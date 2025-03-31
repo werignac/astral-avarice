@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using System;
+using AstralAvarice.Utils;
 
 namespace AstralAvarice.Frontend
 {
@@ -15,14 +16,33 @@ namespace AstralAvarice.Frontend
 
 		private PlanetComponent TrackedPlanet { get; set; }
 
+		/// <summary>
+		/// TODO: update margins if this changes?
+		/// </summary>
 		private float OnScreenPadding { get; set; }
+		/// <summary>
+		/// TODO: update margins if this changes?
+		/// </summary>
+		private float OnScreenWidth { get; set; }
+		private float OnScreenDotAspect { get; set; }
+		private int OnScreenDotCount { get; set; }
 
 		public Vector3 OutWorldPosition { get; private set; }
 
-		public void TrackPlanet(PlanetComponent trackedPlanet, float onScreenPadding)
+		public void TrackPlanet(
+			PlanetComponent trackedPlanet,
+			float onScreenPadding = 10,
+			float onScreenWidth = 20f,
+			float onScreenDotAspect = 1.5f,
+			int onScreenDotCount = 10
+			)
 		{
 			TrackedPlanet = trackedPlanet;
+
 			OnScreenPadding = onScreenPadding;
+			OnScreenWidth = onScreenWidth;
+			OnScreenDotAspect = onScreenDotAspect;
+			OnScreenDotCount = onScreenDotCount;
 		}
 
 		public override void Update()
@@ -45,10 +65,13 @@ namespace AstralAvarice.Frontend
 
 		private bool GetIsOnScreen()
 		{
-			// TODO: include planet radius.
-
 			Camera mainCamera = Camera.main;
-			Vector2 viewportPoint = mainCamera.WorldToViewportPoint(TrackedPlanet.transform.position);
+			Vector2 planetPosition = TrackedPlanet.transform.position;
+			Vector2 planetDisplacementFromCamera = (Vector2) mainCamera.transform.position - planetPosition;
+			planetDisplacementFromCamera = Vector2.ClampMagnitude(planetDisplacementFromCamera, TrackedPlanet.Radius);
+			Vector2 closestPointToCamera = planetPosition + planetDisplacementFromCamera;
+
+			Vector2 viewportPoint = mainCamera.WorldToViewportPoint(closestPointToCamera);
 			return 0 <= viewportPoint.x && viewportPoint.x <= 1 && 0 <= viewportPoint.y && viewportPoint.y <= 1;
 		}
 
@@ -65,29 +88,33 @@ namespace AstralAvarice.Frontend
 			onScreenElement.style.display = DisplayStyle.None;
 			offScreenElement.style.display = DisplayStyle.Flex;
 
-			OutWorldPosition = GetClosestOnScreenPosition(TrackedPlanet.transform.position, Camera.main);
+			OutWorldPosition = GetClosestOnScreenPosition(TrackedPlanet.transform.position, Camera.main, out Vector2 direction);
 
 			// Rotate the element to point towards the tracked planet.
-			Vector2 directionFromCamera = TrackedPlanet.transform.position - Camera.main.transform.position;
-			float angle = -Mathf.Atan2(directionFromCamera.y, directionFromCamera.x) - Mathf.PI / 2;
+			//Vector2 directionFromCamera = TrackedPlanet.transform.position - OutWorldPosition;
+			float angle = -Mathf.Atan2(direction.y, direction.x) - Mathf.PI / 2;
 			offScreenElement.style.rotate = new Rotate(new Angle(angle, AngleUnit.Radian));
 		}
 
-		private static Vector3 GetClosestOnScreenPosition(Vector3 offScreenPosition, Camera mainCamera)
+		private static Vector3 GetClosestOnScreenPosition(Vector3 offScreenPosition, Camera mainCamera, out Vector2 direction)
 		{
 			Vector2 viewportPoint = mainCamera.WorldToViewportPoint(offScreenPosition);
+			
+			// Clamp to sides of screen.
+			viewportPoint.x = Mathf.Clamp01(viewportPoint.x);
+			viewportPoint.y = Mathf.Clamp01(viewportPoint.y);
 
-			// Center the viewport point around origin of vector space.
-			viewportPoint -= Vector2.one * 0.5f;
+			// Form a direction based on which sides of the screen the ui element is clamped to.
+			direction = new Vector2();
 
-			// Scale the viewport point until both of the axes are <= 0.5f.
-			float horizontalViewportDistance = Mathf.Abs(viewportPoint.x);
-			float verticalViewportDistance = Mathf.Abs(viewportPoint.y);
-			float largestDistance = Mathf.Max(horizontalViewportDistance, verticalViewportDistance);
-			viewportPoint *= 0.5f / largestDistance;
-
-			// De-center the viewport point.
-			viewportPoint += Vector2.one * 0.5f;
+			if (viewportPoint.x == 1)
+				direction.x = 1;
+			if (viewportPoint.x == 0)
+				direction.x = -1;
+			if (viewportPoint.y == 1)
+				direction.y = 1;
+			if (viewportPoint.y == 0)
+				direction.y = -1;
 
 			return mainCamera.ViewportToWorldPoint(viewportPoint);
 		}
@@ -97,7 +124,28 @@ namespace AstralAvarice.Frontend
 			onScreenElement = UIElement.Q(ON_SCREEN_TRACKER_ELEMENT_NAME);
 			offScreenElement = UIElement.Q(OFF_SCREEN_TRACKER_ELEMENT_NAME);
 
-			onScreenElement.style.marginTop = onScreenElement.style.marginBottom = onScreenElement.style.marginRight = onScreenElement.style.marginLeft = -OnScreenPadding;
+			onScreenElement.style.marginTop = onScreenElement.style.marginBottom = onScreenElement.style.marginRight = onScreenElement.style.marginLeft = -(OnScreenPadding + OnScreenWidth);
+			onScreenElement.generateVisualContent += DrawOnScreenTrackerElement;
+			onScreenElement.MarkDirtyRepaint();
+		}
+
+		private void DrawOnScreenTrackerElement(MeshGenerationContext ctx)
+		{
+			Painter2D painter2D = ctx.painter2D;
+
+			Color color = onScreenElement.resolvedStyle.unityBackgroundImageTintColor;
+			color.a = 1;
+			painter2D.strokeColor = color;
+
+			Vector2 center = new Vector2(onScreenElement.resolvedStyle.width / 2, onScreenElement.resolvedStyle.height / 2);
+			float outerRadius = Mathf.Min(onScreenElement.resolvedStyle.width, onScreenElement.resolvedStyle.height) / 2;
+			float innerRadius = outerRadius - OnScreenWidth;
+
+			float dotAndSpaceAngle = 360 / OnScreenDotCount;
+			float dotAngle = dotAndSpaceAngle * (OnScreenDotAspect / (OnScreenDotAspect + 1));
+			
+			for (int i = 0; i < OnScreenDotCount; i++)
+				painter2D.DrawTorusSlice(i * dotAndSpaceAngle, i * dotAndSpaceAngle + dotAngle, center, outerRadius, innerRadius);
 		}
 	}
 
