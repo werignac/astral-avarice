@@ -222,7 +222,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7fb75bb68d9d4d142ada69813a004ddb, type: 2}
+  - {fileID: 2100000, guid: 20d7cf70090b7004dbab49c93a6e3ca6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -499,6 +499,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnSelectedEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartProspectingMassChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopProspectingMassChange:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 7355667211803719440}
