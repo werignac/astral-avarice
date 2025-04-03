@@ -1,0 +1,567 @@
+fileFormatVersion: 2
+guid: 336debb4c2433a9479ca2bb359bcdb38
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2610127040315004718
+    second: text-icons_0
+  - first:
+      213: 3341969376009215437
+    second: text-icons_1
+  - first:
+      213: -1243942584572739970
+    second: text-icons_2
+  - first:
+      213: -6326982901081884070
+    second: text-icons_3
+  - first:
+      213: -7828722290106913163
+    second: text-icons_4
+  - first:
+      213: -2491591841024918836
+    second: text-icons_5
+  - first:
+      213: -6022585454768562542
+    second: text-icons_6
+  - first:
+      213: -3329617226325393743
+    second: text-icons_7
+  - first:
+      213: -3763076752277837115
+    second: text-icons_8
+  - first:
+      213: -1120706023274762034
+    second: text-icons_9
+  - first:
+      213: -263118436554493789
+    second: text-icons_10
+  - first:
+      213: 248516153975429042
+    second: text-icons_11
+  - first:
+      213: 4232525173134401078
+    second: text-icons_12
+  - first:
+      213: -7542765991911384760
+    second: text-icons_13
+  - first:
+      213: 993108305055606972
+    second: text-icons_14
+  - first:
+      213: -4415547029489950580
+    second: text-icons_15
+  - first:
+      213: -2642573358581873381
+    second: text-icons_16
+  - first:
+      213: -1805828166150326506
+    second: text-icons_17
+  - first:
+      213: -4938650390504276554
+    second: text-icons_18
+  - first:
+      213: -5158649351516264121
+    second: text-icons_19
+  - first:
+      213: -2613673442375446121
+    second: text-icons_20
+  - first:
+      213: -912396521599995007
+    second: text-icons_21
+  - first:
+      213: 5499358691271651007
+    second: text-icons_22
+  - first:
+      213: 3456655644994039651
+    second: text-icons_23
+  - first:
+      213: 7112773855710539535
+    second: text-icons_24
+  - first:
+      213: 6793022815944446167
+    second: text-icons_25
+  - first:
+      213: 5355889805141075885
+    second: text-icons_26
+  - first:
+      213: 4415313620228662519
+    second: text-icons_27
+  - first:
+      213: -5246928319260319737
+    second: text-icons_28
+  - first:
+      213: 3443318666913511991
+    second: text-icons_29
+  - first:
+      213: 5359177429751222623
+    second: text-icons_30
+  - first:
+      213: 3430050651731611323
+    second: text-icons_31
+  - first:
+      213: 4751014227432949091
+    second: text-icons_32
+  - first:
+      213: -2752295116494606307
+    second: text-icons_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: utility
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 841
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d8e16f2947f6cbd0800000000000000
+      internalID: -2610127040315004718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar-field
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 841
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcd5343e07f016e20800000000000000
+      internalID: 3341969376009215437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grid-group
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 841
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7e7f8d5fc0acbee0800000000000000
+      internalID: -1243942584572739970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mass
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 840
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5a3b01c29a0238a0800000000000000
+      internalID: -6326982901081884070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: solar
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 570
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57eaef43e8aca5390800000000000000
+      internalID: -7828722290106913163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coal
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 570
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccab27eeb661c6dd0800000000000000
+      internalID: -2491591841024918836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wind
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 571
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29ed51b107a7b6ca0800000000000000
+      internalID: -6022585454768562542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gravity
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 568
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1be7ad216c2dac1d0800000000000000
+      internalID: -3329617226325393743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: geothermal
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 299
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cae2f5a1add6cbc0800000000000000
+      internalID: -3763076752277837115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: connection
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 300
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec031114fc37270f0800000000000000
+      internalID: -1120706023274762034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: science
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 299
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a0305f0d27395cf0800000000000000
+      internalID: -263118436554493789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 299
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b7d6a61028e27300800000000000000
+      internalID: 248516153975429042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: resources
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 28
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63e13975833fcba30800000000000000
+      internalID: 4232525173134401078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pylon
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 28
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 849993c2b46b25790800000000000000
+      internalID: -7542765991911384760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8c8076d951bc3d54fa44978cc3b776af
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      coal: -2491591841024918836
+      connection: -1120706023274762034
+      geothermal: -3763076752277837115
+      gravity: -3329617226325393743
+      grid-group: -1243942584572739970
+      mass: -6326982901081884070
+      power: 248516153975429042
+      pylon: -7542765991911384760
+      resources: 4232525173134401078
+      science: -263118436554493789
+      solar: -7828722290106913163
+      solar-field: 3341969376009215437
+      utility: -2610127040315004718
+      wind: -6022585454768562542
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

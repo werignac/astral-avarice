@@ -1427,7 +1427,7 @@ MonoBehaviour:
   enableCounterCameraMovement: 0
   invertMovementDirection: 0
   straightScale: 0
-  margin: 0
+  staticMargin: 0
   moveMargin: 0
 --- !u!1 &1472481589
 GameObject:
