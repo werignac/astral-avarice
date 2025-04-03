@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83697e6c3f63ccf4f90e9a03263812af, type: 3}
+  m_Name: Highrise Halls
+  m_EditorClassIdentifier: 
+  startingCash: 15000
+  cashGoal: 3000
+  goalTimes: 960000002c010000a401000058020000
+  missionName: Highrise Halls
+  startingScience: 300
+  startingBuildings:
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 2604ae1054aaced4b8e3a43c56af5936, type: 2}
+  - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
+  - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
+  - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 9765d05d5308fa54e9c4724f86827cf1, type: 2}
+  - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 8e50dc0331696704bba3e6b22d3391e1, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
+  - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
+  - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
+  tutorialScene: 
+  hasPrereq: 1
+  prereqMission: First Steps
+  prereqRank: 1
