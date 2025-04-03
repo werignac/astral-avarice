@@ -20,6 +20,7 @@ public class GameManager
     private SortedSet<int> freeGroupIds = new SortedSet<int>();
     private float winningStartTime;
     private float losingStartTime;
+    private int maxIncome;
 
 	/// <summary>
 	/// Invoked when the game ends. Passes whether the game ended in a victory
@@ -69,7 +70,7 @@ public class GameManager
     }
     public bool Losing
     {
-        get { return (cash <= 0 && income <= 0); }
+        get { return (maxIncome < TargetIncome || (cash <= 0 && income <= 0)); }
     }
     public float WinningStartTime
     {
@@ -96,6 +97,7 @@ public class GameManager
         scienceHeld = mission.startingScience;
         buildings = new List<Building>();
         timePassed = 0;
+        maxIncome = 0;
         goalTimes = mission.goalTimes;
         ReassignAllGroups();
         CalculateIncome();
@@ -143,13 +145,20 @@ public class GameManager
             winningStartTime = -1;
             if (Losing)
             {
-                if(losingStartTime <= 0)
-                {
-                    losingStartTime = timePassed;
-                }
-                if(timePassed > losingStartTime + timeTillGameEnd)
+                if (maxIncome < TargetIncome)
                 {
                     EndGame();
+                }
+                else
+                {
+                    if (losingStartTime <= 0)
+                    {
+                        losingStartTime = timePassed;
+                    }
+                    if (timePassed > losingStartTime + timeTillGameEnd)
+                    {
+                        EndGame();
+                    }
                 }
             }
             else
@@ -161,7 +170,6 @@ public class GameManager
 
     public void EndGame()
     {
-        CalculateIncome();
         if(income >= currentMission.cashGoal)
         {
             Debug.Log("Earning enough money! Victory!");
@@ -175,6 +183,7 @@ public class GameManager
         building.SetManager(this);
         buildings.Add(building);
         income -= building.Data.upkeep;
+        maxIncome += building.Data.income;
         AdjustIncomeForConnected(building);
         AssignGroupIds(building, GetFreeGroupId());
     }
@@ -184,6 +193,7 @@ public class GameManager
         if(buildings.Remove(building))
         {
             income += building.Data.upkeep;
+            maxIncome -= building.Data.income;
             for(int i = 0; i < building.NumConnected; ++i)
             {
                 building.GetConnectedBuilding(i).RemoveConnection(building);
