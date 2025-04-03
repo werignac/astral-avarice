@@ -450,7 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 191995373}
   inspector: {fileID: 412601597}
-  uiBlockingOverride: {fileID: 191995376}
+  blocker: {fileID: 191995376}
   OnHoverEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -472,9 +472,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 191995372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 549b4ef77f4734d4a9661646a8509f15, type: 3}
+  m_Script: {fileID: 11500000, guid: 6056c86fd2d759f41aa697f2cfdd8f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  overrideElementNames:
+  - InspectorTemplate
   uiDocument: {fileID: 412601599}
 --- !u!1 &212550224
 GameObject:

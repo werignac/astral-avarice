@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using AstralAvarice.Utils;
 
 namespace AstralAvarice.UI.Tooltips
 {
@@ -30,7 +31,7 @@ namespace AstralAvarice.UI.Tooltips
 
 		private void Update()
 		{
-			Vector2 screenPosition = GetScreenPosition();
+			Vector2 screenPosition = Mouse.current.GetUIDocumentPosition();
 
 			VisualElement hoveringElement = panel.Pick(screenPosition);
 
@@ -52,12 +53,6 @@ namespace AstralAvarice.UI.Tooltips
 					activeLayer = null;
 				}
 			}
-		}
-
-		private Vector2 GetScreenPosition()
-		{
-			Vector2 mousePosition = Mouse.current.position.ReadValue();
-			return new Vector2(mousePosition.x, Screen.height - mousePosition.y);
 		}
 
 		private bool TryGetTooltipText(VisualElement element, out string tooltipText)

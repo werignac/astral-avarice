@@ -23,7 +23,6 @@ public class PlanetHoverResourcesUIElement : IWorldToScreenUIElement
 			if (value != null)
 			{
 				value.style.display = hoveredPlanet != null ? DisplayStyle.Flex : DisplayStyle.None;
-				SetAllToIgnoreMouse(value);
 				resourcesBinding = new SpecialResourcesContainerUIBinding(value);
 			}
 			else
@@ -32,14 +31,6 @@ public class PlanetHoverResourcesUIElement : IWorldToScreenUIElement
 	}
 
 	public ICollection<WorldToScreenComponent> Components { get; } = new List<WorldToScreenComponent>();
-
-	private static void SetAllToIgnoreMouse(VisualElement uiElement)
-	{
-		uiElement.pickingMode = PickingMode.Ignore;
-
-		foreach (VisualElement child in uiElement.Children())
-			SetAllToIgnoreMouse(child);
-	}
 
 	public PlanetHoverResourcesUIElement(PlanetComponent hoveredPlanet)
 	{

@@ -40,7 +40,7 @@ public class SelectionComponent : MonoBehaviour
 
 	[SerializeField] private SelectionCursorComponent cursor;
 	[SerializeField] InspectorUIComponent inspector;
-	[SerializeField] private SelectionUIBlockingOverride uiBlockingOverride;
+	[SerializeField] private SelectionBlocker blocker;
 
 	private IInspectableComponent currentHover = null;
 	private IInspectableComponent currentSelection = null;
@@ -105,11 +105,8 @@ public class SelectionComponent : MonoBehaviour
 	/// <param name="changes">Struct storing changes made to selections. Modified by this function.</param>
 	private void UpdateHover(ref SelectionChanges changes)
 	{
-		// If the cursor is over UI, no gameobjects are being hovered over;
-		// unless we want to specifically override that behaviour.
-		if (EventSystem.current.IsPointerOverGameObject()
-			&& uiBlockingOverride != null
-			&& ! uiBlockingOverride.GetIgnoreUI())
+		// If we are told externally to block selections, don't hover.
+		if (blocker != null && blocker.GetBlockSelection())
 		{
 			if (currentHover == null)
 				return;
