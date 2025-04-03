@@ -39,5 +39,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   tutorialScene: 
   hasPrereq: 1
-  prereqMission: First Steps
+  prereqMission: Science Exposure
   prereqRank: 1
