@@ -45,6 +45,13 @@ namespace AstralAvarice.Frontend
 		/// </summary>
 		public UnityEvent<bool> OnPlanetOnScreenChanged = new UnityEvent<bool>();
 
+		/// <summary>
+		/// When true, skips painting the circle on-screen tracker this frame.
+		/// Used as a band-aid for issue with tracker not being in the right position
+		/// after switching layers.
+		/// </summary>
+		public bool markSkipPaint = false;
+
 		public void TrackPlanet(
 			PlanetComponent trackedPlanet,
 			float onScreenPadding = 10,
@@ -64,7 +71,11 @@ namespace AstralAvarice.Frontend
 		public override void Update()
 		{
 			if (onScreenElement == null)
+			{
+				// Don't have the template block mouse input to elements underneath (e.g. build menu buttons).
+				UIElement.pickingMode = PickingMode.Ignore;
 				InitializeOnOffScreenElements();
+			}
 
 			UpdateOnOffScreen();
 		}
@@ -85,6 +96,8 @@ namespace AstralAvarice.Frontend
 			{
 				OnPlanetOnScreenChanged.Invoke(isOnScreen);
 				planetOnScreenLastUpdate = isOnScreen;
+				if (isOnScreen)
+					markSkipPaint = true; // See markSkipPaint comment.
 			}
 		}
 
@@ -106,6 +119,9 @@ namespace AstralAvarice.Frontend
 			offScreenElement.style.display = DisplayStyle.None;
 
 			OutWorldPosition = TrackedPlanet.transform.position;
+
+			// Mark for repaint on every frame for flash effect.
+			onScreenElement.MarkDirtyRepaint();
 		}
 
 		private void UpdateOffScreen()
@@ -156,6 +172,13 @@ namespace AstralAvarice.Frontend
 
 		private void DrawOnScreenTrackerElement(MeshGenerationContext ctx)
 		{
+			// See markSkipPaint comment.
+			if (markSkipPaint)
+			{
+				markSkipPaint = false;
+				return;
+			}
+
 			Painter2D painter2D = ctx.painter2D;
 
 			Color color = onScreenElement.resolvedStyle.unityBackgroundImageTintColor;

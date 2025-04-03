@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
-using System;
+using System.Collections;
 
 namespace AstralAvarice.Frontend
 {
@@ -20,10 +20,20 @@ namespace AstralAvarice.Frontend
 
 		private Dictionary<PlanetComponent, CelestialMovementDetectionPlanetTrackerUI> planetMovementTrackers = new Dictionary<PlanetComponent, CelestialMovementDetectionPlanetTrackerUI>();
 
+		[Header("Flash VFX")]
+
+		private const string FLASH_CLASS_NAME = "bright";
+
+		[SerializeField, Min(0.1f)] private float flashPeriod = 1f;
+
+		private Coroutine flashCoroutine;
+
 		private void Awake()
 		{
 			detectionComponent.OnAnyPlanetStartMoving.AddListener(Detection_OnAnyPlanetStartMoving);
 			detectionComponent.OnAnyPlanetStopMoving.AddListener(Detection_OnAnyPlanetStopMoving);
+
+			flashCoroutine = StartCoroutine(FlashLoop());
 		}
 
 		private void Detection_OnAnyPlanetStartMoving(PlanetComponent planet)
@@ -105,6 +115,34 @@ namespace AstralAvarice.Frontend
 		private WorldToScreenUIManagerComponent GetOppositeWorldToScreenUIManager(bool isOnScreen)
 		{
 			return GetWorldToScreenUIManager(!isOnScreen);
+		}
+
+		private IEnumerator FlashLoop()
+		{
+			while (this != null)
+			{
+				SetFlash(true);
+				yield return new WaitForSecondsRealtime(flashPeriod / 2);
+
+				SetFlash(false);
+				yield return new WaitForSecondsRealtime(flashPeriod / 2);
+			}
+		}
+
+		private void SetFlash(bool onOrOff)
+		{
+			foreach(IWorldToScreenUIElement tracker in planetMovementTrackers.Values)
+			{
+				if (onOrOff)
+					tracker.UIElement.AddToClassList(FLASH_CLASS_NAME);
+				else
+					tracker.UIElement.RemoveFromClassList(FLASH_CLASS_NAME);
+			}
+		}
+
+		private void OnDestroy()
+		{
+			StopCoroutine(flashCoroutine);
 		}
 	}
 }

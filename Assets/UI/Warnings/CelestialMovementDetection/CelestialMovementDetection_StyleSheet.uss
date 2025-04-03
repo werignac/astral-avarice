@@ -1,0 +1,12 @@
+.flashing {
+    transition-property: -unity-background-image-tint-color;
+    transition-duration: 0.5s;
+}
+
+.dim VisualElement {
+    -unity-background-image-tint-color: rgb(236, 137, 59);
+}
+
+.bright VisualElement {
+    -unity-background-image-tint-color: rgb(255, 208, 116);
+}
