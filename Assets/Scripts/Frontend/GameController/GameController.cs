@@ -274,14 +274,18 @@ public class GameController : MonoBehaviour
 		if (Planets.Count > 1 && GameSpeed > 0)
 		{
 			List<Vector2> planetTranslations = new List<Vector2>();
+			// Initialize a translation for each planet.
 			for (int i = 0; i < Planets.Count; ++i)
 			{
 				planetTranslations.Add(new Vector2(0, 0));
 			}
+
+			// Foreach planet, compute the net gravitational and thrushter forces exerted.
 			for (int i = 0; i < Planets.Count; ++i)
 			{
 				PlanetComponent planet = Planets[i];
 				float planetMass = planet.GetTotalMass() / 25f;
+				// Gravitational translations.
 				for (int p = 0; p < Planets.Count; ++p)
 				{
 					if (p != i)
@@ -294,6 +298,8 @@ public class GameController : MonoBehaviour
 						}
 					}
 				}
+
+				// Truster translations.
 				for(int c = 0; c < planet.BuildingContainer.childCount; ++c)
                 {
 					BuildingComponent building = planet.BuildingContainer.GetChild(c).gameObject.GetComponent<BuildingComponent>();
@@ -304,6 +310,8 @@ public class GameController : MonoBehaviour
                     }
                 }
 			}
+
+			// Apply translations and account for game speed.
 			for (int i = 0; i < Planets.Count; ++i)
 			{
 				if(planetTranslations[i].magnitude < 0.00000001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)

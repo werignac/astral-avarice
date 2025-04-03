@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4205476932317321824}
   - component: {fileID: 7381952646569295078}
   - component: {fileID: 3580901598306294743}
+  - component: {fileID: 1148307961880960508}
   m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
@@ -80,6 +81,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toToggleRenderers:
   - {fileID: 423175470215378506}
+--- !u!114 &1148307961880960508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620012687373734701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d1122ff52efe345ba21f783597a356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimapRenderer: {fileID: 6511480862921821108}
 --- !u!1 &4324683421833539569
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +513,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnSelectedEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartProspectingMassChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopProspectingMassChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
     m_PersistentCalls:
       m_Calls: []
   buildingContainerTransform: {fileID: 8719421700553818657}

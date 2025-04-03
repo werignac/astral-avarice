@@ -61,6 +61,10 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField, Tooltip("Mapping of rank ids to rank visuals.")]
 	private RankUIData[] rankSettings;
 
+	[Header("Minimap")]
+	[SerializeField, Tooltip("The color planets appear as when they are moving in the minimap.")]
+	private Color movingPlanetMinimapColor;
+
 	// Getters
 	public VisualTreeAsset DefaultInspectorUI
 	{
@@ -119,6 +123,8 @@ public class PtUUISettings : ScriptableObject
 	public VisualizationUISettings_SO VisualizationSettings { get => visualizationSettings; }
 
 	public RankUIData[] RankSettings => rankSettings;
+
+	public Color MovingPlanetMinimapColor => movingPlanetMinimapColor;
 
 	public SpecialResourceUIData GetSpecialResourceUIData(ResourceType resourceType)
 	{

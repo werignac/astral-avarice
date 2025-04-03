@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Warnings/Warning_StyleSheet.uss?fileID=7433441132597879392&amp;guid=db4404410d604b549b0004df17d3b302&amp;type=3#Warning_StyleSheet" />
+    <engine:VisualElement name="WarningContainer" style="flex-grow: 0; align-self: flex-start; transition-timing-function: ease; transition-duration: 0.5s; transition-property: translate; transition-delay: 0s;">
+        <engine:VisualElement name="WarningLabelContainer" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprites/UI/Backgrounds/time_container_ui.png?fileID=-7593335785318976817&amp;guid=a4e9cb88c7534ac4b9bf776a8f868abf&amp;type=3#time_container_ui_0&quot;); -unity-slice-scale: 0.125px; align-self: center; padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px;">
+            <engine:Label text="Celestial Movement Detected" name="WarningLabel" style="flex-shrink: 1; align-self: center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-font-definition: url(&quot;project://database/Assets/Fonts/nova_square/NovaSquare-Bold.ttf?fileID=12800000&amp;guid=597dc7aca417012418e8bf020fe58581&amp;type=3#NovaSquare-Bold&quot;); color: rgb(237, 184, 101); white-space: normal; -unity-text-align: upper-center; text-shadow: 0 0 10px rgb(212, 108, 21); font-size: 14px;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

@@ -54,3 +54,4 @@ MonoBehaviour:
     icon: {fileID: 3182304583510767899, guid: b979eabd799852649a6788c9c90168d1, type: 3}
   - name: Satisfied
     icon: {fileID: 6824925376817469756, guid: 2b91b36df40249646a49952429cb07cd, type: 3}
+  movingPlanetMinimapColor: {r: 0.8930817, g: 0.56757385, b: 0.0926782, a: 1}

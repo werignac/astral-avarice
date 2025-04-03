@@ -24,6 +24,8 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	// Called when the player is hovering near or on buildings in the planet in the build or demolish modes.
 	[HideInInspector] public UnityEvent OnStartProspectingMassChange = new UnityEvent();
 	[HideInInspector] public UnityEvent OnStopProspectingMassChange = new UnityEvent();
+	[HideInInspector] public UnityEvent OnStartMoving = new UnityEvent();
+	[HideInInspector] public UnityEvent OnStopMoving = new UnityEvent();
 
 	private CircleCollider2D planetCollider;
 	[SerializeField] private Transform buildingContainerTransform;
@@ -32,6 +34,8 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	[SerializeField] private int solarOutput;
 	[SerializeField] private bool canPlaceBuildings;
 	[SerializeField] private string planetName = "Planet";
+
+	private Vector2 planetVelocity;
 
 
 	public Transform BuildingContainer
@@ -63,7 +67,26 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	{
 		get { return (planetName); }
 	}
-	public Vector2 PlanetVelocity { get; set; }
+	public Vector2 PlanetVelocity
+	{
+		get
+		{
+			return planetVelocity;
+		}
+
+		set
+		{
+			bool isStartingToMove = (planetVelocity.magnitude == 0) && (value.magnitude > 0);
+			bool isStopping = (planetVelocity.magnitude > 0) && value.magnitude == 0;
+
+			planetVelocity = value;
+
+			if (isStartingToMove)
+				OnStartMoving?.Invoke();
+			if (isStopping)
+				OnStopMoving?.Invoke();
+		}
+	}
 	public bool Destroyed { get; set; } = false;
 
 	public int GetResourceCount(ResourceType resource)

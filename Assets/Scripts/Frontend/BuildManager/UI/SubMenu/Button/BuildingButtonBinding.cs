@@ -196,7 +196,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 	{
 		Cost.Show();
 		Cost.SetValue(displayData.BuildingCost.ToString());
-		Cost.SetTooltip($"The {displayData.BuildingName} takes ${displayData.BuildingCost} to build.");
+		Cost.SetTooltip($"The {displayData.BuildingName} costs ${displayData.BuildingCost} to build.");
 	}
 
 	private void SetAdvancedMaterialsCost(BuildingDisplayData displayData)
@@ -206,7 +206,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingScienceCost,
 			AdvancedMaterialsCost
 		);
-		AdvancedMaterialsCost.SetTooltip($"The {displayData.BuildingName} takes {displayData.BuildingScienceCost} Advanced Materials to build.");
+		AdvancedMaterialsCost.SetTooltip($"The {displayData.BuildingName} costs {displayData.BuildingScienceCost} Advanced Materials to build.");
 	}
 
 	private void SetUpkeep(BuildingDisplayData displayData)
@@ -226,7 +226,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingConsumedElectricity,
 			ElectricityConsumption
 		);
-		ElectricityConsumption.SetTooltip($"The {displayData.BuildingName} consumes ${displayData.BuildingConsumedElectricity} per 30 seconds.");
+		ElectricityConsumption.SetTooltip($"The {displayData.BuildingName} consumes {displayData.BuildingConsumedElectricity} power.");
 	}
 
 	private void SetSpecialResources(BuildingDisplayData displayData)

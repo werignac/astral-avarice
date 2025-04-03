@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// Controls the inspector when the player is hovering over a building button.
+/// </summary>
 public class BuildingButtonInspectorController : BuildingInspectorController
 {
 	private BuildingSettingEntry buildSettings;

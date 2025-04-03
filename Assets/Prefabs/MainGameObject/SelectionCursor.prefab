@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1561804253206551261}
   - component: {fileID: 5813251362595360691}
   - component: {fileID: 717450164384154126}
-  - component: {fileID: 2754416311556281513}
+  - component: {fileID: 1031952564511148126}
   m_Layer: 0
   m_Name: SelectionCursor
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2310114691200568426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5556355, y: 1.1388891, z: 0.07120365}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 5813251362595360691}
   inspector: {fileID: 0}
-  uiBlockingOverride: {fileID: 2754416311556281513}
+  blocker: {fileID: 1031952564511148126}
   OnHoverEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -74,7 +74,7 @@ MonoBehaviour:
   OnSelectEnd:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2754416311556281513
+--- !u!114 &1031952564511148126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,7 +83,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2310114691200568426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 549b4ef77f4734d4a9661646a8509f15, type: 3}
+  m_Script: {fileID: 11500000, guid: 6056c86fd2d759f41aa697f2cfdd8f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  overrideElementNames:
+  - InspectorTemplate
   uiDocument: {fileID: 0}
