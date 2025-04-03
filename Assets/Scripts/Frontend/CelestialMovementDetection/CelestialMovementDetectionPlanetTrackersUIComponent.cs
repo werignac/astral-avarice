@@ -13,7 +13,8 @@ namespace AstralAvarice.Frontend
     {
 		[SerializeField] private CelestialMovementDetectionComponent detectionComponent;
 
-		[SerializeField] private WorldToScreenUIManagerComponent worldToScreen;
+		[SerializeField] private WorldToScreenUIManagerComponent worldToScreen_BelowDefault;
+		[SerializeField] private WorldToScreenUIManagerComponent worldToScreen_AboveDefault;
 
 		[SerializeField] private VisualTreeAsset trackerUITemplate;
 
@@ -41,7 +42,8 @@ namespace AstralAvarice.Frontend
 
 			CelestialMovementDetectionPlanetTrackerUI tracker = MakeTracker(planet);
 			planetMovementTrackers[planet] = tracker;
-			worldToScreen.Add(tracker, trackerUITemplate);
+
+			GetWorldToScreenUIManager(tracker.GetOnOffScreenMode()).Add(tracker, trackerUITemplate);
 		}
 
 		private void StopTrackingPlanet(PlanetComponent planet)
@@ -50,13 +52,59 @@ namespace AstralAvarice.Frontend
 
 			CelestialMovementDetectionPlanetTrackerUI tracker = planetMovementTrackers[planet];
 			planetMovementTrackers.Remove(planet);
-			worldToScreen.Remove(tracker);
+			GetWorldToScreenUIManager(tracker.GetOnOffScreenMode()).Remove(tracker);
 		}
 
 		private CelestialMovementDetectionPlanetTrackerUI MakeTracker(PlanetComponent planet)
 		{
 			CelestialMovementDetectionPlanetTrackerUI tracker = new CelestialMovementDetectionPlanetTrackerUI(planet, 20);
+			// Ok to do lambda here. Lifetime of this object always exceeds lifetime of the trackers.
+			tracker.OnOffScreenOnScreenModeChanged.AddListener(
+				(bool mode) =>
+				{
+					this?.Tracker_OnOffScreenOnScreenModeChanged(tracker, mode);
+				}
+			);
 			return tracker;
+		}
+
+		/// <summary>
+		/// Switch layers when a planet moves on / off screen.
+		/// </summary>
+		/// <param name="tracker">The tracker to move layers.</param>
+		/// <param name="isOnScreen">True if the planet's tracker is now on screen. False otherwise.</param>
+		private void Tracker_OnOffScreenOnScreenModeChanged(CelestialMovementDetectionPlanetTrackerUI tracker, bool isOnScreen)
+		{
+			WorldToScreenUIManagerComponent removeFrom = GetOppositeWorldToScreenUIManager(isOnScreen);
+			WorldToScreenUIManagerComponent addTo = GetWorldToScreenUIManager(isOnScreen);
+
+			removeFrom.Remove(tracker);
+			addTo.Add(tracker);
+		}
+
+		/// <summary>
+		/// Gets the WorldToScreenUIManagerComponent that is associated
+		/// to whether a tracker's planet is on or off screen. If the tracker's
+		/// planet is on screen, we want to get the WorldToScreenUIManager that 
+		/// is below the default UI. If the tracker's planet
+		/// is off screen, we want to get the WorldToScreenUIManager that is above
+		/// the default UI.
+		/// </summary>
+		/// <param name="isOnScreen">Whether the tracker's planet is on screen.</param>
+		/// <returns>The WorldToScreenUIManagerComponent that we want to add a tracker element to.</returns>
+		private WorldToScreenUIManagerComponent GetWorldToScreenUIManager(bool isOnScreen)
+		{
+			return isOnScreen ? worldToScreen_BelowDefault : worldToScreen_AboveDefault;
+		}
+
+		/// <summary>
+		/// Returns the opposite of GetWorldToScreenUIManager.
+		/// </summary>
+		/// <param name="isOnScreen">Whether the tracker's planet is on screen.</param>
+		/// <returns>The opposite of GetOppositeWorldToScreenUIManager.</returns>
+		private WorldToScreenUIManagerComponent GetOppositeWorldToScreenUIManager(bool isOnScreen)
+		{
+			return GetWorldToScreenUIManager(!isOnScreen);
 		}
 	}
 }

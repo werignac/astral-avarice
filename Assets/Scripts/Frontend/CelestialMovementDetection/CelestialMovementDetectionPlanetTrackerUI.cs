@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UIElements;
 using System;
 using AstralAvarice.Utils;
+using UnityEngine.Events;
 
 namespace AstralAvarice.Frontend
 {
@@ -13,6 +14,12 @@ namespace AstralAvarice.Frontend
 
 		private VisualElement onScreenElement;
 		private VisualElement offScreenElement;
+
+		/// <summary>
+		/// Used to track whether we need to invoke the OnPlanetOnScreenChanged
+		/// event.
+		/// </summary>
+		private bool planetOnScreenLastUpdate = false;
 
 		private PlanetComponent TrackedPlanet { get; set; }
 
@@ -28,6 +35,15 @@ namespace AstralAvarice.Frontend
 		private int OnScreenDotCount { get; set; }
 
 		public Vector3 OutWorldPosition { get; private set; }
+
+		public bool IsPlanetOnScreen => planetOnScreenLastUpdate;
+
+		/// <summary>
+		/// Invoked when the planet moves on / off screen.
+		/// True is passed when the planet moves on screen.
+		/// False is passed when the planet moves off screen.
+		/// </summary>
+		public UnityEvent<bool> OnPlanetOnScreenChanged = new UnityEvent<bool>();
 
 		public void TrackPlanet(
 			PlanetComponent trackedPlanet,
@@ -55,15 +71,24 @@ namespace AstralAvarice.Frontend
 
 		private void UpdateOnOffScreen()
 		{
-			bool isOnScreen = GetIsOnScreen();
+			bool isOnScreen = ComputeIsOnScreen();
 
 			if (isOnScreen)
 				UpdateOnScreen();
 			else
 				UpdateOffScreen();
+
+			// NOTE: If the planet is on screen on the first update, this
+			// will be invoked on the first update. If the planet is off screen
+			// on the first update, this will not be invoked on the first update.
+			if (isOnScreen ^ planetOnScreenLastUpdate)
+			{
+				OnPlanetOnScreenChanged.Invoke(isOnScreen);
+				planetOnScreenLastUpdate = isOnScreen;
+			}
 		}
 
-		private bool GetIsOnScreen()
+		private bool ComputeIsOnScreen()
 		{
 			Camera mainCamera = Camera.main;
 			Vector2 planetPosition = TrackedPlanet.transform.position;
@@ -163,8 +188,12 @@ namespace AstralAvarice.Frontend
 		public ICollection<WorldToScreenComponent> Components { get; } = new List<WorldToScreenComponent>();
 
 		/// <summary>
-		/// 
+		/// Invoked when the planet this tracker is tracking goes on / off screen.
+		/// True when the planet is on screen and the tracker is a circle.
+		/// False when the planet is off screen and the tracker is an arrow.
 		/// </summary>
+		public UnityEvent<bool> OnOffScreenOnScreenModeChanged = new UnityEvent<bool>();
+
 		/// <param name="trackedPlanet">The planet to track.</param>
 		/// <param name="padding">An offset to give some space between the edges of the tracker and the edges of the planet</param>
 		public CelestialMovementDetectionPlanetTrackerUI(PlanetComponent trackedPlanet, float padding = 0)
@@ -172,6 +201,18 @@ namespace AstralAvarice.Frontend
 			this.AddComponent<ScaleWithWorldComponent>().WorldSize = Vector2.one * trackedPlanet.Radius * 2;
 			planetTrackerComponent = this.AddComponent<PlanetTrackerComponent>();
 			planetTrackerComponent.TrackPlanet(trackedPlanet, padding);
+			// Chain invokations.
+			planetTrackerComponent.OnPlanetOnScreenChanged.AddListener(OnOffScreenOnScreenModeChanged.Invoke);
+		}
+
+
+		/// <returns>
+		/// True when the tracked planet is on screen and the tracker is a circle.
+		/// False when the tracked planet is off screen and the tracker is an arrow.
+		/// </returns>
+		public bool GetOnOffScreenMode()
+		{
+			return planetTrackerComponent.IsPlanetOnScreen;
 		}
 	}
 }

@@ -65,13 +65,21 @@ namespace AstralAvarice.Frontend
 			if (mainCamera == null)
 				return;
 
-			foreach (IWorldToScreenUIElement element in elements)
+			// TODO: Implement an update tracking system to avoid calling UpdateComponents multiple times.
+
+			// Iterate backwards in a for loop in case elements move themselves off this 
+			// manager. Avoids modifying a collection while looping over it. Assumes only
+			// one element could remove itself at a time, and if so that it's the updated
+			// element.
+			for (int i = elements.Count - 1; i >= 0; i--)
 			{
+				IWorldToScreenUIElement element = elements[i];
 				UpdateComponents(element);
 			}
 
-			foreach (IWorldToScreenUIElement element in elements)
+			for (int i = elements.Count - 1; i >= 0; i--)
 			{
+				IWorldToScreenUIElement element = elements[i];
 				PlaceUIElement(element, mainCamera);
 			}
 		}
