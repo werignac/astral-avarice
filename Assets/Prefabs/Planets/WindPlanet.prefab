@@ -303,6 +303,18 @@ MonoBehaviour:
   OnSelectedEnd:
     m_PersistentCalls:
       m_Calls: []
+  OnStartProspectingMassChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopProspectingMassChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStartMoving:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStopMoving:
+    m_PersistentCalls:
+      m_Calls: []
   buildingContainerTransform: {fileID: 4735051260527496677}
   mass: 50
   resourceCounts: 00000000040000000000000000000000
@@ -408,6 +420,7 @@ GameObject:
   - component: {fileID: 1239893839412587795}
   - component: {fileID: 5269705598938031120}
   - component: {fileID: 6263931624400583}
+  - component: {fileID: 8489653449892442343}
   m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
@@ -476,6 +489,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toToggleRenderers:
   - {fileID: 3076001706766339963}
+--- !u!114 &8489653449892442343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541127169961918003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d1122ff52efe345ba21f783597a356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimapRenderer: {fileID: 4482190745554439352}
 --- !u!1 &8842163221510522774
 GameObject:
   m_ObjectHideFlags: 0
