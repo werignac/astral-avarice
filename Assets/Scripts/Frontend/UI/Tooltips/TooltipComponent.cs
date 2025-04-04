@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using System;
 using UnityEngine.InputSystem;
+using AstralAvarice.Utils;
 
 namespace AstralAvarice.UI.Tooltips
 {
@@ -150,15 +151,9 @@ namespace AstralAvarice.UI.Tooltips
 
 		private void UpdatePosition()
 		{
-			Vector2 documentPosition = GetMouseDocumentPosition();
+			Vector2 documentPosition = Mouse.current.GetUIDocumentPosition();
 			documentPosition = ApplyMarginDirections(documentPosition, out bool aboveMouse, out bool leftOfMouse);
 			SetPosition(documentPosition, aboveMouse, leftOfMouse);
-		}
-
-		private Vector2 GetMouseDocumentPosition()
-		{
-			Vector2 mousePosition = Mouse.current.position.ReadValue();
-			return new Vector2(mousePosition.x, Screen.height - mousePosition.y);
 		}
 
 		private Vector2 ApplyMarginDirections(Vector2 documentPosition, out bool aboveMouse, out bool leftOfMouse)
@@ -168,16 +163,16 @@ namespace AstralAvarice.UI.Tooltips
 			leftOfMouse = false;
 
 			// If the left is over halway down the screen, check whether we would run off the screen and move to the left.
-			bool pastHorizontalHalf = documentPosition.x > Screen.width / 2;
-			bool rightOverflow = positionWithMargin.x + movingElement.resolvedStyle.width > Screen.width;
+			bool pastHorizontalHalf = documentPosition.x > UIUtils.GetScreenWidth() / 2;
+			bool rightOverflow = positionWithMargin.x + movingElement.resolvedStyle.width > UIUtils.GetScreenWidth();
 			if (pastHorizontalHalf && rightOverflow)
 			{
 				positionWithMargin.x = documentPosition.x - margin.x - movingElement.resolvedStyle.width;
 			}
 
 			// If the top is over halway down the screen, check whether we would run off the screen and move above.
-			bool pastVerticalHalf = documentPosition.y > Screen.height / 2;
-			bool bottomOverflow = positionWithMargin.y + movingElement.resolvedStyle.height > Screen.height;
+			bool pastVerticalHalf = documentPosition.y > UIUtils.GetScreenHeight() / 2;
+			bool bottomOverflow = positionWithMargin.y + movingElement.resolvedStyle.height > UIUtils.GetScreenHeight();
 			if (pastVerticalHalf && bottomOverflow)
 			{
 				positionWithMargin.y = documentPosition.y - margin.y - movingElement.resolvedStyle.height;

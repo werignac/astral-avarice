@@ -8,7 +8,8 @@ namespace AstralAvarice.Utils
 		public static Vector2 GetUIDocumentPosition(this Mouse mouse)
 		{
 			Vector2 mousePosition = mouse.position.ReadValue();
-			return new Vector2(mousePosition.x, Screen.height - mousePosition.y);
+			mousePosition = new Vector2(mousePosition.x * 1080 / Screen.height, mousePosition.y * 1080 / Screen.height);
+			return new Vector2(mousePosition.x, 1080 - mousePosition.y);
 		}
     }
 }

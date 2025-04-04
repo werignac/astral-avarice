@@ -76,13 +76,6 @@ public class BackgroundComponent : MonoBehaviour
 			width = CameraWidthMax;
 			height = CameraHeightMax;
 		}
-		/*
-		// Scaling beyond level bounds causes background placement issues.
-		if (cameraMovementComponent != null)
-		{
-			width = Mathf.Min(width, cameraMovementComponent.LevelBounds.x);
-			height = Mathf.Min(height, cameraMovementComponent.LevelBounds.y);
-		}*/
 
 		if (enableCounterCameraMovement)
 		{
@@ -99,7 +92,7 @@ public class BackgroundComponent : MonoBehaviour
 		float widthRatio = width / (UnscaledWidth * (1 - 2 * staticMargin));
 		float heightRatio = height / (UnscaledHeight * (1 - 2 * staticMargin));
 
-		transform.localScale = Vector3.one * Mathf.Min(widthRatio, heightRatio);
+		transform.localScale = Vector3.one * Mathf.Max(widthRatio, heightRatio);
 	}
 
 	// Move BG in opposite direction that player is moving the camera.
