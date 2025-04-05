@@ -1,4 +1,5 @@
 using UnityEngine;
+using AstralAvarice.Utils;
 
 namespace AstralAvarice.Frontend
 {
@@ -21,10 +22,7 @@ namespace AstralAvarice.Frontend
 			// Size of ui element relative to screen.
 			Vector2 screenRelativeSize = WorldSize / cameraHeight;
 
-			Vector2 pixelSize = new Vector2(
-				screenRelativeSize.x * Screen.height,
-				screenRelativeSize.y * Screen.height
-			);
+			Vector2 pixelSize = new Vector2(screenRelativeSize.x, screenRelativeSize.y) * UIUtils.GetScreenHeight();
 
 			UIElement.style.width = pixelSize.x;
 			UIElement.style.height = pixelSize.y;
