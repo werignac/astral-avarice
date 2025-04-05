@@ -34,10 +34,10 @@ public class BackgroundComponent : MonoBehaviour
 	/// </summary>
 	[SerializeField, Range(0, 0.5f)] private float moveMargin;
 
-	private float UnscaledWidth { get => backgroundSprite.texture.width / backgroundSprite.pixelsPerUnit ; }
-	private float ScaledWidth { get => UnscaledWidth * transform.localScale.x; }
-	private float UnscaledHeight { get => backgroundSprite.texture.height / backgroundSprite.pixelsPerUnit; }
-	private float ScaledHeight { get => UnscaledHeight * transform.localScale.y; }
+	private float UnscaledBackgroundWidth { get => backgroundSprite.texture.width / backgroundSprite.pixelsPerUnit ; }
+	private float ScaledBackgroundWidth { get => UnscaledBackgroundWidth * transform.localScale.x; }
+	private float UnscaledBackgroundHeight { get => backgroundSprite.texture.height / backgroundSprite.pixelsPerUnit; }
+	private float ScaledBackgroundHeight { get => UnscaledBackgroundHeight * transform.localScale.y; }
 	private float CameraWidth { get => camera.orthographicSize * camera.aspect * 2; }
 	private float CameraWidthMax { get => cameraMovementComponent.CameraSizeMax * camera.aspect * 2; }
 	private float CameraWidthMin { get => cameraMovementComponent.CameraSizeMin * camera.aspect * 2; }
@@ -89,8 +89,8 @@ public class BackgroundComponent : MonoBehaviour
 			}
 		}
 
-		float widthRatio = width / (UnscaledWidth * (1 - 2 * staticMargin));
-		float heightRatio = height / (UnscaledHeight * (1 - 2 * staticMargin));
+		float widthRatio = width / (UnscaledBackgroundWidth * (1 - 2 * staticMargin));
+		float heightRatio = height / (UnscaledBackgroundHeight * (1 - 2 * staticMargin));
 
 		transform.localScale = Vector3.one * Mathf.Max(widthRatio, heightRatio);
 	}
@@ -118,15 +118,22 @@ public class BackgroundComponent : MonoBehaviour
 			relativeNormalizedCameraPosition = new Vector2(normalizedCameraPosition.x, normalizedCameraPosition.y * cameraMovementComponent.LevelBoundsAspect);
 
 		// Not using moveMargin because sometimes there's less margin than moveMargin.
-		float maxHorizontalMovement = Mathf.Max(((ScaledWidth * (1 - 2 * staticMargin)) - CameraWidth) / 2, 0);
-		float maxVerticalMovement = Mathf.Max(((ScaledHeight * (1 - 2 * staticMargin)) - CameraHeight) / 2, 0);
+		float maxHorizontalMovement = Mathf.Max(((ScaledBackgroundWidth * (1 - 2 * staticMargin)) - CameraWidth) / 2, 0);
+		float maxVerticalMovement = Mathf.Max(((ScaledBackgroundHeight * (1 - 2 * staticMargin)) - CameraHeight) / 2, 0);
 
+		// If the aspect ratio of the level doesn't match the aspect ratio of the backgrounds, we'll either be
+		// unable to use all of the background horizontally or vertically.
+		// TODO: Include staticMargin.
+		maxHorizontalMovement = Mathf.Min(maxHorizontalMovement, Mathf.Max((cameraMovementComponent.LevelBounds.x - CameraWidth) / 2, 0));
+		maxVerticalMovement = Mathf.Min(maxVerticalMovement, Mathf.Max((cameraMovementComponent.LevelBounds.y - CameraHeight) / 2, 0));
+		
 		Vector2 posXY = relativeNormalizedCameraPosition * new Vector2(maxHorizontalMovement, maxVerticalMovement);
 
 		// Because the normalized camera position can occationally be > 1, we need to make sure the BG
 		// never goes off screen.
-		float safetyBoundHorizontal = (ScaledWidth - CameraWidth) / 2;
-		float safetyBoundVertical = (ScaledHeight - CameraHeight) / 2;
+		float safetyBoundHorizontal = (ScaledBackgroundWidth - CameraWidth) / 2;
+		float safetyBoundVertical = (ScaledBackgroundHeight - CameraHeight) / 2;
+
 		posXY = new Vector2(
 			Mathf.Clamp(posXY.x, -safetyBoundHorizontal, safetyBoundHorizontal),
 			Mathf.Clamp(posXY.y, -safetyBoundVertical, safetyBoundVertical)
