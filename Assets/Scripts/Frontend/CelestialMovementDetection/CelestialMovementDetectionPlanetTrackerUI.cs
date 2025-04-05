@@ -31,6 +31,10 @@ namespace AstralAvarice.Frontend
 		/// TODO: update margins if this changes?
 		/// </summary>
 		private float OnScreenWidth { get; set; }
+		/// <summary>
+		/// What percent of the size of the ui element is for the on-screen circle width.
+		/// </summary>
+		private float OnScreenWidthPercent => OnScreenWidth / (OnScreenWidth + OnScreenPadding + TrackedPlanet.Radius * 2);
 		private float OnScreenDotAspect { get; set; }
 		private int OnScreenDotCount { get; set; }
 
@@ -101,6 +105,10 @@ namespace AstralAvarice.Frontend
 			}
 		}
 
+		/// <summary>
+		/// Computes whether the planet is in the camera's view this frame.
+		/// </summary>
+		/// <returns>True if the planet is on screen. False otherwise.</returns>
 		private bool ComputeIsOnScreen()
 		{
 			Camera mainCamera = Camera.main;
@@ -165,7 +173,7 @@ namespace AstralAvarice.Frontend
 			onScreenElement = UIElement.Q(ON_SCREEN_TRACKER_ELEMENT_NAME);
 			offScreenElement = UIElement.Q(OFF_SCREEN_TRACKER_ELEMENT_NAME);
 
-			onScreenElement.style.marginTop = onScreenElement.style.marginBottom = onScreenElement.style.marginRight = onScreenElement.style.marginLeft = -(OnScreenPadding + OnScreenWidth);
+			onScreenElement.style.marginTop = onScreenElement.style.marginBottom = onScreenElement.style.marginRight = onScreenElement.style.marginLeft = -OnScreenWidth;
 			onScreenElement.generateVisualContent += DrawOnScreenTrackerElement;
 			onScreenElement.MarkDirtyRepaint();
 		}
@@ -218,12 +226,17 @@ namespace AstralAvarice.Frontend
 		public UnityEvent<bool> OnOffScreenOnScreenModeChanged = new UnityEvent<bool>();
 
 		/// <param name="trackedPlanet">The planet to track.</param>
-		/// <param name="padding">An offset to give some space between the edges of the tracker and the edges of the planet</param>
-		public CelestialMovementDetectionPlanetTrackerUI(PlanetComponent trackedPlanet, float padding = 0)
+		/// <param name="padding">A world-space offset to give some space between the edges of the tracker and the edges of the planet</param>
+		/// <param name="width">The width of the on-screen circle's stroke in pixels.</param>
+		public CelestialMovementDetectionPlanetTrackerUI(PlanetComponent trackedPlanet, float padding = 0.1f, float width = 20f)
 		{
-			this.AddComponent<ScaleWithWorldComponent>().WorldSize = Vector2.one * trackedPlanet.Radius * 2;
+			this.AddComponent<ScaleWithWorldComponent>().WorldSize = Vector2.one * (trackedPlanet.Radius * 2 + padding * 2);
 			planetTrackerComponent = this.AddComponent<PlanetTrackerComponent>();
-			planetTrackerComponent.TrackPlanet(trackedPlanet, padding);
+			planetTrackerComponent.TrackPlanet(
+				trackedPlanet,
+				padding,
+				width
+			);
 			// Chain invokations.
 			planetTrackerComponent.OnPlanetOnScreenChanged.AddListener(OnOffScreenOnScreenModeChanged.Invoke);
 		}

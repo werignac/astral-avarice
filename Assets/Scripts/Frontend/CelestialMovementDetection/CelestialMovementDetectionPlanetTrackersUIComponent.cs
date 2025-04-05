@@ -67,7 +67,7 @@ namespace AstralAvarice.Frontend
 
 		private CelestialMovementDetectionPlanetTrackerUI MakeTracker(PlanetComponent planet)
 		{
-			CelestialMovementDetectionPlanetTrackerUI tracker = new CelestialMovementDetectionPlanetTrackerUI(planet, 20);
+			CelestialMovementDetectionPlanetTrackerUI tracker = new CelestialMovementDetectionPlanetTrackerUI(planet);
 			// Ok to do lambda here. Lifetime of this object always exceeds lifetime of the trackers.
 			tracker.OnOffScreenOnScreenModeChanged.AddListener(
 				(bool mode) =>
