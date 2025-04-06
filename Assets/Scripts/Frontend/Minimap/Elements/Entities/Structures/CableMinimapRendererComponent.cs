@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CableMinimapRendererComponent : GridGroupMinimapRendererComponent
@@ -10,12 +11,13 @@ public class CableMinimapRendererComponent : GridGroupMinimapRendererComponent
 	private void Awake()
 	{
 		cableComponent = GetComponent<CableComponent>();
+		cableComponent.OnCableMoved.AddListener(Cable_OnMove);
+		cableComponent.OnGridGroupChanged.AddListener(SetGridGroupColor);
 	}
 
-	private void Update()
+	private void Cable_OnMove()
 	{
 		MatchScale(rendererToMatch);
-		SetGridGroupColor(cableComponent.GridGroup);
 	}
 
 	private void MatchScale(LineRenderer toMatch)
@@ -35,6 +37,4 @@ public class CableMinimapRendererComponent : GridGroupMinimapRendererComponent
 		minimapRenderer.transform.localScale = size;
 		minimapRenderer.transform.rotation = Quaternion.Euler(0, 0, angle);
 	}
-
-
 }

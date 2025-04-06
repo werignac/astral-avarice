@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using werignac.Utils;
+using AstralAvarice.Frontend;
+using System;
 
 public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 {
@@ -15,9 +17,11 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 	public float CableOverlapTime { get; set; }
 
 	// Events
+	[HideInInspector] public UnityEvent OnCableMoved = new UnityEvent(); // Invoked when the cable is moved.
 	[HideInInspector] public UnityEvent<CableComponent> OnCableDemolished = new UnityEvent<CableComponent>();
 	[HideInInspector] public UnityEvent OnCableHoverStartForDemolish = new UnityEvent();
 	[HideInInspector] public UnityEvent OnCableHoverEndForDemolish = new UnityEvent();
+	[HideInInspector] public UnityEvent<int> OnGridGroupChanged { get; private set; } = new UnityEvent<int>();
 
 	// Getters
 	public float Length
@@ -72,6 +76,22 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 		// When buildings are destroyed, we should destroy the cable as well.
 		startBuilding.OnBuildingDemolished.AddListener(Building_OnDestroy);
 		endBuilding.OnBuildingDemolished.AddListener(Building_OnDestroy);
+
+		// When the buildings move, we should move the cable as well.
+		startBuilding.GetComponent<CableConnectionPointMonitorComponent>().onConnectionPositionHasChanged.AddListener(Building_OnMove);
+		endBuilding.GetComponent<CableConnectionPointMonitorComponent>().onConnectionPositionHasChanged.AddListener(Building_OnMove);
+
+		// When either of the buildings change grid groups, notify others of the change to the grid group for the cable
+		// via chained calls.
+		// TODO: Prevent double calls to cables. This callback will always be called twice.
+		startBuilding.OnGridGroupChanged.AddListener(OnGridGroupChanged.Invoke);
+		endBuilding.OnGridGroupChanged.AddListener(OnGridGroupChanged.Invoke);
+	}
+
+	private void Building_OnMove()
+	{
+		// Invokes LateUpdate.
+		enabled = true;
 	}
 
 	public static void GetBoxFromPoints(
@@ -107,6 +127,12 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 		boxCollider.transform.position = center;
 		boxCollider.transform.localEulerAngles = Vector3.forward * angle;
 		boxCollider.size = size;
+
+		OnCableMoved.Invoke();
+
+		// Disable the script so that we don't keep calling LateUpdate
+		// until one of the buildings has moved.
+		enabled = false;
 	}
 
 	public void UpdateLineRenderer()

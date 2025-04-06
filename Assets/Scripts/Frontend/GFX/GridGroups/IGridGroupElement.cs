@@ -1,4 +1,4 @@
-using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Interface for elements that are part of a grid group (e.g. buildings and
@@ -7,4 +7,5 @@ using UnityEngine;
 public interface IGridGroupElement
 {
 	public int GridGroup { get; }
+	public UnityEvent<int> OnGridGroupChanged { get; }
 }

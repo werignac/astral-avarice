@@ -8,6 +8,7 @@ public class BuildingMinimapRendererComponent : GridGroupMinimapRendererComponen
 	private void Awake()
 	{
 		buildingComponent = GetComponentInParent<BuildingComponent>();
+		buildingComponent.OnGridGroupChanged.AddListener(SetGridGroupColor);
 	}
 
 	private void Start()
@@ -19,10 +20,5 @@ public class BuildingMinimapRendererComponent : GridGroupMinimapRendererComponen
 	{
 		minimapRenderer.transform.localPosition = toMatch.transform.localPosition;
 		minimapRenderer.transform.localScale = toMatch.localBounds.extents * 2 * toMatch.transform.localScale.x;
-	}
-
-	private void Update()
-	{
-		SetGridGroupColor(buildingComponent.GridGroup);
 	}
 }

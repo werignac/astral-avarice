@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class Building
 {
@@ -8,6 +9,10 @@ public class Building
     private List<Building> connectedBuildings;
     private bool isPowered;
     private GameManager manager;
+
+	private int gridGroup;
+
+	public UnityEvent<int> onGridGroupChanged = new UnityEvent<int>();
 
     public BuildingData Data
     {
@@ -28,7 +33,19 @@ public class Building
         set;
     }
     public int ResourcesProvided { get; set; }
-    public int BuildingGroup { get; set; }
+    public int BuildingGroup {
+		get => gridGroup;
+		set
+		{
+			bool changed = value != gridGroup;
+
+			if (!changed)
+				return;
+
+			gridGroup = value;
+			onGridGroupChanged.Invoke(value);
+		}
+	}
 
     public Building(BuildingData data)
     {

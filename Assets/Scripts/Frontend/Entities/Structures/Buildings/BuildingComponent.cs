@@ -21,6 +21,7 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 	[HideInInspector] public UnityEvent OnBuildingDeselected = new UnityEvent();
 	[HideInInspector] public UnityEvent OnBuildingHoverStartForDemolish = new UnityEvent();
 	[HideInInspector] public UnityEvent OnBuildingHoverEndForDemolish = new UnityEvent();
+	[HideInInspector] public UnityEvent<int> OnGridGroupChanged { get; private set; } = new UnityEvent<int>();
 
 	// Getters
 	public BuildingData Data
@@ -128,6 +129,8 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 	public void SetGameBuilding(Building building)
 	{
 		gameBuilding = building;
+		// Chain the grid group changed events.
+		building.onGridGroupChanged.AddListener(OnGridGroupChanged.Invoke);
 	}
 
 	public void Demolish()

@@ -10,20 +10,21 @@ public class GridGroupRendererComponent : MonoBehaviour
 	private void Awake()
 	{
 		gridGroupElement = GetComponentInParent<IGridGroupElement>();
+		gridGroupElement.OnGridGroupChanged.AddListener(GridGroupElement_OnGridGroupChanged);
 	}
 
-	private void LateUpdate()
+	private void Start()
 	{
-		if (SceneManager.GetActiveScene().name == "LevelBuilder")
-			return;
-		
-		SetRendererMaterials();
+		SetRendererMaterials(GetGridGroup());
 	}
 
-	protected virtual void SetRendererMaterials()
+	private void GridGroupElement_OnGridGroupChanged(int newGridGroup)
 	{
-		int gridGroup = GetGridGroup();
+		SetRendererMaterials(newGridGroup);
+	}
 
+	protected virtual void SetRendererMaterials(int gridGroup)
+	{
 		foreach(Renderer renderer in renderers)
 		{
 			// Note .material and note .sharedMaterial for separate parameters.
