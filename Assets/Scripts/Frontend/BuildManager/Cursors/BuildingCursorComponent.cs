@@ -145,7 +145,10 @@ public class BuildingCursorComponent : MonoBehaviour
 		Vector2 size = collisionCheckSize;
 		float angle = transform.rotation.eulerAngles.z;
 
-		return Physics2D.OverlapBoxAll(center, size, angle);
+		// Don't include the planet detection mask. TODO: Make this a field or auto detectable instead of hard-coded.
+		int layerMask = ~LayerMask.GetMask("PlanetDetection"); 
+
+		return Physics2D.OverlapBoxAll(center, size, angle, layerMask);
 	}
 
 	public GameObject PlaceBuildingAtLocation(GameObject buildingPrefab, bool isPlayerDemolishable = true)

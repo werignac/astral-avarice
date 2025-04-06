@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using werignac.Utils;
 using System;
 using UnityEngine.InputSystem;
+using AstralAvarice.Frontend;
 
 public class GameController : MonoBehaviour
 {
@@ -21,8 +22,10 @@ public class GameController : MonoBehaviour
 	[SerializeField] private UIDocument defeatDocument;
 	[SerializeField] protected Camera mainCamera;
 
+	[SerializeField] private ComputePlanetVelocitiesEvent computePlanetVelocitiesEvent;
 
-    private Label cashLabel;
+
+	private Label cashLabel;
     private Label incomeLabel;
 	private Label scienceLabel;
 	private Label scienceIncomeLabel;
@@ -263,73 +266,33 @@ public class GameController : MonoBehaviour
     {
 		if (!gameEnded && !gamePaused)
 		{
-			MovePlanets();
+			if (!(Planets.Count > 1 && GameSpeed > 0))
+				return;
+
+			ComputeAllPlanetVelocities();
+			ApplyAllPlanetVelocities();
+			UpdatePlanetsSolar();
 		}
     }
 
-	// Called on every fixed update. Due to time scaling, this may be called multiple times in
-	// a single update.
-    private void MovePlanets()
+	/// <summary>
+	/// Calls the static event that all objects that apply forces listen to.
+	/// </summary>
+	private void ComputeAllPlanetVelocities()
 	{
-		if (Planets.Count > 1 && GameSpeed > 0)
+		computePlanetVelocitiesEvent.Invoke(GameSpeedFixedDeltaTime);
+	}
+
+	/// <summary>
+	/// Move all the planets in accordance with their current velocities.
+	/// </summary>
+	private void ApplyAllPlanetVelocities()
+	{
+		// Apply translations and account for game speed.
+		foreach (PlanetComponent planet in Planets)
 		{
-			List<Vector2> planetTranslations = new List<Vector2>();
-			// Initialize a translation for each planet.
-			for (int i = 0; i < Planets.Count; ++i)
-			{
-				planetTranslations.Add(new Vector2(0, 0));
-			}
-
-			// Foreach planet, compute the net gravitational and thrushter forces exerted.
-			for (int i = 0; i < Planets.Count; ++i)
-			{
-				PlanetComponent planet = Planets[i];
-				float planetMass = planet.GetTotalMass() / 25f;
-				// Gravitational translations.
-				for (int p = 0; p < Planets.Count; ++p)
-				{
-					if (p != i)
-					{
-						PlanetComponent other = Planets[p];
-						Vector2 distance = planet.transform.position - other.transform.position;
-						if (distance.magnitude < planetMass)
-						{
-							planetTranslations[p] += distance.normalized * planetMass / distance.magnitude / other.GetTotalMass() * GameSpeedFixedDeltaTime;
-						}
-					}
-				}
-
-				// Truster translations.
-				for(int c = 0; c < planet.BuildingContainer.childCount; ++c)
-                {
-					BuildingComponent building = planet.BuildingContainer.GetChild(c).gameObject.GetComponent<BuildingComponent>();
-					if(building != null && building.BackendBuilding.IsPowered &&  building.Data.thrust != 0)
-                    {
-						Vector3 movement = building.transform.up.normalized * building.Data.thrust / planetMass * GameSpeedFixedDeltaTime * -1;
-						planetTranslations[i] += new Vector2(movement.x, movement.y);
-                    }
-                }
-			}
-
-			// Apply translations and account for game speed.
-			for (int i = 0; i < Planets.Count; ++i)
-			{
-				if(planetTranslations[i].magnitude < 0.00000001f && Planets[i].PlanetVelocity.magnitude > 0.0001f)
-                {
-					planetTranslations[i] = Planets[i].PlanetVelocity * -1;
-					if(planetTranslations[i].magnitude > GameSpeedFixedDeltaTime)
-                    {
-						planetTranslations[i] = planetTranslations[i].normalized * GameSpeedFixedDeltaTime;
-                    }
-                }
-				Rigidbody2D body = Planets[i].gameObject.GetComponent<Rigidbody2D>();
-				if (body != null)
-                {
-					Planets[i].PlanetVelocity += planetTranslations[i];
-                    body.MovePosition(body.position + (Planets[i].PlanetVelocity * GameSpeedFixedDeltaTime));
-                }
-			}
-			UpdatePlanetsSolar();
+			planet.SumVelocity(GameSpeedFixedDeltaTime); // Sum up accumulated velocities. Also decelerate if necessary.
+			planet.ApplyVelocity(GameSpeedFixedDeltaTime); // Move based on velocity.
 		}
 	}
 
@@ -504,7 +467,7 @@ public class GameController : MonoBehaviour
 
     public void UpdatePlanetsSolar()
     {
-		for(int i = 0; i < Planets.Count; ++i)
+		for (int i = 0; i < Planets.Count; ++i)
         {
 			PlanetComponent planet = Planets[i];
 			int solarAmount = planet.SolarOutput;

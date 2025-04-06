@@ -6,6 +6,7 @@ using System;
 
 namespace AstralAvarice.Frontend
 {
+	[RequireComponent(typeof(Collider2D))]
 	/// <summary>
 	/// Assumes a cable never starts with an invalid overlap.
 	/// </summary>

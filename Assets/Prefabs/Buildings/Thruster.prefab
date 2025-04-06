@@ -9792,6 +9792,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 678964911456333162}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6749999198474315384}
     - targetCorrespondingSourceObject: {fileID: 7708532822011176026, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6374666137388083878}
@@ -9799,11 +9802,41 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8453463797281055468}
   m_SourcePrefab: {fileID: 100100000, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+--- !u!114 &1642863709022337586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1447047061651423323, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+  m_PrefabInstance: {fileID: 205035227769846377}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6030793390011276195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d405bf86803b5a44d91e03d948e74652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2306330679681763968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2511273548441317609, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
   m_PrefabInstance: {fileID: 205035227769846377}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6030793390011276195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5866432017948533194, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}
+  m_PrefabInstance: {fileID: 205035227769846377}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6749999198474315384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6030793390011276195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d655852b22f497247817bd82cb308603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  building: {fileID: 1642863709022337586}
+  computePlanetVelocitiesEvent: {fileID: 11400000, guid: db49fa84a107b8c46bf74e7332a0a884, type: 2}
 --- !u!1 &7503660769058479667 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7708532822011176026, guid: 942aa82cd7715894e844b5c8a3ebb9a4, type: 3}

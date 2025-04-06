@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using AstralAvarice.Visualization;
 using System;
 
-public class GravityFieldComponent : MonoBehaviour
+public class GravityFieldGFXComponent : MonoBehaviour
 {
 	private PlanetComponent planetComponent;
 

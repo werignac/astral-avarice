@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using AstralAvarice.Visualization;
 
-public class SolarFieldComponent : MonoBehaviour
+public class SolarFieldGFXComponent : MonoBehaviour
 {
 	private const string SOLAR_FIELD_INNER_RADIUS_PROPERTY_NAME = "_InnerRadius";
 	private const string SOLAR_FIELD_STEPS_PROPERTY_NAME = "_StepCount";

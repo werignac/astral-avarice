@@ -36,7 +36,13 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	[SerializeField] private string planetName = "Planet";
 
 	private Vector2 planetVelocity;
+	/// <summary>
+	/// Velocity accumulated this FixedUpdate.
+	/// Set to Vector2.zero at the end of FixedUpdate.
+	/// </summary>
+	private Vector2 accumulatedVelocity;
 
+	private new Rigidbody2D rigidbody;
 
 	public Transform BuildingContainer
 	{
@@ -119,6 +125,8 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 			BuildingComponent building = buildingTransform.GetComponent<BuildingComponent>();
 			building.OnBuildingDemolished.AddListener((BuildingComponent _) => { InvokeMassChangedEvent(); });
 		}
+
+		rigidbody = GetComponent<Rigidbody2D>();
 	}
 
 	public float DistanceToPosition(Vector2 position)
@@ -199,7 +207,7 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		for (int i = 0; i < buildingContainerTransform.childCount; ++i)
 		{
 			BuildingComponent building = buildingContainerTransform.GetChild(i).gameObject.GetComponent<BuildingComponent>();
-			if (building != null)
+			if (building != null && ! building.isDemolishing)
 			{
 				totalMass += building.Data.mass;
 			}
@@ -324,5 +332,50 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	public void StopProspectingMassChange()
 	{
 		OnStopProspectingMassChange?.Invoke();
+	}
+
+	/// <summary>
+	/// Add to the planet's current velocity.
+	/// </summary>
+	/// <param name="addedVelocity">The amount of velocity to add.</param>
+	public void AddVelocity(Vector2 addedVelocity)
+	{
+		accumulatedVelocity += addedVelocity;
+	}
+
+	public void AddForce(Vector2 force, float deltaTime)
+	{
+		// NOTE: Calcs in GameController used gravityRadius instead of mass for some reason.
+		AddVelocity(force / GravityRadius * deltaTime);
+	}
+
+	public void SumVelocity(float deltaTime)
+	{
+		// Check if accumulated velocity is 0. If so, decelerate.
+		if (accumulatedVelocity.magnitude < Mathf.Epsilon && PlanetVelocity.magnitude > Mathf.Epsilon)
+			accumulatedVelocity = ComputeDecelerationVelocityChange(deltaTime);
+
+		PlanetVelocity += accumulatedVelocity;
+
+		accumulatedVelocity = Vector2.zero;
+	}
+
+	private Vector2 ComputeDecelerationVelocityChange(float deltaTime)
+	{
+		Vector2 velocityChange = PlanetVelocity * -1;
+		if (velocityChange.magnitude > deltaTime)
+			velocityChange = velocityChange.normalized * deltaTime;
+		return velocityChange;
+	}
+
+	/// <summary>
+	/// Move the planet based on the current PlanetVelocity.
+	/// </summary>
+	public void ApplyVelocity(float deltaTime)
+	{
+		Vector2 movement = PlanetVelocity * deltaTime;
+		
+		if (movement.magnitude > Mathf.Epsilon)
+			rigidbody.MovePosition(rigidbody.position + movement);
 	}
 }

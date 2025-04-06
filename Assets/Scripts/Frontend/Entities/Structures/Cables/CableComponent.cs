@@ -106,7 +106,9 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 	/// <returns>Whether the collider belongs to a cable that shares a building with this cable.</returns>
 	private bool OtherCableColliderSharesBuilding(Collider2D otherCollider)
 	{
-		CableComponent otherCable = otherCollider.transform.parent.GetComponent<CableComponent>();
+		// Cable collider is a child of cable component.
+		// Don't use GetComponentInParent to make search faster.
+		CableComponent otherCable = otherCollider.transform.parent?.GetComponent<CableComponent>();
 
 		// The collider does not belong to a cable.
 		if (otherCable == null)

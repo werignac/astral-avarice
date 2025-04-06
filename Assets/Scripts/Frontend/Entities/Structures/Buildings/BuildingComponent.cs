@@ -13,6 +13,9 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 	[SerializeField] private bool isPlayerDemolishable = false;
 	private Building gameBuilding;
 
+	// True right before the building gets demolished.
+	public bool isDemolishing { get; private set; } = false;
+
 	// Events
 	[HideInInspector] public UnityEvent<BuildingComponent> OnBuildingDemolished = new UnityEvent<BuildingComponent>();
 	[HideInInspector] public UnityEvent OnBuildingHoverStartForSelection = new UnityEvent();
@@ -135,6 +138,8 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 
 	public void Demolish()
 	{
+		isDemolishing = true;
+
 		OnBuildingDemolished?.Invoke(this);
 
 		if(parentPlanet != null)
