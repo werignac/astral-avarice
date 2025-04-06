@@ -573,6 +573,7 @@ public class GameController : MonoBehaviour
 
 	public void CheckCableSnap()
     {
+		/*
 		for(int i = 0; i < Cables.Count; ++i)
         {
 			if(Cables[i].Length > GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength)
@@ -609,7 +610,7 @@ public class GameController : MonoBehaviour
 					}
 				}
             }
-        }
+        }*/
     }
 
     /// <summary>

@@ -25,6 +25,8 @@ public class GlobalBuildingSettings: ScriptableObject
 	[SerializeField, Min(0.01f)] private float cableWidth;
 	// How long the cables can stretch up to.
 	[SerializeField, Min(1f)] private float maxCableLength;
+	// For how long cables can overlap with other structures before snapping.
+	[SerializeField, Min(0)] private float maxCableOverlapTime;
 
 	[SerializeField] private GameObject cableDestructionVFXPrefab;
 
@@ -52,6 +54,8 @@ public class GlobalBuildingSettings: ScriptableObject
 	{
 		get { return maxCableLength; }
 	}
+
+	public float MaxCableOverlapTime => maxCableOverlapTime;
 
 	public GameObject CableDestructionVFXPrefab
 	{

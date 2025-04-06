@@ -14,6 +14,11 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 	[SerializeField] private BoxCollider2D boxCollider;
 	[SerializeField] private bool isPlayerDemolishable = false;
 
+	/// <summary>
+	/// Script that detects overlaps.
+	/// </summary>
+	[SerializeField] private CableCollisionComponent cableCollision;
+
 	public float CableOverlapTime { get; set; }
 
 	// Events
@@ -53,14 +58,13 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 		get => (Start) ? Start.GridGroup : (End) ? End.GridGroup : -1;
 	}
 
+#if UNITY_EDITOR
 	private void Awake()
 	{
-#if UNITY_EDITOR
 		if (lineRenderer == null)
 			lineRenderer = GetComponentInChildren<LineRenderer>();
-
-#endif
 	}
+#endif
 
 	public void SetAttachedBuildings(BuildingComponent start, BuildingComponent end)
 	{
@@ -86,6 +90,12 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 		// TODO: Prevent double calls to cables. This callback will always be called twice.
 		startBuilding.OnGridGroupChanged.AddListener(OnGridGroupChanged.Invoke);
 		endBuilding.OnGridGroupChanged.AddListener(OnGridGroupChanged.Invoke);
+
+		// Tell the collision component to ignore the cable's buildings' colliders.
+		// Also, listen for when we've overlapped an invalid collider for too long (planets, other buildings, etc.).
+		cableCollision.AddIgnoreCollider(startBuilding.GetComponentInChildren<Collider2D>());
+		cableCollision.AddIgnoreCollider(endBuilding.GetComponentInChildren<Collider2D>());
+		cableCollision.OnOverlapTimerExpired.AddListener(Collision_OnOverlapTimerExpired);
 	}
 
 	private void Building_OnMove()
@@ -168,6 +178,10 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 	}
 
 	private void Building_OnDestroy(BuildingComponent _)
+	{
+		Demolish();
+	}
+	private void Collision_OnOverlapTimerExpired()
 	{
 		Demolish();
 	}
