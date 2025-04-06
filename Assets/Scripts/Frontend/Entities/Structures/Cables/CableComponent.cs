@@ -95,7 +95,25 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 		// Also, listen for when we've overlapped an invalid collider for too long (planets, other buildings, etc.).
 		cableCollision.AddIgnoreCollider(startBuilding.GetComponentInChildren<Collider2D>());
 		cableCollision.AddIgnoreCollider(endBuilding.GetComponentInChildren<Collider2D>());
+		cableCollision.AddIngoreFilter(OtherCableColliderSharesBuilding);
 		cableCollision.OnOverlapTimerExpired.AddListener(Collision_OnOverlapTimerExpired);
+	}
+
+	/// <summary>
+	/// Used in the CableCollisionComponent.
+	/// </summary>
+	/// <param name="otherCollider">Another collider to check.</param>
+	/// <returns>Whether the collider belongs to a cable that shares a building with this cable.</returns>
+	private bool OtherCableColliderSharesBuilding(Collider2D otherCollider)
+	{
+		CableComponent otherCable = otherCollider.transform.parent.GetComponent<CableComponent>();
+
+		// The collider does not belong to a cable.
+		if (otherCable == null)
+			return false;
+
+		// The collider belongs to a cable. check for shared building.
+		return otherCable.Start == Start || otherCable.Start == End || otherCable.End == End || otherCable.End == Start;
 	}
 
 	private void Building_OnMove()
@@ -121,7 +139,18 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 		angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 	}
 
+	/// <summary>
+	/// Only called when connections points are updated.
+	/// </summary>
 	private void LateUpdate()
+	{
+		OnUpdatedConnectionPoints();
+		// Disable the script so that we don't keep calling LateUpdate
+		// until one of the buildings has moved.
+		enabled = false;
+	}
+
+	private void OnUpdatedConnectionPoints()
 	{
 		UpdateLineRenderer();
 
@@ -140,9 +169,9 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 
 		OnCableMoved.Invoke();
 
-		// Disable the script so that we don't keep calling LateUpdate
-		// until one of the buildings has moved.
-		enabled = false;
+		// If the cable got longer than the max length, snap.
+		if (Length > GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength)
+			Demolish();
 	}
 
 	public void UpdateLineRenderer()

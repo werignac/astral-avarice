@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace AstralAvarice.Frontend
 {
@@ -15,6 +16,12 @@ namespace AstralAvarice.Frontend
 		/// e.g. buildings attached to the cable.
 		/// </summary>
 		private HashSet<Collider2D> ignoreColliders = new HashSet<Collider2D>();
+
+		/// <summary>
+		/// Functors that filter for whether a collider should be ignored.
+		/// e.g. cables attached to the same building.
+		/// </summary>
+		private HashSet<Func<Collider2D, bool>> ignoreFilters = new HashSet<Func<Collider2D, bool>>();
 
 		private int currentOverlapCount = 0;
 
@@ -39,10 +46,14 @@ namespace AstralAvarice.Frontend
 			ignoreColliders.Add(colliderToIgnore);
 		}
 
+		public void AddIngoreFilter(Func<Collider2D, bool> filter)
+		{
+			ignoreFilters.Add(filter);
+		}
+
 		private void OnCollisionEnter2D(Collision2D collision)
 		{
-			Debug.Log($"Cable collided with {collision.collider.gameObject.name}");
-
+			// If a non-valid overlap entered the cable.
 			if(! IsValidOverlap(collision.collider))
 			{
 				// If this will be the first overlap, start the overlap timer.
@@ -77,16 +88,21 @@ namespace AstralAvarice.Frontend
 			}
 		}
 
-		/// <summary>
-		/// TODO: Check if the overlap is with a building or planet.
-		/// If with a planet, that's bad. If with a building, if the building
-		/// is not one of the cable's ends, it's bad.
-		/// </summary>
-		/// <param name="collider"></param>
-		/// <returns></returns>
 		private bool IsValidOverlap(Collider2D collider)
 		{
-			return ignoreColliders.Contains(collider);
+			bool ignoreCollider = ignoreColliders.Contains(collider);
+			
+			if (ignoreCollider)
+				return true;
+
+			// See if any of the filters allow the collider to be ignoed.
+			foreach (Func<Collider2D, bool> filter in ignoreFilters)
+			{
+				if (filter.Invoke(collider))
+					return true;
+			}
+
+			return false;
 		}
 
 		private IEnumerator OverlapTimer()
