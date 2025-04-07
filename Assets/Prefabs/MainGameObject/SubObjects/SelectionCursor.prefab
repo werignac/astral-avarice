@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5813251362595360691}
   - component: {fileID: 717450164384154126}
   - component: {fileID: 1031952564511148126}
+  - component: {fileID: -8670659272088959440}
   m_Layer: 0
   m_Name: SelectionCursor
   m_TagString: Untagged
@@ -89,3 +90,17 @@ MonoBehaviour:
   overrideElementNames:
   - InspectorTemplate
   uiDocument: {fileID: 0}
+--- !u!114 &-8670659272088959440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2310114691200568426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7dbff9f0826a847808e1873e381673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selection: {fileID: 717450164384154126}
+  buildManager: {fileID: 0}

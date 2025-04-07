@@ -100,6 +100,7 @@ public class SelectionCursorComponent : MonoBehaviour
 			WorldSpaceCursorRadius,
 			layerMask
 		));
+
 		currentlyHovering.Sort(new CursorDistanceColliderComparer(transform.position));
 	}
 

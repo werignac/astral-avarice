@@ -97,6 +97,9 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 		cableCollision.AddIgnoreCollider(endBuilding.GetComponentInChildren<Collider2D>());
 		cableCollision.AddIngoreFilter(OtherCableColliderSharesBuilding);
 		cableCollision.OnOverlapTimerExpired.AddListener(Collision_OnOverlapTimerExpired);
+
+		// Move collider and line component into position.
+		Building_OnMove();
 	}
 
 	/// <summary>
@@ -187,25 +190,6 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 		// TODO: Handle cable breaks.
 
 		lineRenderer.SetPositions(positions);
-	}
-
-	// TODO: Use for breaks when objects move.
-	private bool IsValidOverlap(Collider2D overlapping)
-	{
-		if (overlapping.TryGetComponentInParent(out BuildingComponent overllapingBuilding))
-		{
-			return (overllapingBuilding == Start) || (overllapingBuilding == End);
-		}
-
-		if (overlapping.TryGetComponentInParent(out CableComponent overlappingCable))
-		{
-			bool startIsConnectingBuilding = (overlappingCable.Start == Start) || (overlappingCable.Start == Start);
-			bool endIsConnectingBuilding = (overlappingCable.End == Start) || (overlappingCable.End == End);
-
-			return startIsConnectingBuilding || endIsConnectingBuilding;
-		}
-
-		return false;
 	}
 
 	private void Building_OnDestroy(BuildingComponent _)

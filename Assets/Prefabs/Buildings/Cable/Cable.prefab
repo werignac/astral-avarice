@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4753182422402267032}
   - component: {fileID: 7109463446182131643}
   - component: {fileID: 2055791187956470075}
-  - component: {fileID: 5057504054829953662}
   m_Layer: 7
   m_Name: Collider
   m_TagString: Untagged
@@ -95,33 +94,6 @@ MonoBehaviour:
   OnOverlapTimerExpired:
     m_PersistentCalls:
       m_Calls: []
---- !u!50 &5057504054829953662
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540764094682687356}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 2
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &5726402047846220235
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +107,7 @@ GameObject:
   - component: {fileID: 5373616024869232049}
   - component: {fileID: 7468987602184626489}
   - component: {fileID: 8651359112045118305}
+  - component: {fileID: 7035607447098557656}
   m_Layer: 0
   m_Name: Cable
   m_TagString: Untagged
@@ -232,6 +205,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderers:
   - {fileID: 1081493832526688351}
+--- !u!50 &7035607447098557656
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5726402047846220235}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9005126059149680288
 GameObject:
   m_ObjectHideFlags: 0
