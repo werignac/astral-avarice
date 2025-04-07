@@ -116,7 +116,10 @@ public class CableCursorComponent : MonoBehaviour
 			out float angle
 			);
 
-		return Physics2D.OverlapBoxAll(center, size, angle);
+		// TODO: Parameterize.
+		int layerMask = ~LayerMask.GetMask("PlanetDetection");
+
+		return Physics2D.OverlapBoxAll(center, size, angle, layerMask);
 	}
 
 	public GameObject PlaceCableAtLocation(bool isPlayerDemolishable = true)

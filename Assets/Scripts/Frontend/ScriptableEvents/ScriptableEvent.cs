@@ -27,4 +27,24 @@ namespace AstralAvarice.Frontend
 			_event.Invoke(arg);
 		}
     }
+
+	public class ScriptableEvent : ScriptableObject
+	{
+		private UnityEvent _event = new UnityEvent();
+
+		public void AddListener(UnityAction call)
+		{
+			_event.AddListener(call);
+		}
+
+		public void RemoveListener(UnityAction call)
+		{
+			_event.RemoveListener(call);
+		}
+
+		public void Invoke()
+		{
+			_event.Invoke();
+		}
+	}
 }

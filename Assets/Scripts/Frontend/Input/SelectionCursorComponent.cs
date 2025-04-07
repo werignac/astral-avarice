@@ -92,7 +92,14 @@ public class SelectionCursorComponent : MonoBehaviour
 	/// </summary>
 	public void QueryHovering()
 	{
-		currentlyHovering = new List<Collider2D>(Physics2D.OverlapCircleAll(transform.position, WorldSpaceCursorRadius));
+		// TODO: Parameterize.
+		int layerMask = ~LayerMask.GetMask("PlanetDetection");
+
+		currentlyHovering = new List<Collider2D>(Physics2D.OverlapCircleAll(
+			transform.position,
+			WorldSpaceCursorRadius,
+			layerMask
+		));
 		currentlyHovering.Sort(new CursorDistanceColliderComparer(transform.position));
 	}
 

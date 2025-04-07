@@ -15,7 +15,6 @@ namespace AstralAvarice.Frontend
 		private PlanetComponent planet;
 
 		[SerializeField] private CircleCollider2D gravityFieldCollider;
-
 		[SerializeField] private ComputePlanetVelocitiesEvent computePlanetVelocitiesEvent;
 
 		private float Radius

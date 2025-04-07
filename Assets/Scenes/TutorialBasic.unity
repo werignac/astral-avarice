@@ -172,6 +172,8 @@ MonoBehaviour:
   victoryDocument: {fileID: 0}
   defeatDocument: {fileID: 0}
   mainCamera: {fileID: 4965404745968294493}
+  computePlanetVelocitiesEvent: {fileID: 11400000, guid: db49fa84a107b8c46bf74e7332a0a884, type: 2}
+  computePlanetSolarEnergyEvent: {fileID: 11400000, guid: a565bff3c057b6741a1bb5aa8bef69e8, type: 2}
   OnLevelLoad:
     m_PersistentCalls:
       m_Calls: []

@@ -32,6 +32,8 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	[SerializeField] private int mass;
 	[SerializeField] private int[] resourceCounts = new int[(int)ResourceType.Resource_Count];
 	[SerializeField] private int solarOutput;
+	// Solar energy accumulated from adjacent starts this frame.
+	private int accumulatedSolarEnergy = 0;
 	[SerializeField] private bool canPlaceBuildings;
 	[SerializeField] private string planetName = "Planet";
 
@@ -41,7 +43,6 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	/// Set to Vector2.zero at the end of FixedUpdate.
 	/// </summary>
 	private Vector2 accumulatedVelocity;
-
 	private new Rigidbody2D rigidbody;
 
 	public Transform BuildingContainer
@@ -377,5 +378,24 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		
 		if (movement.magnitude > Mathf.Epsilon)
 			rigidbody.MovePosition(rigidbody.position + movement);
+	}
+
+	/// <summary>
+	/// Adds solar energy to this planet this frame.
+	/// </summary>
+	public void AddSolarEnergy(int addedSolar)
+	{
+		accumulatedSolarEnergy += addedSolar;
+	}
+
+	/// <summary>
+	/// Sets solar enery this planet has to the amount accumulated
+	/// this frame.
+	/// </summary>
+	public void ApplySolar()
+	{
+		int sum = SolarOutput + accumulatedSolarEnergy;
+		SetResourceCount(ResourceType.Solar, sum);
+		accumulatedSolarEnergy = 0;
 	}
 }
