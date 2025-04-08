@@ -27,7 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  tutorialScene: 
+  tutorialScene: WindyWay
   hasPrereq: 0
   prereqMission: 
   prereqRank: 0

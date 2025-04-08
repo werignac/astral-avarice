@@ -43,7 +43,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
   - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
-  tutorialScene: 
+  tutorialScene: HighriseHalls
   hasPrereq: 1
   prereqMission: First Steps
   prereqRank: 1

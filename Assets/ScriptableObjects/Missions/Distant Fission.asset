@@ -31,7 +31,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
   - {fileID: 11400000, guid: b7c7e7c92a5e39a43bc913e88c9a8144, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  tutorialScene: 
+  tutorialScene: DistantFission
   hasPrereq: 0
   prereqMission: 
   prereqRank: 0

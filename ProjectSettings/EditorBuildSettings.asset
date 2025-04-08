@@ -12,11 +12,32 @@ EditorBuildSettings:
     path: Assets/Scenes/MainGame.unity
     guid: 1ec750f23c66e0240804c70eaaff0bec
   - enabled: 1
-    path: Assets/Scenes/TutorialBasic.unity
+    path: Assets/Scenes/LevelScenes/TutorialBasic.unity
     guid: 25d89bb53e45b824591646bd83674244
   - enabled: 1
-    path: Assets/Scenes/TutorialAdvanced.unity
+    path: Assets/Scenes/LevelScenes/TutorialAdvanced.unity
     guid: 012684a8f5541eb4fa8a353ccf15c343
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/CoalHills.unity
+    guid: 960cbfff7b95e0146b91e0891aabc880
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/WindyWay.unity
+    guid: 01cc98a703774ff40b779bb985e1f9d5
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/SolarFields.unity
+    guid: b69c6f2f16a624048aee1b26a18845fc
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/DistantFission.unity
+    guid: 2a4b2de468a02f0439e3ffacb75dcde8
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/FirstSteps.unity
+    guid: 850582b3cc5bae2469ed1976b838f198
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/HighriseHalls.unity
+    guid: de3ff8c75c5ec394689fa193a910db08
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/ScienceExposure.unity
+    guid: 0dcade8ac02355141942cbc90a5ed3d2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
