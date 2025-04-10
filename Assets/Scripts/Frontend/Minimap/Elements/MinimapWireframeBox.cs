@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class MinimapWireframeBox : MonoBehaviour
 {
-	private LineRenderer boxRenderer;
+	protected LineRenderer boxRenderer;
 
 	protected virtual void Awake()
 	{
@@ -25,5 +25,10 @@ public class MinimapWireframeBox : MonoBehaviour
 			new Vector3(bounds.max.x, bounds.max.y, 0),
 			new Vector3(bounds.max.x, bounds.min.y, 0),
 		});
+	}
+
+	public void SetWidth(float width)
+	{
+		boxRenderer.widthMultiplier = width;
 	}
 }
