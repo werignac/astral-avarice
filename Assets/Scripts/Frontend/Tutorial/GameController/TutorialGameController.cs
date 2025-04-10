@@ -182,6 +182,14 @@ public class TutorialGameController : GameController
             }
         }
 
+        if (resolution.triedDemolishBuilding && resolution.demolishTarget != null && resolution.demolishTarget.Demolishable())
+        {
+            if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.demolish)
+            {
+                advanceAtEndOfNextUpdate = true;
+            }
+        }
+
         base.BuildManager_OnBuildResovle(resolution);
 
         if (resolution.successfullyPlacedBuilding)
@@ -190,6 +198,11 @@ public class TutorialGameController : GameController
             {
                 advanceAtEndOfNextUpdate = true;
             }
+            UpdateBuildingResources();
+        }
+
+        if(resolution.triedDemolishBuilding)
+        {
             UpdateBuildingResources();
         }
 
@@ -206,6 +219,14 @@ public class TutorialGameController : GameController
                 {
                     advanceAtEndOfNextUpdate = true;
                 }
+            }
+        }
+
+        if(resolution.successfullyMovedBuilding)
+        {
+            if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.move)
+            {
+                advanceAtEndOfNextUpdate = true;
             }
         }
     }

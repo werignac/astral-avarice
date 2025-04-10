@@ -186,7 +186,6 @@ public class GameController : MonoBehaviour
 		foreach(CableComponent cableComponent in WerignacUtils.GetComponentsInActiveScene<CableComponent>())
         {
             cableComponent.SetAttachedBuildings(cableComponent.Start, cableComponent.End);
-			cableComponent.SetDemolishable(true);
             RegisterCable(cableComponent);
 		}
 

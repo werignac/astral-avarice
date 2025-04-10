@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
-    <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; justify-content: flex-end;">
-        <engine:Label text="Planets can have different amounts&#10;of the four special resources,&#10;Coal, Solar, Thermal, and Wind.&#10;Different buildings need these&#10;resources to operate." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 400px;" />
+    <engine:VisualElement picking-mode="Ignore" name="VisualElement" style="flex-grow: 1; justify-content: center;">
+        <engine:Label text="Coal &lt;sprite=&quot;text-icons&quot;, name=coal&gt; has been used in power plants&#10;for ages. As such, the technology&#10;to build the plants is reasonably&#10;cheap. Though the labor to mine&#10;coal keeps their upkeep costs high." name="Label" picking-mode="Ignore" class="Text" style="align-self: flex-start;" />
     </engine:VisualElement>
 </engine:UXML>

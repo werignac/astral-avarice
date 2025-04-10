@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
-    <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; justify-content: flex-end;">
-        <engine:Label text="If you want to do something more&#10;specific with your power, you can&#10;also manually toggle whether a&#10;building is powered. Select one&#10;of the houses to try it out." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 400px;" />
+    <engine:VisualElement picking-mode="Ignore" name="VisualElement" style="flex-grow: 1; justify-content: center;">
+        <engine:Label text="Because the small coal plant was built first,&#10;it has the first contract to acquire the&#10;coal from mines located on the planet.&#10;As such, 1 &lt;sprite=&quot;text-icons&quot;, name=coal&gt; is beaing used up by the small&#10;plant instead of fueling the larger one." name="Label" picking-mode="Ignore" class="Text" style="align-self: flex-start;" />
     </engine:VisualElement>
 </engine:UXML>

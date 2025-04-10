@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
-    <engine:VisualElement style="flex-grow: 1;">
-        <engine:Label text="Turning power on and off isn&apos;t&#10;always useful or important. One&#10;case where you might want to is&#10;if you have some Lab buildings,&#10;which produce advanced materials." name="Label" class="Text" style="align-self: center; margin-top: 400px;" />
+    <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; justify-content: center;">
+        <engine:Label text="With the small plant demolished,&#10;the large coal plant will now work at&#10;100% efficiency. In addition, we&#10;were able to sell the scrap from&#10;the old plant for a small refund." name="Label" picking-mode="Ignore" class="Text" style="align-self: center;" />
     </engine:VisualElement>
 </engine:UXML>

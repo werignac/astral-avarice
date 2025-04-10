@@ -1,15 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
-    <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
-        <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; flex-direction: row-reverse;">
-            <engine:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-grow: 0; width: 500px;">
-                <engine:VisualElement class="Cover" style="flex-grow: 1;" />
-                <engine:VisualElement picking-mode="Ignore" style="flex-grow: 0; height: 150px;" />
-                <engine:VisualElement class="Cover" style="flex-grow: 0; height: 200px;" />
-            </engine:VisualElement>
-            <engine:VisualElement picking-mode="Ignore" class="Cover" style="flex-grow: 1; justify-content: center;">
-                <engine:Label text="With a building selected, you can&#10;not only view its statistics, but&#10;also control its power status.&#10;Just click the check box a&#10;couple of times to turn power on&#10;and off." picking-mode="Ignore" class="Text" style="align-self: flex-end;" />
-            </engine:VisualElement>
-        </engine:VisualElement>
+    <engine:VisualElement picking-mode="Ignore" name="VisualElement" style="flex-grow: 1; justify-content: center;">
+        <engine:Label text="In order to free up the coal, send in&#10;the demolition team to tear down the&#10;small coal power plant." name="Label" picking-mode="Ignore" class="Text" style="align-self: flex-start;" />
     </engine:VisualElement>
 </engine:UXML>
