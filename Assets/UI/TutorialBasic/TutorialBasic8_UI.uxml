@@ -1,12 +1,12 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
-    <engine:VisualElement style="flex-grow: 1;">
-        <engine:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78); justify-content: flex-end; align-items: flex-start;">
-            <engine:Label text="These buttons control the build menu.&#10;The three on the right are tools for moving,&#10;demolishing, or creating cables between buildings.&#10;Meanwhile the other buttons open the menu for&#10;constructing new buildings. " name="Label" class="Text" style="margin-top: 10px; margin-left: 150px; margin-right: 10px; margin-bottom: 10px;" />
+    <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+        <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78); justify-content: flex-end; align-items: flex-start;">
+            <engine:Label text="These buttons control the build menu.&#10;The three on the right are tools for moving,&#10;demolishing, or creating cables between buildings.&#10;Meanwhile the other buttons open the menu for&#10;constructing new buildings. " name="Label" picking-mode="Ignore" class="Text" style="margin-top: 10px; margin-left: 150px; margin-right: 10px; margin-bottom: 10px;" />
         </engine:VisualElement>
-        <engine:VisualElement style="flex-direction: row; height: 155px;">
-            <engine:VisualElement style="width: 644px; height: 100%;" />
-            <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
+        <engine:VisualElement picking-mode="Ignore" style="flex-direction: row; height: 155px;">
+            <engine:VisualElement name="VisualElement" picking-mode="Ignore" style="width: 644px; height: 100%;" />
+            <engine:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

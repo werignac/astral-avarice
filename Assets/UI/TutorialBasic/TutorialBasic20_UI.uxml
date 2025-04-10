@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
     <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
-        <engine:Label text="Open the pylon tab in the build menu,&#10;and build a pylon between the two&#10;coal plants as indicated." name="Label" class="Text" style="align-self: center; margin-top: 150px;" />
+        <engine:Label text="Open the pylon tab in the build menu,&#10;and build a pylon between the two&#10;coal plants as indicated." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 150px;" />
     </engine:VisualElement>
 </engine:UXML>

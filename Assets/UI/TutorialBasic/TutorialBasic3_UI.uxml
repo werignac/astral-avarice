@@ -1,13 +1,13 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
-    <engine:VisualElement style="flex-grow: 1;">
-        <engine:VisualElement style="flex-direction: row; height: 155px;">
-            <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
-            <engine:VisualElement style="width: 644px; height: 100%; flex-grow: 0;" />
-            <engine:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
+    <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+        <engine:VisualElement picking-mode="Ignore" style="flex-direction: row; height: 155px;">
+            <engine:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
+            <engine:VisualElement picking-mode="Ignore" style="width: 950px; height: 100%; flex-grow: 0;" />
+            <engine:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
         </engine:VisualElement>
-        <engine:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
-            <engine:Label text="The top displays the current situation.&#10;In the bottom left, you have your current cash and&#10;advanced materials. &#10;(Cash on the left, advanced materialson the right)" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" />
+        <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
+            <engine:Label text="The top displays the current situation.&#10;In the bottom left, you have your current cash and&#10;advanced materials. &#10;(Cash on the left, advanced materialson the right)" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
