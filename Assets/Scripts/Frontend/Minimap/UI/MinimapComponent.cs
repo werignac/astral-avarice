@@ -8,14 +8,17 @@ public class MinimapComponent : MonoBehaviour
 {
 	private const string MINIMAP_CONTAINER_ELEMENT_NAME = "MinimapTemplate";
 	private const string MINIMAP_ELEMENT_NAME = "Minimap";
+	private const string MINIMAP_LEVEL_BOUNDS_ELEMENT_NAME = "LevelBounds";
 
 	[SerializeField] private MinimapCameraComponent minimapCamera;
 	[SerializeField] private CameraMovementComponent mainCamera;
+	[SerializeField] private GameController gameController;
 
 	private UIDocument uiDocument;
 
 	private VisualElement minimapContainerElement;
 	private VisualElement minimapElement;
+	private VisualElement levelBoundsElement;
 
 	/// <summary>
 	/// Whether to continue moving the camera whilst the player is dragging accross
@@ -28,6 +31,28 @@ public class MinimapComponent : MonoBehaviour
 		uiDocument = GetComponent<UIDocument>();
 		minimapContainerElement = uiDocument.rootVisualElement.Q(MINIMAP_CONTAINER_ELEMENT_NAME);
 		minimapElement = uiDocument.rootVisualElement.Q(MINIMAP_ELEMENT_NAME);
+		levelBoundsElement = minimapElement.Q(MINIMAP_LEVEL_BOUNDS_ELEMENT_NAME);
+
+		minimapCamera.OnResizeForLevelBounds.AddListener(Camera_ResizeToLevelBounds);
+	}
+
+	private void Camera_ResizeToLevelBounds()
+	{
+		SetLevelBounds(gameController.LevelBounds);
+	}
+
+	private void SetLevelBounds(Vector2 levelBounds)
+	{
+		Vector2 bottomLeft = new Vector2(-levelBounds.x / 2, -levelBounds.y / 2);
+		Vector2 topRight = -bottomLeft;
+
+		Vector2 bottomLeftRelative = minimapCamera.WorldSpaceToMinimapSpace(bottomLeft);
+		Vector2 topRightRelative = minimapCamera.WorldSpaceToMinimapSpace(topRight);
+
+		levelBoundsElement.style.left = new Length(bottomLeftRelative.x * 100, LengthUnit.Percent);
+		levelBoundsElement.style.bottom = new Length(bottomLeftRelative.y * 100, LengthUnit.Percent);
+		levelBoundsElement.style.right = new Length((1 - topRightRelative.x) * 100, LengthUnit.Percent);
+		levelBoundsElement.style.top = new Length((1 - topRightRelative.y) * 100, LengthUnit.Percent);
 	}
 
 	private void Start()
