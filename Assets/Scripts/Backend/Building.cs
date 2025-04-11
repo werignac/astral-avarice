@@ -10,7 +10,7 @@ public class Building
     private bool isPowered;
     private GameManager manager;
 
-	private int gridGroup;
+	private int gridGroup = -1;
 
 	public UnityEvent<int> onGridGroupChanged = new UnityEvent<int>();
 
