@@ -183,18 +183,24 @@ MonoBehaviour:
   tutorialUI: {fileID: 1447282692}
   tutorialMission: {fileID: 11400000, guid: e0e2db3b31944fd45b353b80f3ae9ba8, type: 2}
   buildMenu: {fileID: 876278619}
-  stateChangeConditions: 0a000000
-  allowedActions: 08000000
-  gameSpeedOverrides: ffffffff
+  stateChangeConditions: 00000000000000000a000000
+  allowedActions: 000000000000000008000000
+  gameSpeedOverrides: 0000000000000000ffffffff
   cameraFocuses:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   displayObjects:
   - {fileID: 0}
-  setBuildToNone: 01
+  - {fileID: 0}
+  - {fileID: 0}
+  setBuildToNone: 010101
   buildLocations:
   - {x: 0, y: 0, z: 0}
-  buildMenuHighlights: ffffffff
-  buildSubMenuHighlights: ffffffff
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  buildMenuHighlights: ffffffffffffffffffffffff
+  buildSubMenuHighlights: ffffffffffffffffffffffff
 --- !u!1 &876278616
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   document: {fileID: 1447282690}
   tutorialTrees:
+  - {fileID: 9197481963319205126, guid: 08aa44aeef0d3bc4aa504cfa4a78687a, type: 3}
+  - {fileID: 9197481963319205126, guid: 522956ee602b9884c814e6229d20ceef, type: 3}
   - {fileID: 9197481963319205126, guid: 68494c1e4a606fb48984228b1198f00e, type: 3}
 --- !u!1 &1633224276
 GameObject:
