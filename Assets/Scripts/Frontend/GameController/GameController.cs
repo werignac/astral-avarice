@@ -509,7 +509,7 @@ public class GameController : MonoBehaviour
 
 	public void ReloadScene()
     {
-		SceneManager.LoadScene("MainGame");
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 	private void MainMenuClicked(ClickEvent click)
