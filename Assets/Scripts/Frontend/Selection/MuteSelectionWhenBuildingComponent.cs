@@ -29,6 +29,7 @@ public class MuteSelectionWhenBuildingComponent : MonoBehaviour
 
 		switch(newState.GetStateType())
 		{
+			case BuildStateType.MOVE:
 			case BuildStateType.NONE:
 				selection.UnMute();
 				break;

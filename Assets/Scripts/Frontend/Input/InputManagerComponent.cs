@@ -77,8 +77,7 @@ public class InputManagerComponent : MonoBehaviour
 
 		UpdateSelectionCursor();
 		UpdateBuildManager();
-		if (! startInBuildState)
-			UpdateSelection();
+		UpdateSelection();
 		UpdateCameraMovement();
 		UpdateGameController();
 		UpdatePauseManager();
@@ -136,7 +135,7 @@ public class InputManagerComponent : MonoBehaviour
 			return;
 
 		// Objects are not selectable whilst in a build mode.
-		if (BuildManagerComponent.Instance.IsInBuildState())
+		if (BuildManagerComponent.Instance.BlockSelection())
 			return;
 
 		// Select the hovered object.
