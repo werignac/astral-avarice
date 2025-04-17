@@ -114,7 +114,7 @@ public class StatsUIComponent : MonoBehaviour
 		var rankSettings = uiSettings.RankSettings;
 
 		rankImage.style.display = DisplayStyle.Flex;
-		rankImage.style.backgroundImage = new StyleBackground(rankSettings[rank].icon);
+		rankImage.style.backgroundImage = new StyleBackground(rankSettings[rank].StatusIcon);
 		rankImage.style.backgroundSize = BackgroundPropertyHelper.ConvertScaleModeToBackgroundSize(ScaleMode.ScaleToFit);
 	}
 
