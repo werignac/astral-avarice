@@ -43,27 +43,27 @@ MonoBehaviour:
   visualizationSettings: {fileID: 11400000, guid: fce85e76da6833541b9434db08e36cdf, type: 2}
   rankSettings:
   - name: Exiting the Company
-    icon: {fileID: 21300000, guid: 94f7729b14c2c5041a69c92c8f8df242, type: 3}
-    statusOverrideIcon: {fileID: 21300000, guid: dc457aa6773b65445a002af3415882c2, type: 3}
-    symbolReplacementIndex: 1
+    icon: {fileID: -1726610109, guid: 336debb4c2433a9479ca2bb359bcdb38, type: 3}
+    statusOverrideIcon: {fileID: 21300000, guid: 8d81d906db748634c828a158a0956ca1, type: 3}
+    iconReplacementIndex: 1
   - name: Distraught
     icon: {fileID: 21300000, guid: 758983ef7b8e0b54ba6afcd27a9eace4, type: 3}
     statusOverrideIcon: {fileID: 0}
-    symbolReplacementIndex: 0
+    iconReplacementIndex: 0
   - name: Cautious
     icon: {fileID: 21300000, guid: 417f16e07fb5506429ebe996ba00f1d1, type: 3}
     statusOverrideIcon: {fileID: 0}
-    symbolReplacementIndex: 0
+    iconReplacementIndex: 0
   - name: Balking
     icon: {fileID: 21300000, guid: 528b34da8dbcde047b1cf758534cece4, type: 3}
     statusOverrideIcon: {fileID: 0}
-    symbolReplacementIndex: 0
+    iconReplacementIndex: 0
   - name: Appeased
     icon: {fileID: 21300000, guid: 4b00aad137f60244399dbe2447907634, type: 3}
     statusOverrideIcon: {fileID: 0}
-    symbolReplacementIndex: 0
+    iconReplacementIndex: 0
   - name: Satisfied
     icon: {fileID: 21300000, guid: 2188168c4085e8c4c8d8b0bcf6d6df2f, type: 3}
     statusOverrideIcon: {fileID: 0}
-    symbolReplacementIndex: 0
+    iconReplacementIndex: 0
   movingPlanetMinimapColor: {r: 0.8930817, g: 0.56757385, b: 0.0926782, a: 1}

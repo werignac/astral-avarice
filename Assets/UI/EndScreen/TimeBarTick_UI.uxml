@@ -1,0 +1,7 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="Container" style="flex-grow: 1;">
+        <engine:Label text="&lt;sprite=&quot;text-icons&quot; name=&quot;d-rank&quot;&gt;" name="Rank" style="-unity-text-align: upper-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 64px;" />
+        <engine:VisualElement name="Tick" style="flex-grow: 1; background-color: rgb(123, 123, 123);" />
+        <engine:Label text="01:00" name="Time" style="align-self: center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 30px;" />
+    </engine:VisualElement>
+</engine:UXML>

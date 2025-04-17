@@ -8,22 +8,25 @@ public class RankUIData
 	// Sprite that shows up in the status UI instead of the normal icon.
 	public Sprite statusOverrideIcon;
 	// Index in the name of where the symbol would go.
-	public int symbolReplacementIndex;
+	public int iconReplacementIndex;
 
 	public Sprite StatusIcon
 	{
 		get => statusOverrideIcon == null ? icon : statusOverrideIcon;
 	}
 
-	// Divides the name in halves based on where the symbol would go when we combine the name and the symbol into
-	// one UI element.
-	public string CombinedPrefix
+	// String to use to put the rank in rich text.
+	public string RichTextIcon
 	{
-		get => name.Substring(0, symbolReplacementIndex);
+		get => $"<sprite=\"text-icons\" name=\"{icon.name}\">";
 	}
 
-	public string CombinedPostfix
+	// Uses rich text to combine the name of the rank with the rank icon for the victory screen.
+	public string GetRichTextName(float scaleMultiplier)
 	{
-		get => name.Substring(symbolReplacementIndex + 1);
+		int scalePercent = Mathf.FloorToInt(100 * scaleMultiplier);
+		return name.Substring(0, iconReplacementIndex) + 
+			$"<size={scalePercent}%>{RichTextIcon}<size=100%>" +
+			name.Substring(iconReplacementIndex + 1);
 	}
 }

@@ -228,9 +228,9 @@ TextureImporter:
       name: utility
       rect:
         serializedVersion: 2
-        x: 16
-        y: 841
-        width: 256
+        x: 0
+        y: 1084
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -238,9 +238,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2d8e16f2947f6cbd0800000000000000
+      spriteID: 4c67365b377d79a4d9392140c7188eb6
       internalID: -2610127040315004718
       vertices: []
       indices: 
@@ -250,9 +250,9 @@ TextureImporter:
       name: solar-field
       rect:
         serializedVersion: 2
-        x: 293
-        y: 841
-        width: 256
+        x: 278
+        y: 1084
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -260,9 +260,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dcd5343e07f016e20800000000000000
+      spriteID: eb76e646db58cc84f8c50b4639258e0f
       internalID: 3341969376009215437
       vertices: []
       indices: 
@@ -272,9 +272,9 @@ TextureImporter:
       name: grid-group
       rect:
         serializedVersion: 2
-        x: 574
-        y: 841
-        width: 256
+        x: 556
+        y: 1084
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -282,9 +282,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e7e7f8d5fc0acbee0800000000000000
+      spriteID: 00a814fdffa28cc4f9b105996cf1376e
       internalID: -1243942584572739970
       vertices: []
       indices: 
@@ -294,9 +294,9 @@ TextureImporter:
       name: mass
       rect:
         serializedVersion: 2
-        x: 850
-        y: 840
-        width: 256
+        x: 834
+        y: 1084
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -304,9 +304,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a5a3b01c29a0238a0800000000000000
+      spriteID: b0cd5b9b84e21a84d8217f422dd7348a
       internalID: -6326982901081884070
       vertices: []
       indices: 
@@ -316,9 +316,9 @@ TextureImporter:
       name: solar
       rect:
         serializedVersion: 2
-        x: 16
-        y: 570
-        width: 256
+        x: 0
+        y: 813
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -326,9 +326,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 57eaef43e8aca5390800000000000000
+      spriteID: 857c9e380d21e2d4090d0f8d9b064edf
       internalID: -7828722290106913163
       vertices: []
       indices: 
@@ -338,9 +338,9 @@ TextureImporter:
       name: coal
       rect:
         serializedVersion: 2
-        x: 293
-        y: 570
-        width: 256
+        x: 278
+        y: 813
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -348,9 +348,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ccab27eeb661c6dd0800000000000000
+      spriteID: 1a53fc2b60db868448e33d0d1043418c
       internalID: -2491591841024918836
       vertices: []
       indices: 
@@ -360,9 +360,9 @@ TextureImporter:
       name: wind
       rect:
         serializedVersion: 2
-        x: 573
-        y: 571
-        width: 256
+        x: 556
+        y: 813
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -370,21 +370,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 29ed51b107a7b6ca0800000000000000
+      spriteID: 63e4ea8112461a94a86d95a7abf3b192
       internalID: -6022585454768562542
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gravity
+      name: gravity-field
       rect:
         serializedVersion: 2
-        x: 852
-        y: 568
-        width: 256
+        x: 834
+        y: 813
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -392,10 +392,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1be7ad216c2dac1d0800000000000000
-      internalID: -3329617226325393743
+      spriteID: 47c93863d567ff543ba44d1abe9e1d2f
+      internalID: -1771764811
       vertices: []
       indices: 
       edges: []
@@ -404,9 +404,9 @@ TextureImporter:
       name: geothermal
       rect:
         serializedVersion: 2
-        x: 16
-        y: 299
-        width: 256
+        x: 0
+        y: 543
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -414,21 +414,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5cae2f5a1add6cbc0800000000000000
-      internalID: -3763076752277837115
+      spriteID: d930cdbcde3b62b41843149a74082b7f
+      internalID: 1554546054
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: connection
+      name: cable
       rect:
         serializedVersion: 2
-        x: 294
-        y: 300
-        width: 256
+        x: 278
+        y: 542
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -436,21 +436,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ec031114fc37270f0800000000000000
-      internalID: -1120706023274762034
+      spriteID: c4d0c3ee15dcb6049881cd3576bef1ef
+      internalID: -177254969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: science
+      name: advanced-materials
       rect:
         serializedVersion: 2
-        x: 574
-        y: 299
-        width: 256
+        x: 556
+        y: 542
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -458,10 +458,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a0305f0d27395cf0800000000000000
-      internalID: -263118436554493789
+      spriteID: dd9a966dd6e047348a3fe455feeab232
+      internalID: -1958979693
       vertices: []
       indices: 
       edges: []
@@ -470,9 +470,9 @@ TextureImporter:
       name: power
       rect:
         serializedVersion: 2
-        x: 847
-        y: 299
-        width: 256
+        x: 834
+        y: 543
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -480,10 +480,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2b7d6a61028e27300800000000000000
-      internalID: 248516153975429042
+      spriteID: 9f308d6049a70ba459a5d39287141adc
+      internalID: 335945648
       vertices: []
       indices: 
       edges: []
@@ -492,9 +492,9 @@ TextureImporter:
       name: resources
       rect:
         serializedVersion: 2
-        x: 16
-        y: 28
-        width: 256
+        x: 0
+        y: 271
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -502,10 +502,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 63e13975833fcba30800000000000000
-      internalID: 4232525173134401078
+      spriteID: 82b236e41d32730479eb943a159ac4ed
+      internalID: -1416521029
       vertices: []
       indices: 
       edges: []
@@ -514,9 +514,9 @@ TextureImporter:
       name: pylon
       rect:
         serializedVersion: 2
-        x: 293
-        y: 28
-        width: 256
+        x: 278
+        y: 271
+        width: 262
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -524,10 +524,142 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 849993c2b46b25790800000000000000
-      internalID: -7542765991911384760
+      spriteID: d38bf53e9adc348449d2bdf5c60b9d68
+      internalID: 532383224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: s-rank
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 271
+        width: 194
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f095c879cdeb1e44b36e1338b9bc4b3
+      internalID: -1416368078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a-rank
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 271
+        width: 206
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c14066ff0781ce4eba1d1a53fb11da9
+      internalID: -897281139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: b-rank
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 0
+        width: 174
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0317340224507dd4cbb1953dbdec29c3
+      internalID: -820457115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: c-rank
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 0
+        width: 246
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9340709947abe94cbd27de05f552e49
+      internalID: -794739761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: d-rank
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 0
+        width: 235
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6252faa5ffb52ce4b81dfa3cff9c57d9
+      internalID: 2082968353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: x-rank
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 0
+        width: 262
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c6fc8bd24f974c4fabe178416e82a9e
+      internalID: -1726610109
       vertices: []
       indices: 
       edges: []
@@ -546,20 +678,26 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      a-rank: -897281139
+      advanced-materials: -1958979693
+      b-rank: -820457115
+      c-rank: -794739761
+      cable: -177254969
       coal: -2491591841024918836
-      connection: -1120706023274762034
-      geothermal: -3763076752277837115
-      gravity: -3329617226325393743
+      d-rank: 2082968353
+      geothermal: 1554546054
+      gravity-field: -1771764811
       grid-group: -1243942584572739970
       mass: -6326982901081884070
-      power: 248516153975429042
-      pylon: -7542765991911384760
-      resources: 4232525173134401078
-      science: -263118436554493789
+      power: 335945648
+      pylon: 532383224
+      resources: -1416521029
+      s-rank: -1416368078
       solar: -7828722290106913163
       solar-field: 3341969376009215437
       utility: -2610127040315004718
       wind: -6022585454768562542
+      x-rank: -1726610109
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

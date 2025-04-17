@@ -7,6 +7,7 @@ using werignac.Utils;
 using System;
 using UnityEngine.InputSystem;
 using AstralAvarice.Frontend;
+using AstralAvarice.Utils;
 
 public class GameController : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] private AudioClip demolishClip;
 	[SerializeField] private AudioClip cableConnectClip;
 	[SerializeField] private DataSet gameDataSet;
-	[SerializeField] private UIDocument victoryDocument;
+	[SerializeField] private EndScreenUIComponent victoryScreen;
 	[SerializeField] private UIDocument defeatDocument;
 	[SerializeField] protected Camera mainCamera;
 
@@ -145,14 +146,13 @@ public class GameController : MonoBehaviour
 			Button defeatTryAgainButton = defeatDocument.rootVisualElement.Q<Button>("TryAgainButton");
 			defeatTryAgainButton.RegisterCallback<ClickEvent>(TryAgainClicked);
         }
-		if(victoryDocument != null)
+		if(victoryScreen != null)
         {
-			victoryDocument.rootVisualElement.style.display = DisplayStyle.None;
-			Button victoryMainMenuButton = victoryDocument.rootVisualElement.Q<Button>("MainMenuButton");
-			victoryMainMenuButton.RegisterCallback<ClickEvent>(MainMenuClicked);
-			Button victoryPlayAgainButton = victoryDocument.rootVisualElement.Q<Button>("PlayAgainButton");
-			victoryPlayAgainButton.RegisterCallback<ClickEvent>(TryAgainClicked);
-        }
+			victoryScreen.Hide();
+			victoryScreen.OnMainMenuButtonClicked.AddListener(ReturnToMenu);
+			victoryScreen.OnPlayAgainButtonClicked.AddListener(ReloadScene);
+			victoryScreen.Initialize(Data.selectedMission.goalTimes);
+		}
 
 		if (Data.selectedMission == null)
 		{
@@ -208,9 +208,7 @@ public class GameController : MonoBehaviour
 			// Replaced gameSpeed with Time.timeScale, so no longer need to multiply by gameSpeed.
 			gameManager.Update(GameSpeed * Time.unscaledDeltaTime);
 
-			string timeText = Mathf.FloorToInt(gameManager.TimePassed / 60).ToString("00");
-			timeText += ":" + Mathf.FloorToInt((gameManager.TimePassed % 60)).ToString("00");
-			timeLabel.text = timeText;
+			timeLabel.text = UIUtils.SecondsToTime(gameManager.TimePassed);
 
 			timeScaleLabel.text = "X" + GameSpeed;
 		}
@@ -351,9 +349,9 @@ public class GameController : MonoBehaviour
             {
 				PlayerPrefs.SetFloat(gameManager.MissionName + "Time", victoryTime);
             }
-			if (victoryDocument != null)
+			if (victoryScreen != null)
 			{
-				victoryDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+				victoryScreen.Show();
 			}
         }
 		else

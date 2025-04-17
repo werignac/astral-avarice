@@ -154,7 +154,7 @@ MonoBehaviour:
   demolishClip: {fileID: 8300000, guid: 3ccb4b4d24402bf40984a358b74dc350, type: 3}
   cableConnectClip: {fileID: 8300000, guid: 994c419bf1929a843b4d6ab557ae53fa, type: 3}
   gameDataSet: {fileID: 11400000, guid: cc5cf6fbd626c8547bd726b0fa4b0eb0, type: 2}
-  victoryDocument: {fileID: 1339193877}
+  victoryScreen: {fileID: 1339193879}
   defeatDocument: {fileID: 799118442}
   mainCamera: {fileID: 1841248162}
   computePlanetVelocitiesEvent: {fileID: 11400000, guid: db49fa84a107b8c46bf74e7332a0a884, type: 2}
@@ -357,6 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1339193878}
   - component: {fileID: 1339193877}
+  - component: {fileID: 1339193879}
   m_Layer: 5
   m_Name: VictoryUI
   m_TagString: Untagged
@@ -398,6 +399,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1339193879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339193876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8330f9993cd9a414faff0d3718aaa978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 1339193877}
+  OnMainMenuButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayAgainButtonClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!20 &1841248162 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4154097671910769589, guid: 033c1f2af3ce9cb4abe2702789d144b8, type: 3}
