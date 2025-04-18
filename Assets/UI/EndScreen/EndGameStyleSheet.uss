@@ -10,7 +10,7 @@
 }
 
 .button {
-    background-image: url("project://database/Assets/Sprites/UI/screen_button_back_inspector.png?fileID=6092750959953069111&guid=206181b4d674479489ee9070fe646673&type=3#screen_button_back_inspector_0");
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/screen_button_back_inspector.png?fileID=6092750959953069111&guid=206181b4d674479489ee9070fe646673&type=3#screen_button_back_inspector_0");
     width: 425px;
     height: 80px;
     font-size: 39px;
@@ -28,4 +28,8 @@
     border-left-width: 0;
     margin-bottom: 17px;
     -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bk.otf?fileID=12800000&guid=870d4ff537de81d48b8b8c50770d8e98&type=3#Athabasca Bk");
+}
+
+.rankInit {
+    scale: 10 10;
 }

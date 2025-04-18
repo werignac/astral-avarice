@@ -62,6 +62,9 @@ namespace AstralAvarice.Frontend
 		private int minTime;
 		private int maxTime;
 
+		public int Min => minTime;
+		public int Max => maxTime;
+
 		/// <param name="rootElement">The element that contains all the elements that make up the time bar.</param>
 		/// <param name="minTime">Lower end of the bar in seconds.</param>
 		/// <param name="maxTime">Higher end of the bar in seconds.</param>
@@ -109,7 +112,11 @@ namespace AstralAvarice.Frontend
 
 		public void SetProgress(int seconds)
 		{
-			float position = 1 - Mathf.InverseLerp(minTime, maxTime, seconds);
+			float position;
+			if (seconds < 0)
+				position = 0;
+			else
+				position = 1 - Mathf.InverseLerp(minTime, maxTime, seconds);
 			progressFillElement.style.width = new Length(position * 100, LengthUnit.Percent);
 		}
     }

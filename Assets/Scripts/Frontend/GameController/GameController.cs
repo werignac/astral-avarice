@@ -351,7 +351,7 @@ public class GameController : MonoBehaviour
             }
 			if (victoryScreen != null)
 			{
-				victoryScreen.Show();
+				victoryScreen.Show((int) victoryTime, rank);
 			}
         }
 		else
