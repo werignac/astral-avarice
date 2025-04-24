@@ -119,7 +119,7 @@ namespace AstralAvarice.Frontend
 			rankRichTextLabel.style.visibility = Visibility.Hidden;
 			rankRichTextLabel.AddToClassList(RANK_RICH_TEXT_INIT_CLASS);
 
-			timeBar.SetProgress(-1);
+			timeBar.SetProgress(-2); // -2 so that the first tick doesn't glow.
 
 			startupSequence = StartCoroutine(StartupRoutine());
 		}

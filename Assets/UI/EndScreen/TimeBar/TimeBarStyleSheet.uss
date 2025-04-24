@@ -1,0 +1,7 @@
+.timeTickOn VisualElement#Tick {
+    background-image: url("project://database/Assets/Sprites/UI/TimeBar/time-tick_ui.png?fileID=7525578642144898779&guid=fae41aa42b53d184e92894cc466e538c&type=3#time-tick-on_ui");
+}
+
+.timeTickOff VisualElement#Tick {
+    background-image: url("project://database/Assets/Sprites/UI/TimeBar/time-tick_ui.png?fileID=6699880141234084907&guid=fae41aa42b53d184e92894cc466e538c&type=3#time-tick_ui_1");
+}

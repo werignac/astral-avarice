@@ -1,12 +1,16 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="TimeBarTick_UI" src="project://database/Assets/UI/EndScreen/TimeBarTick_UI.uxml?fileID=9197481963319205126&amp;guid=ccb9fe2f100c3394db093ce860e82052&amp;type=3#TimeBarTick_UI" />
     <engine:VisualElement name="Container" style="flex-grow: 1;">
-        <engine:VisualElement name="Background" style="flex-grow: 1; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background-color: rgb(213, 213, 213);" />
         <engine:VisualElement name="Bar" style="flex-grow: 1;">
-            <engine:VisualElement name="Progress" style="flex-grow: 1; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px; background-color: rgb(2, 2, 2);">
-                <engine:VisualElement name="Fill" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgb(188, 77, 67); align-self: flex-start; width: 50%; right: auto; left: auto;" />
+            <engine:VisualElement name="Progress" style="flex-grow: 1; margin-top: 20px; margin-bottom: 20px; background-color: rgb(2, 2, 2);">
+                <engine:VisualElement name="Fill" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; align-self: flex-start; width: 50%; right: auto; left: auto; background-image: url(&quot;project://database/Assets/Sprites/UI/TimeBar/time-bar_ui.png?fileID=5007874559900424217&amp;guid=353a920f7649b7242a6df9db7eeb5d9d&amp;type=3#time-bar-fill_ui&quot;);" />
             </engine:VisualElement>
-            <engine:VisualElement name="Ticks" style="flex-grow: 1; position: absolute; left: 0; top: -95px; right: 0; bottom: -69px; flex-direction: row;">
+            <engine:VisualElement name="Frame" style="flex-grow: 1; position: absolute; top: 0; right: 0; bottom: 0; left: 0; flex-direction: row;">
+                <engine:VisualElement name="EndLeft" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/TimeBar/time-bar_ui.png?fileID=112496836&amp;guid=353a920f7649b7242a6df9db7eeb5d9d&amp;type=3#time-bar-end-left_ui&quot;); background-size: contain; background-position-x: left 0;" />
+                <engine:VisualElement name="EndLeft" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/TimeBar/time-bar_ui.png?fileID=-1129404543&amp;guid=353a920f7649b7242a6df9db7eeb5d9d&amp;type=3#time-bar-end-right_ui&quot;); background-size: contain; background-position-x: right 0;" />
+                <engine:VisualElement name="Tile" style="flex-grow: 1; width: auto; background-image: url(&quot;project://database/Assets/Sprites/UI/TimeBar/time-bar_ui.png?fileID=-754557208&amp;guid=353a920f7649b7242a6df9db7eeb5d9d&amp;type=3#time-bar-tile_ui&quot;); background-repeat: repeat no-repeat; background-size: contain; background-position-x: left 0; position: absolute; top: 0; bottom: 0; left: 0; right: 0;" />
+            </engine:VisualElement>
+            <engine:VisualElement name="Ticks" style="flex-grow: 1; position: absolute; left: 0; top: -123px; right: 0; bottom: -76px; flex-direction: row;">
                 <engine:Instance template="TimeBarTick_UI" name="D-Rank_Tick" style="translate: -50% 0; top: 0; bottom: 0; left: 0; position: absolute;" />
                 <engine:Instance template="TimeBarTick_UI" name="C-Rank_Tick" style="translate: -50% 0; position: absolute; top: 0; bottom: 0; left: 36%;" />
                 <engine:Instance template="TimeBarTick_UI" name="B-Rank_Tick" style="translate: -50% 0; position: absolute; top: 0; bottom: 0; left: 58%;" />

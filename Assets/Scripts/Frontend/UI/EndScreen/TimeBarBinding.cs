@@ -15,16 +15,26 @@ namespace AstralAvarice.Frontend
 		/// </summary>
 		private class TimeBarTickBinding
 		{
+			private const string ILLUMINATE_ELEMENT_NAME = "Container";
 			private const string RANK_ELEMENT_NAME = "Rank";
 			private const string TIME_ELEMENT_NAME = "Time";
 
+			private const string ON_CLASS_NAME = "timeTickOn"; // Used when progress is past the tick.
+			private const string OFF_CLASS_NAME = "timeTickOff"; // Used when progress is not past the tick.
+
 			private VisualElement rootElement;
+			private VisualElement illuminateElement; // Name of the element to apply the on and off classes to.
 			private Label rankElement;
 			private Label timeElement;
+
+			private int seconds;
 
 			public TimeBarTickBinding(VisualElement rootElement)
 			{
 				this.rootElement = rootElement;
+
+				illuminateElement = rootElement.Q(ILLUMINATE_ELEMENT_NAME);
+				
 				rankElement = rootElement.Q<Label>(RANK_ELEMENT_NAME);
 				timeElement = rootElement.Q<Label>(TIME_ELEMENT_NAME);
 			}
@@ -37,9 +47,11 @@ namespace AstralAvarice.Frontend
 			/// <param name="seconds">Time (in seconds) that must be beaten or matched to achieve this rank.</param>
 			public void SetTime(int seconds)
 			{
+				this.seconds = seconds;
 				timeElement.text = UIUtils.SecondsToTime(seconds);
 			}
 
+			public int GetSeconds() => seconds;
 			
 			/// <param name="position">0-1 position along the time bar.</param>
 			public void SetPosition(float position)
@@ -47,9 +59,27 @@ namespace AstralAvarice.Frontend
 				rootElement.style.left = new Length(position * 100, LengthUnit.Percent);
 			}
 
+
 			public void Hide()
 			{
 				rootElement.style.display = DisplayStyle.None;
+			}
+
+			public bool GetIsShowing() => rootElement.resolvedStyle.display == DisplayStyle.Flex;
+
+			public void SetPassed(bool isPassed)
+			{
+				illuminateElement.RemoveFromClassList(ON_CLASS_NAME);
+				illuminateElement.RemoveFromClassList(OFF_CLASS_NAME);
+				
+				if (isPassed)
+				{
+					illuminateElement.AddToClassList(ON_CLASS_NAME);
+				}
+				else
+				{
+					illuminateElement.AddToClassList(OFF_CLASS_NAME);
+				}
 			}
 		}
 
@@ -110,14 +140,51 @@ namespace AstralAvarice.Frontend
 			tick.Hide();
 		}
 
-		public void SetProgress(int seconds)
+		/// <summary>
+		/// Sets how filled out the bar should be. Illuminates ticks as the bar fills.
+		/// </summary>
+		/// <param name="seconds">How many seconds the bar should be filled to.</param>
+		/// <returns>How many ticks are not illuminated / passed.</returns>
+		public int SetProgress(int seconds)
 		{
 			float position;
+			
 			if (seconds < 0)
 				position = 0;
 			else
 				position = 1 - Mathf.InverseLerp(minTime, maxTime, seconds);
+
 			progressFillElement.style.width = new Length(position * 100, LengthUnit.Percent);
+
+			// Illuminate ticks as we pass them.
+			int unpassedTickCount = 0;
+			foreach(TimeBarTickBinding tick in ticks)
+			{
+				// Ignore hidden ticks.
+				if (!tick.GetIsShowing())
+					continue;
+
+				bool passed = false;
+				
+				int tickSeconds = tick.GetSeconds();
+
+				// Handle the negative cases in such a way that positive progress causes negative ticks to illuminate
+				// and we can have more negative progress that does not illuminate the negative ticks (for X rank).
+				if (tickSeconds < 0)
+				{
+					passed = tickSeconds <= seconds;
+				}
+				else if (seconds > 0)
+				{
+					passed = tickSeconds >= seconds;
+				}
+
+				tick.SetPassed(passed);
+				if (! passed)
+					unpassedTickCount++;
+			}
+
+			return unpassedTickCount;
 		}
     }
 }
