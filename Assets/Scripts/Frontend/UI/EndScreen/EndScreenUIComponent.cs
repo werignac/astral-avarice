@@ -9,13 +9,15 @@ namespace AstralAvarice.Frontend
 {
     public class EndScreenUIComponent : MonoBehaviour
     {
+		private const string MENU_ELEMENT_NAME = "MenuLayout";
 		private const string MAIN_MENU_BUTTON_ELEMENT_NAME = "MainMenuButton";
 		private const string PLAY_AGAIN_BUTTON_ELEMENT_NAME = "PlayAgainButton";
 		private const string TIME_BAR_ELEMENT_NAME = "TimeBar";
 		private const string TIME_LABEL_ELEMENT_NAME = "TimeLabel";
 		private const string RANK_RICH_TEXT_LABEL_ELEMENT_NAME = "RankRichTextLabel";
 
-		private const string INIT_RANK_RICH_TEXT_INIT_CLASS = "rankInit";
+		private const string RANK_RICH_TEXT_INIT_CLASS = "rankInit";
+		private const string MENU_INIT_CLASS = "menuInit";
 
 
 		[SerializeField] private UIDocument uiDocument;
@@ -23,6 +25,10 @@ namespace AstralAvarice.Frontend
 		[HideInInspector] public UnityEvent OnMainMenuButtonClicked = new UnityEvent();
 		[HideInInspector] public UnityEvent OnPlayAgainButtonClicked = new UnityEvent();
 
+		/// <summary>
+		/// Container for most of the UI elements in the end game screen.
+		/// </summary>
+		private VisualElement menuElement;
 		private Button mainMenuButtonElement;
 		private Button playAgainButtonElement;
 		private TimeBarBinding timeBar;
@@ -38,6 +44,8 @@ namespace AstralAvarice.Frontend
 
 		public void Initialize(int[] missionRankTimes)
 		{
+			menuElement = uiDocument.rootVisualElement.Q(MENU_ELEMENT_NAME);
+
 			mainMenuButtonElement = uiDocument.rootVisualElement.Q<Button>(MAIN_MENU_BUTTON_ELEMENT_NAME);
 			playAgainButtonElement = uiDocument.rootVisualElement.Q<Button>(PLAY_AGAIN_BUTTON_ELEMENT_NAME);
 
@@ -109,7 +117,7 @@ namespace AstralAvarice.Frontend
 			RankUIData endGameRank = PtUUISettings.GetOrCreateSettings().RankSettings[endGameRankId];
 			rankRichTextLabel.text = endGameRank.GetRichTextName(2);
 			rankRichTextLabel.style.visibility = Visibility.Hidden;
-			rankRichTextLabel.AddToClassList(INIT_RANK_RICH_TEXT_INIT_CLASS);
+			rankRichTextLabel.AddToClassList(RANK_RICH_TEXT_INIT_CLASS);
 
 			timeBar.SetProgress(-1);
 
@@ -132,8 +140,9 @@ namespace AstralAvarice.Frontend
 			// Hide the buttons until the startup routine has finished.
 			SetButtonsEnabled(false);
 
-			// Initial Delay
-			yield return new WaitForSecondsRealtime(2f);
+			yield return SlideMenu();
+
+			yield return new WaitForSecondsRealtime(1f);
 
 			yield return FillTimeBar();
 
@@ -147,6 +156,11 @@ namespace AstralAvarice.Frontend
 			SetButtonsEnabled(true);
 		}
 
+		private IEnumerator SlideMenu()
+		{
+			menuElement.RemoveFromClassList(MENU_INIT_CLASS);
+			yield return new WaitForSecondsRealtime(menuElement.resolvedStyle.GetTotalTransitionDuration());
+		}
 
 		private IEnumerator FillTimeBar()
 		{
@@ -175,7 +189,7 @@ namespace AstralAvarice.Frontend
 		private IEnumerator ShowRankRichTextLabel()
 		{
 			rankRichTextLabel.style.visibility = Visibility.Visible;
-			rankRichTextLabel.RemoveFromClassList(INIT_RANK_RICH_TEXT_INIT_CLASS);
+			rankRichTextLabel.RemoveFromClassList(RANK_RICH_TEXT_INIT_CLASS);
 
 			yield return new WaitForSecondsRealtime(2f);
 		}

@@ -28,8 +28,21 @@
     border-left-width: 0;
     margin-bottom: 17px;
     -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bk.otf?fileID=12800000&guid=870d4ff537de81d48b8b8c50770d8e98&type=3#Athabasca Bk");
+    -unity-background-image-tint-color: rgb(192, 192, 192);
+}
+
+.button:hover {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.button:active {
+    -unity-background-image-tint-color: rgb(127, 127, 127);
 }
 
 .rankInit {
     scale: 10 10;
+}
+
+.menuInit {
+    translate: 0 1093px;
 }
