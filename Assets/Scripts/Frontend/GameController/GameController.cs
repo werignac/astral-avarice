@@ -20,7 +20,6 @@ public class GameController : MonoBehaviour
 	[SerializeField] private AudioClip cableConnectClip;
 	[SerializeField] private DataSet gameDataSet;
 	[SerializeField] private EndScreenUIComponent victoryScreen;
-	[SerializeField] private UIDocument defeatDocument;
 	[SerializeField] protected Camera mainCamera;
 
 	[SerializeField] private ComputePlanetVelocitiesEvent computePlanetVelocitiesEvent;
@@ -138,14 +137,6 @@ public class GameController : MonoBehaviour
 		timeLabel = statsDocument.rootVisualElement.Q("Time") as Label;
 		timeScaleLabel = statsDocument.rootVisualElement.Q<Label>("TimeScale");
 
-		if(defeatDocument != null)
-        {
-			defeatDocument.rootVisualElement.style.display = DisplayStyle.None;
-			Button defeatMainMenuButton = defeatDocument.rootVisualElement.Q<Button>("MainMenuButton");
-			defeatMainMenuButton.RegisterCallback<ClickEvent>(MainMenuClicked);
-			Button defeatTryAgainButton = defeatDocument.rootVisualElement.Q<Button>("TryAgainButton");
-			defeatTryAgainButton.RegisterCallback<ClickEvent>(TryAgainClicked);
-        }
 		if(victoryScreen != null)
         {
 			victoryScreen.Hide();
@@ -360,11 +351,11 @@ public class GameController : MonoBehaviour
             {
                 PlayerPrefs.SetInt(gameManager.MissionName, 0);
             }
-            if (defeatDocument != null)
+			if (victoryScreen != null)
 			{
-				defeatDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+				victoryScreen.Show(-2, 0);
 			}
-        }
+		}
     }
 
 	public void ReturnToMenu()

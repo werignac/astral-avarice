@@ -19,6 +19,7 @@ namespace AstralAvarice.Frontend
 		private const string RANK_RICH_TEXT_INIT_CLASS = "rankInit";
 		private const string MENU_INIT_CLASS = "menuInit";
 
+		private const string PLAY_AGAIN_BUTTON_ON_LOSE_TEXT = "Try Again";
 
 		[SerializeField] private UIDocument uiDocument;
 
@@ -133,6 +134,9 @@ namespace AstralAvarice.Frontend
 		{
 			mainMenuButtonElement.style.visibility = enabled ? Visibility.Visible : Visibility.Hidden;
 			playAgainButtonElement.style.visibility = enabled ? Visibility.Visible : Visibility.Hidden;
+
+			if (this.endGameTime < 0)
+				playAgainButtonElement.text = PLAY_AGAIN_BUTTON_ON_LOSE_TEXT;
 		}
 
 		private IEnumerator StartupRoutine()
@@ -164,25 +168,28 @@ namespace AstralAvarice.Frontend
 
 		private IEnumerator FillTimeBar()
 		{
-			// TODO: Put in settings.
-			float animationDuration = 3f;
-
-			float animationStartTime = Time.realtimeSinceStartup;
-
-			while (Time.realtimeSinceStartup < animationDuration + animationStartTime)
+			if (endGameTime >= 0)
 			{
-				yield return new WaitForEndOfFrame();
+				// TODO: Put in settings.
+				float animationDuration = 3f;
 
-				float animationTime = Time.realtimeSinceStartup - animationStartTime;
-				float animationProgress = animationTime / animationDuration;
-				// The seconds to show on-screen.
-				int interpSeconds = (int) Mathf.Lerp(timeBar.Max, endGameTime, 1 - Mathf.Pow(animationProgress - 1, 2));
+				float animationStartTime = Time.realtimeSinceStartup;
 
-				if (endGameTime > timeBar.Max)
-					interpSeconds = endGameTime;
+				while (Time.realtimeSinceStartup < animationDuration + animationStartTime)
+				{
+					yield return new WaitForEndOfFrame();
 
-				timeBar.SetProgress(interpSeconds);
-				timeLabel.text = UIUtils.SecondsToTime(interpSeconds);
+					float animationTime = Time.realtimeSinceStartup - animationStartTime;
+					float animationProgress = animationTime / animationDuration;
+					// The seconds to show on-screen.
+					int interpSeconds = (int)Mathf.Lerp(timeBar.Max, endGameTime, 1 - Mathf.Pow(animationProgress - 1, 2));
+
+					if (endGameTime > timeBar.Max)
+						interpSeconds = endGameTime;
+
+					timeBar.SetProgress(interpSeconds);
+					timeLabel.text = UIUtils.SecondsToTime(interpSeconds);
+				}
 			}
 		}
 
