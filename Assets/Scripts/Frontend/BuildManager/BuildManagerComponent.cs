@@ -620,7 +620,7 @@ public class BuildManagerComponent : MonoBehaviour
 	/// </summary>
 	public bool BlockSelection()
 	{
-		return (!IsInBuildState() || state.GetStateType() != BuildStateType.MOVE);
+		return (IsInBuildState() && state.GetStateType() != BuildStateType.MOVE);
 	}
 
 	/// <summary>

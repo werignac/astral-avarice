@@ -21,6 +21,7 @@ public class GameManager
     private float winningStartTime;
     private float losingStartTime;
     private int maxIncome;
+    private bool freePlay;
 
 	/// <summary>
 	/// Invoked when the game ends. Passes whether the game ended in a victory
@@ -75,6 +76,11 @@ public class GameManager
     public float WinningStartTime
     {
         get { return (winningStartTime); }
+    }
+    public bool FreePlay
+    {
+        get { return (freePlay); }
+        set { freePlay = value; }
     }
 
     public void SpendMoney(int spentAmount)
@@ -174,7 +180,10 @@ public class GameManager
         {
             Debug.Log("Earning enough money! Victory!");
         }
-        OnGameEnd.Invoke(Winning, winningStartTime);
+        if (Losing || !FreePlay)
+        {
+            OnGameEnd.Invoke(Winning, winningStartTime);
+        }
     }
 
     public void AddBuilding(Building building)

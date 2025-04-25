@@ -200,7 +200,16 @@ public class GameController : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
 			{
-				ReturnToMenu();
+				gameManager.FreePlay = true;
+				gameEnded = false;
+				if (victoryDocument != null)
+				{
+					victoryDocument.rootVisualElement.style.display = DisplayStyle.None;
+				}
+				if (defeatDocument != null)
+				{
+					defeatDocument.rootVisualElement.style.display = DisplayStyle.None;
+				}
 			}
 		}
 		else
