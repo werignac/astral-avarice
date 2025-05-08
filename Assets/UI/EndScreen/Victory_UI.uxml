@@ -1,0 +1,31 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="TimeBar_UI" src="project://database/Assets/UI/EndScreen/TimeBar_UI.uxml?fileID=9197481963319205126&amp;guid=a68b1e91d68ad0241b80abdd42fb4efc&amp;type=3#TimeBar_UI" />
+    <Style src="project://database/Assets/UI/EndScreen/EndGameStyleSheet.uss?fileID=7433441132597879392&amp;guid=7ea9d4381e7b11e4d8686bacacdc6385&amp;type=3#EndGameStyleSheet" />
+    <engine:VisualElement style="flex-grow: 1; background-color: rgba(80, 175, 234, 0.24);">
+        <engine:VisualElement name="CenterContainer" style="flex-grow: 1; flex-shrink: 1; align-self: center; flex-direction: row;">
+            <engine:VisualElement name="MenuLayout" class="menuInit" style="flex-grow: 0; align-self: center; background-image: none; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(90, 181, 183, 0.62); transition-property: translate; transition-duration: 1s;">
+                <engine:VisualElement name="MenuFrame" style="flex-grow: 1; position: absolute; top: -32px; right: -36px; left: -47px; bottom: -32px; background-image: url(&quot;project://database/Assets/Sprites/UI/Backgrounds/old-build-menu-frame-blue_ui.png?fileID=5037797661244639212&amp;guid=997d82a27de1c2f4f9360e3fb5d862ad&amp;type=3#old-build-menu-frame-blue_ui_0&quot;); -unity-slice-scale: 0.7px;" />
+                <engine:VisualElement name="MenuContents" style="flex-grow: 1; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 51px; margin-right: 65px; margin-bottom: 65px; margin-left: 65px;">
+                    <engine:VisualElement name="HeaderContainer" style="flex-grow: 1;">
+                        <engine:Label text="Shareholder Report:" name="HeaderLabel" style="-unity-font-style: normal; font-size: 79px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/nova_square/NovaSquare-Bold.ttf?fileID=12800000&amp;guid=597dc7aca417012418e8bf020fe58581&amp;type=3#NovaSquare-Bold&quot;); -unity-text-align: upper-left;" />
+                    </engine:VisualElement>
+                    <engine:VisualElement name="ScoreContainer" style="flex-grow: 1; width: 1259px; align-self: center; height: 646px; margin-top: 0;">
+                        <engine:VisualElement name="TimeContainer" style="flex-grow: 0; flex-direction: row; margin-left: 0; height: 249px; margin-top: 30px;">
+                            <engine:Instance template="TimeBar_UI" name="TimeBar" style="margin-top: 96px; margin-left: 64px; margin-bottom: 50s; flex-shrink: 1; width: 852px; flex-grow: 1; margin-right: 62px;" />
+                            <engine:Label text="--:--" name="TimeLabel" style="font-size: 57px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Digital%20Dream/DIGITALDREAM.ttf?fileID=12800000&amp;guid=34a4703863bccdc4bac3bb14621fef20&amp;type=3#DIGITALDREAM&quot;); margin-top: 51px; -unity-text-align: middle-left; margin-left: 16px; -unity-font-style: bold; margin-right: 33px; background-image: none;" />
+                        </engine:VisualElement>
+                        <engine:VisualElement name="FinalScore" style="flex-grow: 0; flex-direction: column; margin-top: 70px; margin-left: 0; margin-right: 0; margin-bottom: 0; background-color: rgba(31, 14, 146, 0.32); padding-top: 24px; padding-right: 24px; padding-bottom: 7px; padding-left: 24px; color: rgb(213, 213, 213);">
+                            <engine:Label text="The shareholders are..." picking-mode="Ignore" name="TheShareholdersAre" style="align-self: flex-start; position: relative; rotate: 0; font-size: 39px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/nova_square/NovaSquare-Book.ttf?fileID=12800000&amp;guid=477ddf3a396ae69428d90710fd5d3ab0&amp;type=3#NovaSquare-Book&quot;); width: 427px; white-space: normal; -unity-text-align: upper-left; margin-right: 0; margin-top: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <engine:Label text="&lt;size=200%&gt;&lt;sprite=&quot;text-icons&quot; name=&quot;d-rank&quot;&gt;&lt;size=100%&gt;istraught" name="RankRichTextLabel" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/nova_square/NovaSquare-Bold.ttf?fileID=12800000&amp;guid=597dc7aca417012418e8bf020fe58581&amp;type=3#NovaSquare-Bold&quot;); font-size: 85px; white-space: normal; flex-shrink: 1; transition-duration: 0.5s; transition-timing-function: ease-in; transition-property: scale; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center; transform-origin: center 75%;" />
+                        </engine:VisualElement>
+                    </engine:VisualElement>
+                    <engine:VisualElement name="ButtonsContainer" style="flex-grow: 1; flex-direction: row; margin-top: 36px; justify-content: space-evenly;">
+                        <engine:Button text="Main Menu" name="MainMenuButton" class="button" style="align-items: center; align-self: center;" />
+                        <engine:Button text="Play Again" name="PlayAgainButton" class="button" style="align-items: center; align-self: center;" />
+                        <engine:Button text="Free Play" name="FreePlayButton" class="button" style="align-items: center; align-self: center;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

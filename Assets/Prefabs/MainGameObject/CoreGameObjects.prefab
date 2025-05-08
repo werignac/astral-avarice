@@ -628,6 +628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildWarningsUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4348445820736426581, guid: 9c6af7f080459574d8fd416980d719c5, type: 3}
+      propertyPath: tooltipComponent
+      value: 
+      objectReference: {fileID: 599942961996007603}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

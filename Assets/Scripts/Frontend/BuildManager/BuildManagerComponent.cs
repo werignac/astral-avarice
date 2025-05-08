@@ -869,20 +869,30 @@ public class BuildManagerComponent : MonoBehaviour
 			// Determine whether the building can be placed.
 			Collider2D[] overlappingColliders = buildingCursor.QueryOverlappingColliders();
 
+			int buildingCashCost = buildingBuildState.toBuild.BuildingDataAsset.cost;
+			int cashAfterPurchase = gameController.Cash - (resolution.totalCost + buildingCashCost);
+			bool sufficientCash = cashAfterPurchase >= 0;
+			if (!sufficientCash)
+				warnings.AddBuildingWarning(new BuildWarning($"Costs ${buildingCashCost} (Missing ${Mathf.Abs(cashAfterPurchase)}).", BuildWarning.WarningType.FATAL));
+			else
+				warnings.AddBuildingWarning(new BuildWarning($"Costs ${buildingCashCost}.", BuildWarning.WarningType.GOOD));
+
+			int buildingScienceCost = buildingBuildState.toBuild.BuildingDataAsset.scienceCost;
+			bool sufficientScience = true;
+			if (buildingScienceCost > 0)
+			{
+				int scienceAfterPurchase = gameController.HeldScience - buildingScienceCost;
+				sufficientScience = scienceAfterPurchase >= 0;
+				if (!sufficientScience) // TODO: Use advanced materials symbol.
+					warnings.AddBuildingWarning(new BuildWarning($"Costs <sprite=\"text-icons\" name=\"science\">{buildingScienceCost} (Missing <sprite=\"text-icons\" name=\"science\">{Mathf.Abs(scienceAfterPurchase)}).", BuildWarning.WarningType.FATAL));
+				else
+					warnings.AddBuildingWarning(new BuildWarning($"Costs <sprite=\"text-icons\" name=\"science\">{buildingScienceCost}", BuildWarning.WarningType.GOOD));
+			}
+
 			// The only thing that the building should be colliding with is the parent planet.
 			bool roomToPlace = overlappingColliders.Length == 1 && buildingCursor.ParentPlanet.OwnsCollider(overlappingColliders[0]);
 			if (!roomToPlace)
-				warnings.AddBuildingWarning(new BuildWarning("Building overlaps with other structures.", true));
-
-			int cashAfterPurchase = gameController.Cash - (resolution.totalCost + buildingBuildState.toBuild.BuildingDataAsset.cost);
-			bool sufficientCash = cashAfterPurchase >= 0;
-			if (!sufficientCash)
-				warnings.AddBuildingWarning(new BuildWarning($"Missing ${Mathf.Abs(cashAfterPurchase)}.", true));
-
-			int scienceAfterPurchase = gameController.HeldScience - buildingBuildState.toBuild.BuildingDataAsset.scienceCost;
-			bool sufficientScience = scienceAfterPurchase >= 0;
-			if (!sufficientScience)
-				warnings.AddBuildingWarning(new BuildWarning($"Missing {Mathf.Abs(scienceAfterPurchase)} Advanced Materials.", true));
+				warnings.AddBuildingWarning(new BuildWarning("Building overlaps with other structures.", BuildWarning.WarningType.FATAL));
 
 			bool sufficientResources = true;
             if(buildingBuildState.toBuild.BuildingDataAsset.requiredResource != ResourceType.Resource_Count)
@@ -891,12 +901,12 @@ public class BuildManagerComponent : MonoBehaviour
 					|| buildingCursor.ParentPlanet.GetAvailableResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) < buildingBuildState.toBuild.BuildingDataAsset.resourceAmountRequired)
                 {
 					sufficientResources = false;
-					warnings.AddBuildingWarning(new BuildWarning("Missing Special Resources.", false));
+					warnings.AddBuildingWarning(new BuildWarning("Missing Special Resources.", BuildWarning.WarningType.ALERT));
                 }
             }
 
 			if (!buildingCursor.ParentPlanet.CanPlaceBuildings)
-				warnings.AddBuildingWarning(new BuildWarning("Cannot place buildings on this celestial body.", true));
+				warnings.AddBuildingWarning(new BuildWarning("Cannot place buildings on this celestial body.", BuildWarning.WarningType.FATAL));
 
 			bool canPlace = roomToPlace &&
 				sufficientCash &&
@@ -1109,7 +1119,7 @@ public class BuildManagerComponent : MonoBehaviour
 				if (!cableIsNotTooLong)
 				{
 					string formatRemainingLength = Mathf.Abs(remainingCableLength).ToString("0.00");
-					warnings.AddCableWarning(new BuildWarning($"Cable is {formatRemainingLength} units too long.", true));
+					warnings.AddCableWarning(new BuildWarning($"Cable is {formatRemainingLength} units too long.", BuildWarning.WarningType.FATAL));
 				}
 
 				// Cable Cost
@@ -1119,14 +1129,14 @@ public class BuildManagerComponent : MonoBehaviour
 				if (!canAffordCable)
 				{
 					string formatRemainingCash = Mathf.Abs(remainingCash).ToString("0.00");
-					warnings.AddCableWarning(new BuildWarning($"Missing ${formatRemainingCash}.", true));
+					warnings.AddCableWarning(new BuildWarning($"Missing ${formatRemainingCash}.", BuildWarning.WarningType.FATAL));
 				}
 
 				// Cable connected to building
 				bool connectedToBuilding = hoveringBuilding != null && hoveringBuilding != cableBuildState.fromBuilding;
 				if (!connectedToBuilding)
 				{
-					warnings.AddCableWarning(new BuildWarning("Cable missing connection.", true));
+					warnings.AddCableWarning(new BuildWarning("Cable missing connection.", BuildWarning.WarningType.FATAL));
 				}
 
 				// Building has sufficient connection slots
@@ -1145,12 +1155,12 @@ public class BuildManagerComponent : MonoBehaviour
 
 				if(connectedToBuilding && !buildingHasSlots)
 				{
-					warnings.AddCableWarning(new BuildWarning("Connected building does not have enough slots for cable.", true));
+					warnings.AddCableWarning(new BuildWarning("Connected building does not have enough slots for cable.", BuildWarning.WarningType.FATAL));
 				}
 
 				if (!cableIsNotRedundant)
 				{
-					warnings.AddCableWarning(new BuildWarning("Cable is redundant", true));
+					warnings.AddCableWarning(new BuildWarning("Cable is redundant", BuildWarning.WarningType.FATAL));
 				}
 
 				// Cable is only colliding with two buildings
@@ -1163,7 +1173,7 @@ public class BuildManagerComponent : MonoBehaviour
 
 				if (!noOverlapsAlongCable)
 				{
-					warnings.AddCableWarning(new BuildWarning("Cable overlaps with other structures.", true));
+					warnings.AddCableWarning(new BuildWarning("Cable overlaps with other structures.", BuildWarning.WarningType.FATAL));
 				}
 
 				bool canPlaceCable = cableIsNotTooLong &&
@@ -1221,7 +1231,7 @@ public class BuildManagerComponent : MonoBehaviour
 			if (!cableIsNotTooLong)
 			{
 				string formatRemainingLength = Mathf.Abs(remainingCableLength).ToString("0.00");
-				warnings.AddCableWarning(new BuildWarning($"Cable is {formatRemainingLength} units too long.", true));
+				warnings.AddCableWarning(new BuildWarning($"Cable is {formatRemainingLength} units too long.", BuildWarning.WarningType.FATAL));
 			}
 			// Cable Cost
 			int cableCost = Mathf.CeilToInt(cableCursor.Length * Data.cableCostMultiplier);
@@ -1230,14 +1240,14 @@ public class BuildManagerComponent : MonoBehaviour
 			if (!canAffordCable)
 			{
 				string formatRemainingCash = Mathf.Abs(remainingCash).ToString("0.00");
-				warnings.AddCableWarning(new BuildWarning($"Missing ${formatRemainingCash}.", true));
+				warnings.AddCableWarning(new BuildWarning($"Missing ${formatRemainingCash}.", BuildWarning.WarningType.FATAL));
 			}
 			// Cable connected to building
 			bool connectedToBuilding = (buildingCursor.GetIsShowing() && buildingCursor.ShowingCanPlaceBuilding) || 
 				(resolution.successfullyPlacedBuilding); // Does the building cursor say it could place a building, or a building was just placed?
 			if (!connectedToBuilding)
 			{
-				warnings.AddCableWarning(new BuildWarning("Cable missing connection.", true));
+				warnings.AddCableWarning(new BuildWarning("Cable missing connection.", BuildWarning.WarningType.FATAL));
 			}
 
 			// Building has sufficient connection slots
@@ -1248,7 +1258,7 @@ public class BuildManagerComponent : MonoBehaviour
 			}
 			if (connectedToBuilding && !buildingHasSlots)
 			{
-				warnings.AddCableWarning(new BuildWarning("Connected building does not have enough slots for cable.", true));
+				warnings.AddCableWarning(new BuildWarning("Connected building does not have enough slots for cable.", BuildWarning.WarningType.FATAL));
 			}
 			bool newBuildingHasSlots = true;
 			if (buildingChainedBuildState.toBuild.BuildingDataAsset.maxPowerLines <= 0)
@@ -1258,7 +1268,7 @@ public class BuildManagerComponent : MonoBehaviour
 			}
 			if(!newBuildingHasSlots)
             {
-				warnings.AddCableWarning(new BuildWarning("New building has no slots for cables.", true));
+				warnings.AddCableWarning(new BuildWarning("New building has no slots for cables.", BuildWarning.WarningType.FATAL));
             }
 
 			// Cable is only colliding with two buildings
@@ -1270,7 +1280,7 @@ public class BuildManagerComponent : MonoBehaviour
 			bool noOverlapsAlongCable = badOverlapIndex == -1;
 			if (!noOverlapsAlongCable)
 			{
-				warnings.AddCableWarning(new BuildWarning("Cable overlaps with other structures.", true));
+				warnings.AddCableWarning(new BuildWarning("Cable overlaps with other structures.", BuildWarning.WarningType.FATAL));
 			}
 
 			bool canPlaceCable = cableIsNotTooLong &&
@@ -1363,7 +1373,7 @@ public class BuildManagerComponent : MonoBehaviour
 					}
 				}
 				if (!roomToPlace)
-					warnings.AddBuildingWarning(new BuildWarning("Building overlaps with other structures.", true));
+					warnings.AddBuildingWarning(new BuildWarning("Building overlaps with other structures.", BuildWarning.WarningType.FATAL));
 
 				bool canPlace = roomToPlace;
 

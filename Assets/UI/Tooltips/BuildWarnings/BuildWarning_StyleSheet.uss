@@ -1,0 +1,26 @@
+.warningTypeAlert VisualElement#WarningIcon {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-alert_ui.png?fileID=2800000&guid=3c949b13d77b1dc46a95521fa9d90775&type=3#core-toggle-alert_ui");
+    -unity-background-image-tint-color: rgb(244, 76, 4);
+}
+
+.warningTypeGood VisualElement#WarningIcon {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-on_ui.png?fileID=2800000&guid=0e01f9658eaec0147b18034df54d05e9&type=3#core-toggle-on_ui");
+    -unity-background-image-tint-color: rgb(40, 183, 58);
+}
+
+.warningTypeFatal VisualElement#WarningIcon {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-off_ui.png?fileID=2800000&guid=0e0501356ef151242aec52e13c7e380e&type=3#core-toggle-off_ui");
+    -unity-background-image-tint-color: rgb(167, 37, 39);
+}
+
+.warningTypeAlert Label {
+    color: rgb(244, 76, 4);
+}
+
+.warningTypeGood Label {
+    color: rgb(40, 183, 58);
+}
+
+.warningTypeFatal Label {
+    color: rgb(167, 37, 39);
+}
