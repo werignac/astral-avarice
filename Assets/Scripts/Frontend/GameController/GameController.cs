@@ -142,6 +142,7 @@ public class GameController : MonoBehaviour
 			victoryScreen.Hide();
 			victoryScreen.OnMainMenuButtonClicked.AddListener(ReturnToMenu);
 			victoryScreen.OnPlayAgainButtonClicked.AddListener(ReloadScene);
+			victoryScreen.OnFreePlayButtonClicked.AddListener(EnterFreePlay);
 			victoryScreen.Initialize(Data.selectedMission.goalTimes);
 		}
 
@@ -161,6 +162,13 @@ public class GameController : MonoBehaviour
 			OnLevelLoad?.Invoke();
         }
     }
+
+	private void EnterFreePlay()
+	{
+		gameManager.FreePlay = true;
+		gameEnded = false;
+		victoryScreen.Hide();
+	}
 
 	protected virtual void CollectInitialGameObjects()
 	{
@@ -187,23 +195,7 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update()
     {
-		if (gameEnded)
-		{
-			if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
-			{
-				gameManager.FreePlay = true;
-				gameEnded = false;
-				if (victoryDocument != null)
-				{
-					victoryDocument.rootVisualElement.style.display = DisplayStyle.None;
-				}
-				if (defeatDocument != null)
-				{
-					defeatDocument.rootVisualElement.style.display = DisplayStyle.None;
-				}
-			}
-		}
-		else
+		if (!gameEnded)
 		{
 			// Replaced gameSpeed with Time.timeScale, so no longer need to multiply by gameSpeed.
 			gameManager.Update(GameSpeed * Time.unscaledDeltaTime);
