@@ -25,4 +25,17 @@ public class BuildWarningContainer
 	{
 		return cableWarnings;
 	}
+
+	public IEnumerator<BuildWarning> GetAllWarnings()
+	{
+		foreach (BuildWarning warning in buildingWarnings)
+		{
+			yield return warning;
+		}
+
+		foreach (BuildWarning warning in cableWarnings)
+		{
+			yield return warning;
+		}
+	}
 }

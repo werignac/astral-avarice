@@ -2,23 +2,27 @@ using UnityEngine;
 
 public struct BuildWarning
 {
-	private readonly string message;
-	private readonly bool isFatal;
-
-	public BuildWarning(string message, bool isFatal)
+	public enum WarningType
 	{
-		this.message = message;
-		this.isFatal = isFatal;
+		GOOD, ALERT, FATAL
 	}
 
-	public bool GetIsFatal()
+	private readonly string message;
+	private readonly WarningType warningType;
+
+	public BuildWarning(string message, WarningType type)
 	{
-		return isFatal;
+		this.message = message;
+		warningType = type;
+	}
+
+	public WarningType GetWarningType()
+	{
+		return warningType;
 	}
 
 	public string GetMessage()
 	{
 		return message;
 	}
-
 }

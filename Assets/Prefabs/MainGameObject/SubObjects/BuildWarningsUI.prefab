@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1608481095101770136}
-  - component: {fileID: 3095724428341242982}
   - component: {fileID: 4348445820736426581}
   m_Layer: 5
   m_Name: BuildWarningsUI
@@ -33,25 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3095724428341242982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3361133985760248620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: 0c64b5e781f3a4f4faf09a06b87482e2, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 767495dd96c8fe044a980906b529bf04, type: 3}
-  m_SortingOrder: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
 --- !u!114 &4348445820736426581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e404ce84295cf449f36ee3e0fafcc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nonFatalWarningTemplate: {fileID: 9197481963319205126, guid: 8398ace442288d14384526b417fec624, type: 3}
-  fatalWarningTemplate: {fileID: 9197481963319205126, guid: d54e9fa09145d684baf9f5efd8ae6881, type: 3}
+  tooltipComponent: {fileID: 0}
+  tooltipLayerFactory: {fileID: 11400000, guid: 8aa1b112f5d5da34d9ca78cf56780b56, type: 2}
