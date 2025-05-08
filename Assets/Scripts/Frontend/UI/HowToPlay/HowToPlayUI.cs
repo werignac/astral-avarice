@@ -33,7 +33,7 @@ namespace AstralAvarice.Frontend
         public void Show()
         {
             howToPlayUI.rootVisualElement.style.display = DisplayStyle.Flex;
-            howToPlayUI.sortingOrder = 2;
+            howToPlayUI.sortingOrder = 128;
             SetUp(currentIndex);
         }
 
