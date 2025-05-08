@@ -12,6 +12,7 @@ namespace AstralAvarice.Frontend
 		private const string MENU_ELEMENT_NAME = "MenuLayout";
 		private const string MAIN_MENU_BUTTON_ELEMENT_NAME = "MainMenuButton";
 		private const string PLAY_AGAIN_BUTTON_ELEMENT_NAME = "PlayAgainButton";
+		private const string FREE_PLAY_BUTTON_ELEMENT_NAME = "FreePlayButton";
 		private const string TIME_BAR_ELEMENT_NAME = "TimeBar";
 		private const string TIME_LABEL_ELEMENT_NAME = "TimeLabel";
 		private const string RANK_RICH_TEXT_LABEL_ELEMENT_NAME = "RankRichTextLabel";
@@ -25,6 +26,7 @@ namespace AstralAvarice.Frontend
 
 		[HideInInspector] public UnityEvent OnMainMenuButtonClicked = new UnityEvent();
 		[HideInInspector] public UnityEvent OnPlayAgainButtonClicked = new UnityEvent();
+		[HideInInspector] public UnityEvent OnFreePlayButtonClicked = new UnityEvent();
 
 		/// <summary>
 		/// Container for most of the UI elements in the end game screen.
@@ -32,6 +34,7 @@ namespace AstralAvarice.Frontend
 		private VisualElement menuElement;
 		private Button mainMenuButtonElement;
 		private Button playAgainButtonElement;
+		private Button freePlayButtonElement;
 		private TimeBarBinding timeBar;
 		private Label timeLabel;
 		private Label rankRichTextLabel;
@@ -49,9 +52,11 @@ namespace AstralAvarice.Frontend
 
 			mainMenuButtonElement = uiDocument.rootVisualElement.Q<Button>(MAIN_MENU_BUTTON_ELEMENT_NAME);
 			playAgainButtonElement = uiDocument.rootVisualElement.Q<Button>(PLAY_AGAIN_BUTTON_ELEMENT_NAME);
+			freePlayButtonElement = uiDocument.rootVisualElement.Q<Button>(FREE_PLAY_BUTTON_ELEMENT_NAME);
 
 			mainMenuButtonElement.RegisterCallback<ClickEvent>(MainMenuButton_OnClick);
 			playAgainButtonElement.RegisterCallback<ClickEvent>(PlayAgainButton_OnClick);
+			freePlayButtonElement.RegisterCallback<ClickEvent>(FreePlayButton_OnClick);
 
 			InitializeTimeBar(missionRankTimes);
 
@@ -99,6 +104,11 @@ namespace AstralAvarice.Frontend
 			}
 		}
 
+		private void FreePlayButton_OnClick(ClickEvent evt)
+		{
+			OnFreePlayButtonClicked.Invoke();
+		}
+
 		private void PlayAgainButton_OnClick(ClickEvent evt)
 		{
 			OnPlayAgainButtonClicked.Invoke();
@@ -132,11 +142,14 @@ namespace AstralAvarice.Frontend
 
 		private void SetButtonsEnabled(bool enabled)
 		{
-			mainMenuButtonElement.style.visibility = enabled ? Visibility.Visible : Visibility.Hidden;
-			playAgainButtonElement.style.visibility = enabled ? Visibility.Visible : Visibility.Hidden;
+			// Show all buttons.
+			mainMenuButtonElement.parent.style.visibility = enabled ? Visibility.Visible : Visibility.Hidden;
 
 			if (this.endGameTime < 0)
+			{
 				playAgainButtonElement.text = PLAY_AGAIN_BUTTON_ON_LOSE_TEXT;
+				freePlayButtonElement.style.display = DisplayStyle.None; // Hide the free play button on a loss.
+			}
 		}
 
 		private IEnumerator StartupRoutine()
