@@ -17,7 +17,7 @@ namespace AstralAvarice.UI.Tooltips
 
 		private const string WARNING_GOOD_CLASS_NAME = "warningTypeGood";
 		private const string WARNING_FATAL_CLASS_NAME = "warningTypeFatal";
-		private const string WARNING_ALERT_CLASS_NAME = "warningTypeAlter";
+		private const string WARNING_ALERT_CLASS_NAME = "warningTypeAlert";
 
 		private VisualElement warningContainerElement;
 		

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 using werignac.Utils;
+using AstralAvarice.Frontend;
 
 public enum BuildStateType
 {
@@ -128,7 +129,7 @@ public class BuildingChainedBuildState : BuildingBuildState
 		return new BuildingBuildState(toBuild);
 	}
 }
-class CableBuildState : BuildState {
+public class CableBuildState : BuildState {
 
 	public readonly BuildingComponent fromBuilding = null;
 	public BuildingComponent toBuilding = null;
@@ -355,6 +356,9 @@ public class BuildManagerComponent : MonoBehaviour
 	[SerializeField] private BuildingSettingEntry[] buildingsList = new BuildingSettingEntry[0];
 
 	private List<CableCursorComponent> moveCableCursors = new List<CableCursorComponent>();
+
+	[Header("Constraints")]
+	[SerializeField] private BuildingConstraintComponent[] buildingConstraints;
 
 	public BuildState State { get => state; }
 
@@ -854,55 +858,30 @@ public class BuildManagerComponent : MonoBehaviour
 			// The player is trying to build something.
 			BuildingBuildState buildingBuildState = state as BuildingBuildState;
 
-			// TODO: Check if we're hovering over a building (saved in the buildingBuildState). If so,
-			// replace that one instead of building a new building.
+			BuildingConstraintData constraintData = new BuildingConstraintData
+			(
+				buildingBuildState,
+				buildingCursor,
+				resolution.totalCost 
+			);
 
-			// Determine whether the building can be placed.
-			Collider2D[] overlappingColliders = buildingCursor.QueryOverlappingColliders();
+			bool canPlace = true;
+			bool receivedAlert = false;
 
-			int buildingCashCost = buildingBuildState.toBuild.BuildingDataAsset.cost;
-			int cashAfterPurchase = gameController.Cash - (resolution.totalCost + buildingCashCost);
-			bool sufficientCash = cashAfterPurchase >= 0;
-			if (!sufficientCash)
-				warnings.AddBuildingWarning(new BuildWarning($"Costs ${buildingCashCost} (Missing ${Mathf.Abs(cashAfterPurchase)}).", BuildWarning.WarningType.FATAL));
-			else
-				warnings.AddBuildingWarning(new BuildWarning($"Costs ${buildingCashCost}.", BuildWarning.WarningType.GOOD));
-
-			int buildingScienceCost = buildingBuildState.toBuild.BuildingDataAsset.scienceCost;
-			bool sufficientScience = true;
-			if (buildingScienceCost > 0)
+			// Go through all the constraints and see if any prevent the building from being placed.
+			foreach(IBuildingConstraint buildingConstraint in buildingConstraints)
 			{
-				int scienceAfterPurchase = gameController.HeldScience - buildingScienceCost;
-				sufficientScience = scienceAfterPurchase >= 0;
-				if (!sufficientScience) // TODO: Use advanced materials symbol.
-					warnings.AddBuildingWarning(new BuildWarning($"Costs <sprite=\"text-icons\" name=\"science\">{buildingScienceCost} (Missing <sprite=\"text-icons\" name=\"science\">{Mathf.Abs(scienceAfterPurchase)}).", BuildWarning.WarningType.FATAL));
-				else
-					warnings.AddBuildingWarning(new BuildWarning($"Costs <sprite=\"text-icons\" name=\"science\">{buildingScienceCost}", BuildWarning.WarningType.GOOD));
+				ConstraintQueryResult result = buildingConstraint.QueryConstraint(constraintData);
+
+				if (result.ConstraintTriggered)
+					canPlace = false;
+
+				if (result.TryGetWarning(out BuildWarning warning))
+				{
+					receivedAlert = receivedAlert || warning.GetWarningType() == BuildWarning.WarningType.ALERT;
+					warnings.AddBuildingWarning(warning);
+				}
 			}
-
-			// The only thing that the building should be colliding with is the parent planet.
-			bool roomToPlace = overlappingColliders.Length == 1 && buildingCursor.ParentPlanet.OwnsCollider(overlappingColliders[0]);
-			if (!roomToPlace)
-				warnings.AddBuildingWarning(new BuildWarning("Building overlaps with other structures.", BuildWarning.WarningType.FATAL));
-
-			bool sufficientResources = true;
-            if(buildingBuildState.toBuild.BuildingDataAsset.requiredResource != ResourceType.Resource_Count)
-            {
-				if(buildingCursor.ParentPlanet.GetResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) <= 0 
-					|| buildingCursor.ParentPlanet.GetAvailableResourceCount(buildingBuildState.toBuild.BuildingDataAsset.requiredResource) < buildingBuildState.toBuild.BuildingDataAsset.resourceAmountRequired)
-                {
-					sufficientResources = false;
-					warnings.AddBuildingWarning(new BuildWarning("Missing Special Resources.", BuildWarning.WarningType.ALERT));
-                }
-            }
-
-			if (!buildingCursor.ParentPlanet.CanPlaceBuildings)
-				warnings.AddBuildingWarning(new BuildWarning("Cannot place buildings on this celestial body.", BuildWarning.WarningType.FATAL));
-
-			bool canPlace = roomToPlace &&
-				sufficientCash &&
-				sufficientScience &&
-				buildingCursor.ParentPlanet.CanPlaceBuildings;
 
 			if(canPlace)
             {
@@ -912,12 +891,10 @@ public class BuildManagerComponent : MonoBehaviour
 			// Update the cursor graphic.
 			if (!canPlace)
 				buildingCursor.SetBuildingPlaceability(BuildingCursorComponent.Placeability.NO);
-			else if (!sufficientResources)
+			else if (receivedAlert)
 				buildingCursor.SetBuildingPlaceability(BuildingCursorComponent.Placeability.YES_WARNING);
 			else
 				buildingCursor.SetBuildingPlaceability(BuildingCursorComponent.Placeability.YES);
-
-			// TODO: Update the reason as to why the building cannot be placed.
 
 			// If input was received to place the building, place it.
 			if (placeThisUpdate)
@@ -1104,23 +1081,34 @@ public class BuildManagerComponent : MonoBehaviour
 				}
 
 				// Check conditions for cable placement.
-				// Cable length
-				float remainingCableLength = GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength - cableCursor.Length;
-				bool cableIsNotTooLong = remainingCableLength >= 0;
-				if (!cableIsNotTooLong)
-				{
-					string formatRemainingLength = Mathf.Abs(remainingCableLength).ToString("0.00");
-					warnings.AddCableWarning(new BuildWarning($"Cable is {formatRemainingLength} units too long.", BuildWarning.WarningType.FATAL));
-				}
 
 				// Cable Cost
+
 				int cableCost = Mathf.CeilToInt(cableCursor.Length * Data.cableCostMultiplier);
 				int remainingCash = gameController.Cash - (resolution.totalCost + cableCost);
 				bool canAffordCable =  remainingCash >= 0;
 				if (!canAffordCable)
 				{
 					string formatRemainingCash = Mathf.Abs(remainingCash).ToString("0.00");
-					warnings.AddCableWarning(new BuildWarning($"Missing ${formatRemainingCash}.", BuildWarning.WarningType.FATAL));
+					warnings.AddCableWarning(new BuildWarning($"Cable Costs ${cableCost} (Missing ${formatRemainingCash}).", BuildWarning.WarningType.FATAL));
+				}
+				else
+				{
+					warnings.AddCableWarning(new BuildWarning($"Cable Costs ${cableCost}.", BuildWarning.WarningType.GOOD));
+				}
+
+				// Cable length
+				float remainingCableLength = GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength - cableCursor.Length;
+				bool cableIsNotTooLong = remainingCableLength >= 0;
+				string formatLength = cableCursor.Length.ToString("0.00");
+				if (!cableIsNotTooLong)
+				{
+					string formatRemainingLength = Mathf.Abs(remainingCableLength).ToString("0.00");
+					warnings.AddCableWarning(new BuildWarning($"Cable Length {formatLength} ({formatRemainingLength} over limit).", BuildWarning.WarningType.FATAL));
+				}
+				else
+				{
+					warnings.AddCableWarning(new BuildWarning($"Cable Length {formatLength}.", BuildWarning.WarningType.GOOD));
 				}
 
 				// Cable connected to building

@@ -170,7 +170,6 @@ MonoBehaviour:
   cableConnectClip: {fileID: 8300000, guid: 994c419bf1929a843b4d6ab557ae53fa, type: 3}
   gameDataSet: {fileID: 11400000, guid: cc5cf6fbd626c8547bd726b0fa4b0eb0, type: 2}
   victoryScreen: {fileID: 6042962204739921387}
-  defeatDocument: {fileID: 0}
   mainCamera: {fileID: 1923685193}
   computePlanetVelocitiesEvent: {fileID: 11400000, guid: db49fa84a107b8c46bf74e7332a0a884, type: 2}
   computePlanetSolarEnergyEvent: {fileID: 11400000, guid: a565bff3c057b6741a1bb5aa8bef69e8, type: 2}
@@ -738,10 +737,18 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 164819401}
+    - target: {fileID: 5085806905047122921, guid: 033c1f2af3ce9cb4abe2702789d144b8, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 164819401}
     - target: {fileID: 5633048121275299313, guid: 033c1f2af3ce9cb4abe2702789d144b8, type: 3}
       propertyPath: m_FirstSelected
       value: 
       objectReference: {fileID: 876278616}
+    - target: {fileID: 6188155052011623777, guid: 033c1f2af3ce9cb4abe2702789d144b8, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 164819401}
     - target: {fileID: 6390880721556805794, guid: 033c1f2af3ce9cb4abe2702789d144b8, type: 3}
       propertyPath: gameController
       value: 
