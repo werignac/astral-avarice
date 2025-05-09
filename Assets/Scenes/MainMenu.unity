@@ -1360,6 +1360,10 @@ MonoBehaviour:
   videoRenderTexture: {fileID: 8400000, guid: 64063885f8740924e93e0c5faf543313, type: 2}
   howToPlayUI: {fileID: 1277293581}
   data: {fileID: 11400000, guid: bd64423905506c54787b6414d2201e5d, type: 2}
+  tipButtonPrefab: {fileID: 9197481963319205126, guid: 3dcc3c44c5750b747a15dc95d62d6cd0, type: 3}
+  OnPlayerClosed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!328 &1277293580
 VideoPlayer:
   m_ObjectHideFlags: 0

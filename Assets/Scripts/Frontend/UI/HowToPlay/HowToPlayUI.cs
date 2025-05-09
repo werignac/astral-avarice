@@ -13,8 +13,11 @@ namespace AstralAvarice.Frontend
         [SerializeField] private RenderTexture videoRenderTexture;
         [SerializeField] private UIDocument howToPlayUI;
         [SerializeField] private HowToPlayData data;
+        [SerializeField] private VisualTreeAsset tipButtonPrefab;
 
         [HideInInspector] public UnityEvent OnPlayerClosed = new UnityEvent();
+
+        private VisualElement tipContent;
 
         private int currentIndex = 0;
 
@@ -26,8 +29,24 @@ namespace AstralAvarice.Frontend
             prev.RegisterCallback<ClickEvent>(PrevClicked);
             next.RegisterCallback<ClickEvent>(NextClicked);
             exit.RegisterCallback<ClickEvent>(BackButton_OnClick);
+
+            tipContent = howToPlayUI.rootVisualElement.Q("TipContent");
+
             videoPlayer.playOnAwake = false;
             videoPlayer.isLooping = true;
+
+            PopulateTips();
+        }
+
+
+        private void PopulateTips()
+        {
+            tipContent.Clear();
+            for (int i = 0; i < data.descriptions.Length; ++i)
+            {
+                VisualElement button = CreateTipButton(i);
+                tipContent.Add(button);
+            }
         }
 
         public void Show()
@@ -87,6 +106,23 @@ namespace AstralAvarice.Frontend
         private void NextClicked(ClickEvent evt)
         {
             SetUp(currentIndex + 1);
+        }
+
+        private void TipButtonClicked(ClickEvent evt, int index)
+        {
+            SetUp(index);
+        }
+
+        private VisualElement CreateTipButton(int index)
+        {
+            PtUUISettings uiSettings = PtUUISettings.GetOrCreateSettings();
+
+            string tipName = data.titles[index];
+            VisualElement tipButtonElement = tipButtonPrefab.Instantiate();
+            Button tipButton = tipButtonElement.Q<Button>("TipButton");
+            tipButton.text = tipName;
+            tipButton.RegisterCallback<ClickEvent, int>(TipButtonClicked, index);
+            return (tipButtonElement);
         }
     }
 }
