@@ -17,7 +17,7 @@
         <engine:VisualElement name="VisualElement" style="flex-grow: 1;">
             <engine:Label text="Label" name="Title" class="text" style="align-self: center; margin-top: 20px;" />
             <engine:VisualElement name="Video" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI/HowToPlay/HowToPlayVideoTexture.renderTexture?fileID=8400000&amp;guid=64063885f8740924e93e0c5faf543313&amp;type=2#HowToPlayVideoTexture&quot;); -unity-background-scale-mode: scale-to-fit; height: 600px;" />
-            <engine:Label text="Label" name="Description" class="text" style="align-self: center; font-size: 60px; width: 1000px; margin-top: 10px;" />
+            <engine:Label text="Label" name="Description" class="text" style="align-self: center; font-size: 60px; width: 1000px; margin-top: 10px; background-color: rgba(6, 0, 55, 0.4);" />
         </engine:VisualElement>
         <engine:VisualElement name="VisualElement" style="flex-grow: 0; justify-content: flex-start; width: 100px;">
             <engine:Button text="Exit" name="Exit" style="align-self: flex-end; align-content: flex-start; margin-bottom: -42.5px;" />
