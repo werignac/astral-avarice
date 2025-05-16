@@ -88,25 +88,25 @@ MonoBehaviour:
   - Thrusters will never be automatically powered. If you toggle them on, the planet
     attached will accelerate away from the thruster as long as it remains powered.
   videoClips:
+  - {fileID: 32900000, guid: 68dd806edaf3dd9458da9944b6b97839, type: 3}
+  - {fileID: 32900000, guid: 016e6db549617354c881ba2cdafaf7b5, type: 3}
+  - {fileID: 32900000, guid: e698d92b0d0372e4b9bd7d0f07b21af9, type: 3}
+  - {fileID: 32900000, guid: 632c180006a2de642be60ec5b4c320e5, type: 3}
+  - {fileID: 32900000, guid: 07e0ddf8ea548564491ac0ae0d5ec374, type: 3}
+  - {fileID: 32900000, guid: e625fcbf7ce36d34ab139639222868db, type: 3}
+  - {fileID: 32900000, guid: 12b934e1322364e419f49c1e1385292d, type: 3}
   - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
   - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
   - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
-  - {fileID: 32900000, guid: 903a0b30286f62b4983c37962d89adc4, type: 3}
+  - {fileID: 32900000, guid: 185c972bba0b41f439a251c982c15d7c, type: 3}
+  - {fileID: 32900000, guid: a2602efb36c9a104f9afca1333cc4677, type: 3}
+  - {fileID: 32900000, guid: 99e2baf8d8da52348a27bcdb312e94cc, type: 3}
+  - {fileID: 32900000, guid: 870c754ff808a5b47aadf8c2b0ef5c8c, type: 3}
+  - {fileID: 32900000, guid: 992166a0a61d98541bade88d2ca5d09e, type: 3}
+  - {fileID: 32900000, guid: bad534b9df4b15e4096e9c2aa3018cb6, type: 3}
+  - {fileID: 32900000, guid: a6eed3b26b37da84cb211eaef03f32a0, type: 3}
+  - {fileID: 32900000, guid: a6eed3b26b37da84cb211eaef03f32a0, type: 3}
+  - {fileID: 32900000, guid: 69f47523ebc7a45428ce04da4155e3e2, type: 3}
+  - {fileID: 32900000, guid: 2f55c620dc33ebb45b749c385a093720, type: 3}
+  - {fileID: 32900000, guid: cff063ecbfb37494a8ca7bb7aa12a82a, type: 3}
+  - {fileID: 32900000, guid: 7e6a1055eeca4214ab20c604ec588670, type: 3}
