@@ -85,6 +85,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5638052595555308330}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 269a062660aa7e34e96168bfd63b871b, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.423582
@@ -147,6 +151,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5638052595555308330}
     m_Modifications:
+    - target: {fileID: 2591157862116668896, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b80921ce83a13c24a9e1f7bb91432d63, type: 2}
     - target: {fileID: 2676274817261509756, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -860,6 +868,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5638052595555308330}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e20ed8d27ffb03844b4ee3132f1fc7d3, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.269581
@@ -970,6 +982,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d4276047300ecf47a7375594fce44d3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1011,6 +1027,10 @@ PrefabInstance:
       propertyPath: mass
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c27916551bbfb541aab5c630bf80a43, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet (2)
@@ -1185,6 +1205,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5638052595555308330}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ca44360895909254a833dc37b707a38a, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5863862
@@ -1340,6 +1364,10 @@ PrefabInstance:
       propertyPath: mass
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3204e58bcad93ed4ea307c0e792dbc9a, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet
@@ -1430,6 +1458,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5638052595555308330}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ec990876c9eb82459e64ecac423a249, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.054754
@@ -1670,6 +1702,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5638052595555308330}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e752fc3d641e6c64aa716f65f47bcbe4, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.2669196
@@ -1732,6 +1768,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5638052595555308330}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a8b96f6d4cef8142828a87fe161ef72, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.115353

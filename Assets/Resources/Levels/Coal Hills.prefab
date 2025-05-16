@@ -90,6 +90,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7682908313113001851}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ec990876c9eb82459e64ecac423a249, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.262444
@@ -152,6 +156,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7682908313113001851}
     m_Modifications:
+    - target: {fileID: 2591157862116668896, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c51ec1387ab7b047810340bb4d4a1c6, type: 2}
     - target: {fileID: 2676274817261509756, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -282,6 +290,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6749289016996771442, guid: c3ce716f943014d40873fcbb00ed61c3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 440620cf1c328e5418643b9ce5736771, type: 2}
     - target: {fileID: 7574752323735803711, guid: c3ce716f943014d40873fcbb00ed61c3, type: 3}
       propertyPath: mass
       value: 10
@@ -422,6 +434,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7682908313113001851}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ce620660bacd9f40bb18949138eb388, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.3550825
@@ -993,6 +1009,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7682908313113001851}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ca44360895909254a833dc37b707a38a, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.2882733
@@ -1055,6 +1075,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7682908313113001851}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ea29681c39b2a34b8e0bc9eb7e5de30, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.067183
@@ -1254,6 +1278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7640d80eaf178714fb49e866042eae59, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1427,6 +1455,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6749289016996771442, guid: c3ce716f943014d40873fcbb00ed61c3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a4d3f6c1955076f4987befa3edc4247d, type: 2}
     - target: {fileID: 7574752323735803711, guid: c3ce716f943014d40873fcbb00ed61c3, type: 3}
       propertyPath: mass
       value: 10
@@ -1520,6 +1552,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c8f26e9ecdd46349ae83cd470ff86a6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2048,6 +2084,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7682908313113001851}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ca44360895909254a833dc37b707a38a, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.17204
@@ -2110,6 +2150,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7682908313113001851}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ea29681c39b2a34b8e0bc9eb7e5de30, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.405949
@@ -2172,6 +2216,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7682908313113001851}
     m_Modifications:
+    - target: {fileID: 109202026224769392, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: df4baf08bd370ef4dbbd62c6eb7f2a4d, type: 2}
     - target: {fileID: 7631823425099314181, guid: 91945b2ae4081324db3072094f370aa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5954952

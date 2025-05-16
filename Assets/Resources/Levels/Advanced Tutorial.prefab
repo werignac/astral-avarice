@@ -554,6 +554,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4bab463f87c2a33499e68cf9c489f517, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet
@@ -1673,6 +1677,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6749289016996771442, guid: c3ce716f943014d40873fcbb00ed61c3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 986cac8292cafdc4faf49a22314d939b, type: 2}
     - target: {fileID: 7574752323735803711, guid: c3ce716f943014d40873fcbb00ed61c3, type: 3}
       propertyPath: mass
       value: 20
@@ -2093,6 +2101,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c27916551bbfb541aab5c630bf80a43, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet (10)
@@ -2822,6 +2834,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4bab463f87c2a33499e68cf9c489f517, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet (8)
@@ -3907,6 +3923,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c27916551bbfb541aab5c630bf80a43, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet (3)
@@ -4404,6 +4424,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9b7c7f52736d7d9498ac3791d71b9da4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5126,6 +5150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d4276047300ecf47a7375594fce44d3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -6566,6 +6594,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d4276047300ecf47a7375594fce44d3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -7190,6 +7222,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6749289016996771442, guid: c3ce716f943014d40873fcbb00ed61c3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a4d3f6c1955076f4987befa3edc4247d, type: 2}
     - target: {fileID: 7574752323735803711, guid: c3ce716f943014d40873fcbb00ed61c3, type: 3}
       propertyPath: mass
       value: 20
@@ -7750,6 +7786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 60158aa98ce7ade47b9d08cee4ddec19, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -9048,6 +9088,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4644017340189810055}
     m_Modifications:
+    - target: {fileID: 423175470215378506, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 362ed04a992b89f41947bcf6e56702f9, type: 2}
     - target: {fileID: 3536339717940015444, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
       propertyPath: mass
       value: 5
@@ -9305,6 +9349,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3204e58bcad93ed4ea307c0e792dbc9a, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet (9)
@@ -9669,6 +9717,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3204e58bcad93ed4ea307c0e792dbc9a, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet (1)
@@ -11286,6 +11338,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4bab463f87c2a33499e68cf9c489f517, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet (7)
@@ -13300,6 +13356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d6058ac40d069b7419c95afa73a72974, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -13401,6 +13461,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 749b20d9735ad6d47992917c519d6d8f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -14536,7 +14600,7 @@ PrefabInstance:
     - target: {fileID: 2591157862116668896, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3573bdfc7653ee447817194d433aced8, type: 2}
+      objectReference: {fileID: 2100000, guid: c44ced88994e4fd4392b11d4055f83b4, type: 2}
     - target: {fileID: 2676274817261509756, guid: 5c79162e255b5164a8eecd7da4a94bed, type: 3}
       propertyPath: m_LocalScale.x
       value: 20
@@ -15546,6 +15610,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4644017340189810055}
     m_Modifications:
+    - target: {fileID: 423175470215378506, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 470aa26cc9139b849836c60de5e9e5de, type: 2}
     - target: {fileID: 3536339717940015444, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
       propertyPath: mass
       value: 5
@@ -16063,6 +16131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4644017340189810055}
     m_Modifications:
+    - target: {fileID: 423175470215378506, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 470aa26cc9139b849836c60de5e9e5de, type: 2}
     - target: {fileID: 3536339717940015444, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
       propertyPath: mass
       value: 5
@@ -16739,6 +16811,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d6058ac40d069b7419c95afa73a72974, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -16837,6 +16913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 60158aa98ce7ade47b9d08cee4ddec19, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -17521,6 +17601,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3204e58bcad93ed4ea307c0e792dbc9a, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet (2)
@@ -18289,6 +18373,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bb8ed727c39073b47a5e7645f04dbee4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -18428,6 +18516,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4644017340189810055}
     m_Modifications:
+    - target: {fileID: 423175470215378506, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ff5efd814dab5114e976e9c96ee0ff7f, type: 2}
     - target: {fileID: 3536339717940015444, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
       propertyPath: mass
       value: 5
@@ -18667,6 +18759,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bb8ed727c39073b47a5e7645f04dbee4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -20397,6 +20493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9b7c7f52736d7d9498ac3791d71b9da4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -20535,6 +20635,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4644017340189810055}
     m_Modifications:
+    - target: {fileID: 423175470215378506, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 470aa26cc9139b849836c60de5e9e5de, type: 2}
     - target: {fileID: 3536339717940015444, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
       propertyPath: mass
       value: 5
@@ -21195,6 +21299,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7640d80eaf178714fb49e866042eae59, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -22143,6 +22251,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c27916551bbfb541aab5c630bf80a43, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet (6)
@@ -22227,6 +22339,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4644017340189810055}
     m_Modifications:
+    - target: {fileID: 423175470215378506, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ff5efd814dab5114e976e9c96ee0ff7f, type: 2}
     - target: {fileID: 3536339717940015444, guid: 15a3281468c57e546bc38840245ed10f, type: 3}
       propertyPath: mass
       value: 5
@@ -23633,6 +23749,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f090d9d9729d5a94f80c5c75a34b5a76, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -25254,6 +25374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f090d9d9729d5a94f80c5c75a34b5a76, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -25579,6 +25703,10 @@ PrefabInstance:
       propertyPath: canPlaceBuildings
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3076001706766339963, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c27916551bbfb541aab5c630bf80a43, type: 2}
     - target: {fileID: 5545669735209828691, guid: 0caf94e7374636f4e9ce4342063f6083, type: 3}
       propertyPath: m_Name
       value: WindPlanet (5)
@@ -27872,6 +28000,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8014159268256292249, guid: 924884e4d1ed5fa41a50c8e5aa59a447, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f090d9d9729d5a94f80c5c75a34b5a76, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
