@@ -8,6 +8,7 @@ using System;
 using UnityEngine.UIElements;
 using AstralAvarice.VisualData;
 using AstralAvarice.Visualization;
+using AstralAvarice.Frontend;
 
 /// <summary>
 /// Stores references to all the buildings that can be built by the player.
@@ -48,6 +49,9 @@ public class PtUUISettings : ScriptableObject
 	[SerializeField] private BuildModeVisuals cableModeVisuals;
 	[SerializeField] private BuildModeVisuals moveModeVisuals;
 	[SerializeField] private BuildModeVisuals demolishModeVisuals;
+
+	[Header("Build Warnings")]
+	[SerializeField] private BuildWarningsUIData buildWarningsUIData;
 
 	[Header("Tutorial")]
 	[SerializeField, Tooltip("Name of the class that is used to highlight certain UI elements with a halo. Used in the tutorial.")]
@@ -117,6 +121,8 @@ public class PtUUISettings : ScriptableObject
 	public BuildModeVisuals CableModeVisuals { get => cableModeVisuals; }
 	public BuildModeVisuals MoveModeVisuals { get => moveModeVisuals; }
 	public BuildModeVisuals DemolishModeVisuals { get => demolishModeVisuals; }
+
+	public BuildWarningsUIData BuildWarningsUIData => buildWarningsUIData;
 
 	public string HighlightClass { get => highlightClass; }
 

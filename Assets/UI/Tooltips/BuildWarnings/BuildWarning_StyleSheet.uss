@@ -8,11 +8,6 @@
     -unity-background-image-tint-color: rgb(40, 183, 58);
 }
 
-.warningTypeFatal VisualElement#WarningIcon {
-    background-image: url("project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-off_ui.png?fileID=2800000&guid=0e0501356ef151242aec52e13c7e380e&type=3#core-toggle-off_ui");
-    -unity-background-image-tint-color: rgb(167, 37, 39);
-}
-
 .warningTypeAlert Label {
     color: rgb(244, 76, 4);
 }
@@ -22,5 +17,10 @@
 }
 
 .warningTypeFatal Label {
-    color: rgb(167, 37, 39);
+    color: rgb(194, 38, 41);
+}
+
+.warningTypeFatal VisualElement#WarningIcon {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/CoreToggle/core-toggle-off_ui.png?fileID=2800000&guid=0e0501356ef151242aec52e13c7e380e&type=3#core-toggle-off_ui");
+    -unity-background-image-tint-color: rgb(194, 38, 41);
 }

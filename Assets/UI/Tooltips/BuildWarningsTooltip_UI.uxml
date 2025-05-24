@@ -1,11 +1,3 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <engine:Template name="BuildWarning_UI" src="project://database/Assets/UI/Tooltips/BuildWarnings/BuildWarning_UI.uxml?fileID=9197481963319205126&amp;guid=f58da118ecb16a7408ba170f87c295f0&amp;type=3#BuildWarning_UI" />
-    <engine:VisualElement name="WarningsContainer" style="flex-grow: 1;">
-        <engine:Instance template="BuildWarning_UI" />
-        <engine:Instance template="BuildWarning_UI" />
-        <engine:Instance template="BuildWarning_UI" />
-        <engine:Instance template="BuildWarning_UI" />
-        <engine:Instance template="BuildWarning_UI" />
-        <engine:Instance template="BuildWarning_UI" />
-    </engine:VisualElement>
+    <engine:VisualElement name="WarningsContainer" style="flex-grow: 1;" />
 </engine:UXML>

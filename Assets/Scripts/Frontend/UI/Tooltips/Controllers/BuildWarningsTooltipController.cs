@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System;
+using AstralAvarice.Frontend;
 
 namespace AstralAvarice.UI.Tooltips
 {
@@ -15,62 +16,74 @@ namespace AstralAvarice.UI.Tooltips
 		private const string WARNING_ELEMENT_NAME = "Warning";
 		private const string WARNING_DESCRIPTION_ELEMENT_NAME = "WarningDescription";
 
+		private const string SECTION_CONTAINER_NAME = "SubSectionContainer";
+
 		private const string WARNING_GOOD_CLASS_NAME = "warningTypeGood";
 		private const string WARNING_FATAL_CLASS_NAME = "warningTypeFatal";
 		private const string WARNING_ALERT_CLASS_NAME = "warningTypeAlert";
 
 		private VisualElement warningContainerElement;
-		
-		private List<VisualElement> warningTemplateElements = new List<VisualElement>();
+
+		private BuildWarningsUIData BuildWarningsUIData => PtUUISettings.GetOrCreateSettings().BuildWarningsUIData;
 
 		public void Bind(VisualElement ui)
 		{
 			warningContainerElement = ui.Q(WARNINGS_CONTAINER_ELEMENT_NAME);
-
-			foreach(VisualElement child in warningContainerElement.Children())
-			{
-				warningTemplateElements.Add(child);
-			}
 		}
 
 		public void UnBind()
 		{
 			warningContainerElement = null;
-			warningTemplateElements.Clear();
 		}
 
 		public void SetBuildWarnings(BuildWarningContainer container)
 		{
-			int i = 0;
-			IEnumerator<BuildWarning> iterator = container.GetAllWarnings();
-			BuildWarning warning = default;
+			// TODO: Support setting before binding.
+			if (warningContainerElement == null)
+				return;
 
-			for (; iterator.MoveNext();)
+			// TODO: Make less resource intensive. Creating and destroying elements every frame is costly.
+			Clear();
+			AddBuildWarnings(container);
+		}
+
+		private void Clear()
+		{
+			warningContainerElement.Clear();
+		}
+
+		private void AddBuildWarnings(BuildWarningContainer container)
+		{
+			VisualTreeAsset warningUITemplate = BuildWarningsUIData.buildWarningUIAsset;
+			VisualTreeAsset warningSectionUITemplate = BuildWarningsUIData.buildWarningSectionUIAsset;
+
+			IEnumerable<BuildWarning> buildingWarnings = container.GetBuildingWarnings();
+
+			AddBuildWarningsToSection(buildingWarnings, warningContainerElement, warningUITemplate);
+
+			IEnumerable<BuildWarning> cableWarnings = container.GetCableWarnings();
+
+			VisualElement cableSectionUI = warningSectionUITemplate.Instantiate();
+
+			VisualElement cableSectionContainer = cableSectionUI.Q(SECTION_CONTAINER_NAME);
+
+			AddBuildWarningsToSection(cableWarnings, cableSectionContainer, warningUITemplate);
+
+			if (cableSectionContainer.childCount > 0)
+				warningContainerElement.Add(cableSectionUI);
+		}
+
+		private static void AddBuildWarningsToSection(IEnumerable<BuildWarning> warnings, VisualElement sectionElement, VisualTreeAsset warningUITemplate)
+		{
+			foreach (BuildWarning warning in warnings)
 			{
-				warning = iterator.Current;
-
-				if (i >= warningTemplateElements.Count)
-				{
-					Debug.LogWarning($"Detected {warningTemplateElements.Count} elements for displaying warnings, but more were needed.");
-					break;
-				}
-
-				VisualElement warningTemplateElement = warningTemplateElements[i];
-				warningTemplateElement.style.display = DisplayStyle.Flex;
-				SetBuildWarning(warning, warningTemplateElement);
-				i++;
-			}
-
-			// TODO: Remove
-			Debug.Log($"Found {i} warnings.");
-
-			for (; i < warningTemplateElements.Count; i++)
-			{
-				warningTemplateElements[i].style.display = DisplayStyle.None;
+				VisualElement warningUITemplateInstance = warningUITemplate.Instantiate();
+				sectionElement.Add(warningUITemplateInstance);
+				SetBuildWarning(warning, warningUITemplateInstance);
 			}
 		}
 
-		public void SetBuildWarning(BuildWarning warning, VisualElement warningTemplateElement)
+		private static void SetBuildWarning(BuildWarning warning, VisualElement warningTemplateElement)
 		{
 			VisualElement warningElement = warningTemplateElement.Q(WARNING_ELEMENT_NAME);
 			Label descriptionLabel = warningElement.Q<Label>(WARNING_DESCRIPTION_ELEMENT_NAME);
