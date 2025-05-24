@@ -615,7 +615,16 @@ public class BuildManagerComponent : MonoBehaviour
 	/// </summary>
 	public bool IsInBuildState()
 	{
-		return state.GetStateType() != BuildStateType.NONE;
+		return (state.GetStateType() != BuildStateType.NONE);
+	}
+
+	/// <summary>
+	/// Get whether the BuildManager should block building selecting.
+	/// This can either be due to building or demolishing being active, but not move.
+	/// </summary>
+	public bool BlockSelection()
+	{
+		return (IsInBuildState() && state.GetStateType() != BuildStateType.MOVE);
 	}
 
 	/// <summary>
@@ -1375,10 +1384,19 @@ public class BuildManagerComponent : MonoBehaviour
 						// TODO: Add to game manager.
 
 						buildingCursor.MoveBuildingToLocation(buildingMoveState.movingBuilding);
+						SetState(new BuildingMoveBuildState(null));
 						resolution.successfullyMovedBuilding = true;
 					}
 					else
 					{
+						BuildingComponent hoveringBuilding = GetHoveringBuilding();
+						if (hoveringBuilding != null && hoveringBuilding.Demolishable())
+						{
+							// The user clicked on a building. This is now the building to move.
+
+							SetState(new BuildingMoveBuildState(hoveringBuilding));
+							resolution.triedPlacingBuilding = true;
+						}
 						// Note in build resolve that the building failed to be placed.
 						resolution.successfullyMovedBuilding = false;
 					}

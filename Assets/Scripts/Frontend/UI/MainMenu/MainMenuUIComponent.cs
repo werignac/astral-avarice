@@ -14,6 +14,7 @@ public class MainMenuUIComponent : MonoBehaviour
     [SerializeField] private MissionUIComponent missionUI;
     [SerializeField] private UIDocument settingsDocument;
     [SerializeField] private UIDocument creditsDocument;
+    [SerializeField] private AstralAvarice.Frontend.HowToPlayUI howToplayUI;
     [SerializeField] private VisualTreeAsset missionButtonPrefab;
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private Sprite[] missionRankSprites;
@@ -31,6 +32,9 @@ public class MainMenuUIComponent : MonoBehaviour
 
         Button settingsButton = mainMenuDocument.rootVisualElement.Q<Button>("SettingsButton");
         settingsButton.RegisterCallback<ClickEvent>(OpenSettingsMenu);
+
+        Button howToPlayButton = mainMenuDocument.rootVisualElement.Q<Button>("HowToPlayButton");
+        howToPlayButton.RegisterCallback<ClickEvent>(OpenHowToPlayPanel);
 
         Button creditsButton = mainMenuDocument.rootVisualElement.Q<Button>("CreditsButton");
         creditsButton.RegisterCallback<ClickEvent>(OpenCreditsPage);
@@ -62,6 +66,9 @@ public class MainMenuUIComponent : MonoBehaviour
 		missionUI.Hide();
 		missionUI.OnPlayerClosed.AddListener(MissionUI_OnPlayerClosed);
 
+        howToplayUI.Hide();
+        howToplayUI.OnPlayerClosed.AddListener(HowToPlayUI_OnPlayerClosed);
+
         settingsDocument.rootVisualElement.style.display = DisplayStyle.None;
         creditsDocument.rootVisualElement.style.display = DisplayStyle.None;
 
@@ -71,13 +78,18 @@ public class MainMenuUIComponent : MonoBehaviour
 	private void MissionUI_OnPlayerClosed()
 	{
 		OpenMainMenu(null);
-	}
+    }
+    private void HowToPlayUI_OnPlayerClosed()
+    {
+        OpenMainMenu(null);
+    }
 
-	/// <summary>
-	/// When we exit a game, the time scale might be wrong due to exiting whilst paused.
-	/// This corrects that problem to make sure VFX look correct in the main menu.
-	/// </summary>
-	private void ResetTimeScale()
+
+    /// <summary>
+    /// When we exit a game, the time scale might be wrong due to exiting whilst paused.
+    /// This corrects that problem to make sure VFX look correct in the main menu.
+    /// </summary>
+    private void ResetTimeScale()
 	{
 		Time.timeScale = 1f;
 		Time.fixedDeltaTime = Time.fixedUnscaledDeltaTime;
@@ -106,6 +118,12 @@ public class MainMenuUIComponent : MonoBehaviour
     private void OpenCreditsPage(ClickEvent click)
     {
         creditsDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+        mainMenuDocument.rootVisualElement.style.display = DisplayStyle.None;
+    }
+
+    private void OpenHowToPlayPanel(ClickEvent click)
+    {
+        howToplayUI.Show();
         mainMenuDocument.rootVisualElement.style.display = DisplayStyle.None;
     }
 
