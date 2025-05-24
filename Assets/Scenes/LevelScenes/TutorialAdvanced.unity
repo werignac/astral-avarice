@@ -663,10 +663,18 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 164819401}
+    - target: {fileID: 5085806905047122921, guid: 033c1f2af3ce9cb4abe2702789d144b8, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 164819401}
     - target: {fileID: 5633048121275299313, guid: 033c1f2af3ce9cb4abe2702789d144b8, type: 3}
       propertyPath: m_FirstSelected
       value: 
       objectReference: {fileID: 876278616}
+    - target: {fileID: 6188155052011623777, guid: 033c1f2af3ce9cb4abe2702789d144b8, type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 164819401}
     - target: {fileID: 6390880721556805794, guid: 033c1f2af3ce9cb4abe2702789d144b8, type: 3}
       propertyPath: gameController
       value: 
