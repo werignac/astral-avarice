@@ -314,6 +314,15 @@ public struct BuildResolve
 	}
 }
 
+[Serializable]
+public class BuildConstraintEntry<TBuildConstraint, TBuildConstraintState> where TBuildConstraint : IBuildConstraint<TBuildConstraintState>
+{
+	[Tooltip("The constraint that restricts how a structure can be placed.")]
+	public TBuildConstraint constraint;
+	[Tooltip("Whether this constraint should be applied when moving buildings in addition to initially placing them.")]
+	public bool appliesToMove = true;
+}
+
 /// <summary>
 /// Singleton component that manages placing buildings.
 /// </summary>
@@ -358,7 +367,8 @@ public class BuildManagerComponent : MonoBehaviour
 	private List<CableCursorComponent> moveCableCursors = new List<CableCursorComponent>();
 
 	[Header("Constraints")]
-	[SerializeField] private BuildingConstraintComponent[] buildingConstraints;
+	[SerializeField] private BuildConstraintEntry<BuildingConstraintComponent, BuildingConstraintData>[] buildingConstraints;
+	[SerializeField] private BuildConstraintEntry<CableConstraintComponent, CableConstraintData>[] cableConstraints;
 
 	public BuildState State { get => state; }
 
@@ -878,8 +888,11 @@ public class BuildManagerComponent : MonoBehaviour
 			bool receivedAlert = false;
 
 			// Go through all the constraints and see if any prevent the building from being placed.
-			foreach(IBuildingConstraint buildingConstraint in buildingConstraints)
+			foreach(var buildingConstraintEntry in buildingConstraints)
 			{
+				// No need to check whether we are moving the building, this is always called when not moving a building.
+				var buildingConstraint = buildingConstraintEntry.constraint;
+
 				ConstraintQueryResult result = buildingConstraint.QueryConstraint(constraintData);
 
 				if (result.ConstraintTriggered)
@@ -1092,7 +1105,8 @@ public class BuildManagerComponent : MonoBehaviour
 				// Check conditions for cable placement.
 
 				// Cable Cost
-
+				
+				// TODO: Remove. Handled in CashCostCableConstraintComponent.
 				int cableCost = Mathf.CeilToInt(cableCursor.Length * Data.cableCostMultiplier);
 				int remainingCash = gameController.Cash - (resolution.totalCost + cableCost);
 				bool canAffordCable =  remainingCash >= 0;
@@ -1107,6 +1121,8 @@ public class BuildManagerComponent : MonoBehaviour
 				}
 
 				// Cable length
+
+				// TODO: Remove
 				float remainingCableLength = GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength - cableCursor.Length;
 				bool cableIsNotTooLong = remainingCableLength >= 0;
 				string formatLength = cableCursor.Length.ToString("0.00");
@@ -1121,6 +1137,7 @@ public class BuildManagerComponent : MonoBehaviour
 				}
 
 				// Cable connected to building
+				// TODO: Remove
 				bool connectedToBuilding = hoveringBuilding != null && hoveringBuilding != cableBuildState.fromBuilding;
 				if (!connectedToBuilding)
 				{
@@ -1152,6 +1169,7 @@ public class BuildManagerComponent : MonoBehaviour
 				}
 
 				// Cable is only colliding with two buildings
+				// TODO: Remove
 				List<Collider2D> cableOverlaps = new List<Collider2D>(cableCursor.QueryOverlappingColliders());
 				int badOverlapIndex = cableOverlaps.FindIndex((Collider2D collider) =>
 				{
@@ -1335,8 +1353,6 @@ public class BuildManagerComponent : MonoBehaviour
 			}
 			else
 			{
-
-
 				// TODO: Check if we're hovering over a building (saved in the buildingBuildState). If so,
 				// replace that one instead of building a new building.
 
@@ -1510,7 +1526,10 @@ public class BuildManagerComponent : MonoBehaviour
                 });
                 bool noOverlapsAlongCable = badOverlapIndex == -1;
 				cableCursor.SetCablePlaceability(cableIsNotTooLong && noOverlapsAlongCable);
-            }
+
+				// TODO: Add warnings using cable constraints.
+
+			}
 		}
 
     }
@@ -1519,6 +1538,8 @@ public class BuildManagerComponent : MonoBehaviour
 	/// Determines whether a cable can overlap over the given collider.
 	/// Cables can only overlap over buildings that they connect to or other
 	/// Cables that share the same builing connections.
+	/// 
+	/// TODO: Remove once constraint system is fully integrated.
 	/// </summary>
 	private static bool IsValidCableOverlap(Collider2D overlapping, BuildingComponent startBuilding, BuildingComponent endBuildling)
 	{

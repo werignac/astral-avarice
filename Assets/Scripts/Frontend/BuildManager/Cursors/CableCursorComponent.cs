@@ -29,6 +29,10 @@ public class CableCursorComponent : MonoBehaviour
 	private LineRenderer lineRenderer;
 	private BuildingComponent lineStart = null;
 	private LineEnd lineEnd = null;
+	
+	/// <summary>
+	/// The current length of the cable cursor.
+	/// </summary>
 	public float Length { get { return Vector2.Distance(lineStart.CableConnectionTransform.position, lineEnd.GetEndPosition()); } }
 
 	[SerializeField] private Color placeableColor;
