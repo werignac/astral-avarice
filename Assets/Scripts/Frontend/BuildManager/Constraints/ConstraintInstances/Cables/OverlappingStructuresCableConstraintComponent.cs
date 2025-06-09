@@ -13,9 +13,13 @@ namespace AstralAvarice.Frontend
 		public override ConstraintQueryResult QueryConstraint(CableConstraintData state)
 		{
 			List<Collider2D> cableOverlaps = new List<Collider2D>(state.cableCursor.QueryOverlappingColliders());
+			CableBuildState cableBuildState = state.cableBuildState;
+			BuildingComponent fromBuilding = GetBuildingComponentFromAttachment(cableBuildState.GetFromAttachment());
+			BuildingComponent toBuilding = GetBuildingComponentFromAttachment(cableBuildState.GetToAttachment());
+
 			int badOverlapIndex = cableOverlaps.FindIndex((Collider2D collider) =>
 			{
-				return !IsValidCableOverlap(collider, state.cableBuildState.fromBuilding, state.cableBuildState.toBuilding);
+				return !IsValidCableOverlap(collider, fromBuilding, toBuilding);
 			});
 			bool overlapsAlongCable = badOverlapIndex != -1;
 
@@ -27,6 +31,14 @@ namespace AstralAvarice.Frontend
 
 			// No Overlaps
 			return new ConstraintQueryResult();
+		}
+
+		private static BuildingComponent GetBuildingComponentFromAttachment(ICableAttachment attachment)
+		{
+			if (attachment != null && attachment is BuildingInstanceCableAttachment buildingAttachment)
+				return buildingAttachment.BuildingInstance;
+
+			return null;
 		}
 
 		/// <summary>

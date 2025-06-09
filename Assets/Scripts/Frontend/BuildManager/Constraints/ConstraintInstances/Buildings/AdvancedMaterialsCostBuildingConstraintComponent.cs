@@ -10,7 +10,7 @@ namespace AstralAvarice.Frontend
 
 		public override ConstraintQueryResult QueryConstraint(BuildingConstraintData state)
 		{
-			int buildingScienceCost = state.buildState.toBuild.BuildingDataAsset.scienceCost;
+			int buildingScienceCost = state.buildState.ToBuild.BuildingSettings.BuildingDataAsset.scienceCost;
 			if (buildingScienceCost > 0)
 			{
 				int scienceAfterPurchase = gameController.HeldScience - buildingScienceCost;

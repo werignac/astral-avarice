@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using AstralAvarice.Frontend;
 
 public class OutlineControllerComponent : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class OutlineControllerComponent : MonoBehaviour
 		buildManager.OnStateChanged.AddListener(BuildManager_OnStateChanged);
 	}
 
-	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
+	private void BuildManager_OnStateChanged(IBuildState oldState, IBuildState newState)
 	{
 		if (oldState == null || oldState.GetStateType() == BuildStateType.DEMOLISH)
 			SetOutlineSelect();

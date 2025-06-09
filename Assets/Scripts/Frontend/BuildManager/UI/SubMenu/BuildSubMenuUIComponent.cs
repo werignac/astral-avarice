@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using AstralAvarice.Tutorial;
+using AstralAvarice.Frontend;
 
 public class BuildSubMenuUIComponent : MonoBehaviour
 {
@@ -217,7 +218,7 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 	protected virtual void BuildingButton_OnClick(int buttonId)
 	{
 		var toBuild = ButtonIdToSettingEntry(buttonId);
-		BuildManagerComponent.Instance.SetBuildState(toBuild);
+		BuildManagerComponent.Instance.SendExternalBuildSignal(toBuild);
 	}
 
 	private VisualElement CreateButton()
@@ -226,7 +227,7 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 		return button;
 	}
 
-	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
+	private void BuildManager_OnStateChanged(IBuildState oldState, IBuildState newState)
 	{
 		// If the old state was a build state, unselect the corresponding button.
 		GetBindingForBuildState(oldState)?.HideSelectUI();
@@ -235,7 +236,7 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 		GetBindingForBuildState(newState)?.ShowSelectUI();
 	}
 
-	private BuildSubMenuButtonBinding GetBindingForBuildState(BuildState state)
+	private BuildSubMenuButtonBinding GetBindingForBuildState(IBuildState state)
 	{
 		// State must not be null and must not be none.
 		if (state != null && state.GetStateType() != BuildStateType.NONE)
@@ -245,8 +246,10 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 			{
 				// There may be a button of this building being displayed.
 				BuildingBuildState buildingBuildState = state as BuildingBuildState;
+				NewPlacingBuilding placingBuilding = buildingBuildState.ToBuild;
 
-				int buttonId = SettingEntryToButtonId(buildingBuildState.toBuild);
+				// Get the BuildingSettingEntry from the placing building.
+				int buttonId = SettingEntryToButtonId(placingBuilding.BuildingSettings);
 				return ButtonIdToBinding(buttonId);
 			}
 		}

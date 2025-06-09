@@ -453,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &571802730151372204
 Transform:
   m_ObjectHideFlags: 0
@@ -878,7 +878,6 @@ MonoBehaviour:
   cableCursor: {fileID: 7662712796137659475}
   selectionCursor: {fileID: 0}
   gravityCursor: {fileID: 4286180716346066675}
-  minDistanceToPlanetToShowCursor: 4
   OnStateChanged:
     m_PersistentCalls:
       m_Calls: []

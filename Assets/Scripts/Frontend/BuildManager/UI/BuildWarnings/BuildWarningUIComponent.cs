@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using AstralAvarice.UI.Tooltips;
+using AstralAvarice.Frontend;
 
 public class BuildWarningUIComponent : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class BuildWarningUIComponent : MonoBehaviour
 		BuildManagerComponent.Instance.OnStateChanged.AddListener(BuildManager_OnStateChanged);
 	}
 
-	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
+	private void BuildManager_OnStateChanged(IBuildState oldState, IBuildState newState)
 	{
 		switch(newState.GetStateType())
 		{

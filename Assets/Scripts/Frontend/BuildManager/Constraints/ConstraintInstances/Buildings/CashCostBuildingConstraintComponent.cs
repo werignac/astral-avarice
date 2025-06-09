@@ -8,7 +8,7 @@ namespace AstralAvarice.Frontend
 
 		public override ConstraintQueryResult QueryConstraint(BuildingConstraintData state)
 		{
-			int buildingCashCost = state.buildState.toBuild.BuildingDataAsset.cost;
+			int buildingCashCost = state.buildState.ToBuild.BuildingSettings.BuildingDataAsset.cost;
 			int cashAfterPurchase = gameController.Cash - (state.priorCashCosts + buildingCashCost);
 			bool sufficientCash = cashAfterPurchase >= 0;
 

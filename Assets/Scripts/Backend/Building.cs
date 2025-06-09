@@ -74,6 +74,13 @@ public class Building
     {
         return (connectedBuildings.Contains(other));
     }
+	/// <summary>
+	/// Returns whether this building can accept more power lines / cables.
+	/// </summary>
+	public bool CanAcceptNewConnections()
+	{
+		return NumConnected < data.maxPowerLines;
+	}
     public void SetManager(GameManager m)
     {
         manager = m;

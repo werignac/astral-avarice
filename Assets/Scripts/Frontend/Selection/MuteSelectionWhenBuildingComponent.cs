@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using AstralAvarice.Frontend;
 
 public class MuteSelectionWhenBuildingComponent : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class MuteSelectionWhenBuildingComponent : MonoBehaviour
 	/// </summary>
 	/// <param name="oldState"></param>
 	/// <param name="newState"></param>
-	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
+	private void BuildManager_OnStateChanged(IBuildState oldState, IBuildState newState)
 	{
 		if (newState == null)
 		{

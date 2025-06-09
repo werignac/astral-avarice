@@ -34,6 +34,9 @@ public class BuildingCursorComponent : MonoBehaviour
 	// Getters
 	public PlanetComponent ParentPlanet { get { return parentPlanet; } }
 	public bool ShowingCanPlaceBuilding { get; private set; }
+	/// <summary>
+	/// World-space position of where the cable connects to.
+	/// </summary>
 	public Vector2 CableConnectionPosition { get => transform.TransformPoint(cableConnectionOffset); }
 
 	/// <summary>

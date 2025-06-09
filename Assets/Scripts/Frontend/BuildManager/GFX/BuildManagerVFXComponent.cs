@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using AstralAvarice.Frontend;
 
 [RequireComponent(typeof(Volume))]
 public class BuildManagerVFXComponent : MonoBehaviour
@@ -19,7 +20,7 @@ public class BuildManagerVFXComponent : MonoBehaviour
 		buildManager.OnStateChanged.AddListener(BuildManager_OnStateChanged);
 	}
 
-	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
+	private void BuildManager_OnStateChanged(IBuildState oldState, IBuildState newState)
 	{
 		
 		if (postProcessingVolume.profile.TryGet(out Vignette vignette))

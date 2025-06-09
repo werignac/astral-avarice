@@ -123,5 +123,18 @@ public class SelectionCursorComponent : MonoBehaviour
 		return FindFirstByPredicate((Collider2D collider) => { return collider.GetComponentInParent<BuildingComponent>() != null; });
 	}
 
+	/// <summary>
+	/// Gets the building that is currently being hovered over (if there is one).
+	/// </summary>
+	/// <returns>The building that is being hovered over. Null if no building is being hovered over.</returns>
+	public BuildingComponent FindFirstBuilding()
+	{
+		// Find a building.
+		Collider2D buildingCollider = FindFirstBuildingCollider();
+
+		BuildingComponent buildingComponent = buildingCollider == null ? null : buildingCollider.GetComponentInParent<BuildingComponent>();
+		return buildingComponent;
+	}
+
 
 }

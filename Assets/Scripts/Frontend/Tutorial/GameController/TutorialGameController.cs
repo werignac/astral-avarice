@@ -72,7 +72,7 @@ public class TutorialGameController : GameController
         {
             if (setBuildToNone[currentTutorialState])
             {
-                BuildManagerComponent.Instance.SetNoneState();
+                BuildManagerComponent.Instance.SendExternalCancelSignal();
             }
             if(displayObjects[currentTutorialState - 1] != null)
             {
@@ -175,7 +175,7 @@ public class TutorialGameController : GameController
 
         if(placedIncorrectly)
         {
-            BuildManagerComponent.Instance.SetNoneState();
+            BuildManagerComponent.Instance.SendExternalCancelSignal();
             if (cameraFocuses[currentTutorialState].z > 0)
             {
                 FocusCamera(cameraFocuses[currentTutorialState]);

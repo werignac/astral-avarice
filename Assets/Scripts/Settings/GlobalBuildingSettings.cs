@@ -16,9 +16,11 @@ public class GlobalBuildingSettings: ScriptableObject
 	public const string buildingSettingsResourcesPath = "Settings/GlobalBuildingSettings";
 	public const string buildingSettingsPath = "Assets/Resources/Settings/GlobalBuildingSettings.asset";
 
+	[Header("Buildings")]
 	// The buildings that can be placed by the player.
 	[SerializeField] private BuildingSettingEntry[] buildings;
 
+	[Header("Cables")]
 	// The prefab to use to place buildings.
 	[SerializeField] private GameObject cablePrefab;
 	// How wide the cabels are.
@@ -28,10 +30,13 @@ public class GlobalBuildingSettings: ScriptableObject
 	// For how long cables can overlap with other structures before snapping.
 	[SerializeField, Min(0)] private float maxCableOverlapTime;
 
+	[Header("Planets")]
+	// Minimum distance the player's cursor needs to be from a planet in the building build state to show the building cursor.
+	[SerializeField] private float minDistanceToPlanetToShowBuildingCursor = 5;
+
+	[Header("Destruction VFX")]
 	[SerializeField] private GameObject cableDestructionVFXPrefab;
-
 	[SerializeField] private GameObject buildingDestructionVFXPrefab;
-
 	[SerializeField] private GameObject planetDestructionVFXPrefab;
 
 	// Getters
@@ -56,6 +61,8 @@ public class GlobalBuildingSettings: ScriptableObject
 	}
 
 	public float MaxCableOverlapTime => maxCableOverlapTime;
+
+	public float MinDistanceToPlanetToShowBuildingCursor => minDistanceToPlanetToShowBuildingCursor;
 
 	public GameObject CableDestructionVFXPrefab
 	{

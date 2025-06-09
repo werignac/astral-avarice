@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using AstralAvarice.Frontend;
 
 /// <summary>
 /// A component that creates inspector layers for build states
@@ -18,7 +19,7 @@ public class BuildStateInspectorComponent : MonoBehaviour
 		buildManager.OnStateChanged.AddListener(BuildManager_OnStateChanged);
     }
 
-	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
+	private void BuildManager_OnStateChanged(IBuildState oldState, IBuildState newState)
 	{
 		// Remove the layer that was last being used for the build state.
 		if (activeBuildStateLayer != null)

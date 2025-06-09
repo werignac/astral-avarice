@@ -113,14 +113,14 @@ public class InputManagerComponent : MonoBehaviour
 		if (acceptAction.WasPerformedThisFrame())
 		{
 			// If we're currently building, try to place something.
-			if (BuildManagerComponent.Instance.IsInBuildState())
-				BuildManagerComponent.Instance.SetPlace();
+			if (!BuildManagerComponent.Instance.IsInactive())
+				BuildManagerComponent.Instance.MarkPrimaryFireInput();
 		}
 
 		if (cancelAction.WasPerformedThisFrame())
 		{
-			if (BuildManagerComponent.Instance.IsInBuildState())
-				BuildManagerComponent.Instance.CancelBuildState();
+			if (!BuildManagerComponent.Instance.IsInactive())
+				BuildManagerComponent.Instance.MarkSecondaryFireInput();
 		}
 	}
 
@@ -160,11 +160,8 @@ public class InputManagerComponent : MonoBehaviour
 		if (cameraMovementComponent == null)
 			return;
 		
-		
-
 		cameraMovementComponent.SetHoverInput(Mouse.current.position.ReadValue());
 		cameraMovementComponent.SetPanningInput(panAction.IsPressed());
-
 
 		CameraMovementComponent.PanSpeedModifier panSpeedModifier = CameraMovementComponent.PanSpeedModifier.NONE;
 

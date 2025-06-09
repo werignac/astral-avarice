@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using AstralAvarice.VisualData;
 using System.Collections.Generic;
 using System;
+using AstralAvarice.Frontend;
 
 public class BuildMenuUIComponent : MonoBehaviour
 {
@@ -127,18 +128,18 @@ public class BuildMenuUIComponent : MonoBehaviour
 
 	protected virtual void OnCableClicked()
 	{
-		BuildManagerComponent.Instance.SetCableState();
+		BuildManagerComponent.Instance.SendExternalCableSignal();
 	}
 
 	protected virtual void OnMoveClicked()
 	{
-		BuildManagerComponent.Instance.SetMoveState(null);
+		// TODO: Notify BuildManagerComponent.
 		submenu.Hide();
 	}
 
 	protected virtual void OnDemolishClicked()
 	{
-		BuildManagerComponent.Instance.SetDemolishState();
+		// TODO: Notify BuildManagerComponent.
 		submenu.Hide();
 	}
 
@@ -207,7 +208,7 @@ public class BuildMenuUIComponent : MonoBehaviour
 			binding.HideSelectUI();
 	}
 
-	private void BuildManager_OnStateChanged(BuildState oldState, BuildState newState)
+	private void BuildManager_OnStateChanged(IBuildState oldState, IBuildState newState)
 	{
 		foreach (BuildUIMenuElementBinding<int> binding in FindBindingsForBuildState(oldState))
 			binding.HideSelectUI();
@@ -234,7 +235,7 @@ public class BuildMenuUIComponent : MonoBehaviour
 	/// Find all the bindings that belong to a particular build state.
 	/// </summary>
 	/// <param name="state">The state that the buildings belong to.</param>
-	private IEnumerable<BuildUIMenuElementBinding<int>> FindBindingsForBuildState(BuildState state)
+	private IEnumerable<BuildUIMenuElementBinding<int>> FindBindingsForBuildState(IBuildState state)
 	{
 		if (state == null)
 			yield break;
