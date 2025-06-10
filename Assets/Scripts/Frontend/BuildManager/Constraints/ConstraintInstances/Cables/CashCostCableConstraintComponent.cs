@@ -10,6 +10,10 @@ namespace AstralAvarice.Frontend
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
+			// If the player hasn't clicked on the first attach point, don't show a warning.
+			if (!state.cableState.GetIsFromAttachmentSetAndNonVolatile())
+				return result;
+
 			float cableLength = state.cableState.Length;
 			int cableCost = Mathf.CeilToInt(cableLength * Data.cableCostMultiplier);
 

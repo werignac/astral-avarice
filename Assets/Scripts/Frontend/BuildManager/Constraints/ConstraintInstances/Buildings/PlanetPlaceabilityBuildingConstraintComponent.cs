@@ -8,6 +8,9 @@ namespace AstralAvarice.Frontend
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
+			if (!state.buildState.HasProspectivePlacement())
+				return result;
+
 			if (!state.buildingCursor.ParentPlanet.CanPlaceBuildings)
 			{
 				BuildWarning warning = new BuildWarning("Cannot place buildings on this celestial body.", BuildWarning.WarningType.FATAL);

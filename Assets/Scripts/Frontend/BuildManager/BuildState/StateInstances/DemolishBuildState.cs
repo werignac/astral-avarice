@@ -145,6 +145,7 @@ namespace AstralAvarice.Frontend
 		public void CleanUp()
 		{
 			SetHoveringDemolishable(null);
+			_gravityCursor.Hide();
 		}
 	}
 }

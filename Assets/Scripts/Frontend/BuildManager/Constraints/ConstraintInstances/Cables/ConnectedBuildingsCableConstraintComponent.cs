@@ -18,11 +18,15 @@ namespace AstralAvarice.Frontend
 			if (TryGetWarningForAttachment(fromAttachment, "starting", out BuildWarning fromWarning))
 				result.AddWarning(fromWarning);
 
-			if (TryGetWarningForAttachment(toAttachment, "ending", out BuildWarning toWarning))
-				result.AddWarning(toWarning);
+			// Don't show the warnings for the "to" building while we haven't set the "from" building yet.
+			if (state.cableState.GetIsFromAttachmentSetAndNonVolatile())
+			{
+				if (TryGetWarningForAttachment(toAttachment, "ending", out BuildWarning toWarning))
+					result.AddWarning(toWarning);
 
-			if (TryGetWarningForRedundancy(fromAttachment, toAttachment, out BuildWarning redundantWarning))
-				result.AddWarning(redundantWarning);
+				if (TryGetWarningForRedundancy(fromAttachment, toAttachment, out BuildWarning redundantWarning))
+					result.AddWarning(redundantWarning);
+			}
 
 			return result;
 		}

@@ -8,6 +8,9 @@ namespace AstralAvarice.Frontend
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
+			if (!state.buildState.HasProspectivePlacement())
+				return result;
+
 			// Determine whether the building can be placed.
 			Collider2D[] overlappingColliders = state.buildingCursor.QueryOverlappingColliders();
 

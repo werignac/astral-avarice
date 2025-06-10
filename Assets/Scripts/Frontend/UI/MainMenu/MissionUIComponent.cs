@@ -24,6 +24,10 @@ public class MissionUIComponent : MonoBehaviour
 
 	[HideInInspector] public UnityEvent OnPlayerClosed = new UnityEvent();
 
+#if UNITY_EDITOR
+	[Header("Debug Settings")]
+	[SerializeField] private bool _debugUnlockAllMissions = true;
+#endif
 	private void Start()
 	{
 		FindUIElements();
@@ -91,19 +95,26 @@ public class MissionUIComponent : MonoBehaviour
 		Button missionButton = missionButtonElement.Q<Button>("MissionButton");
 		VisualElement check = missionButtonElement.Q("Check");
 		missionButton.text = missionName;
-		bool needsPrereq = false;
+		bool missingPrerequisites = false;
+		
 		if (mission.hasPrereq)
 		{
-			if (PlayerPrefs.GetInt(mission.prereqMission, -1) < mission.prereqRank)
-			{
-				missionButton.style.unityBackgroundImageTintColor = Color.gray;
-				needsPrereq = true;
-			}
+			missingPrerequisites = PlayerPrefs.GetInt(mission.prereqMission, -1) < mission.prereqRank;
+#if UNITY_EDITOR
+			if (_debugUnlockAllMissions)
+				missingPrerequisites = false;
+#endif
 		}
-		if (!needsPrereq)
+
+		if (!missingPrerequisites)
 		{
 			missionButton.RegisterCallback<ClickEvent, MissionData>(StartMission, mission);
 		}
+		else
+		{
+			missionButton.style.unityBackgroundImageTintColor = Color.gray;
+		}
+
 		missionButton.RegisterCallback<PointerEnterEvent, MissionData>(MissionButtonOnHoverStart, mission);
 		missionButton.RegisterCallback<PointerLeaveEvent, MissionData>(MissionButtonOnHoverEnd, mission);
 		int missionCompletionStatus = PlayerPrefs.GetInt(missionName, -1);

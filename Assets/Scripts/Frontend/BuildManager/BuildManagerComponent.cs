@@ -96,6 +96,7 @@ public class BuildManagerComponent : MonoBehaviour
 
 		buildingCursor.Hide();
 		cableCursor.Hide();
+		gravityCursor.Hide();
 	}
 
 	/// <summary>

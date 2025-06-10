@@ -227,7 +227,11 @@ namespace AstralAvarice.Frontend
 			SetToAttachment(new BuildingInstanceCableAttachment(buildingComponent, isVolatile));
 		}
 
-		private bool GetIsFromAttachmentSetAndNonVolatile()
+		/// <summary>
+		/// Gets whether the player has clicked on the first building
+		/// for the connection / this state started with a building to connect from.
+		/// </summary>
+		public bool GetIsFromAttachmentSetAndNonVolatile()
 		{
 			if (_fromAttachment == null)
 				return false;

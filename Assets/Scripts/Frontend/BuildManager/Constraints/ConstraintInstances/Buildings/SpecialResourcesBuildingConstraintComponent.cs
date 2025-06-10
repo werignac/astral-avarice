@@ -8,6 +8,9 @@ namespace AstralAvarice.Frontend
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
+			if (!state.buildState.HasProspectivePlacement())
+				return result;
+
 			BuildingBuildState buildingBuildState = state.buildState;
 			BuildingCursorComponent buildingCursor = state.buildingCursor;
 			BuildingData buildingData = buildingBuildState.ToBuild.BuildingSettings.BuildingDataAsset;

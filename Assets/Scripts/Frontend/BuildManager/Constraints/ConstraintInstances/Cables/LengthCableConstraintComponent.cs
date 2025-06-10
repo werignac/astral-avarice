@@ -11,6 +11,10 @@ namespace AstralAvarice.Frontend
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
+			// Don't show the warning until the player has clicked on the first building.
+			if (!state.cableState.GetIsFromAttachmentSetAndNonVolatile())
+				return result;
+
 			float cableLength = state.cableState.Length;
 			float remainingCableLength = GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength - cableLength;
 			bool cableIsTooLong = remainingCableLength < 0;

@@ -88,13 +88,6 @@ public class BuildingCursorComponent : MonoBehaviour
 		ghostSpriteRenderer.sprite = ghostSprite;
 		ghostSpriteRenderer.transform.localPosition = ghostOffset;
 		ghostSpriteRenderer.transform.localScale = Vector3.one * ghostScale;
-
-		// If we're not displaying a building, don't display the connection point.
-		// Otherwise, show the connection point.
-		if (ghostSprite == null)
-			connectionPoint.Hide();
-		else
-			connectionPoint.Show();
 	}
 
 	/// <summary>
@@ -113,6 +106,14 @@ public class BuildingCursorComponent : MonoBehaviour
 		connectionPoint.SetPosition(CableConnectionPosition);
 	}
 
+	public void SetShowCableConnectionCursor(bool showCursor)
+	{
+		if (showCursor)
+			connectionPoint.Show();
+		else
+			connectionPoint.Hide();
+	}
+
 	/// <summary>
 	/// Tells the cursor to show whether the current building can be placed.
 	/// </summary>
@@ -121,7 +122,7 @@ public class BuildingCursorComponent : MonoBehaviour
 		switch (canPlace)
 		{
 			case BuildWarning.WarningType.GOOD:
-				ghostSpriteRenderer.color =  placeableColor;
+				ghostSpriteRenderer.color = placeableColor;
 				connectionPoint.SetColor(placeableColor);
 				break;
 			case BuildWarning.WarningType.ALERT:

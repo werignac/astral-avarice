@@ -12,6 +12,9 @@ namespace AstralAvarice.Frontend
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
+			if (!state.buildState.HasProspectivePlacement())
+				return result;
+
 			int buildingScienceCost = state.buildState.ToBuild.BuildingSettings.BuildingDataAsset.scienceCost;
 			
 			if (buildingScienceCost > 0)

@@ -10,6 +10,9 @@ namespace AstralAvarice.Frontend
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
+			if (!state.buildState.HasProspectivePlacement())
+				return result;
+
 			int buildingCashCost = state.buildState.ToBuild.BuildingSettings.BuildingDataAsset.cost;
 			int cashAfterPurchase = gameController.Cash - (state.priorCashCosts + buildingCashCost);
 			bool sufficientCash = cashAfterPurchase >= 0;
