@@ -97,4 +97,11 @@ namespace AstralAvarice.Frontend
 
 		public override BuildStateTransitionSignalType GetSignalType() => BuildStateTransitionSignalType.CHAIN;
 	}
+
+	public class DemolishTransitionSignal : BuildStateTransitionSignal
+	{
+		public DemolishTransitionSignal(bool isExternal) : base(isExternal) { }
+		public override BuildStateTransitionSignalType GetSignalType() => BuildStateTransitionSignalType.DEMOLISH;
+	}
+
 }

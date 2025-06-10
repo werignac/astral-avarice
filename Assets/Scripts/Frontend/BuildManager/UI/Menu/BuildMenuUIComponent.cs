@@ -139,7 +139,7 @@ public class BuildMenuUIComponent : MonoBehaviour
 
 	protected virtual void OnDemolishClicked()
 	{
-		// TODO: Notify BuildManagerComponent.
+		BuildManagerComponent.Instance.SendExternalDemolishSignal();
 		submenu.Hide();
 	}
 

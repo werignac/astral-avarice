@@ -169,6 +169,11 @@ public class BuildManagerComponent : MonoBehaviour
 		));
 	}
 
+	public void SendExternalDemolishSignal()
+	{
+		ProcessTransitionSignal(new DemolishTransitionSignal(true));
+	}
+
 	private void ProcessTransitionSignal(BuildStateTransitionSignal signal)
 	{
 		if (signal.IsExternal && state != null && state is IOverrideExternalSignal overrideSignal)
@@ -190,6 +195,9 @@ public class BuildManagerComponent : MonoBehaviour
 				break;
 			case BuildStateTransitionSignalType.CABLE:
 				DefaultProcessCableTransitionSignal(signal);
+				break;
+			case BuildStateTransitionSignalType.DEMOLISH:
+				DefaultProcessDemolishTransitionSignal(signal);
 				break;
 		}
 	}
@@ -227,6 +235,17 @@ public class BuildManagerComponent : MonoBehaviour
 			selectionCursor,
 			QueryCableConstraints,
 			cableSignal.CableFrom
+		));
+	}
+
+	private void DefaultProcessDemolishTransitionSignal(BuildStateTransitionSignal signal)
+	{
+		if (!(signal is DemolishTransitionSignal))
+			throw new ArgumentException($"Signal {signal} was expected to be a DemolishTransitionSignal, but wasn't.");
+
+		SetState(new DemolishBuildState(
+			selectionCursor,
+			gravityCursor
 		));
 	}
 

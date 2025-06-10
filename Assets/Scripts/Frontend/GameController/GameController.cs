@@ -393,7 +393,14 @@ public class GameController : MonoBehaviour
             }
 		}
 		
-		// TODO: Refund half the cost of the building when demolishing a building.
+		// Refund half the cost of the building when demolishing a building.
+		if (result is DemolishBuildStateApplyResult demolishResult)
+		{	
+			if (demolishResult.demolished is BuildingComponent demolishedBuilding)
+			{
+				gameManager.SpendMoney(demolishedBuilding.Data.cost / -2);
+			}
+		}
 	}
 
 	protected virtual void RegisterBuilding(BuildingComponent buildingComponent)

@@ -28,4 +28,12 @@ namespace AstralAvarice.Frontend
 		public Cost cost;
 		public CableComponent cableInstance;
 	}
+
+	/// <summary>
+	/// Object that tells us about the result of demolishing an object.
+	/// </summary>
+	public struct DemolishBuildStateApplyResult : BuildStateApplyResult
+	{
+		public IDemolishable demolished;
+	}
 }
