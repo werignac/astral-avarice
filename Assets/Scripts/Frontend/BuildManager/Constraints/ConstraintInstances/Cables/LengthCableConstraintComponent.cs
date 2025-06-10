@@ -9,7 +9,7 @@ namespace AstralAvarice.Frontend
 	{
 		public override ConstraintQueryResult QueryConstraint(CableConstraintData state)
 		{
-			float cableLength = state.cableCursor.Length;
+			float cableLength = state.cableState.Length;
 			float remainingCableLength = GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength - cableLength;
 			bool cableIsTooLong = remainingCableLength < 0;
 			string formatLength = cableLength.ToString("0.00");

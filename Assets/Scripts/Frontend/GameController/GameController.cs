@@ -364,40 +364,36 @@ public class GameController : MonoBehaviour
 		SceneManager.LoadScene("MainMenu");
     }
 
-	public virtual void BuildManager_OnBuildResovle(BuildResolve resolution)
+	public virtual void BuildManager_OnBuildResovle(BuildStateApplyResult result)
 	{
-		if(GameSpeed == 0 && resolution.TriedAnything())
-		{
+		// If this is the start of the game and the player did something,
+		// start counting time.
+		if (GameSpeed == 0)
 			GameSpeed = 1;
-		}
-		if (resolution.successfullyPlacedBuilding)
+
+		// If a building was placed, register it and spend the resources for it.
+		if (result is BuildingBuildStateApplyResult buildingResult)
 		{
-			RegisterBuilding(resolution.builtBuilding);
-			gameManager.SpendMoney(resolution.builtBuilding.Data.cost);
-			gameManager.SpendScience(resolution.builtBuilding.Data.scienceCost);
+			RegisterBuilding(buildingResult.buildingInstance);
+			gameManager.SpendMoney(buildingResult.cost.cashCost);
+			gameManager.SpendScience(buildingResult.cost.scienceCost);
 			sfxAudio.clip = buildClip;
 			sfxAudio.Play();
 		}
 
-		if (resolution.successfullyPlacedCable)
+		// If a cable was placed, add a connection and spend the resources for it.
+		if (result is CableBuildStateApplyResult cableResult)
 		{
-			RegisterCable(resolution.builtCable);
-			gameManager.SpendMoney(Mathf.CeilToInt(resolution.builtCable.Length * Data.cableCostMultiplier));
+			RegisterCable(cableResult.cableInstance);
+			gameManager.SpendMoney(cableResult.cost.cashCost);
 			if(!sfxAudio.isPlaying)
 			{
                 sfxAudio.clip = cableConnectClip;
                 sfxAudio.Play();
             }
 		}
-
-		if (resolution.triedDemolishBuilding && resolution.demolishTarget != null)
-		{
-			BuildingComponent demolishedBuilding = resolution.demolishTarget as BuildingComponent;
-			if (demolishedBuilding != null)
-			{
-				gameManager.SpendMoney(demolishedBuilding.Data.cost / -2);
-			}
-		}
+		
+		// TODO: Refund half the cost of the building when demolishing a building.
 	}
 
 	protected virtual void RegisterBuilding(BuildingComponent buildingComponent)

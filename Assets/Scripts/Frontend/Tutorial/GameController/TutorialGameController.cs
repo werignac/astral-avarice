@@ -1,5 +1,6 @@
 using UnityEngine;
 using werignac.Utils;
+using AstralAvarice.Frontend;
 
 public class TutorialGameController : GameController
 {
@@ -127,10 +128,13 @@ public class TutorialGameController : GameController
         }
     }
 
-    public override void BuildManager_OnBuildResovle(BuildResolve resolution)
+    public override void BuildManager_OnBuildResovle(BuildStateApplyResult result)
     {
         bool placedIncorrectly = false;
-        if(resolution.successfullyPlacedBuilding)
+        
+		// TODO: If placed a building
+		/*
+		if(resolution.successfullyPlacedBuilding)
         {
             if(buildLocations[currentTutorialState].z > 0)
             {
@@ -145,6 +149,10 @@ public class TutorialGameController : GameController
                 }
             }
         }
+		*/
+
+		// TODO: If placed a cable
+		/*
         if (resolution.successfullyPlacedCable)
         {
             if (buildLocations[currentTutorialState].z > 0)
@@ -172,7 +180,10 @@ public class TutorialGameController : GameController
                 }
             }
         }
+		*/
 
+		// TODO: If placed incorrectly, focus on the goal.
+		/*
         if(placedIncorrectly)
         {
             BuildManagerComponent.Instance.SendExternalCancelSignal();
@@ -181,7 +192,10 @@ public class TutorialGameController : GameController
                 FocusCamera(cameraFocuses[currentTutorialState]);
             }
         }
+		*/
 
+		// TODO: On Demolish
+		/*
         if (resolution.triedDemolishBuilding && resolution.demolishTarget != null && resolution.demolishTarget.Demolishable())
         {
             if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.demolish)
@@ -189,9 +203,12 @@ public class TutorialGameController : GameController
                 advanceAtEndOfNextUpdate = true;
             }
         }
+		*/
 
-        base.BuildManager_OnBuildResovle(resolution);
+        base.BuildManager_OnBuildResovle(result);
 
+		// TODO: On building placed
+		/*
         if (resolution.successfullyPlacedBuilding)
         {
             if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.building)
@@ -200,12 +217,18 @@ public class TutorialGameController : GameController
             }
             UpdateBuildingResources();
         }
-
+		*/
+		
+		// TODO: On Demolish
+		/*
         if(resolution.triedDemolishBuilding)
         {
             UpdateBuildingResources();
         }
+		*/
 
+		// TODO: On Cable Placed
+		/*
         if (resolution.successfullyPlacedCable)
         {
             if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.cable)
@@ -221,7 +244,10 @@ public class TutorialGameController : GameController
                 }
             }
         }
+		*/
 
+		// TODO: On Move
+		/*
         if(resolution.successfullyMovedBuilding)
         {
             if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.move)
@@ -229,6 +255,7 @@ public class TutorialGameController : GameController
                 advanceAtEndOfNextUpdate = true;
             }
         }
+		*/
     }
 
     protected override void Planet_OnDestroyed(PlanetComponent planetComponent)

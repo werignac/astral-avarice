@@ -12,7 +12,7 @@ namespace AstralAvarice.Frontend
 		{
 			// TODO: Get the building the player is hovering over. We may need a way to put multiple
 			// warnings in the ConstraintQueryResult because we need to do this for each building.
-			throw new System.NotImplementedException();
+			return new ConstraintQueryResult();
 		}
 	}
 }

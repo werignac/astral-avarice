@@ -8,7 +8,7 @@ namespace AstralAvarice.Frontend
 
 		public override ConstraintQueryResult QueryConstraint(CableConstraintData state)
 		{
-			float cableLength = state.cableCursor.Length;
+			float cableLength = state.cableState.Length;
 			int cableCost = Mathf.CeilToInt(cableLength * Data.cableCostMultiplier);
 
 			// TODO: Get other expenses somehow (e.g. resolution.totalCost).

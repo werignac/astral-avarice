@@ -12,8 +12,12 @@ namespace AstralAvarice.Frontend
 	{
 		public override ConstraintQueryResult QueryConstraint(CableConstraintData state)
 		{
+			// If a start and an end have not been made yet, this constraint is not applicable yet.
+			if (!state.cableCursor.GetHasValidStartAndEnd())
+				return new ConstraintQueryResult();
+
 			List<Collider2D> cableOverlaps = new List<Collider2D>(state.cableCursor.QueryOverlappingColliders());
-			CableBuildState cableBuildState = state.cableBuildState;
+			CableBuildState cableBuildState = state.cableState;
 			BuildingComponent fromBuilding = GetBuildingComponentFromAttachment(cableBuildState.GetFromAttachment());
 			BuildingComponent toBuilding = GetBuildingComponentFromAttachment(cableBuildState.GetToAttachment());
 

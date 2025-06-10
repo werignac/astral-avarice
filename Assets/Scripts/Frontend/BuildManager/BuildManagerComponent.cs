@@ -66,7 +66,7 @@ public class BuildManagerComponent : MonoBehaviour
 	// build cable but didn't create a new building, build both a building and cable, didn't ask to build a cable, etc.
 	// Though information about demolitions are sent, using it is not recommended. Instead listen to destroy
 	// events for buildings and cables.
-	[HideInInspector] public UnityEvent<BuildResolve> OnBuildResolve = new UnityEvent<BuildResolve>();
+	[HideInInspector] public UnityEvent<BuildStateApplyResult> OnBuildApply = new UnityEvent<BuildStateApplyResult>();
 	[HideInInspector] public UnityEvent<BuildWarningContainer> OnBuildWarningUpdate = new UnityEvent<BuildWarningContainer>();
 
 
@@ -113,7 +113,8 @@ public class BuildManagerComponent : MonoBehaviour
 		// Initally, we aren't building anything.
 		SetState(new NoneBuildState());
 
-		OnBuildResolve.AddListener(gameController.BuildManager_OnBuildResovle);
+		// TODO: Amend this. It should be the gameController who registers its listeners.
+		OnBuildApply.AddListener(gameController.BuildManager_OnBuildResovle);
 
 		buildingCursor.Hide();
 		cableCursor.Hide();
@@ -212,7 +213,7 @@ public class BuildManagerComponent : MonoBehaviour
 			selectionCursor,
 			gravityCursor,
 			gameController,
-			() => { return false; } // TODO: Actually apply constraints.
+			QueryBuildingConstraints 
 		));
 	}
 
@@ -224,7 +225,7 @@ public class BuildManagerComponent : MonoBehaviour
 		SetState(new CableBuildState(
 			cableCursor,
 			selectionCursor,
-			() => { return false; },
+			QueryCableConstraints,
 			cableSignal.CableFrom
 		));
 	}
@@ -236,7 +237,79 @@ public class BuildManagerComponent : MonoBehaviour
 	/// <param name="applyResult">The result of the current state being applied.</param>
 	private void State_OnApplied(BuildStateApplyResult applyResult)
 	{
-		
+		OnBuildApply.Invoke(applyResult);
+	}
+
+	/// <summary>
+	/// TODO: Combine with QueryCableConstraints?
+	/// </summary>
+	public bool QueryBuildingConstraints()
+	{
+		if (!(state is BuildingBuildState buildingState))
+			throw new Exception($"Cannot query building constraints while not in the building build state. Current state {state}.");
+
+		// TODO: Build data in state?
+		BuildingConstraintData data = new BuildingConstraintData
+		(
+			buildingState,
+			buildingCursor,
+			0
+		);
+
+		bool passAll = true;
+
+		BuildWarningContainer warningContainer = new BuildWarningContainer();
+
+		foreach (var constraintEntry in buildingConstraints)
+		{
+			ConstraintQueryResult result = constraintEntry.constraint.QueryConstraint(data);
+
+			if (result.ConstraintTriggered)
+				passAll = false;
+
+			if (result.HasWarning)
+				warningContainer.AddBuildingWarning(result.Warning);
+		}
+
+		OnBuildWarningUpdate.Invoke(warningContainer);
+
+		return passAll;
+	}
+
+	/// <summary>
+	/// TODO: Combine with QueryBuildingConstraints
+	/// </summary>
+	public bool QueryCableConstraints()
+	{
+		if (!(state is CableBuildState cableState))
+			throw new Exception($"Cannot query building constraints while not in the cable build state. Current state {state}.");
+
+		// TODO: Build data in state?
+		CableConstraintData data = new CableConstraintData
+		(
+			cableState,
+			cableCursor,
+			0
+		);
+
+		bool passAll = true;
+
+		BuildWarningContainer warningContainer = new BuildWarningContainer();
+
+		foreach (var constraintEntry in cableConstraints)
+		{
+			ConstraintQueryResult result = constraintEntry.constraint.QueryConstraint(data);
+
+			if (result.ConstraintTriggered)
+				passAll = false;
+
+			if (result.HasWarning)
+				warningContainer.AddCableWarning(result.Warning);
+		}
+
+		OnBuildWarningUpdate.Invoke(warningContainer);
+
+		return passAll;
 	}
 
 	/// <summary>

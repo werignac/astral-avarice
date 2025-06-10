@@ -108,7 +108,18 @@ public class CableCursorComponent : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Returns whether the cable component has a valid start and end.
+	/// If not, Length and QueryOverlappingColliders cannot be called.
+	/// </summary>
+	/// <returns></returns>
+	public bool GetHasValidStartAndEnd()
+	{
+		return (lineEnd != null) && (lineStart != null);
+	}
+
+	/// <summary>
 	/// Returns which colliders are overlapping with the cursor.
+	/// Can only be called when GetHasValidStartAndEnd is true.
 	/// </summary>
 	public Collider2D[] QueryOverlappingColliders()
 	{

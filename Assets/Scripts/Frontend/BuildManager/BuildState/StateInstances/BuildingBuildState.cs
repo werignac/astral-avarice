@@ -209,7 +209,10 @@ namespace AstralAvarice.Frontend
 			UpdateBuildingPosition(_selectionCursor.GetPosition());
 			
 			bool constraintsResult = QueryConstraints();
-			
+
+			UpdateBuildingCursorColor(constraintsResult);
+
+
 			if (input.primaryFire)
 			{
 				// Check if we are hovering over another building. If so, transition to chained.
@@ -325,6 +328,12 @@ namespace AstralAvarice.Frontend
 			// We anticipate that a building will be placed on a planet.
 			// Notify others that we anticipate the mass of this planet to change.
 			SetProspectivePlanet(closestPlanet);
+		}
+
+		private void UpdateBuildingCursorColor(bool constraintsResult)
+		{
+			// TODO: Update with warning type.
+			_buildingCursor.SetBuildingPlaceability((constraintsResult) ? BuildingCursorComponent.Placeability.YES : BuildingCursorComponent.Placeability.NO);
 		}
 
 		/// <summary>

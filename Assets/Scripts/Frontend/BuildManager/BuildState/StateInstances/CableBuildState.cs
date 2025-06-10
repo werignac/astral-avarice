@@ -259,9 +259,11 @@ namespace AstralAvarice.Frontend
 					SetToAttachment(new CursorCableAttachment(_selectionCursor));
 			}
 
+			UpdateCableCursorPosition();
+
 			bool constraintsResult = QueryConstraints();
-			// Update cursor positions & cursor color.
-			UpdateCableCursor(constraintsResult);
+
+			UpdateCableCursorColor(constraintsResult);
 
 			if (input.primaryFire)
 			{
@@ -299,7 +301,15 @@ namespace AstralAvarice.Frontend
 			}
 			else if (input.secondaryFire)
 			{
-				Cancel();
+				bool isFromSetAndNonVolatile = GetIsFromAttachmentSetAndNonVolatile();
+
+				if (isFromSetAndNonVolatile)
+				{
+					SetFromAttachment(null);
+					SetToAttachment(null);
+				}
+				else
+					Cancel();
 				return;
 			}
 		}
@@ -307,12 +317,6 @@ namespace AstralAvarice.Frontend
 		private bool QueryConstraints()
 		{
 			return _queryConstraintCallback();
-		}
-
-		private void UpdateCableCursor(bool constraintsResult)
-		{
-			UpdateCableCursorPosition();
-			UpdateCableCursorColor(constraintsResult);
 		}
 
 		private void UpdateCableCursorPosition()
@@ -332,6 +336,15 @@ namespace AstralAvarice.Frontend
 					else
 						_cableCursor.SetEndPoint(_toAttachment.GetPosition());
 				}
+				else
+				{
+					_cableCursor.SetEndPoint(_selectionCursor.GetPosition());
+				}
+			}
+			else
+			{
+				_cableCursor.SetStart(null);
+				_cableCursor.SetEndPoint(_selectionCursor.GetPosition());
 			}
 
 			if (show)
@@ -358,7 +371,11 @@ namespace AstralAvarice.Frontend
 			OnApplied.Invoke(result);
 
 			// TODO: Use a function to set the attachment to listen to when the building gets destroyed.
-			SetFromAttachment(_toAttachment);
+			ICableAttachment newFromAttachment = new BuildingInstanceCableAttachment(
+				(_toAttachment as BuildingInstanceCableAttachment).BuildingInstance,
+				false
+			);
+			SetFromAttachment(newFromAttachment);
 			SetToAttachment(null); // Will be set to non-null on next update.
 		}
 
