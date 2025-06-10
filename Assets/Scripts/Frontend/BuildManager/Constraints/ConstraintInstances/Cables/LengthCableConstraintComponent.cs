@@ -17,19 +17,19 @@ namespace AstralAvarice.Frontend
 
 			string postfix = "";
 			BuildWarning.WarningType warningType = BuildWarning.WarningType.GOOD;
-			bool constraintTriggered = false;
+			bool blocksApply = false;
 
 			if (cableIsTooLong)
 			{
 				string formatRemainingLength = Mathf.Abs(remainingCableLength).ToString("0.00");
 				postfix = $" ({formatRemainingLength} over limit)";
 				warningType = BuildWarning.WarningType.FATAL;
-				constraintTriggered = true;
+				blocksApply = true;
 			}
 
 			BuildWarning warning = new BuildWarning($"Cable Length {formatLength}{postfix}.", warningType);
 
-			return new ConstraintQueryResult(constraintTriggered, warning);
+			return new ConstraintQueryResult(blocksApply, warning);
 		}
 	}
 }

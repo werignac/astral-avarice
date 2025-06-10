@@ -44,7 +44,7 @@ namespace AstralAvarice.Frontend
 		/// 
 		/// TODO: Have a different return type that allows for alerts (color the building cursor orange).
 		/// </summary>
-		private readonly Func<bool> _queryConstraintCallback;
+		private readonly Func<BuildWarning.WarningType> _queryConstraintCallback;
 		#endregion Fields
 
 		#region Events
@@ -74,7 +74,7 @@ namespace AstralAvarice.Frontend
 				SelectionCursorComponent selectionCursor,
 				GravityFieldCursorComponent gravityCursor,
 				GameController gameController,
-				Func<bool> queryConstraintCallback
+				Func<BuildWarning.WarningType> queryConstraintCallback
 			)
 		{
 			if (toBuild == null)
@@ -208,7 +208,7 @@ namespace AstralAvarice.Frontend
 			// TODO: Use selection cursor for world position?
 			UpdateBuildingPosition(_selectionCursor.GetPosition());
 			
-			bool constraintsResult = QueryConstraints();
+			BuildWarning.WarningType constraintsResult = QueryConstraints();
 
 			UpdateBuildingCursorColor(constraintsResult);
 
@@ -234,7 +234,7 @@ namespace AstralAvarice.Frontend
 				}
 
 				// Otherwise, check if we can apply after query constraints.
-				if (constraintsResult)
+				if (constraintsResult < BuildWarning.WarningType.FATAL)
 				{
 					Apply();
 					return;
@@ -330,23 +330,20 @@ namespace AstralAvarice.Frontend
 			SetProspectivePlanet(closestPlanet);
 		}
 
-		private void UpdateBuildingCursorColor(bool constraintsResult)
+		private void UpdateBuildingCursorColor(BuildWarning.WarningType constraintsResult)
 		{
-			// TODO: Update with warning type.
-			_buildingCursor.SetBuildingPlaceability((constraintsResult) ? BuildingCursorComponent.Placeability.YES : BuildingCursorComponent.Placeability.NO);
+			_buildingCursor.SetBuildingPlaceability(constraintsResult);
 		}
 
 		/// <summary>
 		/// Checks all the constrains for this state and determines whether we can
 		/// currently place a building.
 		/// </summary>
-		private bool QueryConstraints()
+		private BuildWarning.WarningType QueryConstraints()
 		{
 			// Check all the constraints for this state.
+			// NOTE: In order to avoid circular references, the actual check happens externally.
 			return _queryConstraintCallback();
-			// Set somewhere whether we are able to place the building in the current state.
-			// NOTE: In order to avoid circular references, the actual check may need to happen externally.
-			// TODO: Update cursor color to reflect constraint results.
 		}
 
 		/// <summary>

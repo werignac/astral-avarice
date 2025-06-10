@@ -7,28 +7,6 @@ using UnityEngine.UIElements;
 using werignac.Utils;
 using AstralAvarice.Frontend;
 
-public struct BuildResolve
-{
-	public bool triedPlacingBuilding;
-	public bool successfullyPlacedBuilding;
-	public BuildingComponent builtBuilding;
-	public bool triedPlacingCable;
-	public bool successfullyPlacedCable;
-	public bool successfullyChoseCableStart;
-	public CableComponent builtCable;
-	public bool triedDemolishBuilding;
-	// Note: This may not be the only thing that is destroyed in a demolition!
-	public IDemolishable demolishTarget;
-	public int totalCost;
-	public bool triedMovingBuilding;
-	public bool successfullyMovedBuilding;
-
-	public bool TriedAnything()
-	{
-		return triedPlacingBuilding || triedPlacingCable || triedDemolishBuilding || triedMovingBuilding;
-	}
-}
-
 [Serializable]
 public class BuildConstraintEntry<TBuildConstraint, TBuildConstraintState> where TBuildConstraint : IBuildConstraint<TBuildConstraintState>
 {
@@ -262,7 +240,7 @@ public class BuildManagerComponent : MonoBehaviour
 	/// <summary>
 	/// TODO: Combine with QueryCableConstraints?
 	/// </summary>
-	public bool QueryBuildingConstraints()
+	public BuildWarning.WarningType QueryBuildingConstraints()
 	{
 		if (!(state is BuildingBuildState buildingState))
 			throw new Exception($"Cannot query building constraints while not in the building build state. Current state {state}.");
@@ -275,30 +253,31 @@ public class BuildManagerComponent : MonoBehaviour
 			0
 		);
 
-		bool passAll = true;
-
+		BuildWarning.WarningType highestWarning = BuildWarning.WarningType.GOOD;
 		BuildWarningContainer warningContainer = new BuildWarningContainer();
 
 		foreach (var constraintEntry in buildingConstraints)
 		{
 			ConstraintQueryResult result = constraintEntry.constraint.QueryConstraint(data);
 
-			if (result.ConstraintTriggered)
-				passAll = false;
-
 			if (result.HasWarning)
+			{
 				warningContainer.AddBuildingWarning(result.Warning);
+
+				if (result.Warning.GetWarningType() > highestWarning)
+					highestWarning = result.Warning.GetWarningType();
+			}
 		}
 
 		OnBuildWarningUpdate.Invoke(warningContainer);
 
-		return passAll;
+		return highestWarning;
 	}
 
 	/// <summary>
 	/// TODO: Combine with QueryBuildingConstraints
 	/// </summary>
-	public bool QueryCableConstraints()
+	public BuildWarning.WarningType QueryCableConstraints()
 	{
 		if (!(state is CableBuildState cableState))
 			throw new Exception($"Cannot query building constraints while not in the cable build state. Current state {state}.");
@@ -311,24 +290,24 @@ public class BuildManagerComponent : MonoBehaviour
 			0
 		);
 
-		bool passAll = true;
-
+		BuildWarning.WarningType highestWarning = BuildWarning.WarningType.GOOD;
 		BuildWarningContainer warningContainer = new BuildWarningContainer();
 
 		foreach (var constraintEntry in cableConstraints)
 		{
 			ConstraintQueryResult result = constraintEntry.constraint.QueryConstraint(data);
 
-			if (result.ConstraintTriggered)
-				passAll = false;
-
 			if (result.HasWarning)
+			{
 				warningContainer.AddCableWarning(result.Warning);
+				if (result.Warning.GetWarningType() > highestWarning)
+					highestWarning = result.Warning.GetWarningType();
+			}
 		}
 
 		OnBuildWarningUpdate.Invoke(warningContainer);
 
-		return passAll;
+		return highestWarning;
 	}
 
 	/// <summary>

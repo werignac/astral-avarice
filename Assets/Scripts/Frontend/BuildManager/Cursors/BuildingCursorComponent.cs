@@ -33,7 +33,6 @@ public class BuildingCursorComponent : MonoBehaviour
 
 	// Getters
 	public PlanetComponent ParentPlanet { get { return parentPlanet; } }
-	public bool ShowingCanPlaceBuilding { get; private set; }
 	/// <summary>
 	/// World-space position of where the cable connects to.
 	/// </summary>
@@ -117,24 +116,21 @@ public class BuildingCursorComponent : MonoBehaviour
 	/// <summary>
 	/// Tells the cursor to show whether the current building can be placed.
 	/// </summary>
-	public void SetBuildingPlaceability(Placeability canPlace)
+	public void SetBuildingPlaceability(BuildWarning.WarningType canPlace)
 	{
 		switch (canPlace)
 		{
-			case Placeability.YES:
+			case BuildWarning.WarningType.GOOD:
 				ghostSpriteRenderer.color =  placeableColor;
 				connectionPoint.SetColor(placeableColor);
-				ShowingCanPlaceBuilding = true;
 				break;
-			case Placeability.YES_WARNING:
+			case BuildWarning.WarningType.ALERT:
 				ghostSpriteRenderer.color = placeableWithWarningColor;
 				connectionPoint.SetColor(placeableWithWarningColor);
-				ShowingCanPlaceBuilding = true; // Technically can place building.
 				break;
-			case Placeability.NO:
+			case BuildWarning.WarningType.FATAL:
 				ghostSpriteRenderer.color = notPlaceableColor;
 				connectionPoint.SetColor(notPlaceableColor);
-				ShowingCanPlaceBuilding = false;
 				break;
 		}
 	}

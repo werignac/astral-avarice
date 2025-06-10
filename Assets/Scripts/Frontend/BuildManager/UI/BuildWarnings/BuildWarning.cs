@@ -2,6 +2,10 @@ using UnityEngine;
 
 public struct BuildWarning
 {
+	/// <summary>
+	/// Warning types are sorted so that when doing greater than operations,
+	/// FATAL will override ALERT which will override GOOD. FATAL also overrides GOOD.
+	/// </summary>
 	public enum WarningType
 	{
 		GOOD, ALERT, FATAL

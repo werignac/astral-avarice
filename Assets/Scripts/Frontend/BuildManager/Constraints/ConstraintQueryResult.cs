@@ -4,7 +4,11 @@ namespace AstralAvarice.Frontend
 {
 	public class ConstraintQueryResult
 	{
-		public bool ConstraintTriggered { get; private set; }
+		/// <summary>
+		/// If true, prevents the current build state from being applied
+		/// (applying = performing the main action of the build state).
+		/// </summary>
+		public bool BlocksApply { get; private set; }
 		public bool HasWarning { get; private set; }
 		public BuildWarning Warning { get; private set; }
 		
@@ -14,13 +18,13 @@ namespace AstralAvarice.Frontend
 		/// </summary>
 		public ConstraintQueryResult()
 		{
-			ConstraintTriggered = false;
+			BlocksApply = false;
 			HasWarning = false;
 		}
 
-		public ConstraintQueryResult(bool constraintTriggered, BuildWarning warning)
+		public ConstraintQueryResult(bool blocksApply, BuildWarning warning)
 		{
-			ConstraintTriggered = constraintTriggered;
+			BlocksApply = blocksApply;
 			HasWarning = true;
 			Warning = warning;
 		}

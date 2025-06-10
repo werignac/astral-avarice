@@ -18,18 +18,18 @@ namespace AstralAvarice.Frontend
 
 			string postfix = "";
 			BuildWarning.WarningType warningType = BuildWarning.WarningType.GOOD;
-			bool constraintTriggered = false;
+			bool blocksApply = false;
 
 			if (!canAffordCable)
 			{
 				postfix = $" (Missing ${Mathf.Abs(remainingCash)})";
 				warningType = BuildWarning.WarningType.FATAL;
-				constraintTriggered = true;
+				blocksApply = true;
 			}
 
 			BuildWarning warning = new BuildWarning($"Cable Costs ${cableCost}{postfix}.", warningType);
 
-			return new ConstraintQueryResult(constraintTriggered, warning);
+			return new ConstraintQueryResult(blocksApply, warning);
 		}
 	}
 }

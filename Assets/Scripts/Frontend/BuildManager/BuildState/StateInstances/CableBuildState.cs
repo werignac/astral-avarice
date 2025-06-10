@@ -31,7 +31,7 @@ namespace AstralAvarice.Frontend
 		/// The callback to invoke when this state want to query its constraints.
 		/// Returns whether this build state passed all its constraints.
 		/// </summary>
-		private readonly Func<bool> _queryConstraintCallback;
+		private readonly Func<BuildWarning.WarningType> _queryConstraintCallback;
 
 		/// <summary>
 		/// Invoked when we want to switch to a different build state.
@@ -45,7 +45,7 @@ namespace AstralAvarice.Frontend
 		public CableBuildState(
 				CableCursorComponent cableCursor,
 				SelectionCursorComponent selectionCursor,
-				Func<bool> queryConstraintCallback,
+				Func<BuildWarning.WarningType> queryConstraintCallback,
 				BuildingComponent startingBuilding = null
 			)
 		{
@@ -261,7 +261,8 @@ namespace AstralAvarice.Frontend
 
 			UpdateCableCursorPosition();
 
-			bool constraintsResult = QueryConstraints();
+			BuildWarning.WarningType constraintsResult = QueryConstraints();
+			bool passesConstraints = constraintsResult < BuildWarning.WarningType.FATAL;
 
 			UpdateCableCursorColor(constraintsResult);
 
@@ -277,7 +278,7 @@ namespace AstralAvarice.Frontend
 				// Set this according to whether the player has set the from for this cable yet. 
 				bool isFromSetAndNonVolatile = GetIsFromAttachmentSetAndNonVolatile();
 				// Is the from not set or do we not meet the constraints.
-				if (! (isFromSetAndNonVolatile && constraintsResult))
+				if (! (isFromSetAndNonVolatile && passesConstraints))
 				{
 					if (hoveringBuilding.BackendBuilding.CanAcceptNewConnections())
 					{
@@ -314,7 +315,7 @@ namespace AstralAvarice.Frontend
 			}
 		}
 
-		private bool QueryConstraints()
+		private BuildWarning.WarningType QueryConstraints()
 		{
 			return _queryConstraintCallback();
 		}
@@ -353,9 +354,9 @@ namespace AstralAvarice.Frontend
 				_cableCursor.Hide();
 		}
 
-		private void UpdateCableCursorColor(bool constraintsResult)
+		private void UpdateCableCursorColor(BuildWarning.WarningType constraintsResult)
 		{
-			_cableCursor.SetCablePlaceability(constraintsResult);
+			_cableCursor.SetCablePlaceability(constraintsResult < BuildWarning.WarningType.FATAL);
 		}
 
 		private void Apply()

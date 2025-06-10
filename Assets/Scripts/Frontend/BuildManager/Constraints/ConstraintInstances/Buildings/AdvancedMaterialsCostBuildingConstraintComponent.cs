@@ -18,19 +18,19 @@ namespace AstralAvarice.Frontend
 
 				string postfix = "";
 				BuildWarning.WarningType warningType = BuildWarning.WarningType.GOOD;
-				bool constraintTriggered = false;
+				bool blocksApply = false;
 				
 				// TODO: Use advanced materials symbol.
 				if (!sufficientScience)
 				{
 					postfix = $"(Missing {ADVANCED_MATERIALS_RICH_TEXT_ICON}{Mathf.Abs(scienceAfterPurchase)})";
 					warningType = BuildWarning.WarningType.FATAL;
-					constraintTriggered = true;
+					blocksApply = true;
 				}
 
 				BuildWarning warning = new BuildWarning($"Costs {ADVANCED_MATERIALS_RICH_TEXT_ICON}{buildingScienceCost}{postfix}.", warningType);
 
-				return new ConstraintQueryResult(constraintTriggered, warning);
+				return new ConstraintQueryResult(blocksApply, warning);
 			}
 
 			return new ConstraintQueryResult();
