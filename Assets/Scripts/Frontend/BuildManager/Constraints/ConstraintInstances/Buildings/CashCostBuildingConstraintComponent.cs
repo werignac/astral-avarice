@@ -8,24 +8,26 @@ namespace AstralAvarice.Frontend
 
 		public override ConstraintQueryResult QueryConstraint(BuildingConstraintData state)
 		{
+			ConstraintQueryResult result = new ConstraintQueryResult();
+
 			int buildingCashCost = state.buildState.ToBuild.BuildingSettings.BuildingDataAsset.cost;
 			int cashAfterPurchase = gameController.Cash - (state.priorCashCosts + buildingCashCost);
 			bool sufficientCash = cashAfterPurchase >= 0;
 
 			string postfix = "";
 			BuildWarning.WarningType warningType = BuildWarning.WarningType.GOOD;
-			bool blocksApply = false;
 
 			if (!sufficientCash)
 			{
 				postfix = $" (Missing ${Mathf.Abs(cashAfterPurchase)})";
 				warningType = BuildWarning.WarningType.FATAL;
-				blocksApply = true;
 			}
 
 			BuildWarning warning = new BuildWarning($"Cost ${buildingCashCost}{postfix}.", warningType);
-			
-			return new ConstraintQueryResult(blocksApply, warning);
+
+			result.AddWarning(warning);
+
+			return result;
 		}
 	}
 }

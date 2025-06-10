@@ -54,7 +54,7 @@ public class BuildWarningUIComponent : MonoBehaviour
 		}
 	}
 
-	private void BuildManager_OnBuildWarningUpdate(BuildWarningContainer warnings)
+	private void BuildManager_OnBuildWarningUpdate(BuildWarningContext warnings)
 	{
 		tooltipController.SetBuildWarnings(warnings);
 	}

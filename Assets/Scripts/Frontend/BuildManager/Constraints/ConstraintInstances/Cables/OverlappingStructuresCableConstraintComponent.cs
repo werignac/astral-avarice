@@ -12,9 +12,11 @@ namespace AstralAvarice.Frontend
 	{
 		public override ConstraintQueryResult QueryConstraint(CableConstraintData state)
 		{
+			ConstraintQueryResult result = new ConstraintQueryResult();
+
 			// If a start and an end have not been made yet, this constraint is not applicable yet.
 			if (!state.cableCursor.GetHasValidStartAndEnd())
-				return new ConstraintQueryResult();
+				return result;
 
 			List<Collider2D> cableOverlaps = new List<Collider2D>(state.cableCursor.QueryOverlappingColliders());
 			CableBuildState cableBuildState = state.cableState;
@@ -30,11 +32,10 @@ namespace AstralAvarice.Frontend
 			if (overlapsAlongCable)
 			{
 				BuildWarning warning = new BuildWarning("Cable overlaps with other structures.", BuildWarning.WarningType.FATAL);
-				return new ConstraintQueryResult(true, warning);
+				result.AddWarning(warning);
 			}
 
-			// No Overlaps
-			return new ConstraintQueryResult();
+			return result;
 		}
 
 		private static BuildingComponent GetBuildingComponentFromAttachment(ICableAttachment attachment)

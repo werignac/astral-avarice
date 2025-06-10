@@ -6,10 +6,11 @@ namespace AstralAvarice.Frontend
 	{
 		public override ConstraintQueryResult QueryConstraint(BuildingConstraintData state)
 		{
+			ConstraintQueryResult result = new ConstraintQueryResult();
+
 			BuildingBuildState buildingBuildState = state.buildState;
 			BuildingCursorComponent buildingCursor = state.buildingCursor;
 			BuildingData buildingData = buildingBuildState.ToBuild.BuildingSettings.BuildingDataAsset;
-
 
 			if (buildingData.requiredResource != ResourceType.Resource_Count)
 			{
@@ -17,11 +18,11 @@ namespace AstralAvarice.Frontend
 					|| buildingCursor.ParentPlanet.GetAvailableResourceCount(buildingData.requiredResource) < buildingData.resourceAmountRequired)
 				{
 					BuildWarning warning = new BuildWarning("Missing Special Resources.", BuildWarning.WarningType.ALERT);
-					return new ConstraintQueryResult(false, warning); // Send false because you're allowed to place a building on a planet w/o special resources.
+					result.AddWarning(warning);
 				}
 			}
 
-			return new ConstraintQueryResult();
+			return result;
 		}
 	}
 }

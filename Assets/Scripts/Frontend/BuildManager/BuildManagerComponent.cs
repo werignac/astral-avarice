@@ -45,7 +45,7 @@ public class BuildManagerComponent : MonoBehaviour
 	// Though information about demolitions are sent, using it is not recommended. Instead listen to destroy
 	// events for buildings and cables.
 	[HideInInspector] public UnityEvent<BuildStateApplyResult> OnBuildApply = new UnityEvent<BuildStateApplyResult>();
-	[HideInInspector] public UnityEvent<BuildWarningContainer> OnBuildWarningUpdate = new UnityEvent<BuildWarningContainer>();
+	[HideInInspector] public UnityEvent<BuildWarningContext> OnBuildWarningUpdate = new UnityEvent<BuildWarningContext>();
 
 
 	// Collects input from the user (primary & secondary fire) until the end of update
@@ -254,19 +254,16 @@ public class BuildManagerComponent : MonoBehaviour
 		);
 
 		BuildWarning.WarningType highestWarning = BuildWarning.WarningType.GOOD;
-		BuildWarningContainer warningContainer = new BuildWarningContainer();
+		BuildWarningContext warningContainer = new BuildWarningContext();
 
 		foreach (var constraintEntry in buildingConstraints)
 		{
 			ConstraintQueryResult result = constraintEntry.constraint.QueryConstraint(data);
 
-			if (result.HasWarning)
-			{
-				warningContainer.AddBuildingWarning(result.Warning);
+			warningContainer.AddBuildingWarnings(result.Warnings);
 
-				if (result.Warning.GetWarningType() > highestWarning)
-					highestWarning = result.Warning.GetWarningType();
-			}
+			if (result.HighestWarning > highestWarning)
+				highestWarning = result.HighestWarning;
 		}
 
 		OnBuildWarningUpdate.Invoke(warningContainer);
@@ -291,18 +288,16 @@ public class BuildManagerComponent : MonoBehaviour
 		);
 
 		BuildWarning.WarningType highestWarning = BuildWarning.WarningType.GOOD;
-		BuildWarningContainer warningContainer = new BuildWarningContainer();
+		BuildWarningContext warningContainer = new BuildWarningContext();
 
 		foreach (var constraintEntry in cableConstraints)
 		{
 			ConstraintQueryResult result = constraintEntry.constraint.QueryConstraint(data);
 
-			if (result.HasWarning)
-			{
-				warningContainer.AddCableWarning(result.Warning);
-				if (result.Warning.GetWarningType() > highestWarning)
-					highestWarning = result.Warning.GetWarningType();
-			}
+			warningContainer.AddCableWarnings(result.Warnings);
+
+			if (result.HighestWarning > highestWarning)
+				highestWarning = result.HighestWarning;
 		}
 
 		OnBuildWarningUpdate.Invoke(warningContainer);

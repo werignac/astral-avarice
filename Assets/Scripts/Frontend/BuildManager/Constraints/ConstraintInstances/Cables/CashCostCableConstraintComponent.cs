@@ -8,6 +8,8 @@ namespace AstralAvarice.Frontend
 
 		public override ConstraintQueryResult QueryConstraint(CableConstraintData state)
 		{
+			ConstraintQueryResult result = new ConstraintQueryResult();
+
 			float cableLength = state.cableState.Length;
 			int cableCost = Mathf.CeilToInt(cableLength * Data.cableCostMultiplier);
 
@@ -18,18 +20,17 @@ namespace AstralAvarice.Frontend
 
 			string postfix = "";
 			BuildWarning.WarningType warningType = BuildWarning.WarningType.GOOD;
-			bool blocksApply = false;
 
 			if (!canAffordCable)
 			{
 				postfix = $" (Missing ${Mathf.Abs(remainingCash)})";
 				warningType = BuildWarning.WarningType.FATAL;
-				blocksApply = true;
 			}
 
 			BuildWarning warning = new BuildWarning($"Cable Costs ${cableCost}{postfix}.", warningType);
+			result.AddWarning(warning);
 
-			return new ConstraintQueryResult(blocksApply, warning);
+			return result;
 		}
 	}
 }

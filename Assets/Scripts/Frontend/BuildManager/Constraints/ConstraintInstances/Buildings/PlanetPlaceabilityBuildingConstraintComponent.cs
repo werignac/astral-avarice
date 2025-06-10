@@ -6,13 +6,15 @@ namespace AstralAvarice.Frontend
     {
 		public override ConstraintQueryResult QueryConstraint(BuildingConstraintData state)
 		{
+			ConstraintQueryResult result = new ConstraintQueryResult();
+
 			if (!state.buildingCursor.ParentPlanet.CanPlaceBuildings)
 			{
 				BuildWarning warning = new BuildWarning("Cannot place buildings on this celestial body.", BuildWarning.WarningType.FATAL);
-				return new ConstraintQueryResult(true, warning);
+				result.AddWarning(warning);
 			}
 
-			return new ConstraintQueryResult();
+			return result;
 		}
     }
 }

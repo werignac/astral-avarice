@@ -6,6 +6,8 @@ namespace AstralAvarice.Frontend
 	{
 		public override ConstraintQueryResult QueryConstraint(BuildingConstraintData state)
 		{
+			ConstraintQueryResult result = new ConstraintQueryResult();
+
 			// Determine whether the building can be placed.
 			Collider2D[] overlappingColliders = state.buildingCursor.QueryOverlappingColliders();
 
@@ -14,10 +16,10 @@ namespace AstralAvarice.Frontend
 			if (!roomToPlace)
 			{
 				BuildWarning warning = new BuildWarning("Building overlaps with other structures.", BuildWarning.WarningType.FATAL);
-				return new ConstraintQueryResult(true, warning);
+				result.AddWarning(warning);
 			}
 
-			return new ConstraintQueryResult();
+			return result;
 		}
 	}
 }

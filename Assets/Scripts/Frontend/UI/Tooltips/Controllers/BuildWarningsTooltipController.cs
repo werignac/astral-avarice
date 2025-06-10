@@ -36,7 +36,7 @@ namespace AstralAvarice.UI.Tooltips
 			warningContainerElement = null;
 		}
 
-		public void SetBuildWarnings(BuildWarningContainer container)
+		public void SetBuildWarnings(BuildWarningContext container)
 		{
 			// TODO: Support setting before binding.
 			if (warningContainerElement == null)
@@ -52,7 +52,7 @@ namespace AstralAvarice.UI.Tooltips
 			warningContainerElement.Clear();
 		}
 
-		private void AddBuildWarnings(BuildWarningContainer container)
+		private void AddBuildWarnings(BuildWarningContext container)
 		{
 			VisualTreeAsset warningUITemplate = BuildWarningsUIData.buildWarningUIAsset;
 			VisualTreeAsset warningSectionUITemplate = BuildWarningsUIData.buildWarningSectionUIAsset;

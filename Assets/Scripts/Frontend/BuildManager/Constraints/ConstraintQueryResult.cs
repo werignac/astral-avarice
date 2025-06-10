@@ -1,38 +1,28 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace AstralAvarice.Frontend
 {
 	public class ConstraintQueryResult
 	{
-		/// <summary>
-		/// If true, prevents the current build state from being applied
-		/// (applying = performing the main action of the build state).
-		/// </summary>
-		public bool BlocksApply { get; private set; }
-		public bool HasWarning { get; private set; }
-		public BuildWarning Warning { get; private set; }
-		
+		public BuildWarning.WarningType HighestWarning { get; private set; }
+		public List<BuildWarning> Warnings { get; } = new List<BuildWarning>();
+
 		/// <summary>
 		/// Constructor to use when the constraint is not preventing a structure
 		/// from being built and there is no warning.
 		/// </summary>
 		public ConstraintQueryResult()
 		{
-			BlocksApply = false;
-			HasWarning = false;
+			HighestWarning = BuildWarning.WarningType.GOOD;
 		}
 
-		public ConstraintQueryResult(bool blocksApply, BuildWarning warning)
+		public void AddWarning(BuildWarning warning)
 		{
-			BlocksApply = blocksApply;
-			HasWarning = true;
-			Warning = warning;
-		}
+			Warnings.Add(warning);
 
-		public bool TryGetWarning(out BuildWarning warning)
-		{
-			warning = Warning;
-			return HasWarning;
+			if (warning.GetWarningType() > HighestWarning)
+				HighestWarning = warning.GetWarningType();
 		}
 	}
 }

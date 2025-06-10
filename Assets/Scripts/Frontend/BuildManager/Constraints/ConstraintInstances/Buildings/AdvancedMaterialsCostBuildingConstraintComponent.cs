@@ -10,7 +10,10 @@ namespace AstralAvarice.Frontend
 
 		public override ConstraintQueryResult QueryConstraint(BuildingConstraintData state)
 		{
+			ConstraintQueryResult result = new ConstraintQueryResult();
+
 			int buildingScienceCost = state.buildState.ToBuild.BuildingSettings.BuildingDataAsset.scienceCost;
+			
 			if (buildingScienceCost > 0)
 			{
 				int scienceAfterPurchase = gameController.HeldScience - buildingScienceCost;
@@ -18,22 +21,19 @@ namespace AstralAvarice.Frontend
 
 				string postfix = "";
 				BuildWarning.WarningType warningType = BuildWarning.WarningType.GOOD;
-				bool blocksApply = false;
 				
 				// TODO: Use advanced materials symbol.
 				if (!sufficientScience)
 				{
 					postfix = $"(Missing {ADVANCED_MATERIALS_RICH_TEXT_ICON}{Mathf.Abs(scienceAfterPurchase)})";
 					warningType = BuildWarning.WarningType.FATAL;
-					blocksApply = true;
 				}
 
 				BuildWarning warning = new BuildWarning($"Costs {ADVANCED_MATERIALS_RICH_TEXT_ICON}{buildingScienceCost}{postfix}.", warningType);
-
-				return new ConstraintQueryResult(blocksApply, warning);
+				result.AddWarning(warning);
 			}
 
-			return new ConstraintQueryResult();
+			return result;
 		}
 	}
 }
