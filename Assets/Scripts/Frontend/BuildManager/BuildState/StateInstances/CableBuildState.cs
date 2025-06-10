@@ -257,6 +257,8 @@ namespace AstralAvarice.Frontend
 			{
 				if (isFromSetNonVolatilePreHover)
 					SetToAttachment(new CursorCableAttachment(_selectionCursor));
+				else
+					SetFromAttachment(null);
 			}
 
 			UpdateCableCursorPosition();
