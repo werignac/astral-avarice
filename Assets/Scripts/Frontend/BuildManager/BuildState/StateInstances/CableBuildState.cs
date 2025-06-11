@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace AstralAvarice.Frontend
 {
-	public class CableBuildState : IBuildState, ICablePlacement
+	public class CableBuildState : IBuildState, ICablePlacer, IOverrideExternalSignal
 	{
 		/// <summary>
 		/// The first object the cable is attached to.
@@ -74,6 +74,8 @@ namespace AstralAvarice.Frontend
 
 			_queryConstraintCallback = queryConstraintCallback;
 		}
+
+		public void Start() { }
 
 		public BuildStateType GetStateType()
 		{
@@ -403,6 +405,25 @@ namespace AstralAvarice.Frontend
 			TryRegisterOrUnregisterDemolishListener(_toAttachment, FromAttachment_OnDemolish, false);
 			
 			_cableCursor.Hide();
+		}
+
+		public bool TryOverrideExternalSignal(BuildStateTransitionSignal signal)
+		{
+			if (!signal.IsExternal)
+				throw new ArgumentException("Cannot call TryOverrideExternalSignal with an internal signal.");
+
+			// When the user presses on a building button whilst in the cable state, start chaining
+			// from the current "from" building (if there is one).
+			if (signal.GetSignalType() == BuildStateTransitionSignalType.BUILDING && GetIsFromAttachmentSetAndNonVolatile())
+			{
+				BuildingSettingEntry toBuild = (signal as BuildingTransitionSignal).NewBuildingType;
+				BuildingComponent chainFrom = (_fromAttachment as BuildingInstanceCableAttachment).BuildingInstance;
+				BuildStateTransitionSignal chainSignal = new ChainTransitionSignal(chainFrom, toBuild, false);
+				OnRequestTransition.Invoke(chainSignal);
+				return true;
+			}
+
+			return false;
 		}
 	}
 }

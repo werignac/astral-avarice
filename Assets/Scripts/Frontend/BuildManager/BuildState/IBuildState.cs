@@ -55,8 +55,14 @@ namespace AstralAvarice.Frontend
 		// TODO: Apply constraints somewhere. Take an external context (cost of building for cable in chain mode).
 
 		/// <summary>
+		/// Called after construction and after CleanUp for the last state, but before
+		/// the first update.
+		/// </summary>
+		void Start();
+
+		/// <summary>
 		/// Called before this build state is destroyed / when we're switching out of this build state.
 		/// </summary>
 		public void CleanUp();
-    }
+	}
 }

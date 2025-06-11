@@ -30,6 +30,17 @@ namespace AstralAvarice.Frontend
 	}
 
 	/// <summary>
+	/// Object that tells us about the result of placing a building
+	/// and maybe a cable in the chain state.
+	/// </summary>
+	public struct ChainBuildStateApplyResult : BuildStateApplyResult
+	{
+		public BuildingBuildStateApplyResult buildingResult;
+		public bool placedCable;
+		public CableBuildStateApplyResult cableResult;
+	}
+
+	/// <summary>
 	/// Object that tells us about the result of demolishing an object.
 	/// </summary>
 	public struct DemolishBuildStateApplyResult : BuildStateApplyResult

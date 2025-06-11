@@ -8,7 +8,7 @@ namespace AstralAvarice.Frontend
 	/// <summary>
 	/// Build state of the BuildManager when placing a new building.
 	/// </summary>
-	public class BuildingBuildState : IBuildState, IBuildingPlacement, IInspectable
+	public class BuildingBuildState : IBuildState, IBuildingPlacer, IInspectable
 	{
 		#region Fields
 		/// <summary>
@@ -106,7 +106,10 @@ namespace AstralAvarice.Frontend
 				throw new ArgumentNullException("queryConstraintCallback");
 
 			_queryConstraintCallback = queryConstraintCallback;
+		}
 
+		public void Start()
+		{
 			// Set up the building cursor for the type of building we're placing.
 			InitializeBuildingCursor();
 		}
@@ -161,7 +164,7 @@ namespace AstralAvarice.Frontend
 		/// information to start computing constraints.
 		/// </summary>
 		/// <returns>True if we know what planet the player wants to put their building on.</returns>
-		public bool HasProspectivePlacement()
+		public bool GetHasProspectivePlacement()
 		{
 			return _prospectivePlanet != null;
 		}

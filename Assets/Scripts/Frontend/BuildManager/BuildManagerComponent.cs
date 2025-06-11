@@ -118,10 +118,12 @@ public class BuildManagerComponent : MonoBehaviour
 
 		state = newState;
 
-		if (state != null)
+		if (newState != null)
 		{
-			state.OnApplied.AddListener(State_OnApplied);
-			state.OnRequestTransition.AddListener(State_OnRequestTransition);
+			newState.OnApplied.AddListener(State_OnApplied);
+			newState.OnRequestTransition.AddListener(State_OnRequestTransition);
+
+			newState.Start();
 		}
 
 		OnStateChanged?.Invoke(oldState, newState);
@@ -178,6 +180,9 @@ public class BuildManagerComponent : MonoBehaviour
 			case BuildStateTransitionSignalType.DEMOLISH:
 				DefaultProcessDemolishTransitionSignal(signal);
 				break;
+			case BuildStateTransitionSignalType.CHAIN:
+				DefaultProcessChainTransitionSignal(signal);
+				break;
 		}
 	}
 
@@ -225,6 +230,22 @@ public class BuildManagerComponent : MonoBehaviour
 		SetState(new DemolishBuildState(
 			selectionCursor,
 			gravityCursor
+		));
+	}
+
+	private void DefaultProcessChainTransitionSignal(BuildStateTransitionSignal signal)
+	{
+		if (!(signal is ChainTransitionSignal chainSignal))
+			throw new ArgumentException($"Signal {signal} was expected to be a ChainTransitionSignal, but wasn't.");
+
+		SetState(new ChainBuildState(
+			chainSignal.NewBuildingType,
+			chainSignal.ChainFrom,
+			selectionCursor,
+			buildingCursor,
+			cableCursor,
+			gravityCursor,
+			gameController
 		));
 	}
 

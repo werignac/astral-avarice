@@ -13,8 +13,8 @@ namespace AstralAvarice.Frontend
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } = new UnityEvent<BuildStateApplyResult>();
 
 		public BuildStateType GetStateType() => BuildStateType.NONE;
-		public void CleanUp() { }
-
+		public void Start() { }
 		public void Update(BuildStateInput input) { }
+		public void CleanUp() { }
 	}
 }

@@ -42,7 +42,7 @@ namespace AstralAvarice.Frontend
 	/// <summary>
 	/// Interface for actions / state in the BuildManager that will place buildings.
 	/// </summary>
-    public interface IBuildingPlacement
+    public interface IBuildingPlacer
     {
 		/// <summary>
 		/// Returns the building we are trying to place.

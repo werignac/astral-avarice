@@ -28,27 +28,27 @@ public class BuildStateInspectorComponent : MonoBehaviour
 		IInspectable inspectable = null;
 		InspectorLayerType layerType = InspectorLayerType.BUILD_STATE;
 
-		switch (newState.GetStateType())
+		if (newState is IInspectable inspectableState)
+			inspectable = inspectableState;
+		else
 		{
-			case BuildStateType.BUILDING:
-			case BuildStateType.BUILDING_CHAINED:
-				BuildingBuildState buildingBuildState = newState as BuildingBuildState;
-				inspectable = buildingBuildState;
-				break;
-			case BuildStateType.CABLE:
-				inspectable = new InspectableCable();
-				break;
-			case BuildStateType.DEMOLISH:
-				inspectable = new InspectableDemolish();
-				break;
-			case BuildStateType.MOVE:
-				inspectable = new InspectableMove();
-				break;
-			default:
-				// If we don't recognize the build state, then
-				// don't add a layer.
-				activeBuildStateLayer = null;
-				return;
+			switch (newState.GetStateType())
+			{
+				case BuildStateType.CABLE:
+					inspectable = new InspectableCable();
+					break;
+				case BuildStateType.DEMOLISH:
+					inspectable = new InspectableDemolish();
+					break;
+				case BuildStateType.MOVE:
+					inspectable = new InspectableMove();
+					break;
+				default:
+					// If we don't recognize the build state, then
+					// don't add a layer.
+					activeBuildStateLayer = null;
+					return;
+			}
 		}
 
 		// Add the inspector for the new state.

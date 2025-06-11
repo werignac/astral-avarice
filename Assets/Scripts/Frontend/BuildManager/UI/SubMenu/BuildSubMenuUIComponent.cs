@@ -245,8 +245,9 @@ public class BuildSubMenuUIComponent : MonoBehaviour
 			if ((state.GetStateType() & BuildStateType.BUILDING) != 0)
 			{
 				// There may be a button of this building being displayed.
-				BuildingBuildState buildingBuildState = state as BuildingBuildState;
-				NewPlacingBuilding placingBuilding = buildingBuildState.ToBuild;
+				IBuildingPlacer buildingPlacer = state as IBuildingPlacer;
+				// Assume placingBuilding is NewPlacingBuilding (Building or Chain, but not Move).
+				NewPlacingBuilding placingBuilding = buildingPlacer.GetPlacingBuilding() as NewPlacingBuilding;
 
 				// Get the BuildingSettingEntry from the placing building.
 				int buttonId = SettingEntryToButtonId(placingBuilding.BuildingSettings);

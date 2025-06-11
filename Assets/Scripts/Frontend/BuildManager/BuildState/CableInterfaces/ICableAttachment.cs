@@ -49,6 +49,9 @@ namespace AstralAvarice.Frontend
 
 		public BuildingCursorCableAttachment(BuildingCursorComponent buildingCursor)
 		{
+			if (buildingCursor == null)
+				throw new ArgumentNullException("buildingCursor");
+
 			BuildingCursor = buildingCursor;
 		}
 

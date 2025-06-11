@@ -6,7 +6,7 @@ namespace AstralAvarice.Frontend
 	/// <summary>
 	/// Interface for actions / states in the BuildManager that place cables.
 	/// </summary>
-    public interface ICablePlacement
+    public interface ICablePlacer
     {
 		/// <summary>
 		/// Returns the first object the cable is attached to.

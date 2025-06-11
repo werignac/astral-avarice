@@ -8,7 +8,7 @@ namespace AstralAvarice.Frontend
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
-			if (!state.buildState.HasProspectivePlacement())
+			if (!state.buildState.GetHasProspectivePlacement())
 				return result;
 
 			if (!state.buildingCursor.ParentPlanet.CanPlaceBuildings)

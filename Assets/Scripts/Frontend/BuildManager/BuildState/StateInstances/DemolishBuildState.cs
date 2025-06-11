@@ -30,6 +30,8 @@ namespace AstralAvarice.Frontend
 			_gravityCursor = gravityCursor;
 		}
 
+		public void Start() { }
+
 		public void Update(BuildStateInput input)
 		{
 			// NOTE: Only objects that return true for Demolishable() can be demolished.
