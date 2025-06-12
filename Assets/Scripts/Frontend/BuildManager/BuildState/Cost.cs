@@ -7,6 +7,9 @@ namespace AstralAvarice.Frontend
 	/// </summary>
 	public struct Cost
 	{
+		// TODO: Protect ZERO from being tampered with.
+		public static readonly Cost ZERO = new Cost { cash = 0, science = 0 };
+
 		public int cash;
 		public int science;
 

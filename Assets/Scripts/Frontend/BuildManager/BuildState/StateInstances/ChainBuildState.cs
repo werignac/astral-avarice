@@ -101,6 +101,16 @@ namespace AstralAvarice.Frontend
 			return _subBuildingBuildState.GetBuildingCursor();
 		}
 
+		public Cost GetBuildingCost()
+		{
+			return _subBuildingBuildState.GetCost();
+		}
+
+		public Cost GetCableCost()
+		{
+			return CableBuildState.GetCableCostFromLength(Length);
+		}
+
 		public float Length => Vector2.Distance(_fromAttachment.GetPosition(), _toAttachment.GetPosition());
 
 		public ICableAttachment GetFromAttachment()
@@ -131,6 +141,10 @@ namespace AstralAvarice.Frontend
 
 		public void UpdatePostConstraints(BuildStateInput input, ChainConstraintsQueryResult constraintsResult)
 		{
+			UpdateCableCursorColor(constraintsResult.GetCableResult());
+
+			_subBuildingBuildState.UpdatePostConstraints(input, constraintsResult.GetBuildingResult());
+
 			if (input.primaryFire)
 			{
 
@@ -151,6 +165,15 @@ namespace AstralAvarice.Frontend
 				_toAttachment = new CursorCableAttachment(_selectionCursor);
 
 			_cableCursor.SetEndPoint(_toAttachment.GetPosition());
+		}
+
+		/// <summary>
+		/// Copied from CableBuildState.
+		/// </summary>
+		/// <param name="constraintsResult"></param>
+		private void UpdateCableCursorColor(BuildWarning.WarningType constraintsResult)
+		{
+			_cableCursor.SetCablePlaceability(constraintsResult < BuildWarning.WarningType.FATAL);
 		}
 
 		private void DechainToBuilding()

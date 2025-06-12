@@ -102,15 +102,20 @@ namespace AstralAvarice.Frontend
 			}
 		}
 		
-		public Cost GetCost()
+		public static Cost GetCableCostFromLength(float length)
 		{
-			int cashCost = Mathf.CeilToInt(Length * Data.cableCostMultiplier);
+			int cashCost = Mathf.CeilToInt(length * Data.cableCostMultiplier);
 
 			return new Cost
 			{
 				cash = cashCost,
 				science = 0
 			};
+		}
+
+		public Cost GetCost()
+		{
+			return GetCableCostFromLength(Length);
 		}
 
 		/// <summary>
@@ -380,12 +385,19 @@ namespace AstralAvarice.Frontend
 			};
 			OnApplied.Invoke(result);
 
-			// TODO: Use a function to set the attachment to listen to when the building gets destroyed.
-			ICableAttachment newFromAttachment = new BuildingInstanceCableAttachment(
-				(_toAttachment as BuildingInstanceCableAttachment).BuildingInstance,
-				false
-			);
-			SetFromAttachment(newFromAttachment);
+			BuildingComponent newFromBuilding = (_toAttachment as BuildingInstanceCableAttachment).BuildingInstance;
+			if (newFromBuilding.BackendBuilding.CanAcceptNewConnections())
+			{
+				SetFromAttachment(newFromBuilding, false);
+				SetToAttachment(null); // Will be set to non-null on next update.
+				return;
+			}
+
+			BuildingComponent oldFromBuilding = (_fromAttachment as BuildingInstanceCableAttachment).BuildingInstance;
+			if (oldFromBuilding.BackendBuilding.CanAcceptNewConnections())
+				return;
+
+			SetFromAttachment(null); // Will be set to non-null on next update.
 			SetToAttachment(null); // Will be set to non-null on next update.
 		}
 

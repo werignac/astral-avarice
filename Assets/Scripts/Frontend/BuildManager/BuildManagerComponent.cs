@@ -274,7 +274,7 @@ public class BuildManagerComponent : MonoBehaviour
 			CostConstraintData data = new CostConstraintData
 			{
 				cost = cost,
-				preceedingCosts = new Cost { cash = 0, science = 0}
+				preceedingCosts = Cost.ZERO
 			};
 
 			BuildWarning.WarningType highestCostWarning = DefaultQueryConstraintType(data, costConstraints, context);
@@ -328,15 +328,34 @@ public class BuildManagerComponent : MonoBehaviour
 		if (chainState == null)
 			throw new ArgumentNullException("chainState");
 
+		Cost buildingCost = chainState.GetBuildingCost();
+		Cost cableCost = chainState.GetCableCost();
+
+		CostConstraintData buildingCostData = new CostConstraintData
+		{
+			cost = buildingCost,
+			preceedingCosts = Cost.ZERO
+		};
+
+		CostConstraintData cableCostData = new CostConstraintData
+		{
+			cost = cableCost,
+			preceedingCosts = buildingCost
+		};
+
 		// Start by getting the warning for the building.
+		BuildWarning.WarningType buildingCostHighestWarning = DefaultQueryConstraintType(buildingCostData, costConstraints, context);
 		BuildWarning.WarningType buildingHighestWarning = DefaultQueryConstraintType(chainState as IBuildingPlacer, buildingConstraints, context);
 
-		// TODO: Include the cost of the building as a check.
+		if (buildingCostHighestWarning > buildingHighestWarning)
+			buildingHighestWarning = buildingCostHighestWarning;
 
 		// Then get the warning for the cable.
+		BuildWarning.WarningType cableCostHighestWarning = DefaultQueryConstraintType(cableCostData, costConstraints, context);
 		BuildWarning.WarningType cableHighestWarning = DefaultQueryConstraintType(chainState as ICablePlacer, cableConstraints, context);
 
-		// TODO: Include the cost of the cable as a check. Don't forget to include the building cost.
+		if (cableCostHighestWarning > cableHighestWarning)
+			cableHighestWarning = cableCostHighestWarning;
 
 		return new ChainConstraintsQueryResult(buildingHighestWarning, cableHighestWarning);
 	}
