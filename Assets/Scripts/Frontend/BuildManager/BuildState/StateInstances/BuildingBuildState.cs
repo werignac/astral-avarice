@@ -230,10 +230,7 @@ namespace AstralAvarice.Frontend
 				BuildingComponent hoveringBuilding = _selectionCursor.FindFirstBuilding();
 				if (hoveringBuilding != null)
 				{
-					if (hoveringBuilding.BackendBuilding.CanAcceptNewConnections())
-					{
-						Chain(hoveringBuilding);
-					}
+					TryChain(hoveringBuilding);
 					// NOTE: Because of this return, if we click on a building we can't chain from, nothing will happen
 					// note even cancelling.
 					return;
@@ -365,8 +362,8 @@ namespace AstralAvarice.Frontend
 			OnApplied.Invoke(result);
 
 			// Transition to chaining from the new building.
-			if (building.BackendBuilding.CanAcceptNewConnections())
-				Chain(building);
+			TryChain(building);
+			// If chaining fails, just stay in this state.
 		}
 
 		/// <summary>
@@ -379,10 +376,27 @@ namespace AstralAvarice.Frontend
 			OnRequestTransition.Invoke(transition);
 		}
 
-		private void Chain(BuildingComponent chainFrom)
+		/// <summary>
+		/// Attempts to chain from the passed building. If _toBuild is a building
+		/// type that doesn't support cables, false is returned.
+		/// 
+		/// </summary>
+		/// <param name="chainFrom">The building instance to chain from.</param>
+		/// <returns>True if we were able to send a signal to chain. False otherwise.</returns>
+		private bool TryChain(BuildingComponent chainFrom)
 		{
+			if (chainFrom == null)
+				throw new ArgumentNullException("chainFrom");
+
+			if (_toBuild.BuildingSettings.BuildingDataAsset.maxPowerLines <= 0)
+				return false;
+
+			if (!chainFrom.BackendBuilding.CanAcceptNewConnections())
+				return false;
+
 			BuildStateTransitionSignal transition = new ChainTransitionSignal(chainFrom, _toBuild.BuildingSettings, false);
 			OnRequestTransition.Invoke(transition);
+			return true;
 		}
 
 		public void CleanUp()

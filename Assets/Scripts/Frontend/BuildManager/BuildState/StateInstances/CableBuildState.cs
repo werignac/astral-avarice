@@ -407,8 +407,28 @@ namespace AstralAvarice.Frontend
 		/// </summary>
 		private void Cancel()
 		{
-			BuildStateTransitionSignal transition = new CancelTransitionSignal(false);
-			OnRequestTransition.Invoke(transition);
+			BuildStateTransitionSignal signal = new CancelTransitionSignal(false);
+			OnRequestTransition.Invoke(signal);
+		}
+
+		/// <summary>
+		/// Tries to chain using the current state of the cable build state
+		/// and the passed building to construct.
+		/// </summary>
+		/// <param name="toBuild">The building to build in chained mode.</param>
+		/// <returns>True if we were able to send a chain signal. False otherwise.</returns>
+		private bool TryChain(BuildingSettingEntry toBuild)
+		{
+			if (toBuild.BuildingDataAsset.maxPowerLines <= 0)
+				return false;
+
+			if (!GetIsFromAttachmentSetAndNonVolatile())
+				return false;
+
+			BuildingComponent chainFrom = (_fromAttachment as BuildingInstanceCableAttachment).BuildingInstance;
+			BuildStateTransitionSignal chainSignal = new ChainTransitionSignal(chainFrom, toBuild, false);
+			OnRequestTransition.Invoke(chainSignal);
+			return true;
 		}
 
 		public void CleanUp()
@@ -427,13 +447,11 @@ namespace AstralAvarice.Frontend
 
 			// When the user presses on a building button whilst in the cable state, start chaining
 			// from the current "from" building (if there is one).
-			if (signal.GetSignalType() == BuildStateTransitionSignalType.BUILDING && GetIsFromAttachmentSetAndNonVolatile())
+			if (signal.GetSignalType() == BuildStateTransitionSignalType.BUILDING)
 			{
 				BuildingSettingEntry toBuild = (signal as BuildingTransitionSignal).NewBuildingType;
-				BuildingComponent chainFrom = (_fromAttachment as BuildingInstanceCableAttachment).BuildingInstance;
-				BuildStateTransitionSignal chainSignal = new ChainTransitionSignal(chainFrom, toBuild, false);
-				OnRequestTransition.Invoke(chainSignal);
-				return true;
+				bool chained = TryChain(toBuild);
+				return chained;
 			}
 
 			return false;
