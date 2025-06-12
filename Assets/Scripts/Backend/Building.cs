@@ -32,6 +32,9 @@ public class Building
         get;
         set;
     }
+	/// <summary>
+	/// Number of this building's special resources that are being provided by the planet it is on.
+	/// </summary>
     public int ResourcesProvided { get; set; }
     public int BuildingGroup {
 		get => gridGroup;

@@ -28,6 +28,14 @@ namespace AstralAvarice.Frontend
 	}
 
 	/// <summary>
+	/// TODO: Find a better name?
+	/// </summary>
+	public interface IHasCost
+	{
+		public Cost GetCost();
+	}
+
+	/// <summary>
 	/// Interface for all the states of the build manager.
 	/// </summary>
     public interface IBuildState
@@ -48,11 +56,10 @@ namespace AstralAvarice.Frontend
 		public BuildStateType GetStateType();
 
 		/// <summary>
+		/// Called by owner every frame (before querying constraints).
 		/// </summary>
-		/// <param name="input"></param>
+		/// <param name="input">Input from the player.</param>
 		public void Update(BuildStateInput input);
-
-		// TODO: Apply constraints somewhere. Take an external context (cost of building for cable in chain mode).
 
 		/// <summary>
 		/// Called after construction and after CleanUp for the last state, but before
@@ -64,5 +71,19 @@ namespace AstralAvarice.Frontend
 		/// Called before this build state is destroyed / when we're switching out of this build state.
 		/// </summary>
 		public void CleanUp();
+	}
+
+	/// <summary>
+	/// Build state that processes the result of applying constraints.
+	/// Almost all BuildStates implement this interface.
+	/// </summary>
+	public interface IPostConstraintsBuildState<TConstraintsQueryResult> : IBuildState
+	{
+		/// <summary>
+		/// Called by owner every frame after querying constraints.
+		/// </summary>
+		/// <param name="input">Input from the player.</param>
+		/// <param name="constraintsResult">Result of querying constraints.</param>
+		public void UpdatePostConstraints(BuildStateInput input, TConstraintsQueryResult constraintsResult);
 	}
 }

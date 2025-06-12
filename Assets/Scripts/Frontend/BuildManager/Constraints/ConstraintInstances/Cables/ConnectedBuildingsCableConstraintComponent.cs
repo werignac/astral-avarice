@@ -6,20 +6,20 @@ namespace AstralAvarice.Frontend
 	/// Constraint that forces the cables that a building will connect to fit certain
 	/// requirements.
 	/// </summary>
-	public class ConnectedBuildingsCableConstraintComponent : CableConstraintComponent
+	public class ConnectedBuildingsCableConstraintComponent : CablePlacerConstraintComponent
 	{
-		public override ConstraintQueryResult QueryConstraint(CableConstraintData state)
+		public override ConstraintQueryResult QueryConstraint(ICablePlacer state)
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
-			ICableAttachment fromAttachment = state.cableState.GetFromAttachment();
-			ICableAttachment toAttachment = state.cableState.GetToAttachment();
+			ICableAttachment fromAttachment = state.GetFromAttachment();
+			ICableAttachment toAttachment = state.GetToAttachment();
 
 			if (TryGetWarningForAttachment(fromAttachment, "starting", out BuildWarning fromWarning))
 				result.AddWarning(fromWarning);
 
 			// Don't show the warnings for the "to" building while we haven't set the "from" building yet.
-			if (state.cableState.GetIsFromAttachmentSetAndNonVolatile())
+			if (fromAttachment.GetIsSetAndNonVolatile())
 			{
 				if (TryGetWarningForAttachment(toAttachment, "ending", out BuildWarning toWarning))
 					result.AddWarning(toWarning);
@@ -60,6 +60,17 @@ namespace AstralAvarice.Frontend
 				}
 			}
 
+			/*
+			if (attachment is BuildingCursorCableAttachment buildingCursorAttachment)
+			{
+				if (buildingCursorAttachment.BuildingCursor.GetBuildingPlaceability() == BuildWarning.WarningType.FATAL)
+				{
+					warning = GetBuildingCannotBePlacedWarning();
+					return true;
+				}
+			}
+			*/
+
 			warning = new BuildWarning();
 			return false;
 		}
@@ -78,6 +89,13 @@ namespace AstralAvarice.Frontend
 		{
 			return new BuildWarning($"{building.Data.buildingName} cannot support any more connections. Limit is {building.Data.maxPowerLines}.", BuildWarning.WarningType.FATAL);
 		}
+
+		/*
+		private static BuildWarning GetBuildingCannotBePlacedWarning()
+		{
+			return new BuildWarning($"The new building cannot be placed, so neither can this cable.", BuildWarning.WarningType.FATAL);
+		}
+		*/
 
 		public bool TryGetWarningForRedundancy(ICableAttachment fromAttachment, ICableAttachment toAttachment, out BuildWarning warning)
 		{

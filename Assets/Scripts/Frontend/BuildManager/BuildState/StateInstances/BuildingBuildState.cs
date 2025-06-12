@@ -8,7 +8,7 @@ namespace AstralAvarice.Frontend
 	/// <summary>
 	/// Build state of the BuildManager when placing a new building.
 	/// </summary>
-	public class BuildingBuildState : IBuildState, IBuildingPlacer, IInspectable
+	public class BuildingBuildState : IPostConstraintsBuildState<BuildWarning.WarningType>, IBuildingPlacer, IInspectable, IHasCost
 	{
 		#region Fields
 		/// <summary>
@@ -38,13 +38,6 @@ namespace AstralAvarice.Frontend
 		/// a building.
 		/// </summary>
 		private readonly SelectionCursorComponent _selectionCursor;
-		/// <summary>
-		/// The callback to invoke when this state wants to query its constraints.
-		/// Returns whether this build state passed all its constraints.
-		/// 
-		/// TODO: Have a different return type that allows for alerts (color the building cursor orange).
-		/// </summary>
-		private readonly Func<BuildWarning.WarningType> _queryConstraintCallback;
 		#endregion Fields
 
 		#region Events
@@ -73,8 +66,7 @@ namespace AstralAvarice.Frontend
 				BuildingCursorComponent buildingCursor,
 				SelectionCursorComponent selectionCursor,
 				GravityFieldCursorComponent gravityCursor,
-				GameController gameController,
-				Func<BuildWarning.WarningType> queryConstraintCallback
+				GameController gameController
 			)
 		{
 			if (toBuild == null)
@@ -101,11 +93,6 @@ namespace AstralAvarice.Frontend
 				throw new ArgumentNullException("gameController");
 
 			_gameController = gameController;
-
-			if (queryConstraintCallback == null)
-				throw new ArgumentNullException("queryConstraintCallback");
-
-			_queryConstraintCallback = queryConstraintCallback;
 		}
 
 		public void Start()
@@ -122,6 +109,11 @@ namespace AstralAvarice.Frontend
 		public IPlacingBuilding GetPlacingBuilding()
 		{
 			return _toBuild;
+		}
+
+		public BuildingCursorComponent GetBuildingCursor()
+		{
+			return _buildingCursor;
 		}
 
 		/// <summary>
@@ -178,8 +170,8 @@ namespace AstralAvarice.Frontend
 		{
 			return new Cost
 			{
-				cashCost = _toBuild.BuildingSettings.BuildingDataAsset.cost,
-				scienceCost = _toBuild.BuildingSettings.BuildingDataAsset.scienceCost
+				cash = _toBuild.BuildingSettings.BuildingDataAsset.cost,
+				science = _toBuild.BuildingSettings.BuildingDataAsset.scienceCost
 			};
 		}
 
@@ -215,20 +207,22 @@ namespace AstralAvarice.Frontend
 		}
 
 		/// <summary>
-		/// Called externally by owner every frame.
+		/// Called externally by owner every frame before querying constraints.
 		/// </summary>
 		/// <param name="input">Input from the player.</param>
 		public void Update(BuildStateInput input)
 		{
-			// TODO: Check if we're hovering over a building. If so, hide the cursor?
-
-			// TODO: Use selection cursor for world position?
 			UpdateBuildingPosition(_selectionCursor.GetPosition());
-			
-			BuildWarning.WarningType constraintsResult = QueryConstraints();
+		}
 
+		/// <summary>
+		/// Called externally by owner every frame after querying constraints.
+		/// </summary>
+		/// <param name="input">Input from the player.</param>
+		/// <param name="constraintsResult">The result from querying constraints.</param>
+		public void UpdatePostConstraints(BuildStateInput input, BuildWarning.WarningType constraintsResult)
+		{
 			UpdateBuildingCursorColor(constraintsResult);
-
 
 			if (input.primaryFire)
 			{
@@ -236,11 +230,13 @@ namespace AstralAvarice.Frontend
 				BuildingComponent hoveringBuilding = _selectionCursor.FindFirstBuilding();
 				if (hoveringBuilding != null)
 				{
-					if (!hoveringBuilding.BackendBuilding.CanAcceptNewConnections())
+					if (hoveringBuilding.BackendBuilding.CanAcceptNewConnections())
 					{
 						Chain(hoveringBuilding);
-						return;
 					}
+					// NOTE: Because of this return, if we click on a building we can't chain from, nothing will happen
+					// note even cancelling.
+					return;
 				}
 
 				// If the player is clicking on empty space, cancel.
@@ -353,17 +349,6 @@ namespace AstralAvarice.Frontend
 		}
 
 		/// <summary>
-		/// Checks all the constrains for this state and determines whether we can
-		/// currently place a building.
-		/// </summary>
-		private BuildWarning.WarningType QueryConstraints()
-		{
-			// Check all the constraints for this state.
-			// NOTE: In order to avoid circular references, the actual check happens externally.
-			return _queryConstraintCallback();
-		}
-
-		/// <summary>
 		/// Called internally when the player wants to and can place the selected buidling.
 		/// </summary>
 		private void Apply()
@@ -378,8 +363,10 @@ namespace AstralAvarice.Frontend
 				buildingInstance = building
 			};
 			OnApplied.Invoke(result);
+
 			// Transition to chaining from the new building.
-			Chain(building);
+			if (building.BackendBuilding.CanAcceptNewConnections())
+				Chain(building);
 		}
 
 		/// <summary>

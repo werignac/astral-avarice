@@ -11,6 +11,20 @@ namespace AstralAvarice.Frontend
 		Vector2 GetPosition();
     }
 
+	public static class ICableAttachmentExtentions
+	{
+		public static bool GetIsSetAndNonVolatile(this ICableAttachment attachment)
+		{
+			if (attachment == null)
+				return false;
+
+			if (attachment is BuildingInstanceCableAttachment buildingAttachment)
+				return !buildingAttachment.IsVolatile;
+
+			return true;
+		}
+	}
+
 	public class BuildingInstanceCableAttachment : ICableAttachment
 	{
 		/// <summary>

@@ -58,5 +58,11 @@ namespace AstralAvarice.Frontend
 		/// Invoked when the planet we will place the building on changes.
 		/// </summary>
 		public UnityEvent<PlanetComponent> OnProspectivePlanetChanged { get; }
+
+		/// <summary>
+		/// Returns the building cursor that is being used to place the building.
+		/// </summary>
+		/// <returns></returns>
+		public BuildingCursorComponent GetBuildingCursor();
     }
 }

@@ -22,5 +22,11 @@ namespace AstralAvarice.Frontend
 		/// The current length of the cable in world-space.
 		/// </summary>
 		float Length { get; }
+
+		/// <summary>
+		/// Returns the cable cursor used for placing the cable.
+		/// </summary>
+		/// <returns>The cable cursor that will be used for placing the cable.</returns>
+		CableCursorComponent GetCableCursor();
     }
 }

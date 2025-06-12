@@ -5,17 +5,17 @@ namespace AstralAvarice.Frontend
 	/// <summary>
 	/// Restricts the length of a cable to be under the max determined by build settings.
 	/// </summary>
-	public class LengthCableConstraintComponent : CableConstraintComponent
+	public class LengthCableConstraintComponent : CablePlacerConstraintComponent
 	{
-		public override ConstraintQueryResult QueryConstraint(CableConstraintData state)
+		public override ConstraintQueryResult QueryConstraint(ICablePlacer state)
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
 			// Don't show the warning until the player has clicked on the first building.
-			if (!state.cableState.GetIsFromAttachmentSetAndNonVolatile())
+			if (!state.GetFromAttachment().GetIsSetAndNonVolatile())
 				return result;
 
-			float cableLength = state.cableState.Length;
+			float cableLength = state.Length;
 			float remainingCableLength = GlobalBuildingSettings.GetOrCreateSettings().MaxCableLength - cableLength;
 			bool cableIsTooLong = remainingCableLength < 0;
 			string formatLength = cableLength.ToString("0.00");

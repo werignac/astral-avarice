@@ -5,12 +5,36 @@ using UnityEngine.Events;
 
 namespace AstralAvarice.Frontend
 {
-    public class ChainBuildState : IBuildState, IBuildingPlacer, ICablePlacer, IInspectable
+	// TODO: Rename. This name is too close to ConstraintQueryResult?
+	public struct ChainConstraintsQueryResult
+	{
+		private readonly BuildWarning.WarningType _buildingResult;
+		private readonly BuildWarning.WarningType _cableResult;
+
+		public ChainConstraintsQueryResult(
+			BuildWarning.WarningType buildingResult,
+			BuildWarning.WarningType cableResult
+		)
+		{
+			_buildingResult = buildingResult;
+			_cableResult = cableResult;
+		}
+
+		public BuildWarning.WarningType GetBuildingResult() => _buildingResult;
+
+		public BuildWarning.WarningType GetCableResult()
+		{
+			if (_buildingResult == BuildWarning.WarningType.FATAL)
+				return BuildWarning.WarningType.FATAL;
+			return _cableResult;
+		}
+	}
+
+	public class ChainBuildState : IPostConstraintsBuildState<ChainConstraintsQueryResult>, IBuildingPlacer, ICablePlacer, IInspectable
     {
-		private BuildingBuildState subBuildingBuildState;
+		private BuildingBuildState _subBuildingBuildState;
 
 		private SelectionCursorComponent _selectionCursor;
-		private BuildingCursorComponent _buildingCursor;
 		private CableCursorComponent _cableCursor;
 
 		private BuildingInstanceCableAttachment _fromAttachment;
@@ -32,22 +56,20 @@ namespace AstralAvarice.Frontend
 				GameController gameController
 			)
 		{
-			subBuildingBuildState = new BuildingBuildState(
+			_subBuildingBuildState = new BuildingBuildState(
 					toBuild,
 					buildingCursor,
 					selectionCursor,
 					gravityCursor,
-					gameController,
-					() => { return BuildWarning.WarningType.FATAL; }
+					gameController
 				);
 
 			// Chain invokations of OnProspectivePlanetChanged out of this state.
-			subBuildingBuildState.OnProspectivePlanetChanged.AddListener(OnProspectivePlanetChanged.Invoke);
+			_subBuildingBuildState.OnProspectivePlanetChanged.AddListener(OnProspectivePlanetChanged.Invoke);
 
 			// TODO: Listen to transition and apply events from the sub state.
 
 			_selectionCursor = selectionCursor; // Null check occurs in BuildingBuildState.
-			_buildingCursor = buildingCursor;
 
 			if (cableCursor == null)
 				throw new ArgumentNullException("cableCursor");
@@ -60,7 +82,7 @@ namespace AstralAvarice.Frontend
 
 		public void Start()
 		{
-			subBuildingBuildState.Start();
+			_subBuildingBuildState.Start();
 			InitializeCableCursor();
 		}
 
@@ -71,6 +93,13 @@ namespace AstralAvarice.Frontend
 		}
 
 		public BuildStateType GetStateType() => BuildStateType.BUILDING_CHAINED;
+
+		public CableCursorComponent GetCableCursor() => _cableCursor;
+
+		public BuildingCursorComponent GetBuildingCursor()
+		{
+			return _subBuildingBuildState.GetBuildingCursor();
+		}
 
 		public float Length => Vector2.Distance(_fromAttachment.GetPosition(), _toAttachment.GetPosition());
 
@@ -86,23 +115,25 @@ namespace AstralAvarice.Frontend
 
 		public IPlacingBuilding GetPlacingBuilding()
 		{
-			return subBuildingBuildState.GetPlacingBuilding();
+			return _subBuildingBuildState.GetPlacingBuilding();
 		}
 
 		public PlanetComponent GetProspectivePlanet()
 		{
-			return subBuildingBuildState.GetProspectivePlanet();
+			return _subBuildingBuildState.GetProspectivePlanet();
 		}
 
 		public void Update(BuildStateInput input)
 		{
-			subBuildingBuildState.Update(input);
-
+			_subBuildingBuildState.Update(input);
 			UpdateCableCursorPosition();
+		}
 
+		public void UpdatePostConstraints(BuildStateInput input, ChainConstraintsQueryResult constraintsResult)
+		{
 			if (input.primaryFire)
 			{
-				
+
 			}
 			else if (input.secondaryFire)
 			{
@@ -114,8 +145,8 @@ namespace AstralAvarice.Frontend
 		private void UpdateCableCursorPosition()
 		{
 			// If we are prospecting a place to put the building, the building cursor is showing.
-			if (subBuildingBuildState.GetHasProspectivePlacement())
-				_toAttachment = new BuildingCursorCableAttachment(_buildingCursor);
+			if (_subBuildingBuildState.GetHasProspectivePlacement())
+				_toAttachment = new BuildingCursorCableAttachment(_subBuildingBuildState.GetBuildingCursor());
 			else
 				_toAttachment = new CursorCableAttachment(_selectionCursor);
 
@@ -124,7 +155,7 @@ namespace AstralAvarice.Frontend
 
 		private void DechainToBuilding()
 		{
-			BuildStateTransitionSignal signal = new BuildingTransitionSignal(subBuildingBuildState.ToBuild.BuildingSettings, false);
+			BuildStateTransitionSignal signal = new BuildingTransitionSignal(_subBuildingBuildState.ToBuild.BuildingSettings, false);
 			OnRequestTransition.Invoke(signal);
 		}
 
@@ -136,13 +167,13 @@ namespace AstralAvarice.Frontend
 
 		public void CleanUp()
 		{
-			subBuildingBuildState.CleanUp();
+			_subBuildingBuildState.CleanUp();
 			_cableCursor.Hide();
 		}
 
 		public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
 		{
-			return subBuildingBuildState.GetInspectorElement(out inspectorController);
+			return _subBuildingBuildState.GetInspectorElement(out inspectorController);
 		}
 	}
 }

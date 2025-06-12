@@ -2,16 +2,18 @@ using UnityEngine;
 
 namespace AstralAvarice.Frontend
 {
-    public class PlanetPlaceabilityBuildingConstraintComponent : BuildingConstraintComponent
+    public class PlanetPlaceabilityBuildingConstraintComponent : BuildingPlacerConstraintComponent
     {
-		public override ConstraintQueryResult QueryConstraint(BuildingConstraintData state)
+		public override ConstraintQueryResult QueryConstraint(IBuildingPlacer state)
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
-			if (!state.buildState.GetHasProspectivePlacement())
+			PlanetComponent planet = state.GetProspectivePlanet();
+
+			if (planet == null)
 				return result;
 
-			if (!state.buildingCursor.ParentPlanet.CanPlaceBuildings)
+			if (!planet.CanPlaceBuildings)
 			{
 				BuildWarning warning = new BuildWarning("Cannot place buildings on this celestial body.", BuildWarning.WarningType.FATAL);
 				result.AddWarning(warning);

@@ -8,20 +8,21 @@ namespace AstralAvarice.Frontend
 	/// Restricts the cable to only overlap the buildings it will connect to
 	/// and the other cables that connect to those buildings.
 	/// </summary>
-	public class OverlappingStructuresCableConstraintComponent : CableConstraintComponent
+	public class OverlappingStructuresCableConstraintComponent : CablePlacerConstraintComponent
 	{
-		public override ConstraintQueryResult QueryConstraint(CableConstraintData state)
+		public override ConstraintQueryResult QueryConstraint(ICablePlacer state)
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
+			CableCursorComponent cableCursor = state.GetCableCursor();
+
 			// If a start and an end have not been made yet, this constraint is not applicable yet.
-			if (!state.cableCursor.GetHasValidStartAndEnd())
+			if (!cableCursor.GetHasValidStartAndEnd())
 				return result;
 
-			List<Collider2D> cableOverlaps = new List<Collider2D>(state.cableCursor.QueryOverlappingColliders());
-			CableBuildState cableBuildState = state.cableState;
-			BuildingComponent fromBuilding = GetBuildingComponentFromAttachment(cableBuildState.GetFromAttachment());
-			BuildingComponent toBuilding = GetBuildingComponentFromAttachment(cableBuildState.GetToAttachment());
+			List<Collider2D> cableOverlaps = new List<Collider2D>(cableCursor.QueryOverlappingColliders());
+			BuildingComponent fromBuilding = GetBuildingComponentFromAttachment(state.GetFromAttachment());
+			BuildingComponent toBuilding = GetBuildingComponentFromAttachment(state.GetToAttachment());
 
 			int badOverlapIndex = cableOverlaps.FindIndex((Collider2D collider) =>
 			{

@@ -27,6 +27,8 @@ public class BuildingCursorComponent : MonoBehaviour
 	[SerializeField] private Color placeableWithWarningColor;
 	// Color to use when something cannot be placed.
 	[SerializeField] private Color notPlaceableColor;
+	// The placeability that is currently being shown by the build cursor.
+	private BuildWarning.WarningType _showingPlaceability;
 
 	// The planet we're planning to spawn the building on.
 	private PlanetComponent parentPlanet;
@@ -134,6 +136,17 @@ public class BuildingCursorComponent : MonoBehaviour
 				connectionPoint.SetColor(notPlaceableColor);
 				break;
 		}
+
+		_showingPlaceability = canPlace;
+	}
+
+	/// <summary>
+	/// Returns what type of placeability the cursor is currently showing.
+	/// </summary>
+	/// <returns>The type of placeability the cursor ir currently showing.</returns>
+	public BuildWarning.WarningType GetBuildingPlaceability()
+	{
+		return _showingPlaceability;
 	}
 
 	/// <summary>

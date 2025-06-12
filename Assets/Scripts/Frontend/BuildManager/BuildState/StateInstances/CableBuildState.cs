@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace AstralAvarice.Frontend
 {
-	public class CableBuildState : IBuildState, ICablePlacer, IOverrideExternalSignal
+	public class CableBuildState : IPostConstraintsBuildState<BuildWarning.WarningType>, ICablePlacer, IOverrideExternalSignal, IHasCost
 	{
 		/// <summary>
 		/// The first object the cable is attached to.
@@ -27,11 +27,6 @@ namespace AstralAvarice.Frontend
 		/// The component that tells us what the player is hovering over.
 		/// </summary>
 		private readonly SelectionCursorComponent _selectionCursor;
-		/// <summary>
-		/// The callback to invoke when this state want to query its constraints.
-		/// Returns whether this build state passed all its constraints.
-		/// </summary>
-		private readonly Func<BuildWarning.WarningType> _queryConstraintCallback;
 
 		/// <summary>
 		/// Invoked when we want to switch to a different build state.
@@ -45,7 +40,6 @@ namespace AstralAvarice.Frontend
 		public CableBuildState(
 				CableCursorComponent cableCursor,
 				SelectionCursorComponent selectionCursor,
-				Func<BuildWarning.WarningType> queryConstraintCallback,
 				BuildingComponent startingBuilding = null
 			)
 		{
@@ -68,11 +62,6 @@ namespace AstralAvarice.Frontend
 				throw new ArgumentNullException("selectionCursor");
 
 			_selectionCursor = selectionCursor;
-
-			if (queryConstraintCallback == null)
-				throw new ArgumentNullException("queryConstraintCallback");
-
-			_queryConstraintCallback = queryConstraintCallback;
 		}
 
 		public void Start() { }
@@ -81,6 +70,8 @@ namespace AstralAvarice.Frontend
 		{
 			return BuildStateType.CABLE;
 		}
+
+		public CableCursorComponent GetCableCursor() => _cableCursor;
 
 		public ICableAttachment GetFromAttachment()
 		{
@@ -111,18 +102,15 @@ namespace AstralAvarice.Frontend
 			}
 		}
 		
-		public Cost Cost
+		public Cost GetCost()
 		{
-			get
-			{
-				int cashCost = Mathf.CeilToInt(Length * Data.cableCostMultiplier);
+			int cashCost = Mathf.CeilToInt(Length * Data.cableCostMultiplier);
 
-				return new Cost
-				{
-					cashCost = cashCost,
-					scienceCost = 0
-				};
-			}
+			return new Cost
+			{
+				cash = cashCost,
+				science = 0
+			};
 		}
 
 		/// <summary>
@@ -235,13 +223,7 @@ namespace AstralAvarice.Frontend
 		/// </summary>
 		public bool GetIsFromAttachmentSetAndNonVolatile()
 		{
-			if (_fromAttachment == null)
-				return false;
-
-			if (_fromAttachment is BuildingInstanceCableAttachment buildingAttachment)
-				return !buildingAttachment.IsVolatile;
-
-			return true;
+			return _fromAttachment.GetIsSetAndNonVolatile();
 		}
 
 		public void Update(BuildStateInput input)
@@ -268,38 +250,62 @@ namespace AstralAvarice.Frontend
 			}
 
 			UpdateCableCursorPosition();
+		}
 
-			BuildWarning.WarningType constraintsResult = QueryConstraints();
+		public void UpdatePostConstraints(BuildStateInput input, BuildWarning.WarningType constraintsResult)
+		{
 			bool passesConstraints = constraintsResult < BuildWarning.WarningType.FATAL;
 
 			UpdateCableCursorColor(constraintsResult);
 
 			if (input.primaryFire)
 			{
-				// The player clicked while not hovering over anything.
-				if (hoveringBuilding == null)
+				// The player clicked on empty space before clicking on a building.
+				if (_fromAttachment == null)
 				{
 					Cancel();
 					return;
 				}
-				
-				// Set this according to whether the player has set the from for this cable yet. 
-				bool isFromSetAndNonVolatile = GetIsFromAttachmentSetAndNonVolatile();
-				// Is the from not set or do we not meet the constraints.
-				if (! (isFromSetAndNonVolatile && passesConstraints))
+
+				// If the player has yet to click on the "from" attachment and has just clicked
+				// on a building, make the building a non-volatile "from" attachment (if applicable).
+				BuildingInstanceCableAttachment fromBuildingAttachment = _fromAttachment as BuildingInstanceCableAttachment;
+				if (fromBuildingAttachment.IsVolatile)
 				{
-					if (hoveringBuilding.BackendBuilding.CanAcceptNewConnections())
+					if (fromBuildingAttachment.BuildingInstance.BackendBuilding.CanAcceptNewConnections())
 					{
-						// Set "from" to the player's selection (chaining in the case of constraintsResult == false).
-						SetToAttachment(null); // Will be set to non-null on next update.
-						SetFromAttachment(hoveringBuilding, false);
+						SetToAttachment(null);
+						SetFromAttachment(fromBuildingAttachment.BuildingInstance, false);
+					}
+					return;
+				}
+
+				// _fromAttachment is a non-volatile BuildingInstanceCableAttachment by this point.
+				Debug.Assert(!fromBuildingAttachment.IsVolatile);
+
+				if (! passesConstraints)
+				{
+					// Get whether the player is hovering over something using the "to" attachment.
+					bool isHoveringWithTo = _toAttachment != null && _toAttachment is BuildingInstanceCableAttachment;
+
+					if (isHoveringWithTo)
+					{
+						// If the player is hovering over a building where they can't place a cable due to constraints,
+						// switch to cabling from this building instead.
+						BuildingInstanceCableAttachment toBuildingAttachment = _toAttachment as BuildingInstanceCableAttachment;
+						if (toBuildingAttachment.BuildingInstance.BackendBuilding.CanAcceptNewConnections())
+						{
+							SetToAttachment(null);
+							SetFromAttachment(toBuildingAttachment.BuildingInstance, false);
+						}
+						return;
 					}
 					else
 					{
-						// Clicked on a building that cannot accept new connections.
-						// TODO: Play a fail sound.
+						// The player clicked on empty space after clicking on a building.
+						Cancel();
+						return;
 					}
-					return;
 				}
 
 				// Both "from" and "to" are set (since the player is hovering over a
@@ -321,11 +327,6 @@ namespace AstralAvarice.Frontend
 					Cancel();
 				return;
 			}
-		}
-
-		private BuildWarning.WarningType QueryConstraints()
-		{
-			return _queryConstraintCallback();
 		}
 
 		private void UpdateCableCursorPosition()
@@ -374,7 +375,7 @@ namespace AstralAvarice.Frontend
 
 			CableBuildStateApplyResult result = new CableBuildStateApplyResult
 			{
-				cost = Cost,
+				cost = GetCost(),
 				cableInstance = cableInstance
 			};
 			OnApplied.Invoke(result);

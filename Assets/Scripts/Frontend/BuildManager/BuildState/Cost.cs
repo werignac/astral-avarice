@@ -7,8 +7,8 @@ namespace AstralAvarice.Frontend
 	/// </summary>
 	public struct Cost
 	{
-		public int cashCost;
-		public int scienceCost;
+		public int cash;
+		public int science;
 
 		/// <summary>
 		/// Returns a new cost with the sum of the two costs.
@@ -19,8 +19,8 @@ namespace AstralAvarice.Frontend
 		{
 			return new Cost
 			{
-				cashCost = cashCost + otherCost.cashCost,
-				scienceCost = scienceCost + otherCost.scienceCost
+				cash = cash + otherCost.cash,
+				science = science + otherCost.science
 			};
 		}
 	}

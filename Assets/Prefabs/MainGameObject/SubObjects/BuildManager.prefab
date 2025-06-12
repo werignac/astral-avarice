@@ -1,50 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &305533350992239414
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1986662510015661284}
-  - component: {fileID: 3509088786960688486}
-  m_Layer: 0
-  m_Name: CashCost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1986662510015661284
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305533350992239414}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1994452882221505161}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3509088786960688486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305533350992239414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9057d6e9f27ec8c448fff0d45784f80e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameController: {fileID: 0}
 --- !u!1 &552290575283558544
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3352e704fdb5db419f6c55d76533436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1334166475142990902
+--- !u!1 &1624222355509875725
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,85 +96,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5018465488873736535}
-  - component: {fileID: 4078754569465316125}
+  - component: {fileID: 5026961881914878121}
+  - component: {fileID: 7325341880184518335}
   m_Layer: 0
-  m_Name: CashCost
+  m_Name: CostConstraint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5018465488873736535
+--- !u!4 &5026961881914878121
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334166475142990902}
+  m_GameObject: {fileID: 1624222355509875725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5353999313846886639}
+  m_Father: {fileID: 2097293367448532231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4078754569465316125
+--- !u!114 &7325341880184518335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334166475142990902}
+  m_GameObject: {fileID: 1624222355509875725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84cfedb78a71c374e8fa3a6a68e2fe93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameController: {fileID: 0}
---- !u!1 &1816907189222376926
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6454629417170894368}
-  - component: {fileID: 3165592929449956757}
-  m_Layer: 0
-  m_Name: AdvancedMaterialsCost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6454629417170894368
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816907189222376926}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5353999313846886639}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3165592929449956757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816907189222376926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35561947c2d506d429c7883448ef1d1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6459b1c85dcca3949befe10421d25d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
@@ -254,6 +164,7 @@ Transform:
   m_Children:
   - {fileID: 5353999313846886639}
   - {fileID: 1994452882221505161}
+  - {fileID: 5026961881914878121}
   m_Father: {fileID: 2025528842950530037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2334700681016315986
@@ -285,8 +196,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5018465488873736535}
-  - {fileID: 6454629417170894368}
   - {fileID: 850510255164713422}
   - {fileID: 3818099165280583422}
   - {fileID: 2968177352836937974}
@@ -707,7 +616,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1986662510015661284}
   - {fileID: 3299286337636901176}
   - {fileID: 6608108750454420477}
   - {fileID: 1476612643789492360}
@@ -890,25 +798,15 @@ MonoBehaviour:
   overrideBuildingsList: 0
   buildingsList: []
   buildingConstraints:
-  - constraint: {fileID: 4078754569465316125}
-    appliesToMove: 0
-  - constraint: {fileID: 3165592929449956757}
-    appliesToMove: 0
-  - constraint: {fileID: 9191438517106692034}
-    appliesToMove: 1
-  - constraint: {fileID: 5689663493269866540}
-    appliesToMove: 1
-  - constraint: {fileID: 2799872944239957526}
-    appliesToMove: 1
+  - {fileID: 2799872944239957526}
+  - {fileID: 9191438517106692034}
+  - {fileID: 5689663493269866540}
   cableConstraints:
-  - constraint: {fileID: 3509088786960688486}
-    appliesToMove: 0
-  - constraint: {fileID: 8532481772315773320}
-    appliesToMove: 1
-  - constraint: {fileID: 7583948509505511570}
-    appliesToMove: 0
-  - constraint: {fileID: 2865897882010659256}
-    appliesToMove: 1
+  - {fileID: 8532481772315773320}
+  - {fileID: 2865897882010659256}
+  - {fileID: 7583948509505511570}
+  costConstraints:
+  - {fileID: 7325341880184518335}
 --- !u!114 &1422196771999453588
 MonoBehaviour:
   m_ObjectHideFlags: 0

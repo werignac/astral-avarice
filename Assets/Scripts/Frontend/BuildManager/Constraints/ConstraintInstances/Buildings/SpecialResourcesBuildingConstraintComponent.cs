@@ -2,30 +2,54 @@ using UnityEngine;
 
 namespace AstralAvarice.Frontend
 {
-	public class SpecialResourcesBuildingConstraintComponent : BuildingConstraintComponent
+	public class SpecialResourcesBuildingConstraintComponent : BuildingPlacerConstraintComponent
 	{
-		public override ConstraintQueryResult QueryConstraint(BuildingConstraintData state)
+		public override ConstraintQueryResult QueryConstraint(IBuildingPlacer state)
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
-			if (!state.buildState.GetHasProspectivePlacement())
+			PlanetComponent placingPlanet = state.GetProspectivePlanet();
+
+			if (placingPlanet == null)
 				return result;
 
-			BuildingBuildState buildingBuildState = state.buildState;
-			BuildingCursorComponent buildingCursor = state.buildingCursor;
-			BuildingData buildingData = buildingBuildState.ToBuild.BuildingSettings.BuildingDataAsset;
+			IPlacingBuilding placingBuilding = state.GetPlacingBuilding();
 
-			if (buildingData.requiredResource != ResourceType.Resource_Count)
+			ResourceType requiredResourceType = ResourceType.Resource_Count;
+			int requiredResourceCount = 0;
+
+			if (placingBuilding is NewPlacingBuilding newPlacingBuilding)
 			{
-				if (buildingCursor.ParentPlanet.GetResourceCount(buildingData.requiredResource) <= 0
-					|| buildingCursor.ParentPlanet.GetAvailableResourceCount(buildingData.requiredResource) < buildingData.resourceAmountRequired)
+				BuildingData buildingData = newPlacingBuilding.BuildingSettings.BuildingDataAsset;
+
+				requiredResourceType = buildingData.requiredResource;
+				requiredResourceCount = buildingData.resourceAmountRequired;
+			}
+			else if (placingBuilding is ExistingPlacingBuilding existingPlacingBuilding)
+			{
+				requiredResourceType = existingPlacingBuilding.BuildingInstance.Data.requiredResource;
+				requiredResourceCount = existingPlacingBuilding.BuildingInstance.Data.resourceAmountRequired;
+
+				if (placingPlanet == existingPlacingBuilding.BuildingInstance.ParentPlanet)
 				{
-					BuildWarning warning = new BuildWarning("Missing Special Resources.", BuildWarning.WarningType.ALERT);
-					result.AddWarning(warning);
+					// If we're moving on the same planet, don't include the resources already provided in the calc
+					// for missing resources.
+					requiredResourceCount -= existingPlacingBuilding.BuildingInstance.BackendBuilding.ResourcesProvided;
 				}
 			}
 
+			if (requiredResourceType != ResourceType.Resource_Count && GetPlanetMissingResources(placingPlanet, requiredResourceType, requiredResourceCount))
+			{
+				result.AddWarning(new BuildWarning("Missing special resources.", BuildWarning.WarningType.ALERT));
+			}
+
 			return result;
+		}
+
+		private static bool GetPlanetMissingResources(PlanetComponent planet, ResourceType resourceType, int minimumAmount)
+		{
+			Debug.Assert(resourceType != ResourceType.Resource_Count);
+			return planet.GetResourceCount(resourceType) <= 0 || planet.GetAvailableResourceCount(resourceType) < minimumAmount;
 		}
 	}
 }

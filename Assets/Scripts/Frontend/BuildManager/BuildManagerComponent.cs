@@ -7,15 +7,6 @@ using UnityEngine.UIElements;
 using werignac.Utils;
 using AstralAvarice.Frontend;
 
-[Serializable]
-public class BuildConstraintEntry<TBuildConstraint, TBuildConstraintState> where TBuildConstraint : IBuildConstraint<TBuildConstraintState>
-{
-	[Tooltip("The constraint that restricts how a structure can be placed.")]
-	public TBuildConstraint constraint;
-	[Tooltip("Whether this constraint should be applied when moving buildings in addition to initially placing them.")]
-	public bool appliesToMove = true;
-}
-
 /// <summary>
 /// Singleton component that manages placing buildings.
 /// </summary>
@@ -58,10 +49,18 @@ public class BuildManagerComponent : MonoBehaviour
 	[SerializeField] private BuildingSettingEntry[] buildingsList = new BuildingSettingEntry[0];
 
 	[Header("Constraints")]
-	[SerializeField] private BuildConstraintEntry<BuildingConstraintComponent, BuildingConstraintData>[] buildingConstraints;
-	[SerializeField] private BuildConstraintEntry<CableConstraintComponent, CableConstraintData>[] cableConstraints;
+	[SerializeField] private BuildingPlacerConstraintComponent[] buildingConstraints;
+	[SerializeField] private CablePlacerConstraintComponent[] cableConstraints;
+	[SerializeField] private CostConstraintComponent[] costConstraints;
 
 	public IBuildState State { get => state; }
+
+	/// <summary>
+	/// When true, we skip quering constraints and calling UpdatePostConstraints this Update.
+	/// Useful for when we switch states prior to querying constraints this Update
+	/// (otherwise input would be used twice, state might be ready, etc.).
+	/// </summary>
+	private bool _skipConstraintsQueryThisUpdate = false;
 
 	public BuildingSettingEntry[] PlaceableBuildings
 	{
@@ -106,6 +105,10 @@ public class BuildManagerComponent : MonoBehaviour
 	/// <param name="newState"></param>
 	private void SetState(IBuildState newState)
 	{
+		// Prevent UpdatePostConstraints being called on a state before Update has been called.
+		// Won't affect calls outside of the update loop because _skipConstrainsQueryThisUpdate is set to false at the start of an Update.
+		_skipConstraintsQueryThisUpdate = true;
+
 		IBuildState oldState = state;
 
 		if (oldState != null)
@@ -204,8 +207,7 @@ public class BuildManagerComponent : MonoBehaviour
 			buildingCursor,
 			selectionCursor,
 			gravityCursor,
-			gameController,
-			QueryBuildingConstraints 
+			gameController
 		));
 	}
 
@@ -217,7 +219,6 @@ public class BuildManagerComponent : MonoBehaviour
 		SetState(new CableBuildState(
 			cableCursor,
 			selectionCursor,
-			QueryCableConstraints,
 			cableSignal.CableFrom
 		));
 	}
@@ -259,72 +260,85 @@ public class BuildManagerComponent : MonoBehaviour
 		OnBuildApply.Invoke(applyResult);
 	}
 
-	/// <summary>
-	/// TODO: Combine with QueryCableConstraints?
-	/// </summary>
-	public BuildWarning.WarningType QueryBuildingConstraints()
+	private BuildWarning.WarningType DefaultQueryConstraints(IBuildState state, BuildWarningContext context)
 	{
-		if (!(state is BuildingBuildState buildingState))
-			throw new Exception($"Cannot query building constraints while not in the building build state. Current state {state}.");
-
-		// TODO: Build data in state?
-		BuildingConstraintData data = new BuildingConstraintData
-		(
-			buildingState,
-			buildingCursor,
-			0
-		);
+		if (state == null)
+			throw new ArgumentNullException("state");
 
 		BuildWarning.WarningType highestWarning = BuildWarning.WarningType.GOOD;
-		BuildWarningContext warningContainer = new BuildWarningContext();
 
-		foreach (var constraintEntry in buildingConstraints)
+		if (state is IHasCost hasCost)
 		{
-			ConstraintQueryResult result = constraintEntry.constraint.QueryConstraint(data);
+			Cost cost = hasCost.GetCost();
 
-			warningContainer.AddBuildingWarnings(result.Warnings);
+			CostConstraintData data = new CostConstraintData
+			{
+				cost = cost,
+				preceedingCosts = new Cost { cash = 0, science = 0}
+			};
 
-			if (result.HighestWarning > highestWarning)
-				highestWarning = result.HighestWarning;
+			BuildWarning.WarningType highestCostWarning = DefaultQueryConstraintType(data, costConstraints, context);
+
+			if (highestCostWarning > highestWarning)
+				highestWarning = highestCostWarning;
 		}
 
-		OnBuildWarningUpdate.Invoke(warningContainer);
+		if (state is IBuildingPlacer buildingPlacer)
+		{
+			BuildWarning.WarningType highestBuildingPlacerWarning = DefaultQueryConstraintType(buildingPlacer, buildingConstraints, context);
+
+			if (highestBuildingPlacerWarning > highestWarning)
+				highestWarning = highestBuildingPlacerWarning;
+		}
+
+		if (state is ICablePlacer cablePlacer)
+		{
+			BuildWarning.WarningType highestCablePlacerWarning = DefaultQueryConstraintType(cablePlacer, cableConstraints, context);
+
+			if (highestCablePlacerWarning > highestWarning)
+				highestWarning = highestCablePlacerWarning;
+		}
 
 		return highestWarning;
 	}
 
-	/// <summary>
-	/// TODO: Combine with QueryBuildingConstraints
-	/// </summary>
-	public BuildWarning.WarningType QueryCableConstraints()
+	private static BuildWarning.WarningType DefaultQueryConstraintType<TInput, TConstraint>(
+			TInput constraintInput,
+			TConstraint[] constraints,
+			BuildWarningContext context
+		) where TConstraint : IBuildConstraint<TInput>
 	{
-		if (!(state is CableBuildState cableState))
-			throw new Exception($"Cannot query building constraints while not in the cable build state. Current state {state}.");
-
-		// TODO: Build data in state?
-		CableConstraintData data = new CableConstraintData
-		(
-			cableState,
-			cableCursor,
-			0
-		);
-
 		BuildWarning.WarningType highestWarning = BuildWarning.WarningType.GOOD;
-		BuildWarningContext warningContainer = new BuildWarningContext();
 
-		foreach (var constraintEntry in cableConstraints)
+		foreach (var constraint in constraints)
 		{
-			ConstraintQueryResult result = constraintEntry.constraint.QueryConstraint(data);
+			ConstraintQueryResult result = constraint.QueryConstraint(constraintInput);
 
-			warningContainer.AddCableWarnings(result.Warnings);
+			context.AddBuildingWarnings(result.Warnings);
 
 			if (result.HighestWarning > highestWarning)
 				highestWarning = result.HighestWarning;
 		}
 
-		OnBuildWarningUpdate.Invoke(warningContainer);
-
 		return highestWarning;
+	}
+
+	public ChainConstraintsQueryResult QueryChainConstraints(ChainBuildState chainState, BuildWarningContext context)
+	{
+		if (chainState == null)
+			throw new ArgumentNullException("chainState");
+
+		// Start by getting the warning for the building.
+		BuildWarning.WarningType buildingHighestWarning = DefaultQueryConstraintType(chainState as IBuildingPlacer, buildingConstraints, context);
+
+		// TODO: Include the cost of the building as a check.
+
+		// Then get the warning for the cable.
+		BuildWarning.WarningType cableHighestWarning = DefaultQueryConstraintType(chainState as ICablePlacer, cableConstraints, context);
+
+		// TODO: Include the cost of the cable as a check. Don't forget to include the building cost.
+
+		return new ChainConstraintsQueryResult(buildingHighestWarning, cableHighestWarning);
 	}
 
 	/// <summary>
@@ -368,8 +382,46 @@ public class BuildManagerComponent : MonoBehaviour
 
 	private void Update()
 	{
+		_skipConstraintsQueryThisUpdate = false;
 		UpdateCurrentState();
+		if (!_skipConstraintsQueryThisUpdate)
+			QueryConstraintsAndPostUpdate();
 		ResetInput();
+	}
+
+	/// <summary>
+	/// Query the constraints for the current BuildState and call
+	/// UpdatePostConstraints if relevant.
+	/// </summary>
+	private void QueryConstraintsAndPostUpdate()
+	{
+		BuildWarningContext context = new BuildWarningContext();
+
+		switch (state.GetStateType())
+		{
+			case BuildStateType.BUILDING_CHAINED:
+				{
+					ChainBuildState chainState = state as ChainBuildState;
+					ChainConstraintsQueryResult queryResult = QueryChainConstraints(chainState, context);
+					chainState.UpdatePostConstraints(input, queryResult);
+				}
+				break;
+			case BuildStateType.NONE:
+			case BuildStateType.DEMOLISH:
+			case BuildStateType.MOVE:
+				break;
+			default:
+				if (state is IPostConstraintsBuildState<BuildWarning.WarningType> constrainableState)
+				{
+					BuildWarning.WarningType queryResult = DefaultQueryConstraints(constrainableState, context);
+					constrainableState.UpdatePostConstraints(input, queryResult);
+				}
+				else
+					Debug.LogWarning($"Unrecognized build state type {state.GetStateType()} may be missing logic for querying constraints.");
+				break;
+		}
+
+		OnBuildWarningUpdate.Invoke(context);
 	}
 
 	/// <summary>

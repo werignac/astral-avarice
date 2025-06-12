@@ -375,8 +375,8 @@ public class GameController : MonoBehaviour
 		if (result is BuildingBuildStateApplyResult buildingResult)
 		{
 			RegisterBuilding(buildingResult.buildingInstance);
-			gameManager.SpendMoney(buildingResult.cost.cashCost);
-			gameManager.SpendScience(buildingResult.cost.scienceCost);
+			gameManager.SpendMoney(buildingResult.cost.cash);
+			gameManager.SpendScience(buildingResult.cost.science);
 			sfxAudio.clip = buildClip;
 			sfxAudio.Play();
 		}
@@ -385,7 +385,7 @@ public class GameController : MonoBehaviour
 		if (result is CableBuildStateApplyResult cableResult)
 		{
 			RegisterCable(cableResult.cableInstance);
-			gameManager.SpendMoney(cableResult.cost.cashCost);
+			gameManager.SpendMoney(cableResult.cost.cash);
 			if(!sfxAudio.isPlaying)
 			{
                 sfxAudio.clip = cableConnectClip;
