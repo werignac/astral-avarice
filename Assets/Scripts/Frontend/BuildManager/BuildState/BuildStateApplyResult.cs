@@ -47,4 +47,9 @@ namespace AstralAvarice.Frontend
 	{
 		public IDemolishable demolished;
 	}
+
+	public struct MoveBuildStateApplyResult : BuildStateApplyResult
+	{
+		public BuildingComponent moved;
+	}
 }

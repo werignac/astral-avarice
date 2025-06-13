@@ -51,6 +51,20 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 	}
 
 	/// <summary>
+	/// Returns whether this cable connects to the passed building
+	/// via either end.
+	/// </summary>
+	/// <param name="building">The building to check. Cannot be null, but can be a destroyed building.</param>
+	/// <returns>True if this cable connects to the passed building. False otherwise.</returns>
+	public bool GetConnectsTo(BuildingComponent building)
+	{
+		if (building is null)
+			throw new ArgumentNullException("building");
+
+		return building == startBuilding || building == endBuilding;
+	}
+
+	/// <summary>
 	/// Which independent power grid this cable belongs to.
 	/// </summary>
 	public int GridGroup
@@ -192,8 +206,9 @@ public class CableComponent : MonoBehaviour, IDemolishable, IGridGroupElement
 		lineRenderer.SetPositions(positions);
 	}
 
-	private void Building_OnDestroy(BuildingComponent _)
+	private void Building_OnDestroy(BuildingComponent building)
 	{
+		Debug.Assert(GetConnectsTo(building));
 		Demolish();
 	}
 	private void Collision_OnOverlapTimerExpired()

@@ -274,9 +274,25 @@ namespace AstralAvarice.Frontend
 
 			if (input.primaryFire)
 			{
-				// TODO: If the cursor is near a planet try to place the building.
+				// If the cursor is near a planet try to place the building.
+				if (_prospectivePlanet != null)
+				{
+					if (constraintsResult.GetBuildingResult() < BuildWarning.WarningType.FATAL)
+					{
+						Apply();
+					}
+					else
+					{
+						// TODO: Play a failed sound.
+					}
+					return;
+				}
 
-				// TODO: If clicking on nothing, exit this state?
+				// TODO: Decide whether we want to check if the player is clicking on a building.
+
+				// If clicking on nothing, exit this state.
+				Cancel();
+				return;
 			}
 			else if (input.secondaryFire)
 			{
@@ -307,6 +323,18 @@ namespace AstralAvarice.Frontend
 		{
 			BuildStateTransitionSignal signal = new CancelTransitionSignal(false);
 			OnRequestTransition.Invoke(signal);
+		}
+
+		private void Apply()
+		{
+			_buildingCursor.MoveBuildingToLocation(_movingBuilding.BuildingInstance);
+			
+			BuildStateApplyResult result = new MoveBuildStateApplyResult {
+				moved = _movingBuilding.BuildingInstance
+			};
+			OnApplied.Invoke(result);
+			
+			TrySetMovingBuilding(null, true);
 		}
 
 		public void CleanUp()

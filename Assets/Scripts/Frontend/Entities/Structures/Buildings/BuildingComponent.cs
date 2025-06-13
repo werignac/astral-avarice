@@ -218,7 +218,15 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 		parentPlanet = planet;
 	}
 
-	public bool OwnsCollider(Collider2D collider)
+	/// <summary>
+	/// Returns true if the passed collider is this building's collider.
+	/// Returns false otherwise.
+	/// 
+	/// Does not account for cable colliders.
+	/// </summary>
+	/// <param name="collider">The collider to compare to this buildnig's collider.</param>
+	/// <returns>True if the passed collider is this building's collider. False otherwise.</returns>
+	public bool GetIsBuildingCollider(Collider2D collider)
     {
 		return (collider == boxCollider);
     }

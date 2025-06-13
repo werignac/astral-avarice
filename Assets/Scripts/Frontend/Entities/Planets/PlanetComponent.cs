@@ -159,7 +159,13 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 		return (position - (Vector2)transform.position).normalized;
 	}
 
-	public bool OwnsCollider(Collider2D checkOwns)
+	/// <summary>
+	/// Check whether a collider is the main planet collider (not a collider of a
+	/// building owned by this planet.)
+	/// </summary>
+	/// <param name="checkOwns">The collider to chaeck against this planet's collider.</param>
+	/// <returns>True if the collider is this planet's collider. False otherwise.</returns>
+	public bool GetIsPlanetCollider(Collider2D checkOwns)
 	{
 		return planetCollider == checkOwns;
 	}
