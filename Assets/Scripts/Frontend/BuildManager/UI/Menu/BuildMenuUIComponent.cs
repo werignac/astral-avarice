@@ -133,7 +133,7 @@ public class BuildMenuUIComponent : MonoBehaviour
 
 	protected virtual void OnMoveClicked()
 	{
-		// TODO: Notify BuildManagerComponent.
+		BuildManagerComponent.Instance.SendExternalMoveSignal();
 		submenu.Hide();
 	}
 

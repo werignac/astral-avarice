@@ -158,6 +158,11 @@ public class BuildManagerComponent : MonoBehaviour
 		ProcessTransitionSignal(new DemolishTransitionSignal(true));
 	}
 
+	public void SendExternalMoveSignal()
+	{
+		ProcessTransitionSignal(new MoveTransitionSignal(true));
+	}
+
 	private void ProcessTransitionSignal(BuildStateTransitionSignal signal)
 	{
 		if (signal.IsExternal && state != null && state is IOverrideExternalSignal overrideSignal)
@@ -185,6 +190,9 @@ public class BuildManagerComponent : MonoBehaviour
 				break;
 			case BuildStateTransitionSignalType.CHAIN:
 				DefaultProcessChainTransitionSignal(signal);
+				break;
+			case BuildStateTransitionSignalType.MOVE:
+				DefaultProcessMoveTransitionSignal(signal);
 				break;
 		}
 	}
@@ -247,6 +255,18 @@ public class BuildManagerComponent : MonoBehaviour
 			cableCursor,
 			gravityCursor,
 			gameController
+		));
+	}
+
+	private void DefaultProcessMoveTransitionSignal(BuildStateTransitionSignal signal)
+	{
+		if (!(signal is MoveTransitionSignal moveSignal))
+			throw new ArgumentException($"Signal {signal} was expected to be a MoveTransitionSignal, but wasn't.");
+
+		SetState(new MoveBuildState(
+			selectionCursor,
+			buildingCursor,
+			moveSignal.ToMove
 		));
 	}
 
@@ -360,6 +380,19 @@ public class BuildManagerComponent : MonoBehaviour
 		return new ChainConstraintsQueryResult(buildingHighestWarning, cableHighestWarning);
 	}
 
+	public MoveConstraintsQueryResult QueryMoveConstraints(MoveBuildState moveState, BuildWarningContext context)
+	{
+		if (moveState == null)
+			throw new ArgumentNullException("moveState");
+
+		BuildWarning.WarningType buildingResult = DefaultQueryConstraintType(moveState as IBuildingPlacer, buildingConstraints, context);
+
+		// TODO: Query each cable.
+		BuildWarning.WarningType[] cableResults = new BuildWarning.WarningType[0];
+
+		return new MoveConstraintsQueryResult(buildingResult, cableResults);
+	}
+
 	/// <summary>
 	/// Invoked when the current state requests to transition to a different state.
 	/// </summary>
@@ -425,13 +458,20 @@ public class BuildManagerComponent : MonoBehaviour
 					chainState.UpdatePostConstraints(input, queryResult);
 				}
 				break;
+			case BuildStateType.MOVE:
+				{
+					MoveBuildState moveState = state as MoveBuildState;
+					MoveConstraintsQueryResult queryResult = QueryMoveConstraints(moveState, context);
+					moveState.UpdatePostConstraints(input, queryResult);
+				}
+				break;
 			case BuildStateType.NONE:
 			case BuildStateType.DEMOLISH:
-			case BuildStateType.MOVE:
 				break;
 			default:
 				if (state is IPostConstraintsBuildState<BuildWarning.WarningType> constrainableState)
 				{
+					// Building and Cable states are handled here.
 					BuildWarning.WarningType queryResult = DefaultQueryConstraints(constrainableState, context);
 					constrainableState.UpdatePostConstraints(input, queryResult);
 				}

@@ -174,6 +174,19 @@ public class BuildingComponent : MonoBehaviour, IDemolishable, IInspectableCompo
 		return isPlayerDemolishable;
 	}
 
+	/// <summary>
+	/// Returns whether the client has authority over this building.
+	/// Could be used in multiplayer applications.
+	/// 
+	/// If a client has authority over this building, they are permitted
+	/// to move and demolish the building.
+	/// </summary>
+	/// <returns>True if this client has authority over the building. False otherwise.</returns>
+	public bool GetClientHasAuthority()
+	{
+		return Demolishable();
+	}
+
 	public void OnHoverEnter()
 	{
 		OnBuildingHoverStartForSelection?.Invoke();

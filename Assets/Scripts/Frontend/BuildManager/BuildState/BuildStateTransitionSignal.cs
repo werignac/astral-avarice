@@ -104,4 +104,17 @@ namespace AstralAvarice.Frontend
 		public override BuildStateTransitionSignalType GetSignalType() => BuildStateTransitionSignalType.DEMOLISH;
 	}
 
+	public class MoveTransitionSignal : BuildStateTransitionSignal
+	{
+		// Optional
+		public BuildingComponent ToMove { get; private set; }
+
+		public MoveTransitionSignal(bool isExternal, BuildingComponent toMove = null) : base(isExternal)
+		{
+			ToMove = toMove;
+		}
+
+		public override BuildStateTransitionSignalType GetSignalType() => BuildStateTransitionSignalType.MOVE;
+	}
+
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,6 +22,9 @@ namespace AstralAvarice.Frontend
 
 		public NewPlacingBuilding(BuildingSettingEntry buildingSettings)
 		{
+			if (buildingSettings == null)
+				throw new ArgumentNullException("buildingSettings");
+
 			BuildingSettings = buildingSettings;
 		}
 	}
@@ -35,6 +39,9 @@ namespace AstralAvarice.Frontend
 
 		public ExistingPlacingBuilding(BuildingComponent buildingInstance)
 		{
+			if (buildingInstance == null)
+				throw new ArgumentNullException("buildingInstance");
+
 			BuildingInstance = buildingInstance;
 		}
 	}
