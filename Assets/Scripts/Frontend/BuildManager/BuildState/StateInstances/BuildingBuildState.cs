@@ -152,16 +152,6 @@ namespace AstralAvarice.Frontend
 		}
 
 		/// <summary>
-		/// Used externally by the constraint objects to tell when there is enough
-		/// information to start computing constraints.
-		/// </summary>
-		/// <returns>True if we know what planet the player wants to put their building on.</returns>
-		public bool GetHasProspectivePlacement()
-		{
-			return _prospectivePlanet != null;
-		}
-
-		/// <summary>
 		/// Gets the cost of placing this build state's building.
 		/// Called externally by cost constraint scripts.
 		/// </summary>
@@ -183,26 +173,12 @@ namespace AstralAvarice.Frontend
 		private void InitializeBuildingCursor()
 		{
 			BuildingVisuals visualAsset = _toBuild.BuildingSettings.VisualAsset;
-
-			Sprite ghostSprite = visualAsset.buildingGhost;
-			Vector2 ghostOffset = visualAsset.ghostOffset;
-			float ghostScale = visualAsset.ghostScale;
-
-			_buildingCursor.SetGhost(ghostSprite, ghostOffset, ghostScale);
-
+			_buildingCursor.SetGhost(visualAsset);
+			
 			BuildingComponent buildingComponent = _toBuild.BuildingSettings.Prefab.GetComponent<BuildingComponent>();
-
-			Vector2 colliderSize = buildingComponent.ColliderSize;
-			Vector2 colliderOffset = buildingComponent.ColliderOffset;
-
-			_buildingCursor.SetBuildingCollision(colliderSize, colliderOffset);
-
-			Vector2 cableConnectionOffset = buildingComponent.CableConnectionOffset;
-
-			_buildingCursor.SetBuildingCableConnectionOffset(cableConnectionOffset);
+			_buildingCursor.SetBuildingCollisionAndCableConnectionOffsetFromBuilding(buildingComponent);
 
 			bool canHaveConnections = _toBuild.BuildingSettings.BuildingDataAsset.maxPowerLines > 0;
-
 			_buildingCursor.SetShowCableConnectionCursor(canHaveConnections);
 		}
 
@@ -303,7 +279,7 @@ namespace AstralAvarice.Frontend
 			}
 
 			// Check that the closestPlanetDistance is  below a certain threshold. If not, hide.
-			float minCursorDistance = GlobalBuildingSettings.GetOrCreateSettings().MinDistanceToPlanetToShowBuildingCursor;
+			float minCursorDistance = GlobalBuildingSettings.GetOrCreateSettings().MaxDistanceToPlanetToShowBuildingCursor;
 			if (closestPlanetDistance > minCursorDistance)
 			{
 				if (_buildingCursor.GetIsShowing())

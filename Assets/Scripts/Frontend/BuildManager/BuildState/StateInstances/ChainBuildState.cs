@@ -271,7 +271,7 @@ namespace AstralAvarice.Frontend
 		private void UpdateCableCursorPosition()
 		{
 			// If we are prospecting a place to put the building, the building cursor is showing.
-			if (_subBuildingBuildState.GetHasProspectivePlacement())
+			if (_subBuildingBuildState.GetHasProspectivePlanet())
 				_toAttachment = new BuildingCursorCableAttachment(_subBuildingBuildState.GetBuildingCursor());
 			else
 				_toAttachment = new CursorCableAttachment(_selectionCursor);

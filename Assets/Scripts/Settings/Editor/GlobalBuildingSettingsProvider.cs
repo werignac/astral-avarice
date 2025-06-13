@@ -32,7 +32,7 @@ public class GlobalBuildingSettingsProvider
 				EditorGUILayout.PropertyField(settings.FindProperty("cableWidth"), new GUIContent("Cable Width"));
 				EditorGUILayout.PropertyField(settings.FindProperty("maxCableLength"), new GUIContent("Cable Length"));
 				EditorGUILayout.PropertyField(settings.FindProperty("maxCableOverlapTime"), new GUIContent("Cable Overlap Time"));
-				EditorGUILayout.PropertyField(settings.FindProperty("minDistanceToPlanetToShowBuildingCursor"), new GUIContent("Minimum Distance to Planet to Show Building Cursor"));
+				EditorGUILayout.PropertyField(settings.FindProperty("maxDistanceToPlanetToShowBuildingCursor"), new GUIContent("Maximum Distance to Planet to Show Building Cursor"));
 				EditorGUILayout.PropertyField(settings.FindProperty("cableDestructionVFXPrefab"), new GUIContent("Cable Destruction VFX Prefab"));
 				EditorGUILayout.PropertyField(settings.FindProperty("buildingDestructionVFXPrefab"), new GUIContent("Building Destruction VFX Prefab"));
 				EditorGUILayout.PropertyField(settings.FindProperty("planetDestructionVFXPrefab"), new GUIContent("Planet Destruction VFX Prefab"));

@@ -93,6 +93,19 @@ public class BuildingCursorComponent : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Sets the ghost of the building (sprite offset and scale) based on the passed visual asset.
+	/// </summary>
+	/// <param name="visualAsset">Visual asset to use to set this cursor up.</param>
+	public void SetGhost(BuildingVisuals visualAsset)
+	{
+		Sprite ghostSprite = visualAsset.buildingGhost;
+		Vector2 ghostOffset = visualAsset.ghostOffset;
+		float ghostScale = visualAsset.ghostScale;
+
+		SetGhost(ghostSprite, ghostOffset, ghostScale);
+	}
+
+	/// <summary>
 	/// Sets the scale and offset of the box for doing collision checks.
 	/// </summary>
 	public void SetBuildingCollision(Vector2 collisionCheckSize, Vector2 collisionCheckOffset)
@@ -104,8 +117,22 @@ public class BuildingCursorComponent : MonoBehaviour
 	public void SetBuildingCableConnectionOffset(Vector2 cableConnectionOffset)
 	{
 		this.cableConnectionOffset = cableConnectionOffset;
-
 		connectionPoint.SetPosition(CableConnectionPosition);
+	}
+
+	/// <summary>
+	/// Sets the cable building's collider size and connection offset via
+	/// a BuildingComponent (agnotic to prefab or instance).
+	/// </summary>
+	/// <param name="buildingComponent">The building to match the collision and cable connection offset of.</param>
+	public void SetBuildingCollisionAndCableConnectionOffsetFromBuilding(BuildingComponent buildingComponent)
+	{
+		Vector2 colliderSize = buildingComponent.ColliderSize;
+		Vector2 colliderOffset = buildingComponent.ColliderOffset;
+		SetBuildingCollision(colliderSize, colliderOffset);
+
+		Vector2 cableConnectionOffset = buildingComponent.CableConnectionOffset;
+		SetBuildingCableConnectionOffset(cableConnectionOffset);
 	}
 
 	public void SetShowCableConnectionCursor(bool showCursor)

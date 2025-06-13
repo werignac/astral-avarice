@@ -32,7 +32,7 @@ public class GlobalBuildingSettings: ScriptableObject
 
 	[Header("Planets")]
 	// Minimum distance the player's cursor needs to be from a planet in the building build state to show the building cursor.
-	[SerializeField] private float minDistanceToPlanetToShowBuildingCursor = 5;
+	[SerializeField] private float maxDistanceToPlanetToShowBuildingCursor = 4;
 
 	[Header("Destruction VFX")]
 	[SerializeField] private GameObject cableDestructionVFXPrefab;
@@ -62,7 +62,7 @@ public class GlobalBuildingSettings: ScriptableObject
 
 	public float MaxCableOverlapTime => maxCableOverlapTime;
 
-	public float MinDistanceToPlanetToShowBuildingCursor => minDistanceToPlanetToShowBuildingCursor;
+	public float MaxDistanceToPlanetToShowBuildingCursor => maxDistanceToPlanetToShowBuildingCursor;
 
 	public GameObject CableDestructionVFXPrefab
 	{

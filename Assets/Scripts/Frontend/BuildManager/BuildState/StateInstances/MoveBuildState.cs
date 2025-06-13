@@ -54,8 +54,7 @@ namespace AstralAvarice.Frontend
 
 		public UnityEvent<BuildStateTransitionSignal> OnRequestTransition { get; } = new UnityEvent<BuildStateTransitionSignal>();
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } = new UnityEvent<BuildStateApplyResult>();
-
-		public UnityEvent<PlanetComponent> OnProspectivePlanetChanged => throw new System.NotImplementedException();
+		public UnityEvent<PlanetComponent> OnProspectivePlanetChanged { get; } = new UnityEvent<PlanetComponent>();
 
 		public BuildStateType GetStateType() => BuildStateType.MOVE;
 
@@ -90,7 +89,7 @@ namespace AstralAvarice.Frontend
 		{
 			if (toMove == null)
 			{
-				SetMovingBuilding(null, false);
+				SetMovingBuilding(null, updateBuildingCursor);
 				return true;
 			}
 			
@@ -101,7 +100,7 @@ namespace AstralAvarice.Frontend
 			return true;
 		}
 
-		private void SetMovingBuilding(ExistingPlacingBuilding toPlace, bool updateBuildingCursor)
+		private void SetMovingBuilding(ExistingPlacingBuilding toPlace, bool updateCursors)
 		{
 			if (_movingBuilding != null)
 			{
@@ -114,17 +113,41 @@ namespace AstralAvarice.Frontend
 			{
 				toPlace.BuildingInstance.OnBuildingDemolished.AddListener(MovingBuilding_OnDemolish);
 			}
+			else
+			{
+				SetProspectingPlanet(null);
+			}
 
 			// TODO: Update the building cursor.
-			if (updateBuildingCursor)
+			if (updateCursors)
 			{
 				if (toPlace == null)
-					_buildingCursor.Hide();
+				{
+					HideAllCursors();
+				}
 				else
 				{
-					
+					BuildingVisuals visualAsset = toPlace.BuildingInstance.BuildingVisuals;
+					_buildingCursor.SetGhost(visualAsset);
+
+					_buildingCursor.SetBuildingCollisionAndCableConnectionOffsetFromBuilding(toPlace.BuildingInstance);
+
+					bool canHaveConnections = toPlace.BuildingInstance.Data.maxPowerLines > 0;
+					_buildingCursor.SetShowCableConnectionCursor(canHaveConnections);
+
+					// TODO: Get cable cursors from pool.
 				}
 			}
+		}
+
+		private void SetProspectingPlanet(PlanetComponent prospectingPlanet)
+		{
+			if (prospectingPlanet == _prospectivePlanet)
+				return;
+
+			_prospectivePlanet = prospectingPlanet;
+
+			OnProspectivePlanetChanged.Invoke(prospectingPlanet);
 		}
 
 		private void MovingBuilding_OnDemolish(BuildingComponent demolishedBuilding)
@@ -156,6 +179,47 @@ namespace AstralAvarice.Frontend
 		public void Update(BuildStateInput input)
 		{
 			// TODO: Find a placement on the nearest planet / on the only planet for the building.
+			if (_movingBuilding == null)
+			{
+				UpdatePriorToBuildingSelected();
+			}
+			else
+			{
+				UpdateAfterBuildingSelected();
+			}
+		}
+
+		private void UpdatePriorToBuildingSelected()
+		{
+			// TODO: Update which building we're hovering over.
+		}
+
+		private void UpdateAfterBuildingSelected()
+		{
+			PlanetComponent buildingPlanet = _movingBuilding.BuildingInstance.ParentPlanet;
+
+			Vector2 mousePosition = _selectionCursor.GetPosition();
+			Vector2 pointOnPlanet = buildingPlanet.GetClosestSurfacePointToPosition(mousePosition);
+
+			float distanceFromPlanet = Vector2.Distance(pointOnPlanet, mousePosition);
+
+			if (distanceFromPlanet > GlobalBuildingSettings.GetOrCreateSettings().MaxDistanceToPlanetToShowBuildingCursor)
+			{
+				SetProspectingPlanet(null);
+				HideAllCursors();
+			}
+			else
+			{
+				SetProspectingPlanet(buildingPlanet);
+				Vector2 upNormal = buildingPlanet.GetNormalForPosition(pointOnPlanet);
+				_buildingCursor.Show();
+				foreach (CableCursorComponent cableCursor in _cableCursors)
+				{
+					cableCursor.Show();
+					cableCursor.SetEndPoint(_buildingCursor.CableConnectionPosition);
+				}
+				_buildingCursor.SetPositionAndUpNormal(pointOnPlanet, upNormal, buildingPlanet);
+			}
 		}
 
 		public void UpdatePostConstraints(BuildStateInput input, MoveConstraintsQueryResult constraintsResult)
@@ -204,8 +268,10 @@ namespace AstralAvarice.Frontend
 			}
 		}
 
-		private void UpdatePostConstraintsAfterBuildingSelected(BuildStateInput input, MoveConstraintsQueryResult constraintsresult)
+		private void UpdatePostConstraintsAfterBuildingSelected(BuildStateInput input, MoveConstraintsQueryResult constraintsResult)
 		{
+			UpdateCursorColors(constraintsResult);
+
 			if (input.primaryFire)
 			{
 				// TODO: If the cursor is near a planet try to place the building.
@@ -220,6 +286,23 @@ namespace AstralAvarice.Frontend
 			}
 		}
 
+		private void UpdateCursorColors(MoveConstraintsQueryResult constraintsResult)
+		{
+			_buildingCursor.SetBuildingPlaceability(constraintsResult.GetBuildingResult());
+
+			for (int i = 0; i < _cableCursors.Length; i++)
+			{
+				_cableCursors[i].SetCablePlaceability(constraintsResult.GetCableResults()[i] < BuildWarning.WarningType.FATAL);
+			}
+		}
+
+		private void HideAllCursors()
+		{
+			_buildingCursor.Hide();
+			foreach (CableCursorComponent cableCursor in _cableCursors)
+				cableCursor.Hide();
+		}
+
 		private void Cancel()
 		{
 			BuildStateTransitionSignal signal = new CancelTransitionSignal(false);
@@ -228,9 +311,7 @@ namespace AstralAvarice.Frontend
 
 		public void CleanUp()
 		{
-			_buildingCursor.Hide();
-			foreach (CableCursorComponent cableCursor in _cableCursors)
-				cableCursor.Hide();
+			HideAllCursors();
 		}
 	}
 }

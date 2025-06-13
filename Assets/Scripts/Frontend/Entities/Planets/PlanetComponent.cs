@@ -324,12 +324,25 @@ public class PlanetComponent : MonoBehaviour, IInspectableComponent
 	}
 
 
-	// Called by the build manager depending on the build mode.
+	/// <summary>
+	/// Called by the build manager depending on the build mode.
+	/// 
+	/// Necessary for showing the gravity field of the planet when
+	/// we plan on building on it with the general gravity field visualization
+	/// disabled.
+	/// </summary>
 	public void StartProspectingMassChange()
 	{
 		OnStartProspectingMassChange?.Invoke();
 	}
 
+	/// <summary>
+	/// Called by the build manager depending on the build mode.
+	/// 
+	/// Necessary for hiding the gravity field of the planet when
+	/// we plan on building on it with the general gravity field visualization
+	/// disabled.
+	/// </summary>
 	public void StopProspectingMassChange()
 	{
 		OnStopProspectingMassChange?.Invoke();

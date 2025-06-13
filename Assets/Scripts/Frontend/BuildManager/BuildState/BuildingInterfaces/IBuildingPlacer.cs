@@ -72,4 +72,9 @@ namespace AstralAvarice.Frontend
 		/// <returns></returns>
 		public BuildingCursorComponent GetBuildingCursor();
     }
+
+	public static class IBuildingPlacerExtentions
+	{
+		public static bool GetHasProspectivePlanet(this IBuildingPlacer buildingPlacer) => buildingPlacer.GetProspectivePlanet() != null;
+	}
 }
