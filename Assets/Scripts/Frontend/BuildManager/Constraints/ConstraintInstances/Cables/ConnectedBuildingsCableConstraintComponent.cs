@@ -15,6 +15,14 @@ namespace AstralAvarice.Frontend
 			ICableAttachment fromAttachment = state.GetFromAttachment();
 			ICableAttachment toAttachment = state.GetToAttachment();
 
+			bool isMoving = state.TryGetMovingCable(out CableComponent _);
+
+			// When moving, we assume we're not changing the start and end.
+			// Since we're moving an already valid cable, the start and end are already valid.
+			// no need to do any checking.
+			if (isMoving)
+				return result;
+
 			if (TryGetWarningForAttachment(fromAttachment, "starting", out BuildWarning fromWarning))
 				result.AddWarning(fromWarning);
 

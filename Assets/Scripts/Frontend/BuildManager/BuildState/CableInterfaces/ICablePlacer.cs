@@ -28,5 +28,13 @@ namespace AstralAvarice.Frontend
 		/// </summary>
 		/// <returns>The cable cursor that will be used for placing the cable.</returns>
 		CableCursorComponent GetCableCursor();
+
+		/// <summary>
+		/// Returns whether this cable placer is moving an existing cable.
+		/// If so, sets movingCable to be the cable being moved.
+		/// </summary>
+		/// <param name="movingCable">The cable being moved by this ICablePlacer.</param>
+		/// <returns>True if we are moving a cable. False otherwise.</returns>
+		bool TryGetMovingCable(out CableComponent movingCable);
     }
 }

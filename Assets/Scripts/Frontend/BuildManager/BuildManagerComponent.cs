@@ -23,7 +23,6 @@ public class BuildManagerComponent : MonoBehaviour
 	[SerializeField] private CableCursorComponent cableCursor;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
 	[SerializeField] private GravityFieldCursorComponent gravityCursor;
-	private List<CableCursorComponent> moveCableCursors = new List<CableCursorComponent>();
 
 	// The current state of building manager.
 	private IBuildState state;
@@ -266,6 +265,8 @@ public class BuildManagerComponent : MonoBehaviour
 		SetState(new MoveBuildState(
 			selectionCursor,
 			buildingCursor,
+			cableCursor,
+			gameController,
 			moveSignal.ToMove
 		));
 	}
@@ -387,8 +388,14 @@ public class BuildManagerComponent : MonoBehaviour
 
 		BuildWarning.WarningType buildingResult = DefaultQueryConstraintType(moveState as IBuildingPlacer, buildingConstraints, context);
 
-		// TODO: Query each cable.
-		BuildWarning.WarningType[] cableResults = new BuildWarning.WarningType[0];
+		// Query each cable.
+		ICablePlacer[] cablePlacers = moveState.GetCablePlacers();
+		BuildWarning.WarningType[] cableResults = new BuildWarning.WarningType[cablePlacers.Length];
+
+		for (int i = 0; i < cablePlacers.Length; i++)
+		{
+			cableResults[i] = DefaultQueryConstraintType(cablePlacers[i], cableConstraints, context);
+		}
 
 		return new MoveConstraintsQueryResult(buildingResult, cableResults);
 	}

@@ -40,8 +40,114 @@ namespace AstralAvarice.Frontend
 	}
 
 	// TODO: Implement IOverride etc. So what we can chain from moving?
-	public class MoveBuildState : IPostConstraintsBuildState<MoveConstraintsQueryResult>, IBuildingPlacer
+	public class MoveBuildState : IPostConstraintsBuildState<MoveConstraintsQueryResult>, IBuildingPlacer, IMultiCablePlacer
 	{
+		/// <summary>
+		/// Sub class for implementing the cable placer interface for
+		/// the cables that are moved by the MoveBuildState.
+		/// </summary>
+		public class CableMover : ICablePlacer, IDisposable
+		{
+			private CableComponent _movingCable;
+
+			private BuildingInstanceCableAttachment _fromAttachment;
+			private BuildingCursorCableAttachment _toAttachment;
+
+			private CableCursorComponent _cableCursor;
+
+			/// <summary>
+			/// Invoked when the moving cable gets demolished.
+			/// </summary>
+			public UnityEvent<CableMover> OnInvalidate { get; } = new UnityEvent<CableMover>();
+
+			public CableMover(
+					CableComponent movingCable,
+					BuildingComponent movingBuilding,
+					CableCursorComponent cableCursorTemplate,
+					BuildingCursorComponent buildingCursor
+				)
+			{
+				_cableCursor = UnityEngine.Object.Instantiate(cableCursorTemplate);
+				_toAttachment = new BuildingCursorCableAttachment(buildingCursor);
+				SetMovingCableAndBuilding(movingCable, movingBuilding);
+			}
+
+			public void SetMovingCableAndBuilding(CableComponent movingCable, BuildingComponent movingBuilding)
+			{
+				if (movingCable == null)
+					throw new ArgumentNullException("movingCable");
+
+				if (movingBuilding == null)
+					throw new ArgumentNullException("movingBuilding");
+
+				if (_movingCable != null)
+				{
+					_movingCable.OnCableDemolished.RemoveListener(Cable_OnDemolish);
+				}
+
+				_movingCable = movingCable;
+
+				BuildingComponent nonMovingbuilding;
+				if (movingBuilding == movingCable.Start)
+					nonMovingbuilding = movingCable.End;
+				else if (movingBuilding == movingCable.End)
+					nonMovingbuilding = movingCable.Start;
+				else
+					throw new ArgumentException($"The passed building is not connected to the passed cable.");
+
+				_fromAttachment = new BuildingInstanceCableAttachment(nonMovingbuilding, false);
+				_cableCursor.SetStart(nonMovingbuilding);
+
+				movingCable.OnCableDemolished.AddListener(Cable_OnDemolish);
+			}
+
+			private void Cable_OnDemolish(CableComponent demolishedCable)
+			{
+				Debug.Assert(demolishedCable == _movingCable);
+				OnInvalidate.Invoke(this);
+			}
+
+			public float Length => Vector2.Distance(GetFromAttachment().GetPosition(), GetToAttachment().GetPosition());
+			public CableCursorComponent GetCableCursor() => _cableCursor;
+			public ICableAttachment GetFromAttachment() => _fromAttachment;
+			public ICableAttachment GetToAttachment() => _toAttachment;
+
+			/// <summary>
+			/// CableMover is always moving an existing cable.
+			/// </summary>
+			public bool TryGetMovingCable(out CableComponent movingCable)
+			{
+				movingCable = _movingCable;
+				return true;
+			}
+
+			public void UpdateCableCursorPosition()
+			{
+				_cableCursor.SetEndPoint(_toAttachment.GetPosition());
+			}
+
+			public void UpdateCableCursorColor(BuildWarning.WarningType cableConstraintsResult)
+			{
+				_cableCursor.SetCablePlaceability(cableConstraintsResult < BuildWarning.WarningType.FATAL);
+			}
+
+			public void HideCursor()
+			{
+				_cableCursor.Hide();
+			}
+
+			public void ShowCursor()
+			{
+				_cableCursor.Show();
+			}
+
+			public void Dispose()
+			{
+				_movingCable.OnCableDemolished.RemoveListener(Cable_OnDemolish);
+				UnityEngine.Object.Destroy(_cableCursor);
+			}
+		}
+
 		/// <summary>
 		/// Null when no building has been selected yet. Otherwise contains the instance of a building being moved.
 		/// </summary>
@@ -50,7 +156,13 @@ namespace AstralAvarice.Frontend
 
 		private SelectionCursorComponent _selectionCursor;
 		private BuildingCursorComponent _buildingCursor;
-		private CableCursorComponent[] _cableCursors = new CableCursorComponent[0];
+		private CableCursorComponent _cableCursorTemplate;
+		private List<CableMover> _cableMovers = new List<CableMover>();
+
+		/// <summary>
+		/// Needed to get the cables that a building is connected to.
+		/// </summary>
+		private GameController _gameController;
 
 		public UnityEvent<BuildStateTransitionSignal> OnRequestTransition { get; } = new UnityEvent<BuildStateTransitionSignal>();
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } = new UnityEvent<BuildStateApplyResult>();
@@ -61,6 +173,8 @@ namespace AstralAvarice.Frontend
 		public MoveBuildState(
 				SelectionCursorComponent selectionCursor,
 				BuildingCursorComponent buildingCursor,
+				CableCursorComponent cableCursorTemplate,
+				GameController gameController,
 				BuildingComponent toMove = null
 			)
 		{
@@ -74,7 +188,15 @@ namespace AstralAvarice.Frontend
 
 			_buildingCursor = buildingCursor;
 
-			// TODO: Get a pool of cable cursors instead of an array.
+			if (cableCursorTemplate == null)
+				throw new ArgumentNullException("cableCursorTemplate");
+
+			_cableCursorTemplate = cableCursorTemplate;
+
+			if (gameController == null)
+				throw new ArgumentNullException("gameController");
+
+			_gameController = gameController;
 
 			if (toMove != null)
 			{
@@ -118,7 +240,7 @@ namespace AstralAvarice.Frontend
 				SetProspectingPlanet(null);
 			}
 
-			// TODO: Update the building cursor.
+			// Update the building cursor.
 			if (updateCursors)
 			{
 				if (toPlace == null)
@@ -127,17 +249,87 @@ namespace AstralAvarice.Frontend
 				}
 				else
 				{
-					BuildingVisuals visualAsset = toPlace.BuildingInstance.BuildingVisuals;
-					_buildingCursor.SetGhost(visualAsset);
-
-					_buildingCursor.SetBuildingCollisionAndCableConnectionOffsetFromBuilding(toPlace.BuildingInstance);
-
-					bool canHaveConnections = toPlace.BuildingInstance.Data.maxPowerLines > 0;
-					_buildingCursor.SetShowCableConnectionCursor(canHaveConnections);
-
-					// TODO: Get cable cursors from pool.
+					SetCursorsForBuilding(toPlace.BuildingInstance);
 				}
 			}
+		}
+
+		/// <summary>
+		/// Sets up all the cursors to project the effects of moving the passed building.
+		/// Does not include the colors of the cursors (which is handled in update).
+		/// </summary>
+		/// <param name="building">The building to match.</param>
+		private void SetCursorsForBuilding(BuildingComponent building)
+		{
+			SetBuildingCursorForBuilding(building);
+			SetCableCursorsForBuilding(building);
+		}
+
+		/// <summary>
+		/// Sets up the building cursor to project the effects of moving the passed building.
+		/// Sets the ghost and connection cursor properties.
+		/// Does not include the color of the cursor.
+		/// </summary>
+		/// <param name="building">The building to match.</param>
+		private void SetBuildingCursorForBuilding(BuildingComponent building)
+		{
+			BuildingVisuals visualAsset = building.BuildingVisuals;
+			_buildingCursor.SetGhost(visualAsset);
+
+			_buildingCursor.SetBuildingCollisionAndCableConnectionOffsetFromBuilding(building);
+
+			bool canHaveConnections = building.Data.maxPowerLines > 0;
+			_buildingCursor.SetShowCableConnectionCursor(canHaveConnections);
+		}
+
+		/// <summary>
+		/// Sets up cable cursors to project the effects of moving the passed building.
+		/// Instantiates new cable cursors if needed and sets them to connect to the
+		/// corresponding buildings.
+		/// Does not include the color of the cursors.
+		/// </summary>
+		/// <param name="building">The building with cables to match.</param>
+		private void SetCableCursorsForBuilding(BuildingComponent building)
+		{
+			CableComponent[] cables = _gameController.GetConnectedCables(building).ToArray();
+
+			// Set up the pool of cable movers for each cable connected to the building.
+			for (int i = 0; i < Mathf.Max(cables.Length, _cableMovers.Count); i++)
+			{
+				if (i < cables.Length && i < _cableMovers.Count)
+				{
+					_cableMovers[i].SetMovingCableAndBuilding(cables[i], building);
+				}
+				else if (i >= cables.Length)
+				{
+					_cableMovers[i].Dispose();
+				}
+				else
+				{
+					CableMover newMover = new CableMover(
+						cables[i],
+						building,
+						_cableCursorTemplate,
+						_buildingCursor
+					);
+
+					newMover.OnInvalidate.AddListener(CableMover_OnInvalidate);
+
+					_cableMovers.Add(newMover);
+				}
+			}
+
+			// Remove any extra cable movers (dispose will already be called on these).
+			if (_cableMovers.Count > cables.Length)
+			{
+				_cableMovers.RemoveRange(cables.Length, _cableMovers.Count - cables.Length);
+			}
+		}
+
+		private void CableMover_OnInvalidate(CableMover invalidatedCableMover)
+		{
+			invalidatedCableMover.Dispose();
+			_cableMovers.Remove(invalidatedCableMover);
 		}
 
 		private void SetProspectingPlanet(PlanetComponent prospectingPlanet)
@@ -158,7 +350,9 @@ namespace AstralAvarice.Frontend
 
 		public void Start()
 		{
-			
+			// Deferred setup of cursors from construction to allow CleanUp of last state to be called first.
+			if (_movingBuilding != null)
+				SetCursorsForBuilding(_movingBuilding.BuildingInstance);
 		}
 
 		public IPlacingBuilding GetPlacingBuilding()
@@ -174,6 +368,17 @@ namespace AstralAvarice.Frontend
 		public BuildingCursorComponent GetBuildingCursor()
 		{
 			return _buildingCursor;
+		}
+
+		public ICablePlacer[] GetCablePlacers()
+		{
+			// If we're not moving a building, we're not moving cables.
+			// This line allows us to keep the _cableMovers pool populated
+			// while surpressing warnings when we're not moving buildings.
+			if (_movingBuilding == null)
+				return new ICablePlacer[0];
+
+			return _cableMovers.ToArray();
 		}
 
 		public void Update(BuildStateInput input)
@@ -213,10 +418,10 @@ namespace AstralAvarice.Frontend
 				SetProspectingPlanet(buildingPlanet);
 				Vector2 upNormal = buildingPlanet.GetNormalForPosition(pointOnPlanet);
 				_buildingCursor.Show();
-				foreach (CableCursorComponent cableCursor in _cableCursors)
+				foreach (CableMover cableMover in _cableMovers)
 				{
-					cableCursor.Show();
-					cableCursor.SetEndPoint(_buildingCursor.CableConnectionPosition);
+					cableMover.ShowCursor();
+					cableMover.UpdateCableCursorPosition();
 				}
 				_buildingCursor.SetPositionAndUpNormal(pointOnPlanet, upNormal, buildingPlanet);
 			}
@@ -288,7 +493,9 @@ namespace AstralAvarice.Frontend
 					return;
 				}
 
-				// TODO: Decide whether we want to check if the player is clicking on a building.
+				// TODO: Decide whether we want to check if the player is clicking on a building &
+				// have separate logic for that. Niche case here since the mouse will usually be near a planet
+				// when clicking on a building.
 
 				// If clicking on nothing, exit this state.
 				Cancel();
@@ -306,17 +513,17 @@ namespace AstralAvarice.Frontend
 		{
 			_buildingCursor.SetBuildingPlaceability(constraintsResult.GetBuildingResult());
 
-			for (int i = 0; i < _cableCursors.Length; i++)
+			for (int i = 0; i < _cableMovers.Count; i++)
 			{
-				_cableCursors[i].SetCablePlaceability(constraintsResult.GetCableResults()[i] < BuildWarning.WarningType.FATAL);
+				_cableMovers[i].UpdateCableCursorColor(constraintsResult.GetCableResults()[i]);
 			}
 		}
 
 		private void HideAllCursors()
 		{
 			_buildingCursor.Hide();
-			foreach (CableCursorComponent cableCursor in _cableCursors)
-				cableCursor.Hide();
+			foreach (CableMover cableMover in _cableMovers)
+				cableMover.HideCursor();
 		}
 
 		private void Cancel()
@@ -339,7 +546,12 @@ namespace AstralAvarice.Frontend
 
 		public void CleanUp()
 		{
-			HideAllCursors();
+			_buildingCursor.Hide();
+
+			foreach (CableMover cableMover in _cableMovers)
+				cableMover.Dispose();
+
+			_cableMovers.Clear();
 		}
 	}
 }

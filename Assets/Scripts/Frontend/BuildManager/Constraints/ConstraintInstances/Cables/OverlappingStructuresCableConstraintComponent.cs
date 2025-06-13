@@ -21,12 +21,26 @@ namespace AstralAvarice.Frontend
 				return result;
 
 			List<Collider2D> cableOverlaps = new List<Collider2D>(cableCursor.QueryOverlappingColliders());
-			BuildingComponent fromBuilding = GetBuildingComponentFromAttachment(state.GetFromAttachment());
-			BuildingComponent toBuilding = GetBuildingComponentFromAttachment(state.GetToAttachment());
+			
+			BuildingComponent fromBuilding;
+			BuildingComponent toBuilding;
+
+			if (state.TryGetMovingCable(out CableComponent movingCable))
+			{
+				// It is assumed that moving cables do not change
+				// start / end. Cables are only moving when a building moves.
+				fromBuilding = movingCable.Start;
+				toBuilding = movingCable.End;
+			}
+			else
+			{
+				fromBuilding = GetBuildingComponentFromAttachment(state.GetFromAttachment());
+				toBuilding = GetBuildingComponentFromAttachment(state.GetToAttachment());
+			}
 
 			int badOverlapIndex = cableOverlaps.FindIndex((Collider2D collider) =>
 			{
-				return !IsValidCableOverlap(collider, fromBuilding, toBuilding);
+				return !IsValidCableOverlap(collider, fromBuilding, toBuilding, movingCable);
 			});
 			bool overlapsAlongCable = badOverlapIndex != -1;
 
@@ -52,7 +66,12 @@ namespace AstralAvarice.Frontend
 		/// Cables can only overlap over buildings that they connect to or other
 		/// Cables that share the same builing connections.
 		/// </summary>
-		private static bool IsValidCableOverlap(Collider2D overlapping, BuildingComponent startBuilding, BuildingComponent endBuildling)
+		private static bool IsValidCableOverlap(
+				Collider2D overlapping,
+				BuildingComponent startBuilding,
+				BuildingComponent endBuildling,
+				CableComponent movingCable
+			)
 		{
 			if (overlapping.TryGetComponentInParent(out BuildingComponent overlapBuilding))
 			{
@@ -63,11 +82,13 @@ namespace AstralAvarice.Frontend
 			{
 				bool startIsConnectingBuilding = (overlapCable.Start == startBuilding) || (overlapCable.Start == endBuildling);
 				bool endIsConnectingBuilding = (overlapCable.End == startBuilding) || (overlapCable.End == endBuildling);
+				// NOTE: Currently, the next check does nothing because the last two checks are always true when the
+				// bottom check is true. If we have multi-segment cables, this check will become relevant.
+				bool isMovingCable = movingCable != null && overlapCable == movingCable;
 
-				return startIsConnectingBuilding || endIsConnectingBuilding;
+				return startIsConnectingBuilding || endIsConnectingBuilding || isMovingCable;
 			}
 
-			// TODO: Detect other cables?
 			return false;
 		}
 	}

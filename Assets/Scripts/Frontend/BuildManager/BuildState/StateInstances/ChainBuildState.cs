@@ -183,6 +183,15 @@ namespace AstralAvarice.Frontend
 			return _toAttachment;
 		}
 
+		/// <summary>
+		/// ChainBuildState is always making a new cable and is never moving an existing cable.
+		/// </summary>
+		public bool TryGetMovingCable(out CableComponent movingCable)
+		{
+			movingCable = null;
+			return false;
+		}
+
 		public IPlacingBuilding GetPlacingBuilding()
 		{
 			return _subBuildingBuildState.GetPlacingBuilding();
