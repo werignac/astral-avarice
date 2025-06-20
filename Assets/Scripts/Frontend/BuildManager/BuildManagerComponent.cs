@@ -36,7 +36,8 @@ public class BuildManagerComponent : MonoBehaviour
 	// events for buildings and cables.
 	[HideInInspector] public UnityEvent<BuildStateApplyResult> OnBuildApply = new UnityEvent<BuildStateApplyResult>();
 	[HideInInspector] public UnityEvent<BuildWarningContext> OnBuildWarningUpdate = new UnityEvent<BuildWarningContext>();
-
+	// Invoked when the user tried to apply in the current build state, but failed to do so.
+	[HideInInspector] public UnityEvent OnBuildApplyFailed = new UnityEvent();
 
 	// Collects input from the user (primary & secondary fire) until the end of update
 	// where teh input is reset.
@@ -116,6 +117,7 @@ public class BuildManagerComponent : MonoBehaviour
 
 			oldState.OnApplied.RemoveListener(State_OnApplied);
 			oldState.OnRequestTransition.RemoveListener(State_OnRequestTransition);
+			oldState.OnApplyFailed.RemoveListener(State_OnApplyFailed);
 		}
 
 		state = newState;
@@ -124,6 +126,7 @@ public class BuildManagerComponent : MonoBehaviour
 		{
 			newState.OnApplied.AddListener(State_OnApplied);
 			newState.OnRequestTransition.AddListener(State_OnRequestTransition);
+			newState.OnApplyFailed.AddListener(State_OnApplyFailed);
 
 			newState.Start();
 		}
@@ -401,6 +404,14 @@ public class BuildManagerComponent : MonoBehaviour
 	}
 
 	/// <summary>
+	/// Invoked when the current state has failed to be applied (& application was requested by the player).
+	/// </summary>
+	private void State_OnApplyFailed()
+	{
+		OnBuildApplyFailed.Invoke();
+	}
+
+	/// <summary>
 	/// Invoked when the current state requests to transition to a different state.
 	/// </summary>
 	/// <param name="signal"></param>
@@ -415,6 +426,7 @@ public class BuildManagerComponent : MonoBehaviour
 	/// 
 	/// TODO: Replace with !IsInactive().
 	/// </summary>
+	[Obsolete("Use !IsInactive() instead.")]
 	public bool IsInBuildState()
 	{
 		return (state.GetStateType() != BuildStateType.NONE);
@@ -423,6 +435,8 @@ public class BuildManagerComponent : MonoBehaviour
 	/// <summary>
 	/// Get whether we are currently in a build state that is not
 	/// the none state. 
+	/// 
+	/// TODO: Create IsActive function instead?
 	/// </summary>
 	/// <returns>True if we are in the none state. False otherwise.</returns>
 	public bool IsInactive()

@@ -6,7 +6,7 @@ namespace AstralAvarice.Frontend
 {
 	public class OverlappingStructuresBuildingConstraintComponent : BuildingPlacerConstraintComponent
 	{
-		public override ConstraintQueryResult QueryConstraint(IBuildingPlacer state)
+		protected override ConstraintQueryResult QueryConstraint_Internal(IBuildingPlacer state)
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 			PlanetComponent placingPlanet = state.GetProspectivePlanet();

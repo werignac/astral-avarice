@@ -10,7 +10,7 @@ namespace AstralAvarice.Frontend
 	/// </summary>
 	public class OverlappingStructuresCableConstraintComponent : CablePlacerConstraintComponent
 	{
-		public override ConstraintQueryResult QueryConstraint(ICablePlacer state)
+		protected override ConstraintQueryResult QueryConstraint_Internal(ICablePlacer state)
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 

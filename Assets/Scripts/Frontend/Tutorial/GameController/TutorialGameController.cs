@@ -1,6 +1,7 @@
 using UnityEngine;
 using werignac.Utils;
 using AstralAvarice.Frontend;
+using System;
 
 public class TutorialGameController : GameController
 {
@@ -16,13 +17,21 @@ public class TutorialGameController : GameController
     [SerializeField] private Vector3[] cameraFocuses;
     [SerializeField] private GameObject[] displayObjects;
     [SerializeField] private bool[] setBuildToNone;
-    [SerializeField] private Vector3[] buildLocations; // The first two numbers (x, y) are the center of a circle with radius z where the build is allowed.
+	/// <summary>
+	/// The first two numbers (x, y) are the center of a circle with radius z where the build is allowed.
+	/// This is used for placing both buildings and cables (Build, Cable, Chain, and Move states).
+	/// </summary>
+	[SerializeField] private Vector3[] buildLocations;
     [SerializeField] private int[] buildMenuHighlights = new int[] { -1 };
     [SerializeField] private int[] buildSubMenuHighlights = new int[] { -1 };
 
     private int currentTutorialState = 0;
     private bool advanceAtEndOfNextUpdate = false;
     private int numCables = 0;
+
+	[Header("Constraints")]
+	[SerializeField] private TutorialBuildingConstraintComponent _tutorialBuildingConstraint;
+	[SerializeField] private CablePlacerConstraintComponent _tutorialCableConstraint;
 
     public bool cablesAreAllowed()
     {
@@ -61,36 +70,120 @@ public class TutorialGameController : GameController
         return (false);
     }
 
+	/// <summary>
+	/// Advances to the nest step of the tutorial.
+	/// </summary>
     private void AdvanceToNextState()
     {
         ++currentTutorialState;
-        if (currentTutorialState >= stateChangeConditions.Length)
+        // If we have no more steps in the tutorial, end the game.
+		if (currentTutorialState >= stateChangeConditions.Length)
         {
             EndGame(true, 0);
             ReturnToMenu();
+			return;
         }
-        else
+
+		// Otherwise, set things up for the next step.
+        if (setBuildToNone[currentTutorialState])
         {
-            if (setBuildToNone[currentTutorialState])
-            {
-                BuildManagerComponent.Instance.SendExternalCancelSignal();
-            }
-            if(displayObjects[currentTutorialState - 1] != null)
-            {
-                displayObjects[currentTutorialState - 1].SetActive(false);
-            }
-            if(displayObjects[currentTutorialState] != null)
-            {
-                displayObjects[currentTutorialState].SetActive(true);
-            }
-            if(cameraFocuses[currentTutorialState].z > 0f)
-            {
-                FocusCamera(cameraFocuses[currentTutorialState]);
-            }
-            buildMenu.UpdateHighlightIndecies(buildMenuHighlights[currentTutorialState], buildSubMenuHighlights[currentTutorialState]);
-            tutorialUI.ShowNextElement();
+            BuildManagerComponent.Instance.SendExternalCancelSignal();
         }
+            
+		if(displayObjects[currentTutorialState - 1] != null)
+        {
+            displayObjects[currentTutorialState - 1].SetActive(false);
+        }
+            
+		if(displayObjects[currentTutorialState] != null)
+        {
+            displayObjects[currentTutorialState].SetActive(true);
+        }
+
+        if(cameraFocuses[currentTutorialState].z > 0f)
+        {
+            FocusCamera(cameraFocuses[currentTutorialState]);
+        }
+
+		// If there is a building restriction, enable the building constraint.
+		UpdatePlaceBuildingBuildConstraint();
+
+		// If there is a cable restriction, enable the cable constraint.
+		UpdatePlaceCableBuildConstraint();
+
+		// If there is a demolish restriction, enable the demolish constraint.
+		UpdateDemolishBuildConstraint();
+
+		buildMenu.UpdateHighlightIndecies(buildMenuHighlights[currentTutorialState], buildSubMenuHighlights[currentTutorialState]);
+            
+		tutorialUI.ShowNextElement();
     }
+
+	/// <summary>
+	/// Invoked when changing tutorial steps.
+	/// 
+	/// Updates the constraint for placing buildings to be active or inactive
+	/// depending on where we are in the tutorial. Also updates the position
+	/// and distance the constraint uses.
+	/// </summary>
+	private void UpdatePlaceBuildingBuildConstraint()
+	{
+		Vector3 buildLocation = buildLocations[currentTutorialState];
+
+		if (buildLocation.z <= 0) // z = Distance from target.
+		{
+			// Disable the building placement constraint.
+			if (_tutorialBuildingConstraint != null)
+				_tutorialBuildingConstraint.enabled = false;
+			return;
+		}
+
+		if (_tutorialBuildingConstraint == null)
+		{
+			Debug.LogError("Missing reference to tutorial building constraint in TutorialGameController when we are in a step that restricts the position of a building.");
+			return;
+		}
+
+		_tutorialBuildingConstraint.enabled = true;
+
+		// Vector2 removes the z coordinate for the first argument,
+		// which is the max distance in the second argument.
+		_tutorialBuildingConstraint.SetPlacementTargetAndMaxDistance(buildLocation, buildLocation.z);
+	}
+
+	/// <summary>
+	/// Invoked when changing tutorial steps.
+	/// 
+	/// Updates the constraint for placing cables to be active or inactive
+	/// depending on where we are in the tutorial. Also updates the position
+	/// and distance the constraint uses.
+	/// </summary>
+	private void UpdatePlaceCableBuildConstraint()
+	{
+		// TODO: Add a cable constraint.
+	}
+
+	/// <summary>
+	/// Invoked when changing tutorial steps.
+	/// </summary>
+	private void UpdateDemolishBuildConstraint()
+	{
+		// TODO: Add a demolish constraint.
+	}
+
+	/// <summary>
+	/// A listener to the BuildManager's OnApplyFailed event.
+	/// This listener will move the camera to the focus of this step
+	/// of the tutorial when the user fails to apply in a build state.
+	/// </summary>
+	private void BuildManager_OnApplyFailed()
+	{
+		// Reset the build state.
+		BuildManagerComponent.Instance.SendExternalCancelSignal();
+
+		if (cameraFocuses[currentTutorialState].z > 0)
+			FocusCamera(cameraFocuses[currentTutorialState]);
+	}
 
     protected override void Start()
     {
@@ -98,8 +191,12 @@ public class TutorialGameController : GameController
         {
             Data.selectedMission = tutorialMission;
         }
+
         base.Start();
-    }
+
+		// Reset the camera + build state on build failed.
+		BuildManagerComponent.Instance.OnBuildApplyFailed.AddListener(BuildManager_OnApplyFailed);
+	}
 
     protected override void Update()
     {
@@ -120,6 +217,8 @@ public class TutorialGameController : GameController
                 advanceAtEndOfNextUpdate = true;
             }
         }
+
+		// IMPORTANT: Advances to the next step of the tutorial.
         if(advanceAtEndOfNextUpdate)
         {
             AdvanceToNextState();
@@ -130,106 +229,42 @@ public class TutorialGameController : GameController
 
     public override void BuildManager_OnBuildResovle(BuildStateApplyResult result)
     {
-        bool placedIncorrectly = false;
-        
-		// TODO: If placed a building
-		/*
-		if(resolution.successfullyPlacedBuilding)
-        {
-            if(buildLocations[currentTutorialState].z > 0)
-            {
-                float distance = (resolution.builtBuilding.transform.position - new Vector3(buildLocations[currentTutorialState].x, buildLocations[currentTutorialState].y)).magnitude;
-                if(distance > buildLocations[currentTutorialState].z)
-                {
-                    resolution.successfullyPlacedBuilding = false;
-                    resolution.totalCost -= resolution.builtBuilding.Data.cost;
-                    Destroy(resolution.builtBuilding.gameObject);
-                    resolution.builtBuilding = null;
-                    placedIncorrectly = true;
-                }
-            }
-        }
-		*/
-
-		// TODO: If placed a cable
-		/*
-        if (resolution.successfullyPlacedCable)
-        {
-            if (buildLocations[currentTutorialState].z > 0)
-            {
-                float distance = (resolution.builtCable.Start.transform.position - new Vector3(buildLocations[currentTutorialState].x, buildLocations[currentTutorialState].y)).magnitude;
-                if (distance > buildLocations[currentTutorialState].z)
-                {
-                    resolution.successfullyPlacedCable = false;
-                    resolution.totalCost -= Mathf.CeilToInt(resolution.builtCable.Length * Data.cableCostMultiplier);
-                    Destroy(resolution.builtBuilding.gameObject);
-                    resolution.builtBuilding = null;
-                    placedIncorrectly = true;
-                }
-                else
-                {
-                    distance = (resolution.builtCable.End.transform.position - new Vector3(buildLocations[currentTutorialState].x, buildLocations[currentTutorialState].y)).magnitude;
-                    if (distance > buildLocations[currentTutorialState].z)
-                    {
-                        resolution.successfullyPlacedCable = false;
-                        resolution.totalCost -= Mathf.CeilToInt(resolution.builtCable.Length * Data.cableCostMultiplier);
-                        Destroy(resolution.builtCable.gameObject);
-                        resolution.builtCable = null;
-                        placedIncorrectly = true;
-                    }
-                }
-            }
-        }
-		*/
-
-		// TODO: If placed incorrectly, focus on the goal.
-		/*
-        if(placedIncorrectly)
-        {
-            BuildManagerComponent.Instance.SendExternalCancelSignal();
-            if (cameraFocuses[currentTutorialState].z > 0)
-            {
-                FocusCamera(cameraFocuses[currentTutorialState]);
-            }
-        }
-		*/
-
-		// TODO: On Demolish
-		/*
-        if (resolution.triedDemolishBuilding && resolution.demolishTarget != null && resolution.demolishTarget.Demolishable())
+		// If the player demolished the building they were supposed to demolish,
+		// move to the next step of the tutorial.
+        if (result is DemolishBuildStateApplyResult)
         {
             if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.demolish)
             {
                 advanceAtEndOfNextUpdate = true;
             }
         }
-		*/
+		
 
         base.BuildManager_OnBuildResovle(result);
 
-		// TODO: On building placed
-		/*
-        if (resolution.successfullyPlacedBuilding)
+		// If the player placed a building, and the current step of the tutorial was to place a building,
+		// move to the next part of the tutorial.
+		// Assumes that the placed building was correct.
+        if (result is BuildingBuildStateApplyResult)
         {
             if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.building)
             {
                 advanceAtEndOfNextUpdate = true;
             }
-            UpdateBuildingResources();
+            UpdateBuildingResources(); // Might be called manually due to time scale often being 0 in the tutorials.
         }
-		*/
 		
-		// TODO: On Demolish
-		/*
-        if(resolution.triedDemolishBuilding)
+		// If the player demolished any buildings, update the building resources.
+		// This might be called manually due to the time scale often being 0 in tutorials.
+        if(result is DemolishBuildStateApplyResult)
         {
             UpdateBuildingResources();
         }
-		*/
 
-		// TODO: On Cable Placed
-		/*
-        if (resolution.successfullyPlacedCable)
+		// If the player placed a cable, and the current step of the tutorial was to place a cable,
+		// move to the next part of the tutorial.
+		// Assumes that the cable was placed in the right spot.
+        if (result is CableBuildStateApplyResult)
         {
             if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.cable)
             {
@@ -244,18 +279,17 @@ public class TutorialGameController : GameController
                 }
             }
         }
-		*/
 
-		// TODO: On Move
-		/*
-        if(resolution.successfullyMovedBuilding)
+		// If the player moved a building, and the current step of the tutorial was to move a buildling,
+		// move to the next part of the tutorial.
+		// Assumes that the moved building was placing in the right spot.
+        if(result is MoveBuildStateApplyResult)
         {
             if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.move)
             {
                 advanceAtEndOfNextUpdate = true;
             }
         }
-		*/
     }
 
     protected override void Planet_OnDestroyed(PlanetComponent planetComponent)

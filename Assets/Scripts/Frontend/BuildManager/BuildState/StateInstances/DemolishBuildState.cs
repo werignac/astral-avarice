@@ -6,6 +6,7 @@ using werignac.Utils;
 
 namespace AstralAvarice.Frontend
 {
+	// TODO: Support constraints (tutorial constraint for demolishing a specific building).
 	public class DemolishBuildState : IBuildState
 	{
 		/// <summary>
@@ -21,6 +22,7 @@ namespace AstralAvarice.Frontend
 
 		public UnityEvent<BuildStateTransitionSignal> OnRequestTransition { get; } = new UnityEvent<BuildStateTransitionSignal>();
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } = new UnityEvent<BuildStateApplyResult>();
+		public UnityEvent OnApplyFailed { get; } = new UnityEvent();
 
 		public BuildStateType GetStateType() => BuildStateType.DEMOLISH;
 
@@ -46,8 +48,6 @@ namespace AstralAvarice.Frontend
 			UpdateGravityCursor();
 
 			// TODO: Update Inspector for hovering demolishables?
-
-			// TODO: Check constraints?
 
 			if (input.primaryFire)
 			{

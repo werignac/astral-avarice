@@ -4,7 +4,7 @@ namespace AstralAvarice.Frontend
 {
     public class PlanetPlaceabilityBuildingConstraintComponent : BuildingPlacerConstraintComponent
     {
-		public override ConstraintQueryResult QueryConstraint(IBuildingPlacer state)
+		protected override ConstraintQueryResult QueryConstraint_Internal(IBuildingPlacer state)
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 

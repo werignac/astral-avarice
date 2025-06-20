@@ -167,6 +167,7 @@ namespace AstralAvarice.Frontend
 		public UnityEvent<BuildStateTransitionSignal> OnRequestTransition { get; } = new UnityEvent<BuildStateTransitionSignal>();
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } = new UnityEvent<BuildStateApplyResult>();
 		public UnityEvent<PlanetComponent> OnProspectivePlanetChanged { get; } = new UnityEvent<PlanetComponent>();
+		public UnityEvent OnApplyFailed { get; } = new UnityEvent();
 
 		public BuildStateType GetStateType() => BuildStateType.MOVE;
 
@@ -454,6 +455,7 @@ namespace AstralAvarice.Frontend
 					if (hoveringAnyBuilding)
 					{
 						// TODO: Play failed sound.
+						OnApplyFailed.Invoke();
 					}
 					else
 					{
@@ -489,6 +491,7 @@ namespace AstralAvarice.Frontend
 					else
 					{
 						// TODO: Play a failed sound.
+						OnApplyFailed.Invoke();
 					}
 					return;
 				}

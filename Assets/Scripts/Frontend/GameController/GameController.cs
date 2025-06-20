@@ -398,7 +398,7 @@ public class GameController : MonoBehaviour
 		{	
 			if (demolishResult.demolished is BuildingComponent demolishedBuilding)
 			{
-				// TODO: Make a function specifically for refunding so that we can have differtn refund sfx.
+				// TODO: Make a function specifically for refunding so that we can have different refund sfx.
 				gameManager.SpendMoney(demolishedBuilding.Data.cost / -2);
 			}
 		}

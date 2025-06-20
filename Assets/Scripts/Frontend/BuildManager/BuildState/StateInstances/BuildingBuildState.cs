@@ -53,6 +53,11 @@ namespace AstralAvarice.Frontend
 		/// Event fired when a building gets placed. Cost subtraction occurs via this event.
 		/// </summary>
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } = new UnityEvent<BuildStateApplyResult>();
+		/// <summary>
+		/// Event fired when the user tries to place a building, but fails to do so.
+		/// </summary>
+		public UnityEvent OnApplyFailed { get; } = new UnityEvent();
+
 		#endregion Events
 
 		public NewPlacingBuilding ToBuild => _toBuild;
@@ -206,9 +211,13 @@ namespace AstralAvarice.Frontend
 				BuildingComponent hoveringBuilding = _selectionCursor.FindFirstBuilding();
 				if (hoveringBuilding != null)
 				{
-					TryChain(hoveringBuilding);
+					bool chained = TryChain(hoveringBuilding);
 					// NOTE: Because of this return, if we click on a building we can't chain from, nothing will happen
 					// note even cancelling.
+					
+					if (!chained)
+						OnApplyFailed.Invoke(); // TODO: Determine if we should interpret this as an apply.
+
 					return;
 				}
 
@@ -227,7 +236,8 @@ namespace AstralAvarice.Frontend
 				}
 				else
 				{
-					// TODO: If not, play a failed sound.
+					// TODO: If not, play a failed sound via a listener?
+					OnApplyFailed.Invoke();
 					return;
 				}
 			}

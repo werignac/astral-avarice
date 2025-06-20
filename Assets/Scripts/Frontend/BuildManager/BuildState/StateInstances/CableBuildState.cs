@@ -36,6 +36,10 @@ namespace AstralAvarice.Frontend
 		/// Invoked when we place a cable.
 		/// </summary>
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } = new UnityEvent<BuildStateApplyResult>();
+		/// <summary>
+		/// Invoked when the user tried to place a cable, but failed to do so.
+		/// </summary>
+		public UnityEvent OnApplyFailed { get; } = new UnityEvent();
 
 		public CableBuildState(
 				CableCursorComponent cableCursor,
@@ -43,9 +47,6 @@ namespace AstralAvarice.Frontend
 				BuildingComponent startingBuilding = null
 			)
 		{
-			// TODO: May need a way to override attachments (e.g. Chain attaches to building ghost / building cursor).
-			// TODO: May need a way to override cable color (e.g. Chain cable cannot place when building cannot place).
-
 			if (startingBuilding != null)
 			{
 				if (!startingBuilding.BackendBuilding.CanAcceptNewConnections())
@@ -242,8 +243,6 @@ namespace AstralAvarice.Frontend
 
 		public void Update(BuildStateInput input)
 		{
-			// TODO: When a building button is clicked while in this state, transition to the chained state.
-
 			BuildingComponent hoveringBuilding = _selectionCursor.FindFirstBuilding();
 
 			// Set from / to based on the hovering building.
@@ -291,10 +290,16 @@ namespace AstralAvarice.Frontend
 						SetToAttachment(null);
 						SetFromAttachment(fromBuildingAttachment.BuildingInstance, false);
 					}
+					else
+					{
+						OnApplyFailed.Invoke(); // Failed to attach to the hovered building.
+						// TODO: Determine whether this should be interepreted as a failed apply.
+					}
 					return;
 				}
 
 				// _fromAttachment is a non-volatile BuildingInstanceCableAttachment by this point.
+				// i.e. The player has already clicked on their starting building.
 				Debug.Assert(!fromBuildingAttachment.IsVolatile);
 
 				if (! passesConstraints)
@@ -311,6 +316,10 @@ namespace AstralAvarice.Frontend
 						{
 							SetToAttachment(null);
 							SetFromAttachment(toBuildingAttachment.BuildingInstance, false);
+						}
+						else
+						{
+							OnApplyFailed.Invoke();
 						}
 						return;
 					}

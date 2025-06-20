@@ -51,6 +51,11 @@ namespace AstralAvarice.Frontend
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } // TODO: This could be implemented by OnRequestTransition.
 
 		/// <summary>
+		/// Invoked when the user tried to apply this build state and failed.
+		/// </summary>
+		public UnityEvent OnApplyFailed { get; }
+
+		/// <summary>
 		/// Returns the type of this build state.
 		/// </summary>
 		public BuildStateType GetStateType();

@@ -4,12 +4,12 @@ namespace AstralAvarice.Frontend
 {
 	public class StandardCostConstraintComponent : CostConstraintComponent
 	{
-		private const string ADVANCED_MATERIALS_RICH_TEXT_ICON = "<sprite =\"text-icons\" name=\"science\">";
+		private const string ADVANCED_MATERIALS_RICH_TEXT_ICON = "<sprite=\"text-icons\" name=\"advanced-materials\">";
 		
 		[SerializeField]
 		private GameController gameController;
 
-		public override ConstraintQueryResult QueryConstraint(CostConstraintData data)
+		protected override ConstraintQueryResult QueryConstraint_Internal(CostConstraintData data)
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
@@ -39,7 +39,7 @@ namespace AstralAvarice.Frontend
 				// TODO: Use advanced materials symbol.
 				if (!sufficientResource)
 				{
-					postfix = $"(Missing {resourceSymbol}{Mathf.Abs(remainderPostPurchase)})";
+					postfix = $" (Missing {resourceSymbol}{Mathf.Abs(remainderPostPurchase)})";
 					warningType = BuildWarning.WarningType.FATAL;
 				}
 

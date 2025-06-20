@@ -50,6 +50,8 @@ namespace AstralAvarice.Frontend
 
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } = new UnityEvent<BuildStateApplyResult>();
 
+		public UnityEvent OnApplyFailed { get; } = new UnityEvent();
+
 		public ChainBuildState(
 				BuildingSettingEntry toBuild,
 				BuildingComponent fromBuilding,
@@ -101,7 +103,8 @@ namespace AstralAvarice.Frontend
 
 			// Chain invokations of OnProspectivePlanetChanged out of this state.
 			newSubState.OnProspectivePlanetChanged.AddListener(OnProspectivePlanetChanged.Invoke);
-			// TODO: Listen to transition events from the sub state.
+			// Note that listeners for Apply and Transition are done in update.
+			// there is no listern for ApplyFailed.
 
 			if (callStart)
 				newSubState.Start();
@@ -213,7 +216,7 @@ namespace AstralAvarice.Frontend
 			UpdateCableCursorColor(constraintsResult.GetCableResult());
 
 			bool applied = false; // Keep track of whether we applied.
-			BuildStateTransitionSignal capturedSignal = null; // Keep track of whether a signal was sent.
+			BuildStateTransitionSignal capturedSignal = null; // Keep track of whether a transition signal was sent.
 
 			UnityAction<BuildStateTransitionSignal> subTransitionListener = (BuildStateTransitionSignal signal) => {
 				capturedSignal = signal;
@@ -255,7 +258,11 @@ namespace AstralAvarice.Frontend
 				{
 					// The player is hovering / clicking on a building.
 					// Might never be called due to chain signals being processed via TryProcessSubSignal().
-					TrySetFromAttachment(hoveringbuilding, true);
+					bool setFromAttachment = TrySetFromAttachment(hoveringbuilding, true);
+
+					if (! setFromAttachment)
+						OnApplyFailed.Invoke();
+
 					return;
 				}
 
@@ -267,7 +274,7 @@ namespace AstralAvarice.Frontend
 				}
 
 				// The player is trying to place a building in an illegal spot.
-				// No need to play failed build sound, this is handeled by sub controller.
+				OnApplyFailed.Invoke();
 				return;
 			}
 			else if (input.secondaryFire)
