@@ -35,6 +35,7 @@ public class PtUUISettingsProvider
 				EditorGUILayout.PropertyField(settings.FindProperty("moveInspectorUI"), new GUIContent("Move Inspector"));
 				EditorGUILayout.PropertyField(settings.FindProperty("selectOutlineMaterial"), new GUIContent("Selection Outline Material"));
 				EditorGUILayout.PropertyField(settings.FindProperty("demolishOutlineMaterial"), new GUIContent("Demolish Outline Material"));
+				EditorGUILayout.PropertyField(settings.FindProperty("buildCableOutlineMaterial"), new GUIContent("Build Cable Outline Material"));
 				EditorGUILayout.PropertyField(settings.FindProperty("buildUISelectedButtonSprite"), new GUIContent("Build UI Button Select Sprite"));
 				EditorGUILayout.PropertyField(settings.FindProperty("buildUIDeselectedButtonSprite"), new GUIContent("Build UI Button Deselect Sprite"));
 				EditorGUILayout.PropertyField(settings.FindProperty("solarUIData"), new GUIContent("Solar UI"));

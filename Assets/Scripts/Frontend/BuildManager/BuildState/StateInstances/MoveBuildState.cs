@@ -149,6 +149,11 @@ namespace AstralAvarice.Frontend
 		}
 
 		/// <summary>
+		/// The building the player is hovering over.
+		/// Null if we have already selected a building.
+		/// </summary>
+		private BuildingComponent _hoveringBuilding;
+		/// <summary>
 		/// Null when no building has been selected yet. Otherwise contains the instance of a building being moved.
 		/// </summary>
 		private ExistingPlacingBuilding _movingBuilding;
@@ -208,6 +213,21 @@ namespace AstralAvarice.Frontend
 			}
 		}
 
+		private void SetHoveringBuilding(BuildingComponent newHoveringBuilding)
+		{
+			if (_hoveringBuilding != null)
+			{
+				_hoveringBuilding.OnHoverExit();
+			}
+
+			_hoveringBuilding = newHoveringBuilding;
+
+			if (newHoveringBuilding != null)
+			{
+				newHoveringBuilding.OnHoverEnter();
+			}
+		}
+
 		private bool TrySetMovingBuilding(BuildingComponent toMove, bool updateBuildingCursor)
 		{
 			if (toMove == null)
@@ -219,7 +239,11 @@ namespace AstralAvarice.Frontend
 			if (toMove != null && !toMove.GetClientHasAuthority())
 				return false;
 
+			SetHoveringBuilding(null); // Clear hover since we've selected the moving building.
+			
 			SetMovingBuilding(new ExistingPlacingBuilding(toMove), updateBuildingCursor);
+
+			
 			return true;
 		}
 
@@ -228,6 +252,7 @@ namespace AstralAvarice.Frontend
 			if (_movingBuilding != null)
 			{
 				_movingBuilding.BuildingInstance.OnBuildingDemolished.RemoveListener(MovingBuilding_OnDemolish);
+				_movingBuilding.BuildingInstance.OnSelectEnd(); // Using the same logic as selection system.
 			}
 
 			_movingBuilding = toPlace;
@@ -235,6 +260,7 @@ namespace AstralAvarice.Frontend
 			if (toPlace != null)
 			{
 				toPlace.BuildingInstance.OnBuildingDemolished.AddListener(MovingBuilding_OnDemolish);
+				toPlace.BuildingInstance.OnSelectStart();
 			}
 			else
 			{
@@ -397,11 +423,13 @@ namespace AstralAvarice.Frontend
 
 		private void UpdatePriorToBuildingSelected()
 		{
-			// TODO: Update which building we're hovering over.
+			// Update which building we're hovering over.
+			SetHoveringBuilding(_selectionCursor.FindFirstBuilding());
 		}
 
 		private void UpdateAfterBuildingSelected()
 		{
+			// Compute where we'll be placing the building on the planet.
 			PlanetComponent buildingPlanet = _movingBuilding.BuildingInstance.ParentPlanet;
 
 			Vector2 mousePosition = _selectionCursor.GetPosition();
@@ -444,28 +472,22 @@ namespace AstralAvarice.Frontend
 			{
 				// If clicking on a building & we have authority over the building, set it to be the moving
 				// building.
-				Collider2D hoveringBuildingCollider = _selectionCursor.FindFirstByPredicate((Collider2D collider) =>
-				{
-					return collider.TryGetComponentInParent(out BuildingComponent building) && building.GetClientHasAuthority();
-				});
 
-				if (hoveringBuildingCollider == null)
+				if (_hoveringBuilding == null)
 				{
-					BuildingComponent hoveringAnyBuilding = _selectionCursor.FindFirstBuilding();
-					if (hoveringAnyBuilding)
-					{
-						// TODO: Play failed sound.
-						OnApplyFailed.Invoke();
-					}
-					else
-					{
-						// If clicking on nothing, exit this state.
-						Cancel();
-					}
+					// If clicking on nothing, exit this state.
+					Cancel();
 					return;
 				}
 
-				BuildingComponent hoveringBuilding = hoveringBuildingCollider.GetComponentInParent<BuildingComponent>();
+				if (!_hoveringBuilding.GetClientHasAuthority())
+				{
+					// Clicking on a building the player cannot move.
+					OnApplyFailed.Invoke();
+					return;
+				}
+
+				BuildingComponent hoveringBuilding = _hoveringBuilding.GetComponentInParent<BuildingComponent>();
 				TrySetMovingBuilding(hoveringBuilding, true);
 			}
 			else if (input.secondaryFire)
@@ -549,6 +571,10 @@ namespace AstralAvarice.Frontend
 
 		public void CleanUp()
 		{
+			// Clear highlight VFX.
+			SetHoveringBuilding(null);
+			SetMovingBuilding(null, false);
+
 			_buildingCursor.Hide();
 
 			foreach (CableMover cableMover in _cableMovers)

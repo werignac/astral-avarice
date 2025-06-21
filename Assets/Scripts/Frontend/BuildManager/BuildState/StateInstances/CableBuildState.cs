@@ -7,6 +7,13 @@ namespace AstralAvarice.Frontend
 	public class CableBuildState : IPostConstraintsBuildState<BuildWarning.WarningType>, ICablePlacer, IOverrideExternalSignal, IHasCost
 	{
 		/// <summary>
+		/// Temporary variable usef to store the building to start attaching from.
+		/// Needed because setting the building invokes certain visual effects
+		/// that must be done in start instead of on construction.
+		/// </summary>
+		private BuildingComponent _initialFromAttachment;
+
+		/// <summary>
 		/// The first object the cable is attached to.
 		/// </summary>
 		private ICableAttachment _fromAttachment = null;
@@ -51,7 +58,7 @@ namespace AstralAvarice.Frontend
 			{
 				if (!startingBuilding.BackendBuilding.CanAcceptNewConnections())
 					throw new ArgumentException($"Cannot start cable build state with a building that cannot accept new connections {startingBuilding.gameObject.name}. Has {startingBuilding.BackendBuilding.NumConnected} / {startingBuilding.BackendBuilding.Data.maxPowerLines} connections.");
-				SetFromAttachment(startingBuilding, false);
+				_initialFromAttachment = startingBuilding;
 			}
 
 			if (cableCursor == null)
@@ -65,7 +72,13 @@ namespace AstralAvarice.Frontend
 			_selectionCursor = selectionCursor;
 		}
 
-		public void Start() { }
+		public void Start()
+		{
+			// Delegated to Start() to apply visual effects after the last visual effects
+			// have been cleared (CleanUp).
+			if (_initialFromAttachment != null)
+				SetFromAttachment(_initialFromAttachment, false);
+		}
 
 		public BuildStateType GetStateType()
 		{
@@ -195,6 +208,29 @@ namespace AstralAvarice.Frontend
 			return false;
 		}
 
+		private static bool TryShowOrHideHoverHighlight(ICableAttachment attachment, bool showOrHide)
+		{
+			if (attachment == null)
+				return false;
+
+			if (!(attachment is BuildingInstanceCableAttachment buildingAttachment))
+				return false;
+
+			if (!buildingAttachment.IsVolatile)
+				return false;
+
+			if (showOrHide)
+			{
+				buildingAttachment.BuildingInstance.OnHoverEnter();
+			}
+			else
+			{
+				buildingAttachment.BuildingInstance.OnHoverExit();
+			}
+
+			return true;
+		}
+
 		
 		/// <summary>
 		/// Used internally to set the "from" end of the cable attachment.
@@ -203,10 +239,12 @@ namespace AstralAvarice.Frontend
 		private void SetFromAttachment(ICableAttachment attachment)
 		{
 			TryRegisterOrUnregisterDemolishListener(_fromAttachment, FromAttachment_OnDemolish, false);
+			TryShowOrHideHoverHighlight(_fromAttachment, false);
 
 			_fromAttachment = attachment;
 
 			TryRegisterOrUnregisterDemolishListener(attachment, FromAttachment_OnDemolish, true);
+			TryShowOrHideHoverHighlight(attachment, true);
 		}
 
 		private void SetFromAttachment(BuildingComponent buildingComponent, bool isVolatile)
@@ -221,10 +259,12 @@ namespace AstralAvarice.Frontend
 		private void SetToAttachment(ICableAttachment attachment)
 		{
 			TryRegisterOrUnregisterDemolishListener(_toAttachment, ToAttachment_OnDemolish, false);
+			TryShowOrHideHoverHighlight(_toAttachment, false);
 
 			_toAttachment = attachment;
 
 			TryRegisterOrUnregisterDemolishListener(attachment, ToAttachment_OnDemolish, true);
+			TryShowOrHideHoverHighlight(attachment, true);
 		}
 
 		private void SetToAttachment(BuildingComponent buildingComponent, bool isVolatile)
@@ -452,8 +492,8 @@ namespace AstralAvarice.Frontend
 		public void CleanUp()
 		{
 			// Remove event listeners for the demolishment of buildings.
-			TryRegisterOrUnregisterDemolishListener(_fromAttachment, FromAttachment_OnDemolish, false);
-			TryRegisterOrUnregisterDemolishListener(_toAttachment, FromAttachment_OnDemolish, false);
+			SetFromAttachment(null);
+			SetToAttachment(null);
 			
 			_cableCursor.Hide();
 		}

@@ -20,6 +20,7 @@ MonoBehaviour:
   moveInspectorUI: {fileID: 9197481963319205126, guid: a890de7d3b9cadc4fb4ddcb2f5e21369, type: 3}
   selectOutlineMaterial: {fileID: 2100000, guid: 68048318c209ab74f975e88f59ea7aa8, type: 2}
   demolishOutlineMaterial: {fileID: 2100000, guid: 49e492fa6eb534248905a589f5d35bec, type: 2}
+  buildCableOutlineMaterial: {fileID: 2100000, guid: 67eacee388d26d943933eabe65911474, type: 2}
   buildUISelectedButtonSprite: {fileID: -1356575089028299937, guid: fa6887f881a0aba4ab52e157fd6fd8ce, type: 3}
   buildUIDeselectedButtonSprite: {fileID: 7963390740095718593, guid: b81aaccb24b7946428016fe20c547663, type: 3}
   solarUIData:

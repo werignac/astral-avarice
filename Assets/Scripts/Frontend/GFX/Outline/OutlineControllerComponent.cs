@@ -37,11 +37,28 @@ public class OutlineControllerComponent : MonoBehaviour
 
 	private void BuildManager_OnStateChanged(IBuildState oldState, IBuildState newState)
 	{
-		if (oldState == null || oldState.GetStateType() == BuildStateType.DEMOLISH)
-			SetOutlineSelect();
+		switch (newState.GetStateType())
+		{
+			// Outline indicating demolishing.
+			case BuildStateType.DEMOLISH:
+				SetOutlineDemolish();
+				return;
+			// Outline indicating adding cables.
+			case BuildStateType.BUILDING:
+			case BuildStateType.BUILDING_CHAINED:
+			case BuildStateType.CABLE:
+				SetOutlineBuildCable();
+				return;
+			// Outline indicating selection and moving.
+			default:
+				SetOutlineSelect();
+				return;
+		}
+	}
 
-		if (newState.GetStateType() == BuildStateType.DEMOLISH)
-			SetOutlineDemolish();
+	private void SetOutlineBuildCable()
+	{
+		SetOutlineMaterial(PtUUISettings.GetOrCreateSettings().BuildCableOutlineMaterial);
 	}
 
 	private void SetOutlineDemolish()

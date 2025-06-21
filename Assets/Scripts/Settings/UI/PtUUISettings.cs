@@ -31,6 +31,7 @@ public class PtUUISettings : ScriptableObject
 	[Header("Selection and Outlines")]
 	[SerializeField] private Material selectOutlineMaterial;
 	[SerializeField] private Material demolishOutlineMaterial;
+	[SerializeField] private Material buildCableOutlineMaterial;
 
 	[Header("Build UI Indicators")]
 	[SerializeField] private Sprite buildUISelectedButtonSprite;
@@ -107,6 +108,8 @@ public class PtUUISettings : ScriptableObject
 	{
 		get => demolishOutlineMaterial;
 	}
+
+	public Material BuildCableOutlineMaterial => buildCableOutlineMaterial;
 
 	public Sprite BuildUISelectedButtonSprite { get => buildUISelectedButtonSprite; }
 	public Sprite BuildUIDeselectedButtonSprite { get => buildUIDeselectedButtonSprite; }

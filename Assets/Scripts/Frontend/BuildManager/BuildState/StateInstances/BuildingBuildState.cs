@@ -42,6 +42,10 @@ namespace AstralAvarice.Frontend
 
 		#region Events
 		/// <summary>
+		/// The building the player is currently hovering over.
+		/// </summary>
+		private BuildingComponent _hoveringBuilding;
+		/// <summary>
 		/// Event fired when the player changes what planet they're prospecting building on.
 		/// </summary>
 		public UnityEvent<PlanetComponent> OnProspectivePlanetChanged { get; } = new UnityEvent<PlanetComponent>();
@@ -170,6 +174,21 @@ namespace AstralAvarice.Frontend
 			};
 		}
 
+		public void SetHoveringBuilding(BuildingComponent newHoveringBuilding)
+		{
+			if (_hoveringBuilding != null)
+			{
+				_hoveringBuilding.OnHoverExit();
+			}
+
+			_hoveringBuilding = newHoveringBuilding;
+
+			if (newHoveringBuilding != null)
+			{
+				newHoveringBuilding.OnHoverEnter();
+			}
+		}
+
 		/// <summary>
 		/// Initializes the building cursor to display the building we plan on placing.
 		/// Includes information such as the ghost sprite, the collider size, and the
@@ -194,6 +213,9 @@ namespace AstralAvarice.Frontend
 		public void Update(BuildStateInput input)
 		{
 			UpdateBuildingPosition(_selectionCursor.GetPosition());
+			
+			BuildingComponent hoveringBuilding = _selectionCursor.FindFirstBuilding();
+			SetHoveringBuilding(hoveringBuilding);
 		}
 
 		/// <summary>
@@ -208,15 +230,15 @@ namespace AstralAvarice.Frontend
 			if (input.primaryFire)
 			{
 				// Check if we are hovering over another building. If so, transition to chained.
-				BuildingComponent hoveringBuilding = _selectionCursor.FindFirstBuilding();
-				if (hoveringBuilding != null)
+				
+				if (_hoveringBuilding != null)
 				{
-					bool chained = TryChain(hoveringBuilding);
+					bool chained = TryChain(_hoveringBuilding);
 					// NOTE: Because of this return, if we click on a building we can't chain from, nothing will happen
-					// note even cancelling.
+					// not even cancelling.
 					
 					if (!chained)
-						OnApplyFailed.Invoke(); // TODO: Determine if we should interpret this as an apply.
+						OnApplyFailed.Invoke(); // TODO: Determine if we should interpret this as an apply attempt.
 
 					return;
 				}
@@ -395,6 +417,9 @@ namespace AstralAvarice.Frontend
 				// Signal to the planet that we're no longer prospecting building on it.
 				_prospectivePlanet.StopProspectingMassChange();
 			}
+
+			// Clear highlight vfx with hovering building.
+			SetHoveringBuilding(null);
 
 			_buildingCursor.Hide();
 			_gravityCursor.Hide();
