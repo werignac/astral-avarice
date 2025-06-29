@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using System;
 using werignac.Utils;
+using UnityEngine.UIElements;
 
 namespace AstralAvarice.Frontend
 {
@@ -40,7 +41,7 @@ namespace AstralAvarice.Frontend
 	}
 
 	// TODO: Implement IOverride etc. So what we can chain from moving?
-	public class MoveBuildState : IPostConstraintsBuildState<MoveConstraintsQueryResult>, IBuildingPlacer, IMultiCablePlacer
+	public class MoveBuildState : IPostConstraintsBuildState<MoveConstraintsQueryResult>, IBuildingPlacer, IMultiCablePlacer, IMoveInspectorEventBus, IInspectable
 	{
 		/// <summary>
 		/// Sub class for implementing the cable placer interface for
@@ -173,6 +174,7 @@ namespace AstralAvarice.Frontend
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } = new UnityEvent<BuildStateApplyResult>();
 		public UnityEvent<PlanetComponent> OnProspectivePlanetChanged { get; } = new UnityEvent<PlanetComponent>();
 		public UnityEvent OnApplyFailed { get; } = new UnityEvent();
+		public UnityEvent<BuildingComponent> OnHoveringBuildingChanged { get; } = new UnityEvent<BuildingComponent>();
 
 		public BuildStateType GetStateType() => BuildStateType.MOVE;
 
@@ -226,6 +228,8 @@ namespace AstralAvarice.Frontend
 			{
 				newHoveringBuilding.OnHoverEnter();
 			}
+
+			OnHoveringBuildingChanged.Invoke(newHoveringBuilding);
 		}
 
 		private bool TrySetMovingBuilding(BuildingComponent toMove, bool updateBuildingCursor)
@@ -581,6 +585,19 @@ namespace AstralAvarice.Frontend
 				cableMover.Dispose();
 
 			_cableMovers.Clear();
+		}
+
+		public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
+		{
+			MoveInspectorController moveInspectorController = new MoveInspectorController();
+
+			moveInspectorController.SetHoveringBuilding(_hoveringBuilding);
+
+			moveInspectorController.SetEventBus(this);
+
+			inspectorController = moveInspectorController;
+
+			return PtUUISettings.GetOrCreateSettings().MoveInspectorUI;
 		}
 	}
 }

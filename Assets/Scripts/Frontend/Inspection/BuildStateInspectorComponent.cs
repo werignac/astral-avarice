@@ -37,12 +37,6 @@ public class BuildStateInspectorComponent : MonoBehaviour
 				case BuildStateType.CABLE:
 					inspectable = new InspectableCable();
 					break;
-				case BuildStateType.DEMOLISH:
-					inspectable = new InspectableDemolish();
-					break;
-				case BuildStateType.MOVE:
-					inspectable = new InspectableMove();
-					break;
 				default:
 					// If we don't recognize the build state, then
 					// don't add a layer.
