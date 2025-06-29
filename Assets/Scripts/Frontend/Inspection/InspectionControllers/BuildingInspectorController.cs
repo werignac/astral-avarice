@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public abstract class BuildingInspectorController : BuildingUIBinding, IInspectorController
 {
-	public virtual void ConnectInspectorUI(TemplateContainer inspectorUI)
+	public virtual void ConnectInspectorUI(VisualElement inspectorUI)
 	{
 		Bind(inspectorUI);
 	}

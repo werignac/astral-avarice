@@ -25,7 +25,7 @@ public class PlanetInspectorController : IInspectorController
         displayingPlanet = planet;
     }
 
-	public void ConnectInspectorUI(TemplateContainer inspectorUI)
+	public void ConnectInspectorUI(VisualElement inspectorUI)
 	{
 		subheading = inspectorUI.Q<Label>("Subheading");
 		icon = inspectorUI.Q("Icon");

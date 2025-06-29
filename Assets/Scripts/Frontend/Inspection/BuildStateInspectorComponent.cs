@@ -25,7 +25,7 @@ public class BuildStateInspectorComponent : MonoBehaviour
 		if (activeBuildStateLayer != null)
 			inspector.RemoveLayer(activeBuildStateLayer);
 
-		IInspectable inspectable = null;
+		IInspectable inspectable;
 		InspectorLayerType layerType = InspectorLayerType.BUILD_STATE;
 
 		if (newState is IInspectable inspectableState)

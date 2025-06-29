@@ -97,7 +97,7 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 		buildSettings = toDisplay;
 	}
 
-	public override void ConnectInspectorUI(TemplateContainer inspectorUI)
+	public override void ConnectInspectorUI(VisualElement inspectorUI)
 	{
 		base.ConnectInspectorUI(inspectorUI);
 	}

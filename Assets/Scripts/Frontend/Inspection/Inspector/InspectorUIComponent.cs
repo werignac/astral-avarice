@@ -99,7 +99,7 @@ public class InspectorUIComponent : MonoBehaviour
 
 			// Create new inspector UI and controller.
 			var inspectorAsset = topmostLayer.inspectable.GetInspectorElement(out IInspectorController newInspectorController);
-			var inspectorInstance = inspectorAsset.Instantiate();
+			VisualElement inspectorInstance = inspectorAsset.Instantiate();
 			if (newInspectorController != null)
 				newInspectorController.ConnectInspectorUI(inspectorInstance);
 

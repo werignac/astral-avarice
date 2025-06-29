@@ -8,11 +8,13 @@ public interface IInspectorController
 	/// and update information.
 	/// </summary>
 	/// <param name="inspectorUI">Inspector UI element sent along with this controller to the Inspector.</param>
-	public void ConnectInspectorUI(TemplateContainer inspectorUI);
+	public void ConnectInspectorUI(VisualElement inspectorUI);
 
 	/// <summary>
 	/// Cleans up events and references with the inspectorUI to stop receiving inputs
 	/// and updating information.
+	/// 
+	/// Equivalent of Dispose() object should remove all references and cease to exist.
 	/// </summary>
 	public void DisconnectInspectorUI();
 

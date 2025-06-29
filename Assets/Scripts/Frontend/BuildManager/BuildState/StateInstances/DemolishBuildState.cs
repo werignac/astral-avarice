@@ -7,7 +7,7 @@ using werignac.Utils;
 namespace AstralAvarice.Frontend
 {
 	// TODO: Support constraints (tutorial constraint for demolishing a specific building).
-	public class DemolishBuildState : IBuildState
+	public class DemolishBuildState : IBuildState, IInspectable, IDemolishInspectorEventBus
 	{
 		/// <summary>
 		/// The demolishable object we're hovering over. If null, we're not having over a demolishable object.
@@ -23,6 +23,7 @@ namespace AstralAvarice.Frontend
 		public UnityEvent<BuildStateTransitionSignal> OnRequestTransition { get; } = new UnityEvent<BuildStateTransitionSignal>();
 		public UnityEvent<BuildStateApplyResult> OnApplied { get; } = new UnityEvent<BuildStateApplyResult>();
 		public UnityEvent OnApplyFailed { get; } = new UnityEvent();
+		public UnityEvent<IDemolishable> OnHoveringDemolishableChanged { get; } = new UnityEvent<IDemolishable>();
 
 		public BuildStateType GetStateType() => BuildStateType.DEMOLISH;
 
@@ -90,6 +91,8 @@ namespace AstralAvarice.Frontend
 
 			_hoveringDemolishable = newDemolishable;
 
+			OnHoveringDemolishableChanged.Invoke(_hoveringDemolishable);
+
 			if (newDemolishable != null)
 			{
 				_hoveringDemolishable.HoverDemolishStart();
@@ -148,6 +151,20 @@ namespace AstralAvarice.Frontend
 		{
 			SetHoveringDemolishable(null);
 			_gravityCursor.Hide();
+		}
+
+		public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
+		{
+
+			DemolishInspectorController demoInspectorController = new DemolishInspectorController();
+			
+			demoInspectorController.EventBus_OnHoveringDemolishableChanged(_hoveringDemolishable);
+
+			demoInspectorController.SetEventBus(this);
+
+			inspectorController = demoInspectorController;
+
+			return PtUUISettings.GetOrCreateSettings().DemolishInspectorUI;
 		}
 	}
 }

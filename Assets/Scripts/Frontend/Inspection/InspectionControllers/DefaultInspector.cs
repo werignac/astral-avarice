@@ -9,7 +9,7 @@ public class DefaultInspector : IInspectable
 	/// </summary>
 	public class DefaultInspectorController : IInspectorController
 	{
-		public void ConnectInspectorUI(TemplateContainer inspectorUI)
+		public void ConnectInspectorUI(VisualElement inspectorUI)
 		{
 			Label missionName = inspectorUI.Q<Label>("MissionName");
 			missionName.text += Data.selectedMission.missionName;
