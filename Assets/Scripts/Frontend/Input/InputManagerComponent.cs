@@ -88,7 +88,7 @@ public class InputManagerComponent : MonoBehaviour
 	private void UpdateSelectionCursor()
 	{
 		// Don't look for objects under the cursor whilst paused.
-		if (gameController.GamePaused)
+		if (gameController.DenyGameplayInput)
 			return;
 
 		// Convert the mouse position to a position in world space.
@@ -101,7 +101,7 @@ public class InputManagerComponent : MonoBehaviour
 	private void UpdateBuildManager()
 	{
 		// Don't take input whilst the game is paused.
-		if (gameController.GamePaused)
+		if (gameController.DenyGameplayInput)
 			return;
 
 		// If the player was clicking on UI, ignore the input.
@@ -127,7 +127,7 @@ public class InputManagerComponent : MonoBehaviour
 	private void UpdateSelection()
 	{
 		// Don't take input whilst the game is paused.
-		if (gameController.GamePaused)
+		if (gameController.DenyGameplayInput)
 			return;
 
 		// If the player was clicking on UI, ignore the input.
@@ -154,7 +154,7 @@ public class InputManagerComponent : MonoBehaviour
 	private void UpdateCameraMovement()
 	{
 		// Don't take input whilst the game is paused.
-		if (gameController.GamePaused)
+		if (gameController.DenyGameplayInput)
 			return;
 
 		if (cameraMovementComponent == null)
@@ -181,7 +181,7 @@ public class InputManagerComponent : MonoBehaviour
 	private void UpdateGameController()
 	{
 		// Don't take input whilst the game is paused.
-		if (gameController.GamePaused)
+		if (gameController.DenyGameplayInput)
 			return;
 
 		if (incrementGameSpeedAction.WasPerformedThisFrame())
@@ -211,7 +211,7 @@ public class InputManagerComponent : MonoBehaviour
 		}
 		if (pauseAction.WasPerformedThisFrame())
 		{
-			if (gameController.GamePaused)
+			if (gameController.DenyGameplayInput)
 			{
 				pauseManager.UnpauseGame();
 			}
@@ -239,7 +239,7 @@ public class InputManagerComponent : MonoBehaviour
 		}
 
 		// Don't take input whilst the game is paused.
-		if (gameController.GamePaused)
+		if (gameController.DenyGameplayInput)
 			return;
 
 		if (toggleMinimapAction.WasPerformedThisFrame())
@@ -250,7 +250,7 @@ public class InputManagerComponent : MonoBehaviour
 
 	private void UpdateGridGroupView()
 	{
-		if (gameController.GamePaused)
+		if (gameController.DenyGameplayInput)
 			return;
 
 		if (gridGroupState == null)

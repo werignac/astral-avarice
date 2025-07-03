@@ -68,6 +68,10 @@ public class GameController : MonoBehaviour
 	{
 		get { return (gamePaused); }
 	}
+
+	public bool GameEnded => gameEnded;
+
+	public bool DenyGameplayInput => GamePaused || GameEnded;
 	public int Income
     {
         get { return (gameManager.Income); }
