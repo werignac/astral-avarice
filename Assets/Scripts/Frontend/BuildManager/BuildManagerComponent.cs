@@ -329,7 +329,7 @@ public class BuildManagerComponent : MonoBehaviour
 	private static BuildWarning.WarningType DefaultQueryConstraintType<TInput, TConstraint>(
 			TInput constraintInput,
 			TConstraint[] constraints,
-			BuildWarningContext context
+			BuildWarningElementContainer context
 		) where TConstraint : IBuildConstraint<TInput>
 	{
 		BuildWarning.WarningType highestWarning = BuildWarning.WarningType.GOOD;
@@ -338,7 +338,7 @@ public class BuildManagerComponent : MonoBehaviour
 		{
 			ConstraintQueryResult result = constraint.QueryConstraint(constraintInput);
 
-			context.AddBuildingWarnings(result.Warnings);
+			context.AddChildren(result.Warnings);
 
 			if (result.HighestWarning > highestWarning)
 				highestWarning = result.HighestWarning;
@@ -375,8 +375,10 @@ public class BuildManagerComponent : MonoBehaviour
 			buildingHighestWarning = buildingCostHighestWarning;
 
 		// Then get the warning for the cable.
-		BuildWarning.WarningType cableCostHighestWarning = DefaultQueryConstraintType(cableCostData, costConstraints, context);
-		BuildWarning.WarningType cableHighestWarning = DefaultQueryConstraintType(chainState as ICablePlacer, cableConstraints, context);
+		BuildWarningSection cableSection = new BuildWarningSection();
+		context.AddChild(cableSection);
+		BuildWarning.WarningType cableCostHighestWarning = DefaultQueryConstraintType(cableCostData, costConstraints, cableSection);
+		BuildWarning.WarningType cableHighestWarning = DefaultQueryConstraintType(chainState as ICablePlacer, cableConstraints, cableSection);
 
 		if (cableCostHighestWarning > cableHighestWarning)
 			cableHighestWarning = cableCostHighestWarning;
@@ -397,7 +399,9 @@ public class BuildManagerComponent : MonoBehaviour
 
 		for (int i = 0; i < cablePlacers.Length; i++)
 		{
-			cableResults[i] = DefaultQueryConstraintType(cablePlacers[i], cableConstraints, context);
+			BuildWarningSection cableSection = new BuildWarningSection();
+			context.AddChild(cableSection);
+			cableResults[i] = DefaultQueryConstraintType(cablePlacers[i], cableConstraints, cableSection);
 		}
 
 		return new MoveConstraintsQueryResult(buildingResult, cableResults);

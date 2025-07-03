@@ -1,6 +1,7 @@
 using UnityEngine;
+using AstralAvarice.Frontend;
 
-public struct BuildWarning
+public struct BuildWarning : BuildWarningElement
 {
 	/// <summary>
 	/// Warning types are sorted so that when doing greater than operations,

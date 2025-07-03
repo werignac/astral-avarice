@@ -1,4 +1,4 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Tooltips/BuildWarnings/BuildWarning_StyleSheet.uss?fileID=7433441132597879392&amp;guid=ff5f5e4f5a82e4348a8aaff8d95830e6&amp;type=3#BuildWarning_StyleSheet" />
-    <engine:VisualElement name="SubSectionContainer" style="flex-grow: 0; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; background-color: rgba(33, 118, 162, 0.59); align-self: flex-start;" />
+    <engine:VisualElement name="SubSectionContainer" style="flex-grow: 0; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; background-color: rgba(33, 118, 162, 0.59); align-self: flex-start; margin-top: 2px; margin-bottom: 2px;" />
 </engine:UXML>

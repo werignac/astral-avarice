@@ -57,29 +57,39 @@ namespace AstralAvarice.UI.Tooltips
 			VisualTreeAsset warningUITemplate = BuildWarningsUIData.buildWarningUIAsset;
 			VisualTreeAsset warningSectionUITemplate = BuildWarningsUIData.buildWarningSectionUIAsset;
 
-			IEnumerable<BuildWarning> buildingWarnings = container.GetBuildingWarnings();
-
-			AddBuildWarningsToSection(buildingWarnings, warningContainerElement, warningUITemplate);
-
-			IEnumerable<BuildWarning> cableWarnings = container.GetCableWarnings();
-
-			VisualElement cableSectionUI = warningSectionUITemplate.Instantiate();
-
-			VisualElement cableSectionContainer = cableSectionUI.Q(SECTION_CONTAINER_NAME);
-
-			AddBuildWarningsToSection(cableWarnings, cableSectionContainer, warningUITemplate);
-
-			if (cableSectionContainer.childCount > 0)
-				warningContainerElement.Add(cableSectionUI);
+			AddBuildWarningElementsToSection(
+				container.GetChildren(),
+				warningContainerElement,
+				warningUITemplate,
+				warningSectionUITemplate
+			);
 		}
 
-		private static void AddBuildWarningsToSection(IEnumerable<BuildWarning> warnings, VisualElement sectionElement, VisualTreeAsset warningUITemplate)
+		private static void AddBuildWarningElementsToSection(IEnumerable<BuildWarningElement> elements, VisualElement sectionElement, VisualTreeAsset warningUITemplate, VisualTreeAsset sectionUITemplate)
 		{
-			foreach (BuildWarning warning in warnings)
+			foreach (BuildWarningElement element in elements)
 			{
-				VisualElement warningUITemplateInstance = warningUITemplate.Instantiate();
-				sectionElement.Add(warningUITemplateInstance);
-				SetBuildWarning(warning, warningUITemplateInstance);
+				if (element is BuildWarning warning)
+				{
+					VisualElement warningUITemplateInstance = warningUITemplate.Instantiate();
+					sectionElement.Add(warningUITemplateInstance);
+					SetBuildWarning(warning, warningUITemplateInstance);
+				}
+				else if (element is BuildWarningSection section)
+				{
+					VisualElement sectionUITemplateInstance = sectionUITemplate.Instantiate();
+					sectionElement.Add(sectionUITemplateInstance);
+					AddBuildWarningElementsToSection(
+						section.GetChildren(),
+						sectionUITemplateInstance.Q(SECTION_CONTAINER_NAME),
+						warningUITemplate,
+						sectionUITemplate
+					);
+				}
+				else
+				{
+					Debug.LogWarning($"Unrecognized build warning element {element}. Skipping display in tooltip.");
+				}
 			}
 		}
 
