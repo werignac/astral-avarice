@@ -328,7 +328,14 @@ public class GameController : MonoBehaviour
     public void EndGame(bool victory, float victoryTime)
     {
         Debug.Log("Game has ended");
+		
 		gameEnded = true;
+
+		// TODO: Put into the BuildManagerComponent
+		// Get out of whatever build state we are currently in.
+		// In the future, this may need to be more forceful w/ external signal overrides.
+		BuildManagerComponent.Instance.SendExternalCancelSignal();
+
 		if(victory)
         {
 			int rank = GetRank(victoryTime);
