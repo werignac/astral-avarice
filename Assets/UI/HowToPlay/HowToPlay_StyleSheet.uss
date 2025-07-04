@@ -1,0 +1,3 @@
+#TipList #unity-content-and-vertical-scroll-container {
+    flex-direction: row-reverse;
+}

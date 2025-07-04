@@ -38,7 +38,6 @@ namespace AstralAvarice.Frontend
             PopulateTips();
         }
 
-
         private void PopulateTips()
         {
             tipContent.Clear();
@@ -77,20 +76,22 @@ namespace AstralAvarice.Frontend
 
             if (index <= 0)
             {
-                prev.style.display = DisplayStyle.None;
+                prev.style.visibility = Visibility.Hidden;
             }
             else
             {
-                prev.style.display = DisplayStyle.Flex;
+                prev.style.visibility = Visibility.Visible;
             }
-            if (index >= data.descriptions.Length - 1)
+            
+			if (index >= data.descriptions.Length - 1)
             {
-                next.style.display = DisplayStyle.None;
+                next.style.visibility = Visibility.Hidden;
             }
             else
             {
-                next.style.display = DisplayStyle.Flex;
+                next.style.visibility = Visibility.Visible;
             }
+
             description.text = data.descriptions[index];
             title.text = data.titles[index];
             currentIndex = index;
