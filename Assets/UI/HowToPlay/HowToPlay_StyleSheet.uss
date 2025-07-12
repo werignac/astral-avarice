@@ -1,3 +1,48 @@
+.arrowButton {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/arrow_ui.png?fileID=-6229205015822294638&guid=772ed4f0f73d68f4bb454ac279988a1c&type=3#arrow-left_ui");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 100px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-background-image-tint-color: rgb(138, 233, 181);
+}
+
+.arrowButton:hover {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/arrow_ui.png?fileID=-6229205015822294638&guid=772ed4f0f73d68f4bb454ac279988a1c&type=3#arrow-left_ui");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 100px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-background-image-tint-color: rgb(202, 241, 223);
+}
+
+.arrowButton:active {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/arrow_ui.png?fileID=-6229205015822294638&guid=772ed4f0f73d68f4bb454ac279988a1c&type=3#arrow-left_ui");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 100px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-background-image-tint-color: rgb(32, 189, 123);
+}
+
 #TipList #unity-content-and-vertical-scroll-container {
     flex-direction: row-reverse;
+}
+
+.section {
+    background-color: rgba(33, 118, 162, 0.86);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-left-color: rgba(4, 89, 106, 0.58);
+    border-right-color: rgba(4, 89, 106, 0.58);
+    border-top-color: rgba(4, 89, 106, 0.58);
+    border-bottom-color: rgba(4, 89, 106, 0.58);
 }

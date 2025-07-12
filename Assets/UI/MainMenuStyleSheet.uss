@@ -26,7 +26,7 @@
     width: 499px;
     height: 83px;
     font-size: 41px;
-    background-image: url("project://database/Assets/Sprites/UI/screen_button_back.png?fileID=2800000&guid=b81aaccb24b7946428016fe20c547663&type=3#screen_button_back");
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/screen_button_back.png?fileID=2800000&guid=b81aaccb24b7946428016fe20c547663&type=3#screen_button_back");
     -unity-slice-right: 102;
     -unity-slice-bottom: 102;
     -unity-slice-left: 133;
@@ -50,21 +50,18 @@
 }
 
 .missionButton:hover {
-    color: rgb(156, 156, 156);
-    -unity-background-image-tint-color: rgb(111, 111, 111);
-}
-
-.missionButton:active {
     color: rgb(255, 255, 255);
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
-.menuBackground {
-    background-color: rgba(0, 0, 0, 0);
-    background-image: url("project://database/Assets/Sprites/UI/hex_ui_background_gradient_red.png?fileID=2800000&guid=f02254d2ee1f0c7469acb3a7277ca2d8&type=3#hex_ui_background_gradient_red");
-    -unity-background-image-tint-color: rgb(181, 109, 112);
-    background-size: 500px 500px;
-    background-repeat: no-repeat repeat;
+.missionButton:active {
+    color: rgb(156, 156, 156);
+    -unity-background-image-tint-color: rgb(168, 168, 168);
+}
+
+.missionButton:disabled {
+    color: rgb(122, 121, 121);
+    -unity-background-image-tint-color: rgb(98, 98, 98);
 }
 
 .header {
@@ -77,4 +74,12 @@
 
 #MissionScroll #unity-content-and-vertical-scroll-container {
     flex-direction: row-reverse;
+}
+
+.menuBackground {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("project://database/Assets/Sprites/UI/Backgrounds/hex_ui_background_gradient_red.png?fileID=2800000&guid=f02254d2ee1f0c7469acb3a7277ca2d8&type=3#hex_ui_background_gradient_red");
+    -unity-background-image-tint-color: rgb(181, 109, 112);
+    background-size: 500px 500px;
+    background-repeat: no-repeat repeat;
 }

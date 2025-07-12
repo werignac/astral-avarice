@@ -2,24 +2,29 @@
     <engine:Template name="HowToPlayTipButton_UI" src="project://database/Assets/UI/HowToPlay/HowToPlayTipButton_UI.uxml?fileID=9197481963319205126&amp;guid=3dcc3c44c5750b747a15dc95d62d6cd0&amp;type=3#HowToPlayTipButton_UI" />
     <Style src="project://database/Assets/UI/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=4124b1416559d0b44b5377efa564a3eb&amp;type=3#MainMenuStyleSheet" />
     <Style src="project://database/Assets/UI/HowToPlay/HowToPlay_StyleSheet.uss?fileID=7433441132597879392&amp;guid=3ec1970ea5a6bca4d98b24f822771579&amp;type=3#HowToPlay_StyleSheet" />
-    <engine:VisualElement style="flex-grow: 1; flex-direction: row-reverse; background-color: rgba(84, 80, 80, 0.44);">
-        <engine:VisualElement name="CurrentTip" style="flex-grow: 1; flex-direction: column; align-self: stretch; justify-content: space-around; flex-shrink: 1; margin-right: 30px;">
-            <engine:VisualElement name="Header" style="flex-grow: 0; flex-direction: row; align-self: stretch; height: 125px; flex-shrink: 0; align-items: flex-end; padding-bottom: 20px; padding-top: 20px; justify-content: space-between;">
-                <engine:Button text="Prev" name="Prev" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; position: relative; align-self: stretch;" />
-                <engine:Label text="Label" name="Title" class="text" style="align-self: auto; margin-top: 0; padding-right: 15px; padding-left: 15px;" />
-                <engine:Button text="Next" name="Next" style="align-self: stretch; align-content: flex-start; justify-content: flex-start; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+    <engine:VisualElement style="flex-grow: 1; flex-direction: row-reverse; background-image: url(&quot;project://database/Assets/Sprites/UI/Backgrounds/inspector-menu-gradient.png?fileID=2800000&amp;guid=70b7a6af3d01c664d95c036433021689&amp;type=3#inspector-menu-gradient&quot;); -unity-background-image-tint-color: rgba(158, 245, 154, 0.4);">
+        <engine:VisualElement name="CurrentTip" style="flex-grow: 1; flex-direction: column; align-self: stretch; justify-content: space-around; flex-shrink: 1; margin-right: 60px; margin-left: 30px; margin-bottom: 30px;">
+            <engine:VisualElement name="Header" class="section" style="flex-grow: 0; flex-direction: row; align-self: stretch; height: 125px; flex-shrink: 0; align-items: flex-end; padding-bottom: 20px; padding-top: 15px; justify-content: space-between; margin-bottom: 20px; margin-top: 20px; padding-right: 10px; padding-left: 10px;">
+                <engine:Button name="Prev" class="arrowButton" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; position: relative; align-self: stretch; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-color: rgba(188, 188, 188, 0); background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/arrow_ui.png?fileID=-6229205015822294638&amp;guid=772ed4f0f73d68f4bb454ac279988a1c&amp;type=3#arrow-left_ui&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 100px;" />
+                <engine:Label text="Label" name="Title" class="text" style="align-self: auto; margin-top: 0; padding-right: 15px; padding-left: 15px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/nova_square/NovaSquareSlim-Book.ttf?fileID=12800000&amp;guid=e701aedbbc86ce941bcf879127aa77eb&amp;type=3#NovaSquareSlim-Book&quot;); -unity-font-style: bold; -unity-text-align: middle-center;" />
+                <engine:Button name="Next" class="arrowButton" style="align-self: stretch; align-content: flex-start; justify-content: flex-start; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/arrow_ui.png?fileID=-428464296418251392&amp;guid=772ed4f0f73d68f4bb454ac279988a1c&amp;type=3#arrow-right_ui&quot;);" />
             </engine:VisualElement>
             <engine:VisualElement name="Video" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/HowToPlay/HowToPlayVideoTexture.renderTexture?fileID=8400000&amp;guid=64063885f8740924e93e0c5faf543313&amp;type=2#HowToPlayVideoTexture&quot;); -unity-background-scale-mode: scale-to-fit; height: 600px; background-size: contain;" />
-            <engine:Label text="Label" name="Description" class="text" style="font-size: 40px; width: auto; margin-top: 10px; background-color: rgba(6, 0, 55, 0.4); margin-right: 0; margin-left: 0; margin-bottom: 0; padding-bottom: 50px; padding-top: 25px; align-self: stretch; justify-content: flex-end;" />
+            <engine:Label text="Label" name="Description" class="text section" style="font-size: 40px; width: auto; margin-top: 20px; margin-right: 0; margin-left: 0; margin-bottom: 0; padding-bottom: 50px; padding-top: 25px; align-self: stretch; justify-content: flex-end; padding-left: 2px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/athabasca/Athabasca%20Cd%20Bk.otf?fileID=12800000&amp;guid=fb09dd1c8a4f399409e93cd4f1c711db&amp;type=3#Athabasca Cd Bk&quot;);" />
         </engine:VisualElement>
-        <engine:VisualElement name="Left" style="flex-grow: 0; flex-shrink: 0; flex-direction: column;">
+        <engine:VisualElement name="Left" class="menuBackground" style="flex-grow: 0; flex-shrink: 0; flex-direction: column; background-size: 300px 300px; background-position-x: left 0;">
             <engine:VisualElement name="BackContainer" style="flex-grow: 1; flex-shrink: 0;">
-                <engine:Button text="Exit" name="Exit" class="missionButton" style="width: 306px;" />
+                <engine:Button name="Exit" class="missionButton" style="width: auto; height: auto; flex-shrink: 1; align-self: stretch; flex-direction: row; margin-bottom: 66px; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/screen_button_back_inspector.png?fileID=2800000&amp;guid=206181b4d674479489ee9070fe646673&amp;type=3#screen_button_back_inspector&quot;);">
+                    <engine:Label text="Back" />
+                    <engine:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/return_ui.png?fileID=21300000&amp;guid=55c697235eb4bdb43a44c1e7afde4f33&amp;type=3#return_ui&quot;); -unity-background-scale-mode: scale-to-fit; background-position-x: right 0; margin-top: 5px; margin-right: 38px; margin-bottom: 5px; margin-left: 5px; width: 86px; height: 50px; align-self: flex-end; -unity-background-image-tint-color: rgb(204, 196, 194);" />
+                </engine:Button>
             </engine:VisualElement>
-            <engine:VisualElement name="TipList" class="menuBackground" style="flex-grow: 0; flex-shrink: 1; background-size: 100% 300px; width: 300px; margin-right: 60px;">
+            <engine:VisualElement name="TipList" style="flex-grow: 0; flex-shrink: 1; background-size: 100% 300px; width: 300px; margin-right: 60px;">
                 <engine:ScrollView name="TipScrollView" horizontal-scroller-visibility="Hidden" enabled="true" picking-mode="Ignore" class="scrollView" style="margin-top: 20px; margin-right: 0; margin-bottom: 20px; margin-left: 20px; width: 316px;">
                     <engine:VisualElement name="TipContent" style="flex-grow: 1;">
-                        <engine:Instance template="HowToPlayTipButton_UI" />
+                        <engine:Instance template="HowToPlayTipButton_UI" enabled="true">
+                            <AttributeOverrides element-name="TipButton" enabled="true" />
+                        </engine:Instance>
                         <engine:Instance template="HowToPlayTipButton_UI" />
                         <engine:Instance template="HowToPlayTipButton_UI" />
                         <engine:Instance template="HowToPlayTipButton_UI" />

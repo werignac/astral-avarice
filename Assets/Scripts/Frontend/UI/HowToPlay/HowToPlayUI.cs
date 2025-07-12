@@ -98,6 +98,15 @@ namespace AstralAvarice.Frontend
             videoPlayer.Stop();
             videoPlayer.clip = data.videoClips[index];
             videoPlayer.Play();
+			
+			// Disable the button for the current tip.
+			int childIndex = 0;
+			foreach (VisualElement tipButtonTemplate in tipContent.Children())
+			{
+				Button tipButton = tipButtonTemplate.Q<Button>("TipButton");
+				tipButton.SetEnabled(childIndex != index);
+				childIndex++;
+			}
         }
 
         private void PrevClicked(ClickEvent evt)
