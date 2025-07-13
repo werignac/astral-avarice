@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
+  m_Name: 13_ChainBuild2_Tip
+  m_EditorClassIdentifier: 
+  title: Chain Build II
+  description: If you want to quickly build cables while building, you can click
+    on a different building to make it the start point for the cable that will be
+    built upon placing a new building.
+  videoClip: {fileID: 32900000, guid: 870c754ff808a5b47aadf8c2b0ef5c8c, type: 3}

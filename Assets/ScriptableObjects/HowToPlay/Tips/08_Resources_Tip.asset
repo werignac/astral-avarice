@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
+  m_Name: 08_Resources_Tip
+  m_EditorClassIdentifier: 
+  title: Resources
+  description: Some planets have resources, (coal, wind, solar, or thermal). These
+    can be utilized in specialized power plants to produce power more efficiently.
+  videoClip: {fileID: 32900000, guid: 0875f9278803f5b4e84c78ab9b229313, type: 3}

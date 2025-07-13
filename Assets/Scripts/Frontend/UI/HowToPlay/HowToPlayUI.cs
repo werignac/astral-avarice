@@ -41,7 +41,7 @@ namespace AstralAvarice.Frontend
         private void PopulateTips()
         {
             tipContent.Clear();
-            for (int i = 0; i < data.descriptions.Length; ++i)
+            for (int i = 0; i < data.tips.Length; ++i)
             {
                 VisualElement button = CreateTipButton(i);
                 tipContent.Add(button);
@@ -83,7 +83,7 @@ namespace AstralAvarice.Frontend
                 prev.style.visibility = Visibility.Visible;
             }
             
-			if (index >= data.descriptions.Length - 1)
+			if (index >= data.tips.Length - 1)
             {
                 next.style.visibility = Visibility.Hidden;
             }
@@ -92,11 +92,11 @@ namespace AstralAvarice.Frontend
                 next.style.visibility = Visibility.Visible;
             }
 
-            description.text = data.descriptions[index];
-            title.text = data.titles[index];
+            description.text = data.tips[index].description;
+            title.text = data.tips[index].title;
             currentIndex = index;
             videoPlayer.Stop();
-            videoPlayer.clip = data.videoClips[index];
+            videoPlayer.clip = data.tips[index].videoClip;
             videoPlayer.Play();
 			
 			// Disable the button for the current tip.
@@ -125,9 +125,7 @@ namespace AstralAvarice.Frontend
 
         private VisualElement CreateTipButton(int index)
         {
-            PtUUISettings uiSettings = PtUUISettings.GetOrCreateSettings();
-
-            string tipName = data.titles[index];
+            string tipName = data.tips[index].title;
             VisualElement tipButtonElement = tipButtonPrefab.Instantiate();
             Button tipButton = tipButtonElement.Q<Button>("TipButton");
             tipButton.text = tipName;

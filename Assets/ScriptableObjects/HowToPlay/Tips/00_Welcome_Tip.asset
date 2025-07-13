@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
+  m_Name: 00_Welcome_Tip
+  m_EditorClassIdentifier: 
+  title: Welcome
+  description: Astral Avarice is a game about building a power company across a solar
+    system in order to turn massive profits.
+  videoClip: {fileID: 32900000, guid: 68dd806edaf3dd9458da9944b6b97839, type: 3}

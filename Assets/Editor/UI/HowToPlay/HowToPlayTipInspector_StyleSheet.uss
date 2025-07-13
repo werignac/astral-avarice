@@ -1,0 +1,3 @@
+#DescriptionField #unity-text-input {
+    white-space: normal;
+}
