@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
   m_Name: 05_Buildings_Tip
   m_EditorClassIdentifier: 
-  title: Buildings
-  description: The building menu has different tabs for pylons, power plants, labs,
-    and utility buildings.
+  title: Your Buildings
+  description: 'The building menu has different tabs for <sprite="text-icons" name="pylon">
+    Pylons, <sprite="text-icons" name="power"> Power Plants, <sprite="text-icons"
+    name="advanced-materials"> Labs, and <sprite="text-icons" name="utility"> Utility
+    buildings. These are the buildings you will use to construct your power grid.
+
+
+    Each
+    building has an upfront price and a maintenance cost.'
   videoClip: {fileID: 32900000, guid: e625fcbf7ce36d34ab139639222868db, type: 3}

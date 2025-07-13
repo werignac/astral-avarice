@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
-  m_Name: 15_Gravity_Tip
+  m_Name: 16_Gravity_Tip
   m_EditorClassIdentifier: 
-  title: Gravity
-  description: Planets all have an innate mass. Placing buildings on a planet increases
-    its mass. This causes a planets gravity to increase.
-  videoClip: {fileID: 32900000, guid: bad534b9df4b15e4096e9c2aa3018cb6, type: 3}
+  title: Celestial Movement
+  description: When the center of a celestial body falls within the gravity range
+    of another planet, it will be pulled towards that other planet.
+  videoClip: {fileID: 32900000, guid: a6eed3b26b37da84cb211eaef03f32a0, type: 3}

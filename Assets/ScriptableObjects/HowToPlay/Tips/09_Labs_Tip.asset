@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 09_Labs_Tip
   m_EditorClassIdentifier: 
   title: Labs
-  description: Labs take power in order to produce advanced materials. This allows
-    you to build more advanced buildings.
+  description: Labs consume <sprite="text-icons" name="power"> electricity in order
+    to produce <sprite="text-icons" name="advanced-materials"> advanced materials.
+    Advanced materials are required to construct more complex buildings.
   videoClip: {fileID: 32900000, guid: 787e97671d1b10f47b583108a2082fa7, type: 3}

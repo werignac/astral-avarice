@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: 04_Houses_Tip
   m_EditorClassIdentifier: 
   title: Houses
-  description: Houses exist in the world, and you deliver power to them to make money.
+  description: 'Houses are your source of income. If you supply enough power to them,
+    they will produce money in exchange.
+
+
+    The amount of power required and the
+    amount of income scale with the size of the home. Cabins require the least electricity,
+    but produce the least income; while cities are the most lucrative, but demand
+    the most electricity.'
   videoClip: {fileID: 32900000, guid: 07e0ddf8ea548564491ac0ae0d5ec374, type: 3}

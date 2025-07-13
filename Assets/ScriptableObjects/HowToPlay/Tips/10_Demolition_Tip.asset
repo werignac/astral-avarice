@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
   m_Name: 10_Demolition_Tip
   m_EditorClassIdentifier: 
-  title: Demolition Tool
-  description: The demolition tool can destroy buildings and cables that you have
-    placed. You will be refunded 50% of the money cost for the building. However,
-    houses may not be demolished.
+  title: Demolish Tool
+  description: The demolish tool can destroy buildings and cables that you have placed.
+    When demolishing a building with this tool, you will be refunded 50% of that
+    building's money cost.
   videoClip: {fileID: 32900000, guid: 185c972bba0b41f439a251c982c15d7c, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 07_PowerPlants_Tip
   m_EditorClassIdentifier: 
   title: Power Plants
-  description: Power plants produce power. This power goes through power lines to
-    other buildings in order to power them. If connected to the same grid, power
-    plants can add or split their power freely.
+  description: Power plants produce electricity. This electricity will power other
+    buildings connected by cables. If connected to the same grid, power plants can
+    add or split their power freely (reword).
   videoClip: {fileID: 32900000, guid: cb5db25e452c2ca4aac394498bc18a4a, type: 3}

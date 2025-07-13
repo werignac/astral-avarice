@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: 08_Resources_Tip
   m_EditorClassIdentifier: 
   title: Resources
-  description: Some planets have resources, (coal, wind, solar, or thermal). These
-    can be utilized in specialized power plants to produce power more efficiently.
+  description: 'Most power plants require a special resource to convert into electricity.
+    These power plants will only function when placed on planets with the corresponding
+    resource available.
+
+
+    The four types of resources are <sprite="text-icons"
+    name="solar"> Solar,  <sprite="text-icons" name="wind"> Wind, <sprite="text-icons"
+    name="coal"> Coal, and <sprite="text-icons" name="geothermal"> Geothermal.'
   videoClip: {fileID: 32900000, guid: 0875f9278803f5b4e84c78ab9b229313, type: 3}
