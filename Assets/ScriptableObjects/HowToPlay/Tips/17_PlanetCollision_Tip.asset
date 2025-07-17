@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 17_PlanetCollision_Tip
   m_EditorClassIdentifier: 
   title: Planet Collision
-  description: When two planets collide, whichever has the smaller mass will be completely
-    destroyed. Meanwhile all buildings on the more massive planet will be destroyed
-    in the process.
+  description: When two planets collide, cataclysmic destruction occurs. The planet
+    with the higher mass will lose all its buildings while the planet with lower
+    mass will be completely destroyed.
   videoClip: {fileID: 32900000, guid: a6eed3b26b37da84cb211eaef03f32a0, type: 3}

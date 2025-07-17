@@ -22,6 +22,8 @@ namespace AstralAvarice.VisualData
 
 		public VisualTreeAsset GetInspectorElement(out IInspectorController inspectorController)
 		{
+			// TODO: Change per build mode.
+
 			inspectorController = null;
 			return modeInspectorAsset;
 		}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 11_MoveTool_Tip
   m_EditorClassIdentifier: 
   title: Move Tool
-  description: You can move any building that you could demolish. With the move tool,
-    you can change where on the planet a building is placed. However, you can not
-    move it to a different planet.
+  description: The move tool allows you to change the location of one of your buildings
+    to a new location on the same planet. The move tool cannot be used to place a
+    building on a different planet, nor can it be used with houses.
   videoClip: {fileID: 32900000, guid: a2602efb36c9a104f9afca1333cc4677, type: 3}
