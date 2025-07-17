@@ -376,9 +376,11 @@ public class BuildManagerComponent : MonoBehaviour
 
 		// Then get the warning for the cable.
 		BuildWarningSection cableSection = new BuildWarningSection();
-		context.AddChild(cableSection);
 		BuildWarning.WarningType cableCostHighestWarning = DefaultQueryConstraintType(cableCostData, costConstraints, cableSection);
 		BuildWarning.WarningType cableHighestWarning = DefaultQueryConstraintType(chainState as ICablePlacer, cableConstraints, cableSection);
+
+		if (cableSection.GetHasChildren())
+			context.AddChild(cableSection);
 
 		if (cableCostHighestWarning > cableHighestWarning)
 			cableHighestWarning = cableCostHighestWarning;
@@ -400,8 +402,10 @@ public class BuildManagerComponent : MonoBehaviour
 		for (int i = 0; i < cablePlacers.Length; i++)
 		{
 			BuildWarningSection cableSection = new BuildWarningSection();
-			context.AddChild(cableSection);
 			cableResults[i] = DefaultQueryConstraintType(cablePlacers[i], cableConstraints, cableSection);
+			
+			if (cableSection.GetHasChildren())
+				context.AddChild(cableSection);
 		}
 
 		return new MoveConstraintsQueryResult(buildingResult, cableResults);

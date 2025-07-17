@@ -1,7 +1,8 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Tooltips/Tooltip_StyleSheet.uss?fileID=7433441132597879392&amp;guid=85f6fce6f1a3f3b45aa315a354b27f09&amp;type=3#Tooltip_StyleSheet" />
     <Style src="project://database/Assets/UI/Tooltips/BuildWarnings/BuildWarning_StyleSheet.uss?fileID=7433441132597879392&amp;guid=ff5f5e4f5a82e4348a8aaff8d95830e6&amp;type=3#BuildWarning_StyleSheet" />
     <engine:VisualElement name="Warning" style="flex-grow: 0; flex-direction: row;">
         <engine:VisualElement name="WarningIcon" style="flex-grow: 0; width: 25px; height: 25px; flex-shrink: 0;" />
-        <engine:Label text="My Warning Text Here" name="WarningDescription" picking-mode="Ignore" class="statsText" style="align-self: flex-start; font-size: 20px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; display: flex; max-width: none; white-space: normal; flex-shrink: 1;" />
+        <engine:Label text="My Warning Text Here" name="WarningDescription" picking-mode="Ignore" class="statsText tooltipText" style="align-self: flex-start; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; display: flex; max-width: none; white-space: normal; flex-shrink: 1;" />
     </engine:VisualElement>
 </engine:UXML>

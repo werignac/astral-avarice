@@ -22,5 +22,10 @@ namespace AstralAvarice.Frontend
 		{
 			return children;
 		}
+
+		public bool GetHasChildren()
+		{
+			return children.Count > 0;
+		}
 	}
 }

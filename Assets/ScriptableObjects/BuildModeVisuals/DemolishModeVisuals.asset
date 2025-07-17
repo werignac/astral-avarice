@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69f061bd01ec3f439e4812815334802, type: 3}
   m_Name: DemolishModeVisuals
   m_EditorClassIdentifier: 
-  modeName: Demolish Mode
+  modeName: Demolish Tool
   modeIcon: {fileID: 21300000, guid: 99c0da86e6f917f4c8535c5993ffe0a5, type: 3}
   modePriority: 14
-  modeDescription: Enables the player to remove buildings they previously placed.
+  modeDescription: Removes placed structures.
   modeInspectorAsset: {fileID: 9197481963319205126, guid: 04b998026f7e64e4492f14ff76ee2f95, type: 3}

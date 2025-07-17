@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69f061bd01ec3f439e4812815334802, type: 3}
   m_Name: CableModeVisuals
   m_EditorClassIdentifier: 
-  modeName: Cable Mode
+  modeName: Cable Tool
   modeIcon: {fileID: 21300000, guid: 821a296538d9f5e4baebd324d9580017, type: 3}
   modePriority: 10
-  modeDescription: 'Enables the creation of cables.
+  modeDescription: 'Creates cables.
 
-    Cable connect buildings
-    together, permitting the transfer of power.'
+    Cables connect buildings together, permitting
+    the transfer of power.'
   modeInspectorAsset: {fileID: 9197481963319205126, guid: ef2a82dcde0f6ab4ebabbdbfd20e3fd9, type: 3}

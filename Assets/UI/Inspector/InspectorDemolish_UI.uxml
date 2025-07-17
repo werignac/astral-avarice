@@ -6,5 +6,5 @@
         <engine:Label text="Demolish Tool" name="Subheading" class="subheader subheader1 inspectorBacked" style="white-space: normal;" />
         <engine:Label text="Left click on a building or cable to demolish it.&#10;&#10;Right click to exit the demolish tool." name="MissionDescription" class="textbox" style="flex-wrap: nowrap; white-space: normal; -unity-background-scale-mode: stretch-to-fill; background-size: 100px 100px;" />
     </engine:VisualElement>
-    <engine:Instance template="InspectorBuilding_UI" name="HoveringBuildingInspector" style="flex-grow: 1; flex-shrink: 1;" />
+    <engine:Instance template="InspectorBuilding_UI" name="HoveringBuildingInspector" enabled="true" style="flex-grow: 1; flex-shrink: 1; display: none;" />
 </engine:UXML>

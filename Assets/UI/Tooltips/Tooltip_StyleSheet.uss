@@ -1,0 +1,6 @@
+.tooltipText {
+    -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Cd%20Bk.otf?fileID=12800000&guid=fb09dd1c8a4f399409e93cd4f1c711db&type=3#Athabasca Cd Bk");
+    -unity-font-style: bold;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}

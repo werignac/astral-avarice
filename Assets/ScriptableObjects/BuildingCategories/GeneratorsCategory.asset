@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f829ee18432420a4cbd11c1723396123, type: 3}
   m_Name: GeneratorsCategory
   m_EditorClassIdentifier: 
-  categoryName: Generators
+  categoryName: Power Plants
   categoryIcon: {fileID: 21300000, guid: 72259055803b4fb4dba49b64902e36eb, type: 3}
   categoryPriority: 2
   categoryDescription: Structures that produce electricity.

@@ -20,6 +20,11 @@ namespace AstralAvarice.Frontend
 			if (!cableCursor.GetHasValidStartAndEnd())
 				return result;
 
+			// If we're moving and not showing the building we're moving,
+			// we're not showing the cables either. Hide the warnings.
+			if (state.GetFromAttachment().GetIsAttachedToHiddenBuildingCursor() || state.GetToAttachment().GetIsAttachedToHiddenBuildingCursor())
+				return result;
+
 			List<Collider2D> cableOverlaps = new List<Collider2D>(cableCursor.QueryOverlappingColliders());
 			
 			BuildingComponent fromBuilding;

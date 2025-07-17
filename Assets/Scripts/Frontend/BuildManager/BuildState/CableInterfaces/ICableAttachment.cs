@@ -23,6 +23,16 @@ namespace AstralAvarice.Frontend
 
 			return true;
 		}
+
+		public static bool GetIsAttachedToHiddenBuildingCursor(this ICableAttachment attachment)
+		{
+			if (attachment is BuildingCursorCableAttachment buildingCursorAttachment)
+			{
+				return !buildingCursorAttachment.BuildingCursor.GetIsShowing();
+			}
+
+			return false;
+		}
 	}
 
 	public class BuildingInstanceCableAttachment : ICableAttachment

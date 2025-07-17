@@ -121,6 +121,9 @@ namespace AstralAvarice.UI.Tooltips
 					replacement.oldLayer.UIController.UnBind();
 			}
 
+			// Ensuring the tooltip is visible when handing off control.
+			tooltipContainer.style.display = DisplayStyle.Flex;
+
 			// Add and connect the new layer.
 			if (replacement.newLayer != null)
 			{

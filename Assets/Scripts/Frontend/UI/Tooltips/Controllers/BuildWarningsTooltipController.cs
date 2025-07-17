@@ -22,17 +22,20 @@ namespace AstralAvarice.UI.Tooltips
 		private const string WARNING_FATAL_CLASS_NAME = "warningTypeFatal";
 		private const string WARNING_ALERT_CLASS_NAME = "warningTypeAlert";
 
+		private VisualElement rootUIElement;
 		private VisualElement warningContainerElement;
 
 		private BuildWarningsUIData BuildWarningsUIData => PtUUISettings.GetOrCreateSettings().BuildWarningsUIData;
 
 		public void Bind(VisualElement ui)
 		{
+			rootUIElement = ui;
 			warningContainerElement = ui.Q(WARNINGS_CONTAINER_ELEMENT_NAME);
 		}
 
 		public void UnBind()
 		{
+			rootUIElement = null;
 			warningContainerElement = null;
 		}
 
@@ -44,7 +47,15 @@ namespace AstralAvarice.UI.Tooltips
 
 			// TODO: Make less resource intensive. Creating and destroying elements every frame is costly.
 			Clear();
-			AddBuildWarnings(container);
+			if (container.GetHasChildren())
+			{
+				rootUIElement.style.display = DisplayStyle.Flex;
+				AddBuildWarnings(container);
+			}
+			else
+			{
+				rootUIElement.style.display = DisplayStyle.None;
+			}
 		}
 
 		private void Clear()
