@@ -153,6 +153,7 @@
 }
 
 .buildingButton {
+    -unity-background-image-tint-color: rgb(236, 236, 236);
 }
 
 .buildingButton Label#BuildingName {
@@ -171,6 +172,10 @@
     display: none;
 }
 
+.buildingButton:hover {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
 .buildingButton:hover Label#BuildingName {
     display: flex;
 }
@@ -185,6 +190,10 @@
 
 .buildingButton:hover #StatsContainer {
     display: flex;
+}
+
+.buildingButton:active {
+    -unity-background-image-tint-color: rgb(141, 141, 141);
 }
 
 #SubMenuContainer #unity-content-and-vertical-scroll-container {
