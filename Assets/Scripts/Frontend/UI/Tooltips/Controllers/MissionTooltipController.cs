@@ -46,7 +46,7 @@ namespace AstralAvarice.UI.Tooltips
 			{
 				if (PlayerPrefs.GetInt(mission.prereqMission, -1) < mission.prereqRank)
 				{
-					return ("Complete mission " + mission.prereqMission + " with rank " + uiSettings.RankSettings[mission.prereqRank].name + " or better to unlock.");
+					return ($"Complete mission {mission.prereqMission} with rank {uiSettings.RankSettings[mission.prereqRank].RichTextIcon} or better to unlock.");
 				}
 			}
 			float bestTime = PlayerPrefs.GetFloat(mission.missionName + "Time", -1);
@@ -54,7 +54,7 @@ namespace AstralAvarice.UI.Tooltips
 			{
 				string timeText = Mathf.FloorToInt(bestTime / 60).ToString("00");
 				timeText += ":" + (bestTime % 60).ToString("00.0");
-				return ("Best time: " + timeText);
+				return ($"Best time: {timeText}");
 			}
 			else if(bestTime == 0)
             {

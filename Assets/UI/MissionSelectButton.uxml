@@ -1,7 +1,10 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=4124b1416559d0b44b5377efa564a3eb&amp;type=3#MainMenuStyleSheet" />
-    <engine:VisualElement style="flex-grow: 0; width: 500px; height: 90px;">
-        <engine:Button text="Button" name="MissionButton" class="missionButton" />
-        <engine:VisualElement name="Check" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-6090568113533005507&amp;guid=6d3142833d2bc694c8742c2782822332&amp;type=3#check&quot;); width: 60px; height: 60px; margin-top: -120px; margin-left: 450px;" />
+    <engine:VisualElement style="flex-grow: 0; width: 500px; height: 90px; flex-direction: column-reverse;">
+        <engine:Button text="Button" name="MissionButton" class="missionButton hasRank" style="overflow: visible;">
+            <engine:VisualElement name="CheckBackground" picking-mode="Ignore" style="flex-grow: 1; position: absolute; align-self: flex-end; width: 75px; height: 75px; top: -20px; right: -25px; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/screen_button_back_uncolored.png?fileID=21300000&amp;guid=0975e512f5764ae4eae85241cc088596&amp;type=3#screen_button_back_uncolored&quot;); -unity-slice-scale: 0.2px; padding-top: 15px; padding-left: 15px; padding-bottom: 7px; padding-right: 7px; -unity-background-image-tint-color: rgb(33, 39, 35);">
+                <engine:VisualElement name="Check" picking-mode="Ignore" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Ranks/s-rank.png?fileID=2800000&amp;guid=2188168c4085e8c4c8d8b0bcf6d6df2f&amp;type=3#s-rank&quot;); margin-top: 2px; margin-left: 2px; align-self: stretch; -unity-background-scale-mode: scale-to-fit; margin-right: 2px; margin-bottom: 2px; background-position-x: center 0;" />
+            </engine:VisualElement>
+        </engine:Button>
     </engine:VisualElement>
 </engine:UXML>

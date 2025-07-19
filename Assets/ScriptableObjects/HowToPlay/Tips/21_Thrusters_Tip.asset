@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: 21_Thrusters_Tip
   m_EditorClassIdentifier: 
   title: Thrusters
-  description: Thrusters will never be automatically powered. If you toggle them
-    on, the planet attached will accelerate away from the thruster as long as it
-    remains powered.
+  description: Thrusters will never be automatically powered. When powered on, thrusters
+    will push the planet they are on.
   videoClip: {fileID: 32900000, guid: 7e6a1055eeca4214ab20c604ec588670, type: 3}

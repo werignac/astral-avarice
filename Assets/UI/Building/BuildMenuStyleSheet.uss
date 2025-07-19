@@ -152,7 +152,7 @@
     color: rgb(233, 58, 55);
 }
 
-.buildingButton {
+.buildingButton #ButtonContents {
     -unity-background-image-tint-color: rgb(236, 236, 236);
 }
 
@@ -172,7 +172,7 @@
     display: none;
 }
 
-.buildingButton:hover {
+.buildingButton:hover #ButtonContents {
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
@@ -190,9 +190,10 @@
 
 .buildingButton:hover #StatsContainer {
     display: flex;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
-.buildingButton:active {
+.buildingButton:active #ButtonContents {
     -unity-background-image-tint-color: rgb(141, 141, 141);
 }
 

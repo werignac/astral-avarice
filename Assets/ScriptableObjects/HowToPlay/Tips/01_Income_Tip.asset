@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Income
   description: In the stats panel you can see your current income for both cash and
-    advanced materials. You collect this each pay cycle, which occurs every 30 seconds.
+    <sprite="text-icons" name="advanced-materials"> advanced materials. You collect
+    this each pay cycle, which occurs every 30 seconds.
   videoClip: {fileID: 32900000, guid: 016e6db549617354c881ba2cdafaf7b5, type: 3}

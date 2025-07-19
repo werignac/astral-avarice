@@ -64,6 +64,10 @@
     -unity-background-image-tint-color: rgb(98, 98, 98);
 }
 
+.missionButton #CheckBackground {
+    display: none;
+}
+
 .header {
     -unity-font-definition: url("project://database/Assets/Fonts/nova_square/NovaSquare-Bold.ttf?fileID=12800000&guid=597dc7aca417012418e8bf020fe58581&type=3#NovaSquare-Bold");
     -unity-text-align: upper-left;
@@ -82,4 +86,8 @@
     -unity-background-image-tint-color: rgb(181, 109, 112);
     background-size: 500px 500px;
     background-repeat: no-repeat repeat;
+}
+
+.hasRank #CheckBackground {
+    display: flex;
 }

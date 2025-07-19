@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 16_Gravity_Tip
   m_EditorClassIdentifier: 
   title: Gravity
-  description: As a planet's <sprite="text-icons" name="mass"> increases, so does
-    its <sprite="text-icons" name="gravity-field"> gravitational field (indicated
+  description: As a planet's <sprite="text-icons" name="mass"> mass increases, so
+    does its <sprite="text-icons" name="gravity-field"> gravitational field (indicated
     by the circle around a planet). If the center of a planet falls within the field
     of another planet, the former will be attracted towards the latter.
   videoClip: {fileID: 32900000, guid: a6eed3b26b37da84cb211eaef03f32a0, type: 3}

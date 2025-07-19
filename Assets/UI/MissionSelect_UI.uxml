@@ -3,7 +3,7 @@
     <engine:VisualElement name="VisualElement" class="menuBackground" style="flex-grow: 1; width: 500px; padding-left: 30px;">
         <engine:Label text="Mission Select" name="Title" class="text header" style="-unity-text-align: upper-left;" />
         <engine:ScrollView horizontal-scroller-visibility="Hidden" name="MissionScroll" class="scrollView" style="align-self: flex-start; width: 569px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-grow: 1;">
-            <engine:VisualElement name="MissionsContent" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap;">
+            <engine:VisualElement name="MissionsContent" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; padding-top: 30px;">
                 <engine:Button text="Button" class="missionButton" />
                 <engine:Button text="Button" class="missionButton" />
                 <engine:Button text="Button" class="missionButton" />

@@ -9,6 +9,7 @@ public class MissionUIComponent : MonoBehaviour
 {
 	private const string MISSIONS_CONTENT_ELEMENT_NAME = "MissionsContent";
 	private const string BACK_BUTTON_ELEMENT_NAME = "BackButton";
+	private const string RANK_CLASS_NAME = "hasRank";
 
 	[SerializeField] private DataSet gameData;
 	[SerializeField] private UIDocument missionSelectDocument;
@@ -120,11 +121,11 @@ public class MissionUIComponent : MonoBehaviour
 		int missionCompletionStatus = PlayerPrefs.GetInt(missionName, -1);
 		if (missionCompletionStatus < 0)
 		{
-			check.style.display = DisplayStyle.None;
+			missionButton.RemoveFromClassList(RANK_CLASS_NAME);
 		}
 		else
 		{
-			check.style.display = DisplayStyle.Flex;
+			missionButton.AddToClassList(RANK_CLASS_NAME);
 			Sprite rankSprite = uiSettings.RankSettings[missionCompletionStatus].icon;
 			check.style.backgroundImage = new StyleBackground(rankSprite);
 			check.style.backgroundSize = BackgroundPropertyHelper.ConvertScaleModeToBackgroundSize(ScaleMode.ScaleToFit);

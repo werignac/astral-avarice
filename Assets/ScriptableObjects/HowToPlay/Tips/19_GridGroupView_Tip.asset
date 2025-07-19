@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 19_GridGroupView_Tip
   m_EditorClassIdentifier: 
   title: Grid Group View
-  description: In the View Toggles, you can also enable the Grid Group View. This
-    shows you which buildings are connected, as well as the total power provided/requested
-    by all buildings connected in that grid group.
+  description: The <sprite="text-icons" name="grid-group"> grid group view visualizes
+    your separate power grids by giving them different colors. When hovering over
+    a grid while this visualization is on, you can see statistics about that grid.
   videoClip: {fileID: 32900000, guid: 2f55c620dc33ebb45b749c385a093720, type: 3}

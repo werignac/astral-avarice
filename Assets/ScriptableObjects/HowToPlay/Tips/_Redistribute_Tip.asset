@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
-  m_Name: 06_Pylons_Tip
+  m_Name: _Redistribute_Tip
   m_EditorClassIdentifier: 
-  title: Pylons
-  description: Pylons are the bedrock of your power grid. They allow multiple power
-    plants and power consumers to be part of the same grid.
-  videoClip: {fileID: 32900000, guid: 12b934e1322364e419f49c1e1385292d, type: 3}
+  title: Redistribute
+  description: Clicking on the <sprite="text-icons" name="power"> Redistribute button
+    near the top will change the powered states of the buildings in all of your grids
+    to optimize income.
+  videoClip: {fileID: 32900000, guid: 016e6db549617354c881ba2cdafaf7b5, type: 3}

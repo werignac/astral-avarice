@@ -20,5 +20,6 @@ MonoBehaviour:
 
 
     Each
-    building has an upfront price and a maintenance cost.'
+    building has an upfront price (cash and sometimes <sprite="text-icons" name="advanced-materials">
+    advanced materials), and a (cash-only) maintenance cost.'
   videoClip: {fileID: 32900000, guid: e625fcbf7ce36d34ab139639222868db, type: 3}

@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: 14_CableConnection_Tip
   m_EditorClassIdentifier: 
   title: Cable Tool
-  description: The cable connection tool will connect buildings with cables. It requires
-    no interruptions, and only has so much range. You can chain cables as with the
-    chain building.
+  description: 'The cable tool will connect buildings with <sprite="text-icons" name="cable">
+    cables. Cables have a limited length and cannot overlap with other structures
+    nor planets.
+
+
+    All buildings except for Pylons can support one cable. So,
+    Pylons are necessary for creating networks with more than one power plant and
+    power consumer.'
   videoClip: {fileID: 32900000, guid: 992166a0a61d98541bade88d2ca5d09e, type: 3}
