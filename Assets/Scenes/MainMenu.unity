@@ -1552,6 +1552,7 @@ GameObject:
   - component: {fileID: 1472481590}
   - component: {fileID: 1472481593}
   - component: {fileID: 1472481592}
+  - component: {fileID: 1472481594}
   m_Layer: 5
   m_Name: Tooltip
   m_TagString: Untagged
@@ -1622,6 +1623,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiDocument: {fileID: 1472481590}
   margin: {x: 10, y: 10}
+--- !u!114 &1472481594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472481589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1597f28f78e61014985600f5a792e41c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tooltipEventBus: {fileID: 11400000, guid: e6aedcfcdb1f95c4391561a94e53cd6c, type: 2}
+  _tooltipComponent: {fileID: 1472481593}
 --- !u!1 &1501900649
 GameObject:
   m_ObjectHideFlags: 0

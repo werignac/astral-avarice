@@ -35,7 +35,7 @@ namespace AstralAvarice.UI.Tooltips
 
 		private void UpdateTooltipText()
 		{
-			_labelElement.text = $"{_solarEnergy} {SOLAR_RESOURCE_ELEMENT_RICH_TEXT} solar energy in this ring.";
+			_labelElement.text = $"Planets at this position will receive {_solarEnergy} {SOLAR_RESOURCE_ELEMENT_RICH_TEXT} solar energy.";
 		}
 	}
 }

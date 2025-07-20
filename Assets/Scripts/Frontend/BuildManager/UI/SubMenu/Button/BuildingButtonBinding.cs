@@ -10,6 +10,10 @@ using UnityEngine.Events;
 /// <typeparam name="T">The type to use as an identifier to return when a click callback occurs.</typeparam>
 public class BuildingButtonBinding<T>: BuildingUIBinding
 {
+	private const string POWER_RICH_TEXT = "<sprite=\"text-icons\" name=\"power\">";
+	private const string ADVANCED_MATERIALS_RICH_TEXT = "<sprite=\"text-icons\" name=\"advanced-materials\">";
+	private const string MASS_RICH_TEXT = "<sprite=\"text-icons\" name=\"mass\">";
+
 	private class BuildingDisplayData
 	{
 		public string BuildingName { get; private set; }
@@ -206,7 +210,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingScienceCost,
 			AdvancedMaterialsCost
 		);
-		AdvancedMaterialsCost.SetTooltip($"The {displayData.BuildingName} costs {displayData.BuildingScienceCost} Advanced Materials to build.");
+		AdvancedMaterialsCost.SetTooltip($"The {displayData.BuildingName} costs {displayData.BuildingScienceCost} {ADVANCED_MATERIALS_RICH_TEXT} Advanced Materials to build.");
 	}
 
 	private void SetUpkeep(BuildingDisplayData displayData)
@@ -226,7 +230,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingConsumedElectricity,
 			ElectricityConsumption
 		);
-		ElectricityConsumption.SetTooltip($"The {displayData.BuildingName} consumes {displayData.BuildingConsumedElectricity} power.");
+		ElectricityConsumption.SetTooltip($"The {displayData.BuildingName} consumes {displayData.BuildingConsumedElectricity} {POWER_RICH_TEXT} power.");
 	}
 
 	private void SetSpecialResources(BuildingDisplayData displayData)
@@ -251,7 +255,7 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingProducedPower,
 			ElectricityProduction
 		);
-		ElectricityProduction.SetTooltip($"The {displayData.BuildingName} produces {displayData.BuildingProducedPower} power.");
+		ElectricityProduction.SetTooltip($"The {displayData.BuildingName} produces {displayData.BuildingProducedPower} {POWER_RICH_TEXT} power.");
 	}
 
 	private void SetAdvancedMaterialsProduction(BuildingDisplayData displayData)
@@ -261,14 +265,14 @@ public class BuildingButtonBinding<T>: BuildingUIBinding
 			displayData.BuildingScienceIncome,
 			AdvancedMaterialsProduction
 		);
-		AdvancedMaterialsProduction.SetTooltip($"The {displayData.BuildingName} produces {displayData.BuildingScienceIncome} Advanced Materials per 30 seconds.");
+		AdvancedMaterialsProduction.SetTooltip($"The {displayData.BuildingName} produces {displayData.BuildingScienceIncome} {ADVANCED_MATERIALS_RICH_TEXT} Advanced Materials per 30 seconds.");
 	}
 
 	private void SetMass(BuildingDisplayData displayData)
 	{
 		Mass.Show();
 		Mass.SetValue(displayData.BuildingMass.ToString());
-		Mass.SetTooltip($"The {displayData.BuildingName} has a mass of {displayData.BuildingMass}.");
+		Mass.SetTooltip($"The {displayData.BuildingName} has a {MASS_RICH_TEXT} mass of {displayData.BuildingMass}.");
 	}
 
 	private void SetConnections(BuildingDisplayData displayData)

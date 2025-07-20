@@ -2,7 +2,10 @@
     <engine:Template name="BuildCategoriesMenu_UI" src="project://database/Assets/UI/Building/BuildCategoriesMenu_UI.uxml?fileID=9197481963319205126&amp;guid=27c10469a19e6964e927a4ab951ac757&amp;type=3#BuildCategoriesMenu_UI" />
     <engine:Template name="BuildSubMenu_UI" src="project://database/Assets/UI/Building/BuildSubMenu_UI.uxml?fileID=9197481963319205126&amp;guid=e35c812f123f62b409718271763e8233&amp;type=3#BuildSubMenu_UI" />
     <engine:VisualElement name="Contianer" picking-mode="Ignore" style="flex-grow: 1; align-self: flex-start; flex-direction: column-reverse;">
-        <engine:Instance template="BuildCategoriesMenu_UI" name="MenuContainer" picking-mode="Ignore" />
+        <engine:Instance template="BuildCategoriesMenu_UI" name="MenuContainer" picking-mode="Ignore">
+            <AttributeOverrides element-name="BuildingCategories" tooltip="Building Categories" />
+            <AttributeOverrides element-name="BuildMode" tooltip="Build Tools" />
+        </engine:Instance>
         <engine:Instance template="BuildSubMenu_UI" name="SubMenuContainer" picking-mode="Ignore" style="flex-grow: 1; padding-top: 60px;" />
     </engine:VisualElement>
 </engine:UXML>

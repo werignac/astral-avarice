@@ -5,19 +5,22 @@
     <engine:VisualElement name="Container" class="inspectorContainer" style="flex-grow: 1; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; width: auto;">
         <engine:Label text="Planet" name="Subheading" class="subheader subheader1 inspectorBacked" style="white-space: normal; flex-wrap: wrap;" />
         <engine:VisualElement name="StatsBackground" class="inspectorIcon" style="flex-grow: 0;">
-            <engine:VisualElement name="Placeable" style="flex-grow: 1; flex-direction: row;">
+            <engine:VisualElement name="Placeable" tooltip="Whether buildings can be placed on this celestial body." style="flex-grow: 1; flex-direction: row;">
                 <engine:Label text="Building Possible" name="PlaceableLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223); -unity-font-style: bold;" />
             </engine:VisualElement>
-            <engine:VisualElement name="BaseMass" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Planet Mass:" name="BaseMassLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
+            <engine:VisualElement name="BaseMass" tooltip="The mass of the celestial body not including buildings." style="flex-grow: 1; flex-direction: row; align-self: flex-start;">
+                <engine:Label text="Planet &lt;sprite=&quot;text-icons&quot; name=&quot;mass&quot;&gt;:" name="BaseMassLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
                 <engine:Label text="100" name="BaseMassValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
             </engine:VisualElement>
-            <engine:VisualElement name="TotalMass" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Total Mass:" name="TotalMassLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
+            <engine:VisualElement name="TotalMass" tooltip="The mass of the celestial body including buildings." style="flex-grow: 1; flex-direction: row; align-self: flex-start;">
+                <engine:Label text="Total &lt;sprite=&quot;text-icons&quot; name=&quot;mass&quot;&gt;:" name="TotalMassLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
                 <engine:Label text="100" name="TotalMassValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
             </engine:VisualElement>
-            <engine:VisualElement name="SolarOutput" style="flex-grow: 1; flex-direction: row;">
-                <engine:Label text="Solar Output:" name="SolarOutputLabel" class="inspectorText" style="font-size: 20px; color: rgb(223, 223, 223);" />
+            <engine:VisualElement name="SolarOutput" tooltip="The range of this star&apos;s &lt;sprite=&quot;text-icons&quot; name=&quot;solar-field&quot;&gt; solar field." style="flex-grow: 1; flex-direction: row; align-self: flex-start;">
+                <engine:VisualElement name="SolarOutputLabel" style="flex-grow: 0; flex-direction: row; padding-top: 4px; padding-right: 2px; padding-bottom: 4px; padding-left: 1px; margin-top: 4px; margin-right: 4px; margin-bottom: 2px; margin-left: 2px;">
+                    <engine:Label text="&lt;sprite=&quot;text-icons&quot; name=&quot;solar-field&quot;&gt;" name="SolarOutputIcon" class="inspectorText" style="font-size: 24px; color: rgb(223, 223, 223); margin-top: 0; margin-right: 7px; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                    <engine:Label text="Output:" name="SolarOutputText" class="inspectorText" style="color: rgb(223, 223, 223); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 20px;" />
+                </engine:VisualElement>
                 <engine:Label text="0" name="SolarOutputValue" class="inspectorText" style="font-size: 20px; -unity-font-style: bold;" />
             </engine:VisualElement>
             <engine:VisualElement name="SpecialResourcesContainer" style="flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-self: stretch; width: auto; height: auto;">
