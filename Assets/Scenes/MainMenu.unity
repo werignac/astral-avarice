@@ -680,7 +680,7 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: cc5cf6fbd626c8547bd726b0fa4b0eb0, type: 2}
   missionSelectDocument: {fileID: 454164189}
   missionButtonPrefab: {fileID: 9197481963319205126, guid: 089c9e43ee88121449dca560d3f23bb0, type: 3}
-  tooltip: {fileID: 1472481593}
+  _tooltipEventBus: {fileID: 11400000, guid: e6aedcfcdb1f95c4391561a94e53cd6c, type: 2}
   tooltipLayerFactory: {fileID: 11400000, guid: bf06d49b17ae52c43b13b5416d8a5367, type: 2}
   OnPlayerClosed:
     m_PersistentCalls:

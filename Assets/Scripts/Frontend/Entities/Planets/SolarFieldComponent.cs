@@ -57,10 +57,15 @@ namespace AstralAvarice.Frontend
 
 		private int ComputeSolarEnergyForPlanet(PlanetComponent otherPlanet)
 		{
+			Vector3 otherPosition = otherPlanet.transform.position;
+			return GetSolarEnergyAtPoint(otherPosition);
+		}
+
+		public int GetSolarEnergyAtPoint(Vector3 worldPosition)
+		{
 			int solarOutput = planet.SolarOutput;
 			Vector3 starPosition = transform.position;
-			Vector3 otherPosition = otherPlanet.transform.position;
-			return Mathf.Max(0, Mathf.CeilToInt(solarOutput - Vector2.Distance(starPosition, otherPosition)));
+			return Mathf.Max(0, Mathf.CeilToInt(solarOutput - Vector2.Distance(starPosition, worldPosition)));
 		}
 
 		private void ApplySolarEnergies(SolarResult[] results)

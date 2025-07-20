@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 5867601755881130296}
   - component: {fileID: 3852317765421287415}
   - component: {fileID: 5258363938450572622}
+  - component: {fileID: 3799917137785823609}
   m_Layer: 12
   m_Name: SolarField
   m_TagString: Untagged
@@ -287,6 +288,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   solarFieldCollider: {fileID: 3852317765421287415}
   computeSolarEnergyEvent: {fileID: 11400000, guid: a565bff3c057b6741a1bb5aa8bef69e8, type: 2}
+--- !u!114 &3799917137785823609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4472534620506952016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8edac59c3b03bce4a996037da5d7cbb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tooltipEventBus: {fileID: 11400000, guid: e6aedcfcdb1f95c4391561a94e53cd6c, type: 2}
+  _inputEventBus: {fileID: 11400000, guid: 5ac21978e68d6bd47adddb6cf9ac0013, type: 2}
+  _solarFieldComponent: {fileID: 5258363938450572622}
+  _tooltipLayerFactory: {fileID: 11400000, guid: 3cd032c5e5f51854aa86bb702afa039d, type: 2}
 --- !u!1 &6520147187342591169
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,3 +536,4 @@ MonoBehaviour:
   lightFalloffRadius: 0.5
   solarFieldRenderer: {fileID: 944491228981887105}
   solarFieldVisualizationState: {fileID: 11400000, guid: dac8a70b16efe154b80c249fd11acb9a, type: 2}
+  _tooltipDetector: {fileID: 3799917137785823609}

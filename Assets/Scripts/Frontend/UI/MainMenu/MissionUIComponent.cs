@@ -14,7 +14,7 @@ public class MissionUIComponent : MonoBehaviour
 	[SerializeField] private DataSet gameData;
 	[SerializeField] private UIDocument missionSelectDocument;
 	[SerializeField] private VisualTreeAsset missionButtonPrefab;
-	[SerializeField] private TooltipComponent tooltip;
+	[SerializeField] private TooltipEventBus_SO _tooltipEventBus;
 
 	private VisualElement missionsContent;
 	private Button missionBackButton;
@@ -138,21 +138,21 @@ public class MissionUIComponent : MonoBehaviour
 		// Remove the old layer.
 		if (tooltipLayer != null)
 		{
-			tooltip.Remove(tooltipLayer);
+			_tooltipEventBus.Remove(tooltipLayer);
 			tooltipLayer = null;
 		}
 
 		// Add the new layer.
 		tooltipLayer = tooltipLayerFactory.MakeLayer(tooltipController);
 		tooltipController.SetMission(mission);
-		tooltip.Add(tooltipLayer);
+		_tooltipEventBus.Add(tooltipLayer);
 	}
 
 	private void MissionButtonOnHoverEnd(PointerLeaveEvent evt, MissionData mission)
 	{
 		if (tooltipController.DisplayingMission == mission)
 		{
-			tooltip.Remove(tooltipLayer);
+			_tooltipEventBus.Remove(tooltipLayer);
 			tooltipLayer = null;
 		}
 	}

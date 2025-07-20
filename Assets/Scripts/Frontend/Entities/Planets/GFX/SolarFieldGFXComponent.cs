@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using AstralAvarice.Visualization;
+using AstralAvarice.UI.Tooltips;
 
 public class SolarFieldGFXComponent : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class SolarFieldGFXComponent : MonoBehaviour
 
 	// State of whether solar fields should be visualized or not.
 	[SerializeField] private VisualizationToggleState_SO solarFieldVisualizationState;
+
+	[SerializeField] private SolarFieldTooltipDetectorComponent _tooltipDetector;
 
 
 	private void Awake()
@@ -69,6 +72,7 @@ public class SolarFieldGFXComponent : MonoBehaviour
 	private void SetShowField(bool showField)
 	{
 		solarFieldRenderer.enabled = showField;
+		_tooltipDetector.enabled = showField;
 	}
 
 	/// <summary>

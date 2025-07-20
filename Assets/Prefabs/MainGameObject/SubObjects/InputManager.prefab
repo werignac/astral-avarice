@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb0d49d05ff82543aeaf0bbcb5b2a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputEventBus: {fileID: 11400000, guid: 5ac21978e68d6bd47adddb6cf9ac0013, type: 2}
   cameraMovementComponent: {fileID: 0}
   selectionCursor: {fileID: 0}
   selection: {fileID: 0}

@@ -1,14 +1,13 @@
 fileFormatVersion: 2
-guid: 92488b10360b1e4419e8e337cdeee9a1
+guid: 8edac59c3b03bce4a996037da5d7cbb3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - gameData: {instanceID: 0}
-  - missionSelectDocument: {instanceID: 0}
-  - missionButtonPrefab: {instanceID: 0}
   - _tooltipEventBus: {fileID: 11400000, guid: e6aedcfcdb1f95c4391561a94e53cd6c, type: 2}
-  - tooltipLayerFactory: {instanceID: 0}
+  - _inputEventBus: {fileID: 11400000, guid: 5ac21978e68d6bd47adddb6cf9ac0013, type: 2}
+  - _solarFieldComponent: {instanceID: 0}
+  - _tooltipLayerFactory: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

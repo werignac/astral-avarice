@@ -1,14 +1,11 @@
 fileFormatVersion: 2
-guid: 92488b10360b1e4419e8e337cdeee9a1
+guid: 1597f28f78e61014985600f5a792e41c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - gameData: {instanceID: 0}
-  - missionSelectDocument: {instanceID: 0}
-  - missionButtonPrefab: {instanceID: 0}
   - _tooltipEventBus: {fileID: 11400000, guid: e6aedcfcdb1f95c4391561a94e53cd6c, type: 2}
-  - tooltipLayerFactory: {instanceID: 0}
+  - _tooltipComponent: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

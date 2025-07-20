@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class SelectionCursorComponent : MonoBehaviour
 {
+	private static string ON_CURSOR_ENTER_FUNCTION_NAME = "OnCursorEnter";
+	private static string ON_CURSOR_EXIT_FUNCTION_NAME = "OnCursorExit";
+
 	/// <summary>
 	/// Class that prioritizes colliders that are directly under
 	/// the cursor.
@@ -93,13 +96,23 @@ public class SelectionCursorComponent : MonoBehaviour
 	public void QueryHovering()
 	{
 		// TODO: Parameterize.
-		int layerMask = ~LayerMask.GetMask("PlanetDetection");
+		int layerMask = ~LayerMask.GetMask();
+
+		List<Collider2D> previouslyHovering = currentlyHovering;
 
 		currentlyHovering = new List<Collider2D>(Physics2D.OverlapCircleAll(
 			transform.position,
 			WorldSpaceCursorRadius,
 			layerMask
 		));
+
+		foreach (Collider2D pastHover in previouslyHovering)
+			if (!currentlyHovering.Contains(pastHover))
+				pastHover.SendMessage(ON_CURSOR_EXIT_FUNCTION_NAME, SendMessageOptions.DontRequireReceiver);
+
+		foreach (Collider2D nextHover in currentlyHovering)
+			if (!previouslyHovering.Contains(nextHover))
+				nextHover.SendMessage(ON_CURSOR_ENTER_FUNCTION_NAME, SendMessageOptions.DontRequireReceiver);
 
 		currentlyHovering.Sort(new CursorDistanceColliderComparer(transform.position));
 	}

@@ -3,7 +3,15 @@ guid: dcb0d49d05ff82543aeaf0bbcb5b2a6a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _inputEventBus: {fileID: 11400000, guid: 5ac21978e68d6bd47adddb6cf9ac0013, type: 2}
+  - cameraMovementComponent: {instanceID: 0}
+  - selectionCursor: {instanceID: 0}
+  - selection: {instanceID: 0}
+  - gameController: {instanceID: 0}
+  - pauseManager: {instanceID: 0}
+  - minimap: {instanceID: 0}
+  - gridGroupState: {instanceID: 0}
   executionOrder: -50
   icon: {instanceID: 0}
   userData: 

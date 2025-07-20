@@ -346,6 +346,11 @@ public class SelectionComponent : MonoBehaviour
 		Collider2D foundInspectableCollider = cursor.FindFirstByPredicate(
 			(Collider2D collider) =>
 			{
+				// Ignore hovers on planets' fields.
+				// TODO: Don't hard code.
+				if (collider.gameObject.layer == LayerMask.NameToLayer("PlanetDetection"))
+					return false;
+
 				return collider.TryGetComponentInParent<IInspectableComponent>(out IInspectableComponent _);
 			}
 		);

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using AstralAvarice.Visualization;
+using AstralAvarice.Frontend;
 
 public class InputManagerComponent : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class InputManagerComponent : MonoBehaviour
 	private InputAction decreaseDirectionalPanSpeed;
 	private InputAction toggleGridGroupViewAction;
 
+
+	[SerializeField] private InputEventBus_SO _inputEventBus;
 
 	[SerializeField] private CameraMovementComponent cameraMovementComponent;
 	[SerializeField] private SelectionCursorComponent selectionCursor;
@@ -75,6 +78,8 @@ public class InputManagerComponent : MonoBehaviour
 	{
 		bool startInBuildState = BuildManagerComponent.Instance.IsInBuildState();
 
+		UpdateEventBus();
+
 		UpdateSelectionCursor();
 		UpdateBuildManager();
 		UpdateSelection();
@@ -85,6 +90,11 @@ public class InputManagerComponent : MonoBehaviour
 		UpdateGridGroupView();
 	}
 
+	private void UpdateEventBus()
+	{
+		_inputEventBus.CursorPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+	}
+
 	private void UpdateSelectionCursor()
 	{
 		// Don't look for objects under the cursor whilst paused.
@@ -92,7 +102,7 @@ public class InputManagerComponent : MonoBehaviour
 			return;
 
 		// Convert the mouse position to a position in world space.
-		Vector2 mousePositionWorldSpace = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+		Vector2 mousePositionWorldSpace = _inputEventBus.CursorPosition;
 
 		selectionCursor.SetPosition(mousePositionWorldSpace);
 		selectionCursor.QueryHovering();
