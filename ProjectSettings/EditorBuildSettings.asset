@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelScenes/TutorialBasic.unity
     guid: 25d89bb53e45b824591646bd83674244
   - enabled: 1
-    path: Assets/Scenes/LevelScenes/TutorialAdvanced.unity
+    path: Assets/Scenes/TutorialAdvanced.unity
     guid: 012684a8f5541eb4fa8a353ccf15c343
   - enabled: 1
     path: Assets/Scenes/LevelScenes/CoalHills.unity

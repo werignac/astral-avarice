@@ -1,5 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="HowToPlayTipButton_UI" src="project://database/Assets/UI/HowToPlay/HowToPlayTipButton_UI.uxml?fileID=9197481963319205126&amp;guid=3dcc3c44c5750b747a15dc95d62d6cd0&amp;type=3#HowToPlayTipButton_UI" />
+    <engine:Template name="Core-BackButton_UI" src="project://database/Assets/UI/Core/BackButton/Core-BackButton_UI.uxml?fileID=9197481963319205126&amp;guid=3cb93ddeb6b185b46bdbc291a7c002d2&amp;type=3#Core-BackButton_UI" />
     <Style src="project://database/Assets/UI/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=4124b1416559d0b44b5377efa564a3eb&amp;type=3#MainMenuStyleSheet" />
     <Style src="project://database/Assets/UI/HowToPlay/HowToPlay_StyleSheet.uss?fileID=7433441132597879392&amp;guid=3ec1970ea5a6bca4d98b24f822771579&amp;type=3#HowToPlay_StyleSheet" />
     <engine:VisualElement style="flex-grow: 1; flex-direction: row-reverse; background-image: url(&quot;project://database/Assets/Sprites/UI/Backgrounds/inspector-menu-gradient.png?fileID=2800000&amp;guid=70b7a6af3d01c664d95c036433021689&amp;type=3#inspector-menu-gradient&quot;); -unity-background-image-tint-color: rgba(158, 245, 154, 0.4);">
@@ -13,12 +14,6 @@
             <engine:Label text="Label" name="Description" class="text section" style="font-size: 40px; width: auto; margin-top: 20px; margin-right: 0; margin-left: 0; margin-bottom: 0; padding-bottom: 50px; padding-top: 25px; align-self: stretch; justify-content: flex-end; padding-left: 2px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/athabasca/Athabasca%20Cd%20Bk.otf?fileID=12800000&amp;guid=fb09dd1c8a4f399409e93cd4f1c711db&amp;type=3#Athabasca Cd Bk&quot;);" />
         </engine:VisualElement>
         <engine:VisualElement name="Left" class="menuBackground" style="flex-grow: 0; flex-shrink: 0; flex-direction: column; background-size: 300px 300px; background-position-x: left 0;">
-            <engine:VisualElement name="BackContainer" style="flex-grow: 1; flex-shrink: 0;">
-                <engine:Button name="Exit" class="missionButton" style="width: auto; height: auto; flex-shrink: 1; align-self: stretch; flex-direction: row; margin-bottom: 66px; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/screen_button_back_inspector.png?fileID=2800000&amp;guid=206181b4d674479489ee9070fe646673&amp;type=3#screen_button_back_inspector&quot;);">
-                    <engine:Label text="Back" />
-                    <engine:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/return_ui.png?fileID=21300000&amp;guid=55c697235eb4bdb43a44c1e7afde4f33&amp;type=3#return_ui&quot;); -unity-background-scale-mode: scale-to-fit; background-position-x: right 0; margin-top: 5px; margin-right: 38px; margin-bottom: 5px; margin-left: 5px; width: 86px; height: 50px; align-self: flex-end; -unity-background-image-tint-color: rgb(204, 196, 194);" />
-                </engine:Button>
-            </engine:VisualElement>
             <engine:VisualElement name="TipList" style="flex-grow: 0; flex-shrink: 1; background-size: 100% 300px; width: 300px; margin-right: 60px;">
                 <engine:ScrollView name="TipScrollView" horizontal-scroller-visibility="Hidden" enabled="true" picking-mode="Ignore" class="scrollView" style="margin-top: 20px; margin-right: 0; margin-bottom: 20px; margin-left: 20px; width: 316px;">
                     <engine:VisualElement name="TipContent" style="flex-grow: 1;">
@@ -42,6 +37,7 @@
                     </engine:VisualElement>
                 </engine:ScrollView>
             </engine:VisualElement>
+            <engine:Instance template="Core-BackButton_UI" name="Back" style="margin-left: 43px; margin-right: 36px; margin-bottom: 30px; margin-top: 9px; flex-shrink: 0;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

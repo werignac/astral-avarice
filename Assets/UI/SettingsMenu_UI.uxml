@@ -1,4 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Template name="Core-BackButton_UI" src="project://database/Assets/UI/Core/BackButton/Core-BackButton_UI.uxml?fileID=9197481963319205126&amp;guid=3cb93ddeb6b185b46bdbc291a7c002d2&amp;type=3#Core-BackButton_UI" />
     <Style src="project://database/Assets/UI/MainMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=4124b1416559d0b44b5377efa564a3eb&amp;type=3#MainMenuStyleSheet" />
     <engine:VisualElement class="menuBackground" style="flex-grow: 1; width: 500px; align-items: flex-start; align-self: flex-start; padding-right: 0; padding-left: 30px;">
         <engine:Label text="Settings" name="Title" class="text header" />
@@ -14,6 +15,7 @@
             <engine:Label text="SFX Volume:" class="text" style="margin-top: 4px; font-size: 30px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/athabasca/Athabasca%20Bk.otf?fileID=12800000&amp;guid=870d4ff537de81d48b8b8c50770d8e98&amp;type=3#Athabasca Bk&quot;);" />
             <engine:Slider value="42" high-value="0" name="SFXSlider" low-value="-50" style="height: 30px; width: 227px; margin-left: 46px;" />
         </engine:VisualElement>
-        <engine:Button text="Back" name="BackButton" class="missionButton" style="margin-bottom: 50px; margin-top: 30px;" />
+        <engine:VisualElement style="flex-grow: 1;" />
+        <engine:Instance template="Core-BackButton_UI" name="Back" style="flex-shrink: 0; width: 499px; margin-top: 30px; margin-right: 4px; margin-bottom: 50px; margin-left: 4px;" />
     </engine:VisualElement>
 </engine:UXML>

@@ -46,3 +46,13 @@
     border-top-color: rgba(4, 89, 106, 0.58);
     border-bottom-color: rgba(4, 89, 106, 0.58);
 }
+
+#Back Button {
+    font-size: 25px;
+    padding-top: 13px;
+    padding-right: 0;
+    padding-bottom: 13px;
+    padding-left: 20px;
+    -unity-slice-scale: 0.15px;
+    flex-shrink: 0;
+}

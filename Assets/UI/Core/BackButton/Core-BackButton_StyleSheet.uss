@@ -1,0 +1,35 @@
+Button {
+    padding-top: 16px;
+    padding-bottom: 17px;
+    padding-left: 39px;
+    font-size: 41px;
+    -unity-text-align: upper-left;
+    -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bk%20It.otf?fileID=12800000&guid=7807b2c0bd6287d419f562cc6f8c1ea5&type=3#Athabasca Bk It");
+    -unity-font-style: bold;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(207, 207, 207);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/screen_button_back_uncolored.png?fileID=21300000&guid=0975e512f5764ae4eae85241cc088596&type=3#screen_button_back_uncolored");
+    -unity-slice-scale: 0.2px;
+    -unity-background-image-tint-color: rgb(63, 75, 67);
+    opacity: 1;
+    padding-right: 12px;
+}
+
+Button:hover {
+    color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(93, 111, 99);
+}
+
+Button:active {
+    color: rgb(156, 156, 156);
+    -unity-background-image-tint-color: rgb(43, 51, 45);
+}
+
+Button:disabled {
+    color: rgb(122, 121, 121);
+    -unity-background-image-tint-color: rgb(26, 43, 26);
+}

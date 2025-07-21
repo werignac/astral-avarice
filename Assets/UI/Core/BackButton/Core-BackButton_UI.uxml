@@ -1,0 +1,4 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Core/BackButton/Core-BackButton_StyleSheet.uss?fileID=7433441132597879392&amp;guid=fffad518cda60c64c9c442a20a75acec&amp;type=3#Core-BackButton_StyleSheet" />
+    <engine:Button text="Back" name="BackButton" enabled="true" style="-unity-text-align: middle-left;" />
+</engine:UXML>

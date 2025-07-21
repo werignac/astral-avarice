@@ -25,7 +25,7 @@ namespace AstralAvarice.Frontend
         {
             Button prev = howToPlayUI.rootVisualElement.Q<Button>("Prev");
             Button next = howToPlayUI.rootVisualElement.Q<Button>("Next");
-            Button exit = howToPlayUI.rootVisualElement.Q<Button>("Exit");
+            Button exit = howToPlayUI.rootVisualElement.Q<Button>("BackButton");
             prev.RegisterCallback<ClickEvent>(PrevClicked);
             next.RegisterCallback<ClickEvent>(NextClicked);
             exit.RegisterCallback<ClickEvent>(BackButton_OnClick);
