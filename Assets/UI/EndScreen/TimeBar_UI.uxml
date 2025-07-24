@@ -10,7 +10,7 @@
                 <engine:VisualElement name="EndLeft" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/TimeBar/time-bar_ui.png?fileID=-1129404543&amp;guid=353a920f7649b7242a6df9db7eeb5d9d&amp;type=3#time-bar-end-right_ui&quot;); background-size: contain; background-position-x: right 0;" />
                 <engine:VisualElement name="Tile" style="flex-grow: 1; width: auto; background-image: url(&quot;project://database/Assets/Sprites/UI/TimeBar/time-bar_ui.png?fileID=-754557208&amp;guid=353a920f7649b7242a6df9db7eeb5d9d&amp;type=3#time-bar-tile_ui&quot;); background-repeat: repeat no-repeat; background-size: contain; background-position-x: left 0; position: absolute; top: 0; bottom: 0; left: 0; right: 0;" />
             </engine:VisualElement>
-            <engine:VisualElement name="Ticks" style="flex-grow: 1; position: absolute; left: 0; top: -123px; right: 0; bottom: -76px; flex-direction: row;">
+            <engine:VisualElement name="Ticks" style="flex-grow: 1; position: absolute; left: 0; top: -123px; right: 0; bottom: -64px; flex-direction: row;">
                 <engine:Instance template="TimeBarTick_UI" name="D-Rank_Tick" style="translate: -50% 0; top: 0; bottom: 0; left: 0; position: absolute;" />
                 <engine:Instance template="TimeBarTick_UI" name="C-Rank_Tick" style="translate: -50% 0; position: absolute; top: 0; bottom: 0; left: 36%;" />
                 <engine:Instance template="TimeBarTick_UI" name="B-Rank_Tick" style="translate: -50% 0; position: absolute; top: 0; bottom: 0; left: 58%;" />

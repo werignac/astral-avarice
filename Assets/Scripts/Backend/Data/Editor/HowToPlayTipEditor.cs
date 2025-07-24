@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
 
-namespace AstralAvarice.Backend
+namespace AstralAvarice.Backend.Editor
 {
 	/// <summary>
 	/// Editor that draws a special UI for the how to play tip scriptable objects.
 	/// </summary>
 	[CustomEditor(typeof(HowToPlayTip))]
-    public class HowToPlayTipEditor : Editor
+    public class HowToPlayTipEditor : UnityEditor.Editor
     {
 		private const string INSPECTOR_PATH = "Assets/Editor/UI/HowToPlay/HowToPlayTipInspector.uxml";
 

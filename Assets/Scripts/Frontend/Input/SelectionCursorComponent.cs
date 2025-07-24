@@ -107,7 +107,7 @@ public class SelectionCursorComponent : MonoBehaviour
 		));
 
 		foreach (Collider2D pastHover in previouslyHovering)
-			if (!currentlyHovering.Contains(pastHover))
+			if (!currentlyHovering.Contains(pastHover) && pastHover != null) // != null due to destroying buildings.
 				pastHover.SendMessage(ON_CURSOR_EXIT_FUNCTION_NAME, SendMessageOptions.DontRequireReceiver);
 
 		foreach (Collider2D nextHover in currentlyHovering)

@@ -1,0 +1,18 @@
+{
+    "name": "AstralAvarice.Backend.Editor",
+    "rootNamespace": "AstralAvarice.Backend.Editor",
+    "references": [
+        "GUID:8028dfd480849564189585e5a514bc8e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

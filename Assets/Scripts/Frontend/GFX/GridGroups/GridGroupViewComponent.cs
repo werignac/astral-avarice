@@ -88,7 +88,7 @@ public class GridGroupViewComponent : MonoBehaviour
 			return;
 		}
 
-		// If we're hovering over soemthing, update / show the tooltip.
+		// If we're hovering over something, update / show the tooltip.
 		GridGroupData data = gameController.GetGridGroupData(hoveringGridGroupElement.GridGroup);
 		tooltipController.SetData(data);
 

@@ -6,7 +6,10 @@ public class GridGroupTooltipUIController : ITooltipUIController
 {
 	private const string GROUP_COLOR_ELEMENT_NAME = "GroupColor";
 	private const string POWER_PRODUCED_LABEL_ELEMENT_NAME = "PowerProducedLabel";
-	private const string POWER_CONSUMED_LABEL_ELEMENT_NAME = "PowerConsumedLabel";
+	private const string POWER_CONSUMED_LABEL_ELEMENT_NAME = "PowerDemandLabel";
+	private const string MAINTENACE_AMOUNT_LABEL_ELEMENT_NAME = "MaintenanceLabel";
+	private const string CASH_INCOME_LABEL_ELEMENT_NAME = "CashIncomeLabel";
+	private const string ADVANCED_MATERIALS_INCOME_LABEL_ELEMENT_NAME = "AdvMaterialsIncomeLabel";
 
 	private GridGroupData dataToDisplay;
 
@@ -14,6 +17,9 @@ public class GridGroupTooltipUIController : ITooltipUIController
 	private VisualElement groupColorElement;
 	private Label powerProducedLabelElement;
 	private Label powerConsumedLabelElement;
+	private Label maintenanceAmountLabelElement;
+	private Label cashIncomeLabelElement;
+	private Label advancedMaterialsIncomeLabelElement;
 
 	public void SetData(GridGroupData dataToDisplay)
 	{
@@ -33,6 +39,9 @@ public class GridGroupTooltipUIController : ITooltipUIController
 		groupColorElement = ui.Q(GROUP_COLOR_ELEMENT_NAME);
 		powerProducedLabelElement = ui.Q<Label>(POWER_PRODUCED_LABEL_ELEMENT_NAME);
 		powerConsumedLabelElement = ui.Q<Label>(POWER_CONSUMED_LABEL_ELEMENT_NAME);
+		maintenanceAmountLabelElement = ui.Q<Label>(MAINTENACE_AMOUNT_LABEL_ELEMENT_NAME);
+		cashIncomeLabelElement = ui.Q<Label>(CASH_INCOME_LABEL_ELEMENT_NAME);
+		advancedMaterialsIncomeLabelElement = ui.Q<Label>(ADVANCED_MATERIALS_INCOME_LABEL_ELEMENT_NAME);
 
 		// Assume dataToDisplay is already set.
 		UpdateUI();
@@ -45,6 +54,9 @@ public class GridGroupTooltipUIController : ITooltipUIController
 		groupColorElement = null;
 		powerProducedLabelElement = null;
 		powerConsumedLabelElement = null;
+		maintenanceAmountLabelElement = null;
+		cashIncomeLabelElement = null;
+		advancedMaterialsIncomeLabelElement = null;
 	}
 
 	private void UpdateUI()
@@ -54,5 +66,8 @@ public class GridGroupTooltipUIController : ITooltipUIController
 		groupColorElement.style.backgroundColor = groupColor;
 		powerProducedLabelElement.text = dataToDisplay.TotalPowerProduced.ToString();
 		powerConsumedLabelElement.text = dataToDisplay.TotalPowerConsumed.ToString();
+		maintenanceAmountLabelElement.text = dataToDisplay.Maintenace.ToString();
+		cashIncomeLabelElement.text = dataToDisplay.CashIncome.ToString();
+		advancedMaterialsIncomeLabelElement.text = dataToDisplay.AdvancedMaterialsIncome.ToString();
 	}
 }
