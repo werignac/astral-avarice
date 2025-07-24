@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
-  m_Name: 00_Welcome_Tip
+  m_Name: _Missions_Tip
   m_EditorClassIdentifier: 
-  title: Welcome
-  description: Welcome to Astral Avarice! As the head of an interplanetary power
-    company, it is your job to build system-spanning power grids to make ludicrously
-    massive profits and <sprite="text-icons" name="s-rank">atisfy shareholders.
+  title: Missions
+  description: Every mission in Astral Avarice has an income threshold. The goal
+    of each mission is to reach that threshold as fast as possible. Faster times
+    will be rewarded with better shareholder-determined <sprite="text-icons" name="s-rank"><sprite="text-icons"
+    name="a-rank"><sprite="text-icons" name="b-rank"><sprite="text-icons" name="c-rank"><sprite="text-icons"
+    name="d-rank"> ranks.
   videoClip: {fileID: 32900000, guid: 68dd806edaf3dd9458da9944b6b97839, type: 3}

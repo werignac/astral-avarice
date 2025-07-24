@@ -18,7 +18,7 @@ MonoBehaviour:
     nor planets.
 
 
-    All buildings except for Pylons can support one cable. So,
-    Pylons are necessary for creating networks with more than one power plant and
-    power consumer.'
+    Most buildings can support one cable connection. So, Pylons
+    (which allow for more connections) are necessary for creating networks with more
+    than one power plant and power consumer.'
   videoClip: {fileID: 32900000, guid: 992166a0a61d98541bade88d2ca5d09e, type: 3}

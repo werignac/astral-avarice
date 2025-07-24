@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: 02_GameEnd_Tip
   m_EditorClassIdentifier: 
   title: Game End
-  description: Each mission has a goal income. If you maintain a cash income equal
-    to or greater than the goal for 10 seconds, you will win the mission. If you
-    have no money, and no income, or make it impossible to achieve the goal income,
-    you will fail the mission.
+  description: 'There are two ways for a mission to end: ending in a victory or a
+    failure.
+
+
+    Victory is achieved by maintaining a cash income equal to or greater
+    than the goal for 10 seconds, and is rewarded by the shareholders with a <sprite="text-icons"
+    name="s-rank"><sprite="text-icons" name="a-rank"><sprite="text-icons" name="b-rank"><sprite="text-icons"
+    name="c-rank"><sprite="text-icons" name="d-rank"> rank.
+
+
+    Failure is achieved
+    by completely draining your funds and income, or making it impossible to achieve
+    the goal income by destroying too many homes. Shareholders reward this outcome
+    with the coveted <sprite="text-icons" name="x-rank"> rank.'
   videoClip: {fileID: 32900000, guid: e698d92b0d0372e4b9bd7d0f07b21af9, type: 3}

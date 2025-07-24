@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
-  m_Name: 12_ChainBuild1_Tip
+  m_Name: _Time_Tip
   m_EditorClassIdentifier: 
-  title: Chain Build I
-  description: When building, a cable will automatically be placed between the new
-    building and the previous one. This includes when you change building types.
-  videoClip: {fileID: 32900000, guid: 99e2baf8d8da52348a27bcdb312e94cc, type: 3}
+  title: Time
+  description: The right of the stats panel is the time section. The number on the
+    bottom is the current game time; the + and - buttons control the game speed;
+    and the pause button opens the pause menu.
+  videoClip: {fileID: 32900000, guid: 016e6db549617354c881ba2cdafaf7b5, type: 3}

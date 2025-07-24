@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Power Plants
   description: Power plants produce electricity. This electricity will power <sprite="text-icons"
     name="cable"> connected buildings. Connecting multiple power plants to the same
-    grid allows for powering multiple homes or more demanding homes.
+    grid enables powering multiple homes or more demanding homes.
   videoClip: {fileID: 32900000, guid: cb5db25e452c2ca4aac394498bc18a4a, type: 3}

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
-  m_Name: 01_Income_Tip
+  m_Name: _Progress_Tip
   m_EditorClassIdentifier: 
-  title: Income
-  description: In the stats panel you can see your current income for both cash and
-    <sprite="text-icons" name="advanced-materials"> advanced materials. You collect
-    this each pay cycle, which occurs every 30 seconds.
+  title: Progress
+  description: The middle of the stats panel shows how close you are to finishing
+    the mission. The pie chart on the left shows how much more income you need to
+    complete the mission. The letter and time on the right indicates the deadline
+    you'll need to beat to achieve the current rank.
   videoClip: {fileID: 32900000, guid: 016e6db549617354c881ba2cdafaf7b5, type: 3}

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 03_Planets_Tip
   m_EditorClassIdentifier: 
   title: Planets
-  description: Planets are celestial bodies where <sprite="text-icons" name="pylon">
-    buildings can be placed. They can also contain <sprite="text-icons" name="solar"><sprite="text-icons"
-    name="wind"><sprite="text-icons" name="coal"><sprite="text-icons" name="geothermal">
-    resources that power certain power plants.
+  description: Planets are celestial bodies where buildings can be placed. They can
+    also contain <sprite="text-icons" name="solar"><sprite="text-icons" name="wind"><sprite="text-icons"
+    name="coal"><sprite="text-icons" name="geothermal"> resources that power certain
+    power plants.
   videoClip: {fileID: 32900000, guid: 632c180006a2de642be60ec5b4c320e5, type: 3}

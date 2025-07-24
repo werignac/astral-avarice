@@ -15,5 +15,6 @@ MonoBehaviour:
   title: Mass
   description: Planets all have an innate <sprite="text-icons" name="mass"> mass.
     Placing buildings on a planet increases its mass. Some buildings are heavy and
-    will increase a planet's mass substantially.
+    will increase a planet's mass substantially. You can reduce the mass of planets
+    with Antimatter Spheres, which have negative mass.
   videoClip: {fileID: 32900000, guid: bad534b9df4b15e4096e9c2aa3018cb6, type: 3}

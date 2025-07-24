@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: 21_Thrusters_Tip
   m_EditorClassIdentifier: 
   title: Thrusters
-  description: Thrusters will never be automatically powered. When powered on, thrusters
-    will push the planet they are on.
+  description: When powered, thrusters will push the planet they are on. This is
+    useful for making large gaps crossable, moving planets away from gravity fields,
+    or moving planets closer to stars. Thrusters will never be automatically powered,
+    and must be powered manually via the inspector.
   videoClip: {fileID: 32900000, guid: 7e6a1055eeca4214ab20c604ec588670, type: 3}

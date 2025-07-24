@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74071f5b0e73b1f459f5fb9b0bff3eb3, type: 3}
   m_Name: 08_Resources_Tip
   m_EditorClassIdentifier: 
-  title: Resources
+  title: Planet Resources
   description: 'Most power plants require a special resource to convert into electricity.
     These power plants will only function when placed on planets with the corresponding
     resource available.

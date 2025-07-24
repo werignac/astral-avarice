@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: View Toggles
   description: You can open the menu near the mini map to toggle different views.
-    This allows you to turn on and off visualizations of solar fields, gravity fields,
-    and more.
+    This allows you to turn on and off visualizations of <sprite="text-icons" name="solar-field">
+    solar fields, <sprite="text-icons" name="gravity-field"> gravity fields, and
+    more.
   videoClip: {fileID: 32900000, guid: 69f47523ebc7a45428ce04da4155e3e2, type: 3}
