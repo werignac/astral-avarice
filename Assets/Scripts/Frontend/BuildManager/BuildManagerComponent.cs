@@ -62,6 +62,15 @@ public class BuildManagerComponent : MonoBehaviour
 	/// </summary>
 	private bool _skipConstraintsQueryThisUpdate = false;
 
+	/// <summary>
+	/// Dictionary of overrides for the default handling of different transition request.
+	/// Note that this is different from the IOverrideExternalSignal, but that it would be smart to combine both
+	/// into the same system.
+	/// 
+	/// Currently used to prevent chain builds in the basic tutorial.
+	/// </summary>
+	private Dictionary<BuildStateTransitionSignalType, Func<BuildStateTransitionSignal, bool>> _defaultTransitionHandlerOverrides = new Dictionary<BuildStateTransitionSignalType, Func<BuildStateTransitionSignal, bool>>();
+
 	public BuildingSettingEntry[] PlaceableBuildings
 	{
 		get
@@ -96,6 +105,11 @@ public class BuildManagerComponent : MonoBehaviour
 		buildingCursor.Hide();
 		cableCursor.Hide();
 		gravityCursor.Hide();
+	}
+
+	public void SetDefaultTransitionHandlerOverride(BuildStateTransitionSignalType signalType, Func<BuildStateTransitionSignal, bool> handlerOverride)
+	{
+		_defaultTransitionHandlerOverrides[signalType] = handlerOverride;
 	}
 
 	/// <summary>
@@ -171,6 +185,14 @@ public class BuildManagerComponent : MonoBehaviour
 		{
 			// Override handling.
 			bool signalProcessed = overrideSignal.TryOverrideExternalSignal(signal);
+			if (signalProcessed)
+				return;
+		}
+
+		// Override handling from external sources (tutorial).
+		if (_defaultTransitionHandlerOverrides.TryGetValue(signal.GetSignalType(), out var handlerOverride))
+		{
+			bool signalProcessed = handlerOverride(signal);
 			if (signalProcessed)
 				return;
 		}

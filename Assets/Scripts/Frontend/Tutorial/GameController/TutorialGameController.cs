@@ -8,7 +8,8 @@ public class TutorialGameController : GameController
     enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2, planetDestroyed = 3, cableFour = 4, selectedHouse = 5, selectedThruster = 6, clickFour = 7, demolish = 8, move = 9, gridExceedsPower = 10, count };
     enum TutorialAllowedAction { none = 0, cable = 1, pylon = 2, fission = 3, lab = 4, coal = 5, demolish = 6, move = 7, count };
 
-	[SerializeField] private bool endGameWhenOutOfTutorialSteps = false;
+	[SerializeField] private bool endGameWhenOutOfTutorialSteps = false; // Used in the basic tutorial. TODO: Make this generic.
+	[SerializeField] private bool restrictChaining = false; // Used in the basic tutorial. TODO: Make this generic.
     [SerializeField] private TutorialUI tutorialUI;
     [SerializeField] private MissionData tutorialMission;
     [SerializeField] private BuildMenuUIComponent buildMenu;
@@ -199,11 +200,31 @@ public class TutorialGameController : GameController
 
 		// Reset the camera + build state on build failed.
 		BuildManagerComponent.Instance.OnBuildApplyFailed.AddListener(BuildManager_OnApplyFailed);
+
+		// TODO: Make more generic.
+		if (restrictChaining)
+		{
+			BuildManagerComponent.Instance.SetDefaultTransitionHandlerOverride(
+				BuildStateTransitionSignalType.CHAIN,
+				RestrictChaining
+			);
+		}
+	}
+
+	private bool RestrictChaining(BuildStateTransitionSignal signal)
+	{
+		if (!(signal is ChainTransitionSignal chainSignal))
+			throw new ArgumentException($"Expected signal to be a chain signal, but got signal {signal}.");
+
+		return chainSignal.NewBuildingType.BuildingDataAsset.buildingName != "Pylon"; 
 	}
 
     protected override void Update()
     {
         base.Update();
+
+		if (currentTutorialState >= stateChangeConditions.Length)
+			return;
 
         if (gameSpeedOverrides[currentTutorialState] >= 0)
         {
