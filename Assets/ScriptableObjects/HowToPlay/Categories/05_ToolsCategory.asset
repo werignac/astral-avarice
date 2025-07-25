@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 05_ToolsCategory
   m_EditorClassIdentifier: 
   categoryName: Tools
-  _color: {r: 0.16407563, g: 0.8553459, b: 0.37478918, a: 0}
+  _color: {r: 0.92941177, g: 0.34117648, b: 0.24313726, a: 0}
   tips:
   - {fileID: 11400000, guid: fd4426b21c133e64c94afc1eba84f6e6, type: 2}
   - {fileID: 11400000, guid: aea7ca6816d547843a77374c6fe191f1, type: 2}

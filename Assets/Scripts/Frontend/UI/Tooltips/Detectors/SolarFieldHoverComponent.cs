@@ -1,9 +1,10 @@
 using UnityEngine;
 using AstralAvarice.Frontend;
+using UnityEngine.Events;
 
 namespace AstralAvarice.UI.Tooltips
 {
-    public class SolarFieldTooltipDetectorComponent : MonoBehaviour
+    public class SolarFieldHoverComponent : MonoBehaviour
     {
 		[SerializeField] private TooltipEventBus_SO _tooltipEventBus;
 		[SerializeField] private InputEventBus_SO _inputEventBus;
@@ -12,6 +13,13 @@ namespace AstralAvarice.UI.Tooltips
 
 		private TooltipLayer _currentTooltipLayer;
 		private SolarFieldTooltipController _tooltipController;
+
+		/// <summary>
+		/// Invoked on every frame a radius is hovered.
+		/// Invoked with -1 when hovering stops.
+		/// Used for highlighting a specific radius.
+		/// </summary>
+		[HideInInspector] public UnityEvent<int> OnHoverRadius = new UnityEvent<int>();
 
 		private void Start()
 		{
@@ -35,7 +43,7 @@ namespace AstralAvarice.UI.Tooltips
 			OnDisable();
 		}
 
-		public void OnCursorEnter()
+		private void OnCursorEnter()
 		{
 			// Called by selection cursor.
 			_currentTooltipLayer = _tooltipLayerFactory.MakeLayer(_tooltipController);
@@ -52,6 +60,9 @@ namespace AstralAvarice.UI.Tooltips
 			Vector3 cursorPosition = _inputEventBus.CursorPosition;
 			int solarEnergy = _solarFieldComponent.GetSolarEnergyAtPoint(cursorPosition);
 			_tooltipController.SetSolarEnergy(solarEnergy);
+
+			// Highlight the radius that's being hovered.
+			OnHoverRadius.Invoke(solarEnergy);
 		}
 
 		private void OnCursorExit()
@@ -61,6 +72,9 @@ namespace AstralAvarice.UI.Tooltips
 				_tooltipEventBus.Remove(_currentTooltipLayer);
 			
 			_currentTooltipLayer = null;
+
+			// Stop highlighting a radius.
+			OnHoverRadius.Invoke(-1);
 		}
 	}
 }

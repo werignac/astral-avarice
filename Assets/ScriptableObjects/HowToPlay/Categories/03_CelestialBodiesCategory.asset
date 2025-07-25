@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 03_CelestialBodiesCategory
   m_EditorClassIdentifier: 
   categoryName: Celestial Bodies
-  _color: {r: 0.85490197, g: 0.5970829, b: 0.13725492, a: 0}
+  _color: {r: 0.92941177, g: 0.34117648, b: 0.24313726, a: 0}
   tips:
   - {fileID: 11400000, guid: 85018ccf633da0d45af919523a76cac7, type: 2}
   - {fileID: 11400000, guid: b0765b205ab737d45932f44d35a13294, type: 2}

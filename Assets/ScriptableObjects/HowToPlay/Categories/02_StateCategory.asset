@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 02_StateCategory
   m_EditorClassIdentifier: 
   categoryName: Game State
-  _color: {r: 0.8490566, g: 0.32624504, b: 0.1094695, a: 0}
+  _color: {r: 0.92941177, g: 0.5983919, b: 0.24313724, a: 0}
   tips:
   - {fileID: 11400000, guid: b6b955844060ecd4d9909a951ae804a4, type: 2}
   - {fileID: 11400000, guid: 4573b9af43bf2f8499d49c549fdcc2ba, type: 2}

@@ -172,7 +172,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: de80d67ce2ef9bd4396a57c55b3dce14, type: 3}
+  - {fileID: 2100000, guid: 93d76f1c2532e224fb7ccf1111984141, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -194,7 +194,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: c41f978d88cac7949a078bf84d9b1c54, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5058824}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -304,6 +304,9 @@ MonoBehaviour:
   _inputEventBus: {fileID: 11400000, guid: 5ac21978e68d6bd47adddb6cf9ac0013, type: 2}
   _solarFieldComponent: {fileID: 5258363938450572622}
   _tooltipLayerFactory: {fileID: 11400000, guid: 3cd032c5e5f51854aa86bb702afa039d, type: 2}
+  OnHoverRadius:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6520147187342591169
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,4 +539,4 @@ MonoBehaviour:
   lightFalloffRadius: 0.5
   solarFieldRenderer: {fileID: 944491228981887105}
   solarFieldVisualizationState: {fileID: 11400000, guid: dac8a70b16efe154b80c249fd11acb9a, type: 2}
-  _tooltipDetector: {fileID: 3799917137785823609}
+  _hoverComponent: {fileID: 3799917137785823609}

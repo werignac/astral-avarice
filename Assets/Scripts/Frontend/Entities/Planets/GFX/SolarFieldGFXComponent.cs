@@ -7,6 +7,7 @@ public class SolarFieldGFXComponent : MonoBehaviour
 {
 	private const string SOLAR_FIELD_INNER_RADIUS_PROPERTY_NAME = "_InnerRadius";
 	private const string SOLAR_FIELD_STEPS_PROPERTY_NAME = "_StepCount";
+	private const string SOLAR_FIELD_HIGHLIGHTED_RADIUS_PROPERTY_NAME = "_HighlightedRadius";
 
 
 	private PlanetComponent planet;
@@ -21,7 +22,7 @@ public class SolarFieldGFXComponent : MonoBehaviour
 	// State of whether solar fields should be visualized or not.
 	[SerializeField] private VisualizationToggleState_SO solarFieldVisualizationState;
 
-	[SerializeField] private SolarFieldTooltipDetectorComponent _tooltipDetector;
+	[SerializeField] private SolarFieldHoverComponent _hoverComponent;
 
 
 	private void Awake()
@@ -35,8 +36,10 @@ public class SolarFieldGFXComponent : MonoBehaviour
 
 		// Show or hide the field based on the current state.
 		SetShowField(solarFieldVisualizationState.Value);
-		// Listen to when the state of whether firlds should be shown or hidden changes in the future.
+		// Listen to when the state of whether fields should be shown or hidden changes in the future.
 		solarFieldVisualizationState.AddStateChangeListener(SetShowField);
+
+		_hoverComponent.OnHoverRadius.AddListener(SetHighlightedRadius);
 	}
 
 	private void SetLightRadii(bool setMaterialProperties = true)
@@ -72,7 +75,12 @@ public class SolarFieldGFXComponent : MonoBehaviour
 	private void SetShowField(bool showField)
 	{
 		solarFieldRenderer.enabled = showField;
-		_tooltipDetector.enabled = showField;
+		_hoverComponent.enabled = showField;
+	}
+
+	private void SetHighlightedRadius(int highlightedRadius)
+	{
+		solarFieldRenderer.material.SetFloat(Shader.PropertyToID(SOLAR_FIELD_HIGHLIGHTED_RADIUS_PROPERTY_NAME), highlightedRadius);
 	}
 
 	/// <summary>

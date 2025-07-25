@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 04_BuildingsCategory
   m_EditorClassIdentifier: 
   categoryName: Buildings
-  _color: {r: 0.6329307, g: 0.88235295, b: 0.18431373, a: 0}
+  _color: {r: 0.92941177, g: 0.6, b: 0.24313726, a: 0}
   tips:
   - {fileID: 11400000, guid: 1acdf93b7dd3459419eff849792bd5c3, type: 2}
   - {fileID: 11400000, guid: a515d4e910919a54aa46ef72a7b351ac, type: 2}
