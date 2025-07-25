@@ -148,7 +148,7 @@ public class BuildingInstanceInspectorController : BuildingInspectorController
 		{
 			// Assumed income has a divider.
 			// TODO: Change to be accurate based on missing special resources.
-			Income.SetValue("$" + (BuildingIncome * (BuildingIsPowered ? 1 : 0)).ToString());
+			Income.SetValue((BuildingIncome * (BuildingIsPowered ? 1 : 0)).ToString());
 			Income.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITH_DIVIDER);
 			Income.SetTotal(BuildingIncome.ToString());
 		}

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Funds and Income
   description: 'The left of the stats panel shows your funds and income. Funds are
-    used to purchase buildings. Income is genereated by powering homes and labs.
-    Every 30 seconds, your income is added to your funds.
+    used to purchase buildings and cables. Income is genereated by powering homes
+    and labs. Every 30 seconds, your income is added to your funds.
 
 
-    There are two types
-    of currencies in Astral Avarice: cash and <sprite="text-icons" name="advanced-materials">
+    There are
+    two types of currencies in Astral Avarice: cash and <sprite="text-icons" name="advanced-materials">
     advanced materials. Advanced materials are necessary to purchase more powerful
     buildings, while increasing your cash income serves as the goal of missions.'
   videoClip: {fileID: 32900000, guid: 016e6db549617354c881ba2cdafaf7b5, type: 3}

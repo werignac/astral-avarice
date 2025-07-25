@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <engine:Template name="Core-Toggle_UI" src="project://database/Assets/UI/Core/Toggle/Core-Toggle_UI.uxml?fileID=9197481963319205126&amp;guid=e520ce24f8370574a8f6152b3b2a7d51&amp;type=3#Core-Toggle_UI" />
-    <engine:Template name="BuildingStatsContainer_UI" src="project://database/Assets/UI/Building/BuildingStatsContainer_UI.uxml?fileID=9197481963319205126&amp;guid=d5524eaf71181d74284e1ff02bcd715d&amp;type=3#BuildingStatsContainer_UI" />
+    <engine:Template name="BuildingStatsContainer_Inspector_UI" src="project://database/Assets/UI/Inspector/BuildingStatsContainer_Inspector_UI.uxml?fileID=9197481963319205126&amp;guid=593775d0090cfef4eb419c7b421e4fa6&amp;type=3#BuildingStatsContainer_Inspector_UI" />
     <Style src="project://database/Assets/UI/Inspector/InspectorMenu_StyleSheet.uss?fileID=7433441132597879392&amp;guid=147deab159b995c4e9b916c33977241c&amp;type=3#InspectorMenu_StyleSheet" />
     <Style src="project://database/Assets/UI/Building/BuildMenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=ed9da8016cee3764b8e8af591325e9dd&amp;type=3#BuildMenuStyleSheet" />
     <engine:VisualElement name="Container" class="inspectorContainer" style="flex-grow: 1; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; width: auto; flex-shrink: 0;">
@@ -15,7 +15,7 @@
                 <engine:Instance template="Core-Toggle_UI" name="PoweredToggleContainer" style="width: 40px; height: 40px;" />
             </engine:VisualElement>
         </engine:VisualElement>
-        <engine:Instance template="BuildingStatsContainer_UI" name="Stats" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;" />
+        <engine:Instance template="BuildingStatsContainer_Inspector_UI" name="Stats" style="margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;" />
         <engine:Label text="Here is a description of what the building does. I&apos;m extending this description so we can test when the inspector is stratched to its limit. In theory a scroll bar should appear instead of the inspector going off screen, but we&apos;ll see what the actual results are." name="Description" tooltip="A description of the selected building." class="textbox" style="flex-wrap: nowrap; white-space: normal; margin-bottom: 10px; margin-left: 10px; margin-top: 10px; margin-right: 10px;" />
     </engine:VisualElement>
 </engine:UXML>

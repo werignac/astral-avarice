@@ -117,3 +117,19 @@
     padding-bottom: 10px;
     padding-left: 10px;
 }
+
+.statsText {
+    -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bd.otf?fileID=12800000&guid=6d0a7669e90965546aceccaf1b5c6a9d&type=3#Athabasca Bd");
+    font-size: 20px;
+    -unity-font-style: normal;
+    -unity-text-outline-width: 0.5px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}
+
+.statsHeader {
+    -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bd.otf?fileID=12800000&guid=6d0a7669e90965546aceccaf1b5c6a9d&type=3#Athabasca Bd");
+    color: rgb(239, 239, 239);
+    font-size: 20px;
+    -unity-font-style: normal;
+    -unity-text-align: upper-left;
+}

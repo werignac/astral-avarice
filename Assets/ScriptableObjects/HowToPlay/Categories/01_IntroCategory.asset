@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 01_IntroCategory
   m_EditorClassIdentifier: 
   categoryName: Intro
-  _color: {r: 0.9308176, g: 0.34257153, b: 0.2429492, a: 0}
+  _color: {r: 0.49019608, g: 0.043137256, b: 0.25882354, a: 1}
   tips:
   - {fileID: 11400000, guid: 30e68818c761c204d80bb8b4eef5c4c1, type: 2}
   - {fileID: 11400000, guid: 36db3cc9f6dc45941a670624fe736023, type: 2}

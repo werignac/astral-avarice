@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 06_MiscCategory
   m_EditorClassIdentifier: 
   categoryName: Misc
-  _color: {r: 0.92941177, g: 0.6, b: 0.24313726, a: 0}
+  _color: {r: 0.8666667, g: 0.2901961, b: 0.26666668, a: 1}
   tips:
   - {fileID: 11400000, guid: 062fa8ca9a61ca748820a6d41d8ba104, type: 2}
   - {fileID: 11400000, guid: a41267f8b9c372d4985917a03dd9ced3, type: 2}

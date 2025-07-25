@@ -321,3 +321,11 @@
     -unity-text-outline-width: 0.5px;
     -unity-text-outline-color: rgb(0, 0, 0);
 }
+
+.statsHeader {
+    -unity-font-definition: url("project://database/Assets/Fonts/nova_square/NovaSquare-Book.ttf?fileID=12800000&guid=477ddf3a396ae69428d90710fd5d3ab0&type=3#NovaSquare-Book");
+    color: rgb(239, 239, 239);
+    font-size: 14px;
+    -unity-font-style: bold;
+    -unity-text-align: upper-left;
+}

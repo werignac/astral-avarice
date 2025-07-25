@@ -121,7 +121,7 @@ public class BuildingButtonInspectorController : BuildingInspectorController
 		if (BuildingHasIncome)
 		{
 			Income?.SetDividerMode(BuildingValueUIBinding.DividerStyle.WITHOUT_DIVIDER);
-			Income?.SetValue("$" + BuildingIncome.ToString());
+			Income?.SetValue(BuildingIncome.ToString());
 		}
 		else
 			Income.Hide();

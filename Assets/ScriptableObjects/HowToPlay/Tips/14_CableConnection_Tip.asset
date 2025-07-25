@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Cable Tool
   description: 'The cable tool will connect buildings with <sprite="text-icons" name="cable">
-    cables. Cables have a limited length and cannot overlap with other structures
-    nor planets.
+    cables. Clicking on a building in the build menu will enable placing a cable
+    and a building at the same time.
 
 
-    Most buildings can support one cable connection. So, Pylons
-    (which allow for more connections) are necessary for creating networks with more
-    than one power plant and power consumer.'
+    Most buildings can support one cable connection.
+    So, Pylons (which allow for more connections) are necessary for creating networks
+    with more than one power plant and power consumer.'
   videoClip: {fileID: 32900000, guid: 992166a0a61d98541bade88d2ca5d09e, type: 3}

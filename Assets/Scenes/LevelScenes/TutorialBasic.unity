@@ -180,6 +180,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   endGameWhenOutOfTutorialSteps: 1
+  restrictChaining: 1
   tutorialUI: {fileID: 1447282692}
   tutorialMission: {fileID: 11400000, guid: 99f704f836c39f24b8f13f67f0424487, type: 2}
   buildMenu: {fileID: 876278619}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 04_BuildingsCategory
   m_EditorClassIdentifier: 
   categoryName: Buildings
-  _color: {r: 0.92941177, g: 0.6, b: 0.24313726, a: 0}
+  _color: {r: 0.7254902, g: 0.17254902, b: 0.28235295, a: 1}
   tips:
   - {fileID: 11400000, guid: 1acdf93b7dd3459419eff849792bd5c3, type: 2}
   - {fileID: 11400000, guid: a515d4e910919a54aa46ef72a7b351ac, type: 2}
@@ -22,3 +22,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1dfa85c91264be4294af82fa1f16a8f, type: 2}
   - {fileID: 11400000, guid: 2e016b24d977e6c45bbe147af1262e3a, type: 2}
   - {fileID: 11400000, guid: 42355bab6dcfee240bbe4d63ea792707, type: 2}
+  - {fileID: 11400000, guid: 43bca5f08c61f2d45b4008c4828a8a75, type: 2}

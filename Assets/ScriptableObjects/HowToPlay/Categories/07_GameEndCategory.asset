@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 07_GameEndCategory
   m_EditorClassIdentifier: 
   categoryName: Game End
-  _color: {r: 0.92941177, g: 0.34117648, b: 0.24313726, a: 0}
+  _color: {r: 0.92941177, g: 0.3529412, b: 0.2509804, a: 1}
   tips:
   - {fileID: 11400000, guid: 5b64df046268f554a904c3964df4cfdd, type: 2}
   - {fileID: 11400000, guid: 6d56845dcb596224bbde46ece5f89649, type: 2}
