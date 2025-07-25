@@ -7,7 +7,7 @@
             <engine:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
         </engine:VisualElement>
         <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
-            <engine:Label text="The section just to the right contains both the game speed,&#10;as well as tracking how mucn in game time has passed.&#10;You collect income every 30 seconds, so make sure to have&#10;good income in time for the payout." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" />
+            <engine:Label text="The section just to the right contains both the game speed,&#10;as well as tracking how much in game time has passed.&#10;You collect income every 30 seconds, so make sure to have&#10;good income in time for the payout." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

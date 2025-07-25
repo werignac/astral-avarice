@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 20_PowerToggle_Tip
   m_EditorClassIdentifier: 
   title: Power Toggle
-  description: While a power-consuming building is selected, you can toggle its powered
-    state in the inspector. When toggled off, the building won't consume power. The
-    building can only be toggled on if it is in a grid with enough power to sustain
-    it.
+  description: While a power-consuming building is selected, you can toggle it on
+    and off in the inspector. When toggled off, the building won't consume power.
+    When toggled on, the building will consume power; but this can only be done if
+    the building is in a grid with enough power to sustain it.
   videoClip: {fileID: 32900000, guid: cff063ecbfb37494a8ca7bb7aa12a82a, type: 3}

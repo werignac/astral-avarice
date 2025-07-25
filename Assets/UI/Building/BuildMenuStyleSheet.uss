@@ -293,3 +293,31 @@
 .subMenuCloseButton:active {
     background-image: url("project://database/Assets/Sprites/UI/Buttons/build-menu-close-button-active_ui.png?fileID=21300000&guid=7505874863916054ea9d34fc7872ed01&type=3#build-menu-close-button-active_ui");
 }
+
+.incomeText {
+    color: rgb(31, 208, 66);
+}
+
+.advancedMaterialsText {
+    color: rgb(54, 194, 205);
+}
+
+.powerText {
+    color: rgb(224, 236, 60);
+}
+
+.maintenanceText {
+    color: rgb(239, 35, 77);
+}
+
+.advancedMaterialsText {
+    color: rgb(54, 194, 205);
+}
+
+.statsText {
+    -unity-font-definition: url("project://database/Assets/Fonts/Digital%20Dream/DIGITALDREAMFATNARROW.ttf?fileID=12800000&guid=e445ca243fad7b04aa59469aa2f854bb&type=3#DIGITALDREAMFATNARROW");
+    font-size: 14px;
+    -unity-font-style: bold;
+    -unity-text-outline-width: 0.5px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}

@@ -15,17 +15,11 @@
         </engine:VisualElement>
         <engine:VisualElement name="Left" class="menuBackground" style="flex-grow: 0; flex-shrink: 0; flex-direction: column; background-size: 300px 300px; background-position-x: left 0;">
             <engine:VisualElement name="TipList" style="flex-grow: 0; flex-shrink: 1; background-size: 100% 300px; width: 300px; margin-right: 60px;">
-                <engine:ScrollView name="TipScrollView" horizontal-scroller-visibility="Hidden" enabled="true" picking-mode="Ignore" class="scrollView" style="margin-top: 20px; margin-right: 0; margin-bottom: 20px; margin-left: 20px; width: 316px;">
+                <engine:ScrollView name="TipScrollView" horizontal-scroller-visibility="Hidden" enabled="true" picking-mode="Ignore" class="scrollView" style="margin-top: 20px; margin-right: 0; margin-bottom: 20px; margin-left: 20px; width: 345px;">
                     <engine:VisualElement name="TipContent" style="flex-grow: 1;">
-                        <engine:Instance template="HowToPlayTipButton_UI" enabled="true">
+                        <engine:Instance template="HowToPlayTipButton_UI" enabled="true" class="tabbed" style="-unity-background-image-tint-color: rgb(72, 79, 184);">
                             <AttributeOverrides element-name="TipButton" enabled="true" />
                         </engine:Instance>
-                        <engine:Instance template="HowToPlayTipButton_UI" />
-                        <engine:Instance template="HowToPlayTipButton_UI" />
-                        <engine:Instance template="HowToPlayTipButton_UI" />
-                        <engine:Instance template="HowToPlayTipButton_UI" />
-                        <engine:Instance template="HowToPlayTipButton_UI" />
-                        <engine:Instance template="HowToPlayTipButton_UI" />
                         <engine:Instance template="HowToPlayTipButton_UI" />
                         <engine:Instance template="HowToPlayTipButton_UI" />
                         <engine:Instance template="HowToPlayTipButton_UI" />
@@ -37,7 +31,8 @@
                     </engine:VisualElement>
                 </engine:ScrollView>
             </engine:VisualElement>
-            <engine:Instance template="Core-BackButton_UI" name="Back" style="margin-left: 43px; margin-right: 36px; margin-bottom: 30px; margin-top: 9px; flex-shrink: 0;" />
+            <engine:VisualElement name="Spacer" style="flex-grow: 1; flex-shrink: 0;" />
+            <engine:Instance template="Core-BackButton_UI" name="Back" style="margin-left: 28px; margin-right: 58px; margin-bottom: 30px; margin-top: 9px; flex-shrink: 0;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

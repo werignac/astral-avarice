@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Selection
   description: Left clicking on a building or planet will select it. Information
-    about your selection will be shown in the inspector. Right clicking will clear
-    your selection.
+    about your selection will be shown in the inspector on the right. Right clicking
+    will clear your selection.
   videoClip: {fileID: 32900000, guid: cff063ecbfb37494a8ca7bb7aa12a82a, type: 3}
