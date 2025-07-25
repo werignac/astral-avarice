@@ -179,10 +179,11 @@ MonoBehaviour:
   OnGameStart:
     m_PersistentCalls:
       m_Calls: []
+  endGameWhenOutOfTutorialSteps: 0
   tutorialUI: {fileID: 1447282692}
   tutorialMission: {fileID: 11400000, guid: 04b2e0de58489bf4d84f8de17ae84f6d, type: 2}
   buildMenu: {fileID: 876278619}
-  stateChangeConditions: 00000000000000000a000000
+  stateChangeConditions: 00000000000000000b000000
   allowedActions: 000000000000000008000000
   gameSpeedOverrides: 0000000000000000ffffffff
   cameraFocuses:
@@ -200,6 +201,8 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   buildMenuHighlights: ffffffff02000000ffffffff
   buildSubMenuHighlights: ffffffffffffffffffffffff
+  _tutorialBuildingConstraint: {fileID: 0}
+  _tutorialCableConstraint: {fileID: 0}
 --- !u!1 &876278616
 GameObject:
   m_ObjectHideFlags: 0

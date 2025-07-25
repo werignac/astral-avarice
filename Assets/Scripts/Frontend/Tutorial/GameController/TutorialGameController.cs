@@ -5,9 +5,10 @@ using System;
 
 public class TutorialGameController : GameController
 {
-    enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2, planetDestroyed = 3, cableFour = 4, selectedHouse = 5, selectedThruster = 6, clickFour = 7, demolish = 8, move = 9, count };
+    enum TutorialStateChangeCondition { click = 0, building = 1, cable = 2, planetDestroyed = 3, cableFour = 4, selectedHouse = 5, selectedThruster = 6, clickFour = 7, demolish = 8, move = 9, gridExceedsPower = 10, count };
     enum TutorialAllowedAction { none = 0, cable = 1, pylon = 2, fission = 3, lab = 4, coal = 5, demolish = 6, move = 7, count };
 
+	[SerializeField] private bool endGameWhenOutOfTutorialSteps = false;
     [SerializeField] private TutorialUI tutorialUI;
     [SerializeField] private MissionData tutorialMission;
     [SerializeField] private BuildMenuUIComponent buildMenu;
@@ -79,8 +80,8 @@ public class TutorialGameController : GameController
         // If we have no more steps in the tutorial, end the game.
 		if (currentTutorialState >= stateChangeConditions.Length)
         {
-            EndGame(true, 0);
-            ReturnToMenu();
+			if (endGameWhenOutOfTutorialSteps)
+				EndGame(true, 0);
 			return;
         }
 
@@ -178,8 +179,10 @@ public class TutorialGameController : GameController
 	/// </summary>
 	private void BuildManager_OnApplyFailed()
 	{
-		// Reset the build state.
-		BuildManagerComponent.Instance.SendExternalCancelSignal();
+		// Removed resetting the build state.
+		// Since the tutorial component is used for about half
+		// of the levels, cancelling here makes the behaviour inconsistent
+		// for half of the game.
 
 		if (cameraFocuses[currentTutorialState].z > 0)
 			FocusCamera(cameraFocuses[currentTutorialState]);
@@ -201,6 +204,7 @@ public class TutorialGameController : GameController
     protected override void Update()
     {
         base.Update();
+
         if (gameSpeedOverrides[currentTutorialState] >= 0)
         {
             gameSpeed = gameSpeedOverrides[currentTutorialState];
@@ -264,7 +268,7 @@ public class TutorialGameController : GameController
 		// If the player placed a cable, and the current step of the tutorial was to place a cable,
 		// move to the next part of the tutorial.
 		// Assumes that the cable was placed in the right spot.
-        if (result is CableBuildStateApplyResult)
+        if (result is CableBuildStateApplyResult cableResult)
         {
             if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.cable)
             {
@@ -278,6 +282,22 @@ public class TutorialGameController : GameController
                     advanceAtEndOfNextUpdate = true;
                 }
             }
+			else if (stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.gridExceedsPower)
+			{
+				int gridGroup = cableResult.cableInstance.Start.GridGroup;
+				GridGroupData gridGroupData = GetGridGroupData(gridGroup);
+
+				// Hard-coded value for basic tutorial.
+				// TODO: Rewrite the tutorial systems so that it's
+				// extensible for new steps.
+				int powerThreshold = 20;
+				
+				// This probably also isn't placed in the best spot.
+				// Assumes that the grid is not already at this threshold.
+				
+				if (gridGroupData.TotalPowerProduced > powerThreshold)
+					advanceAtEndOfNextUpdate = true;
+			}
         }
 
 		// If the player moved a building, and the current step of the tutorial was to move a buildling,

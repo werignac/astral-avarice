@@ -24,7 +24,7 @@ namespace AstralAvarice.Frontend
 		/// how far. Called by the TutorialGameController.
 		/// </summary>
 		/// <param name="placementTarget">The place the building should be placed at.</param>
-		/// <param name="maxDistance">Teh max distance the building can have from this location.</param>
+		/// <param name="maxDistance">The max distance the building can have from this location.</param>
 		public void SetPlacementTargetAndMaxDistance(Vector2 placementTarget, float maxDistance)
 		{
 			_buildingPlacementTarget = placementTarget;
@@ -42,7 +42,7 @@ namespace AstralAvarice.Frontend
 
 			if (distanceFromTarget > _maximumTargetDistance)
 			{
-				BuildWarning warning = new BuildWarning("Building not in tutorial build area.", BuildWarning.WarningType.FATAL);
+				BuildWarning warning = new BuildWarning("Building not in the position indicated by the tutorial.", BuildWarning.WarningType.FATAL);
 				result.AddWarning(warning);
 			}
 
