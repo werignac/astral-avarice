@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
     <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
         <engine:VisualElement picking-mode="Ignore" style="flex-direction: row; flex-grow: 1; justify-content: center; align-content: center; align-items: center;">
-            <engine:Label text="You can move the camera by holding&#10;the middle mouse button or space bar&#10;while dragging the mouse. Alternativly,&#10;you can use WASD or click on the minimap.&#10;Try looking around the map here." picking-mode="Ignore" class="Text" />
+            <engine:Label text="There are multiple ways to move the camera.&#10;You can:&#10;&#10;- Hold the middle mouse button and drag the mouse.&#10;- Hold spacebar and drag the mouse.&#10;- Use WASD.&#10;- Click on the minimap in the bottom right.&#10;&#10;Try looking around the map here." picking-mode="Ignore" class="Text" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

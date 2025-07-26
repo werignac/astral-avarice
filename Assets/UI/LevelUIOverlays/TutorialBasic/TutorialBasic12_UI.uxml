@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
     <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
-        <engine:Label text="As you can see, large houses require 20 power to&#10;satisfy. However, while you provide them with&#10;the power, they&apos;ll pay 300 dollars each pay cycle." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 150px;" />
+        <engine:Label text="As you can see, large houses require 20 &lt;sprite=&quot;text-icons&quot; name=&quot;power&quot;&gt;power to&#10;satisfy, and pay $300 dollars each pay cycle in return." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 150px;" />
     </engine:VisualElement>
 </engine:UXML>

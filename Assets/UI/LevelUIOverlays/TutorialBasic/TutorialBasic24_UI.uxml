@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
     <engine:VisualElement picking-mode="Ignore" name="VisualElement" style="flex-grow: 1;">
-        <engine:Label text="Whenever you click on a new building in&#10;the cable connection mode, it will become&#10;the start of the next cable. Continue&#10;connecting the buildings until both&#10;coal power plants can trace a route to the houses." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 150px;" />
+        <engine:Label text="Whenever you click on a new building in&#10;the cable tool, it will become&#10;the start of the next cable.&#10;&#10;Continue connecting the buildings until both&#10;coal power plants can trace a route to the houses." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 150px;" />
     </engine:VisualElement>
 </engine:UXML>

@@ -7,7 +7,7 @@
             <engine:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
         </engine:VisualElement>
         <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
-            <engine:Label text="The top displays the current situation.&#10;In the bottom left, you have your current cash and&#10;advanced materials. &#10;(Cash on the left, advanced materialson the right)" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" />
+            <engine:Label text="The top displays the current situation.&#10;In the bottom left, you have your current cash and&#10;advanced materials &#10;(Cash on the left, advanced materials on the right)." picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

@@ -7,7 +7,7 @@
             <engine:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);" />
         </engine:VisualElement>
         <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.78);">
-            <engine:Label text="For both cash and advanced materials, the left number is the&#10;current amount you have in reserves, while the number in &#10;parentheses is your current income." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <engine:Label text="For both cash and advanced materials, the left number is the&#10;amount you have in reserves, while the number in &#10;parentheses is your income." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 10px; margin-left: 10px; margin-right: 10px; margin-bottom: 10px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>

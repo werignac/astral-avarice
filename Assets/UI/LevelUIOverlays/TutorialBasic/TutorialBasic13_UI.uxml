@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
     <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
-        <engine:Label text="With the plant that you built, and the one&#10;already here, you produce 16 total power.&#10;In order to produce enough power, build an&#10;additional small coal plant as indicated." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 150px;" />
+        <engine:Label text="With the plant that you built, and the one&#10;already here, you produce 16 &lt;sprite=&quot;text-icons&quot; name=&quot;power&quot;&gt;total power.&#10;&#10;We need one more to satisfy the house. Build an&#10;additional small coal plant as indicated." name="Label" picking-mode="Ignore" class="Text" style="align-self: center; margin-top: 150px;" />
     </engine:VisualElement>
 </engine:UXML>
