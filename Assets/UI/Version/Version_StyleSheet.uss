@@ -1,0 +1,6 @@
+.versionText {
+    font-size: 14px;
+    -unity-font-definition: url("project://database/Assets/Fonts/athabasca/Athabasca%20Bk.otf?fileID=12800000&guid=870d4ff537de81d48b8b8c50770d8e98&type=3#Athabasca Bk");
+    color: rgb(218, 218, 218);
+    -unity-font-style: bold;
+}

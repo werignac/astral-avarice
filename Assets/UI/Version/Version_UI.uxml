@@ -1,0 +1,7 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Version/Version_StyleSheet.uss?fileID=7433441132597879392&amp;guid=f1171effa8ae267428fcfd43d6d70ffc&amp;type=3#Version_StyleSheet" />
+    <engine:VisualElement name="Version" style="flex-grow: 0; flex-direction: row; align-self: flex-end; position: absolute; bottom: 0; margin-top: 8px; margin-right: 8px; margin-bottom: 8px; margin-left: 8px; right: 0;">
+        <engine:Label text="Version:" name="VersionPrefixLabel" class="versionText" style="margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+        <engine:Label text="1.0" name="VersionLabel" class="versionText" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+    </engine:VisualElement>
+</engine:UXML>
