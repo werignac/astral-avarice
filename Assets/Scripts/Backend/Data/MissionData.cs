@@ -13,6 +13,7 @@ public class MissionData : ScriptableObject
     public bool hasPrereq;
     public string prereqMission;
     public int prereqRank;
+	public bool isDevelopmentOnly = false;
 
     public int GetRank(float time)
     {

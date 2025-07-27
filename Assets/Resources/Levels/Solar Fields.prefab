@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Solar Fields
-  levelDimentions: {x: 50, y: 35}
+  levelDimentions: {x: 75, y: 45}
   startingCash: 5000
   startingScience: 0
   goalCash: 450

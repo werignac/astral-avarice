@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Drag A Star
-  levelDimentions: {x: 90, y: 40}
+  levelDimentions: {x: 95, y: 50}
   startingCash: 5000
   startingScience: 0
   goalCash: 2000
@@ -75,16 +75,17 @@ MonoBehaviour:
   prereqMission: Exploitable System
   prereqRank: 1
   buildings:
-  - {fileID: 8645150724263048853}
-  - {fileID: 6824672588758289529}
-  - {fileID: 7233654380393133334}
-  - {fileID: 6446969235785310413}
-  - {fileID: 6774580574821785013}
-  - {fileID: 1710176994452584623}
-  - {fileID: 4218667592537028788}
   - {fileID: 4976126849889015025}
+  - {fileID: 6824672588758289529}
+  - {fileID: 6446969235785310413}
+  - {fileID: 8645150724263048853}
+  - {fileID: 1710176994452584623}
+  - {fileID: 7233654380393133334}
   - {fileID: 5441026932942117019}
+  - {fileID: 4218667592537028788}
   - {fileID: 4550060509638416825}
+  - {fileID: 6774580574821785013}
+  cablePrefab: {fileID: 0}
 --- !u!1001 &10174925351801021
 PrefabInstance:
   m_ObjectHideFlags: 0

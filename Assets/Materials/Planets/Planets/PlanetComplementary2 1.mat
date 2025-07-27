@@ -22,7 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PlanetComplementary2 1
   m_Shader: {fileID: -6465566751694194690, guid: dec295bfd1754d34a8bc911c4bdb6eeb, type: 3}
-  m_Parent: {fileID: 2100000, guid: 7fb75bb68d9d4d142ada69813a004ddb, type: 2}
+  m_Parent: {fileID: 2100000, guid: 60158aa98ce7ade47b9d08cee4ddec19, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []

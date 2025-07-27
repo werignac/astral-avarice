@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Coal Hills
-  levelDimentions: {x: 50, y: 35}
+  levelDimentions: {x: 75, y: 40}
   startingCash: 5000
   startingScience: 0
   goalCash: 450

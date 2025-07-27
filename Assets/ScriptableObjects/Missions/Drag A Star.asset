@@ -19,16 +19,17 @@ MonoBehaviour:
   startingScience: 0
   startingBuildings:
   - {fileID: 11400000, guid: c6fa1f432ef08294db476ac34e35b6a3, type: 2}
-  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
+  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
+  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
   - {fileID: 11400000, guid: 818655cc968fa5e45b219efff2bd24ec, type: 2}
-  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
-  - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
-  - {fileID: 11400000, guid: 5d94b9342970af44c9dc3629d61fdf31, type: 2}
   - {fileID: 11400000, guid: ff6f1507ab8e1a347a5c6235ee918894, type: 2}
   - {fileID: 11400000, guid: 84cae54c50f271841ae876d161a1f170, type: 2}
   tutorialScene: 
   hasPrereq: 1
   prereqMission: Exploitable System
   prereqRank: 1
+  isDevelopmentOnly: 0
