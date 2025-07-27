@@ -180,13 +180,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   endGameWhenOutOfTutorialSteps: 0
+  restrictChaining: 0
   tutorialUI: {fileID: 1447282692}
   tutorialMission: {fileID: 11400000, guid: 2cd230fd4a00c734bb717a27b086ce0f, type: 2}
   buildMenu: {fileID: 876278619}
-  stateChangeConditions: 0000000000000000000000000b000000
-  allowedActions: 00000000000000000000000008000000
-  gameSpeedOverrides: 000000000000000000000000ffffffff
+  stateChangeConditions: 000000000000000000000000000000000b000000
+  allowedActions: 0000000000000000000000000000000008000000
+  gameSpeedOverrides: 00000000000000000000000000000000ffffffff
   cameraFocuses:
+  - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
@@ -196,14 +198,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  setBuildToNone: 01010101
+  - {fileID: 0}
+  setBuildToNone: 0101010101
   buildLocations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  buildMenuHighlights: ffffffffffffffffffffffffffffffff
-  buildSubMenuHighlights: ffffffffffffffffffffffffffffffff
+  - {x: 0, y: 0, z: 0}
+  buildMenuHighlights: ffffffffffffffffffffffffffffffffffffffff
+  buildSubMenuHighlights: ffffffffffffffffffffffffffffffffffffffff
   _tutorialBuildingConstraint: {fileID: 0}
   _tutorialCableConstraint: {fileID: 0}
 --- !u!1 &876278616
@@ -451,6 +455,7 @@ MonoBehaviour:
   document: {fileID: 1447282690}
   tutorialTrees:
   - {fileID: 9197481963319205126, guid: 6189d5e31ed37954783c8a946fdfb58c, type: 3}
+  - {fileID: 9197481963319205126, guid: 75944e60e8a89f14681ba9ecbfc6fcae, type: 3}
   - {fileID: 9197481963319205126, guid: 82545bde4a6caa545b446752a39ac37c, type: 3}
   - {fileID: 9197481963319205126, guid: 099b4395567c31940bad318d9c3cc7ba, type: 3}
   - {fileID: 9197481963319205126, guid: 68494c1e4a606fb48984228b1198f00e, type: 3}

@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
     <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; justify-content: center;">
-        <engine:Label text="They are more expensive, but you&apos;re&#10;investing in architecture of a higher&#10;caliber." name="Label" picking-mode="Ignore" class="Title" style="align-self: center;" />
+        <engine:Label text="Do you think they *cough* sing and&#10;dance as they work *cough*?" name="Label" picking-mode="Ignore" class="Title" style="align-self: center;" />
     </engine:VisualElement>
 </engine:UXML>

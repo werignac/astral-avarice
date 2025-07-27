@@ -180,13 +180,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   endGameWhenOutOfTutorialSteps: 0
+  restrictChaining: 0
   tutorialUI: {fileID: 1447282692}
   tutorialMission: {fileID: 11400000, guid: 41a319c6420a1884db510cf328285df8, type: 2}
   buildMenu: {fileID: 876278619}
-  stateChangeConditions: 0000000000000000000000000b000000
-  allowedActions: 00000000000000000000000008000000
-  gameSpeedOverrides: 000000000000000000000000ffffffff
+  stateChangeConditions: 00000000000000000000000000000000000000000b000000
+  allowedActions: 000000000000000000000000000000000000000008000000
+  gameSpeedOverrides: 0000000000000000000000000000000000000000ffffffff
   cameraFocuses:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
@@ -196,14 +199,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  setBuildToNone: 01010101
+  - {fileID: 0}
+  - {fileID: 0}
+  setBuildToNone: 010101010101
   buildLocations:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  buildMenuHighlights: ffffffffffffffffffffffffffffffff
-  buildSubMenuHighlights: ffffffffffffffffffffffffffffffff
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  buildMenuHighlights: ffffffffffffffffffffffffffffffffffffffffffffffff
+  buildSubMenuHighlights: ffffffffffffffffffffffffffffffffffffffffffffffff
   _tutorialBuildingConstraint: {fileID: 0}
   _tutorialCableConstraint: {fileID: 0}
 --- !u!1 &876278616
@@ -453,6 +460,8 @@ MonoBehaviour:
   - {fileID: 9197481963319205126, guid: 4f5edd793ef5ef546b652bd9c26beedc, type: 3}
   - {fileID: 9197481963319205126, guid: debbdaaad825c5d46bc1813b122851aa, type: 3}
   - {fileID: 9197481963319205126, guid: 6fbbd8d34bc9827498ec687a4d3239b8, type: 3}
+  - {fileID: 9197481963319205126, guid: 4465811c5203b8844a09378084d2b34e, type: 3}
+  - {fileID: 9197481963319205126, guid: 8d094596f193a964499f3342e75a372b, type: 3}
   - {fileID: 9197481963319205126, guid: 68494c1e4a606fb48984228b1198f00e, type: 3}
 --- !u!1 &1633224276
 GameObject:

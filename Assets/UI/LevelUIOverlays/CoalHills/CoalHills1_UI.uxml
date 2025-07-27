@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/TutorialStyleSheet.uss?fileID=7433441132597879392&amp;guid=e1ee09bd15c329842862f1bc96b59b79&amp;type=3#TutorialStyleSheet" />
     <engine:VisualElement picking-mode="Ignore" style="flex-grow: 1; justify-content: center;">
-        <engine:Label text="I&apos;ve been in the coal business for&#10;quite some time. So let me tell you&#10;coal power plants are still superior&#10;to any foolish &quot;renewable&quot; power source." name="Label" picking-mode="Ignore" class="Title" style="align-self: center;" />
+        <engine:Label text="I&apos;ve been in the coal business for&#10;quite some time; so trust me.&#10;&lt;sprite=&quot;text-icons&quot; name=&quot;coal&quot;&gt; Coal power plants are still superior&#10;to any foolish &quot;renewable&quot; power source." name="Label" picking-mode="Ignore" class="Title" style="align-self: center;" />
     </engine:VisualElement>
 </engine:UXML>
