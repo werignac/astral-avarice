@@ -19,7 +19,19 @@ namespace AstralAvarice.UI.Tooltips
 
 		private UIDocumentTooltipController uiController = new UIDocumentTooltipController();
 
-		private TooltipLayer activeLayer = null;
+		private TooltipLayer _activeLayer = null;
+
+		private TooltipLayer ActiveLayer {
+			get
+			{
+				return _activeLayer;
+			}
+
+			set
+			{
+				_activeLayer = value;
+			}
+		}
 
 		[SerializeField] private TooltipLayerFactory_SO layerFactory;
 
@@ -37,20 +49,20 @@ namespace AstralAvarice.UI.Tooltips
 
 			if (TryGetTooltipText(hoveringElement, out string tooltipText))
 			{
-				if (activeLayer == null)
+				if (ActiveLayer == null)
 				{
-					activeLayer = layerFactory.MakeLayer(uiController);
-					tooltip.Add(activeLayer);
+					ActiveLayer = layerFactory.MakeLayer(uiController);
+					tooltip.Add(ActiveLayer);
 				}
 
 				uiController.SetText(tooltipText);
 			}
 			else
 			{
-				if (activeLayer != null)
+				if (ActiveLayer != null)
 				{
-					tooltip.Remove(activeLayer);
-					activeLayer = null;
+					tooltip.Remove(ActiveLayer);
+					ActiveLayer = null;
 				}
 			}
 		}

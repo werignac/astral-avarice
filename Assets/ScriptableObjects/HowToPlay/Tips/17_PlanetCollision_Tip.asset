@@ -16,4 +16,4 @@ MonoBehaviour:
   description: When two celestial bodies collide, catastrophic destruction occurs.
     The planet with the higher <sprite="text-icons" name="mass"> mass will lose all
     its buildings while the planet with lower mass will be completely destroyed.
-  videoClip: {fileID: 32900000, guid: a6eed3b26b37da84cb211eaef03f32a0, type: 3}
+  videoClip: {fileID: 32900000, guid: 4f2d85b53a63bfa42bdf1ccea44f9636, type: 3}

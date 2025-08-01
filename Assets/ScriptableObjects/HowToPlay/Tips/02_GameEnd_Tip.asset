@@ -21,4 +21,4 @@ MonoBehaviour:
     than the goal for 10 seconds, and is rewarded by the shareholders with a <sprite="text-icons"
     name="s-rank"><sprite="text-icons" name="a-rank"><sprite="text-icons" name="b-rank"><sprite="text-icons"
     name="c-rank"><sprite="text-icons" name="d-rank"> rank.'
-  videoClip: {fileID: 32900000, guid: e698d92b0d0372e4b9bd7d0f07b21af9, type: 3}
+  videoClip: {fileID: 32900000, guid: 038f896fa6cb9e54fafad3f61d16f195, type: 3}

@@ -17,4 +17,4 @@ MonoBehaviour:
     building. While placing buildings, cables will automatically be added between
     your last and next buildings placed (depending on the building type). Click on
     a preexisting building to change where this cable comes from.
-  videoClip: {fileID: 32900000, guid: e625fcbf7ce36d34ab139639222868db, type: 3}
+  videoClip: {fileID: 32900000, guid: 2dc6225a93cc9194faa978adb02360bb, type: 3}

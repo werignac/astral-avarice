@@ -57,6 +57,9 @@ public class MissionUIComponent : MonoBehaviour
 		missionsContent.Clear();
 		for (int i = 0; i < gameData.missionDatas.Length; ++i)
 		{
+			if (gameData.missionDatas[i].isDevelopmentOnly)
+				continue;
+
 			VisualElement button = CreateMissionButton(gameData.missionDatas[i]);
 			missionsContent.Add(button);
 		}

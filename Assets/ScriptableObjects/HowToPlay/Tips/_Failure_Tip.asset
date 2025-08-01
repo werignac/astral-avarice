@@ -17,4 +17,4 @@ MonoBehaviour:
     or making it impossible to achieve the goal income by destroying too many homes.
     Shareholders reward this outcome with the coveted <sprite="text-icons" name="x-rank">
     rank.
-  videoClip: {fileID: 32900000, guid: e698d92b0d0372e4b9bd7d0f07b21af9, type: 3}
+  videoClip: {fileID: 32900000, guid: a770c140811df404ba84bf3c83079194, type: 3}

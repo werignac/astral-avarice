@@ -21,4 +21,4 @@ MonoBehaviour:
     The four types of resources are <sprite="text-icons"
     name="solar"> Solar,  <sprite="text-icons" name="wind"> Wind, <sprite="text-icons"
     name="coal"> Coal, and <sprite="text-icons" name="geothermal"> Geothermal.'
-  videoClip: {fileID: 32900000, guid: 0875f9278803f5b4e84c78ab9b229313, type: 3}
+  videoClip: {fileID: 32900000, guid: ef7809a8aebfa24449fcd953e251a465, type: 3}

@@ -18,4 +18,4 @@ MonoBehaviour:
     will be rewarded with better shareholder-determined <sprite="text-icons" name="s-rank"><sprite="text-icons"
     name="a-rank"><sprite="text-icons" name="b-rank"><sprite="text-icons" name="c-rank"><sprite="text-icons"
     name="d-rank"> ranks.
-  videoClip: {fileID: 32900000, guid: 68dd806edaf3dd9458da9944b6b97839, type: 3}
+  videoClip: {fileID: 32900000, guid: 778556eb2108a664281b79f8d4253ef3, type: 3}

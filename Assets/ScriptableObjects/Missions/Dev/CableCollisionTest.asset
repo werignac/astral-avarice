@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83697e6c3f63ccf4f90e9a03263812af, type: 3}
+  m_Name: CableCollisionTest
+  m_EditorClassIdentifier: 
+  startingCash: 20000000
+  cashGoal: 1
+  goalTimes: f0000000a401000058020000d0020000
+  missionName: CableCollisionTest
+  startingScience: 20000000
+  startingBuildings:
+  - {fileID: 11400000, guid: c6fa1f432ef08294db476ac34e35b6a3, type: 2}
+  tutorialScene: 
+  hasPrereq: 0
+  prereqMission: 
+  prereqRank: 0
+  isDevelopmentOnly: 1

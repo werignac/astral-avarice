@@ -19,4 +19,4 @@ MonoBehaviour:
     have no maintenance cost and are relatively cheap to purchase, but their price
     scales with their length. Cables have a limited length and cannot overlap with
     other structures nor planets. '
-  videoClip: {fileID: 32900000, guid: 07e0ddf8ea548564491ac0ae0d5ec374, type: 3}
+  videoClip: {fileID: 32900000, guid: 8b9b0f0770bf8714881af25068560bad, type: 3}

@@ -21,11 +21,6 @@ namespace AstralAvarice.UI.Tooltips
 		/// </summary>
 		[HideInInspector] public UnityEvent<int> OnHoverRadius = new UnityEvent<int>();
 
-		private void Start()
-		{
-			_tooltipController = new SolarFieldTooltipController();
-		}
-
 		private void OnEnable()
 		{
 			if (_currentTooltipLayer != null)
@@ -46,6 +41,11 @@ namespace AstralAvarice.UI.Tooltips
 		private void OnCursorEnter()
 		{
 			// Called by selection cursor.
+			// Sometimes before Start, so need to make tooltip JIT.
+			
+			if (_tooltipController == null)
+				_tooltipController = new SolarFieldTooltipController();
+
 			_currentTooltipLayer = _tooltipLayerFactory.MakeLayer(_tooltipController);
 
 			if (isActiveAndEnabled)
@@ -68,7 +68,7 @@ namespace AstralAvarice.UI.Tooltips
 		private void OnCursorExit()
 		{
 			// Called by selection cursor.
-			if (isActiveAndEnabled)
+			if (isActiveAndEnabled && _currentTooltipLayer != null)
 				_tooltipEventBus.Remove(_currentTooltipLayer);
 			
 			_currentTooltipLayer = null;

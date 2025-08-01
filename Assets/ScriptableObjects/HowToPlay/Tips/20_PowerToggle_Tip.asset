@@ -17,4 +17,4 @@ MonoBehaviour:
     and off in the inspector. When toggled off, the building won't consume power.
     When toggled on, the building will consume power; but this can only be done if
     the building is in a grid with enough power to sustain it.
-  videoClip: {fileID: 32900000, guid: cff063ecbfb37494a8ca7bb7aa12a82a, type: 3}
+  videoClip: {fileID: 32900000, guid: 3617805db0254d04cada45913fdc67fa, type: 3}

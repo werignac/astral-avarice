@@ -22,4 +22,4 @@ MonoBehaviour:
     plants come in tiers with cheap and expensive options. The cheap options don''t
     produce much electricity, but are useful in the early-game. The expensive options
     produce more electricity, but are unaffordable early on.'
-  videoClip: {fileID: 32900000, guid: cb5db25e452c2ca4aac394498bc18a4a, type: 3}
+  videoClip: {fileID: 32900000, guid: 89673afa7fa2919439c5693e371a151f, type: 3}

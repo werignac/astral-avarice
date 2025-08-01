@@ -31,6 +31,11 @@ namespace AstralAvarice.Utils.Layers
 		public LayerType Max { get => layers.Max; }
 
 		/// <summary>
+		/// Get the number of layers in the set.
+		/// </summary>
+		public int Count { get => layers.Count; }
+
+		/// <summary>
 		/// Get whether two layers are equal.
 		/// Necessary because LayerType == LayerType does not compile.
 		/// Checks for null.

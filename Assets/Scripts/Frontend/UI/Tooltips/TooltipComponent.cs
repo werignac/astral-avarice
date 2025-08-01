@@ -104,6 +104,8 @@ namespace AstralAvarice.UI.Tooltips
 
 		private void LateUpdate()
 		{
+			Debug.Log($"Tooltip Layer Count {tooltipLayers.Count}");
+
 			ProcessReplacement();
 			UpdatePosition();
 		}
@@ -209,7 +211,7 @@ namespace AstralAvarice.UI.Tooltips
 
 		public void Remove(TooltipLayer layer)
 		{
-			tooltipLayers.Remove(layer);
+			bool removed = tooltipLayers.Remove(layer);
 		}
 	}
 }

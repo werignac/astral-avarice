@@ -17,4 +17,4 @@ MonoBehaviour:
     When demolishing a building with this tool, you will be refunded 50% of that
     building's money cost. This is useful for replacing outdated buildings, removing
     unwanted cables, or reducing the <sprite="text-icons" name="mass"> mass of planets.
-  videoClip: {fileID: 32900000, guid: 185c972bba0b41f439a251c982c15d7c, type: 3}
+  videoClip: {fileID: 32900000, guid: f8d503b2abb86bc42a2a2989d944e4a7, type: 3}

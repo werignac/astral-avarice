@@ -17,4 +17,4 @@ MonoBehaviour:
     useful for making large gaps crossable, moving planets away from gravity fields,
     or moving planets closer to stars. Thrusters will never be automatically powered,
     and must be powered manually via the inspector.
-  videoClip: {fileID: 32900000, guid: 7e6a1055eeca4214ab20c604ec588670, type: 3}
+  videoClip: {fileID: 32900000, guid: c051e0ae5657814438a5c0f52f96960d, type: 3}

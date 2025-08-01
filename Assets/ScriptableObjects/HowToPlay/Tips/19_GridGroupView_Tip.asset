@@ -16,4 +16,4 @@ MonoBehaviour:
   description: The <sprite="text-icons" name="grid-group"> grid group view visualizes
     your separate power grids by giving them different colors. When hovering over
     a grid while this visualization is on, you can see statistics about that grid.
-  videoClip: {fileID: 32900000, guid: 2f55c620dc33ebb45b749c385a093720, type: 3}
+  videoClip: {fileID: 32900000, guid: 984aebf920bd4354f9282505ec864650, type: 3}

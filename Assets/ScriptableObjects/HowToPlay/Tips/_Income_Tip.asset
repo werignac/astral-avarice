@@ -22,4 +22,4 @@ MonoBehaviour:
     two types of currencies in Astral Avarice: cash and <sprite="text-icons" name="advanced-materials">
     advanced materials. Advanced materials are necessary to purchase more powerful
     buildings, while increasing your cash income serves as the goal of missions.'
-  videoClip: {fileID: 32900000, guid: 016e6db549617354c881ba2cdafaf7b5, type: 3}
+  videoClip: {fileID: 32900000, guid: 1e9e8b57a0bded0468d78a41ebf89502, type: 3}

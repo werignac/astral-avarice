@@ -21,4 +21,4 @@ MonoBehaviour:
     of power required and income scales with the size of the home. Cabins require
     the least electricity, but produce the least income; while Cities are the most
     lucrative, but demand the most electricity.'
-  videoClip: {fileID: 32900000, guid: 07e0ddf8ea548564491ac0ae0d5ec374, type: 3}
+  videoClip: {fileID: 32900000, guid: 1134250dd180ea04aad975d5c5df4d43, type: 3}

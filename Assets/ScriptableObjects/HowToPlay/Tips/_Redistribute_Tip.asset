@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Clicking on the <sprite="text-icons" name="power"> Redistribute button
     near the top will change the powered states of the buildings in all of your grids
     to optimize income.
-  videoClip: {fileID: 32900000, guid: 016e6db549617354c881ba2cdafaf7b5, type: 3}
+  videoClip: {fileID: 32900000, guid: 115732aefabcb354e9d5c38650397472, type: 3}

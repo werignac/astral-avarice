@@ -16,4 +16,4 @@ MonoBehaviour:
   description: At the top of your screen is the stats panel. It displays how close
     you are to achieving the current mission's income threshold, along with information
     about the game state.
-  videoClip: {fileID: 32900000, guid: 016e6db549617354c881ba2cdafaf7b5, type: 3}
+  videoClip: {fileID: 32900000, guid: 5691b0cf07940f44dbf6c9ce573510da, type: 3}

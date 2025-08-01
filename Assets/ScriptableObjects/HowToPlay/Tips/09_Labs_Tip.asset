@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Labs consume <sprite="text-icons" name="power"> power in order to
     produce <sprite="text-icons" name="advanced-materials"> advanced materials. Advanced
     materials are required to construct more complex buildings.
-  videoClip: {fileID: 32900000, guid: 787e97671d1b10f47b583108a2082fa7, type: 3}
+  videoClip: {fileID: 32900000, guid: 4b278db099bbfc04dacc8a86c445a4eb, type: 3}

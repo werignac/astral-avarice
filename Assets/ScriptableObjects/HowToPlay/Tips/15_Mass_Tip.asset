@@ -17,4 +17,4 @@ MonoBehaviour:
     Placing buildings on a planet increases its mass. Some buildings are heavy and
     will increase a planet's mass substantially. You can reduce the mass of planets
     by demolishing buildings or with Antimatter Spheres, which have negative mass.
-  videoClip: {fileID: 32900000, guid: bad534b9df4b15e4096e9c2aa3018cb6, type: 3}
+  videoClip: {fileID: 32900000, guid: dd9c8f0f23d99cd47aa9e1f2ce77ab54, type: 3}
