@@ -37,18 +37,30 @@ public class TutorialGameController : GameController
 
     public bool cablesAreAllowed()
     {
+		if (currentTutorialState >= allowedActions.Length)
+			return true;
+
         return (allowedActions[currentTutorialState] == TutorialAllowedAction.cable || allowedActions[currentTutorialState] == TutorialAllowedAction.count);
     }
     public bool demolishAllowed()
     {
+		if (currentTutorialState >= allowedActions.Length)
+			return true;
+
         return (allowedActions[currentTutorialState] == TutorialAllowedAction.demolish || allowedActions[currentTutorialState] == TutorialAllowedAction.count);
     }
     public bool moveAllowed()
     {
+		if (currentTutorialState >= allowedActions.Length)
+			return true;
+
         return (allowedActions[currentTutorialState] == TutorialAllowedAction.move || allowedActions[currentTutorialState] == TutorialAllowedAction.count);
     }
     public bool buildingAllowed(BuildingData building)
     {
+		if (currentTutorialState >= allowedActions.Length)
+			return true;
+
         if (allowedActions[currentTutorialState] == TutorialAllowedAction.count)
         {
             return (true);
@@ -77,12 +89,18 @@ public class TutorialGameController : GameController
 	/// </summary>
     private void AdvanceToNextState()
     {
-        ++currentTutorialState;
+		if (currentTutorialState == stateChangeConditions.Length)
+			return;
+
+		++currentTutorialState;
         // If we have no more steps in the tutorial, end the game.
 		if (currentTutorialState >= stateChangeConditions.Length)
         {
 			if (endGameWhenOutOfTutorialSteps)
+			{
+				tutorialUI.ShowNextElement();
 				EndGame(true, 0);
+			}
 			return;
         }
 
@@ -185,6 +203,9 @@ public class TutorialGameController : GameController
 		// of the levels, cancelling here makes the behaviour inconsistent
 		// for half of the game.
 
+		if (currentTutorialState >= cameraFocuses.Length)
+			return;
+
 		if (cameraFocuses[currentTutorialState].z > 0)
 			FocusCamera(cameraFocuses[currentTutorialState]);
 	}
@@ -254,9 +275,15 @@ public class TutorialGameController : GameController
 
     public override void BuildManager_OnBuildResovle(BuildStateApplyResult result)
     {
+		if (currentTutorialState >= stateChangeConditions.Length)
+		{
+			base.BuildManager_OnBuildResovle(result);
+			return;
+		}
+
 		// If the player demolished the building they were supposed to demolish,
 		// move to the next step of the tutorial.
-        if (result is DemolishBuildStateApplyResult)
+		if (result is DemolishBuildStateApplyResult)
         {
             if(stateChangeConditions[currentTutorialState] == TutorialStateChangeCondition.demolish)
             {

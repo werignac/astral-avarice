@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCash: 5000
   cashGoal: 150
-  goalTimes: 3c000000
+  goalTimes: 3c0000005a00000078000000c8000000
   missionName: Basic Tutorial
   startingScience: 0
   startingBuildings:
@@ -30,3 +30,4 @@ MonoBehaviour:
   hasPrereq: 0
   prereqMission: 
   prereqRank: 0
+  isDevelopmentOnly: 0

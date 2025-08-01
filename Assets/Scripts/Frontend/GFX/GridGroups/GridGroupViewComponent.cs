@@ -107,7 +107,14 @@ public class GridGroupViewComponent : MonoBehaviour
 	private IGridGroupElement GetHoveringGridGroupElement()
 	{
 		Collider2D gridGroupElementCollider = cursor.FindFirstByPredicate(
-			(Collider2D collider) => collider.GetComponentInParent<IGridGroupElement>() != null
+			(Collider2D collider) => {
+					var gridGroupElement = collider.GetComponentInParent<IGridGroupElement>();
+
+					if (gridGroupElement == null)
+						return false;
+
+					return gameController.GetGridGroupExists(gridGroupElement.GridGroup);
+				}
 			);
 
 		if (gridGroupElementCollider == null)

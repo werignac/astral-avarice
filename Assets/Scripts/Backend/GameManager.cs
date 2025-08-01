@@ -473,6 +473,10 @@ public class GameManager
 	public GridGroupData GetGroupData(int groupId)
 	{
 		Building firstBuilding = GetFirstBuildingWithGroupId(groupId);
+		
+		if (firstBuilding == null)
+			throw new System.Exception($"Could not find building with group {groupId}.");
+		
 		return GetGroupData(firstBuilding);
 	}
 
@@ -501,10 +505,17 @@ public class GameManager
 	{
 		Building foundBuilding = buildings.Find((Building building) => building.BuildingGroup == groupId);
 
-		if (foundBuilding == null)
-			throw new System.Exception($"Could not find building with group {groupId}.");
-
 		return foundBuilding;
+	}
+
+	/// <summary>
+	/// Gets whether a grid group exists according to the game manager.
+	/// </summary>
+	/// <param name="groupId">The id of the group.</param>
+	/// <returns>True if the group exists. False otherwise.</returns>
+	public bool GetGroupExists(int groupId)
+	{
+		return GetFirstBuildingWithGroupId(groupId) != null;
 	}
 
 	/// <summary>

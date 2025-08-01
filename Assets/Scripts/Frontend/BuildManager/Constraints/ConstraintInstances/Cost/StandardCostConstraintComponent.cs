@@ -13,7 +13,7 @@ namespace AstralAvarice.Frontend
 		{
 			ConstraintQueryResult result = new ConstraintQueryResult();
 
-			if (TryGetAffordabilityWarning(data.cost.cash, gameController.Cash - data.preceedingCosts.science, "$", out BuildWarning cashWarning))
+			if (TryGetAffordabilityWarning(data.cost.cash, gameController.Cash - data.preceedingCosts.cash, "$", out BuildWarning cashWarning))
 			{
 				result.AddWarning(cashWarning);
 			}

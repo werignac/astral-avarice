@@ -578,4 +578,9 @@ public class GameController : MonoBehaviour
 	{
 		return gameManager.GetGroupData(gridGroupId);
 	}
+
+	public bool GetGridGroupExists(int gridGroupId)
+	{
+		return gameManager.GetGroupExists(gridGroupId);
+	}
 }

@@ -41,7 +41,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
   - {fileID: 11400000, guid: 3aff652b90fee664b90729cd7c1ff649, type: 2}
   - {fileID: 11400000, guid: 1839389e49db69b499531dbf89155cdd, type: 2}
-  tutorialScene: 
+  tutorialScene: FirstSteps
   hasPrereq: 0
   prereqMission: 
   prereqRank: 0

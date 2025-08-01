@@ -685,7 +685,7 @@ MonoBehaviour:
   OnPlayerClosed:
     m_PersistentCalls:
       m_Calls: []
-  _debugUnlockAllMissions: 1
+  _debugUnlockAllMissions: 0
 --- !u!1 &500337891
 GameObject:
   m_ObjectHideFlags: 0

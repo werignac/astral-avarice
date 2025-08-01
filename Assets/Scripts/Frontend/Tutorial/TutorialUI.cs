@@ -23,7 +23,8 @@ public class TutorialUI : MonoBehaviour
         }
         else
         {
-            document.visualTreeAsset = null;
+			--currentlyShown;
+			document.visualTreeAsset = null;
         }
     }
 }
