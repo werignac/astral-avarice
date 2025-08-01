@@ -18,3 +18,4 @@ MonoBehaviour:
     solar fields, <sprite="text-icons" name="gravity-field"> gravity fields, and
     more.
   videoClip: {fileID: 32900000, guid: 2c1da232abaccd946bb31fd569dd359c, type: 3}
+  videoFilename: ViewToggles

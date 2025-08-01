@@ -17,3 +17,4 @@ MonoBehaviour:
     you are to achieving the current mission's income threshold, along with information
     about the game state.
   videoClip: {fileID: 32900000, guid: 5691b0cf07940f44dbf6c9ce573510da, type: 3}
+  videoFilename: Status

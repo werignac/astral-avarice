@@ -1,6 +1,7 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/Editor/UI/HowToPlay/HowToPlayTipInspector_StyleSheet.uss?fileID=7433441132597879392&amp;guid=702b19e248ca1b249a8e111164d7ce8b&amp;type=3#HowToPlayTipInspector_StyleSheet" />
     <engine:TextField label="Title" placeholder-text="Tip Title" binding-path="title" name="TitleField" />
+    <engine:TextField label="Video File Name" placeholder-text="File Name" binding-path="videoFilename" name="VideoFileField" />
     <editor:PropertyField name="VideoField" binding-path="videoClip" />
     <engine:TextField label="Description" placeholder-text="Tip Description" name="DescriptionField" multiline="true" binding-path="description" style="height: 100px;" />
 </engine:UXML>

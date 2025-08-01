@@ -18,3 +18,4 @@ MonoBehaviour:
     your last and next buildings placed (depending on the building type). Click on
     a preexisting building to change where this cable comes from.
   videoClip: {fileID: 32900000, guid: 2dc6225a93cc9194faa978adb02360bb, type: 3}
+  videoFilename: BuildTool

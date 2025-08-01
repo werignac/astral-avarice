@@ -18,3 +18,4 @@ MonoBehaviour:
     complete the mission. The letter and time on the right indicates the deadline
     you'll need to beat to achieve the current rank.
   videoClip: {fileID: 32900000, guid: c3f1fd4b194dedb4ea995de461032b75, type: 3}
+  videoFilename: StatusProgress

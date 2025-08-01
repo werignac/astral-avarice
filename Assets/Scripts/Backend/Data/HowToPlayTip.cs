@@ -9,5 +9,6 @@ namespace AstralAvarice.Backend
 		public string title;
 		public string description;
 		public VideoClip videoClip;
+		public string videoFilename;
     }
 }

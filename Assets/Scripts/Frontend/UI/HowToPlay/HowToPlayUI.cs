@@ -414,7 +414,8 @@ namespace AstralAvarice.Frontend
             title.text = tip.title;
             currentIndex = index;
             videoPlayer.Stop();
-            videoPlayer.clip = tip.videoClip;
+			// From: https://discussions.unity.com/t/video-player-doesnt-work-in-webgl/231536/7
+			videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, "HowToPlayVideos", $"{tip.videoFilename}.mp4");
             videoPlayer.Play();
 
 			currentIndex = index;

@@ -22,3 +22,4 @@ MonoBehaviour:
     So, Pylons (which allow for more connections) are necessary for creating networks
     with more than one power plant and power consumer.'
   videoClip: {fileID: 32900000, guid: 30a09a0edf117374692a057d19e0b838, type: 3}
+  videoFilename: CableTool

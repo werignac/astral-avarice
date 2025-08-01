@@ -17,3 +17,4 @@ MonoBehaviour:
     produce <sprite="text-icons" name="advanced-materials"> advanced materials. Advanced
     materials are required to construct more complex buildings.
   videoClip: {fileID: 32900000, guid: 4b278db099bbfc04dacc8a86c445a4eb, type: 3}
+  videoFilename: Labs

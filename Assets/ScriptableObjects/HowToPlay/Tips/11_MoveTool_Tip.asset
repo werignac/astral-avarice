@@ -18,3 +18,4 @@ MonoBehaviour:
     placement, or correcting mistakes. The move tool cannot be used to place a building
     on a different planet, nor can it be used with houses.
   videoClip: {fileID: 32900000, guid: 0cb31fb2a44092945a71c871bca4c1d0, type: 3}
+  videoFilename: MoveTool

@@ -23,3 +23,4 @@ MonoBehaviour:
     advanced materials. Advanced materials are necessary to purchase more powerful
     buildings, while increasing your cash income serves as the goal of missions.'
   videoClip: {fileID: 32900000, guid: 1e9e8b57a0bded0468d78a41ebf89502, type: 3}
+  videoFilename: StatusIncome

@@ -19,3 +19,4 @@ MonoBehaviour:
     may already have). Planets closer to the star will receive more energy than planets
     that are further away.
   videoClip: {fileID: 32900000, guid: 037c3377681aa2c489f6c3d2f8ec90b3, type: 3}
+  videoFilename: Stars

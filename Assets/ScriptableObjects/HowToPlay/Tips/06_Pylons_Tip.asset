@@ -17,3 +17,4 @@ MonoBehaviour:
     to span long distances, and enable multiple power plants and power consumers
     to be part of the same grid.
   videoClip: {fileID: 32900000, guid: 4cd59b7346fe9324584d083fa4ef3438, type: 3}
+  videoFilename: Pylon

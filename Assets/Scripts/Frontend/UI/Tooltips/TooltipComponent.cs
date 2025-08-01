@@ -104,8 +104,6 @@ namespace AstralAvarice.UI.Tooltips
 
 		private void LateUpdate()
 		{
-			Debug.Log($"Tooltip Layer Count {tooltipLayers.Count}");
-
 			ProcessReplacement();
 			UpdatePosition();
 		}

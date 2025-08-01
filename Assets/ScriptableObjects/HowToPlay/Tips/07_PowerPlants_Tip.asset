@@ -23,3 +23,4 @@ MonoBehaviour:
     produce much electricity, but are useful in the early-game. The expensive options
     produce more electricity, but are unaffordable early on.'
   videoClip: {fileID: 32900000, guid: 89673afa7fa2919439c5693e371a151f, type: 3}
+  videoFilename: PowerGenerators

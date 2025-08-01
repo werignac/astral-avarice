@@ -20,3 +20,4 @@ MonoBehaviour:
     scales with their length. Cables have a limited length and cannot overlap with
     other structures nor planets. '
   videoClip: {fileID: 32900000, guid: 8b9b0f0770bf8714881af25068560bad, type: 3}
+  videoFilename: Cable

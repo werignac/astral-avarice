@@ -18,3 +18,4 @@ MonoBehaviour:
     When toggled on, the building will consume power; but this can only be done if
     the building is in a grid with enough power to sustain it.
   videoClip: {fileID: 32900000, guid: 3617805db0254d04cada45913fdc67fa, type: 3}
+  videoFilename: TogglePower

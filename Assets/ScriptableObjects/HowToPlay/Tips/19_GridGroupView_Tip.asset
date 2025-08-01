@@ -17,3 +17,4 @@ MonoBehaviour:
     your separate power grids by giving them different colors. When hovering over
     a grid while this visualization is on, you can see statistics about that grid.
   videoClip: {fileID: 32900000, guid: 984aebf920bd4354f9282505ec864650, type: 3}
+  videoFilename: GridGroups

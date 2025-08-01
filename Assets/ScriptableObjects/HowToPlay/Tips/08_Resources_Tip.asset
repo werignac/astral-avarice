@@ -22,3 +22,4 @@ MonoBehaviour:
     name="solar"> Solar,  <sprite="text-icons" name="wind"> Wind, <sprite="text-icons"
     name="coal"> Coal, and <sprite="text-icons" name="geothermal"> Geothermal.'
   videoClip: {fileID: 32900000, guid: ef7809a8aebfa24449fcd953e251a465, type: 3}
+  videoFilename: Resources

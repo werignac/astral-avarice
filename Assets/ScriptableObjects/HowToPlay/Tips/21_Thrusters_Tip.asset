@@ -18,3 +18,4 @@ MonoBehaviour:
     or moving planets closer to stars. Thrusters will never be automatically powered,
     and must be powered manually via the inspector.
   videoClip: {fileID: 32900000, guid: c051e0ae5657814438a5c0f52f96960d, type: 3}
+  videoFilename: Thrusters
