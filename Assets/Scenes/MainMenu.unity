@@ -685,7 +685,7 @@ MonoBehaviour:
   OnPlayerClosed:
     m_PersistentCalls:
       m_Calls: []
-  _debugUnlockAllMissions: 0
+  _debugUnlockAllMissions: 1
 --- !u!1 &500337891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,7 +1778,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6662230897782779884, guid: 651c72aa38f366b4185571ed3ef58479, type: 2}
-  m_audioClip: {fileID: 8300000, guid: d9e280ca0b9d3ad4f83da6d4defd2c91, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: d9e280ca0b9d3ad4f83da6d4defd2c91, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
