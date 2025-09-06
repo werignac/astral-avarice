@@ -36,6 +36,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AnimatedVerticalGlowMaskShader_29098ff145b746e39e0fc1fcf27ea763_Mask_3762040162_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 6ca1b7ada65a822439b2e06818d0e22c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _GridGroupTexture:
         m_Texture: {fileID: 2800000, guid: 5c5b512d722819845980db9fd016a3d6, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -44,8 +48,17 @@ Material:
         m_Texture: {fileID: 2800000, guid: d6b9f5fb668fa3a48a038adae98e19d9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _StaticGlowMask:
+        m_Texture: {fileID: 2800000, guid: ab346a985973e0943a1b564218382a31, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _VerticalGlowMask:
+        m_Texture: {fileID: 2800000, guid: 6ca1b7ada65a822439b2e06818d0e22c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
-    m_Colors: []
+    m_Colors:
+    - _GlowColor: {r: 32, g: 0.31387115, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -36,6 +36,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AnimatedVerticalGlowMaskShader_29098ff145b746e39e0fc1fcf27ea763_Mask_3762040162_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 6ca1b7ada65a822439b2e06818d0e22c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _GridGroupTexture:
         m_Texture: {fileID: 2800000, guid: 391361922feb2f54bb7b4c8d60ac68b4, type: 3}
         m_Scale: {x: 1, y: 1}
